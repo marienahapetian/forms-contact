@@ -947,7 +947,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 												</div>
 											<?php 
 											break;
-											case 'captcha' //8
+											case 'captcha': //8
 											?>
 												<div class="hugeit-field-block captcha-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>" data-form_id="<?php echo $frontendformid; ?>" data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>" data-theme="<?php echo $rowimages->hc_required; ?>" data-cname="<?php echo $rowimages->name; ?>">
 													<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
@@ -956,7 +956,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 												</div>
 											<?php
 											break;
-											case 'buttons' //9										
+											case 'buttons': //9										
 											?>
 												<div class="hugeit-field-block buttons-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 													<button type="submit" class="submit" id="hugeit_preview_button__submit_<?php echo $rowimages->id;?>" value="Submit">
@@ -1158,7 +1158,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 												</div>
 											<?php 
 											break;
-											case 'captcha' //8
+											case 'captcha': //8
 											?>
 												<div class="hugeit-field-block captcha-block custom-text-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>" data-form_id="<?php echo $frontendformid; ?>" data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>" data-theme="<?php echo $rowimages->hc_required; ?>" data-cname="<?php echo $rowimages->name; ?>">
 													<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
@@ -1167,7 +1167,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 												</div>
 											<?php
 											break;
-											case 'buttons' //9									
+											case 'buttons': //9									
 
 											?>
 												<div class="hugeit-field-block buttons-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
