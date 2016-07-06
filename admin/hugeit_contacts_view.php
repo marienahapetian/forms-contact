@@ -707,7 +707,7 @@ function change_select(){
 					float:left;
 					width:calc(60% - <?php echo $style_values['form_file_border_size']*2 + 5; ?>px) !important;
 					height:<?php echo $style_values['form_file_font_size']*2; ?>px;
-					margin:0px;
+					margin:0;
 					border:<?php echo $style_values['form_file_border_size']; ?>px solid #<?php echo $style_values['form_file_border_color']; ?> !important;
 					border-radius:<?php echo $style_values['form_file_border_radius']; ?>px !important;
 					font-size:<?php echo $style_values['form_file_font_size']; ?>px;
@@ -1013,7 +1013,7 @@ function change_select(){
 											echo cutomtextHtml($rowimages);
 											break;
 
-											case 'captcha' //8
+											case 'captcha': //8
 											?>
 												<div class="hugeit-field-block captcha-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 													<script type="text/javascript">
@@ -1102,7 +1102,7 @@ function change_select(){
 											echo cutomtextHtml($rowimages);
 											break;
 
-											case 'captcha' //8
+											case 'captcha': //8
 											?>
 												<div class="hugeit-field-block captcha-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 													<script type="text/javascript">

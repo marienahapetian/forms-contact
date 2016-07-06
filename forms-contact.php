@@ -29,7 +29,7 @@ add_action('wp_ajax_hugeit_contact_formBuilder_action', 'hugeit_contact_formBuil
 add_action('wp_ajax_hugeit_email_action', 'hugeit_email_ajax_action_callback');
 /*ADDING to HEADER of FRONT END */
 function hugeit_contact_frontend_scripts_and_styles() {
-    wp_enqueue_style("font_awsome_frontend", plugins_url("style/iconfonts/css/font-awesome.css", __FILE__), FALSE);
+    wp_enqueue_style("font_awsome_frontend", plugins_url("style/iconfonts/css/hugeicons.css", __FILE__), FALSE);
     wp_enqueue_style( 'font_awsome_frontend' );
     $recaptcha= 'https://www.google.com/recaptcha/api.js?onload=hugeit_forms_onloadCallback&render=explicit';
     wp_enqueue_script('recaptcha', $recaptcha,array('jquery'),'1.0.0',true);
@@ -193,7 +193,7 @@ function huge_it_contact_less_options(){
     wp_enqueue_script("jquery_ui_new1", "//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js", FALSE);
     wp_enqueue_script("jquery_ui_new2", "http://code.jquery.com/ui/1.10.4/jquery-ui.js", FALSE);    
     wp_enqueue_style("jquery_ui_new", "http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css", FALSE);
-    wp_enqueue_style("font_awsome", plugins_url("style/iconfonts/css/font-awesome.css", __FILE__), FALSE);
+    wp_enqueue_style("font_awsome", plugins_url("style/iconfonts/css/hugeicons.css", __FILE__), FALSE);
     add_action('admin_footer','adminCaptcha');
     wp_enqueue_style("admin_css", plugins_url("style/admin.style.css", __FILE__), FALSE);
     wp_enqueue_script("admin_js", plugins_url("js/admin.js", __FILE__), FALSE);
@@ -247,7 +247,7 @@ function huge_it_contact_with_options(){
     wp_enqueue_script("simple_slider_js",  plugins_url("js/simple-slider.js", __FILE__), FALSE);
     wp_enqueue_style("simple_slider_css", plugins_url("style/simple-slider.css", __FILE__), FALSE);
     wp_enqueue_script('param_block2', plugins_url("elements/jscolor/jscolor.js", __FILE__));    
-    wp_enqueue_style("font_awsome", plugins_url("style/iconfonts/css/font-awesome.css", __FILE__), FALSE);  
+    wp_enqueue_style("font_awsome", plugins_url("style/iconfonts/css/hugeicons.css", __FILE__), FALSE);
     wp_enqueue_style("admin_css", plugins_url("style/admin.style.css", __FILE__), FALSE);
     wp_enqueue_script("admin_js", plugins_url("js/admin.js", __FILE__), FALSE);
 }
