@@ -306,6 +306,14 @@ function contact_form_validation_callback(){
 							$namee=$huge_it_gen_opt[35]->value;
 							add_filter( 'wp_mail_content_type', 'set_html_content_type2' );
 							$headers = array('From: '.$huge_it_gen_opt[35]->value.' <'.$huge_it_gen_opt[34]->value.'>');
+							
+							//------------------if subject empty sends the name of the form
+							if(empty($subject)){
+								$query = $wpdb->prepare("SELECT name  from " . $wpdb->prefix . "huge_it_contact_contacts where id = %d", $frontendformid);
+								$select_res = $wpdb->get_var( $query );
+								$subject = $select_res;
+							}
+							
 							wp_mail($emailSingle, $subject, $sendmessage,$headers);
 							remove_filter( 'wp_mail_content_type', 'set_html_content_type2' );
 						}
@@ -345,6 +353,14 @@ function contact_form_validation_callback(){
 					}
 					$sendmessage=preg_replace('/{formContent}/', $adminSub, $sendmessage);
 					$headers = array('From: '.$huge_it_gen_opt[35]->value.' <'.$huge_it_gen_opt[34]->value.'>');
+					
+					//------------------if subject empty sends the name of the form
+					if(empty($subject)){
+						$query = $wpdb->prepare("SELECT name  from " . $wpdb->prefix . "huge_it_contact_contacts where id = %d", $frontendformid);
+						$select_res = $wpdb->get_var( $query );
+						$subject = $select_res;
+					}
+					
 					wp_mail($email, $subject, $sendmessage,$headers,$attachments);
 					remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
 									
