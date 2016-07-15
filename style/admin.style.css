@@ -1714,7 +1714,7 @@ a {
 }
 
 /**hover info **/
-dfn {
+.huge_it_forms_mess_subject_help_box {
 	display: inline-block;
 	background: #ddd;
 	padding: 2.2px 8.1px;;
@@ -1726,7 +1726,7 @@ dfn {
 	font-style: normal;
 	position: relative;
 }
-dfn::after {
+.huge_it_forms_mess_subject_help_box::after {
 	content: attr(data-info);
 	display: inline;
 	position: absolute;
@@ -1743,7 +1743,7 @@ dfn::after {
 	transition: opacity 250ms, top 250ms;
 	z-index: 999;
 }
-dfn::before {
+.huge_it_forms_mess_subject_help_box::before {
 	content: '';
 	display: block;
 	position: absolute;
@@ -1755,8 +1755,8 @@ dfn::before {
 	transition: opacity 250ms, top 250ms;
 	z-index: 999;
 }
-dfn:hover {z-index: 2;}
-dfn:hover::after,
-dfn:hover::before {opacity: 1;}
-dfn:hover::after {top: 30px;}
-dfn:hover::before {top: 20px;}
+.huge_it_forms_mess_subject_help_box:hover {z-index: 2;}
+.huge_it_forms_mess_subject_help_box:hover::after,
+.huge_it_forms_mess_subject_help_box:hover::before {opacity: 1;}
+.huge_it_forms_mess_subject_help_box:hover::after {top: 30px;}
+.huge_it_forms_mess_subject_help_box:hover::before {top: 20px;}
