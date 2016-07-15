@@ -125,7 +125,8 @@ function html_showsettings($param_values, $op_type){
 						</div>
 						<div>
 							<label for="form_message_subject">Message Subject</label>
-							<input name="params[form_message_subject]" type="text" class="color" id="form_message_subject" value="<?php echo $param_values['form_message_subject']; ?>" size="10" />							
+							<input name="params[form_message_subject]" type="text" class="color" id="form_message_subject" value="<?php echo $param_values['form_message_subject']; ?>" size="10" />
+							<dfn class="huge_it_forms_mess_subject_help_box" data-info="If you leave this field empty, the name of the submitted form will be used as the subject of the email.">?</dfn>
 						</div>
 						<div class="autoheight">
 							<label for="form_adminstrator_message">Message</label>
@@ -154,6 +155,7 @@ function html_showsettings($param_values, $op_type){
 						<div>
 							<label for="form_user_message_subject">Message Subject</label>
 							<input name="params[form_user_message_subject]" type="text" class="color" id="form_user_message_subject" value="<?php echo $param_values['form_user_message_subject']; ?>" size="10" />
+							<dfn class="huge_it_forms_mess_subject_help_box" data-info="If you leave this field empty, the name of the submitted form will be used as the subject of the email.">?</dfn>
 						</div>
 						<div class="autoheight">
 							<label for="form_user_message">Message</label>

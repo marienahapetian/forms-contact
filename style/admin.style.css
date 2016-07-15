@@ -1712,3 +1712,51 @@ a {
         margin-top: 40px;
     }
 }
+
+/**hover info **/
+.huge_it_forms_mess_subject_help_box {
+	display: inline-block;
+	background: #ddd;
+	padding: 2.2px 8.1px;;
+	border-radius: 100%;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	color: #333;
+	cursor: help;
+	font-style: normal;
+	position: relative;
+}
+.huge_it_forms_mess_subject_help_box::after {
+	content: attr(data-info);
+	display: inline;
+	position: absolute;
+	top: 22px; left: -105px;
+	opacity: 0;
+	width: 230px;
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 1.5em;
+	padding: 0.5em 0.8em;
+	background: rgba(0,0,0,0.8);
+	color: #fff;
+	pointer-events: none;
+	transition: opacity 250ms, top 250ms;
+	z-index: 999;
+}
+.huge_it_forms_mess_subject_help_box::before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 12px; left: 6px;
+	opacity: 0;
+	width: 0; height: 0;
+	border: solid transparent 5px;
+	border-bottom-color: rgba(0,0,0,0.8);
+	transition: opacity 250ms, top 250ms;
+	z-index: 999;
+}
+.huge_it_forms_mess_subject_help_box:hover {z-index: 2;}
+.huge_it_forms_mess_subject_help_box:hover::after,
+.huge_it_forms_mess_subject_help_box:hover::before {opacity: 1;}
+.huge_it_forms_mess_subject_help_box:hover::after {top: 30px;}
+.huge_it_forms_mess_subject_help_box:hover::before {top: 20px;}
