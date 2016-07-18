@@ -4,7 +4,7 @@ Donate link: http://huge-it.com/forms/
 Tags: forms, contact form, contact forms, forms plugin, contact form builder, wordpress contact form, contact us, form, form builder, form creation, form maker, forms builder,
 Requires at least: 3.0.1
 Tested up to: 4.5.3
-Stable tag: 1.3.4
+Stable tag: 1.3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -332,6 +332,12 @@ If you think, that you found a bug in our [WordPress Forms](http://huge-it.com/f
 35.  [WordPress Form](https://wordpress.org/plugins/forms-contact/) - Form General Options
 
 == Changelog ==
+
+= 1.3.5 =
+**More advanced subject line for forms was added to the plugin:**
+
+* 1) Now users are able to leave the subject line of the emails blank and the form will automatically generate the name of the form as the email subject.
+* 2) We have also added a placeholder of this new feature in the back end of the plugin, so that users can be notified about that.
 
 = 1.3.4 =
 * Added credits and attribution in the source code refering the original authors.
