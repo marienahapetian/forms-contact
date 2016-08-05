@@ -745,7 +745,7 @@
   	});
   	
   	/*####ADD NEW OPTION###*/
-  	jQuery("#fields-list-block").on('click','.fields-list .field-multiple-option-list li .add-new',function(){ 
+  	jQuery("#fields-list-block").on('click','.fields-list .field-multiple-option-list li .add-new',function(){
   		var fieldID=jQuery(this).parents(".field-multiple-option-list").attr('rel');
   						
   		var value=jQuery(this).parent().find('.add-new-name').val();
@@ -753,7 +753,7 @@
   		
   		
   		if(jQuery(this).parents(".field-multiple-option-list").hasClass('selectbox')){	
-  			if(value==""){return false;}
+
   			var previewselect=jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] select');
   			previewselect.append('<option>'+value+'</options>');
   		}
@@ -876,8 +876,16 @@
   	/*##########ONCHANGE############*/
   	jQuery('.hugeit_contact_top_tabs>li').on('keyup','input.text_area',function(){
   		var titleVal=jQuery(this).val();
-  		jQuery('#hugeit-contact-wrapper>div>h3').text(titleVal);
+  		jQuery('.text_area_title').val(titleVal);
   	});
+	jQuery('.text_area_title').on('keyup',function(){
+  		var titleVal=jQuery(this).val();
+  		jQuery('input.text_area').val(titleVal);
+  	});
+	  jQuery('.hugeItTitleOverlay').click(function(){
+		  jQuery('.text_area_title').focus();
+	  });
+
   	jQuery('#fields-list-block > ul').on({
   	    mouseenter: function () {
   	        var fieldid=jQuery(this).attr('id');

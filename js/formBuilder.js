@@ -1,5 +1,6 @@
 jQuery(document).ready(function(e){
 	////ADD FIELDS START///
+
 	jQuery('#add-fields-block #add-default-fields').on('click','li>a',function(event){
 		event.preventDefault();
 		var readyDef;
