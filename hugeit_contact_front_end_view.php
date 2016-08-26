@@ -2,21 +2,6 @@
 if(! defined( 'ABSPATH' )) exit;
 function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $frontendformid, $style_values, $huge_it_gen_opt,$rowspar){
 	ob_start();
-	$ipaddress = '';
-    if (isset($_SERVER['HTTP_CLIENT_IP']))
-        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-    else if(getenv('HTTP_X_FORWARDED_FOR'))
-        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-    else if(getenv('HTTP_X_FORWARDED'))
-        $ipaddress = getenv('HTTP_X_FORWARDED');
-    else if(getenv('HTTP_FORWARDED_FOR'))
-        $ipaddress = getenv('HTTP_FORWARDED_FOR');
-    else if(getenv('HTTP_FORWARDED'))
-       $ipaddress = getenv('HTTP_FORWARDED');
-    else if(getenv('REMOTE_ADDR'))
-        $ipaddress = getenv('REMOTE_ADDR');
-    else
-    $ipaddress = 'UNKNOWN';
 	?>
 	<style>
 			/*########### PREVIEW CONTAINER ##############*/
@@ -25,15 +10,14 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 	position:relative;
 	float:right;
 	width:60%;
-	min-width:305px;
-	padding:10px 0px 10px 0px;
+	padding:10px 0 10px 0;
 	background:#fff;
 	min-width:310px;
 	
 }
 
 #hugeit-contact-wrapper_<?php echo $frontendformid; ?>  {
-	margin:0px auto;
+	margin:0 auto;
 	min-width:315px;
 }
 
@@ -42,7 +26,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 	float:left;
 	width:94%;
 	min-width:305px;
-	margin:0px 1% 0px 1%;
+	margin:0 1% 0 1%;
 	height:auto;
 	min-height:30px;
 }
@@ -57,7 +41,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 
 #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div {
 	width:100%;
-	padding:5px 0px 5px 0px;
+	padding:5px 0 5px 0;
 	clear:both;
 	line-height: 0;
 }
@@ -67,7 +51,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 }
 #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div.hugeit-check-field,
 #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div.hugeit-radio-field{
-	padding:5px 0px 5px 0px;
+	padding:5px 0 5px 0;
 }
 #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div.buttons-block{
 	position: relative;
@@ -87,8 +71,8 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 /***fvpps***/
 .free_video .portelemented .play-icss {
     position: relative;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 	overflow: hidden;
@@ -130,20 +114,20 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 	line-height: 1 !important;
 }
 
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block ul li label {margin:0px 10px 0px 0px;}
+#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block ul li label {margin:0 10px 0 0;}
 #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block ul li label span.sublable{vertical-align: super;}
 
 #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div  ul {
 	position:relative;
 	display:table !important;
-	padding:0px !important;
-	margin:0px !important;
+	padding:0 !important;
+	margin:0 !important;
 }
 
 #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div > label  ul li {
 	clear:both;
-	padding:0px !important;
-	margin:0px !important;
+	padding:0 !important;
+	margin:0 !important;
 }
 
 #hugeit-contact-wrapper_<?php echo $frontendformid; ?> #huge_it_captcha {
@@ -209,7 +193,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 
 /*######################## END OFO CHOR ######################*/
 
-			body #hugeit-contact-wrapper_<?php echo $frontendformid; ?> input, body #hugeit-contact-wrapper_<?php echo $frontendformid; ?> textarea {padding:0px; margin:0px;}
+			body #hugeit-contact-wrapper_<?php echo $frontendformid; ?> input, body #hugeit-contact-wrapper_<?php echo $frontendformid; ?> textarea {padding:0; margin:0;}
 			
 			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> {
 				width:<?php echo $style_values['form_wrapper_width']; ?>%;
@@ -238,7 +222,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 				position:relative;
 				display:block;
 				clear:both !important;
-				padding:5px 0px 10px 1% !important;
+				padding:5px 0 10px 1% !important;
 				font-size:<?php echo $style_values['form_title_size']; ?>px !important;
 				line-height:<?php echo $style_values['form_title_size']; ?>px !important;
 				color:#<?php echo $style_values['form_title_color']; ?> !important;
@@ -291,8 +275,8 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-field-block span.huge_it_button_overlay{
 				background: rgba(241, 241, 241, 0.85);
 			    position: absolute;
-			    top: 0px;
-			    left: 0px;
+			    top: 0;
+			    left: 0;
 			    text-align: center;
 			}
 			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-field-block span.huge_it_button_overlay>img#buttLoad{
@@ -339,8 +323,8 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 					border-radius:<?php echo $style_values['form_input_text_border_radius']; ?>px;
 					font-size:<?php echo $style_values['form_input_text_font_size']; ?>px;
 					color:#<?php echo $style_values['form_input_text_font_color']; ?>;
-					margin:0px !important;
-					padding:0px 0px 0px 5px !important;
+					margin:0 !important;
+					padding:0 0 0 5px !important;
 					outline:none;
 					vertical-align:top !important;
 					box-sizing: border-box;
@@ -365,8 +349,8 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 					border-radius:<?php echo $style_values['form_input_text_border_radius']; ?>px;
 					font-size:<?php echo $style_values['form_input_text_font_size']; ?>px;
 					color:#<?php echo $style_values['form_input_text_font_color']; ?>;
-					margin:0px !important;
-					padding:0px 5px 0px 5px !important;
+					margin:0 !important;
+					padding:0 5px 0 5px !important;
 					outline:none;
 					box-sizing: border-box;
 					-moz-box-sizing: border-box;
@@ -392,7 +376,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 					border-radius:<?php echo $style_values['form_input_text_border_radius']; ?>px;
 					font-size:<?php echo $style_values['form_input_text_font_size']; ?>px;
 					color:#<?php echo $style_values['form_input_text_font_color']; ?>;
-					margin:0px !important;
+					margin:0 !important;
 					outline:none;
 				    padding-left: 48px;
 				}
@@ -420,8 +404,8 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 					border-radius:<?php echo $style_values['form_textarea_border_radius']; ?>px;
 					font-size:<?php echo $style_values['form_textarea_font_size']; ?>px;
 					color:#<?php echo $style_values['form_textarea_font_color']; ?>;
-					margin:0px !important;
-					padding:0px 0px 0px 5px !important;
+					margin:0 !important;
+					padding:0 0 0 5px !important;
 					 box-sizing: border-box;
 					-moz-box-sizing: border-box;
 				}
@@ -435,8 +419,8 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-checkbox-list li,
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-radiobox-list li {
 					
-					margin:0px 0px 6px 0px !important;
-					padding:0px !important;
+					margin:0 0 6px 0 !important;
+					padding:0 !important;
 					list-style:none;	
 				 }
 				 
@@ -450,7 +434,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .checkbox-block {
 					position:relative;
 					float:left;
-					margin:0px 5px 0px 5px !important;
+					margin:0 5px 0 5px !important;
 					display: block;
 				}
 				
@@ -458,8 +442,8 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .checkbox-block input {
 					visibility:hidden;
 					position:absolute;
-					top:0px;
-					left:0px;
+					top:0;
+					left:0;
 				}
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .radio-block i {
@@ -531,7 +515,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .selectbox-block select {
 					position:relative;
 					height:<?php echo $style_values['form_selectbox_font_size']*2-$style_values['form_selectbox_border_size']*2; ?>px;
-					margin:<?php echo $style_values['form_selectbox_border_size']; ?>px 0px 0px 1px !important;
+					margin:<?php echo $style_values['form_selectbox_border_size']; ?>px 0 0 1px !important;
 					opacity:0;
 					z-index:2;
 				}
@@ -540,11 +524,11 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 					position:absolute;
 					height:<?php echo $style_values['form_selectbox_font_size']*2; ?>px;
 					width:90%;
-					margin:0px !important;
-					top:0px;
+					margin:0 !important;
+					top:0;
 					color:#<?php echo $style_values['form_selectbox_font_color']; ?>; 
-					left:0px;
-					border:0px;
+					left:0;
+					border:0;
 					opacity: 1 !important;
 					background:none;
 					border:<?php echo $style_values['form_selectbox_border_size']; ?>px solid #<?php echo $style_values['form_selectbox_border_color']; ?>;
@@ -555,7 +539,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 					<?php  }else { ?>
 					background:none;
 					<?php } ?>
-					padding:0px 10% 0px 5px !important;
+					padding:0 10% 0 5px !important;
 					 box-sizing: border-box;
 					-moz-box-sizing: border-box;
 				}
@@ -582,7 +566,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 					float:left;
 					width:calc(60% - <?php echo $style_values['form_file_border_size']*2 + 5; ?>px) !important;
 					height:<?php echo $style_values['form_file_font_size']*2; ?>px;
-					margin:0px;
+					margin:0;
 					border:<?php echo $style_values['form_file_border_size']; ?>px solid #<?php echo $style_values['form_file_border_color']; ?> !important;
 					border-radius:<?php echo $style_values['form_file_border_radius']; ?>px !important;
 					font-size:<?php echo $style_values['form_file_font_size']; ?>px;
@@ -592,15 +576,15 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 					<?php  }else { ?>
 					background:none;
 					<?php } ?>
-					padding:0px 40% 0px 5px !important;
+					padding:0 40% 0 5px !important;
 					box-sizing: content-box;
 					-moz-box-sizing: content-box;
 				}
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .file-block .uploadbutton {	
 					position:absolute;
-					top:0px;
-					right:0px;
+					top:0;
+					right:0;
 					width:38%;
 					border-top:<?php echo $style_values['form_file_border_size']; ?>px solid #<?php echo $style_values['form_file_border_color']; ?> !important;
 					border-bottom:<?php echo $style_values['form_file_border_size']; ?>px solid #<?php echo $style_values['form_file_border_color']; ?> !important;
@@ -609,8 +593,8 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 					border-bottom-right-radius:<?php echo $style_values['form_file_border_radius']; ?>px !important;
 					<?php $fileheight=$style_values['form_file_font_size']*2; ?>
 					height:<?php echo $fileheight; ?>px;
-					padding:0px 1%;
-					margin:0px;
+					padding:0 1%;
+					margin:0;
 					overflow: hidden;
 					font-size:<?php echo $style_values['form_file_font_size']; ?>px;
 					line-height:<?php echo $style_values['form_file_font_size']*2; ?>px;
@@ -649,8 +633,8 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 					height:30px;
 					width:100%;
 					position:absolute;
-					top:0px;
-					left:0px;
+					top:0;
+					left:0;
 					opacity:0;
 					cursor:pointer;
 				}
@@ -678,16 +662,14 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 					cursor:pointer;
 					text-transform: none;
 					<?php
-						if($style_values['form_button_fullwidth']=="on"){
+						if($style_values['form_button_fullwidth']=="on") :
 					?>
 						clear:both;
 						width:100%;
-						padding-left:0px;
-						padding-right:0px;
-						margin:0px 0px 0px 0px !important;
-						padding-left:0px;
-						padding-right:0px;
-					<?php } ?>
+						margin:0 0 0 0 !important;
+						padding-left:0;
+						padding-right:0;
+					<?php endif; ?>
 					font-size:<?php echo $style_values['form_button_font_size']; ?>px;
 				}
 				
@@ -698,7 +680,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 					border-radius:<?php echo $style_values['form_button_submit_border_radius']; ?>px !important;
 					-webkit-transition: all 0.5s ease !important;
 					transition: all 0.5s ease !important;
-					margin:0px 0px 5px 0px !important;
+					margin:0 0 5px 0 !important;
 					background-image: none !important;
 				}				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .buttons-block button.submit:hover {
@@ -747,7 +729,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 					vertical-align: super !important;
 				}
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-check-field > .license-block >.secondary-label > .checkbox-block{
-					margin: 0px 5px 0px 0px !important;
+					margin: 0 5px 0 0 !important;
 					float: none !important;
 					display: inline-block;
 					vertical-align: middle !important;
@@ -911,8 +893,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 												<script>
 												jQuery(document).ready(function(){
 													function mbToBytes(mb){
-														var convertedByte=Math.round(mb*1048576*100000)/100000;
-														return convertedByte;
+														return Math.round(mb * 1048576 * 100000) / 100000;
 													}
 													var byteRes=mbToBytes(<?php echo $rowimages->name;?>);
 													jQuery("div[rel='huge-contact-field-<?php echo $rowimages->id;?>']").find("input[name='MAX_FILE_SIZE']").attr('value',byteRes);	
@@ -1123,8 +1104,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 												<script>
 												jQuery(document).ready(function(){
 													function mbToBytes(mb){
-														var convertedByte=Math.round(mb*1048576*100000)/100000;
-														return convertedByte;
+														return Math.round(mb * 1048576 * 100000) / 100000;
 													}
 													var byteRes=mbToBytes(<?php echo $rowimages->name;?>);
 													jQuery(".hugeit-contact-column-block div[rel='huge-contact-field-<?php echo $rowimages->id;?>']").find("input[name='MAX_FILE_SIZE']").attr('value',byteRes);
@@ -1237,7 +1217,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
         function isValidEmailAddress(emailAddress) {
 			    var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
 			    return pattern.test(emailAddress);
-		};
+		}
 		function Validate(oForm,_validFileExtensions) {
 		    var arrInputs = document.getElementsByTagName("input");
 		    for (var i = 0; i < arrInputs.length; i++) {
@@ -1298,7 +1278,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
         				jQuery(this).parent().parent().find('label>em.required-star').removeClass('error');
         			}
         		})
-        	};
+        	}
         	if(jQuery(this).find('div.selectbox-block >select').hasClass('required')){
         		var selectField=jQuery(this).find('div.selectbox-block >select');
         		selectField.on('blur change',function(){
@@ -1338,7 +1318,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
         				jQuery(this).parent().parent().find('label>em.required-star').removeClass('error');
         			}
         		});
-        	};
+        	}
         	if(jQuery(this).find('div.textarea-block >textarea').hasClass('required')){
         		var textarea_field=jQuery(this).find('textarea');
         		textarea_field.on('blur',function(){
@@ -1375,7 +1355,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
         		fileInput.on('blur',function(){
         			var typeStr = jQuery(this).parent().find('input[name="fileTypeArr"]').val().trim();
         			typeStr = typeStr.replace(/\s+/g, '');
-					var _validFileExtensions = typeStr.split(",");					
+					var _validFileExtensions = typeStr.split(",");
 					if(fileInput.val()!=''){
 						var validREsult=Validate(jQuery('#huge_it_contact_form_<?php echo $frontendformid; ?>'),_validFileExtensions);
 						if(!validREsult){
@@ -1542,7 +1522,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 	        				text_fullnameField2.parent().parent().find('label').removeClass('error');
 	        				text_fullnameField2.parent().parent().find('label>em.required-star').removeClass('error');
 	        			}	        		
-	        	};
+	        	}
 	        	if(jQuery(this).find('div.textarea-block >textarea').hasClass('required')){
 	        		var textarea_field=jQuery(this).find('textarea');
 	        			if(textarea_field.val().trim()==''){
@@ -1628,7 +1608,7 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 	        	if(jQuery(this).hasClass('captcha-block')){
 	        		captchaExists='yes';
 	        	}       		
-	        })  
+	        });
 	        if(captchaExists=='yes'){
 	        	if(jQuery('#huge_it_contact_form_<?php echo $frontendformid; ?>').attr('verified')==0){
 					if(!jQuery(this).find('div.captcha-block #huge_it_captcha_<?php echo $frontendformid; ?>').find('span').length){
@@ -1720,11 +1700,9 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 						}
 		            }
 		        });
-	 		}else{
-	 			//alert(0)
-	 		}	
+	 		}
    		});
-	 	jQuery( "#huge_it_contact_form_<?php echo $frontendformid; ?>" ).on( "reset", function(e) {
+	 	jQuery( "#huge_it_contact_form_<?php echo $frontendformid; ?>" ).on( "reset", function() {
 	 		if(captchaExists=='yes'){
 	 			grecaptcha.reset(recaptchas[<?php echo $frontendformid; ?>]);
 	 		}
@@ -1740,4 +1718,3 @@ function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $fronten
 <?php  
 	return ob_get_clean();
 }
-?>

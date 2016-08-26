@@ -9,7 +9,6 @@ jQuery(document).ready(function(){
 
 		//Choose Form
 		jQuery('#hugeit_contact_email_manager #huge_it_form_choose').on('change',function(){
-			console.log(huge_it_obj)
 			var formsToShow=jQuery(this).val();
 			jQuery.ajax({
 					type: "POST",
@@ -39,13 +38,13 @@ jQuery(document).ready(function(){
 		jQuery('#hugeit_contact_email_manager').on('click tap','.del_wrap',function(e){
 			e.preventDefault();
 			alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');	
-		})
+		});
 		//Add Subscriber
 		jQuery('#hugeit_contact_email_manager').on('click tap','.add_wrap',function(e){
 			e.preventDefault();
 			alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');	
 
-		})
+		});
 		setInterval(function(){
 			var formId=jQuery('#hugeit_contact_email_manager #huge_it_form_choose').val();
 			jQuery.ajax({

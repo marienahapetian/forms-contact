@@ -574,8 +574,6 @@
   			var form_dirty = jQuery("form").serialize();
   			form_dirty=form_dirty.replace(/g-recaptcha-response=([^]*?)&/g, '');
   		    if(form_clean != form_dirty) {
-  		    	// console.log(form_clean)
-  		    	// console.log(form_dirty)
   		        return 'There is unsaved form data.';
   		    }else{
   		    	window.onbeforeunload = null;

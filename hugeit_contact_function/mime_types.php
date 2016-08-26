@@ -101,4 +101,3 @@ $huge_it_mime_types = array(
 	'numbers' => 'application/vnd.apple.numbers',
 	'pages' => 'application/vnd.apple.pages',
 	);
-?>

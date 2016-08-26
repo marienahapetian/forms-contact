@@ -1638,7 +1638,7 @@ a {
     width: 268px;
     border: 1px solid rgba(255,255,255,.6);
     font-family: 'Open Sans',sans-serif;
-    font-size: 23px;
+    font-size: 21px;
     color: #ffffff;
     line-height: 43px;
     text-decoration: none;
@@ -1666,9 +1666,8 @@ a {
     height:23px;
     left:25px;
     top:9px;
-    background-image:url(<?php echo $path_site2; ?>/wp_shop.png);
+    background-image:url(../images/wp_shop.png);
     background-position:0px 0px;
-    background-repeat;
 }
 
 .free_version_banner .get_full_version:hover:before {

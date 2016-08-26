@@ -25,7 +25,6 @@ function hugeit_contact_styles(){
 
 
 function hugeit_contact_editstyles($op_type = "0"){
-	@session_start();
 	if(isset($_POST['csrf_token_hugeit_forms']) && (!isset($_SESSION["csrf_token_hugeit_forms"]) || $_SESSION["csrf_token_hugeit_forms"] != @$_POST['csrf_token_hugeit_forms'])) { exit; }
 	
     global $wpdb;
@@ -173,21 +172,20 @@ INSERT INTO `$table_name` (`name`, `title`,`description`, `options_name`, `value
     html_hugeit_contact_editstyles($param_values, $op_type, $style_themes);
 }
 
-function save_styles_options(){
-  global $wpdb;
-    if (isset($_POST['params'])) {
-    	if(isset($_POST["themeName"])){
-			if($_POST["themeName"] != ''){
-				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_styles SET  name = %s  WHERE id = %d ", $_POST["themeName"], $_GET['form_id']));
+function hugeit_contact_save_styles_options() {
+	global $wpdb;
+	if ( isset( $_POST['params'] ) ) {
+		if ( isset( $_POST["themeName"] ) ) {
+			if ( trim($_POST["themeName"]) != '' ) {
+				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_styles SET  name = %s  WHERE id = %d ", $_POST["themeName"], $_GET['form_id'] ) );
 			}
 		}
-      $params = $_POST['params'];
-      foreach ($params as $key => $value) {
-		$wpdb->query("UPDATE ".$wpdb->prefix."huge_it_contact_style_fields SET  value = '".$value."'  WHERE name = '".$key."' and options_name = '".$_GET['form_id']."' ");
-      }
-      ?>
-      <div class="updated"><p><strong><?php _e('Item Saved'); ?></strong></p></div>
-      <?php
-    }
+		$params = $_POST['params'];
+		foreach ( $params as $key => $value ) {
+			$wpdb->query( "UPDATE " . $wpdb->prefix . "huge_it_contact_style_fields SET  value = '" . $value . "'  WHERE name = '" . $key . "' and options_name = '" . $_GET['form_id'] . "' " );
+		}
+		?>
+		<div class="updated"><p><strong><?php _e( 'Item Saved' ); ?></strong></p></div>
+		<?php
+	}
 }
-?>

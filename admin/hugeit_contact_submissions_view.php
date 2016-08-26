@@ -8,7 +8,7 @@ if(!function_exists('current_user_can')){
 	die('Access Denied');
 }
 require_once("hugeit_free_version.php");
-function sub_pagination($count2){
+function hugeit_contact_sub_pagination($count2){
 	//Submitions per Page
 	$perpage=50;
 	//Count of Submissions
@@ -104,7 +104,7 @@ function html_showhugeit_contacts( $rows,  $pageNav,$sort,$cat_row,$form_styles)
 	</script>
 
 <div class="wrap">
-	<?php drawFreeBanner();?>
+	<?php hugeit_contact_drawFreeBanner();?>
 	<div id="poststuff">
 		<div id="hugeit_contacts-list-page">
 			<form method="post"  onkeypress="doNothing()" action="admin.php?page=hugeit_forms_main_page" id="admin_form" name="admin_form">
@@ -237,7 +237,7 @@ function html_view_submissions($submitionsArray, $submitionsCount,$limitPage,$su
 $keyForBackground = 1;
 ?>
 <div class="wrap">
-	<?php drawFreeBanner();?>
+	<?php hugeit_contact_drawFreeBanner();?>
     <div id="poststuff">
         <div id="hugeit_submission_page">
             <div class="search_block">
@@ -403,7 +403,7 @@ $keyForBackground = 1;
 function html_huge_it_contact_show_messages($messageInArray, $submitionsCount){
 	if(isset($_GET["id"])){
 		$custom_id ='';
-        $current_page_id   = $_GET["id"];      
+        $current_page_id   = (int)$_GET["id"];      
         $max_count = count($submitionsCount);
         $myNum = 1;
         foreach($submitionsCount AS $num => $submition){
@@ -423,7 +423,7 @@ function html_huge_it_contact_show_messages($messageInArray, $submitionsCount){
 require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 ?>
 <div class="wrap">
-	<?php drawFreeBanner();?>
+	<?php hugeit_contact_drawFreeBanner();?>
     <div id="poststuff">
         <div id="hugeit_single_submission_page">
             <h2>User Submission</h2>

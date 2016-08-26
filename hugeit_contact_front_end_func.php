@@ -1,6 +1,6 @@
 <?php
 if(! defined( 'ABSPATH' )) exit;
-function showPublishedcontact_1($id){
+function hugeit_contact_show_published_contact_1($id){
 	global $wpdb;    
 	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = %d order by ordering DESC",$id);
 	$rowim=$wpdb->get_results($query);
@@ -25,7 +25,7 @@ function showPublishedcontact_1($id){
     }
 	$frontendformid = $id;
 
-	$query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$hugeit_contacteffect."' ";
+	$query = "SELECT *  FROM " . $wpdb->prefix . "huge_it_contact_style_fields WHERE options_name = '".$hugeit_contacteffect."' ";
     $rows = $wpdb->get_results($query);
     $style_values = array();
     foreach ($rows as $row) {
@@ -38,4 +38,3 @@ function showPublishedcontact_1($id){
   $messageInArrayFront = $wpdb->get_results($queryMessage); 
   return front_end_hugeit_contact($rowim, $paramssld, $hugeit_contact, $frontendformid,$style_values,$huge_it_gen_opt,$rowspar,$messageInArrayFront);
 }
-?>

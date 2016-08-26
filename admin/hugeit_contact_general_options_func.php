@@ -8,22 +8,20 @@ if (!function_exists('current_user_can')) {
     die('Access Denied');
 }
 
-function showsettings($op_type = "0")
-{
+function hugeit_contact_show_settings() {
     global $wpdb;
-    $query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_general_options ";
-    $rows = $wpdb->get_results($query);
+    $query        = "SELECT *  FROM " . $wpdb->prefix . "huge_it_contact_general_options ";
+    $rows         = $wpdb->get_results( $query );
     $param_values = array();
-    foreach ($rows as $row) {
-        $key = $row->name;
-        $value = $row->value;
-        $param_values[$key] = $value;
+    foreach ( $rows as $row ) {
+        $key                  = $row->name;
+        $value                = $row->value;
+        $param_values[ $key ] = $value;
     }
-    html_showsettings($param_values, $op_type);
+    hugeit_contact_html_show_settings( $param_values );
 }
 
-function save_styles_options(){
-    @session_start();
+function hugeit_contact_save_styles_options(){
     if(isset($_POST['csrf_token_hugeit_forms']) && (!isset($_SESSION["csrf_token_hugeit_forms"]) || $_SESSION["csrf_token_hugeit_forms"] != @$_POST['csrf_token_hugeit_forms'])) { exit; }
     
     global $wpdb;

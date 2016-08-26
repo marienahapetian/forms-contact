@@ -48,7 +48,7 @@ function html_hugeit_contact_styles($rows){
 	</script>
 
 <div class="wrap">
-	<?php drawFreeBanner('yes');?>
+	<?php hugeit_contact_drawFreeBanner('yes');?>
 	<div id="poststuff">
 		<div id="hugeit_contacts-list-page">
 			<form method="post"  onkeypress="doNothing()" action="admin.php?page=hugeit_forms_main_page" id="admin_form" name="admin_form">
@@ -180,7 +180,7 @@ function html_hugeit_contact_styles($rows){
 function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){?> 
 <!-- STYLES CUSTOMIZATION PAGE -->
 <div class="wrap">
-<?php drawFreeBanner('yes');?>
+<?php hugeit_contact_drawFreeBanner('yes');?>
 <div id="poststuff">
 		<?php $path_site = plugins_url("Front_images", __FILE__); ?>
 		<input type="hidden" id="type" name="type" value="<?php echo isset($_POST['type']) ? $_POST['type'] : '1'; ?>"/> 
@@ -235,7 +235,7 @@ function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){
 				<a onclick="alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');" class="save-hugeit_contact-options button-primary">Save  <i>(pro)</i></a>		
 			</div>
 			<div class="options-block">
-			<form action="admin.php?page=hugeit_forms_theme_options&form_id=<?php echo $_GET["form_id"]; ?>&task=save" method="post" id="adminForm" name="adminForm">
+			<form action="admin.php?page=hugeit_forms_theme_options&form_id=<?php echo esc_url($_GET["form_id"]); ?>&task=save" method="post" id="adminForm" name="adminForm">
 				<input type="hidden" id="themeName" name="themeName" value="">
 				<div>
 					<h3>Form Block Styles</h3>
@@ -790,10 +790,6 @@ function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){
 						<span>px</span>
 					</div>				
 				</div>
-				<?php @session_start();
-					  $hugeItFormCSRFToken = $_SESSION["csrf_token_hugeit_forms"] = md5(time());
-				?>
-				<input type="hidden" name="csrf_token_hugeit_forms" value="<?php echo $hugeItFormCSRFToken; ?>" />
 			</form>
 
 		</div>

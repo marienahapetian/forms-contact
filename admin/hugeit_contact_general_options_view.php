@@ -8,11 +8,11 @@ if (!function_exists('current_user_can')) {
     die('Access Denied');
 }
 require_once("hugeit_free_version.php");
-function html_showsettings($param_values, $op_type){	
+function hugeit_contact_html_show_settings($param_values){
 ?>
 <?php $path_site = plugins_url("Front_images", __FILE__); ?>
 <div class="wrap">
-	<?php drawFreeBanner();?>
+	<?php hugeit_contact_drawFreeBanner();?>
 	<div id="poststuff">
 		<div id="post-body-content">
 			<div id="post-body-heading">
@@ -162,10 +162,6 @@ function html_showsettings($param_values, $op_type){
 							<?php wp_editor(stripslashes($param_values['form_user_message']), "usermessage"); ?>
 						</div>
 					</div>
-					<?php @session_start();
-						  $hugeItFormCSRFToken = $_SESSION["csrf_token_hugeit_forms"] = md5(time());
-					?>
-					<input type="hidden" name="csrf_token_hugeit_forms" value="<?php echo $hugeItFormCSRFToken; ?>" />
 			</form>
 			</div>
 		</div>

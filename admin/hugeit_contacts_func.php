@@ -1,165 +1,152 @@
-<?php	
-if(!defined( 'ABSPATH' )) exit;
-if(function_exists('current_user_can'))
-if(!current_user_can('manage_options')) {
-die('Access Denied');
-}	
-if(!function_exists('current_user_can')){
-	die('Access Denied');
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+if ( function_exists( 'current_user_can' ) ) {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		die( 'Access Denied' );
+	}
+}
+if ( ! function_exists( 'current_user_can' ) ) {
+	die( 'Access Denied' );
 }
 
-function showhugeit_contact(){
-	  
-  global $wpdb;
-  
-if(isset($_POST['search_events_by_title']))
-$_POST['search_events_by_title']=esc_html(stripslashes($_POST['search_events_by_title']));
-if(isset($_POST['asc_or_desc']))
-$_POST['asc_or_desc']=esc_js($_POST['asc_or_desc']);
-if(isset($_POST['order_by']))
-$_POST['order_by']=esc_js($_POST['order_by']);
-  $where='';
-  	$sort["custom_style"] ="manage-column column-autor sortable desc";
-	$sort["default_style"]="manage-column column-autor sortable desc";
-	$sort["sortid_by"]='id';
-	$sort["1_or_2"]=1;
-	$order='';
-	
-	if(isset($_POST['page_number'])){
-			
-			if($_POST['asc_or_desc'])
-			{
-				$sort["sortid_by"]=$_POST['order_by'];
-				if($_POST['asc_or_desc']==1)
-				{
-					$sort["custom_style"]="manage-column column-title sorted asc";
-					$sort["1_or_2"]="2";
-					$order="ORDER BY ".$sort["sortid_by"]." ASC";
-				}
-				else
-				{
-					$sort["custom_style"]="manage-column column-title sorted desc";
-					$sort["1_or_2"]="1";
-					$order="ORDER BY ".$sort["sortid_by"]." DESC";
-				}
+function hugeit_contact_show_contact() {
+
+	global $wpdb;
+
+	if ( isset( $_POST['search_events_by_title'] ) ) {
+		$_POST['search_events_by_title'] = esc_html( stripslashes( $_POST['search_events_by_title'] ) );
+	}
+	if ( isset( $_POST['asc_or_desc'] ) ) {
+		$_POST['asc_or_desc'] = esc_js( $_POST['asc_or_desc'] );
+	}
+	if ( isset( $_POST['order_by'] ) ) {
+		$_POST['order_by'] = esc_js( $_POST['order_by'] );
+	}
+	$where                 = '';
+	$sort["custom_style"]  = "manage-column column-autor sortable desc";
+	$sort["default_style"] = "manage-column column-autor sortable desc";
+	$sort["sortid_by"]     = 'id';
+	$sort["1_or_2"]        = 1;
+	$order                 = '';
+
+	if ( isset( $_POST['page_number'] ) ) {
+
+		if ( $_POST['asc_or_desc'] ) {
+			$sort["sortid_by"] = $_POST['order_by'];
+			if ( $_POST['asc_or_desc'] == 1 ) {
+				$sort["custom_style"] = "manage-column column-title sorted asc";
+				$sort["1_or_2"]       = "2";
+				$order                = "ORDER BY " . $sort["sortid_by"] . " ASC";
+			} else {
+				$sort["custom_style"] = "manage-column column-title sorted desc";
+				$sort["1_or_2"]       = "1";
+				$order                = "ORDER BY " . $sort["sortid_by"] . " DESC";
 			}
-	if($_POST['page_number'])
-		{
-			$limit=($_POST['page_number']-1)*20; 
 		}
-		else
-		{
-			$limit=0;
+		if ( $_POST['page_number'] ) {
+			$limit = ( $_POST['page_number'] - 1 ) * 20;
+		} else {
+			$limit = 0;
+		}
+	} else {
+		$limit = 0;
+	}
+	if ( isset( $_POST['search_events_by_title'] ) ) {
+		$search_tag = esc_html( stripslashes( $_POST['search_events_by_title'] ) );
+	} else {
+		$search_tag = "";
+	}
+
+	if ( isset( $_GET["catid"] ) ) {
+		$cat_id = esc_html( $_GET["catid"] );
+	} else {
+		if ( isset( $_POST['cat_search'] ) ) {
+			$cat_id = esc_html( $_POST['cat_search'] );
+		} else {
+			$cat_id = 0;
 		}
 	}
-	else
-		{
-			$limit=0;
+
+	if ( $search_tag ) {
+		$where = " WHERE name LIKE '%" . $search_tag . "%' ";
+	}
+	if ( $where ) {
+		if ( $cat_id ) {
+			$where .= " AND hc_width=" . $cat_id;
 		}
-	if(isset($_POST['search_events_by_title'])){
-		$search_tag=esc_html(stripslashes($_POST['search_events_by_title']));
+
+	} else {
+		if ( $cat_id ) {
+			$where .= " WHERE hc_width=" . $cat_id;
 		}
-		
-		else
-		{
-		$search_tag="";
-		}		
-		
-	 if(isset($_GET["catid"])){
-	    $cat_id=esc_html($_GET["catid"]);	
-	  }else{
-	       if(isset($_POST['cat_search'])){
-				$cat_id=esc_html($_POST['cat_search']);
-			}else{		
-				$cat_id=0;
-		    }
-       }
-     
- if ( $search_tag ) {
-		$where= " WHERE name LIKE '%".$search_tag."%' ";
+
 	}
-if($where){
-	  if($cat_id){
-	  $where.=" AND hc_width=" .$cat_id;
-	  }
-	
-	}
-	else{
-	if($cat_id){
-	  $where.=" WHERE hc_width=" .$cat_id;
-	  }
-	
-	}
-	
-	$cat_row_query="SELECT id,name FROM ".$wpdb->prefix."huge_it_contact_contacts WHERE hc_width=0";
-	$cat_row=$wpdb->get_results($cat_row_query);
-	
+
+	$cat_row_query = "SELECT id,name FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE hc_width=0";
+	$cat_row       = $wpdb->get_results( $cat_row_query );
+
 	// get the total number of records
-	$query = "SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_contacts". $where;
-	
-	$total = $wpdb->get_var($query);
-	$pageNav['total'] =$total;
-	$pageNav['limit'] =	 $limit/20+1;
-	
-	if($cat_id){
-	$query ="SELECT  a.* ,  COUNT(b.id) AS count, g.par_name AS par_name FROM ".$wpdb->prefix."huge_it_contact_contacts  AS a LEFT JOIN ".$wpdb->prefix."huge_it_contact_contacts AS b ON a.id = b.hc_width LEFT JOIN (SELECT  ".$wpdb->prefix."huge_it_contact_contacts.ordering as ordering,".$wpdb->prefix."huge_it_contact_contacts.id AS id, COUNT( ".$wpdb->prefix."huge_it_contact_contacts_fields.hugeit_contact_id ) AS prod_count
-FROM ".$wpdb->prefix."huge_it_contact_contacts_fields, ".$wpdb->prefix."huge_it_contact_contacts
-WHERE ".$wpdb->prefix."huge_it_contact_contacts_fields.hugeit_contact_id = ".$wpdb->prefix."huge_it_contact_contacts.id
-GROUP BY ".$wpdb->prefix."huge_it_contact_contacts_fields.hugeit_contact_id) AS c ON c.id = a.id LEFT JOIN
-(SELECT ".$wpdb->prefix."huge_it_contact_contacts.name AS par_name,".$wpdb->prefix."huge_it_contact_contacts.id FROM ".$wpdb->prefix."huge_it_contact_contacts) AS g
- ON a.hc_width=g.id WHERE  a.name LIKE '%".$search_tag."%' group by a.id ". $order ." "." LIMIT ".$limit.",20" ; 
-	}
-	else{
-	 $query ="SELECT  a.* ,  COUNT(b.id) AS count, g.par_name AS par_name FROM ".$wpdb->prefix."huge_it_contact_contacts  AS a LEFT JOIN ".$wpdb->prefix."huge_it_contact_contacts AS b ON a.id = b.hc_width LEFT JOIN (SELECT  ".$wpdb->prefix."huge_it_contact_contacts.ordering as ordering,".$wpdb->prefix."huge_it_contact_contacts.id AS id, COUNT( ".$wpdb->prefix."huge_it_contact_contacts_fields.hugeit_contact_id ) AS prod_count
-FROM ".$wpdb->prefix."huge_it_contact_contacts_fields, ".$wpdb->prefix."huge_it_contact_contacts
-WHERE ".$wpdb->prefix."huge_it_contact_contacts_fields.hugeit_contact_id = ".$wpdb->prefix."huge_it_contact_contacts.id
-GROUP BY ".$wpdb->prefix."huge_it_contact_contacts_fields.hugeit_contact_id) AS c ON c.id = a.id LEFT JOIN
-(SELECT ".$wpdb->prefix."huge_it_contact_contacts.name AS par_name,".$wpdb->prefix."huge_it_contact_contacts.id FROM ".$wpdb->prefix."huge_it_contact_contacts) AS g
- ON a.hc_width=g.id WHERE a.name LIKE '%".$search_tag."%'  group by a.id ". $order ." "." LIMIT ".$limit.",20" ; 
-}
+	$query = "SELECT COUNT(*) FROM " . $wpdb->prefix . "huge_it_contact_contacts" . $where;
 
-$rows = $wpdb->get_results($query);
- global $glob_ordering_in_cat;
-if(isset($sort["sortid_by"]))
-{
-	if($sort["sortid_by"]=='ordering'){
-	if($_POST['asc_or_desc']==1){
-		$glob_ordering_in_cat=" ORDER BY ordering ASC";
+	$total            = $wpdb->get_var( $query );
+	$pageNav['total'] = $total;
+	$pageNav['limit'] = $limit / 20 + 1;
+
+	if ( $cat_id ) {
+		$query = "SELECT  a.* ,  COUNT(b.id) AS count, g.par_name AS par_name FROM " . $wpdb->prefix . "huge_it_contact_contacts  AS a LEFT JOIN " . $wpdb->prefix . "huge_it_contact_contacts AS b ON a.id = b.hc_width LEFT JOIN (SELECT  " . $wpdb->prefix . "huge_it_contact_contacts.ordering as ordering," . $wpdb->prefix . "huge_it_contact_contacts.id AS id, COUNT( " . $wpdb->prefix . "huge_it_contact_contacts_fields.hugeit_contact_id ) AS prod_count
+FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields, " . $wpdb->prefix . "huge_it_contact_contacts
+WHERE " . $wpdb->prefix . "huge_it_contact_contacts_fields.hugeit_contact_id = " . $wpdb->prefix . "huge_it_contact_contacts.id
+GROUP BY " . $wpdb->prefix . "huge_it_contact_contacts_fields.hugeit_contact_id) AS c ON c.id = a.id LEFT JOIN
+(SELECT " . $wpdb->prefix . "huge_it_contact_contacts.name AS par_name," . $wpdb->prefix . "huge_it_contact_contacts.id FROM " . $wpdb->prefix . "huge_it_contact_contacts) AS g
+ ON a.hc_width=g.id WHERE  a.name LIKE '%" . $search_tag . "%' group by a.id " . $order . " " . " LIMIT " . $limit . ",20";
+	} else {
+		$query = "SELECT  a.* ,  COUNT(b.id) AS count, g.par_name AS par_name FROM " . $wpdb->prefix . "huge_it_contact_contacts  AS a LEFT JOIN " . $wpdb->prefix . "huge_it_contact_contacts AS b ON a.id = b.hc_width LEFT JOIN (SELECT  " . $wpdb->prefix . "huge_it_contact_contacts.ordering as ordering," . $wpdb->prefix . "huge_it_contact_contacts.id AS id, COUNT( " . $wpdb->prefix . "huge_it_contact_contacts_fields.hugeit_contact_id ) AS prod_count
+FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields, " . $wpdb->prefix . "huge_it_contact_contacts
+WHERE " . $wpdb->prefix . "huge_it_contact_contacts_fields.hugeit_contact_id = " . $wpdb->prefix . "huge_it_contact_contacts.id
+GROUP BY " . $wpdb->prefix . "huge_it_contact_contacts_fields.hugeit_contact_id) AS c ON c.id = a.id LEFT JOIN
+(SELECT " . $wpdb->prefix . "huge_it_contact_contacts.name AS par_name," . $wpdb->prefix . "huge_it_contact_contacts.id FROM " . $wpdb->prefix . "huge_it_contact_contacts) AS g
+ ON a.hc_width=g.id WHERE a.name LIKE '%" . $search_tag . "%'  group by a.id " . $order . " " . " LIMIT " . $limit . ",20";
 	}
-	else{
-		$glob_ordering_in_cat=" ORDER BY ordering DESC";
-	}
-	}
-}
-$rows=open_cat_in_tree($rows);
-	$query ="SELECT  ".$wpdb->prefix."huge_it_contact_contacts.ordering,".$wpdb->prefix."huge_it_contact_contacts.id, COUNT( ".$wpdb->prefix."huge_it_contact_contacts_fields.hugeit_contact_id ) AS prod_count
-FROM ".$wpdb->prefix."huge_it_contact_contacts_fields, ".$wpdb->prefix."huge_it_contact_contacts
-WHERE ".$wpdb->prefix."huge_it_contact_contacts_fields.hugeit_contact_id = ".$wpdb->prefix."huge_it_contact_contacts.id
-GROUP BY ".$wpdb->prefix."huge_it_contact_contacts_fields.hugeit_contact_id " ;
-	$prod_rows = $wpdb->get_results($query);
-		
-foreach($rows as $row)
-{
-	foreach($prod_rows as $row_1)
-	{
-		if ($row->id == $row_1->id)
-		{
-			$row->ordering = $row_1->ordering;
-		$row->prod_count = $row_1->prod_count;
-	}
+
+	$rows = $wpdb->get_results( $query );
+	global $glob_ordering_in_cat;
+	if ( isset( $sort["sortid_by"] ) ) {
+		if ( $sort["sortid_by"] == 'ordering' ) {
+			if ( $_POST['asc_or_desc'] == 1 ) {
+				$glob_ordering_in_cat = " ORDER BY ordering ASC";
+			} else {
+				$glob_ordering_in_cat = " ORDER BY ordering DESC";
+			}
 		}
-	
 	}
-	
+	$rows      = open_cat_in_tree( $rows );
+	$query     = "SELECT  " . $wpdb->prefix . "huge_it_contact_contacts.ordering," . $wpdb->prefix . "huge_it_contact_contacts.id, COUNT( " . $wpdb->prefix . "huge_it_contact_contacts_fields.hugeit_contact_id ) AS prod_count
+FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields, " . $wpdb->prefix . "huge_it_contact_contacts
+WHERE " . $wpdb->prefix . "huge_it_contact_contacts_fields.hugeit_contact_id = " . $wpdb->prefix . "huge_it_contact_contacts.id
+GROUP BY " . $wpdb->prefix . "huge_it_contact_contacts_fields.hugeit_contact_id ";
+	$prod_rows = $wpdb->get_results( $query );
 
-	$query="SELECT * FROM ".$wpdb->prefix."huge_it_contact_styles order by id ASC";
-	$form_styles=$wpdb->get_results($query);
+	foreach ( $rows as $row ) {
+		foreach ( $prod_rows as $row_1 ) {
+			if ( $row->id == $row_1->id ) {
+				$row->ordering   = $row_1->ordering;
+				$row->prod_count = $row_1->prod_count;
+			}
+		}
 
-	 
-	$cat_row=open_cat_in_tree($cat_row);
-	$postsbycat='';
-	html_showhugeit_contacts( $rows, $pageNav,$sort,$cat_row, $postsbycat,$form_styles);
-  }
+	}
+
+
+	$query       = "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_styles order by id ASC";
+	$form_styles = $wpdb->get_results( $query );
+
+
+	$cat_row    = open_cat_in_tree( $cat_row );
+	$postsbycat = '';
+	html_showhugeit_contacts( $rows, $pageNav, $sort, $cat_row, $postsbycat, $form_styles );
+}
 
 function open_cat_in_tree($catt,$tree_problem='',$hihiih=1){
 
@@ -186,19 +173,20 @@ return $trr_cat;
 
 }
 
-function edithugeit_contact($id)
-  {
-	  @session_start();
-	if(isset($_POST['csrf_token_hugeit_forms']) && (!isset($_SESSION["csrf_token_hugeit_forms"]) || $_SESSION["csrf_token_hugeit_forms"] != @$_POST['csrf_token_hugeit_forms'])) { exit; }
+function hugeit_contact_edit_hugeit_contact($id){
+	if ( isset( $_POST['csrf_token_hugeit_forms'] ) && ( ! isset( $_SESSION["csrf_token_hugeit_forms"] ) || $_SESSION["csrf_token_hugeit_forms"] != @$_POST['csrf_token_hugeit_forms'] ) ) {
+		exit;
+	}
 
-	  global $wpdb;
+	global $wpdb;
 
-	     if(isset($_GET["removeslide"])&&$_GET["removeslide"] != ''){
-	
-	  $query=$wpdb->prepare("DELETE FROM ".$wpdb->prefix."huge_it_contact_contacts_fields  WHERE id = %d",$_GET["removeslide"]);
-	  $wpdb->query($query);
+	if ( isset( $_GET["removeslide"] ) && $_GET["removeslide"] != '' ) {
+		$remove_slide = sanitize_text_field($_GET["removeslide"]);
 
-	   }
+		$query = $wpdb->prepare( "DELETE FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields  WHERE id = %d", $remove_slide );
+		$wpdb->query( $query );
+
+	}
 	   
 	if(isset($_GET["dublicate"])){
 		if(is_int((int)$_GET["dublicate"])){
@@ -219,188 +207,243 @@ function edithugeit_contact($id)
 			
 			$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
 			$rowdubleorder=$rowduble->ordering+1;
-		    $sql_type_text = "
-			INSERT INTO 
-			`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-			( '".$rowduble->name."', '".$rowduble->hugeit_contact_id."', '".$rowduble->description."', '".$rowduble->conttype."', '".$rowduble->hc_field_label."', '".$rowduble->hc_other_field."','".$rowduble->field_type."','".$rowduble->hc_required."', '".$rowdubleorder."', '".$rowduble->published."', '".$rowduble->hc_input_show_default."', '".$rowduble->hc_left_right."' )";
+			$wpdb->insert(
+				$inserttexttype,
+				array(
+					'name' => $rowduble->name,
+					'hugeit_contact_id' => $rowduble->hugeit_contact_id,
+					'description' => $rowduble->description,
+					'conttype' => $rowduble->conttype,
+					'hc_field_label' => $rowduble->hc_field_label,
+					'hc_other_field' => $rowduble->hc_other_field,
+					'field_type' => $rowduble->field_type,
+					'hc_required' => $rowduble->hc_required,
+					'ordering' => $rowdubleorder,
+					'published' => $rowduble->published,
+					'hc_input_show_default' => $rowduble->hc_input_show_default,
+					'hc_left_right' => $rowduble->hc_left_right,
+				),
+				array('%s','%d','%s','%s','%s','%s','%s','%s','%s','%d','%s','%s',)
+			);
 
-			    $wpdb->query($sql_type_text);
-			
 			header('Location: admin.php?page=hugeit_forms_main_page&id='.$id.'&task=apply');
 		}
 			
 	}
-	    
-	if(isset($_GET["inputtype"])){
-		$_GET["inputtype"]=esc_html($_GET["inputtype"]);
-		$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts WHERE id=%d",$id);
-		$row=$wpdb->get_row($query);
-		$inputtype = esc_html($_GET["inputtype"]);
-		$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts WHERE id= %d",$id);
-		$row=$wpdb->get_row($query);
-		$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = %d order by id ASC", $row->id);
-		$rowplusorder=$wpdb->get_results($query);
-				   
-		foreach ($rowplusorder as $key=>$rowplusorders){
-			$rowplusorderspl=$rowplusorders->ordering+1;
-			$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET ordering = %d WHERE id = %d ", $rowplusorderspl,$rowplusorders->id));
+
+	if ( isset( $_GET["inputtype"] ) ) {
+		$_GET["inputtype"] = esc_html( $_GET["inputtype"] );
+		$query             = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE id=%d", $id );
+		$row               = $wpdb->get_row( $query );
+		$inputtype         = esc_html( $_GET["inputtype"] );
+		$query             = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE id= %d", $id );
+		$row               = $wpdb->get_row( $query );
+		$query             = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE hugeit_contact_id = %d ORDER BY id ASC", $row->id );
+		$rowplusorder      = $wpdb->get_results( $query );
+		$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
+
+		foreach ( $rowplusorder as $key => $rowplusorders ) {
+			$rowplusorderspl = $rowplusorders->ordering + 1;
+			$wpdb->update(
+				$inserttexttype,
+				array('ordering' => $rowplusorderspl),
+				array('id' => absint($rowplusorders->id)),
+				array('%d')
+			);
 		}
-	switch ($inputtype){
-	   
-			    case 'text':  //1
-				
-				$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-		    $sql_type_text = "
+
+		switch ( $inputtype ) {
+
+			case 'text':  //1
+
+				$wpdb->insert(
+					$inserttexttype,
+					array(
+						'name' => 'Placeholder',
+						'hugeit_contact_id' => $row->id,
+						'description' => 'on',
+						'conttype' => $_GET["inputtype"],
+						'hc_field_label' => 'Textbox',
+						'hc_other_field' => '',
+						'field_type' => 'text',
+						'hc_required' => '',
+						'ordering' => '0',
+						'published' => 2,
+						'hc_input_show_default' => '1',
+						'hc_left_right' => 'left',
+					),
+					array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+				);
+
+				break;
+
+			case 'textarea':  //2
+
+				$wpdb->insert(
+					$inserttexttype,
+					array(
+						'name' => 'Placeholder',
+						'hugeit_contact_id' => $row->id,
+						'description' => 'on',
+						'conttype' => $_GET["inputtype"],
+						'hc_field_label' => 'Textarea',
+						'hc_other_field' => '80',
+						'field_type' => 'on',
+						'hc_required' => 'on',
+						'ordering' => '0',
+						'published' => 2,
+						'hc_input_show_default' => '1',
+						'hc_left_right' => 'left',
+					),
+					array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+				);
+
+				break;
+
+			case 'selectbox':  //3
+
+//				$wpdb->insert(
+//					$inserttexttype,
+//					array(
+//						'name' => 'Option 1;;Option 2',
+//						'hugeit_contact_id' => $row->id,
+//						'description' => '',
+//						'conttype' => $_GET["inputtype"],
+//						'hc_field_label' => 'Selectbox',
+//						'hc_other_field' => 'Option 2',
+//						'ordering' => '0',
+//						'published' => 2,
+//						'hc_input_show_default' => '1',
+//						'hc_left_right' => 'left',
+//					),
+//					array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+//				);
+
+				$sql_type_text  = "
 		INSERT INTO 
-		`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-		( 'Placeholder', '".$row->id."', 'on', '".$_GET["inputtype"]."', 'Textbox', '','text','', '0', 2, '1', 'left' )";
+		`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`)
+		VALUES ( 'Option 1;;Option 2', '" . $row->id . "', '', '" . $_GET["inputtype"] . "', 'Selectbox', 'Option 2', 'par_TV', 2, '1', 'left' )";
 
-		      $wpdb->query($sql_type_text);
 
-		        break;
-				
-				case 'textarea':  //2
-				$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-		    $sql_type_text = "
-		INSERT INTO 
-		`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-		( 'Placeholder', '".$row->id."', 'on', '".$_GET["inputtype"]."', 'Textarea', '80','on','on', '0', 2, '1', 'left' )";
+				$wpdb->query( $sql_type_text );
 
-		   
-		      $wpdb->query($sql_type_text);
+				break;
 
-		        break;
-				
-				case 'selectbox':  //3
-				$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-		    $sql_type_text = "
-		INSERT INTO 
-		`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-		( 'Option 1;;Option 2', '".$row->id."', '', '".$_GET["inputtype"]."', 'Selectbox', 'Option 2', 'par_TV', 2, '1', 'left' )";
-
-		   
-		      $wpdb->query($sql_type_text);
-
-		break;
-
-				case 'checkbox':  //4
-				$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-		    $sql_type_text = "
+			case 'checkbox':  //4
+				$sql_type_text  = "
 		INSERT INTO 
 		`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`, `published`, `hc_input_show_default`,`hc_required`, `hc_left_right`) VALUES
-		( 'On', '".$row->id."', 'on', '".$_GET["inputtype"]."', 'Checkbox', '', '1', 2, '1','on', 'left' )";
+		( 'On', '" . $row->id . "', 'on', '" . $_GET["inputtype"] . "', 'Checkbox', '', '1', 2, '1','on', 'left' )";
 
-		   
-		      $wpdb->query($sql_type_text);
 
-		break;
+				$wpdb->query( $sql_type_text );
 
-				case 'radio_box':  //5
-				$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-		    $sql_type_text = "
+				break;
+
+			case 'radio_box':  //5
+				$sql_type_text  = "
 		INSERT INTO 
 		`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`, `hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-		( 'option 1;;option 2', '".$row->id."', '2', '".$_GET["inputtype"]."', 'Radio Box', 'option 1', '1', 'text', 'par_TV', '2', '1', 'left' )";
+		( 'option 1;;option 2', '" . $row->id . "', '2', '" . $_GET["inputtype"] . "', 'Radio Box', 'option 1', '1', 'text', 'par_TV', '2', '1', 'left' )";
 
-		   
-		      $wpdb->query($sql_type_text);
 
-		break;
+				$wpdb->query( $sql_type_text );
 
-				case 'file_box':  //6
-				$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-		   		 $sql_type_text = "
+				break;
+
+			case 'file_box':  //6
+				$sql_type_text  = "
 				INSERT INTO 
 				`" . $inserttexttype . "` (`name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( '5', '".$row->id."', 'on', '".$_GET["inputtype"]."', 'Filebox', 'jpg, jpeg, gif, png, docx, xlsx, pdf','','', 'par_TV', 2, '1', 'left' )";
+				( '5', '" . $row->id . "', 'on', '" . $_GET["inputtype"] . "', 'Filebox', 'jpg, jpeg, gif, png, docx, xlsx, pdf','','', 'par_TV', 2, '1', 'left' )";
 
-		   
-		      $wpdb->query($sql_type_text);
 
-		break;
+				$wpdb->query( $sql_type_text );
 
-				case 'custom_text':  //7
-				$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-			    $sql_type_text = "
+				break;
+
+			case 'custom_text':  //7
+				$sql_type_text  = "
 				INSERT INTO 
 				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'Placeholder', '".$row->id."', 'on', '".$_GET["inputtype"]."', 'Label', '80','on','on', 'par_TV', 2, '1', 'left' )";
+				( 'Placeholder', '" . $row->id . "', 'on', '" . $_GET["inputtype"] . "', 'Label', '80','on','on', 'par_TV', 2, '1', 'left' )";
 
-				   
-		        $wpdb->query($sql_type_text);
 
-		break;
+				$wpdb->query( $sql_type_text );
 
-				case 'captcha':  //8
-				$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$id);
-			    $rowall=$wpdb->get_results($query);
-			    $leftRightPos='left';
-			    foreach ($rowall as $value) {
-			    	if($value->hc_left_right=='right'){$leftRightPos='right';}
-			    }
-			    $queryMax=$wpdb->prepare("SELECT MAX(ordering) AS res FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d AND hc_left_right=%s",$id,$leftRightPos);
-			    $row8=$wpdb->get_results($queryMax);
-			    $finRes=$row8[0]->res;	    
-			    $queryType=$wpdb->prepare("SELECT conttype FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d AND ordering=%d AND hc_left_right=%s",$id,$finRes,$leftRightPos);
-			    $rowType=$wpdb->get_results($queryType);
-			    $toCheck=$rowType[0]->conttype;
-			    $resOfMax=$row8[0]->res;
-			    $resOfMax=(int)$resOfMax;
-			    if($toCheck != 'buttons'){
-			    	echo "string";
-			    	$resOfMax=$resOfMax+1;
-			    }else{
-			    	echo "0";
-			    	$resOfMax=$resOfMax;
-			    	(int)$resOfMax3=(int)$resOfMax+1;
-			    	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET ordering = %d WHERE hugeit_contact_id = %d AND ordering=%d",$resOfMax3,$id,$resOfMax));
-			    }
-				$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-			    $sql_type_text = "
+				break;
+
+			case 'captcha':  //8
+				$query        = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d", $id );
+				$rowall       = $wpdb->get_results( $query );
+				$leftRightPos = 'left';
+				foreach ( $rowall as $value ) {
+					if ( $value->hc_left_right == 'right' ) {
+						$leftRightPos = 'right';
+					}
+				}
+				$queryMax  = $wpdb->prepare( "SELECT MAX(ordering) AS res FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d AND hc_left_right=%s", $id, $leftRightPos );
+				$row8      = $wpdb->get_results( $queryMax );
+				$finRes    = $row8[0]->res;
+				$queryType = $wpdb->prepare( "SELECT conttype FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d AND ordering=%d AND hc_left_right=%s", $id, $finRes, $leftRightPos );
+				$rowType   = $wpdb->get_results( $queryType );
+				$toCheck   = $rowType[0]->conttype;
+				$resOfMax  = $row8[0]->res;
+				$resOfMax  = (int) $resOfMax;
+				if ( $toCheck != 'buttons' ) {
+					echo "string";
+					$resOfMax = $resOfMax + 1;
+				} else {
+					echo "0";
+					$resOfMax = $resOfMax;
+					(int) $resOfMax3 = (int) $resOfMax + 1;
+					$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET ordering = %d WHERE hugeit_contact_id = %d AND ordering=%d", $resOfMax3, $id, $resOfMax ) );
+				}
+				$sql_type_text  = "
 				INSERT INTO 
 				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'image', '".$row->id."', '', '".$_GET["inputtype"]."', '', '','', 'light', '".$resOfMax."', 2, '1', '".$leftRightPos."' )";
+				( 'image', '" . $row->id . "', '', '" . $_GET["inputtype"] . "', '', '','', 'light', '" . $resOfMax . "', 2, '1', '" . $leftRightPos . "' )";
 
-		   
-		      	$wpdb->query($sql_type_text);
 
-		break;
+				$wpdb->query( $sql_type_text );
 
-				case 'buttons':  //9
-				$query=$wpdb->prepare("SELECT MAX(ordering) AS res FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$id);
-			    $row8=$wpdb->get_results($query);
-			    $resOfMax=$row8[0]->res;
-			    $resOfMax=$resOfMax+1;
-			    $query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$id);
-			    $row8=$wpdb->get_results($query);
-			    $leftRightPos='left';
-			    foreach ($row8 as $value) {
-			    	if($value->hc_left_right=='right'){$leftRightPos='right';}
-			    }
-				$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-				$sql_type_text = "
+				break;
+
+			case 'buttons':  //9
+				$query        = $wpdb->prepare( "SELECT MAX(ordering) AS res FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d", $id );
+				$row8         = $wpdb->get_results( $query );
+				$resOfMax     = $row8[0]->res;
+				$resOfMax     = $resOfMax + 1;
+				$query        = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d", $id );
+				$row8         = $wpdb->get_results( $query );
+				$leftRightPos = 'left';
+				foreach ( $row8 as $value ) {
+					if ( $value->hc_left_right == 'right' ) {
+						$leftRightPos = 'right';
+					}
+				}
+				$sql_type_text  = "
 				INSERT INTO 
 				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'text', '".$row->id."', 'Submit', '".$_GET["inputtype"]."', 'Reset', 'print_success_message','','', '".$resOfMax."', 2, '1', '".$leftRightPos."' )";
+				( 'text', '" . $row->id . "', 'Submit', '" . $_GET["inputtype"] . "', 'Reset', 'print_success_message','','', '" . $resOfMax . "', 2, '1', '" . $leftRightPos . "' )";
 
-		   
-		      $wpdb->query($sql_type_text);
 
-		break;
+				$wpdb->query( $sql_type_text );
+
+				break;
 
 			case 'e_mail':  //10
-				
-				$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-			    $sql_type_text = "
+
+				$sql_type_text  = "
 				INSERT INTO 
 				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'Type Your Email', '".$row->id."', 'on', '".$_GET["inputtype"]."', 'E-mail', '','name','', '0', 2, '1', 'left' )";
+				( 'Type Your Email', '" . $row->id . "', 'on', '" . $_GET["inputtype"] . "', 'E-mail', '','name','', '0', 2, '1', 'left' )";
 
-		        $wpdb->query($sql_type_text);
+				$wpdb->query( $sql_type_text );
 
-		        break;
+				break;
+		}
 	}
-}   	
 		
 	   
 	    
@@ -493,7 +536,7 @@ INSERT INTO
     Html_edithugeit_contact($id, $ord_elem, $count_ord, $images, $row, $cat_row, $rowim, $rowsld, $paramssld, $rowsposts, $rowsposts8, $postsbycat, $form_styles,$style_values,$themeId);
   }
   
-function add_hugeit_contact()
+function hugeit_contact_add_hugeit_contact()
 {
 	global $wpdb;
 	
@@ -528,7 +571,7 @@ INSERT INTO
 	
 }
 
-function removehugeit_contact($id){
+function hugeit_contact_remove_contact($id){
 
 	global $wpdb;
 	 $sql_remov_tag=$wpdb->prepare("DELETE FROM ".$wpdb->prefix."huge_it_contact_contacts WHERE id=%d",$id);
@@ -565,72 +608,63 @@ function removehugeit_contact($id){
 
 }
 
-function captcha_keys($id)
-{
+function hugeit_contact_captcha_keys( $id ) {
 	global $wpdb;
-	$idsave = esc_html($_GET["id"]);
-	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$idsave);
-    $rowall=$wpdb->get_results($query);
-    $leftRightPos='left';
-    foreach ($rowall as $value) {
-    	if($value->hc_left_right=='right'){$leftRightPos='right';}
-    }
-    $queryMax=$wpdb->prepare("SELECT MAX(ordering) AS res FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d AND hc_left_right=%s",$idsave,$leftRightPos);
-    $row8=$wpdb->get_results($queryMax);
-    $finRes=$row8[0]->res;	    
-    $queryType=$wpdb->prepare("SELECT conttype FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d AND ordering=%d AND hc_left_right=%s",$idsave,$finRes,$leftRightPos);
-    $rowType=$wpdb->get_results($queryType);
-    $toCheck=$rowType[0]->conttype;
-    $resOfMax=$row8[0]->res;
-    $resOfMax=(int)$resOfMax;
-    if($toCheck != 'buttons'){
-    	//echo "string";
-    	$resOfMax=$resOfMax+1;
-    }else{
-    	//echo "0";
-    	$resOfMax=$resOfMax;
-    	(int)$resOfMax3=(int)$resOfMax+1;
-    	$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET ordering = %d WHERE hugeit_contact_id = %d AND ordering=%d",$resOfMax3,$idsave,$resOfMax));
-    }
+	$idsave       = esc_html( $_GET["id"] );
+	$query        = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d", $idsave );
+	$rowall       = $wpdb->get_results( $query );
+	$leftRightPos = 'left';
+	foreach ( $rowall as $value ) {
+		if ( $value->hc_left_right == 'right' ) {
+			$leftRightPos = 'right';
+		}
+	}
+	$queryMax  = $wpdb->prepare( "SELECT MAX(ordering) AS res FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d AND hc_left_right=%s", $idsave, $leftRightPos );
+	$row8      = $wpdb->get_results( $queryMax );
+	$finRes    = $row8[0]->res;
+	$queryType = $wpdb->prepare( "SELECT conttype FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d AND ordering=%d AND hc_left_right=%s", $idsave, $finRes, $leftRightPos );
+	$rowType   = $wpdb->get_results( $queryType );
+	$toCheck   = $rowType[0]->conttype;
+	$resOfMax  = $row8[0]->res;
+	$resOfMax  = (int) $resOfMax;
+	if ( $toCheck != 'buttons' ) {
+		$resOfMax = $resOfMax + 1;
+	} else {
+		$resOfMax3 = (int)$resOfMax + 1;
+		$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET ordering = %d WHERE hugeit_contact_id = %d AND ordering=%d", $resOfMax3, $idsave, $resOfMax ) );
+	}
 	/////////////////////////
-    $query = "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_general_options ";
-    $rows = $wpdb->get_results($query);
-    $param_values = array();
-    foreach ($rows as $row) {
-        $key = $row->name;
-        $value = $row->value;
-        $param_values[$key] = $value;
-    }
+	$query        = "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_general_options ";
+	$rows         = $wpdb->get_results( $query );
+	$param_values = array();
+	foreach ( $rows as $row ) {
+		$key                  = $row->name;
+		$value                = $row->value;
+		$param_values[ $key ] = $value;
+	}
 
-	if (isset($_POST['params'])){
-    $params = $_POST['params'];
-    foreach ($params as $key => $value) {
-	echo $_POST['params'];
-        $wpdb->update($wpdb->prefix . 'huge_it_contact_general_options',
-            array('value' => $value),
-            array('name' => $key),
-            array('%s')
-        );
-    }
-	
+	if ( isset( $_POST['params'] ) ) {
+		$params = $_POST['params'];
+		foreach ( $params as $key => $value ) {
+			echo $_POST['params'];
+			$wpdb->update( $wpdb->prefix . 'huge_it_contact_general_options', array( 'value' => $value ), array( 'name' => $key ), array( '%s' ) );
+		}
 
-	$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-    $sql_type_text = "
+
+		$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
+		$sql_type_text  = "
 	INSERT INTO 
 	`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-	( 'image', '".$idsave."', '', 'captcha', '', '','', 'light', '".$resOfMax."', 2, '1', '".$leftRightPos."' )";
+	( 'image', '" . $idsave . "', '', 'captcha', '', '','', 'light', '" . $resOfMax . "', 2, '1', '" . $leftRightPos . "' )";
 
-   
-      $wpdb->query($sql_type_text);
-	
+
+		$wpdb->query( $sql_type_text );
+
 	}
-    html_captcha_keys($param_values);
+	html_captcha_keys( $param_values );
 }
 
-function apply_cat($id){ 
-	@session_start();
-	if(isset($_POST['csrf_token_hugeit_forms']) && (!isset($_SESSION["csrf_token_hugeit_forms"]) || $_SESSION["csrf_token_hugeit_forms"] != @$_POST['csrf_token_hugeit_forms'])) { exit; }
-	
+function hugeit_contact_apply_cat($id){
 	global $wpdb;	 
 
     if(isset($_POST["name"])){
@@ -707,5 +741,3 @@ INSERT INTO
     return true;
 	
 }
-
-?>

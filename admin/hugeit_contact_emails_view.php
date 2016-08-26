@@ -8,9 +8,10 @@ if (!function_exists('current_user_can')) {
     die('Access Denied');
 }
 require_once("hugeit_free_version.php");
-function  html_showemails($subscribers,$mailerParams,$count,$formsToShow,$mailing){?>
+function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$formsToShow,$mailing) {
+?>
 <div class="wrap">
-	<?php drawFreeBanner('yes');?>
+	<?php hugeit_contact_drawFreeBanner('yes');?>
 	<div id="poststuff">
 		<?php $path_site = plugins_url("Front_images", __FILE__); ?>
 		<div id="post-body-content" class="hugeit_contact_email">
@@ -41,18 +42,20 @@ function  html_showemails($subscribers,$mailerParams,$count,$formsToShow,$mailin
 					</form>
 
 						<label for="wp-subscriber_message-wrap">Type your text here</label>
-						<?php function wptiny2($initArray){
-									$initArray['height'] = '250px';
-									$initArray['forced_root_block'] = false;
-									$initArray['remove_linebreaks']=false;
-								    $initArray['remove_redundant_brs'] = false;
-								    $initArray['wpautop']=false;
-									return $initArray;
-								}
-								add_filter('tiny_mce_before_init', 'wptiny2');
-								$settings = array( 'media_buttons' => false );
-								wp_editor('', "subscriber_message",$settings); 
-							?>
+					<?php function wptiny2( $initArray ) {
+						$initArray['height']               = '250px';
+						$initArray['forced_root_block']    = false;
+						$initArray['remove_linebreaks']    = false;
+						$initArray['remove_redundant_brs'] = false;
+						$initArray['wpautop']              = false;
+
+						return $initArray;
+					}
+
+					add_filter( 'tiny_mce_before_init', 'wptiny2' );
+					$settings = array( 'media_buttons' => false );
+					wp_editor( '', "subscriber_message", $settings );
+					?>
 					<div id="showCont">
 						<?php if($mailerParams['mailing_progress']=='finish'):?>
 						<div id="not_send">
@@ -213,5 +216,3 @@ function  html_showemails($subscribers,$mailerParams,$count,$formsToShow,$mailin
 </div>
 <?php
 }
-
-?>

@@ -12,13 +12,13 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 	global $wpdb;
 	?>
 <div class="wrap">
-	<?php drawFreeBanner();?>
+	<?php hugeit_contact_drawFreeBanner();?>
 	<div id="poststuff">
 		<div id="hugeit_contacts-list-page">
 			<form method="post"  onkeypress="doNothing()" action="admin.php?page=hugeit_forms_main_page" id="admin_form" name="admin_form">
 			<h2>Huge IT Forms
 				<a onclick="window.location.href='<?php print wp_nonce_url(admin_url('admin.php?page=hugeit_forms_main_page&task=add_cat'), 'huge_it_add_cat', 'hugeit_forms_nonce');?>'" class="add-new-h2" >Add New Form</a>
-			</h2>			
+			</h2>
 			<?php
 
 			$serch_value='';
@@ -26,7 +26,7 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 			if(isset($_POST['serch_or_not'])) {if($_POST['serch_or_not']=="search"){ $serch_value=esc_html(stripslashes($_POST['search_events_by_title'])); }else{$serch_value="";}} 
 			$serch_fields='<div class="alignleft actions"">
 									<label for="search_events_by_title" style="font-size:14px">Filter: </label>
-									<input type="text" name="search_events_by_title" value="'.$serch_value.'" id="search_events_by_title" onchange="clear_serch_texts()">
+									<input type="text" name="search_events_by_title" value="'.$serch_value.'" id="search_events_by_title" onchange="hugeit_contact_clear_search_texts()">
 							</div>				
 							<div class="alignleft actions">
 								<input type="button" value="Search" onclick="document.getElementById(\'page_number\').value=\'1\'; document.getElementById(\'serch_or_not\').value=\'search\';
@@ -177,15 +177,10 @@ function submitbutton(pressbutton){
 	document.getElementById("adminForm").action=document.getElementById("adminForm").action+"&task="+pressbutton;
 	document.getElementById("adminForm").submit();	
 }
-function change_select(){
-
-	submitbutton('apply');
-
-}
 </script>
 <!-- GENERAL PAGE, ADD FIELDS PAGE -->
 <div class="wrap">
-	<?php drawFreeBanner();?>
+	<?php hugeit_contact_drawFreeBanner();?>
 <form action="admin.php?page=hugeit_forms_main_page&id=<?php echo $id; ?>" method="post" name="adminForm" id="adminForm">
 	<div id="poststuff" >
 	<div class="hugeit_tabs_block">
@@ -295,31 +290,44 @@ function change_select(){
 							<li><a onclick=""  class="" id="radio_box" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Radio Box</a></li>
 							<li><a onclick="" class="" id="file_box" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">File Box</a></li>
 							<li><a onclick="submitbuttonSave('custom_text')" class="" id="custom_text" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Custom Text</a></li>
-							
 
-							<?php if($fordisablecaptcha==0){
-							if($paramssld['form_captcha_public_key'] != '' and $paramssld['form_captcha_private_key'] != ''){
-								?>
-								<li class="bbdisabled"><a onclick="" class="captcha" id="captcha" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Captcha</a></li>
-								<?php	}
-								else { ?>
-								<li class="bbdisabled"><a href="admin.php?page=hugeit_forms_main_page&task=captcha_keys&id=<?php echo $_GET['id']; ?>&TB_iframe=1"  id="Nocaptcha" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>" class="thickbox">Captcha</a></li>
-								<?php
-								}
-							} else { ?>
-								<li class="disabled"><a onclick="" class="captcha" id="captcha" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Captcha</a></li>
-							<?php } ?>
-							<?php if($fordisablebut==0){ ?>
-								<li class=""><a onclick="" class="" id="buttons" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Buttons</a></li>
-							<?php } else { ?>
-								<li class="disabled"><a onclick="" class="" id="buttons" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Buttons</a></li>
-							<?php } ?>
+
+							<?php if ( $fordisablecaptcha == 0 ) :
+								if ( $paramssld['form_captcha_public_key'] != '' and $paramssld['form_captcha_private_key'] != '' ) :
+									?>
+									<li class="bbdisabled"><a onclick="" class="captcha" id="captcha"
+									                          data-formId="<?php echo $id; ?>"
+									                          data-themeId="<?php echo $row->hc_yourstyle; ?>">Captcha</a>
+									</li>
+								<?php else : ?>
+									<li class="bbdisabled"><a
+											href="admin.php?page=hugeit_forms_main_page&task=captcha_keys&id=<?php echo esc_html( $_GET['id'] ); ?>&TB_iframe=1"
+											id="Nocaptcha" data-formId="<?php echo $id; ?>"
+											data-themeId="<?php echo $row->hc_yourstyle; ?>"
+											class="thickbox">Captcha</a></li>
+									<?php
+								endif;
+							else : ?>
+								<li class="disabled"><a onclick="" class="captcha" id="captcha"
+								                        data-formId="<?php echo $id; ?>"
+								                        data-themeId="<?php echo $row->hc_yourstyle; ?>">Captcha</a>
+								</li>
+							<?php endif;
+							if ( $fordisablebut == 0 ) : ?>
+								<li class=""><a onclick="" class="" id="buttons" data-formId="<?php echo $id; ?>"
+								                data-themeId="<?php echo $row->hc_yourstyle; ?>">Buttons</a></li>
+							<?php else : ?>
+								<li class="disabled"><a onclick="" class="" id="buttons"
+								                        data-formId="<?php echo $id; ?>"
+								                        data-themeId="<?php echo $row->hc_yourstyle; ?>">Buttons</a>
+								</li>
+							<?php endif; ?>
 						</ul>
 					</li>
 				</ul>
 			</div>
-			<?php //var_dump($style_values);
-			function huge_wptiny($initArray){
+			<?php
+			function hugeit_contact_huge_wptiny($initArray){
 					$initArray['height'] = '300px';
 					$initArray['forced_root_block'] = false;
 					$initArray['remove_linebreaks']=false;
@@ -332,10 +340,8 @@ function change_select(){
 						ed.onKeyUp.add(function(ed, e) {
 							if (jQuery('#wp-titleimage73-wrap').hasClass('tmce-active')){
 							var value= tinyMCE.activeEditor.getContent();
-								//alert(1)
 							}else{
 							var value= jQuery('#wp-titleimage73-wrap').val();
-								//alert(2)
 							}
 
 							value=tinyMCE.activeEditor.getContent();
@@ -345,61 +351,61 @@ function change_select(){
 					}";
 					return $initArray;
 				}
-				add_filter('tiny_mce_before_init', 'huge_wptiny');
+				add_filter('tiny_mce_before_init', 'hugeit_contact_huge_wptiny' );
 				 ?>
 			<div id="fields-list-block">
 				<ul id="fields-list-left" class="fields-list">
 				<?php
 				$backColor=1;
-				$rowim = array_reverse($rowim);				
+				$rowim = array_reverse($rowim);
 
-				foreach ($rowim as $key=>$rowimages){
-				if($rowimages->hc_left_right == 'left'){
-					$inputtype = $rowimages->conttype;
-					switch ($inputtype) {
-						case 'text':  //1
-						
-						echo textBoxSettingsHtml($rowimages);
-						break;
+				foreach ( $rowim as $key => $rowimages ) {
+					if ( $rowimages->hc_left_right == 'left' ) {
+						$inputtype = $rowimages->conttype;
+						switch ( $inputtype ) {
+							case 'text':  //1
 
-						case 'textarea':  //2
+								echo hugeit_contact_textBoxSettingsHtml( $rowimages );
+								break;
 
-						echo textareaSettingsHtml($rowimages);
-						break;
-						case 'selectbox':  //3
-						
-						echo selectboxSettingsHtml($rowimages);
-						break;
-						case 'checkbox':  //4
-						
-						echo checkboxSettingsHtml($rowimages);
-						break;
-						case 'radio_box':  //5
-						
-						echo radioboxSettingsHtml($rowimages); 
-						break;
-						case 'file_box':  //6
-						
-						echo fileboxSettingsHtml($rowimages);
-						break;
-						case 'custom_text':  //7											
-						
-						echo cutomtextSettingsHtml($rowimages);
-						break;
-						case 'captcha':  //8
-						
-						echo captchaSettingsHtml($rowimages);
-						break;
-						case 'buttons':  //9
+							case 'textarea':  //2
 
-						echo buttonsSettingsHtml($rowimages);
-						break;
-						case 'e_mail':  //10
-						
-						echo emailSettingsHtml($rowimages);  
-						break;
-					} 
-				} 
+								echo hugeit_contact_textareaSettingsHtml( $rowimages );
+								break;
+							case 'selectbox':  //3
+
+								echo hugeit_contact_selectboxSettingsHtml( $rowimages );
+								break;
+							case 'checkbox':  //4
+
+								echo hugeit_contact_checkboxSettingsHtml( $rowimages );
+								break;
+							case 'radio_box':  //5
+
+								echo hugeit_contact_radioboxSettingsHtml( $rowimages );
+								break;
+							case 'file_box':  //6
+
+								echo hugeit_contact_fileboxSettingsHtml( $rowimages );
+								break;
+							case 'custom_text':  //7
+
+								echo hugeit_contact_cutomtextSettingsHtml( $rowimages );
+								break;
+							case 'captcha':  //8
+
+								echo hugeit_contact_captchaSettingsHtml( $rowimages );
+								break;
+							case 'buttons':  //9
+
+								echo hugeit_contact_buttonsSettingsHtml( $rowimages );
+								break;
+							case 'e_mail':  //10
+
+								echo hugeit_contact_emailSettingsHtml( $rowimages );
+								break;
+						}
+					}
 				} ?>
 				</ul>
 				
@@ -411,52 +417,52 @@ function change_select(){
 					switch ($inputtype) {
 						case 'text':  //1
 						
-						echo textBoxSettingsHtml($rowimages);
+						echo hugeit_contact_textBoxSettingsHtml($rowimages);
 						break;
 
 						case 'textarea':  //2
 
-						echo textareaSettingsHtml($rowimages);
+						echo hugeit_contact_textareaSettingsHtml($rowimages);
 						break;
 
 						case 'selectbox':  //3
 						
-						echo selectboxSettingsHtml($rowimages);
+						echo hugeit_contact_selectboxSettingsHtml($rowimages);
 						break;
 
 						case 'checkbox':  //4
 						
-						echo checkboxSettingsHtml($rowimages);
+						echo hugeit_contact_checkboxSettingsHtml($rowimages);
 						break;
 
 						case 'radio_box':  //5
 						
-						echo radioboxSettingsHtml($rowimages); 
+						echo hugeit_contact_radioboxSettingsHtml($rowimages);
 						break;
 
 						case 'file_box':  //6
 						
-						echo fileboxSettingsHtml($rowimages);
+						echo hugeit_contact_fileboxSettingsHtml($rowimages);
 						break;
 
 						case 'custom_text':  //7											
 						
-						echo cutomtextSettingsHtml($rowimages);
+						echo hugeit_contact_cutomtextSettingsHtml($rowimages);
 						break;
 
 						case 'captcha':  //8
 						
-						echo captchaSettingsHtml($rowimages);
+						echo hugeit_contact_captchaSettingsHtml($rowimages);
 						break;
 
 						case 'buttons':  //9
 
-						echo buttonsSettingsHtml($rowimages);
+						echo hugeit_contact_buttonsSettingsHtml($rowimages);
 						break;
 
 						case 'e_mail':  //10
 						
-						echo emailSettingsHtml($rowimages); 
+						echo hugeit_contact_emailSettingsHtml($rowimages);
 						break;
 					} 
 				} 
@@ -499,7 +505,7 @@ function change_select(){
 				position:relative;
 				display:block;
 				clear:both !important;
-				padding:5px 0px 10px 2% !important;
+				padding:5px 0 10px 2% !important;
 				font-size:<?php echo $style_values['form_title_size']; ?>px !important;
 				line-height:<?php echo $style_values['form_title_size']; ?>px !important;
 				color:#<?php echo $style_values['form_title_color']; ?> !important;
@@ -568,7 +574,7 @@ function change_select(){
 					border-radius:<?php echo $style_values['form_input_text_border_radius']; ?>px;
 					font-size:<?php echo $style_values['form_input_text_font_size']; ?>px;
 					color:#<?php echo $style_values['form_input_text_font_color']; ?>;
-					margin:0px !important;
+					margin:0 !important;
 					outline:none;
 				}
 				/*############TEXTAREA############*/
@@ -583,7 +589,7 @@ function change_select(){
 					border-radius:<?php echo $style_values['form_textarea_border_radius']; ?>px;
 					font-size:<?php echo $style_values['form_textarea_font_size']; ?>px;
 					color:#<?php echo $style_values['form_textarea_font_color']; ?>;
-					margin:0px !important;
+					margin:0 !important;
 				}
 				
 				/*############CHECKBOX RADIOBOX############ */
@@ -596,15 +602,15 @@ function change_select(){
 				.radio-block, .checkbox-block {
 					position:relative;
 					float:left;
-					margin:0px 5px 0px 5px;
+					margin:0 5px 0 5px;
 					display: block;
 				}
 				
 				.radio-block input, .checkbox-block input {
 					visibility:hidden;
 					position:absolute;
-					top:0px;
-					left:0px;
+					top:0;
+					left:0;
 				}
 				
 				.radio-block i {
@@ -668,10 +674,10 @@ function change_select(){
 					height:<?php echo $style_values['form_selectbox_font_size']*2; ?>px;
 					width:90%;
 					padding-right:10%;
-					margin:0px !important;
-					top;0px;
-					left:0px;
-					border:0px;
+					margin:0 !important;
+					top;0;
+					left:0;
+					border:0;
 					color:#<?php echo $style_values['form_selectbox_font_color']; ?>; 
 					background:none;
 					border:<?php echo $style_values['form_selectbox_border_size']; ?>px solid #<?php echo $style_values['form_selectbox_border_color']; ?>;
@@ -717,15 +723,15 @@ function change_select(){
 					<?php  }else { ?>
 					background:none;
 					<?php } ?>
-					padding:0px 40% 0px 5px !important;
+					padding:0 40% 0 5px !important;
 					box-sizing: content-box;
 					-moz-box-sizing: content-box;
 				}
 				
 				.file-block .uploadbutton {	
 					position:absolute;
-					top:0px;
-					right:0px;
+					top:0;
+					right:0;
 					width:38%;
 					border-top:<?php echo $style_values['form_file_border_size']; ?>px solid #<?php echo $style_values['form_file_border_color']; ?> !important;
 					border-bottom:<?php echo $style_values['form_file_border_size']; ?>px solid #<?php echo $style_values['form_file_border_color']; ?> !important;
@@ -734,8 +740,8 @@ function change_select(){
 					border-bottom-right-radius:<?php echo $style_values['form_file_border_radius']; ?>px !important;
 					<?php $fileheight=$style_values['form_file_font_size']*2; ?>
 					height:<?php echo $fileheight; ?>px;
-					padding:0px 1%;
-					margin:0px;
+					padding:0 1%;
+					margin:0;
 					overflow: hidden;
 					font-size:<?php echo $style_values['form_file_font_size']; ?>px;
 					line-height:<?php echo $style_values['form_file_font_size']*2; ?>px;
@@ -775,8 +781,8 @@ function change_select(){
 					height:30px;
 					width:100%;
 					position:absolute;
-					top:0px;
-					left:0px;
+					top:0;
+					left:0;
 					opacity:0;
 					cursor:pointer;
 				}
@@ -809,11 +815,9 @@ function change_select(){
 					?>
 						clear:both;
 						width:100%;
-						padding-left:0px;
-						padding-right:0px;
-						margin:0px 0px 0px 0px !important;
-						padding-left:0px;
-						padding-right:0px;
+						margin:0 0 0 0 !important;
+						padding-left:0;
+						padding-right:0;
 					<?php } ?>
 					font-size:<?php echo $style_values['form_button_font_size']; ?>px;
 				}
@@ -825,7 +829,7 @@ function change_select(){
 					border-radius:<?php echo $style_values['form_button_submit_border_radius']; ?>px !important;
 					-webkit-transition: all 0.5s ease !important;
 					transition: all 0.5s ease !important;
-					margin:0px 0px 5px 0px !important;
+					margin:0 0 5px 0 !important;
 				}
 				
 				.buttons-block button.submit:hover {
@@ -890,7 +894,7 @@ function change_select(){
 					border-radius:<?php echo $style_values['form_input_text_border_radius']; ?>px;
 					font-size:<?php echo $style_values['form_input_text_font_size']; ?>px;
 					color:#<?php echo $style_values['form_input_text_font_color']; ?>;
-					margin:0px !important;
+					margin:0 !important;
 					outline:none;
 				}
 				.input-name-block input:first-child,.input-name-block input:first-child:focus{
@@ -911,7 +915,7 @@ function change_select(){
 					border-radius:<?php echo $style_values['form_input_text_border_radius']; ?>px;
 					font-size:<?php echo $style_values['form_input_text_font_size']; ?>px;
 					color:#<?php echo $style_values['form_input_text_font_color']; ?>;
-					margin:0px !important;
+					margin:0 !important;
 					outline:none;
 				}
 				#hugeit-contact-wrapper .hugeit-contact-column-block > div ul.hide{
@@ -933,7 +937,7 @@ function change_select(){
 					vertical-align: super !important;
 				}
 				.hugeit-check-field > .license-block >.secondary-label > .checkbox-block{
-					margin: 0px 5px 0px 0px !important;
+					margin: 0 5px 0 0 !important;
 					float: none !important;
 					display: inline-block;
 					vertical-align: middle !important;
@@ -981,36 +985,36 @@ function change_select(){
 										switch ($inputtype) {
 											case 'text'://1
 
-											echo textBoxHtml($rowimages);												
+											echo hugeit_contact_textBoxHtml($rowimages);
 											break;
 
 											case 'textarea'://2
 
-											echo textareaHtml($rowimages);
+											echo hugeit_contact_textareaHtml($rowimages);
 											break;
 
 											case 'selectbox'://3
 											
-											echo selectboxHtml($rowimages);	
+											echo hugeit_contact_selectboxHtml($rowimages);
 											break;
 
 											case 'checkbox':  //4
 
-											echo checkboxHtml($rowimages,$themeId);											
+											echo hugeit_contact_checkboxHtml($rowimages,$themeId);
 											break;
 
 											case 'radio_box':  //5
 											
-											echo radioboxHtml($rowimages,$themeId);
+											echo hugeit_contact_radioboxHtml($rowimages,$themeId);
 											break;
 											case 'file_box':  //6
 											
-											echo fileboxHtml($rowimages,$themeId);
+											echo hugeit_contact_fileboxHtml($rowimages,$themeId);
 											break;
 
 											case 'custom_text':  //7
 
-											echo cutomtextHtml($rowimages);
+											echo hugeit_contact_cutomtextHtml($rowimages);
 											break;
 
 											case 'captcha': //8
@@ -1037,8 +1041,8 @@ function change_select(){
 													 
 													</script>
 													<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
-													<div <?php if($rowimages->hc_required=='dark'){echo 'style="display:none"';}else{echo 'style="float:'.$capPos.'"';}?> id="democaptchalight"></div>
-													<div <?php if($rowimages->hc_required=='light'){echo 'style="display:none"';}else{echo 'style="float:'.$capPos.'"';}?> id="democaptchadark"></div>
+													<div <?php echo $rowimages->hc_required=='dark' ? 'style="display:none"' : 'style="float:'.$capPos.'"';?> id="democaptchalight"></div>
+													<div <?php echo $rowimages->hc_required=='light' ? 'style="display:none"' : 'style="float:'.$capPos.'"';?> id="democaptchadark"></div>
 													<span class="hugeOverlay"></span>
 													<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>">
 													<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" />
@@ -1047,12 +1051,12 @@ function change_select(){
 											break;
 											case 'buttons': //9									
 											
-											echo buttonsHtml($rowimages,$themeId);											
+											echo hugeit_contact_buttonsHtml($rowimages,$themeId);
 											break;
 
 											case 'e_mail':  //10
 
-											echo emailHtml($rowimages);																								
+											echo hugeit_contact_emailHtml($rowimages);
 											break;
 										}
 									}
@@ -1070,36 +1074,36 @@ function change_select(){
 										switch ($inputtype) {
 											case 'text'://1
 
-											echo textBoxHtml($rowimages);												
+											echo hugeit_contact_textBoxHtml($rowimages);
 											break;
 
 											case 'textarea'://2
 
-											echo textareaHtml($rowimages);
+											echo hugeit_contact_textareaHtml($rowimages);
 											break;
 
 											case 'selectbox'://3
 											
-											echo selectboxHtml($rowimages);	
+											echo hugeit_contact_selectboxHtml($rowimages);
 											break;
 
 											case 'checkbox':  //4
 
-											echo checkboxHtml($rowimages,$themeId);											
+											echo hugeit_contact_checkboxHtml($rowimages,$themeId);
 											break;
 
 											case 'radio_box':  //5
 											
-											echo radioboxHtml($rowimages,$themeId);
+											echo hugeit_contact_radioboxHtml($rowimages,$themeId);
 											break;
 											case 'file_box':  //6
 											
-											echo fileboxHtml($rowimages,$themeId);
+											echo hugeit_contact_fileboxHtml($rowimages,$themeId);
 											break;
 
 											case 'custom_text':  //7
 
-											echo cutomtextHtml($rowimages);
+											echo hugeit_contact_cutomtextHtml($rowimages);
 											break;
 
 											case 'captcha': //8
@@ -1136,12 +1140,12 @@ function change_select(){
 											break;
 											case 'buttons': //9									
 											
-											echo buttonsHtml($rowimages,$themeId);											
+											echo hugeit_contact_buttonsHtml($rowimages,$themeId);
 											break;
 
 											case 'e_mail':  //10
 
-											echo emailHtml($rowimages);																								
+											echo hugeit_contact_emailHtml($rowimages);
 											break;
 										}
 									}
@@ -1157,10 +1161,6 @@ function change_select(){
 		</div>
 	</div>
 	<input type="hidden" name="task" value="" />
-	<?php @session_start();
-		  $hugeItFormCSRFToken = $_SESSION["csrf_token_hugeit_forms"] = md5(time());
-	?>
-	<input type="hidden" name="csrf_token_hugeit_forms" value="<?php echo $hugeItFormCSRFToken; ?>" />
 </form>
 </div>
 
@@ -1168,16 +1168,13 @@ function change_select(){
 
 }
 
-?>
-
-<?php
 function html_captcha_keys($param_values){
 	global $wpdb;
 
 ?>
 	<style>
 		html.wp-toolbar {
-			padding:0px !important;
+			padding:0 !important;
 		}
 		#wpadminbar,#adminmenuback,#screen-meta, .update-nag,#dolly {
 			display:none;
@@ -1187,7 +1184,7 @@ function html_captcha_keys($param_values){
 		}
 		#adminmenuwrap {display:none !important;}
 		.auto-fold #wpcontent, .auto-fold #wpfooter {
-			margin-left: 0px;
+			margin-left: 0;
 		}
 		#wpfooter {display:none;}
 		iframe {height:250px !important;}
@@ -1220,7 +1217,7 @@ function html_captcha_keys($param_values){
 			<?php	if(isset($_GET["closepop"])&&$_GET["closepop"] == 1){ ?>
 				jQuery("#closepopup").click();
 				self.parent.location.reload();
-			<?php	} ?>
+			<?php } ?>
 			
 
 			
@@ -1243,21 +1240,13 @@ function html_captcha_keys($param_values){
 						<label for="form_captcha_private_key">Captcha Private Key</label>
 						<input type="text" id="form_captcha_private_key" name="params[form_captcha_private_key]" value="<?php echo $param_values['form_captcha_private_key']; ?>" />
 					</div>
-					<button onclick="submitbutton(<?php echo $_GET['id']; ?>)" class='button-primary'>Save</button>
+					<button onclick="submitbutton(<?php echo esc_html($_GET['id']); ?>)" class='button-primary'>Save</button>
 				</form>
 				<p><a href="https://developers.google.com/recaptcha/intro">What is this all about?</a></p>
 				<p>Please be known you may always change it from <a target="blank" href="admin.php?page=hugeit_forms_general_options&closepop=1">General Options</a></p>
 			</div>
 		</div>	
 	</div>
-	<script>
-		function submitbutton(pressbutton){
-			window.onbeforeunload = null;
-			document.getElementById("adminFormPopup").action=document.getElementById("adminFormPopup").action+"&task=captcha_keys&id="+pressbutton+"&closepop=1";
-			document.getElementById("adminFormPopup").submit();	
-		}		
-	</script>
-<?php	
-	
+<?php
+
 }
-?>
