@@ -1,6 +1,6 @@
 <?php
 if(! defined( 'ABSPATH' )) exit;
-function front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $frontendformid, $style_values, $huge_it_gen_opt,$rowspar){
+function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $frontendformid, $style_values, $huge_it_gen_opt,$rowspar){
 	ob_start();
 	?>
 	<style>

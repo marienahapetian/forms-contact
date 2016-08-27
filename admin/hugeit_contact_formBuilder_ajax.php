@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 	global $wpdb;
 	//Draw the form
-	function drawThemeNew($themeId) { ob_start(); 
+	function hugeit_contact_drawThemeNew($themeId) { ob_start();
 		global $wpdb;
 		$query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeId."' ";
 	    $rows = $wpdb->get_results($query);
@@ -279,6 +279,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	//4 Checkbox //
 	function hugeit_contact_checkboxHtml($rowimages,$themeId) { ob_start();
 		global $wpdb;
+		$themeId = sanitize_text_field($themeId);
 		$query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeId."' ";
 	    $rows = $wpdb->get_results($query);
 	    $style_values = array();
@@ -405,6 +406,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 	//5 Radiobox //
 	function hugeit_contact_radioboxHtml($rowimages, $themeId) { ob_start();
+		$themeId = sanitize_text_field($themeId);
 		global $wpdb;
 		$query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeId."' ";
 	    $rows = $wpdb->get_results($query);
@@ -518,6 +520,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 	//6 Filebox //
 	function hugeit_contact_fileboxHtml($rowimages,$themeId) { ob_start();
+		$themeId = sanitize_text_field($themeId);
 		global $wpdb;
 		$query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeId."' ";
 	    $rows = $wpdb->get_results($query);
@@ -664,7 +667,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	    return ob_get_clean();
 	}
 	//8 Captcha //
-	function captchaHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_captchaHtml($rowimages) { ob_start(); ?>
 		<div class="hugeit-field-block captcha-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 			<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
 			<div <?php if($rowimages->hc_required=='dark'){echo 'style="display:none"';}else{echo 'style="float:'.$capPos.'"';}?> id="democaptchalight"></div>
@@ -717,6 +720,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 	//9 Buttons //
 	function hugeit_contact_buttonsHtml($rowimages,$themeId) { ob_start();
+		$themeId = sanitize_text_field($themeId);
 		global $wpdb;
 		$query = "SELECT * from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeId."' ";
 	    $rows = $wpdb->get_results($query);
@@ -867,7 +871,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	//Ready to Go Fields
 
 	//11 Name
-	function nameSurnameHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_nameSurnameHtml($rowimages) { ob_start(); ?>
 		<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 			<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
 			<div class="field-block input-name-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsLabelHide')echo $rowimages->hc_input_show_default;?>">
@@ -883,7 +887,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	    return ob_get_clean();
 	}
 
-	function nameSurnameSettingsHtml($rowimages){ob_start(); ?>
+	function hugeit_contact_nameSurnameSettingsHtml($rowimages){ob_start(); ?>
 		<li id="huge-contact-field-<?php echo $rowimages->id; ?>" data-fieldNum="<?php echo $rowimages->id; ?>">	
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="nameSurname"/>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -941,7 +945,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 
 	//12 Phone
-	function phoneHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_phoneHtml($rowimages) { ob_start(); ?>
 		<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 			<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
 			<div class="field-block ready-phone-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
@@ -962,7 +966,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	    return ob_get_clean();
 	}
 
-	function phoneSettingsHtml($rowimages){ob_start(); ?>
+	function hugeit_contact_phoneSettingsHtml($rowimages){ob_start(); ?>
 		<li id="huge-contact-field-<?php echo $rowimages->id; ?>" data-fieldNum="<?php echo $rowimages->id; ?>">	
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="nameSurname"/>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -1259,6 +1263,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 	//13 License
 	function hugeit_contact_licenseHtml($rowimages,$themeId) { ob_start();
+		$themeId = sanitize_text_field($themeId);
 		global $wpdb;
 		$query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeId."' ";
 	    $rows = $wpdb->get_results($query);
@@ -1353,7 +1358,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		if ( !wp_verify_nonce( $nonce, 'builder_nonce' ) )return;
 		$formId= absint($_POST['formId']);
 		$inputtype= sanitize_text_field($_POST['inputType']);
-		$themeId=$_POST['themeId'];
+		$themeId= sanitize_text_field($_POST['themeId']);
 		$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
 		switch ($inputtype) {
 		    case 'text':
@@ -1620,6 +1625,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		     	break;
 
 	     	case 'captcha':
+		        $query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_general_options";
+		        $rowspar = $wpdb->get_results($query);
 			    $paramssld = array();
 			    foreach ($rowspar as $rowpar) {
 			        $key = $rowpar->name;
@@ -1658,7 +1665,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				    $fieldID=$row8[0]->resId;
 				    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 				    $rowimages=$wpdb->get_results($fieldQuery);
-				    $query = "SELECT *  FROM " . $wpdb->prefix . "huge_it_contact_general_options ";
+				    $query = "SELECT *  FROM " . $wpdb->prefix . "huge_it_contact_general_options";
 				    $rowspar = $wpdb->get_results($query);
 				    $paramssld = array();
 				    foreach ($rowspar as $rowpar) {
@@ -1668,7 +1675,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				    }
 				    $capKeyPub=$paramssld['form_captcha_public_key'];
 				    echo json_encode(array(
-				    	"outputField" => captchaHtml($rowimages[0]),
+				    	"outputField" => hugeit_contact_captchaHtml($rowimages[0]),
 					    "outputFieldSettings" => hugeit_contact_captchaSettingsHtml($rowimages[0]),
 					    "captchaNum" => $capKeyPub
 				    ));
@@ -1814,8 +1821,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 			    $rowimages=$wpdb->get_results($fieldQuery);
 			    echo json_encode(array(
-			    	"outputField" => nameSurnameHtml($rowimages[0]),
-				    "outputFieldSettings"=>nameSurnameSettingsHtml($rowimages[0])
+			    	"outputField" => hugeit_contact_nameSurnameHtml($rowimages[0]),
+				    "outputFieldSettings"=>hugeit_contact_nameSurnameSettingsHtml($rowimages[0])
 			    ));
 		     	break;
 
@@ -1851,8 +1858,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 			    $rowimages=$wpdb->get_results($fieldQuery);
 			    echo json_encode(array(
-			    	"outputField" => phoneHtml($rowimages[0]),
-				    "outputFieldSettings"=>phoneSettingsHtml($rowimages[0])
+			    	"outputField" => hugeit_contact_phoneHtml($rowimages[0]),
+				    "outputFieldSettings"=>hugeit_contact_phoneSettingsHtml($rowimages[0])
 			    ));
 		     	break;
 
@@ -2122,15 +2129,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				break;
 
 			case 'nameSurname':
-				echo json_encode( array( "outputField"         => nameSurnameHtml( $rowimages[0] ),
-				                         "outputFieldSettings" => nameSurnameSettingsHtml( $rowimages[0] ),
+				echo json_encode( array( "outputField"         => hugeit_contact_nameSurnameHtml( $rowimages[0] ),
+				                         "outputFieldSettings" => hugeit_contact_nameSurnameSettingsHtml( $rowimages[0] ),
 				                         "beforeId"            => $fieldID,
 				) );
 				break;
 
 			case 'phone':
-				echo json_encode( array( "outputField"         => phoneHtml( $rowimages[0] ),
-				                         "outputFieldSettings" => phoneSettingsHtml( $rowimages[0] ),
+				echo json_encode( array( "outputField"         => hugeit_contact_phoneHtml( $rowimages[0] ),
+				                         "outputFieldSettings" => hugeit_contact_phoneSettingsHtml( $rowimages[0] ),
 				                         "beforeId"            => $fieldID,
 				) );
 				break;
@@ -2293,5 +2300,5 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				}
 			}
 		}
-		echo drawThemeNew($themeId);
+		echo hugeit_contact_drawThemeNew($themeId);
 	}

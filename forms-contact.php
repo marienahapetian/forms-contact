@@ -188,7 +188,7 @@ function huge_it_contact_options_panel() {
 }
 
 //Captcha
-function admin_captcha() {
+function hugeit_contact_admin_captcha() {
 	echo '<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>';
 }
 
@@ -201,7 +201,7 @@ function huge_it_contact_less_options() {
 //	wp_enqueue_script( "jquery_ui_new2", "http://code.jquery.com/ui/1.10.4/jquery-ui.js", false );
 	wp_enqueue_style( "jquery_ui_new", plugins_url( "style/jquery-ui.css", __FILE__ ), false );
 	wp_enqueue_style( "hugeit_contact_hugeicons", plugins_url( "style/iconfonts/css/hugeicons.css", __FILE__ ), false );
-	add_action( 'admin_footer', 'admin_captcha' );
+	add_action( 'admin_footer', 'hugeit_contact_admin_captcha' );
 	wp_enqueue_style( "hugeit_contact_admin_css", plugins_url( "style/admin.style.css", __FILE__ ), false );
 	wp_enqueue_script( "hugeit_contact_admin_js", plugins_url( "js/admin.js", __FILE__ ), false );
 	$translation_array = array(
@@ -511,8 +511,8 @@ class Hugeit_Contact_Form_Widget extends WP_Widget {
 	}
 }
 
-add_action( 'widgets_init', 'register_Huge_it_contact_Widget' );
-function register_Huge_it_contact_Widget() {
+add_action( 'widgets_init', 'hugeit_contact_register_Huge_it_contact_Widget' );
+function hugeit_contact_register_Huge_it_contact_Widget() {
 	register_widget( 'Hugeit_Contact_Form_Widget' );
 }
 

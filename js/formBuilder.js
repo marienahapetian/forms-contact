@@ -15,7 +15,7 @@ jQuery(document).ready(function(e){
 		var inputTypeStatus=0;
 		if(jQuery(this).parent().hasClass('disabled')){
 			inputTypeStatus='disabled';
-		}; 
+		}
 		var themeId=jQuery(this).attr('data-themeId');
 		if(inputType=='captcha'||inputType=='buttons'||inputType=='license'){
 			jQuery('#add-default-fields').find('li>a#'+inputType+'').parent().addClass('disabled');

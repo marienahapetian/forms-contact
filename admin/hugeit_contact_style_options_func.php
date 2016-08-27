@@ -1,18 +1,21 @@
 <?php
-if(! defined( 'ABSPATH' )) exit;
-if (function_exists('current_user_can'))
-    if (!current_user_can('manage_options')) {
-        die('Access Denied');
-    }
-if (!function_exists('current_user_can')) {
-    die('Access Denied');
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+if ( function_exists( 'current_user_can' ) ) {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		die( 'Access Denied' );
+	}
+}
+if ( ! function_exists( 'current_user_can' ) ) {
+	die( 'Access Denied' );
 }
 
 function hugeit_contact_styles(){
 	 global $wpdb;
 	 
 	if(isset($_GET["delete"])){
-		$deleteID=esc_html($_GET["delete"]);
+		$deleteID=absint($_GET["delete"]);
 		$wpdb->query("DELETE FROM ".$wpdb->prefix."huge_it_contact_style_fields  WHERE options_name = '".$deleteID."' ");
 		$wpdb->query("DELETE FROM ".$wpdb->prefix."huge_it_contact_styles  WHERE id = '".$deleteID."' ");
 		$wpdb->query("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET `hc_yourstyle` = '1' WHERE `hc_yourstyle` = '".$deleteID."'");
@@ -20,23 +23,26 @@ function hugeit_contact_styles(){
 	
 	$query = "SELECT * FROM ".$wpdb->prefix."huge_it_contact_styles order by id Asc";
 	$rows = $wpdb->get_results($query);
-	html_hugeit_contact_styles($rows);
+	hugeit_contact_html_styles($rows);
 }
 
 
 function hugeit_contact_editstyles($op_type = "0"){
-	if(isset($_POST['csrf_token_hugeit_forms']) && (!isset($_SESSION["csrf_token_hugeit_forms"]) || $_SESSION["csrf_token_hugeit_forms"] != @$_POST['csrf_token_hugeit_forms'])) { exit; }
+	// todo: nonceeri pah@ nayel
+	if ( isset( $_POST['csrf_token_hugeit_forms'] ) && ( ! isset( $_SESSION["csrf_token_hugeit_forms"] ) || $_SESSION["csrf_token_hugeit_forms"] != @$_POST['csrf_token_hugeit_forms'] ) ) {
+		exit;
+	}
 	
     global $wpdb;
 	
 	if(isset($_GET["delete"])){
-		$deleteID=esc_html($_GET["delete"]);
+		$deleteID=absint($_GET["delete"]);
 		$wpdb->query("DELETE FROM ".$wpdb->prefix."huge_it_contact_style_fields  WHERE options_name = '".$deleteID."' ");
 		$wpdb->query("DELETE FROM ".$wpdb->prefix."huge_it_contact_styles  WHERE id = '".$deleteID."' ");
 		$wpdb->query("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET `hc_yourstyle` = '1' WHERE `hc_yourstyle` = '".$deleteID."'");
 	}
 	if(isset($_GET["form_id"])){
-		$formID=esc_html($_GET["form_id"]);
+		$formID=absint($_GET["form_id"]);
 	    $query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$formID."'";
 	    $rows = $wpdb->get_results($query);
 	    $param_values = array();
@@ -168,24 +174,29 @@ INSERT INTO `$table_name` (`name`, `title`,`description`, `options_name`, `value
 		
 	$query="SELECT * FROM ".$wpdb->prefix."huge_it_contact_styles order by id ASC";
 	$style_themes=$wpdb->get_results($query);
-	
-    html_hugeit_contact_editstyles($param_values, $op_type, $style_themes);
+
+	if ( !empty($param_values) ) {
+		hugeit_contact_html_editstyles( $param_values, $op_type, $style_themes );
+	}
 }
 
 function hugeit_contact_save_styles_options() {
 	global $wpdb;
 	if ( isset( $_POST['params'] ) ) {
 		if ( isset( $_POST["themeName"] ) ) {
+			$_POST["themeName"] = sanitize_text_field($_POST["themeName"]);
 			if ( trim($_POST["themeName"]) != '' ) {
 				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_styles SET  name = %s  WHERE id = %d ", $_POST["themeName"], $_GET['form_id'] ) );
 			}
 		}
 		$params = $_POST['params'];
 		foreach ( $params as $key => $value ) {
+			$value = sanitize_text_field($value);
+			$key = sanitize_text_field($key);
 			$wpdb->query( "UPDATE " . $wpdb->prefix . "huge_it_contact_style_fields SET  value = '" . $value . "'  WHERE name = '" . $key . "' and options_name = '" . $_GET['form_id'] . "' " );
 		}
 		?>
-		<div class="updated"><p><strong><?php _e( 'Item Saved' ); ?></strong></p></div>
+		<div class="updated"><p><strong><?php echo 'Item Saved'; ?></strong></p></div>
 		<?php
 	}
 }

@@ -1,11 +1,14 @@
 <?php
-if(! defined( 'ABSPATH' )) exit;
-if (function_exists('current_user_can'))
-    if (!current_user_can('manage_options')) {
-        die('Access Denied');
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+if ( function_exists( 'current_user_can' ) ) {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        die( 'Access Denied' );
     }
-if (!function_exists('current_user_can')) {
-    die('Access Denied');
+}
+if ( ! function_exists( 'current_user_can' ) ) {
+    die( 'Access Denied' );
 }
 
 function hugeit_contact_show_settings() {
@@ -22,7 +25,10 @@ function hugeit_contact_show_settings() {
 }
 
 function hugeit_contact_save_styles_options(){
-    if(isset($_POST['csrf_token_hugeit_forms']) && (!isset($_SESSION["csrf_token_hugeit_forms"]) || $_SESSION["csrf_token_hugeit_forms"] != @$_POST['csrf_token_hugeit_forms'])) { exit; }
+    // todo: nonceeri pah@ nayel
+    if ( isset( $_POST['csrf_token_hugeit_forms'] ) && ( ! isset( $_SESSION["csrf_token_hugeit_forms"] ) || $_SESSION["csrf_token_hugeit_forms"] != @$_POST['csrf_token_hugeit_forms'] ) ) {
+        exit;
+    }
     
     global $wpdb;
     if (isset($_POST['params'])){
@@ -34,8 +40,8 @@ function hugeit_contact_save_styles_options(){
                 array('%s')
             );
         }
-        $adminMessage = stripslashes($_POST['adminmessage']);
-        $userMessage = stripslashes($_POST['usermessage']);
+        $adminMessage = sanitize_text_field(stripslashes($_POST['adminmessage']));
+        $userMessage = sanitize_text_field(stripslashes($_POST['usermessage']));
         $images='';
         $pattern='/(<img.*?>)/';
         preg_match_all($pattern, $userMessage, $images);
@@ -58,6 +64,4 @@ function hugeit_contact_save_styles_options(){
         <div class="updated"><p><strong><?php _e('Item Saved'); ?></strong></p></div>
         <?php
 	}
-    ?>
-    
- <?php } ?>
+}

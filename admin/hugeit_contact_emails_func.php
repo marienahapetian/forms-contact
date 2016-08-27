@@ -1,13 +1,15 @@
 <?php
-if(! defined( 'ABSPATH' )) exit;
-if (function_exists('current_user_can'))
-    if (!current_user_can('manage_options')) {
-        die('Access Denied');
-    }
-if (!function_exists('current_user_can')) {
-    die('Access Denied');
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
-
+if ( function_exists( 'current_user_can' ) ) {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		die( 'Access Denied' );
+	}
+}
+if ( ! function_exists( 'current_user_can' ) ) {
+	die( 'Access Denied' );
+}
 
 function hugeit_contact_show_emails() {
 	global $wpdb;
@@ -24,7 +26,7 @@ function hugeit_contact_show_emails() {
 	$fieldInfo        = $wpdb->get_results( "SELECT DISTINCT subscriber_form_id FROM " . $wpdb->prefix . "huge_it_contact_subscribers", ARRAY_A );
 	$formsToShow      = array();
 	foreach ( $fieldInfo as $key => $value ) {
-		$res = $wpdb->get_results( "SELECT name,id FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE id=" . $value['subscriber_form_id'] . "", ARRAY_A );
+		$res = $wpdb->get_results( "SELECT name,id FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE id=" . $value['subscriber_form_id'], ARRAY_A );
 		if ( $res ) {
 			$formsToShow[ $res[0]['id'] ] = $res[0]['name'];
 		}

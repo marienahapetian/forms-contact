@@ -181,12 +181,13 @@ function hugeit_contact_email_ajax_action_callback() {
 
 	if(isset($_POST['task'])&&$_POST['task']=='deleteSubscriber'){
 		$id=$_POST['subID'];
-		$formId=$_POST['formId'];
+		$formId= sanitize_text_field($_POST['formId']);
 		global $wpdb;
 		$wpdb->query($wpdb->prepare("DELETE FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE subscriber_id=%d",$id));
 		if($formId=='all'){
 			$count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers");
 		}else{
+			$formId = absint($formId);
 			$count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE subscriber_form_id=".$formId);
 		}
 		echo json_encode(array("output"=>$count));

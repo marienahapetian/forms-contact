@@ -1286,7 +1286,7 @@
   	
   	jQuery.fn.ForceNumericOnly =function(){
   		    return this.each(function(){
-  		        $(this).keydown(function(e){
+  		        jQuery(this).keydown(function(e){
   		            var key = e.charCode || e.keyCode || 0;
   		            // allow backspace, tab, delete, enter, arrows, numbers and keypad numbers ONLY
   		            // home, end, period, and numpad decimal

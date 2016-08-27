@@ -36,5 +36,5 @@ function hugeit_contact_show_published_contact_1($id){
   
   $queryMessage="SELECT * FROM ".$wpdb->prefix."huge_it_contact_submission where id = '".$id."'  order by id ASC";
   $messageInArrayFront = $wpdb->get_results($queryMessage); 
-  return front_end_hugeit_contact($rowim, $paramssld, $hugeit_contact, $frontendformid,$style_values,$huge_it_gen_opt,$rowspar,$messageInArrayFront);
+  return hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_contact, $frontendformid,$style_values,$huge_it_gen_opt,$rowspar,$messageInArrayFront);
 }
