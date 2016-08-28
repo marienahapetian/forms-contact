@@ -508,7 +508,20 @@ function change_select(){
 				display:none;
 				<?php endif;?>
 			}
-			
+			.text_area_title{
+				border: 1px solid transparent !important;
+				outline: none !important;
+				-webkit-box-shadow: none !important;
+				box-shadow: none !important;
+				background-color: transparent !important;
+				font-size:<?php echo $style_values['form_title_size']; ?>px !important;
+				line-height:<?php echo $style_values['form_title_size']; ?>px !important;
+				color:#<?php echo $style_values['form_title_color']; ?>!important;
+				outline: 0 !important;
+				-webkit-transition: none !important;
+				transition: none !important;
+			}
+
 			/*LABELS*/
 			
 			#hugeit-contact-wrapper label  {
@@ -945,6 +958,8 @@ function change_select(){
 				#hugeit-contact-wrapper .hugeit-contact-column-block > div .formsLabelHide {
 					width:100% !important;				
 				}
+			
+			
 			</style>
 			<script>
 				jQuery(document).ready(function () {					
@@ -971,7 +986,7 @@ function change_select(){
 				<form onkeypress="doNothing()" id="hugeit-contact-preview-form">
 					<div id="hugeit-contact-wrapper" class="<?php echo $style_values['form_radio_size']; ?>-radio <?php echo $style_values['form_checkbox_size']; ?>-checkbox">
 					<div <?php foreach ($rowim as $key=>$rowimages){if($rowimages->hc_left_right == 'right'){echo 'class="multicolumn"';}} ?>>
-						<?php foreach($rowsld as $key=>$rowsldires) {if($id==$rowsldires->id) {echo "<h3>".$rowsldires->name."</h3>";}} ?>
+						<?php foreach($rowsld as $key=>$rowsldires) {if($id==$rowsldires->id) {echo "<h3><input class='text_area_title' type='text' maxlength='250' value='".$rowsldires->name."' /><span class='hugeItTitleOverlay'></span></h3>";}} ?>
 						<div class="hugeit-contact-column-block hugeit-contact-block-left" id="hugeit-contact-block-left">
 							<?php
 								$i=2;

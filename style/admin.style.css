@@ -625,6 +625,19 @@ img.themeSpinner{
 	display:block;
 	float:left;
 }
+.hugeItTitleOverlay{
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	background: url(../images/fields.opt.png) left -21px no-repeat #fff;
+	opacity: 0.5;
+	border-radius: 2px;
+	z-index: 10;
+	cursor: pointer;
+	display: none;
+}
 #hugeit-contact-wrapper .hugeit-contact-column-block .hugeOverlay{
     width: 20px;
     height: 20px;
@@ -1567,6 +1580,18 @@ a {
     font-size: 20px !important;
     font-weight: 500 !important;
     padding: 0 !important;
+}
+.text_area_title:hover{
+	border -bottom: 1px solid rgba(128, 128, 128, 0.4) !important;
+}
+#hugeit-contact-wrapper > div > h3:hover{
+	border: 2px dashed #0085BA !important;
+}
+#hugeit-contact-wrapper > div > h3:hover .hugeItTitleOverlay{
+	display: block;
+}
+#hugeit-contact-wrapper > div > h3{
+	border: 2px solid transparent !important;
 }
 #wp-subscriber_message-wrap{
 	margin-top:-25px; 
