@@ -1922,12 +1922,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		if(isset($_POSTED["name"])){
 			if($_POSTED["name"] != ''){
 				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  name = %s  WHERE id = %d ", $_POSTED["name"], $formId));
-				$wpdb->query($wpdb->prepare(
-					"UPDATE ".$wpdb->prefix."huge_it_contact_contacts 
-					SET  hc_yourstyle = %s  
-					WHERE id = %d ",
-					$_POSTED["select_form_theme"],
-					$formId));
+				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  hc_yourstyle = %s WHERE id = %d ", $_POSTED["select_form_theme"], $formId));
 			}
 		}	   
 	   foreach ($rowim as $key=>$rowimages){

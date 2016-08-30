@@ -56,7 +56,7 @@ function hugeit_contact_contact_form_validation_callback(){
 	$all=$_POST['postData'];
 	parse_str("$all",$myArray);
 	$frontendformid = absint($_POST['formId']);
-	$browser=$_POST['browser'];
+	$browser=sanitize_text_field($_POST['browser']);
 	$_POSTED=$myArray;
     $query="SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = " . $frontendformid . " order by ordering ASC";
     $rowim=$wpdb->get_results($query);     
@@ -84,10 +84,10 @@ function hugeit_contact_contact_form_validation_callback(){
 			$nonce = $_POST['nonce'];
 		}else{
 			$nonce='';
-		}		
+		}
+		// todo: review
 		//if ( !wp_verify_nonce( $nonce, 'front_nonce' ) )die('ji');
 		if($_POSTED['submitok'] == 'ok'){
-			//print_r($_POSTED);
 			$thisdate = date("d.m.Y H:i");
 			foreach ($rowim as $key=>$rowimages){
 				$inputtype = $rowimages->conttype;
@@ -156,10 +156,8 @@ function hugeit_contact_contact_form_validation_callback(){
 					if($inputtype == 'nameSurname'){
 						if(!isset($_POSTED['fullName_'.$frontendformid.'_'.$rowimages->id]))$_POSTED['fullName_'.$frontendformid.'_'.$rowimages->id]='';						
 						$fullname=$_POSTED['fullName_'.$frontendformid.'_'.$rowimages->id];
-						//print_r($fullname);
 						if(($rowimages->hc_required=='on'&&($fullname['huge_it_1']!=''&&$fullname['huge_it_2']!=''))||$rowimages->hc_required!='on'){
-							//echo "string";
-							$sub_label.=$rowimages->hc_field_label.'*()*';	
+							$sub_label.=$rowimages->hc_field_label.'*()*';
 							if($fullname['huge_it_1']!=''&&$fullname['huge_it_2']!=''){
 								$submition_text.=$fullname['huge_it_1'].' '.$fullname['huge_it_2'].'*()*';
 							}							
@@ -170,9 +168,7 @@ function hugeit_contact_contact_form_validation_callback(){
 					if($inputtype == 'phone'){
 						if(!isset($_POSTED['huge_it_'.$frontendformid.'_'.$rowimages->id]))$_POSTED['huge_it_'.$frontendformid.'_'.$rowimages->id]='';						
 						$phoneNum=$_POSTED['huge_it_'.$frontendformid.'_'.$rowimages->id];
-						if(($rowimages->hc_required=='on'&&$phoneNum!='')||$rowimages->hc_required!='on'){
-							//$submition_text.=$phoneNum.'*()*';
-						}else{
+						if(!(($rowimages->hc_required=='on'&&$phoneNum!='')||$rowimages->hc_required!='on')){
 							$submition_errors.='huge-contact-field-'.$rowimages->id.':'.$huge_it_gen_opt[36]->value.'*()*';
 						}
 					}	
@@ -366,10 +362,23 @@ function hugeit_contact_contact_form_validation_callback(){
 				}
 				if($huge_it_gen_opt[1]->value=='on'){
 					$table_name = $wpdb->prefix . "huge_it_contact_submission";
-					$form_submit = " INSERT INTO `" . $table_name . "` ( `contact_id`, `sub_labels`, `submission`, `submission_date`, `submission_ip`, `customer_country`, `customer_spam`, `customer_read_or_not`, `files_url`, `files_type`) VALUES ( ". $frontendformid .", '".$sub_label."', '".$submition_text."', '".$thisdate."', '".$ipaddress.'*()*'.$browser."', '(Only In Pro)', '0', '0' ,'".$files_url."','".$files_type."')";
-					$wpdb->query($form_submit);
-				}	
-				//print_r($sub_label);		
+					$wpdb->insert(
+						$table_name,
+						array(
+							'contact_id' => $frontendformid,
+							'sub_labels' => $sub_label,
+							'submission' => $submition_text,
+							'submission_date' => $thisdate,
+							'submission_ip' => $ipaddress.'*()*'.$browser,
+							'customer_country' => '(Only In Pro)',
+							'customer_spam' => '0',
+							'customer_read_or_not' => '0',
+							'files_url' => $files_url,
+							'files_type' => $files_type,
+						),
+						array('%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')
+					);
+				}
 				$success_message=$huge_it_gen_opt[11]->value;
 				echo json_encode(array("success"=>$success_message,"buttons"=>$buttonsField,"afterSubmit"=>$afterSubmit,"afterSubmitUrl"=>$afterSubmitUrl));
 			}else{

@@ -25,11 +25,22 @@ function hugeit_contact_cron_cb() {
 	}
 	
 	foreach($res as $item){
-		if(wp_mail( $item['subscriber_email'], $email_subject, $item['text'],$headers)){
-			$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_subscribers SET send = '3' WHERE send = '2' AND subscriber_email=%s",$item['subscriber_email']));
+		$email = sanitize_email($item['subscriber_email']);
+		$r = wp_mail( $email, $email_subject, $item['text'],$headers);
+
+		if($r){
+			$wpdb->update(
+				$wpdb->prefix."huge_it_contact_subscribers",
+				array('send' => '3'),
+				array(
+					'send' => '2',
+					'subscriber_email' => $email
+				),
+				array('%d', '%s')
+			);
 		}
 	}
-	
+
 	if($formsID=='all'){
 		$check=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_contact_subscribers", ARRAY_A);
 	}else{
@@ -77,12 +88,12 @@ function hugeit_contact_email_ajax_action_callback() {
 		$time = wp_next_scheduled( 'huge_it_cron_action' );
 		wp_unschedule_event( $time, 'huge_it_cron_action' );
 		if ( ! wp_next_scheduled( 'huge_it_cron_action' ) ) {
-			$schedule        = $_POST['sub_interval'];
+			$schedule        = (int)$_POST['sub_interval'];
 			$limit           = $_POST['sub_count_by_parts'];
 			$limit           = ( (int) $limit > 0 ) ? $limit : 10;
 			$sub_choose_form = $_POST['sub_choose_form'];
 			$sub_choose_form = ( (int) $sub_choose_form > 0 ) ? $sub_choose_form : 'all';
-			$email_subject   = $_POST['email_subject'];
+			$email_subject   = sanitize_text_field($_POST['email_subject']);
 			$schedules       = wp_get_schedules();
 
 			$_POST['data'] = stripslashes( $_POST['data'] );
@@ -208,41 +219,47 @@ function hugeit_contact_email_ajax_action_callback() {
 				}
 			}
 		    if($insert){
-		    		$email_insert = " INSERT INTO `" . $table_name . "` (`subscriber_form_id`,`subscriber_email`) VALUES (00,'".$email."')";
-		    		$wpdb->query($email_insert);
-		    		$subscribers=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_contact_subscribers ORDER by subscriber_id DESC", ARRAY_A);
-					$count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers");
-					$tableRows='';
-					foreach($subscribers as $subscriber){
-						$tableRows.='<tr id="sub_row_'.$subscriber['subscriber_id'].'">';
-						$tableRows.='<td colspan="5">'.$subscriber['subscriber_email'].'</td>';
-						if($subscriber['send']==1||$subscriber['send']==2){
-							$tableRows.='<td colspan="2" id="'.$subscriber['subscriber_id'].'" class="status_wrap_load"><a href="#" class="sub_status_load"></a></td>';
-						}elseif($subscriber['send']==0){
-							$tableRows.='<td colspan="2"  id="'.$subscriber['subscriber_id'].'"  class="status_wrap_none"><a href="#" class="sub_status_none"></a></td>';
-						}elseif($subscriber['send']==3){
-							$tableRows.='<td colspan="2"  id="'.$subscriber['subscriber_id'].'"  class="status_wrap_done"><a href="#" title="Sent" class="sub_status_done"></a></td>';
-					    } 
-						$tableRows.='<td colspan="1" id="'.$subscriber['subscriber_id'].'" class="del_wrap"><a href="#" class="sub_delete"></a></td>
-									</tr>';
-					}
+		    	$wpdb->insert(
+				    $table_name,
+				    array(
+					    'subscriber_form_id' => 00,
+						'subscriber_email' => $email,
+				    ),
+				    array('%d', '%s')
+			    );
+	            $subscribers=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_contact_subscribers ORDER by subscriber_id DESC", ARRAY_A);
+				$count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers");
+				$tableRows='';
+				foreach($subscribers as $subscriber){
+					$tableRows.='<tr id="sub_row_'.$subscriber['subscriber_id'].'">';
+					$tableRows.='<td colspan="5">'.$subscriber['subscriber_email'].'</td>';
+					if($subscriber['send']==1||$subscriber['send']==2){
+						$tableRows.='<td colspan="2" id="'.$subscriber['subscriber_id'].'" class="status_wrap_load"><a href="#" class="sub_status_load"></a></td>';
+					}elseif($subscriber['send']==0){
+						$tableRows.='<td colspan="2"  id="'.$subscriber['subscriber_id'].'"  class="status_wrap_none"><a href="#" class="sub_status_none"></a></td>';
+					}elseif($subscriber['send']==3){
+						$tableRows.='<td colspan="2"  id="'.$subscriber['subscriber_id'].'"  class="status_wrap_done"><a href="#" title="Sent" class="sub_status_done"></a></td>';
+				    }
+					$tableRows.='<td colspan="1" id="'.$subscriber['subscriber_id'].'" class="del_wrap"><a href="#" class="sub_delete"></a></td>
+								</tr>';
+				}
 
-					$output='<table class="wp-list-table widefat fixed posts" id="huge_it-table">
-									<thead>
-										<tr>
-											<th colspan="7" style="text-align:center;">Emails</th>
-											<th colspan="1" style="text-align:center;">'.$count.'</th>
-										</tr>
-										<tr>
-											<td colspan="7"><input type="text" id="add_email" name="add_email" placeholder="Type Email to Add"></td>
-											<td colspan="1" class="add_wrap"><a href="#" class="sub_add"></a></td>
-										</tr>
-									</thead>
-									<tbody>
-										'.$tableRows.'	
-									</tbody>
-								</table>';
-					echo json_encode(array("output"=>esc_html($output)));
+				$output='<table class="wp-list-table widefat fixed posts" id="huge_it-table">
+								<thead>
+									<tr>
+										<th colspan="7" style="text-align:center;">Emails</th>
+										<th colspan="1" style="text-align:center;">'.$count.'</th>
+									</tr>
+									<tr>
+										<td colspan="7"><input type="text" id="add_email" name="add_email" placeholder="Type Email to Add"></td>
+										<td colspan="1" class="add_wrap"><a href="#" class="sub_add"></a></td>
+									</tr>
+								</thead>
+								<tbody>
+									'.$tableRows.'	
+								</tbody>
+							</table>';
+				echo json_encode(array("output"=>esc_html($output)));
 			}else{
 				$output='Email Already Exists';
 				echo json_encode(array("exists"=>$output));
@@ -258,8 +275,14 @@ function hugeit_contact_email_ajax_action_callback() {
 				}
 			}
 			if($insert){
-				$email_insert = " INSERT INTO `" . $table_name . "` (`subscriber_form_id`,`subscriber_email`) VALUES ('".$formId."','".$email."')";
-				$wpdb->query($email_insert);
+				$wpdb->insert(
+					$table_name,
+					array(
+						'subscriber_form_id' => $formId,
+						'subscriber_email' => $email,
+					),
+					array('%d', '%s')
+				);
 				$subscribers=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE subscriber_form_id=".$formId." ORDER by subscriber_id DESC", ARRAY_A);
 				$count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE subscriber_form_id=".$formId."");
 				$tableRows='';

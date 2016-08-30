@@ -58,8 +58,16 @@ function hugeit_contact_editstyles($op_type = "0"){
 	$dateupdate = $today[wday].'/'.$today[mon].'/'.$today[year];
 	
 	$table_name = $wpdb->prefix . "huge_it_contact_styles";
-	$options_styles = "INSERT INTO `$table_name` (`name`, `last_update`, `ordering`, `published`) VALUES ('New Theme', '".$dateupdate."', '1', '')";
-	$wpdb->query($options_styles);
+	$wpdb->insert(
+		$table_name,
+		array(
+			'name' => 'New Theme',
+			'last_update' => $dateupdate,
+			'ordering' => 1,
+			'published' => '',
+		),
+		array('%s', '%s', '%d', '%s')
+	);
 	$query="SELECT id FROM ".$wpdb->prefix."huge_it_contact_styles order by id Desc";
 	$style_ids=$wpdb->get_results($query);
 	$style_id = $style_ids[0]->id;
@@ -185,6 +193,7 @@ function hugeit_contact_save_styles_options() {
 	if ( isset( $_POST['params'] ) ) {
 		if ( isset( $_POST["themeName"] ) ) {
 			$_POST["themeName"] = sanitize_text_field($_POST["themeName"]);
+			$_GET['form_id'] = absint($_GET['form_id']);
 			if ( trim($_POST["themeName"]) != '' ) {
 				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_styles SET  name = %s  WHERE id = %d ", $_POST["themeName"], $_GET['form_id'] ) );
 			}

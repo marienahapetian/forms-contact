@@ -39,6 +39,7 @@ function hugeit_contact_ajax_action_callback(){
 		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
 		$subId= sanitize_text_field($_POST['submissionId']);
 		if(is_numeric($subId)){
+			$subId = absint($subId);
 			$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_submission SET customer_spam = '%d'  WHERE id = '%d' ", 1, $subId));
 		}			
 		return;
@@ -76,7 +77,8 @@ function hugeit_contact_ajax_action_callback(){
 		}		
 		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
 		$subId=$_POST['submissionId'];	
-		if(is_numeric($subId)){	
+		if(is_numeric($subId)){
+			$subId = absint($subId);
 			$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_submission SET customer_spam = '%d'  WHERE id = '%d' ", 0, $subId));
 		}
 		return;

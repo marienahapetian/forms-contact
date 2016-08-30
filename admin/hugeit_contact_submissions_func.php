@@ -215,6 +215,7 @@ function hugeit_contact_view_submissions( $id ) {
 function hugeit_contact_show_submissions_2( $id, $submissionsId ) {
 	global $wpdb;
 	if ( is_numeric( $id ) && is_numeric( $submissionsId ) ) {
+		$id = absint($id);
 		if ( isset( $_GET['read'] ) && $_GET['read'] == 'unread' ) {
 			$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_submission SET customer_read_or_not = '%d'  WHERE id = '%d' ", 1, $id ) );
 		}

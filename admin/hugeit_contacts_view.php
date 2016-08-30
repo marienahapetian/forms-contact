@@ -166,7 +166,7 @@ function submitbuttonRemove(pressbutton){
 		return;
 	}	
 	document.getElementById("adminForm").action=document.getElementById("adminForm").action+"&task=apply&removeslide="+pressbutton;
-	document.getElementById("adminForm").submit();	
+	document.getElementById("adminForm").submit();
 }
 function submitbutton(pressbutton){
 	window.onbeforeunload = null;
