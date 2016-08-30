@@ -479,7 +479,7 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 		            $filesTypeExploded = array_filter( explode( "*()*", $messageInArray[0]->files_type ), 'strlen' );
 					$separator=':';
 					foreach($messagelabbelsexp as $key=>$messagelabbelsexpls){	
-						if($messagesubmisexp[$key]!=''){
+						if(isset($messagesubmisexp[$key]) && $messagesubmisexp[$key]!=''){
 							echo '<strong>'.$messagelabbelsexpls.'</strong> '.$separator.' '.$messagesubmisexp[$key].'<br>';						
 						}
 					}

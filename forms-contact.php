@@ -196,6 +196,7 @@ function huge_it_contact_less_options() {
 	wp_enqueue_media();
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('jquery-ui-core');
+	wp_enqueue_script('jquery-ui-sortable');
 //	todo: jquery ui, jquery
 //	wp_enqueue_script( "jquery_ui_new1", "//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js", false );
 //	wp_enqueue_script( "jquery_ui_new2", "http://code.jquery.com/ui/1.10.4/jquery-ui.js", false );
@@ -388,8 +389,7 @@ function hugeit_contact_submissions() {
 			$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 			$pattern     = '/\?(.*)/';
 			$actual_link = preg_replace( $pattern, '?page=hugeit_forms_submissions&task=view_submissions&id=' . $subId . '', $actual_link );
-			//todo: check if wp_redirect() works as good as header()
-			wp_redirect($actual_link);
+			header( "Location: " . $actual_link . "" );
 			break;
 		case 'view_submissions':
 			hugeit_contact_view_submissions( $id );
@@ -1188,3 +1188,14 @@ query1;
 
 register_activation_hook( __FILE__, 'hugeit_contact_activate' );
 register_deactivation_hook( __FILE__, 'hugeit_contact_subscriber_deactivate' );
+
+add_action('init', 'hugeit_contact_new_form_callback');
+function hugeit_contact_new_form_callback() {
+	$condition1 = isset($_GET['page'], $_GET['task'], $_GET['hugeit_forms_nonce']) && $_GET['page'] === 'hugeit_forms_main_page' && $_GET['task'] === 'add_cat';
+	$condition2 = isset($_GET['page'], $_GET['task'], $_GET['file']) && file_exists(wp_upload_dir()['basedir'] . DIRECTORY_SEPARATOR . $_GET['file']);
+	$condition3 = isset($_GET['page'], $_GET['task'], $_GET['inputtype']) && $_GET['task'] == 'apply' && $_GET['inputtype'] == 'custom_text';
+		//    task=apply&inputtype=custom_text
+	if ($condition1 || $condition2 || $condition3) {
+		ob_start();
+	}
+}

@@ -231,6 +231,34 @@ function hugeit_contact_edit_hugeit_contact($id){
 
 	}
 
+	if ( isset( $_GET["inputtype"] ) ) {
+		$_GET["inputtype"] = esc_html( $_GET["inputtype"] );
+		$query             = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE id=%d", $id );
+		$row               = $wpdb->get_row( $query );
+		$inputtype         = esc_html( $_GET["inputtype"] );
+		$query             = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE id= %d", $id );
+		$row               = $wpdb->get_row( $query );
+		$query             = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE hugeit_contact_id = %d ORDER BY id ASC", $row->id );
+		$rowplusorder      = $wpdb->get_results( $query );
+
+		foreach ( $rowplusorder as $key => $rowplusorders ) {
+			$rowplusorderspl = $rowplusorders->ordering + 1;
+			$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET ordering = %d WHERE id = %d ", $rowplusorderspl, $rowplusorders->id ) );
+		}
+
+		switch ($inputtype){
+			case 'custom_text':  //7
+				$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
+				$sql_type_text = "
+				INSERT INTO 
+				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
+				( 'Placeholder', '".$row->id."', 'on', '".$_GET["inputtype"]."', 'Label', '80','on','on', 'par_TV', 2, '1', 'left' )";
+
+
+				$wpdb->query($sql_type_text);
+		}
+	}
+
 	   $query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts WHERE id=%d",$id);
 	   $row=$wpdb->get_row($query);
 
@@ -315,7 +343,7 @@ INSERT INTO
 	if(!isset($postsbycat)){
 		$postsbycat='';
 	}
-    Html_edithugeit_contact($id, $ord_elem, $count_ord, $images, $row, $cat_row, $rowim, $rowsld, $paramssld, $rowsposts, $rowsposts8, $postsbycat, $form_styles,$style_values,$themeId);
+    hugeit_contact_html_edithugeit_contact($id, $ord_elem, $count_ord, $images, $row, $cat_row, $rowim, $rowsld, $paramssld, $rowsposts, $rowsposts8, $postsbycat, $form_styles,$style_values,$themeId);
 }
   
 function hugeit_contact_add_hugeit_contact()
@@ -328,40 +356,46 @@ function hugeit_contact_add_hugeit_contact()
 	$cat_row=open_cat_in_tree($cat_row);
 	
 	$table_name = $wpdb->prefix . "huge_it_contact_contacts";
-    $sql_2 = "
-INSERT INTO 
+	$wpdb->insert(
+		$table_name,
+		array(
+			'name' => 'New Form',
+			'hc_acceptms' => '500',
+			'hc_width' => '300',
+			'hc_userms' => 'true',
+			'hc_yourstyle' => '1',
+			'description' => '2900',
+			'param' => '1000',
+			'ordering' => '1',
+			'published' => '300',
+		),
+		array('%s', '%s', '%d', '%s', '%s', '%s', '%s', '%d', '%s')
+	);
 
-`" . $table_name . "` ( `name`, `hc_acceptms`, `hc_width`, `hc_userms`, `hc_yourstyle`, `description`, `param`, `ordering`, `published`) VALUES
-( 'New Form', '500', '300', 'true', '1', '2900', '1000', '1', '300')";
+	$query    = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts ORDER BY id ASC", $id );
+	$rowsldcc = $wpdb->get_results( $query );
 
-    $wpdb->query($sql_huge_it_contact_contacts);
+	header( 'Location: admin.php?page=hugeit_forms_main_page&id=' . $rowsldcc[count($rowsldcc) - 1]->id . '&task=apply' );
 
-      $wpdb->query($sql_2);
+	ob_flush();
 
-   $query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts order by id ASC",$id);
-			   $rowsldcc=$wpdb->get_results($query);
-			   $last_key = key( array_slice( $rowsldcc, -1, 1, TRUE ) );
-			   
-			   
-	foreach($rowsldcc as $key=>$rowsldccs){
-		if($last_key == $key){
-			header('Location: admin.php?page=hugeit_forms_main_page&id='.$rowsldccs->id.'&task=apply');
-		}
-	}
-	
-	html_add_hugeit_contact($ord_elem, $cat_row);
-	
 }
 
 function hugeit_contact_remove_contact($id){
 
 	global $wpdb;
-	 $sql_remov_tag=$wpdb->prepare("DELETE FROM ".$wpdb->prefix."huge_it_contact_contacts WHERE id=%d",$id);
- if($wpdb->query($sql_remov_tag)){
-	 ?>
-	 <div class="updated"><p><strong><?php _e('Item Deleted.' ); ?></strong></p></div>
-	 <?php	 
- }
+
+	$r = $wpdb->delete(
+		$wpdb->prefix."huge_it_contact_contacts",
+		array('id' => $id),
+		array('%d')
+	);
+
+	if ( $r ) {
+		?>
+		<div class="updated"><p><strong><?php _e( 'Item Deleted.' ); ?></strong></p></div>
+		<?php
+	}
     $row=$wpdb->get_results($wpdb->prepare( 'UPDATE '.$wpdb->prefix.'huge_it_contact_contacts SET hc_width="0"   WHERE hc_width=%d',$id));
 	$rows=$wpdb->get_results('SELECT * FROM '.$wpdb->prefix.'huge_it_contact_contacts  ORDER BY `ordering` ASC ');
 	
@@ -428,7 +462,6 @@ function hugeit_contact_captcha_keys( $id ) {
 	if ( isset( $_POST['params'] ) ) {
 		$params = $_POST['params'];
 		foreach ( $params as $key => $value ) {
-			echo $_POST['params'];
 			$wpdb->update( $wpdb->prefix . 'huge_it_contact_general_options', array( 'value' => $value ), array( 'name' => $key ), array( '%s' ) );
 		}
 

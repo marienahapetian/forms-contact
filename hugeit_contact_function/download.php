@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 if ( isset( $_GET['file'] ) ) {
-	$file = esc_url( $_GET['file'] );
+	$file = sanitize_text_field( $_GET['file'] );
 
 	hugeit_contact_download_file( $file );
 }

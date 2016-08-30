@@ -1,12 +1,12 @@
 jQuery(document).ready(function(e){
 	////ADD FIELDS START///
+
 	jQuery('#add-fields-block #add-default-fields').on('click','li>a',function(event){
 		event.preventDefault();
 		var readyDef;
 		if(jQuery(this).parents('#add-default-fields').hasClass('readyFields')){
 			alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');	
 			return;
-			readyDef=jQuery('#add-fields-block li.spinnerLi>img.readySpin');
 		}else{
 			readyDef=jQuery('#add-fields-block li.spinnerLi>img.defSpin');
 		}

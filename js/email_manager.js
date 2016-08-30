@@ -60,9 +60,10 @@ jQuery(document).ready(function(){
 							//jQuery("#hugeit_contact_email_manager #huge_it-table").find("tbody").css('overflow','hidden');
 						},
 						success: function(response){
-							var response = jQuery.parseJSON(response);
+							var response = JSON.parse(response);
 				   			if(response.output){
-				   				jQuery("#hugeit_contact_email_manager #huge_it-table").find("tbody").html(response.output);                                   
+				   				var decoded = jQuery("<textarea/>").html(response.output).text();
+				   				jQuery("#hugeit_contact_email_manager #huge_it-table").find("tbody").html(decoded);
 				            }
 						},
 					});

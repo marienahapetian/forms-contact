@@ -138,14 +138,14 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
     <?php
 
 }
-function Html_edithugeit_contact($id, $ord_elem, $count_ord,$images, $row, $cat_row, $rowim, $rowsld, $paramssld, $rowsposts, $rowsposts8, $postsbycat, $form_styles,$style_values,$themeId){
+function hugeit_contact_html_edithugeit_contact($id, $ord_elem, $count_ord,$images, $row, $cat_row, $rowim, $rowsld, $paramssld, $rowsposts, $rowsposts8, $postsbycat, $form_styles,$style_values,$themeId){
  	global $wpdb;
 	
 	if(isset($_GET["addslide"])&&$_GET["addslide"] == 1){
 		header('Location: admin.php?page=hugeit_forms_main_page&id='.$row->id.'&task=apply');
 	}
 	
-	if(isset($_GET["inputtype"])&&$_GET["inputtype"]){
+	if (isset($_GET["inputtype"])&&$_GET["inputtype"]){
 		header('Location: admin.php?page=hugeit_forms_main_page&id='.$row->id.'&task=apply');
 	}	
 ?>
@@ -155,9 +155,9 @@ function submitbuttonSave(pressbutton){
 	if(!document.getElementById('huge_it_contact_formname').value){
 		alert("Name is required.");
 		return;
-	}	
+	}
 	document.getElementById("adminForm").action=document.getElementById("adminForm").action+"&task=apply&inputtype="+pressbutton+"";
-	document.getElementById("adminForm").submit();	
+	document.getElementById("adminForm").submit();
 }
 function submitbuttonRemove(pressbutton){
 	window.onbeforeunload = null;
@@ -173,9 +173,9 @@ function submitbutton(pressbutton){
 	if(!document.getElementById('huge_it_contact_formname').value){
 		alert("Name is required.");
 		return;
-	}	
+	}
 	document.getElementById("adminForm").action=document.getElementById("adminForm").action+"&task="+pressbutton;
-	document.getElementById("adminForm").submit();	
+	document.getElementById("adminForm").submit();
 }
 </script>
 <!-- GENERAL PAGE, ADD FIELDS PAGE -->
@@ -186,21 +186,20 @@ function submitbutton(pressbutton){
 	<div class="hugeit_tabs_block">
 		<ul id="" class="hugeit_contact_top_tabs">			
 			<?php
-			foreach($rowsld as $rowsldires){
-				if($rowsldires->id != $_GET['id']){
+			foreach ($rowsld as $rowsldires) :
+				if ($rowsldires->id != $_GET['id']) :
 				?>
 					<li>
 						<a href="#" onclick="window.location.href='<?php print wp_nonce_url(admin_url('admin.php?page=hugeit_forms_main_page&task=edit_cat&id='.$rowsldires->id.''), 'huge_it_edit_cat_'.$rowsldires->id.'', 'hugeit_forms_nonce');?>'" ><?php echo $rowsldires->name; ?></a>
 					</li>
 				<?php
-				}
-				else{  ?>
+				else : ?>
 					<li class="active" onclick="this.firstElementChild.style.width = ((this.firstElementChild.value.length + 1) * 8) + 'px';" style="background-image:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>);cursor:pointer;">
 						<input class="text_area" onfocus="this.style.width = ((this.value.length + 1) * 8) + 'px'" type="text" name="name" id="huge_it_contact_formname" maxlength="250" value="<?php echo esc_html(stripslashes($row->name));?>" />
 					</li>
 				<?php	
-				}
-			}
+				endif;
+			endforeach;
 			?>
 			<li class="add-new">
 				<a onclick="window.location.href='<?php print wp_nonce_url(admin_url('admin.php?page=hugeit_forms_main_page&task=add_cat'), 'huge_it_add_cat', 'hugeit_forms_nonce');?>'">+</a>
@@ -514,7 +513,20 @@ function submitbutton(pressbutton){
 				display:none;
 				<?php endif;?>
 			}
-			
+			.text_area_title{
+				border: 1px solid transparent !important;
+				outline: none !important;
+				-webkit-box-shadow: none !important;
+				box-shadow: none !important;
+				background-color: transparent !important;
+				font-size:<?php echo $style_values['form_title_size']; ?>px !important;
+				line-height:<?php echo $style_values['form_title_size']; ?>px !important;
+				color:#<?php echo $style_values['form_title_color']; ?>!important;
+				outline: 0 !important;
+				-webkit-transition: none !important;
+				transition: none !important;
+			}
+
 			/*LABELS*/
 			
 			#hugeit-contact-wrapper label  {
@@ -949,6 +961,8 @@ function submitbutton(pressbutton){
 				#hugeit-contact-wrapper .hugeit-contact-column-block > div .formsLabelHide {
 					width:100% !important;				
 				}
+			
+			
 			</style>
 			<script>
 				jQuery(document).ready(function () {					
@@ -975,7 +989,7 @@ function submitbutton(pressbutton){
 				<form onkeypress="doNothing()" id="hugeit-contact-preview-form">
 					<div id="hugeit-contact-wrapper" class="<?php echo $style_values['form_radio_size']; ?>-radio <?php echo $style_values['form_checkbox_size']; ?>-checkbox">
 					<div <?php foreach ($rowim as $key=>$rowimages){if($rowimages->hc_left_right == 'right'){echo 'class="multicolumn"';}} ?>>
-						<?php foreach($rowsld as $key=>$rowsldires) {if($id==$rowsldires->id) {echo "<h3>".$rowsldires->name."</h3>";}} ?>
+						<?php foreach($rowsld as $key=>$rowsldires) {if($id==$rowsldires->id) {echo "<h3><input class='text_area_title' type='text' maxlength='250' value='".$rowsldires->name."' /><span class='hugeItTitleOverlay'></span></h3>";}} ?>
 						<div class="hugeit-contact-column-block hugeit-contact-block-left" id="hugeit-contact-block-left">
 							<?php
 								$i=2;
@@ -1247,6 +1261,13 @@ function html_captcha_keys($param_values){
 			</div>
 		</div>	
 	</div>
+	<script>
+		function submitbutton(pressbutton){
+			window.onbeforeunload = null;
+			document.getElementById("adminFormPopup").action=document.getElementById("adminFormPopup").action+"&task=captcha_keys&id="+pressbutton+"&closepop=1";
+			document.getElementById("adminFormPopup").submit();
+		}
+	</script>
 <?php
 
 }
