@@ -878,7 +878,7 @@
 	});
 	jQuery('.text_area_title').on('keyup', function() {
 		var titleVal = jQuery(this).val();
-		jQuery('input.text_area').val(titleVal);
+		jQuery('.hugeit_contact_top_tabs input.text_area').val(titleVal);
 	});
 	jQuery('.hugeItTitleOverlay').click(function() {
 		jQuery('.text_area_title').focus();

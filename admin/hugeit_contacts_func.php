@@ -247,15 +247,27 @@ function hugeit_contact_edit_hugeit_contact($id){
 		}
 
 		switch ($inputtype){
-			case 'custom_text':  //7
+			case 'custom_text':
 				$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-				$sql_type_text = "
-				INSERT INTO 
-				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'Placeholder', '".$row->id."', 'on', '".$_GET["inputtype"]."', 'Label', '80','on','on', 'par_TV', 2, '1', 'left' )";
-
-
-				$wpdb->query($sql_type_text);
+				$wpdb->insert(
+					$inserttexttype,
+					array(
+						'name' => 'Placeholder',
+						'hugeit_contact_id' => $row->id,
+						'description' => 'on',
+						'conttype' => $_GET["inputtype"],
+						'hc_field_label' => 'Label',
+						'hc_other_field' => '80',
+						'field_type' => 'on',
+						'hc_required' => 'on',
+						'ordering' => 0,
+						'published' => 2,
+						'hc_input_show_default' => '1',
+						'hc_left_right' => 'left',
+					),
+					array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%d', '%s', '%s')
+				);
+				break;
 		}
 	}
 
