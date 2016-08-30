@@ -8,14 +8,6 @@ function hugeit_contact_set_html_content_type2(){
 }
 
 function hugeit_contact_contact_form_validation_callback(){
-	//todo: review
-	function wpse_14108_upload_dir( $dir ) {
-		return array(
-			'path'   => $dir['basedir'] . '/mycustomdir',
-			'url'    => $dir['baseurl'] . '/mycustomdir',
-			'subdir' => '/mycustomdir',
-		) + $dir;
-	}
 	define('HUGEIT_CONTACT_MB', 1048576);
 	$submition_text = '';
 	$sub_label = '';
@@ -85,13 +77,12 @@ function hugeit_contact_contact_form_validation_callback(){
 		}else{
 			$nonce='';
 		}
-		// todo: review
-		//if ( !wp_verify_nonce( $nonce, 'front_nonce' ) )die('ji');
+		if ( !wp_verify_nonce( $nonce, 'hugeit_contact_front_nonce' ) ) die(__( 'Authorization failed', 'hugeit_contact' ));
 		if($_POSTED['submitok'] == 'ok'){
 			$thisdate = date("d.m.Y H:i");
 			foreach ($rowim as $key=>$rowimages){
 				$inputtype = $rowimages->conttype;
-				$rowimages->hc_field_label=addslashes($rowimages->hc_field_label); 
+				$rowimages->hc_field_label=addslashes($rowimages->hc_field_label);
 				if($inputtype == 'text' or $inputtype == 'textarea' or $inputtype == 'selectbox' or $inputtype == 'checkbox' or $inputtype == 'radio_box' or $inputtype == 'file_box' or $inputtype == 'e_mail' or $inputtype == 'buttons' or $inputtype == 'captcha' or $inputtype =='nameSurname' or $inputtype =='phone' or $inputtype =='license'){
 					if($inputtype == 'captcha'){
 						$url='https://www.google.com/recaptcha/api/siteverify';

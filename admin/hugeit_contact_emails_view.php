@@ -72,7 +72,6 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 							<div class="meter">
 								<span id="progress_meter"><span></span></span>
 							</div>
-							<!-- todo: element is not allowed here -->
 							<style>
 								.meter { 
 									height: 20px;  /* Can be anything */

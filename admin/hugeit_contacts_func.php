@@ -177,9 +177,6 @@ GROUP BY " . $wpdb->prefix . "huge_it_contact_contacts_fields.hugeit_contact_id)
 }
 
 function hugeit_contact_edit_hugeit_contact( $id ) {
-	if ( isset( $_POST['csrf_token_hugeit_forms'] ) && ( ! isset( $_SESSION["csrf_token_hugeit_forms"] ) || $_SESSION["csrf_token_hugeit_forms"] != @$_POST['csrf_token_hugeit_forms'] ) ) {
-		exit;
-	}
 
 	global $wpdb;
 

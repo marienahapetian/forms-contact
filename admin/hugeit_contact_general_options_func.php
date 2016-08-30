@@ -25,11 +25,6 @@ function hugeit_contact_show_settings() {
 }
 
 function hugeit_contact_save_styles_options(){
-    // todo: nonceeri pah@ nayel
-    if ( isset( $_POST['csrf_token_hugeit_forms'] ) && ( ! isset( $_SESSION["csrf_token_hugeit_forms"] ) || $_SESSION["csrf_token_hugeit_forms"] != @$_POST['csrf_token_hugeit_forms'] ) ) {
-        exit;
-    }
-    
     global $wpdb;
     if (isset($_POST['params'])){
     $params = $_POST['params'];

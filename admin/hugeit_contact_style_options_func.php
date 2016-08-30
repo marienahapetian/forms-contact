@@ -28,11 +28,6 @@ function hugeit_contact_styles(){
 
 
 function hugeit_contact_editstyles($op_type = "0"){
-	// todo: nonceeri pah@ nayel
-	if ( isset( $_POST['csrf_token_hugeit_forms'] ) && ( ! isset( $_SESSION["csrf_token_hugeit_forms"] ) || $_SESSION["csrf_token_hugeit_forms"] != @$_POST['csrf_token_hugeit_forms'] ) ) {
-		exit;
-	}
-	
     global $wpdb;
 	
 	if(isset($_GET["delete"])){

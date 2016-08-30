@@ -34,7 +34,7 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 								 <input type="button" value="Reset" onclick="window.location.href=\'admin.php?page=hugeit_forms_main_page\'" class="button-secondary action">
 							</div>';
 
-			 print_html_nav($pageNav['total'],$pageNav['limit'],$serch_fields);
+			 hugeit_contact_print_html_nav($pageNav['total'],$pageNav['limit'],$serch_fields);
 			?>
 			<table class="wp-list-table widefat fixed pages" style="width:95%">
 				<thead>

@@ -493,11 +493,15 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 							<div class="attachement_wrapper">
 								<form id="my_form" action="hugeit_contact_ajax.php" method="post">
 								<?php foreach ($filesTypeExploded as $key => $filesTypeExplodeds) {
+									$link_pattern='/^(.*)\/uploads\//';
+									$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
+									$secure_link = wp_nonce_url($actual_link.'&file='.$file_path,'hugeit_contact_donwload_file');
+
 									if(preg_match('/image\//',$filesTypeExplodeds)){
 										$link_pattern='/^(.*)\/uploads\//';
 										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
 									?>
-									<a href="<?php echo $actual_link.'&file='.$file_path ;?>" class="file_wrapper image">
+									<a href="<?php echo $secure_link ;?>" class="file_wrapper image">
 										<div class="wrapper_icon image_wrapper_icon"></div>
 										<div class="file_info"><?php
 											$pattern='/^(.*)\//';
@@ -510,7 +514,7 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 										$link_pattern='/^(.*)\/uploads\//';
 										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
 									?>
-										<a href="<?php echo $actual_link.'&file='.$file_path ;?>" class="file_wrapper pdf">
+										<a href="<?php echo $secure_link ;?>" class="file_wrapper pdf">
 											<div class="wrapper_icon pdf_wrapper_icon"></div>
 											<div class="file_info"><?php
 											$pattern='/^(.*)\//';
@@ -523,7 +527,7 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 										$link_pattern='/^(.*)\/uploads\//';
 										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
 									?>
-										<a href="<?php echo $actual_link.'&file='.$file_path ;?>" class="file_wrapper word">
+										<a href="<?php echo $secure_link ;?>" class="file_wrapper word">
 											<div class="wrapper_icon word_wrapper_icon"></div>
 											<div class="file_info"><?php
 											$pattern='/^(.*)\//';
@@ -536,7 +540,7 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 										$link_pattern='/^(.*)\/uploads\//';
 										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
 									?>
-										<a href="<?php echo $actual_link.'&file='.$file_path ;?>" class="file_wrapper zip">
+										<a href="<?php echo $secure_link ;?>" class="file_wrapper zip">
 											<div class="wrapper_icon zip_wrapper_icon"></div>
 											<div class="file_info"><?php
 											$pattern='/^(.*)\//';
@@ -549,7 +553,7 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 										$link_pattern='/^(.*)\/uploads\//';
 										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
 									?>
-										<a href="<?php echo $actual_link.'&file='.$file_path ;?>" class="file_wrapper rar">
+										<a href="<?php echo $secure_link ;?>" class="file_wrapper rar">
 											<div class="wrapper_icon rar_wrapper_icon"></div>
 											<div class="file_info"><?php
 											$pattern='/^(.*)\//';
@@ -562,7 +566,7 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 										$link_pattern='/^(.*)\/uploads\//';
 										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
 									?>
-										<a href="<?php echo $actual_link.'&file='.$file_path ;?>" class="file_wrapper excel">
+										<a href="<?php echo $secure_link ;?>" class="file_wrapper excel">
 											<div class="wrapper_icon excel_wrapper_icon"></div>
 											<div class="file_info"><?php
 											$pattern='/^(.*)\//';
@@ -575,7 +579,7 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 										$link_pattern='/^(.*)\/uploads\//';
 										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
 									?>
-										<a href="<?php echo $actual_link.'&file='.$file_path ;?>" class="file_wrapper audio">
+										<a href="<?php echo $secure_link ;?>" class="file_wrapper audio">
 											<div class="wrapper_icon audio_wrapper_icon"></div>
 											<div class="file_info"><?php
 											$pattern='/^(.*)\//';
@@ -588,7 +592,7 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 										$link_pattern='/^(.*)\/uploads\//';
 										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
 									?>
-										<a href="<?php echo $actual_link.'&file='.$file_path ;?>" class="file_wrapper video">
+										<a href="<?php echo $secure_link ;?>" class="file_wrapper video">
 											<div class="wrapper_icon video_wrapper_icon"></div>
 											<div class="file_info"><?php
 											$pattern='/^(.*)\//';
@@ -601,7 +605,7 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 										$link_pattern='/^(.*)\/uploads\//';
 										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
 									?>
-										<a href="<?php echo $actual_link.'&file='.$file_path ;?>" class="file_wrapper csv">
+										<a href="<?php echo $secure_link ;?>" class="file_wrapper csv">
 											<div class="wrapper_icon csv_wrapper_icon"></div>
 											<div class="file_info"><?php
 											$pattern='/^(.*)\//';
@@ -614,7 +618,7 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 										$link_pattern='/^(.*)\/uploads\//';
 										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
 									?>
-										<a href="<?php echo $actual_link.'&file='.$file_path ;?>" class="file_wrapper all">
+										<a href="<?php echo $secure_link ;?>" class="file_wrapper all">
 											<div class="wrapper_icon all_wrapper_icon"></div>
 											<div class="file_info"><?php
 												$pattern='/^(.*)\//';

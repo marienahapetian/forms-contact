@@ -3,6 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 if ( isset( $_GET['file'] ) ) {
+    if( !check_admin_referer( 'hugeit_contact_donwload_file' ) ){
+        wp_die( __( 'Authorization failed', 'hugeit_contact') );
+    }
+
 	$file = sanitize_text_field( $_GET['file'] );
 
 	hugeit_contact_download_file( $file );
@@ -13,7 +17,7 @@ function hugeit_contact_download_file( $fullPath ) {
 
 	// Must be fresh start
 	if ( headers_sent() ) {
-		die( 'Headers Sent' );
+		wp_die( 'Headers Sent' );
 	}
 	// Required for some browsers
 	if ( ini_get( 'zlib.output_compression' ) ) {

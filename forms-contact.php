@@ -100,13 +100,6 @@ function hugeit_contact_add_inline_contact_popup_content() {
 	<?php
 }
 
-// todo: test
-///////////////////////////////////shortcode update/////////////////////////////////////////////
-//add_action( 'init', 'hugesl_do_output_contact_buffer' );
-//function hugesl_do_output_contact_buffer() {
-//	ob_start();
-//}
-
 add_action( 'admin_head', 'hugeit_contact_ajax_func' );
 function hugeit_contact_ajax_func() {
 	?>
@@ -157,7 +150,6 @@ function huge_it_contact_ShowTinyMCE() {
 	}
 	wp_print_scripts( 'media-upload' );
 	if ( version_compare( get_bloginfo( 'version' ), 3.3 ) < 0 ) {
-		//@todo: fix deprecated
 		if ( function_exists( 'wp_tiny_mce' ) ) {
 			wp_tiny_mce();
 		}
@@ -197,9 +189,6 @@ function huge_it_contact_less_options() {
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('jquery-ui-core');
 	wp_enqueue_script('jquery-ui-sortable');
-//	todo: jquery ui, jquery
-//	wp_enqueue_script( "jquery_ui_new1", "//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js", false );
-//	wp_enqueue_script( "jquery_ui_new2", "http://code.jquery.com/ui/1.10.4/jquery-ui.js", false );
 	wp_enqueue_style( "jquery_ui_new", plugins_url( "style/jquery-ui.css", __FILE__ ), false );
 	wp_enqueue_style( "hugeit_contact_hugeicons", plugins_url( "style/iconfonts/css/hugeicons.css", __FILE__ ), false );
 	add_action( 'admin_footer', 'hugeit_contact_admin_captcha' );
@@ -286,7 +275,7 @@ function hugeit_contacts_huge_it_contact() {
 	require_once( "admin/hugeit_contact_formBuilder_ajax.php" );
 	require_once( "admin/hugeit_contacts_func.php" );
 	require_once( "admin/hugeit_contacts_view.php" );
-	if ( ! function_exists( 'print_html_nav' ) ) {
+	if ( ! function_exists('hugeit_contact_print_html_nav') ) {
 		require_once( "hugeit_contact_function/html_hugeit_contact_func.php" );
 	}
 	if ( isset( $_GET["task"] ) ) {

@@ -83,7 +83,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					</div>
 				</div>
 				<div class="field-top-options-block">
-					<!--  todo: Element is not allowed here -->
 					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
 					<a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
 					<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
@@ -241,7 +240,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				</div>
 				<div class="left secondBlock">
 					<label class="input-block">Field Options:
-						<!-- todo: Element is not allowed here -->
 					<ul rel="<?php echo $rowimages->id; ?>" class="field-multiple-option-list selectbox">
 					<?php
 					 $options=explode(';;',$rowimages->name);

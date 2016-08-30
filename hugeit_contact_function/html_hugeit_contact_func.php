@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-function print_html_nav( $count_items, $page_number, $serch_fields = "" ) {
+function hugeit_contact_print_html_nav($count_items, $page_number, $serch_fields = "" ) {
 	if ( $count_items ) {
 		if ( $count_items % 20 ) {
 			$items_county = ( $count_items - $count_items % 20 ) / 20 + 1;
@@ -49,7 +49,6 @@ function print_html_nav( $count_items, $page_number, $serch_fields = "" ) {
 		}
 
 	</script>
-	<!-- todo: HTML construction@ chshtel -->
 	<div class="tablenav top" style="width:95%">
 		<?php if ( $serch_fields != "" ) echo $serch_fields; ?>
 		<div class="tablenav-pages">
