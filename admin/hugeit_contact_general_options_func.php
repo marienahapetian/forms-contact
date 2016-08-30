@@ -1,31 +1,30 @@
 <?php
-if(! defined( 'ABSPATH' )) exit;
-if (function_exists('current_user_can'))
-    if (!current_user_can('manage_options')) {
-        die('Access Denied');
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+if ( function_exists( 'current_user_can' ) ) {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        die( 'Access Denied' );
     }
-if (!function_exists('current_user_can')) {
-    die('Access Denied');
+}
+if ( ! function_exists( 'current_user_can' ) ) {
+    die( 'Access Denied' );
 }
 
-function showsettings($op_type = "0")
-{
+function hugeit_contact_show_settings() {
     global $wpdb;
-    $query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_general_options ";
-    $rows = $wpdb->get_results($query);
+    $query        = "SELECT *  FROM " . $wpdb->prefix . "huge_it_contact_general_options ";
+    $rows         = $wpdb->get_results( $query );
     $param_values = array();
-    foreach ($rows as $row) {
-        $key = $row->name;
-        $value = $row->value;
-        $param_values[$key] = $value;
+    foreach ( $rows as $row ) {
+        $key                  = $row->name;
+        $value                = $row->value;
+        $param_values[ $key ] = $value;
     }
-    html_showsettings($param_values, $op_type);
+    hugeit_contact_html_show_settings( $param_values );
 }
 
-function save_styles_options(){
-    @session_start();
-    if(isset($_POST['csrf_token_hugeit_forms']) && (!isset($_SESSION["csrf_token_hugeit_forms"]) || $_SESSION["csrf_token_hugeit_forms"] != @$_POST['csrf_token_hugeit_forms'])) { exit; }
-    
+function hugeit_contact_save_styles_options(){
     global $wpdb;
     if (isset($_POST['params'])){
     $params = $_POST['params'];
@@ -36,8 +35,8 @@ function save_styles_options(){
                 array('%s')
             );
         }
-        $adminMessage = stripslashes($_POST['adminmessage']);
-        $userMessage = stripslashes($_POST['usermessage']);
+        $adminMessage = sanitize_text_field(stripslashes($_POST['adminmessage']));
+        $userMessage = sanitize_text_field(stripslashes($_POST['usermessage']));
         $images='';
         $pattern='/(<img.*?>)/';
         preg_match_all($pattern, $userMessage, $images);
@@ -60,6 +59,4 @@ function save_styles_options(){
         <div class="updated"><p><strong><?php _e('Item Saved'); ?></strong></p></div>
         <?php
 	}
-    ?>
-    
- <?php } ?>
+}

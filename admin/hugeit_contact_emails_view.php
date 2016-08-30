@@ -1,16 +1,20 @@
 <?php
-if(! defined( 'ABSPATH' )) exit;
-if (function_exists('current_user_can'))
-    if (!current_user_can('manage_options')) {
-        die('Access Denied');
-    }
-if (!function_exists('current_user_can')) {
-    die('Access Denied');
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
-require_once("hugeit_free_version.php");
-function  html_showemails($subscribers,$mailerParams,$count,$formsToShow,$mailing){?>
+if ( function_exists( 'current_user_can' ) ) {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		die( 'Access Denied' );
+	}
+}
+if ( ! function_exists( 'current_user_can' ) ) {
+	die( 'Access Denied' );
+}
+require_once( "hugeit_free_version.php" );
+function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$formsToShow,$mailing) {
+?>
 <div class="wrap">
-	<?php drawFreeBanner('yes');?>
+	<?php hugeit_contact_drawFreeBanner('yes');?>
 	<div id="poststuff">
 		<?php $path_site = plugins_url("Front_images", __FILE__); ?>
 		<div id="post-body-content" class="hugeit_contact_email">
@@ -21,9 +25,9 @@ function  html_showemails($subscribers,$mailerParams,$count,$formsToShow,$mailin
 							<label for="huge_it_form_choose">Choose The Forms</label><br>
 							<select name="" id="huge_it_form_choose">
 								<option value="all">All Forms</option>
-								<?php foreach ($formsToShow as $key => $value){?>
+								<?php foreach ($formsToShow as $key => $value) : ?>
 									<option value="<?php echo $key; ?>"><?php echo $value; ?></option>
-								<?php } ?>
+								<?php endforeach; ?>
 							</select><br>
 							<label for="huge_it_setting_subscriber_limit_id">Emails in One Flow</label><br>
 							<input type="number" name="mailerParams[sub_count_by_parts]" id="huge_it_setting_subscriber_limit_id" value="<?php echo $mailerParams['sub_count_by_parts'] ?>" class="regular-text"><br>
@@ -36,23 +40,25 @@ function  html_showemails($subscribers,$mailerParams,$count,$formsToShow,$mailin
 							</select><br>
 
 							<label for="huge_it_email_subject">Email Subject</label><br>
-							<input type="text" name="mailerParams[email_subject]" id="huge_it_email_subject" value="<?php echo $mailerParams['email_subject'] ?>" class="regular-text"><br>						
+							<input type="text" name="mailerParams[email_subject]" id="huge_it_email_subject" value="<?php echo $mailerParams['email_subject']; ?>" class="regular-text"><br>
 						<input type="hidden" name="task" value=""/>
 					</form>
 
 						<label for="wp-subscriber_message-wrap">Type your text here</label>
-						<?php function wptiny2($initArray){
-									$initArray['height'] = '250px';
-									$initArray['forced_root_block'] = false;
-									$initArray['remove_linebreaks']=false;
-								    $initArray['remove_redundant_brs'] = false;
-								    $initArray['wpautop']=false;
-									return $initArray;
-								}
-								add_filter('tiny_mce_before_init', 'wptiny2');
-								$settings = array( 'media_buttons' => false );
-								wp_editor('', "subscriber_message",$settings); 
-							?>
+					<?php function hugeit_contact_wptiny2( $initArray ) {
+						$initArray['height']               = '250px';
+						$initArray['forced_root_block']    = false;
+						$initArray['remove_linebreaks']    = false;
+						$initArray['remove_redundant_brs'] = false;
+						$initArray['wpautop']              = false;
+
+						return $initArray;
+					}
+
+					add_filter( 'tiny_mce_before_init', 'hugeit_contact_wptiny2' );
+					$settings = array( 'media_buttons' => false );
+					wp_editor( '', "subscriber_message", $settings );
+					?>
 					<div id="showCont">
 						<?php if($mailerParams['mailing_progress']=='finish'):?>
 						<div id="not_send">
@@ -77,7 +83,7 @@ function  html_showemails($subscribers,$mailerParams,$count,$formsToShow,$mailin
 									-moz-border-radius: 10px;
 									-webkit-border-radius: 10px;
 									border-radius: 10px;
-									padding: 0px;
+									padding: 0;
 									border: 1px solid #CCCCCC;
 									overflow:hidden;
 								}
@@ -104,15 +110,7 @@ function  html_showemails($subscribers,$mailerParams,$count,$formsToShow,$mailin
 									right: 0;
 									background-repeat:repeat;
 									z-index: 1;
-									background-image: 
-									   -webkit-gradient(linear, 0 0, 100% 100%, 
-									      color-stop(.25, rgba(255, 255, 255, .2)), 
-									      color-stop(.25, transparent), color-stop(.5, transparent), 
-									      color-stop(.5, rgba(255, 255, 255, .2)), 
-									      color-stop(.75, rgba(255, 255, 255, .2)), 
-									      color-stop(.75, transparent), to(transparent)
-									   );
-								   background-image: 
+								   background-image:
 									   -webkit-gradient(linear, 0 0, 100% 100%, 
 									      color-stop(.25, rgba(255, 255, 255, .2)), 
 									      color-stop(.25, transparent), color-stop(.5, transparent), 
@@ -136,7 +134,6 @@ function  html_showemails($subscribers,$mailerParams,$count,$formsToShow,$mailin
 									-webkit-animation: move 10s linear infinite;
 									animation: move 10s linear infinite;
 									-moz-animation: move 10s linear infinite;
-									background-repeat:repeat;
 									overflow: hidden;
 									-webkit-animation-name:move;
 									-webkit-animation-duration: 10s;
@@ -175,7 +172,6 @@ function  html_showemails($subscribers,$mailerParams,$count,$formsToShow,$mailin
 					</div>
 				</div>
 				<div class="sub_table">
-					<?php //if($subscribers): ?>
 					<table class="wp-list-table widefat fixed posts" id="huge_it-table">
 						<thead>
 							<tr>
@@ -213,5 +209,3 @@ function  html_showemails($subscribers,$mailerParams,$count,$formsToShow,$mailin
 </div>
 <?php
 }
-
-?>

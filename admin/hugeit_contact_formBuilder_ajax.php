@@ -1,8 +1,8 @@
 <?php
-if(! defined( 'ABSPATH' )) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 	global $wpdb;
 	//Draw the form
-	function drawThemeNew($themeId) { ob_start(); 
+	function hugeit_contact_drawThemeNew($themeId) { ob_start();
 		global $wpdb;
 		$query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeId."' ";
 	    $rows = $wpdb->get_results($query);
@@ -13,7 +13,7 @@ if(! defined( 'ABSPATH' )) exit;
 	        $style_values[$key] = $value;
 	    }
 
-		//return $newCss;		
+		//return $newCss;
 	?>
 	    	    #hugeit-contact-wrapper { width:<?php echo $style_values["form_wrapper_width"]; ?>%; <?php $color = explode(",", $style_values["form_wrapper_background_color"]); if($style_values["form_wrapper_background_type"]=="color"){?> background:#<?php echo $color[0]; ?>; <?php } elseif($style_values["form_wrapper_background_type"]=="gradient"){ ?> background: -webkit-linear-gradient(#<?php echo $color[0]; ?>, #<?php echo $color[1]; ?>); /* For Safari 5.1 to 6.0 */ background: -o-linear-gradient(#<?php echo $color[0]; ?>, #<?php echo $color[1]; ?>); /* For Opera 11.1 to 12.0 */ background: -moz-linear-gradient(#<?php echo $color[0]; ?>, #<?php echo $color[1]; ?>); /* For Firefox 3.6 to 15 */ background: linear-gradient(#<?php echo $color[0]; ?>, #<?php echo $color[1]; ?>); /* Standard syntax */ <?php } ?> } #hugeit-contact-wrapper > div { border:<?php echo $style_values["form_border_size"]; ?>px solid #<?php echo $style_values["form_border_color"]; ?>; }#hugeit-contact-wrapper > div > h3 { <?php if($style_values["form_show_title"]=="on"):?>position:relative; display:block; clear:both !important; padding:5px 0px 10px 2% !important; font-size:<?php echo $style_values["form_title_size"]; ?>px !important; line-height:<?php echo $style_values["form_title_size"]; ?>px !important; color:#<?php echo $style_values["form_title_color"]; ?> !important; margin: 10px 0 15px 0 !important;<?php else:?>display:none;<?php endif;?> } #hugeit-contact-wrapper > div > h3 > input {border: 1px solid transparent !important; outline: none !important; -webkit-box-shadow: none !important; box-shadow: none !important; background-color: transparent !important; font-size:<?php echo $style_values['form_title_size']; ?>px !important; line-height:<?php echo $style_values['form_title_size']; ?>px !important;	color:#<?php echo $style_values['form_title_color']; ?>!important; outline: 0 !important; -webkit-transition: none !important; transition: none !important;} #hugeit-contact-wrapper label { font-size:<?php echo $style_values["form_label_size"]; ?>px; color:#<?php echo $style_values["form_label_color"]; ?>; font-family:<?php echo $style_values["form_label_font_family"]; ?>; } #hugeit-contact-wrapper .hugeit-contact-column-block > div > label { display:block; width:38%; float:left; margin-right:2%; cursor: move; } #hugeit-contact-wrapper .hugeit-contact-column-block > div .field-block { display:inline-block; width:60%; /*min-width:150px;*/ } #hugeit-contact-wrapper label.error { color:#<?php echo $style_values["form_label_error_color"]; ?>; } #hugeit-contact-wrapper label em.required-star{ color: #<?php echo $style_values["form_label_required_color"]; ?>; } #hugeit-contact-wrapper .hugeit-contact-column-block > div .field-block ul li label span.sublable{vertical-align: super;} #hugeit-contact-wrapper .hugeit-contact-column-block > div > label.formsRightAlign{ text-align: right !important; } #hugeit-contact-wrapper .hugeit-contact-column-block > div > label.formsAboveAlign{ width:100% !important; float:none !important; padding-bottom: 5px !important; } #hugeit-contact-wrapper .hugeit-contact-column-block > div .formsAboveAlign { width:100% !important; } #hugeit-contact-wrapper .hugeit-contact-column-block > div > label.formsInsideAlign{ display:none !important; } #hugeit-contact-wrapper .hugeit-contact-column-block > div .formsInsideAlign { width:100% !important; } .input-text-block input,.input-text-block input:focus { height:<?php echo $style_values["form_input_text_font_size"]*2; ?>px; <?php if($style_values["form_input_text_has_background"]=="on"){?> background:#<?php echo $style_values["form_input_text_background_color"]; ?>; <?php }else { ?> background:none; <?php } ?> border:<?php echo $style_values["form_input_text_border_size"]; ?>px solid #<?php echo $style_values["form_input_text_border_color"]; ?> !important; box-shadow:none !important ; border-radius:<?php echo $style_values["form_input_text_border_radius"]; ?>px; font-size:<?php echo $style_values["form_input_text_font_size"]; ?>px; color:#<?php echo $style_values["form_input_text_font_color"]; ?>; margin:0px !important; outline:none; }.textarea-block textarea { <?php if($style_values["form_textarea_has_background"]=="on"){?> background:#<?php echo $style_values["form_textarea_background_color"]; ?>; <?php }else { ?> background:none; <?php } ?> border:<?php echo $style_values["form_textarea_border_size"]; ?>px solid #<?php echo $style_values["form_textarea_border_color"]; ?>; border-radius:<?php echo $style_values["form_textarea_border_radius"]; ?>px; font-size:<?php echo $style_values["form_textarea_font_size"]; ?>px; color:#<?php echo $style_values["form_textarea_font_color"]; ?>; margin:0px !important; } .radio-block, .checkbox-block { position:relative; float:left; margin:0px 5px 0px 5px; display: block; } .radio-block input, .checkbox-block input { visibility:hidden; position:absolute; top:0px; left:0px; } .radio-block i { display:inline-block; float:left; width:20px; color:#<?php echo $style_values["form_radio_color"]; ?>; } .checkbox-block i { display:inline-block; float:left; width:20px; color:#<?php echo $style_values["form_checkbox_color"]; ?>; } #hugeit-contact-wrapper.big-radio .radio-block i ,#hugeit-contact-wrapper.big-checkbox .checkbox-block i {font-size:24px;} #hugeit-contact-wrapper.medium-radio .radio-block i ,#hugeit-contact-wrapper.medium-checkbox .checkbox-block i {font-size:20px;} #hugeit-contact-wrapper.small-radio .radio-block i ,#hugeit-contact-wrapper.small-checkbox .checkbox-block i {font-size:15px;} .radio-block i:hover { color:#<?php echo $style_values["form_radio_hover_color"]; ?>; } .checkbox-block i:hover { color:#<?php echo $style_values["form_checkbox_hover_color"]; ?>; } .radio-block i.active, .checkbox-block i.active {display:none;} .radio-block input:checked + i.active + i.passive, .checkbox-block input:checked + i.active + i.passive {display:none;} .radio-block input:checked + i.active, .radio-block input:checked + i.active:hover { display:inline-block; color:#<?php echo $style_values["form_radio_active_color"]; ?>; } .checkbox-block input:checked + i.active, .checkbox-block input:checked + i.active:hover { display:inline-block; color:#<?php echo $style_values["form_checkbox_active_color"]; ?>; } .selectbox-block { position:relative; height:<?php echo $style_values["form_selectbox_font_size"]*2+$style_values["form_selectbox_border_size"]; ?>px; } .selectbox-block select { position:relative; height:<?php echo $style_values["form_selectbox_font_size"]*2-$style_values["form_selectbox_border_size"]*2; ?>px; margin:<?php echo $style_values["form_selectbox_border_size"]; ?>px 0px 0px 1px !important; opacity:0; z-index:2; } .selectbox-block .textholder { position:absolute; height:<?php echo $style_values["form_selectbox_font_size"]*2; ?>px; width:90%; padding-right:10%; margin:0px !important; top;0px; left:0px; border:0px; color:#<?php echo $style_values["form_selectbox_font_color"]; ?>; background:none; border:<?php echo $style_values["form_selectbox_border_size"]; ?>px solid #<?php echo $style_values["form_selectbox_border_color"]; ?>; border-radius:<?php echo $style_values["form_selectbox_border_radius"]; ?>px; color:#<?php echo $style_values["form_selectbox_font_color"]; ?>; font-size:<?php echo $style_values["form_selectbox_font_size"]; ?>px; <?php if($style_values["form_selectbox_has_background"]=="on"){?> background:#<?php echo $style_values["form_selectbox_background_color"]; ?>; <?php }else { ?> background:none; <?php } ?> } .selectbox-block i { position:absolute; top:<?php echo $style_values["form_selectbox_font_size"]/2+$style_values["form_selectbox_border_size"]/4; ?>px; right:10px; z-index:0; color:#<?php echo $style_values["form_selectbox_arrow_color"]; ?>; font-size:<?php echo $style_values["form_selectbox_font_size"]; ?>px; } .file-block { position:relative; cursor:pointer; } .file-block .textholder { position:relative; float:left; width:calc(60% - <?php echo $style_values["form_file_border_size"]*2 + 5; ?>px) !important; height:<?php echo $style_values["form_file_font_size"]*2; ?>px; margin:0px; border:<?php echo $style_values["form_file_border_size"]; ?>px solid #<?php echo $style_values["form_file_border_color"]; ?> !important; border-radius:<?php echo $style_values["form_file_border_radius"]; ?>px !important; font-size:<?php echo $style_values["form_file_font_size"]; ?>px; color:#<?php echo $style_values["form_file_font_color"]; ?>; <?php if($style_values["form_file_has_background"]=="on"){?> background:#<?php echo $style_values["form_file_background"]; ?>; <?php }else { ?> background:none; <?php } ?> padding:0px 40% 0px 5px !important; box-sizing: content-box; -moz-box-sizing: content-box; } .file-block .uploadbutton { position:absolute; top:0px; right:0px; width:38%; border-top:<?php echo $style_values["form_file_border_size"]; ?>px solid #<?php echo $style_values["form_file_border_color"]; ?> !important; border-bottom:<?php echo $style_values["form_file_border_size"]; ?>px solid #<?php echo $style_values["form_file_border_color"]; ?> !important; border-right:<?php echo $style_values["form_file_border_size"]; ?>px solid #<?php echo $style_values["form_file_border_color"]; ?> !important; border-top-right-radius:<?php echo $style_values["form_file_border_radius"]; ?>px !important; border-bottom-right-radius:<?php echo $style_values["form_file_border_radius"]; ?>px !important; <?php $fileheight=$style_values["form_file_font_size"]*2; ?> height:<?php echo $fileheight; ?>px; padding:0px 1%; margin:0px; overflow: hidden; font-size:<?php echo $style_values["form_file_font_size"]; ?>px; line-height:<?php echo $style_values["form_file_font_size"]*2; ?>px; color:#<?php echo $style_values["form_file_button_text_color"]; ?>; background:#<?php echo $style_values["form_file_button_background_color"]; ?>; text-align:center; -webkit-transition: all 0.5s ease; transition: all 0.5s ease; box-sizing:content-box; } .file-block:hover .uploadbutton { color:#<?php echo $style_values["form_file_button_text_color"]; ?>; background:#<?php echo $style_values["form_file_button_background_color"]; ?>; vertical-align: baseline; } .file-block .uploadbutton i { color:#<?php echo $style_values["form_file_icon_color"]; ?>; font-size:<?php echo $style_values["form_file_font_size"]; ?>px; vertical-align: baseline; -webkit-transition: all 0.5s ease; transition: all 0.5s ease; } .file-block:hover .uploadbutton { color:#<?php echo $style_values["form_file_button_text_hover_color"]; ?>; background:#<?php echo $style_values["form_file_button_background_hover_color"]; ?>; } .file-block:hover .uploadbutton i { color:#<?php echo $style_values["form_file_icon_hover_color"]; ?>; } .file-block input[type="file"] { height:30px; width:100%; position:absolute; top:0px; left:0px; opacity:0; cursor:pointer; } .captcha-block div { margin-right:-1px; } .buttons-block { <?php if($style_values["form_button_position"]=="left"){echo "text-align:left;";} else if ($style_values["form_button_position"]=="right"){echo "text-align:right;";} else {echo "text-align:center;";} ?> } .buttons-block button { height:auto; padding:<?php echo $style_values["form_button_padding"]; ?>px <?php echo $style_values["form_button_padding"]*2; ?>px <?php echo $style_values["form_button_padding"]; ?>px <?php echo $style_values["form_button_padding"]*2; ?>px; cursor:pointer; text-transform: none; <?php if($style_values["form_button_fullwidth"]=="on"){ ?> clear:both; width:100%; padding-left:0px; padding-right:0px; margin:0px 0px 0px 0px !important; padding-left:0px; padding-right:0px; <?php } ?> font-size:<?php echo $style_values["form_button_font_size"]; ?>px; } .buttons-block button.submit { color:#<?php echo $style_values["form_button_submit_font_color"]; ?> !important; background-color:#<?php echo $style_values["form_button_submit_background"]; ?> !important; border:<?php echo $style_values["form_button_submit_border_size"]; ?>px solid #<?php echo $style_values["form_button_submit_border_color"]; ?> !important; border-radius:<?php echo $style_values["form_button_submit_border_radius"]; ?>px !important; -webkit-transition: all 0.5s ease !important; transition: all 0.5s ease !important; margin:0px 0px 5px 0px !important; } .buttons-block button.submit:hover { color:#<?php echo $style_values["form_button_submit_font_hover_color"]; ?> !important; background:#<?php echo $style_values["form_button_submit_hover_background"]; ?> !important; } .buttons-block button.submit i { color:#<?php echo $style_values["form_button_submit_icon_color"]; ?> !important; vertical-align: baseline !important; font-size:<?php echo $style_values["form_button_font_size"]; ?>px !important; -webkit-transition: all 0.5s ease !important; transition: all 0.5s ease !important; } .buttons-block button.submit:hover i { color:#<?php echo $style_values["form_button_submit_icon_hover_color"]; ?> !important; } .buttons-block button.reset { color:#<?php echo $style_values["form_button_reset_font_color"]; ?> !important; background-color:#<?php echo $style_values["form_button_reset_background"]; ?> !important; border:<?php echo $style_values["form_button_reset_border_size"]; ?>px solid #<?php echo $style_values["form_button_reset_border_color"]; ?> !important; border-radius:<?php echo $style_values["form_button_reset_border_radius"]; ?>px !important; -webkit-transition: all 0.5s ease !important; transition: all 0.5s ease !important; } .buttons-block button.reset:hover { color:#<?php echo $style_values["form_button_reset_font_hover_color"]; ?> !important; background:#<?php echo $style_values["form_button_reset_hover_background"]; ?> !important; } .buttons-block button.reset i { color:#<?php echo $style_values["form_button_reset_icon_color"]; ?> !important; vertical-align: baseline !important; font-size:<?php echo $style_values["form_button_font_size"]; ?>px !important; -webkit-transition: all 0.5s ease !important; transition: all 0.5s ease !important; } .buttons-block button.reset:hover i { color:#<?php echo $style_values["form_button_reset_icon_hover_color"]; ?> !important; }
 
@@ -21,7 +21,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 	//1 Textbox //
-	function textBoxHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_textBoxHtml($rowimages) { ob_start(); ?>
 	    <div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 			<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
 			<div class="field-block input-text-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
@@ -35,7 +35,7 @@ if(! defined( 'ABSPATH' )) exit;
 	<?php
 	    return ob_get_clean();
 	}
-	function textBoxSettingsHtml($rowimages){ob_start(); ?>
+	function hugeit_contact_textBoxSettingsHtml($rowimages){ob_start(); ?>
 		<li id="huge-contact-field-<?php echo $rowimages->id; ?>"  data-fieldNum="<?php echo $rowimages->id; ?>">	
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="Textbox"/>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -71,7 +71,7 @@ if(! defined( 'ABSPATH' )) exit;
 				<div class="left">
 					<div>
 						<label class="input-block">Value If Empty:
-							<input class="placeholder" class="placeholder" class="text_area" type="text" name="titleimage<?php echo $rowimages->id; ?>" id="titleimage<?php echo $rowimages->id; ?>"  oldvalue="<?php echo $rowimages->name; ?>" value="<?php echo $rowimages->name; ?>">
+							<input class="placeholder text_area" type="text" name="titleimage<?php echo $rowimages->id; ?>" id="titleimage<?php echo $rowimages->id; ?>"  oldvalue="<?php echo $rowimages->name; ?>" value="<?php echo $rowimages->name; ?>">
 						</label>
 					</div>
 					<div>
@@ -96,7 +96,7 @@ if(! defined( 'ABSPATH' )) exit;
 	}
 
 	//2 Textarea //
-    function textareaHtml($rowimages) { ob_start(); ?>
+    function hugeit_contact_textareaHtml($rowimages) { ob_start(); ?>
     	<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 			<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
 			<div class="field-block textarea-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
@@ -111,7 +111,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 
-	function textareaSettingsHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_textareaSettingsHtml($rowimages) { ob_start(); ?>
     	<li id="huge-contact-field-<?php echo $rowimages->id; ?>"  data-fieldNum="<?php echo $rowimages->id; ?>">
 			<input type="hidden" class="left-right-position"  name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="Textarea"/>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -176,7 +176,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 	//3 Selectbox //
-	function selectboxHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_selectboxHtml($rowimages) { ob_start(); ?>
 		<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 			<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
 			<div class="field-block selectbox-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
@@ -209,7 +209,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 
-	function selectboxSettingsHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_selectboxSettingsHtml($rowimages) { ob_start(); ?>
     	<li id="huge-contact-field-<?php echo $rowimages->id; ?>"  data-fieldNum="<?php echo $rowimages->id; ?>">
 			<input type="hidden" class="left-right-position"  name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="Selectbox"/>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -276,8 +276,9 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 	//4 Checkbox //
-	function checkboxHtml($rowimages,$themeId) { ob_start(); 
+	function hugeit_contact_checkboxHtml($rowimages,$themeId) { ob_start();
 		global $wpdb;
+		$themeId = sanitize_text_field($themeId);
 		$query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeId."' ";
 	    $rows = $wpdb->get_results($query);
 	    $style_values = array();
@@ -323,7 +324,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 
-	function checkboxSettingsHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_checkboxSettingsHtml($rowimages) { ob_start(); ?>
     	<li id="huge-contact-field-<?php echo $rowimages->id; ?>"  data-fieldNum="<?php echo $rowimages->id; ?>">
 			<input type="hidden" class="left-right-position"  name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="Checkbox"/>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -403,7 +404,8 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 	//5 Radiobox //
-	function radioboxHtml($rowimages,$themeId) { ob_start(); 
+	function hugeit_contact_radioboxHtml($rowimages, $themeId) { ob_start();
+		$themeId = sanitize_text_field($themeId);
 		global $wpdb;
 		$query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeId."' ";
 	    $rows = $wpdb->get_results($query);
@@ -450,7 +452,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 
-	function radioboxSettingsHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_radioboxSettingsHtml($rowimages) { ob_start(); ?>
     	<li id="huge-contact-field-<?php echo $rowimages->id; ?>"   data-fieldNum="<?php echo $rowimages->id; ?>">
 			<input type="hidden" class="left-right-position"   name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="Radiobox"/>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -516,7 +518,8 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 	//6 Filebox //
-	function fileboxHtml($rowimages,$themeId) { ob_start(); 
+	function hugeit_contact_fileboxHtml($rowimages,$themeId) { ob_start();
+		$themeId = sanitize_text_field($themeId);
 		global $wpdb;
 		$query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeId."' ";
 	    $rows = $wpdb->get_results($query);
@@ -529,8 +532,7 @@ if(! defined( 'ABSPATH' )) exit;
 		<script>
 		jQuery(document).ready(function(){
 			function mbToBytes(mb){
-				var convertedByte=Math.round(mb*1048576*100000)/100000;
-				return convertedByte;
+				return Math.round(mb * 1048576 * 100000) / 100000;
 			}
 			var byteRes=mbToBytes(<?php echo $rowimages->name;?>);
 			jQuery(".hugeit-contact-column-block input[name='MAX_FILE_SIZE']").attr('value',byteRes);
@@ -561,7 +563,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 
-	function fileboxSettingsHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_fileboxSettingsHtml($rowimages) { ob_start(); ?>
     	<li id="huge-contact-field-<?php echo $rowimages->id; ?>"  data-fieldNum="<?php echo $rowimages->id; ?>">
 			<input type="hidden" class="left-right-position"   name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="Filebox"/>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -619,7 +621,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 	//7 Custom Text //
-	function cutomtextHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_cutomtextHtml($rowimages) { ob_start(); ?>
 		<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 			<?php echo $rowimages->name; ?>
 			<span class="hugeOverlay"></span>
@@ -630,7 +632,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 
-	function cutomtextSettingsHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_cutomtextSettingsHtml($rowimages) { ob_start(); ?>
     	<li id="huge-contact-field-<?php echo $rowimages->id; ?>"   data-fieldNum="<?php echo $rowimages->id; ?>" data-fieldType="custom_text">
 			<input type="hidden" class="left-right-position"   name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" />
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -664,7 +666,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 	//8 Captcha //
-	function captchaHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_captchaHtml($rowimages) { ob_start(); ?>
 		<div class="hugeit-field-block captcha-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 			<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
 			<div <?php if($rowimages->hc_required=='dark'){echo 'style="display:none"';}else{echo 'style="float:'.$capPos.'"';}?> id="democaptchalight"></div>
@@ -677,7 +679,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 
-	function captchaSettingsHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_captchaSettingsHtml($rowimages) { ob_start(); ?>
     	<li id="huge-contact-field-<?php echo $rowimages->id; ?>"  data-fieldNum="<?php echo $rowimages->id; ?>" data-fieldType="captcha">
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" />
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -716,7 +718,8 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 	//9 Buttons //
-	function buttonsHtml($rowimages,$themeId) { ob_start(); 
+	function hugeit_contact_buttonsHtml($rowimages,$themeId) { ob_start();
+		$themeId = sanitize_text_field($themeId);
 		global $wpdb;
 		$query = "SELECT * from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeId."' ";
 	    $rows = $wpdb->get_results($query);
@@ -746,7 +749,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 
-	function buttonsSettingsHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_buttonsSettingsHtml($rowimages) { ob_start(); ?>
     	<li id="huge-contact-field-<?php echo $rowimages->id; ?>"   data-fieldNum="<?php echo $rowimages->id; ?>" data-fieldType="buttons">
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" />
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -797,7 +800,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 	//10 Email //
-	function emailHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_emailHtml($rowimages) { ob_start(); ?>
 		<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 			<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
 			<div class="field-block input-text-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
@@ -812,7 +815,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 
-	function emailSettingsHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_emailSettingsHtml($rowimages) { ob_start(); ?>
     	<li id="huge-contact-field-<?php echo $rowimages->id; ?>" data-fieldNum="<?php echo $rowimages->id; ?>">		
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="Email"/>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -867,7 +870,7 @@ if(! defined( 'ABSPATH' )) exit;
 	//Ready to Go Fields
 
 	//11 Name
-	function nameSurnameHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_nameSurnameHtml($rowimages) { ob_start(); ?>
 		<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 			<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
 			<div class="field-block input-name-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsLabelHide')echo $rowimages->hc_input_show_default;?>">
@@ -883,7 +886,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 
-	function nameSurnameSettingsHtml($rowimages){ob_start(); ?>
+	function hugeit_contact_nameSurnameSettingsHtml($rowimages){ob_start(); ?>
 		<li id="huge-contact-field-<?php echo $rowimages->id; ?>" data-fieldNum="<?php echo $rowimages->id; ?>">	
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="nameSurname"/>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -941,7 +944,7 @@ if(! defined( 'ABSPATH' )) exit;
 	}
 
 	//12 Phone
-	function phoneHtml($rowimages) { ob_start(); ?>
+	function hugeit_contact_phoneHtml($rowimages) { ob_start(); ?>
 		<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 			<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
 			<div class="field-block ready-phone-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
@@ -962,7 +965,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 
-	function phoneSettingsHtml($rowimages){ob_start(); ?>
+	function hugeit_contact_phoneSettingsHtml($rowimages){ob_start(); ?>
 		<li id="huge-contact-field-<?php echo $rowimages->id; ?>" data-fieldNum="<?php echo $rowimages->id; ?>">	
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="nameSurname"/>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -1258,7 +1261,8 @@ if(! defined( 'ABSPATH' )) exit;
 	}
 
 	//13 License
-	function licenseHtml($rowimages,$themeId) { ob_start(); 
+	function hugeit_contact_licenseHtml($rowimages,$themeId) { ob_start();
+		$themeId = sanitize_text_field($themeId);
 		global $wpdb;
 		$query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeId."' ";
 	    $rows = $wpdb->get_results($query);
@@ -1299,7 +1303,7 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 
-	function licenseSettingsHtml($rowimages){ob_start(); ?>
+	function hugeit_contact_licenseSettingsHtml($rowimages){ob_start(); ?>
 		<li id="huge-contact-field-<?php echo $rowimages->id; ?>" data-fieldNum="<?php echo $rowimages->id; ?>"  data-fieldType="license">	
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="license"/>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -1344,135 +1348,284 @@ if(! defined( 'ABSPATH' )) exit;
 	    return ob_get_clean();
 	}
 	//ADD FIELDS
-	if(isset($_POST['task'])&&$_POST['task']=='addFieldsTask'){
+	if (isset($_POST['task']) && $_POST['task']=='addFieldsTask') {
 		if(isset($_POST['nonce'])){
 			$nonce = $_POST['nonce'];
 		}else{
 			$nonce ='';
 		}		
 		if ( !wp_verify_nonce( $nonce, 'builder_nonce' ) )return;
-		$formId=$_POST['formId'];
-		$inputtype=$_POST['inputType'];
-		$themeId=$_POST['themeId'];
+		$formId= absint($_POST['formId']);
+		$inputtype= sanitize_text_field($_POST['inputType']);
+		$themeId= sanitize_text_field($_POST['themeId']);
+		$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
 		switch ($inputtype) {
 		    case 'text':
 		        $inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-			    $sql_type_text = "
-				INSERT INTO 
-				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'Placeholder', '".$formId."', 'on', '".$inputtype."', 'Textbox', '','text','', '0', 2, '1', 'left' )";
-		        $wpdb->query($sql_type_text);
 
-		        $queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+			    $wpdb->insert(
+				    $inserttexttype,
+				    array(
+					    'name' => 'Placeholder',
+					    'hugeit_contact_id' => $formId,
+					    'description' => 'on',
+					    'conttype' => $inputtype,
+					    'hc_field_label' => 'Textbox',
+					    'hc_other_field' => '',
+					    'field_type' => 'text',
+					    'hc_required' => '',
+					    'ordering' => '0',
+					    'published' => 2,
+					    'hc_input_show_default' => '1',
+					    'hc_left_right' => 'left',
+				    ),
+				    array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+			    );
+
+		        $queryMax=$wpdb->prepare(
+		        	"SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",
+			        $formId
+		        );
 			    $row8=$wpdb->get_results($queryMax);
-			    $fieldID=$row8[0]->resId;
+			    $fieldID= absint($row8[0]->resId);
 			    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 			    $rowimages=$wpdb->get_results($fieldQuery);
-			    echo json_encode(array("outputField"=>textBoxHtml($rowimages[0]),"outputFieldSettings"=>textBoxSettingsHtml($rowimages[0])));
+			    echo json_encode(array(
+			    	"outputField" => hugeit_contact_textBoxHtml($rowimages[0]),
+				    "outputFieldSettings" => hugeit_contact_textBoxSettingsHtml($rowimages[0])
+			    ));
+
 		        break;
 
 		    case 'textarea':
-			    $inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-			    $sql_type_text = "
-				INSERT INTO 
-				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'Placeholder', '".$formId."', 'on', '".$inputtype."', 'Textarea', '80','on','on', '0', 2, '1', 'left' )";		   
-			      $wpdb->query($sql_type_text);
 
-			    $queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+			    $wpdb->insert(
+				    $inserttexttype,
+				    array(
+					    'name' => 'Placeholder',
+					    'hugeit_contact_id' => $formId,
+					    'description' => 'on',
+					    'conttype' => $inputtype,
+					    'hc_field_label' => 'Textarea',
+					    'hc_other_field' => '80',
+					    'field_type' => 'on',
+					    'hc_required' => 'on',
+					    'ordering' => 0,
+					    'published' => 2,
+					    'hc_input_show_default' => '1',
+					    'hc_left_right' => 'left',
+				    ),
+				    array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+			    );
+
+			    $queryMax=$wpdb->prepare(
+			    	"SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",$formId
+			    );
 			    $row8=$wpdb->get_results($queryMax);
 			    $fieldID=$row8[0]->resId;
 			    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 			    $rowimages=$wpdb->get_results($fieldQuery);
-			    echo json_encode(array("outputField"=>textareaHtml($rowimages[0]),"outputFieldSettings"=>textareaSettingsHtml($rowimages[0])));
+			    echo json_encode(array(
+			    	"outputField" => hugeit_contact_textareaHtml($rowimages[0]),
+                    "outputFieldSettings" =>hugeit_contact_textareaSettingsHtml($rowimages[0])
+			    ));
 		        break;
 
 		    case 'selectbox':
-		        $inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-			    $sql_type_text = "
-				INSERT INTO 
-				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'Option 1;;Option 2', '".$formId."', '', '".$inputtype."', 'Selectbox', 'Option 2', 'par_TV', 2, '1', 'left' )";		   
+
+		    	$wpdb->insert(
+				    $inserttexttype,
+				    array(
+					    'name' => 'Option 1;;Option 2',
+						'hugeit_contact_id' => $formId,
+						'description' => '',
+						'conttype' => $inputtype,
+						'hc_field_label' => 'Selectbox',
+						'hc_other_field' => 'Option 2',
+						'ordering' => 0,
+						'published' => 2,
+						'hc_input_show_default' => '1',
+						'hc_left_right' => 'left'
+				    ),
+				    array('%s', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+			    );
+
 			     $wpdb->query($sql_type_text);
 
-			    $queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+			    $queryMax=$wpdb->prepare(
+			    	"SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",
+				    $formId
+			    );
 			    $row8=$wpdb->get_results($queryMax);
 			    $fieldID=$row8[0]->resId;
 			    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 			    $rowimages=$wpdb->get_results($fieldQuery);
-			    echo json_encode(array("outputField"=>selectboxHtml($rowimages[0]),"outputFieldSettings"=>selectboxSettingsHtml($rowimages[0])));
+			    echo json_encode(array(
+			    	"outputField" => hugeit_contact_selectboxHtml($rowimages[0]),
+				    "outputFieldSettings" =>hugeit_contact_selectboxSettingsHtml($rowimages[0])
+			    ));
 		     	break;
 
-		     case 'checkbox':
-			     $inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-			     $sql_type_text = "
-				 INSERT INTO 
-				 `" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`, `published`, `hc_input_show_default`,`hc_required`, `hc_left_right`) VALUES
-				 ( 'On', '".$formId."', 'on', '".$inputtype."', 'Checkbox', '', '1', 2, '1','on', 'left' )";		   
-			     $wpdb->query($sql_type_text);
+			case 'checkbox':
 
-			    $queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+		     	$wpdb->insert(
+			        $inserttexttype,
+			        array(
+				        'name' => 'On',
+						'hugeit_contact_id' => $formId,
+						'description' => 'on',
+						'conttype' => $inputtype,
+						'hc_field_label' => 'Checkbox',
+						'hc_other_field' => '',
+						'field_type' => '1',
+						'published' => 2,
+						'hc_input_show_default' => '1',
+						'hc_required' => 'on',
+						'hc_left_right' => 'left',
+			        ),
+			        array('%s', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+		        );
+
+			    $queryMax=$wpdb->prepare(
+			    	"SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",
+				    $formId
+			    );
 			    $row8=$wpdb->get_results($queryMax);
 			    $fieldID=$row8[0]->resId;
 			    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 			    $rowimages=$wpdb->get_results($fieldQuery);
-			    echo json_encode(array("outputField"=>checkboxHtml($rowimages[0],$themeId),"outputFieldSettings"=>checkboxSettingsHtml($rowimages[0])));
+			    echo json_encode(array(
+			    	"outputField" => hugeit_contact_checkboxHtml($rowimages[0],$themeId),
+				    "outputFieldSettings" =>hugeit_contact_checkboxSettingsHtml($rowimages[0])
+			    ));
 		     	break;
 
 	     	case 'radio_box':
-		     	$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-			    $sql_type_text = "
-				INSERT INTO 
-				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`, `hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'option 1;;option 2', '".$formId."', '2', '".$inputtype."', 'Radio Box', 'option 1', '1', 'text', 'par_TV', '2', '1', 'left' )";		   
-		      	$wpdb->query($sql_type_text);
 
-		      	$queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+	     		$wpdb->insert(
+			        $inserttexttype,
+			        array(
+				        'name' => 'option 1;;option 2',
+						'hugeit_contact_id' => $formId,
+						'description' => '2',
+						'conttype' => $inputtype,
+						'hc_field_label' => 'Radio Box',
+						'hc_other_field' => 'option 1',
+						'field_type' => '1',
+						'hc_required' => 'text',
+						'ordering' => 0,
+						'published' => 2,
+						'hc_input_show_default' => '1',
+						'hc_left_right' => 'left',
+			        ),
+			        array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+		        );
+
+		      	$queryMax=$wpdb->prepare(
+		      		"SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",$formId
+		        );
 			    $row8=$wpdb->get_results($queryMax);
 			    $fieldID=$row8[0]->resId;
 			    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 			    $rowimages=$wpdb->get_results($fieldQuery);
-			    echo json_encode(array("outputField"=>radioboxHtml($rowimages[0],$themeId),"outputFieldSettings"=>radioboxSettingsHtml($rowimages[0])));
+			    echo json_encode(array(
+			    	"outputField" => hugeit_contact_radioboxHtml($rowimages[0],$themeId),
+				    "outputFieldSettings" =>hugeit_contact_radioboxSettingsHtml($rowimages[0])
+			    ));
 		     	break;
 
 	     	case 'file_box':
-		     	$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-		   		 $sql_type_text = "
-				INSERT INTO 
-				`" . $inserttexttype . "` (`name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( '5', '".$formId."', 'on', '".$inputtype."', 'Filebox', 'jpg, jpeg, gif, png, docx, xlsx, pdf','','', 'par_TV', 2, '1', 'left' )";		   
-		      	$wpdb->query($sql_type_text);
 
-		      	$queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+	     		$wpdb->insert(
+			        $inserttexttype,
+			        array(
+				        'name' => '5',
+						'hugeit_contact_id' => $formId,
+						'description' => 'on',
+						'conttype' => $inputtype,
+						'hc_field_label' => 'Filebox',
+						'hc_other_field' => 'jpg, jpeg, gif, png, docx, xlsx, pdf',
+						'field_type' => '',
+						'hc_required' => '',
+						'ordering' => 0,
+						'published' => 2,
+						'hc_input_show_default' => '1',
+						'hc_left_right' => 'left',
+			        ),
+			        array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+		        );
+
+		      	$queryMax=$wpdb->prepare(
+		      		"SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",$formId
+		        );
 			    $row8=$wpdb->get_results($queryMax);
 			    $fieldID=$row8[0]->resId;
 			    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 			    $rowimages=$wpdb->get_results($fieldQuery);
-			    echo json_encode(array("outputField"=>fileboxHtml($rowimages[0],$themeId),"outputFieldSettings"=>fileboxSettingsHtml($rowimages[0])));
+			    echo json_encode(array(
+			    	"outputField" => hugeit_contact_fileboxHtml($rowimages[0],$themeId),
+				    "outputFieldSettings" =>hugeit_contact_fileboxSettingsHtml($rowimages[0])
+			    ));
 		     	break;
 
 	     	case 'custom_text':
-		     	$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-			    $sql_type_text = "
-				INSERT INTO 
-				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'Placeholder', '".$formId."', 'on', '".$inputtype."', 'Label', '80','on','on', 'par_TV', 2, '1', 'left' )";				   
-		        $wpdb->query($sql_type_text);
 
-		        $queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+		        $wpdb->insert(
+			        $inserttexttype,
+			        array(
+				        'name' => 'Placeholder',
+				        'hugeit_contact_id' => $formId,
+				        'description' => 'on',
+				        'conttype' => $inputtype,
+				        'hc_field_label' => 'Label',
+				        'hc_other_field' => '80',
+				        'field_type' => 'on',
+				        'hc_required' => 'on',
+				        'ordering' => 0,
+				        'published' => 2,
+				        'hc_input_show_default' => '1',
+				        'hc_left_right' => 'left',
+			        ),
+			        array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+		        );
+
+		        $queryMax=$wpdb->prepare(
+		        	"SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",$formId
+		        );
 			    $row8=$wpdb->get_results($queryMax);
 			    $fieldID=$row8[0]->resId;
 			    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 			    $rowimages=$wpdb->get_results($fieldQuery);
-			    $queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+			    $queryMax=$wpdb->prepare(
+			    	"SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",$formId
+			    );
 			    $row8=$wpdb->get_results($queryMax);
 			    $fieldID=$row8[0]->resId;
-			    echo json_encode(array("outputField"=>cutomtextHtml($rowimages[0]),"outputFieldSettings"=>cutomtextSettingsHtml($rowimages[0]),"customText"=>"titleimage".$fieldID.""));
+			    echo json_encode(array( "outputField" => hugeit_contact_cutomtextHtml($rowimages[0]),
+                    "outputFieldSettings" =>hugeit_contact_cutomtextSettingsHtml($rowimages[0]),
+                    "customText" => "titleimage" . $fieldID
+			    ));
 		     	break;
 
 	     	case 'captcha':
-	     		$query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_general_options ";
-			    $rowspar = $wpdb->get_results($query);
+		        $query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_general_options";
+		        $rowspar = $wpdb->get_results($query);
 			    $paramssld = array();
 			    foreach ($rowspar as $rowpar) {
 			        $key = $rowpar->name;
@@ -1481,20 +1634,37 @@ if(! defined( 'ABSPATH' )) exit;
 			    }
 			    $capKeyPub=$paramssld['form_captcha_public_key'];
 			    $capKeyPriv=$paramssld['form_captcha_private_key'];
-			    if($capKeyPub != '' && $capKeyPriv != ''){
-					$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-				    $sql_type_text = "
-					INSERT INTO 
-					`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-					( 'image', '".$formId."', '', '".$inputtype."', '', '','', 'light', '0', 2, '1', 'left' )";		   
-			      	$wpdb->query($sql_type_text);
+			    if($capKeyPub != '' && $capKeyPriv != '') {
 
-			      	$queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+				    $wpdb->insert(
+					    $inserttexttype,
+					    array(
+						    'name' => 'image',
+						    'hugeit_contact_id' => $formId,
+						    'description' => '',
+						    'conttype' => $inputtype,
+						    'hc_field_label' => '',
+						    'hc_other_field' => '',
+						    'field_type' => '',
+						    'hc_required' => 'light',
+						    'ordering' => 0,
+						    'published' => 2,
+						    'hc_input_show_default' => '1',
+						    'hc_left_right' => 'left',
+					    ),
+					    array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+				    );
+
+			      	$queryMax=$wpdb->prepare(
+			      		"SELECT MAX(id) AS resId 
+						FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+						WHERE hugeit_contact_id=%d",$formId
+			        );
 				    $row8=$wpdb->get_results($queryMax);
 				    $fieldID=$row8[0]->resId;
 				    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 				    $rowimages=$wpdb->get_results($fieldQuery);
-				    $query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_general_options ";
+				    $query = "SELECT *  FROM " . $wpdb->prefix . "huge_it_contact_general_options";
 				    $rowspar = $wpdb->get_results($query);
 				    $paramssld = array();
 				    foreach ($rowspar as $rowpar) {
@@ -1503,181 +1673,352 @@ if(! defined( 'ABSPATH' )) exit;
 				        $paramssld[$key] = $value;
 				    }
 				    $capKeyPub=$paramssld['form_captcha_public_key'];
-				    echo json_encode(array("outputField" => captchaHtml($rowimages[0]),"outputFieldSettings" => captchaSettingsHtml($rowimages[0]),"captchaNum" => $capKeyPub));
-				}else{
-					echo json_encode(array("captchaNum" => $capKeyPub,"toRedirect"=>"admin.php?page=hugeit_forms_main_page&task=captcha_keys&id=".$formId."&TB_iframe=1"));
+				    echo json_encode(array(
+				    	"outputField" => hugeit_contact_captchaHtml($rowimages[0]),
+					    "outputFieldSettings" => hugeit_contact_captchaSettingsHtml($rowimages[0]),
+					    "captchaNum" => $capKeyPub
+				    ));
+				} else {
+					echo json_encode(array(
+						"captchaNum" => $capKeyPub,
+						"toRedirect"=>"admin.php?page=hugeit_forms_main_page&task=captcha_keys&id=".$formId."&TB_iframe=1"
+					));
 				}
 		     	break;
 
 	     	case 'buttons':
-		     	$query=$wpdb->prepare("SELECT MAX(ordering) AS res FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+		     	$query=$wpdb->prepare(
+		     		"SELECT MAX(ordering) AS res 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",
+			        $formId
+		        );
 			    $row8=$wpdb->get_results($query);
 			    $resOfMax=$row8[0]->res;
 			    $resOfMax=$resOfMax+1;
-			    $query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+			    $query=$wpdb->prepare(
+			    	"SELECT * 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",
+				    $formId
+			    );
 			    $row8=$wpdb->get_results($query);
 			    $leftRightPos='left';
 			    foreach ($row8 as $value) {
-			    	if($value->hc_left_right=='right'){$leftRightPos='right';}
+			    	if($value->hc_left_right=='right') {
+			    		$leftRightPos='right';
+			    	}
 			    }
-				$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-				$sql_type_text = "
-				INSERT INTO 
-				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'text', '".$formId."', 'Submit', '".$inputtype."', 'Reset', 'print_success_message','','', '".$resOfMax."', 2, '1', '".$leftRightPos."' )";		   
-		      	$wpdb->query($sql_type_text);
 
-		      	$queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+		        $wpdb->insert(
+			        $inserttexttype,
+			        array(
+				        'name' => 'text',
+				        'hugeit_contact_id' => $formId,
+				        'description' => 'Submit',
+				        'conttype' => $inputtype,
+				        'hc_field_label' => 'Reset',
+				        'hc_other_field' => 'print_success_message',
+				        'field_type' => '',
+				        'hc_required' => '',
+				        'ordering' => $resOfMax,
+				        'published' => 2,
+				        'hc_input_show_default' => '1',
+				        'hc_left_right' => $leftRightPos,
+			        ),
+			        array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+		        );
+
+		      	$queryMax=$wpdb->prepare(
+		      		"SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",
+			        $formId
+		        );
 			    $row8=$wpdb->get_results($queryMax);
 			    $fieldID=$row8[0]->resId;
 			    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 			    $rowimages=$wpdb->get_results($fieldQuery);
-			    echo json_encode(array("outputField"=>buttonsHtml($rowimages[0],$themeId),"outputFieldSettings"=>buttonsSettingsHtml($rowimages[0]),"buttons" => 'button'));
+			    echo json_encode(array(
+			    	"outputField" => hugeit_contact_buttonsHtml($rowimages[0],$themeId),
+                    "outputFieldSettings" => hugeit_contact_buttonsSettingsHtml($rowimages[0]),
+				    "buttons" => 'button'
+			    ));
 		     	break;
 
 	     	case 'e_mail':
-		     	$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-			    $sql_type_text = "
-				INSERT INTO 
-				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'Type Your Email', '".$formId."', 'on', '".$inputtype."', 'E-mail', '','name','', '0', 2, '1', 'left' )";
-		        $wpdb->query($sql_type_text);
 
-		        $queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+		        $wpdb->insert(
+			        $inserttexttype,
+			        array(
+				        'name' => 'Type Your Email',
+				        'hugeit_contact_id' => $formId,
+				        'description' => 'on',
+				        'conttype' => $inputtype,
+				        'hc_field_label' => 'E-mail',
+				        'hc_other_field' => '',
+				        'field_type' => 'name',
+				        'hc_required' => '',
+				        'ordering' => 0,
+				        'published' => 2,
+				        'hc_input_show_default' => '1',
+				        'hc_left_right' => 'left',
+			        ),
+			        array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+		        );
+
+		        $queryMax=$wpdb->prepare(
+		        	"SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",
+			        $formId
+		        );
 			    $row8=$wpdb->get_results($queryMax);
 			    $fieldID=$row8[0]->resId;
-			    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
+			    $fieldQuery=$wpdb->prepare(
+			    	"SELECT * 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE id=%d",
+				    $fieldID
+			    );
 			    $rowimages=$wpdb->get_results($fieldQuery);
-			    echo json_encode(array("outputField"=>emailHtml($rowimages[0]),"outputFieldSettings"=>emailSettingsHtml($rowimages[0])));
+			    echo json_encode(array(
+			    	"outputField" => hugeit_contact_emailHtml($rowimages[0]),
+                    "outputFieldSettings" => hugeit_contact_emailSettingsHtml($rowimages[0])
+			    ));
 		     	break;
 
 	     	case 'nameSurname':
-		     	$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-			    $sql_type_text = "
-				INSERT INTO 
-				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'Name', '".$formId."', 'on', '".$inputtype."', 'Full Name', 'Surname','name','', '0', 2, '1', 'left' )";
-		        $wpdb->query($sql_type_text);
 
-		        $queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+		        $wpdb->insert(
+			        $inserttexttype,
+			        array(
+				        'name' => 'Name',
+				        'hugeit_contact_id' => $formId,
+				        'description' => 'on',
+				        'conttype' => $inputtype,
+				        'hc_field_label' => 'Full Name',
+				        'hc_other_field' => 'Surname',
+				        'field_type' => 'name',
+				        'hc_required' => '',
+				        'ordering' => 0,
+				        'published' => 2,
+				        'hc_input_show_default' => '1',
+				        'hc_left_right' => 'left',
+			        ),
+			        array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+		        );
+
+		        $queryMax=$wpdb->prepare(
+		        	"SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",
+			        $formId
+		        );
 			    $row8=$wpdb->get_results($queryMax);
 			    $fieldID=$row8[0]->resId;
 			    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 			    $rowimages=$wpdb->get_results($fieldQuery);
-			    echo json_encode(array("outputField"=>nameSurnameHtml($rowimages[0]),"outputFieldSettings"=>nameSurnameSettingsHtml($rowimages[0])));
+			    echo json_encode(array(
+			    	"outputField" => hugeit_contact_nameSurnameHtml($rowimages[0]),
+				    "outputFieldSettings"=>hugeit_contact_nameSurnameSettingsHtml($rowimages[0])
+			    ));
 		     	break;
 
 	     	case 'phone':
-		     	$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-			    $sql_type_text = "
-				INSERT INTO 
-				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'us', '".$formId."', 'on', '".$inputtype."', 'Phone', 'e.g. +1 123 4567','name','', '0', 2, '1', 'left' )";
-		        $wpdb->query($sql_type_text);
 
-		        $queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+		        $wpdb->insert(
+			        $inserttexttype,
+			        array(
+				        'name' => 'us',
+				        'hugeit_contact_id' => $formId,
+				        'description' => 'on',
+				        'conttype' => $inputtype,
+				        'hc_field_label' => 'Phone',
+				        'hc_other_field' => 'e.g. +1 123 4567',
+				        'field_type' => 'name',
+				        'hc_required' => '',
+				        'ordering' => 0,
+				        'published' => 2,
+				        'hc_input_show_default' => '1',
+				        'hc_left_right' => 'left',
+			        ),
+			        array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+		        );
+
+		        $queryMax=$wpdb->prepare(
+		        	"SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",
+			        $formId
+		        );
 			    $row8=$wpdb->get_results($queryMax);
 			    $fieldID=$row8[0]->resId;
 			    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 			    $rowimages=$wpdb->get_results($fieldQuery);
-			    echo json_encode(array("outputField"=>phoneHtml($rowimages[0]),"outputFieldSettings"=>phoneSettingsHtml($rowimages[0])));
+			    echo json_encode(array(
+			    	"outputField" => hugeit_contact_phoneHtml($rowimages[0]),
+				    "outputFieldSettings"=>hugeit_contact_phoneSettingsHtml($rowimages[0])
+			    ));
 		     	break;
 
 	     	case 'license':
-		     	$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
-			    $sql_type_text = "
-				INSERT INTO 
-				`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-				( 'License', '".$formId."', 'http://huge-it.com', '".$inputtype."', 'Policy Agreement', 'I have read and agreed to the {link}','name','left', '0', 2, '1', 'left' )";
-		        $wpdb->query($sql_type_text);
 
-		        $queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
+		        $wpdb->insert(
+			        $inserttexttype,
+			        array(
+				        'name' => 'License',
+				        'hugeit_contact_id' => $formId,
+				        'description' => 'http://huge-it.com',
+				        'conttype' => $inputtype,
+				        'hc_field_label' => 'Policy Agreement',
+				        'hc_other_field' => 'I have read and agreed to the {link}',
+				        'field_type' => 'name',
+				        'hc_required' => 'left',
+				        'ordering' => 0,
+				        'published' => 2,
+				        'hc_input_show_default' => '1',
+				        'hc_left_right' => 'left',
+			        ),
+			        array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+		        );
+
+		        $queryMax=$wpdb->prepare(
+		        	"SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",
+			        $formId
+		        );
 			    $row8=$wpdb->get_results($queryMax);
 			    $fieldID=$row8[0]->resId;
 			    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
 			    $rowimages=$wpdb->get_results($fieldQuery);
-			    echo json_encode(array("outputField"=>licenseHtml($rowimages[0],$themeId),"outputFieldSettings"=>licenseSettingsHtml($rowimages[0])));
+			    echo json_encode(array(
+			    	"outputField" => hugeit_contact_licenseHtml($rowimages[0],$themeId),
+				    "outputFieldSettings"=>hugeit_contact_licenseSettingsHtml($rowimages[0])
+			    ));
 		     	break;
 
 		}
 		
 	}
 	//REMOVE FIELDS
-	if(isset($_POST['task'])&&$_POST['task']=='removeFieldTask'){
-		if(isset($_POST['nonce'])){
+	if( isset($_POST['task']) && $_POST['task']=='removeFieldTask') {
+		if (isset($_POST['nonce'])){
 			$nonce = $_POST['nonce'];
-		}else{
+		} else {
 			$nonce ='';
 		}		
-		if ( !wp_verify_nonce( $nonce, 'builder_nonce' ) )return;
-		$formId=$_POST['formId'];
-		$all=$_POST['formData'];
+		if ( !wp_verify_nonce( $nonce, 'builder_nonce' ) )return false;
+		$formId = absint($_POST['formId']);
+		$all = $_POST['formData'];
 		parse_str("$all",$myArray);
-		$fieldID=$_POST['fieldId'];
-		$_POSTED=$myArray;
+		$fieldID = absint($_POST['fieldId']);
+		$_POSTED= array_map('sanitize_text_field', $myArray);
 		$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = %d order by id ASC",$formId);
 	    $rowim=$wpdb->get_results($query);
 		if(isset($_POSTED["name"])){
 			if($_POSTED["name"] != ''){
 				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  name = %s  WHERE id = %d ", $_POSTED["name"], $formId));
-				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $_POSTED["select_form_theme"], $formId));
+				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  hc_yourstyle = %s WHERE id = %d ", $_POSTED["select_form_theme"], $formId));
 			}
 		}	   
 	   foreach ($rowim as $key=>$rowimages){
 		   if(isset($_POSTED)&&isset($_POSTED["hc_left_right".$rowimages->id.""])){
 			   if($_POSTED["hc_left_right".$rowimages->id.""]){
-			   	$id=$rowimages->id;
-					if(isset($_POSTED["field_type".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  field_type = %s WHERE id = %d",$_POSTED["field_type".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_other_field".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_other_field = %s WHERE id = %d",$_POSTED["hc_other_field".$rowimages->id.""],$id));
-					if(isset($_POSTED["titleimage".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  name = %s  WHERE id = %d",stripslashes($_POSTED["titleimage".$rowimages->id.""]),$id));
-					if(isset($_POSTED["im_description".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  description = %s  WHERE id = %d",$_POSTED["im_description".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_required".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_required = %s WHERE id = %d",$_POSTED["hc_required".$rowimages->id.""],$id));
-					if(isset($_POSTED["imagess".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_field_label = %s  WHERE id = %d",stripslashes($_POSTED["imagess".$rowimages->id.""]),$id));
-					if(isset($_POSTED["hc_left_right".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_left_right = %s  WHERE id = %d",$_POSTED["hc_left_right".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_ordering".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  ordering = %s  WHERE id = %d",$_POSTED["hc_ordering".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_input_show_default".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_input_show_default = %s  WHERE id = %d",$_POSTED["hc_input_show_default".$rowimages->id.""],$id));
+			   	$id = absint($rowimages->id);
+					if ( isset( $_POSTED[ "field_type" . $rowimages->id . "" ] ) )
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  field_type = %s WHERE id = %d", $_POSTED[ "field_type" . $rowimages->id . "" ], $id ) );
+				   if ( isset( $_POSTED[ "hc_other_field" . $rowimages->id . "" ] ) ) {
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_other_field = %s WHERE id = %d", $_POSTED[ "hc_other_field" . $rowimages->id . "" ], $id ) );
+				   }
+				   if ( isset( $_POSTED[ "titleimage" . $rowimages->id . "" ] ) ) {
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  name = %s  WHERE id = %d", stripslashes( $_POSTED[ "titleimage" . $rowimages->id . "" ] ), $id ) );
+				   }
+				   if ( isset( $_POSTED[ "im_description" . $rowimages->id . "" ] ) ) {
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  description = %s  WHERE id = %d", $_POSTED[ "im_description" . $rowimages->id . "" ], $id ) );
+				   }
+				   if ( isset( $_POSTED[ "hc_required" . $rowimages->id . "" ] ) ) {
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_required = %s WHERE id = %d", $_POSTED[ "hc_required" . $rowimages->id . "" ], $id ) );
+				   }
+				   if ( isset( $_POSTED[ "imagess" . $rowimages->id . "" ] ) ) {
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_field_label = %s  WHERE id = %d", stripslashes( $_POSTED[ "imagess" . $rowimages->id . "" ] ), $id ) );
+				   }
+				   if ( isset( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) ) {
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_left_right = %s  WHERE id = %d", $_POSTED[ "hc_left_right" . $rowimages->id . "" ], $id ) );
+				   }
+				   if ( isset( $_POSTED[ "hc_ordering" . $rowimages->id . "" ] ) ) {
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  ordering = %s  WHERE id = %d", $_POSTED[ "hc_ordering" . $rowimages->id . "" ], $id ) );
+				   }
+				   if ( isset( $_POSTED["hc_input_show_default".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_input_show_default = %s  WHERE id = %d",$_POSTED["hc_input_show_default".$rowimages->id.""],$id));
 				}
 			}
 		}
-		$query=$wpdb->prepare("DELETE FROM ".$wpdb->prefix."huge_it_contact_contacts_fields  WHERE id = %d",$fieldID);
-	  	$wpdb->query($query);
-	  	echo json_encode(array("removedField"=>$fieldID));
+		$wpdb->delete(
+			$wpdb->prefix."huge_it_contact_contacts_fields",
+			array('id' => $fieldID),
+			array('%d')
+		);
+
+	  	echo json_encode(array(
+	  		"removedField" => $fieldID
+	    ));
 	}
 	//DUBLICATE FIELDS
-	if(isset($_POST['task'])&&$_POST['task']=='dublicateFieldTask'){
+	if (isset($_POST['task']) && $_POST['task'] == 'dublicateFieldTask'){
 		if(isset($_POST['nonce'])){
 			$nonce = $_POST['nonce'];
 		}else{
 			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'builder_nonce' ) )return;
-		$formId=$_POST['formId'];
-		$themeId=$_POST['themeId'];
+		}
+		if ( ! wp_verify_nonce( $nonce, 'builder_nonce' ) ) {
+			return false;
+		}
+		$formId = absint($_POST['formId']);
+		$themeId = absint($_POST['themeId']);
 		$all=$_POST['formData'];
 		parse_str("$all",$myArray);
-		$fieldID=$_POST['fieldId'];
-		$_POSTED=$myArray;
+		$fieldID = absint($_POST['fieldId']);
+		$_POSTED = array_map('sanitize_text_field', $myArray);
 		$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = %d order by id ASC",$formId);
-	    $rowim=$wpdb->get_results($query);
-		if(isset($_POSTED["name"])){
-			if($_POSTED["name"] != ''){
+	    $rowim = $wpdb->get_results($query);
+		if (isset($_POSTED["name"])){
+			if($_POSTED["name"] != '') {
 				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  name = %s  WHERE id = %d ", $_POSTED["name"], $formId));
 				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $_POSTED["select_form_theme"], $formId));
 			}
-		}	   
-	   foreach ($rowim as $key=>$rowimages){
-		   if(isset($_POSTED)&&isset($_POSTED["hc_left_right".$rowimages->id.""])){
-			   if($_POSTED["hc_left_right".$rowimages->id.""]){
-			   	$id=$rowimages->id;
-					if(isset($_POSTED["field_type".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  field_type = %s WHERE id = %d",$_POSTED["field_type".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_other_field".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_other_field = %s WHERE id = %d",$_POSTED["hc_other_field".$rowimages->id.""],$id));
-					if(isset($_POSTED["titleimage".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  name = %s  WHERE id = %d",stripslashes($_POSTED["titleimage".$rowimages->id.""]),$id));
-					if(isset($_POSTED["im_description".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  description = %s  WHERE id = %d",$_POSTED["im_description".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_required".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_required = %s WHERE id = %d",$_POSTED["hc_required".$rowimages->id.""],$id));
-					if(isset($_POSTED["imagess".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_field_label = %s  WHERE id = %d",stripslashes($_POSTED["imagess".$rowimages->id.""]),$id));
-					if(isset($_POSTED["hc_left_right".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_left_right = %s  WHERE id = %d",$_POSTED["hc_left_right".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_ordering".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  ordering = %s  WHERE id = %d",$_POSTED["hc_ordering".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_input_show_default".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_input_show_default = %s  WHERE id = %d",$_POSTED["hc_input_show_default".$rowimages->id.""],$id));
+		}
+		foreach ( $rowim as $key => $rowimages ) {
+			if ( isset( $_POSTED ) && isset( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) ) {
+				if ( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) {
+					$id = absint($rowimages->id);
+					if ( isset( $_POSTED[ "field_type" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  field_type = %s WHERE id = %d", $_POSTED[ "field_type" . $rowimages->id . "" ], $id ) );
+					}
+					if ( isset( $_POSTED[ "hc_other_field" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_other_field = %s WHERE id = %d", $_POSTED[ "hc_other_field" . $rowimages->id . "" ], $id ) );
+					}
+					if ( isset( $_POSTED[ "titleimage" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  name = %s  WHERE id = %d", stripslashes( $_POSTED[ "titleimage" . $rowimages->id . "" ] ), $id ) );
+					}
+					if ( isset( $_POSTED[ "im_description" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  description = %s  WHERE id = %d", $_POSTED[ "im_description" . $rowimages->id . "" ], $id ) );
+					}
+					if ( isset( $_POSTED[ "hc_required" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_required = %s WHERE id = %d", $_POSTED[ "hc_required" . $rowimages->id . "" ], $id ) );
+					}
+					if ( isset( $_POSTED[ "imagess" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_field_label = %s  WHERE id = %d", stripslashes( $_POSTED[ "imagess" . $rowimages->id . "" ] ), $id ) );
+					}
+					if ( isset( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_left_right = %s  WHERE id = %d", $_POSTED[ "hc_left_right" . $rowimages->id . "" ], $id ) );
+					}
+					if ( isset( $_POSTED[ "hc_ordering" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  ordering = %s  WHERE id = %d", $_POSTED[ "hc_ordering" . $rowimages->id . "" ], $id ) );
+					}
+					if ( isset( $_POSTED[ "hc_input_show_default" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_input_show_default = %s  WHERE id = %d", $_POSTED[ "hc_input_show_default" . $rowimages->id . "" ], $id ) );
+					}
 				}
 			}
 		}
@@ -1697,144 +2038,261 @@ if(! defined( 'ABSPATH' )) exit;
 		$inserttexttype = $wpdb->prefix . "huge_it_contact_contacts_fields";
 		$rowdubleorder=$rowduble->ordering+1;
 		$inputtype=$rowduble->conttype;
-	    $sql_type_text = "
-		INSERT INTO 
-		`" . $inserttexttype . "` ( `name`, `hugeit_contact_id`, `description`, `conttype`, `hc_field_label`, `hc_other_field`, `field_type`,`hc_required`, `ordering`, `published`, `hc_input_show_default`, `hc_left_right`) VALUES
-		( '".$rowduble->name."', '".$rowduble->hugeit_contact_id."', '".$rowduble->description."', '".$rowduble->conttype."', '".$rowduble->hc_field_label."', '".$rowduble->hc_other_field."','".$rowduble->field_type."','".$rowduble->hc_required."', '".$rowdubleorder."', '".$rowduble->published."', '".$rowduble->hc_input_show_default."', '".$rowduble->hc_left_right."' )";
-		$wpdb->query($sql_type_text);
+
+		$wpdb->insert(
+			$inserttexttype,
+			array(
+				'name' => $rowduble->name,
+				'hugeit_contact_id' => $rowduble->hugeit_contact_id,
+				'description' => $rowduble->description,
+				'conttype' => $rowduble->conttype,
+				'hc_field_label' => $rowduble->hc_field_label,
+				'hc_other_field' => $rowduble->hc_other_field,
+				'field_type' => $rowduble->field_type,
+				'hc_required' => $rowduble->hc_required,
+				'ordering' => $rowdubleorder,
+				'published' => $rowduble->published,
+				'hc_input_show_default' => $rowduble->hc_input_show_default,
+				'hc_left_right' => $rowduble->hc_left_right,
+			),
+			array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+		);
 
 		$queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
 	    $row8=$wpdb->get_results($queryMax);
 	    $fieldID2=$row8[0]->resId;
 	    $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID2);
 	    $rowimages=$wpdb->get_results($fieldQuery);
-		   
-	    switch ($inputtype) {
-		    case 'text':
-			    echo json_encode(array("outputField"=>textBoxHtml($rowimages[0]),"outputFieldSettings"=>textBoxSettingsHtml($rowimages[0]),"beforeId"=>$fieldID));
-		        break;
 
-		    case 'textarea':
-			    echo json_encode(array("outputField"=>textareaHtml($rowimages[0]),"outputFieldSettings"=>textareaSettingsHtml($rowimages[0]),"beforeId"=>$fieldID));
-		        break;
+		switch ( $inputtype ) {
+			case 'text':
+				echo json_encode( array( "outputField"         => hugeit_contact_textBoxHtml( $rowimages[0] ),
+				                         "outputFieldSettings" => hugeit_contact_textBoxSettingsHtml( $rowimages[0] ),
+				                         "beforeId"            => $fieldID,
+				) );
+				break;
 
-		    case 'selectbox':
-			    echo json_encode(array("outputField"=>selectboxHtml($rowimages[0]),"outputFieldSettings"=>selectboxSettingsHtml($rowimages[0]),"beforeId"=>$fieldID));
-		     	break;
+			case 'textarea':
+				echo json_encode( array( "outputField"         => hugeit_contact_textareaHtml( $rowimages[0] ),
+				                         "outputFieldSettings" => hugeit_contact_textareaSettingsHtml( $rowimages[0] ),
+				                         "beforeId"            => $fieldID,
+				) );
+				break;
 
-		     case 'checkbox':
-			    echo json_encode(array("outputField"=>checkboxHtml($rowimages[0],$themeId),"outputFieldSettings"=>checkboxSettingsHtml($rowimages[0]),"beforeId"=>$fieldID));
-		     	break;
+			case 'selectbox':
+				echo json_encode( array( "outputField"         => hugeit_contact_selectboxHtml( $rowimages[0] ),
+				                         "outputFieldSettings" => hugeit_contact_selectboxSettingsHtml( $rowimages[0] ),
+				                         "beforeId"            => $fieldID,
+				) );
+				break;
 
-	     	case 'radio_box':
-			    echo json_encode(array("outputField"=>radioboxHtml($rowimages[0],$themeId),"outputFieldSettings"=>radioboxSettingsHtml($rowimages[0]),"beforeId"=>$fieldID));
-		     	break;
+			case 'checkbox':
+				echo json_encode( array( "outputField"         => hugeit_contact_checkboxHtml( $rowimages[0], $themeId ),
+				                         "outputFieldSettings" => hugeit_contact_checkboxSettingsHtml( $rowimages[0] ),
+				                         "beforeId"            => $fieldID,
+				) );
+				break;
 
-	     	case 'file_box':
-			    echo json_encode(array("outputField"=>fileboxHtml($rowimages[0],$themeId),"outputFieldSettings"=>fileboxSettingsHtml($rowimages[0]),"beforeId"=>$fieldID));
-		     	break;
+			case 'radio_box':
+				echo json_encode( array( "outputField"         => hugeit_contact_radioboxHtml( $rowimages[0], $themeId ),
+				                         "outputFieldSettings" => hugeit_contact_radioboxSettingsHtml( $rowimages[0] ),
+				                         "beforeId"            => $fieldID,
+				) );
+				break;
 
-	     	case 'custom_text':
-			    echo json_encode(array("outputField"=>cutomtextHtml($rowimages[0]),"outputFieldSettings"=>cutomtextSettingsHtml($rowimages[0]),"customText"=>"titleimage".$fieldID."","beforeId"=>$fieldID));
-		     	break;
+			case 'file_box':
+				echo json_encode( array( "outputField"         => hugeit_contact_fileboxHtml( $rowimages[0], $themeId ),
+				                         "outputFieldSettings" => hugeit_contact_fileboxSettingsHtml( $rowimages[0] ),
+				                         "beforeId"            => $fieldID,
+				) );
+				break;
 
-	     	case 'e_mail':
-			    echo json_encode(array("outputField"=>emailHtml($rowimages[0]),"outputFieldSettings"=>emailSettingsHtml($rowimages[0]),"beforeId"=>$fieldID));
-		     	break;
+			case 'custom_text':
+				echo json_encode( array( "outputField"         => hugeit_contact_cutomtextHtml( $rowimages[0] ),
+				                         "outputFieldSettings" => hugeit_contact_cutomtextSettingsHtml( $rowimages[0] ),
+				                         "customText"          => "titleimage" . $fieldID . "",
+				                         "beforeId"            => $fieldID,
+				) );
+				break;
 
-	     	case 'nameSurname':
-			    echo json_encode(array("outputField"=>nameSurnameHtml($rowimages[0]),"outputFieldSettings"=>nameSurnameSettingsHtml($rowimages[0]),"beforeId"=>$fieldID));
-		     	break;
+			case 'e_mail':
+				echo json_encode( array( "outputField"         => hugeit_contact_emailHtml( $rowimages[0] ),
+				                         "outputFieldSettings" => hugeit_contact_emailSettingsHtml( $rowimages[0] ),
+				                         "beforeId"            => $fieldID,
+				) );
+				break;
 
-	     	case 'phone':
-			    echo json_encode(array("outputField"=>phoneHtml($rowimages[0]),"outputFieldSettings"=>phoneSettingsHtml($rowimages[0]),"beforeId"=>$fieldID));
-		     	break;
+			case 'nameSurname':
+				echo json_encode( array( "outputField"         => hugeit_contact_nameSurnameHtml( $rowimages[0] ),
+				                         "outputFieldSettings" => hugeit_contact_nameSurnameSettingsHtml( $rowimages[0] ),
+				                         "beforeId"            => $fieldID,
+				) );
+				break;
 
-	     	case 'license':
-			    echo json_encode(array("outputField"=>licenseHtml($rowimages[0]),"outputFieldSettings"=>licenseSettingsHtml($rowimages[0]),"beforeId"=>$fieldID));
-		     	break;
+			case 'phone':
+				echo json_encode( array( "outputField"         => hugeit_contact_phoneHtml( $rowimages[0] ),
+				                         "outputFieldSettings" => hugeit_contact_phoneSettingsHtml( $rowimages[0] ),
+				                         "beforeId"            => $fieldID,
+				) );
+				break;
+
+			case 'license':
+				echo json_encode( array( "outputField"         => hugeit_contact_licenseHtml( $rowimages[0] ),
+				                         "outputFieldSettings" => hugeit_contact_licenseSettingsHtml( $rowimages[0] ),
+				                         "beforeId"            => $fieldID,
+				) );
+				break;
 
 		}
 	}
 	//Save Form
-	if(isset($_POST['task'])&&$_POST['task']=='saveEntireForm'){
-		if(isset($_POST['nonce'])){
+	if (isset($_POST['task']) && $_POST['task'] == 'saveEntireForm') {
+		if (isset($_POST['nonce'])){
 			$nonce = $_POST['nonce'];
-		}else{
+		} else {
 			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'builder_nonce' ) )return;
-		$formId=$_POST['formId'];
-		$all=$_POST['formData'];
+		}
+		if ( !wp_verify_nonce( $nonce, 'builder_nonce' ) )return false;
+		$formId = absint($_POST['formId']);
+		$all = $_POST['formData'];
 		parse_str("$all",$myArray);
-		$_POSTED=$myArray;
+		$_POSTED = array_map('sanitize_text_field', $myArray);
 		$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = %d order by id ASC",$formId);
 	    $rowim=$wpdb->get_results($query);
-		if(isset($_POSTED["name"])){
-			if($_POSTED["name"] != ''){
-				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  name = %s  WHERE id = %d ", $_POSTED["name"], $formId));
-				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $_POSTED["select_form_theme"], $formId));
+		if ( isset( $_POSTED["name"] ) ) {
+			if ( $_POSTED["name"] != '' ) {
+				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  name = %s  WHERE id = %d ", $_POSTED["name"], $formId ) );
+				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $_POSTED["select_form_theme"], $formId ) );
 			}
-		}	   
-	   foreach ($rowim as $key=>$rowimages){
-		   if(isset($_POSTED)&&isset($_POSTED["hc_left_right".$rowimages->id.""])){
-			   if($_POSTED["hc_left_right".$rowimages->id.""]){
-			   		$id=$rowimages->id;
-					if(isset($_POSTED["field_type".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  field_type = %s WHERE id = %d",$_POSTED["field_type".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_other_field".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_other_field = %s WHERE id = %d",$_POSTED["hc_other_field".$rowimages->id.""],$id));
-					if(isset($_POSTED["titleimage".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  name = %s  WHERE id = %d",stripslashes($_POSTED["titleimage".$rowimages->id.""]),$id));
-					if(isset($_POSTED["im_description".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  description = %s  WHERE id = %d",$_POSTED["im_description".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_required".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_required = %s WHERE id = %d",$_POSTED["hc_required".$rowimages->id.""],$id));
-					if(isset($_POSTED["imagess".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_field_label = %s  WHERE id = %d",stripslashes($_POSTED["imagess".$rowimages->id.""]),$id));
-					if(isset($_POSTED["hc_left_right".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_left_right = %s  WHERE id = %d",$_POSTED["hc_left_right".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_ordering".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  ordering = %s  WHERE id = %d",$_POSTED["hc_ordering".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_input_show_default".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_input_show_default = %s  WHERE id = %d",$_POSTED["hc_input_show_default".$rowimages->id.""],$id));
+		}
+		foreach ( $rowim as $key => $rowimages ) {
+			if ( isset( $_POSTED ) && isset( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) ) {
+				if ( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) {
+					$id = absint($rowimages->id);
+					if ( isset( $_POSTED[ "field_type" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  field_type = %s WHERE id = %d", $_POSTED[ "field_type" . $rowimages->id . "" ], $id ) );
+					}
+					if ( isset( $_POSTED[ "hc_other_field" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_other_field = %s WHERE id = %d", $_POSTED[ "hc_other_field" . $rowimages->id . "" ], $id ) );
+					}
+					if ( isset( $_POSTED[ "titleimage" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  name = %s  WHERE id = %d", stripslashes( $_POSTED[ "titleimage" . $rowimages->id . "" ] ), $id ) );
+					}
+					if ( isset( $_POSTED[ "im_description" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  description = %s  WHERE id = %d", $_POSTED[ "im_description" . $rowimages->id . "" ], $id ) );
+					}
+					if ( isset( $_POSTED[ "hc_required" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_required = %s WHERE id = %d", $_POSTED[ "hc_required" . $rowimages->id . "" ], $id ) );
+					}
+					if ( isset( $_POSTED[ "imagess" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_field_label = %s  WHERE id = %d", stripslashes( $_POSTED[ "imagess" . $rowimages->id . "" ] ), $id ) );
+					}
+					if ( isset( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_left_right = %s  WHERE id = %d", $_POSTED[ "hc_left_right" . $rowimages->id . "" ], $id ) );
+					}
+					if ( isset( $_POSTED[ "hc_ordering" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  ordering = %s  WHERE id = %d", $_POSTED[ "hc_ordering" . $rowimages->id . "" ], $id ) );
+					}
+					if ( isset( $_POSTED[ "hc_input_show_default" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_input_show_default = %s  WHERE id = %d", $_POSTED[ "hc_input_show_default" . $rowimages->id . "" ], $id ) );
+					}
 				}
 			}
 		}
-		echo json_encode(array("saveForm"=>"success"));
+		echo json_encode(array(
+			"saveForm"=>"success"
+		));
 	}
 	//Change Theme
-	if(isset($_POST['task'])&&$_POST['task']=='changeFormTheme'){
+	if (isset($_POST['task'])&&$_POST['task']=='changeFormTheme') {
 		if(isset($_POST['nonce'])){
 			$nonce = $_POST['nonce'];
 		}else{
 			$nonce ='';
 		}		
 		if ( !wp_verify_nonce( $nonce, 'builder_nonce' ) )return;
-		$formId=$_POST['formId'];
-		$themeId=$_POST['themeId'];
-		$all=$_POST['formData'];
+		$themeId = absint($_POST['themeId']);
+		$formId = absint($_POST['formId']);
+		$all = $_POST['formData'];
 		parse_str("$all",$myArray);
-		$_POSTED=$myArray;
+		$_POSTED = array_map('sanitize_text_field', $myArray);
 		$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = %d order by id ASC",$formId);
 	    $rowim=$wpdb->get_results($query);
-		if(isset($_POSTED["name"])){
-			if($_POSTED["name"] != ''){
-				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  name = %s  WHERE id = %d ", $_POSTED["name"], $formId));
-				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $themeId, $formId));
+		if ( isset( $_POSTED["name"] ) ) {
+			if ( $_POSTED["name"] != '' ) {
+				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  name = %s  WHERE id = %d ", $_POSTED["name"], $formId ) );
+				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $themeId, $formId ) );
 			}
-		}	   
-	   foreach ($rowim as $key=>$rowimages){
-		   if(isset($_POSTED)&&isset($_POSTED["hc_left_right".$rowimages->id.""])){
-			   if($_POSTED["hc_left_right".$rowimages->id.""]){
-			   		$id=$rowimages->id;
-					if(isset($_POSTED["field_type".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  field_type = %s WHERE id = %d",$_POSTED["field_type".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_other_field".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_other_field = %s WHERE id = %d",$_POSTED["hc_other_field".$rowimages->id.""],$id));
-					if(isset($_POSTED["titleimage".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  name = %s  WHERE id = %d",stripslashes($_POSTED["titleimage".$rowimages->id.""]),$id));
-					if(isset($_POSTED["im_description".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  description = %s  WHERE id = %d",$_POSTED["im_description".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_required".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_required = %s WHERE id = %d",$_POSTED["hc_required".$rowimages->id.""],$id));
-					if(isset($_POSTED["imagess".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_field_label = %s  WHERE id = %d",stripslashes($_POSTED["imagess".$rowimages->id.""]),$id));
-					if(isset($_POSTED["hc_left_right".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_left_right = %s  WHERE id = %d",$_POSTED["hc_left_right".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_ordering".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  ordering = %s  WHERE id = %d",$_POSTED["hc_ordering".$rowimages->id.""],$id));
-					if(isset($_POSTED["hc_input_show_default".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_input_show_default = %s  WHERE id = %d",$_POSTED["hc_input_show_default".$rowimages->id.""],$id));
+		}
+		foreach ( $rowim as $key => $rowimages ) {
+			if ( isset( $_POSTED ) && isset( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) ) {
+				if ( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) {
+					$id = absint($rowimages->id);
+					if ( isset( $_POSTED[ "field_type" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare(
+							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
+							SET  field_type = %s 
+							WHERE id = %d", $_POSTED[ "field_type" . $rowimages->id . "" ],
+							$id ) );
+					}
+					if ( isset( $_POSTED[ "hc_other_field" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare(
+							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
+							SET  hc_other_field = %s 
+							WHERE id = %d", $_POSTED[ "hc_other_field" . $rowimages->id . "" ],
+							$id ) );
+					}
+					if ( isset( $_POSTED[ "titleimage" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare(
+							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
+							SET  name = %s  
+							WHERE id = %d", stripslashes( $_POSTED[ "titleimage" . $rowimages->id . ""
+						] ), $id ) );
+					}
+					if ( isset( $_POSTED[ "im_description" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare(
+							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
+							SET  description = %s  
+							WHERE id = %d", $_POSTED[ "im_description" . $rowimages->id . "" ],
+							$id ) );
+					}
+					if ( isset( $_POSTED[ "hc_required" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare(
+							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
+							SET  hc_required = %s 
+							WHERE id = %d", $_POSTED[ "hc_required" . $rowimages->id . "" ],
+							$id ) );
+					}
+					if ( isset( $_POSTED[ "imagess" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare(
+							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
+							SET  hc_field_label = %s  
+							WHERE id = %d", stripslashes( $_POSTED[ "imagess" . $rowimages->id . ""
+						] ), $id ) );
+					}
+					if ( isset( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare(
+							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
+							SET  hc_left_right = %s  
+							WHERE id = %d", $_POSTED[ "hc_left_right" . $rowimages->id . "" ],
+							$id ) );
+					}
+					if ( isset( $_POSTED[ "hc_ordering" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare(
+							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
+							SET  ordering = %s  
+							WHERE id = %d", $_POSTED[ "hc_ordering" . $rowimages->id . "" ],
+							$id ) );
+					}
+					if ( isset( $_POSTED[ "hc_input_show_default" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare(
+							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
+							SET  hc_input_show_default = %s  
+							WHERE id = %d", $_POSTED[ "hc_input_show_default" . $rowimages->id . "" ],
+							$id ) );
+					}
 				}
 			}
 		}
-		//
-		echo drawThemeNew($themeId);
+		echo hugeit_contact_drawThemeNew($themeId);
 	}
-	//die();
-
-
-?>

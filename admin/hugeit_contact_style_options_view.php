@@ -1,38 +1,37 @@
 <?php
-if(! defined( 'ABSPATH' )) exit;
-if (function_exists('current_user_can'))
-    if (!current_user_can('manage_options')) {
-        die('Access Denied');
-    }
-if (!function_exists('current_user_can')) {
-    die('Access Denied');
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+if ( function_exists( 'current_user_can' ) ) {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		die( 'Access Denied' );
+	}
+}
+if ( ! function_exists( 'current_user_can' ) ) {
+	die( 'Access Denied' );
 }
 require_once("hugeit_free_version.php");
-function html_hugeit_contact_styles($rows){
+function hugeit_contact_html_styles($rows){
 	global $wpdb;
 	?>
     <script language="javascript">
-		function ordering(name,as_or_desc)
-		{
+		function ordering(name,as_or_desc) {
 			document.getElementById('asc_or_desc').value=as_or_desc;		
 			document.getElementById('order_by').value=name;
 			document.getElementById('admin_form').submit();
 		}
-		function saveorder()
-		{
+		function saveorder() {
 			document.getElementById('saveorder').value="save";
 			document.getElementById('admin_form').submit();
 			
 		}
-		function listItemTask(this_id,replace_id)
-		{
+		function listItemTask(this_id,replace_id) {
 			document.getElementById('oreder_move').value=this_id+","+replace_id;
 			document.getElementById('admin_form').submit();
 		}
-		function doNothing() {  
+		function doNothing() {
 			var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
 			if( keyCode == 13 ) {
-
 
 				if(!e) var e = window.event;
 
@@ -40,15 +39,15 @@ function html_hugeit_contact_styles($rows){
 				e.returnValue = false;
 
 				if (e.stopPropagation) {
-						e.stopPropagation();
-						e.preventDefault();
+					e.stopPropagation();
+					e.preventDefault();
 				}
 			}
 		}
 	</script>
 
 <div class="wrap">
-	<?php drawFreeBanner('yes');?>
+	<?php hugeit_contact_drawFreeBanner('yes');?>
 	<div id="poststuff">
 		<div id="hugeit_contacts-list-page">
 			<form method="post"  onkeypress="doNothing()" action="admin.php?page=hugeit_forms_main_page" id="admin_form" name="admin_form">
@@ -58,16 +57,15 @@ function html_hugeit_contact_styles($rows){
 			</h2>
 			
 			<?php
-			$serch_value='';
-			if(isset($_POST['serch_or_not'])) {if($_POST['serch_or_not']=="search"){ $serch_value=esc_html(stripslashes($_POST['search_events_by_title'])); }else{$serch_value="";}} 
+			if ( isset( $_POST['serch_or_not'] ) ) {
+				$serch_value = $_POST['serch_or_not'] == "search" ? esc_html( stripslashes( $_POST['search_events_by_title'] ) ) : "";
+			}
 			$serch_fields='<div class="alignleft actions"">				
 			<div class="alignleft actions">
 				<input type="button" value="Search" onclick="document.getElementById(\'page_number\').value=\'1\'; document.getElementById(\'serch_or_not\').value=\'search\';
 				 document.getElementById(\'admin_form\').submit();" class="button-secondary action">
 				 <input type="button" value="Reset" onclick="window.location.href=\'admin.php?page=hugeit_forms_main_page\'" class="button-secondary action">
 			</div>';
-
-			
 			?>
 			<table class="wp-list-table widefat fixed pages" style="width:95%">
 				<thead>
@@ -79,128 +77,103 @@ function html_hugeit_contact_styles($rows){
 				 </tr>
 				</thead>
 				<tbody>
-				 <?php 
-				 $trcount=1;
-				  for($i=0; $i<count($rows);$i++){
-					$trcount++;
-					$ka0=0;
-					$ka1=0;
-					if(isset($rows[$i-1]->id)){
-						if(isset($rows[$i]->hc_width)){
-							  if($rows[$i]->hc_width==$rows[$i-1]->hc_width){
-							  $x1=$rows[$i]->id;
-							  $x2=$rows[$i-1]->id;
-							  $ka0=1;
-							  }
-							  else
-							  {
-								  $jj=2;
-								  while(isset($rows[$i-$jj]))
-								  {
-									  if($rows[$i]->hc_width==$rows[$i-$jj]->hc_width)
-									  {
-										  $ka0=1;
-										  $x1=$rows[$i]->id;
-										  $x2=$rows[$i-$jj]->id;
-										   break;
-									  }
-									$jj++;
-								  }
-							  }
-							  if($ka0){
-								$move_up='<span><a href="#reorder" onclick="return listItemTask(\''.$x1.'\',\''.$x2.'\')" title="Move Up">   <img src="'.plugins_url('images/uparrow.png',__FILE__).'" width="16" height="16" border="0" alt="Move Up"></a></span>';
-							  }
-							  else{
-								$move_up="";
-							  }
-						  }
-					}else{$move_up="";}				
-					if(isset($rows[$i+1]->id)){
-						if(isset($rows[$i]->hc_width)){
-							if($rows[$i]->hc_width==$rows[$i+1]->hc_width){
-							  $x1=$rows[$i]->id;
-							  $x2=$rows[$i+1]->id;
-							  $ka1=1;
-							}
-							else
-							{
-								  $jj=2;
-								  while(isset($rows[$i+$jj]))
-								  {
-									  if($rows[$i]->hc_width==$rows[$i+$jj]->hc_width)
-									  {
-										  $ka1=1;
-										  $x1=$rows[$i]->id;
-										  $x2=$rows[$i+$jj]->id;
-										  break;
-									  }
-									$jj++;
-								  }
-							}
-							
-							if($ka1){
-								$move_down='<span><a href="#reorder" onclick="return listItemTask(\''.$x1.'\',\''. $x2.'\')" title="Move Down">  <img src="'.plugins_url('images/downarrow.png',__FILE__).'" width="16" height="16" border="0" alt="Move Down"></a></span>';
-							}else{
-								$move_down="";	
-							}
-						}
-					}
-					if(!isset($rows[$i]->par_name))$rows[$i]->par_name='';
-					$uncat=$rows[$i]->par_name;
-					if(isset($rows[$i]->last_update))
-						$pr_count=$rows[$i]->last_update;
-					else
-						$pr_count=0;
+				 <?php
+				 $trcount = 1;
+				 for ( $i = 0; $i < count( $rows ); $i ++ ) :
+					 $trcount ++;
+					 $ka0 = 0;
+					 $ka1 = 0;
+					 $move_up = "";
+					 if ( isset( $rows[ $i - 1 ]->id ) ) {
+						 if ( isset( $rows[ $i ]->hc_width ) ) {
+							 if ( $rows[ $i ]->hc_width == $rows[ $i - 1 ]->hc_width ) {
+								 $x1  = $rows[ $i ]->id;
+								 $x2  = $rows[ $i - 1 ]->id;
+								 $ka0 = 1;
+							 } else {
+								 $jj = 2;
+								 while ( isset( $rows[ $i - $jj ] ) ) {
+									 if ( $rows[ $i ]->hc_width == $rows[ $i - $jj ]->hc_width ) {
+										 $ka0 = 1;
+										 $x1  = $rows[ $i ]->id;
+										 $x2  = $rows[ $i - $jj ]->id;
+										 break;
+									 }
+									 $jj ++;
+								 }
+							 }
+
+							 if ( $ka0 ) {
+								 $move_up = '<span><a href="#reorder" onclick="return listItemTask(\'' . $x1 . '\',\'' . $x2 . '\')" title="Move Up">   <img src="' . plugins_url( 'images/uparrow.png', __FILE__ ) . '" width="16" height="16" border="0" alt="Move Up"></a></span>';
+							 }
+						 }
+					 }
+					 if ( isset( $rows[ $i + 1 ]->id ) ) {
+						 if ( isset( $rows[ $i ]->hc_width ) ) {
+							 if ( $rows[ $i ]->hc_width == $rows[ $i + 1 ]->hc_width ) {
+								 $x1  = $rows[ $i ]->id;
+								 $x2  = $rows[ $i + 1 ]->id;
+								 $ka1 = 1;
+							 } else {
+								 $jj = 2;
+								 while ( isset( $rows[ $i + $jj ] ) ) {
+									 if ( $rows[ $i ]->hc_width == $rows[ $i + $jj ]->hc_width ) {
+										 $ka1 = 1;
+										 $x1  = $rows[ $i ]->id;
+										 $x2  = $rows[ $i + $jj ]->id;
+										 break;
+									 }
+									 $jj ++;
+								 }
+							 }
+
+							 $move_down = "";
+
+							 if ( $ka1 ) {
+								 $move_down = '<span><a href="#reorder" onclick="return listItemTask(\'' . $x1 . '\',\'' . $x2 . '\')" title="Move Down">  <img src="' . plugins_url( 'images/downarrow.png', __FILE__ ) . '" width="16" height="16" border="0" alt="Move Down"></a></span>';
+							 }
+						 }
+					 }
+					 if ( ! isset( $rows[ $i ]->par_name ) ) {
+						 $rows[ $i ]->par_name = '';
+					 }
+					 $uncat = $rows[ $i ]->par_name;
+					 if ( isset( $rows[ $i ]->last_update ) ) {
+						 $pr_count = $rows[ $i ]->last_update;
+					 } else {
+						 $pr_count = 0;
+					 }
 
 
-					?>
-					<tr <?php if($trcount%2==0){ echo 'class="has-background"';}?>>
+					 ?>
+					<tr <?php if($trcount%2==0) { echo 'class="has-background"';}?>>
 						<td><?php echo $rows[$i]->id; ?></td>
 						<td><a  href="admin.php?page=hugeit_forms_theme_options&form_id=<?php echo $rows[$i]->id?>"><?php echo esc_html(stripslashes($rows[$i]->name)); ?></a></td>
 						<td><?php if(!($pr_count)){echo '0';} else{ echo $rows[$i]->last_update;} ?></td>
 						<td><?php if($rows[$i]->id!=1):?><a  href="#" onclick="alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');	" >Delete <i>(pro)</i></a><?php endif; ?></td>
 					</tr> 
-				 <?php } ?>
+				 <?php endfor; ?>
 				</tbody>
 			</table>
-			 <input type="hidden" name="oreder_move" id="oreder_move" value="" />
-			 <input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo $_POST['asc_or_desc'];?>"  />
-			 <input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo $_POST['order_by'];?>"  />
-			 <input type="hidden" name="saveorder" id="saveorder" value="" />
-
-			 <?php
-			?>
+			<input type="hidden" name="oreder_move" id="oreder_move" value="" />
+			<input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo $_POST['asc_or_desc'];?>"  />
+			<input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo $_POST['order_by'];?>"  />
+			<input type="hidden" name="saveorder" id="saveorder" value="" />
 			</form>
 		</div>
 	</div>
 </div>
     <?php
-
 }
-function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){?> 
+function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){?>
 <!-- STYLES CUSTOMIZATION PAGE -->
 <div class="wrap">
-<?php drawFreeBanner('yes');?>
+<?php hugeit_contact_drawFreeBanner('yes');?>
 <div id="poststuff">
 		<?php $path_site = plugins_url("Front_images", __FILE__); ?>
 		<input type="hidden" id="type" name="type" value="<?php echo isset($_POST['type']) ? $_POST['type'] : '1'; ?>"/> 
           <script>
-            // function change_type(type) {
-            //     type = (type == '' ? 3 : type);
-            //     document.getElementById('type').value = type;
-            //     for ($i = 2; $i < 9; $i++) {
-            //         if ($i == type) {
-            //             document.getElementById('fieldset_' + $i).style.display = '';
-            //             document.getElementById('div_' + $i).style.background = '#C5C5C5';
-            //         }
-            //         else {
-            //             document.getElementById('fieldset_' + $i).style.display = 'none';
-            //             document.getElementById('div_' + $i).style.background = '#F4F4F4';
-            //         }
-            //     }
-            // }
-            //window.onload = function() { change_type(<?php echo isset($_POST['type']) ? $_POST['type'] : '2'; ?>); };
-        	function updateInput(ish){
+        	function hugeit_contact_updateInput(ish){
 			    document.getElementById("themeName").value = ish;
 			}      
 		</script>
@@ -218,7 +191,7 @@ function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){
 					}
 					else{ ?>
 						<li class="active" onclick="this.firstElementChild.style.width = ((this.firstElementChild.value.length + 1) * 8) + 'px';" style="background-image:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>);cursor:pointer;">
-							<input onfocus="this.style.width = ((this.value.length + 2) * 10) + 'px'" onkeyup="updateInput(this.value)" class="text_area" type="text" name="name" id="name" maxlength="250" value="<?php echo esc_html(stripslashes($style_theme->name));?>" />
+							<input onfocus="this.style.width = ((this.value.length + 2) * 10) + 'px'" onkeyup="hugeit_contact_updateInput(this.value)" class="text_area" type="text" name="name" id="name" maxlength="250" value="<?php echo esc_html(stripslashes($style_theme->name));?>" />
 						</li>
 					<?php	
 					}
@@ -235,7 +208,7 @@ function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){
 				<a onclick="alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');" class="save-hugeit_contact-options button-primary">Save  <i>(pro)</i></a>		
 			</div>
 			<div class="options-block">
-			<form action="admin.php?page=hugeit_forms_theme_options&form_id=<?php echo $_GET["form_id"]; ?>&task=save" method="post" id="adminForm" name="adminForm">
+			<form action="admin.php?page=hugeit_forms_theme_options&form_id=<?php echo esc_url($_GET["form_id"]); ?>&task=save" method="post" id="adminForm" name="adminForm">
 				<input type="hidden" id="themeName" name="themeName" value="">
 				<div>
 					<h3>Form Block Styles</h3>
@@ -267,7 +240,7 @@ function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){
 					</div>
 					<div>
 						<label for="form_border_size">Form Border Size</label>
-						<input type="number" name="params[form_border_size]" id="form_border_size" value="<?php echo $param_values['form_border_size']; ?>" class="text" type="number" />
+						<input type="number" name="params[form_border_size]" id="form_border_size" value="<?php echo $param_values['form_border_size']; ?>" class="text" />
 						<span>px</span>
 					</div>
 					<div>
@@ -281,7 +254,7 @@ function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){
 					</div>
 					<div>
 						<label for="form_title_size">Form Title Size</label>
-						<input type="number" name="params[form_title_size]" id="form_title_size" value="<?php echo $param_values['form_title_size']; ?>" class="text"  type="number" />
+						<input type="number" name="params[form_title_size]" id="form_title_size" value="<?php echo $param_values['form_title_size']; ?>" class="text" />
 						<span>px</span>
 					</div>
 					<div>
@@ -293,7 +266,7 @@ function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){
 					<h3>Labels Styles</h3>
 					<div>
 						<label for="form_label_size">Label Size</label>
-						<input type="number" name="params[form_label_size]" id="form_label_size" value="<?php echo $param_values['form_label_size']; ?>" class="text"  type="number" />
+						<input type="number" name="params[form_label_size]" id="form_label_size" value="<?php echo $param_values['form_label_size']; ?>" class="text" />
 						<span>px</span>
 					</div>
 					<div>
@@ -351,12 +324,12 @@ function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){
 					</div>
 					<div>
 						<label for="form_input_text_border_size">Input-Text Border Size</label>
-						<input type="number" name="params[form_input_text_border_size]" id="form_input_text_border_size"  type="number" value="<?php echo $param_values['form_input_text_border_size']; ?>" class="text" />
+						<input type="number" name="params[form_input_text_border_size]" id="form_input_text_border_size" value="<?php echo $param_values['form_input_text_border_size']; ?>" class="text" />
 						<span>px</span>
 					</div>
 					<div>
 						<label for="form_input_text_border_radius">Input-Text Border Radius</label>
-						<input type="number" name="params[form_input_text_border_radius]" id="form_input_text_border_radius"  type="number" value="<?php echo $param_values['form_input_text_border_radius']; ?>" class="text" />
+						<input type="number" name="params[form_input_text_border_radius]" id="form_input_text_border_radius" value="<?php echo $param_values['form_input_text_border_radius']; ?>" class="text" />
 						<span>px</span>
 					</div>
 					<div>
@@ -365,7 +338,7 @@ function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){
 					</div>
 					<div>
 						<label for="form_input_text_font_size">Input-Text Font Size</label>
-						<input type="number" name="params[form_input_text_font_size]" id="form_input_text_font_size"  type="number" value="<?php echo $param_values['form_input_text_font_size']; ?>" class="text" />
+						<input type="number" name="params[form_input_text_font_size]" id="form_input_text_font_size" value="<?php echo $param_values['form_input_text_font_size']; ?>" class="text" />
 						<span>px</span>
 					</div>
 					<div>
@@ -386,12 +359,12 @@ function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){
 					</div>
 					<div>
 						<label for="form_textarea_border_size">Textarea Border Size</label>
-						<input type="number" name="params[form_textarea_border_size]" id="form_textarea_border_size"  type="number" value="<?php echo $param_values['form_textarea_border_size']; ?>" class="text" />
+						<input type="number" name="params[form_textarea_border_size]" id="form_textarea_border_size" value="<?php echo $param_values['form_textarea_border_size']; ?>" class="text" />
 						<span>px</span>
 					</div>
 					<div>
 						<label for="form_textarea_border_radius">Textarea Border Radius</label>
-						<input type="number" name="params[form_textarea_border_radius]" id="form_textarea_border_radius"  type="number" value="<?php echo $param_values['form_textarea_border_radius']; ?>" class="text" />
+						<input type="number" name="params[form_textarea_border_radius]" id="form_textarea_border_radius" value="<?php echo $param_values['form_textarea_border_radius']; ?>" class="text" />
 						<span>px</span>
 					</div>
 					<div>
@@ -400,7 +373,7 @@ function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){
 					</div>
 					<div>
 						<label for="form_textarea_font_size">Textarea Font Size</label>
-						<input type="number" name="params[form_textarea_font_size]" id="form_textarea_font_size" type="number" value="<?php echo $param_values['form_textarea_font_size']; ?>" class="text" />
+						<input type="number" name="params[form_textarea_font_size]" id="form_textarea_font_size" value="<?php echo $param_values['form_textarea_font_size']; ?>" class="text" />
 						<span>px</span>
 					</div>
 					<div>
@@ -423,7 +396,7 @@ function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){
 					</div>
 					<div>
 						<label for="form_selectbox_border_size">Selectbox Border Size</label>
-						<input type="number" name="params[form_selectbox_border_size]" id="form_selectbox_border_size" type="number" value="<?php echo $param_values['form_selectbox_border_size']; ?>" class="text" />
+						<input type="number" name="params[form_selectbox_border_size]" id="form_selectbox_border_size" value="<?php echo $param_values['form_selectbox_border_size']; ?>" class="text" />
 						<span>px</span>
 					</div>
 					<div>
@@ -437,7 +410,7 @@ function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){
 					</div>
 					<div>
 						<label for="form_selectbox_font_size">Selectbox Font Size</label>
-						<input type="number" name="params[form_selectbox_font_size]" id="form_selectbox_font_size" type="number" value="<?php echo $param_values['form_selectbox_font_size']; ?>" class="text" />
+						<input type="number" name="params[form_selectbox_font_size]" id="form_selectbox_font_size" value="<?php echo $param_values['form_selectbox_font_size']; ?>" class="text" />
 						<span>px</span>
 					</div>
 					<div>
@@ -790,10 +763,6 @@ function html_hugeit_contact_editstyles($param_values, $op_type, $style_themes){
 						<span>px</span>
 					</div>				
 				</div>
-				<?php @session_start();
-					  $hugeItFormCSRFToken = $_SESSION["csrf_token_hugeit_forms"] = md5(time());
-				?>
-				<input type="hidden" name="csrf_token_hugeit_forms" value="<?php echo $hugeItFormCSRFToken; ?>" />
 			</form>
 
 		</div>

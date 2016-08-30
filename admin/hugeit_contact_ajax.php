@@ -1,5 +1,7 @@
 <?php
-if(! defined( 'ABSPATH' )) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 function hugeit_contact_ajax_action_callback(){
 	global $wpdb;
 ////////////////////////SUBMISSION PAGE////////////////////////BEGIN
@@ -14,12 +16,13 @@ function hugeit_contact_ajax_action_callback(){
 		$arrayOfids=$_POST['spam_submitions'];
 		$allNumbers = true;
 		foreach ($arrayOfids as $item) {
+			$item = absint($item);
 		    if (!is_numeric($item)) {
 		        $allNumbers = false;
 		        break;
 		    }
 		}
-		if($allNumbers==true){
+		if($allNumbers){
 			foreach ($arrayOfids as $arrayOfid) {
 				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_submission SET customer_spam = '%d'  WHERE id = '%d' ", 1, $arrayOfid));
 			}
@@ -34,8 +37,9 @@ function hugeit_contact_ajax_action_callback(){
 			$nonce ='';
 		}		
 		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
-		$subId=$_POST['submissionId'];	
+		$subId= sanitize_text_field($_POST['submissionId']);
 		if(is_numeric($subId)){
+			$subId = absint($subId);
 			$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_submission SET customer_spam = '%d'  WHERE id = '%d' ", 1, $subId));
 		}			
 		return;
@@ -51,12 +55,13 @@ function hugeit_contact_ajax_action_callback(){
 		$arrayOfids=$_POST['spam_submitions'];
 		$allNumbers = true;
 		foreach ($arrayOfids as $item) {
+			$item = absint($item);
 		    if (!is_numeric($item)) {
 		        $allNumbers = false;
 		        break;
 		    }
 		}
-		if($allNumbers==true){
+		if($allNumbers){
 			foreach ($arrayOfids as $arrayOfid) {
 				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_submission SET customer_spam = '%d'  WHERE id = '%d' ", 0, $arrayOfid));
 			}
@@ -72,7 +77,8 @@ function hugeit_contact_ajax_action_callback(){
 		}		
 		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
 		$subId=$_POST['submissionId'];	
-		if(is_numeric($subId)){	
+		if(is_numeric($subId)){
+			$subId = absint($subId);
 			$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_submission SET customer_spam = '%d'  WHERE id = '%d' ", 0, $subId));
 		}
 		return;
@@ -88,13 +94,15 @@ function hugeit_contact_ajax_action_callback(){
 		$arrayOfids=$_POST['submitions_for_delete'];
 		$allNumbers = true;
 		foreach ($arrayOfids as $item) {
+			$item = absint($item);
 		    if (!is_numeric($item)) {
 		        $allNumbers = false;
 		        break;
 		    }
 		}
-		if($allNumbers==true){
+		if($allNumbers){
 			foreach ($arrayOfids as $arrayOfid) {
+				$arrayOfid = absint($arrayOfid);
 				$wpdb->query($wpdb->prepare("DELETE FROM ".$wpdb->prefix."huge_it_contact_submission WHERE id=%d",$arrayOfid));
 			}
 		}		
@@ -110,6 +118,7 @@ function hugeit_contact_ajax_action_callback(){
 		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
 		$subId=$_POST['submissionId'];
 		if(is_numeric($subId)){
+			$subId = absint($subId);
 			$wpdb->query($wpdb->prepare("DELETE FROM ".$wpdb->prefix."huge_it_contact_submission WHERE id=%d",$subId));
 		}	
 		return;
@@ -132,6 +141,7 @@ function hugeit_contact_ajax_action_callback(){
 		}
 		if($allNumbers==true){
 			foreach ($arrayOfids as $arrayOfid) {
+				$arrayOfid = absint($arrayOfid);
 				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_submission SET customer_read_or_not = '%d'  WHERE id = '%d' ", 1, $arrayOfid));
 			}
 		}
@@ -155,6 +165,7 @@ function hugeit_contact_ajax_action_callback(){
 		}
 		if($allNumbers==true){
 			foreach ($arrayOfids as $arrayOfid) {
+				$arrayOfid = absint($arrayOfid);
 				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_submission SET customer_read_or_not = '%d'  WHERE id = '%d' ", 0, $arrayOfid));
 			}
 		}
@@ -168,19 +179,19 @@ function hugeit_contact_ajax_action_callback(){
 			$nonce ='';
 		}		
 		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
-		$countSub=$_POST['countTorefresh'];
-		$subID=$_POST['subID'];
+		$countSub= absint($_POST['countTorefresh']);
+		$subID= absint($_POST['subID']);
 		if($countSub!=0){
 			$submitionsCount = $wpdb->get_results("SELECT count(customer_read_or_not) AS all_count FROM " . $wpdb->prefix . "huge_it_contact_submission WHERE contact_id=".$subID."");
 		}
 		if(isset($_POST['marked_submitions'])){
-			$markedSubmitions=$_POST['marked_submitions'];	
+			$markedSubmitions = sanitize_text_field($_POST['marked_submitions']);
 		}else{
 			$markedSubmitions='';
 		}		
 		$counmarked=$_POST['countTorefresh'];
-		if($markedSubmitions!=''){
-			if($submitionsCount[0]->all_count!=$counmarked&&$counmarked!=0){
+		if(trim($markedSubmitions)!=''){
+			if(isset($submitionsCount[0]) && $submitionsCount[0]->all_count != $counmarked && $counmarked != 0){
 				$subToAppend=$wpdb->prepare("SELECT * FROM ". $wpdb->prefix . "huge_it_contact_submission WHERE `id` > %d",$markedSubmitions);
 				$subToAppends2=$wpdb->get_results($subToAppend);
 				$output='';
@@ -188,13 +199,11 @@ function hugeit_contact_ajax_action_callback(){
 				
 				foreach ($subToAppends2 as $subToAppend) {
 					$readOrNot='';
-					if($subToAppend->customer_read_or_not == 1){ $readOrNot="read"; } else { $readOrNot="unread"; }
+					$readOrNot = $subToAppend->customer_read_or_not == 1 ? "read" : $readOrNot="unread";
 					$spamOrNot='';
-					if($subToAppend->customer_spam == 1){ $spamOrNot=" spam"; } else { $spamOrNot=""; }
+					$spamOrNot = $subToAppend->customer_spam == 1 ? " spam" : "";
 					$depth='';
 					if($keyForBackground%2 == 0) $depth=" alt";
-					$spamer='';
-					$show='';
 					$displayOrNot='';
 					if($subToAppend->customer_spam != 1) $displayOrNot="style= 'display: none'";
 					if ($subToAppend->customer_read_or_not == 1){
@@ -206,10 +215,8 @@ function hugeit_contact_ajax_action_callback(){
 						<p class="spamer" '.$displayOrNot.'>Spam!</p>';
 						$show='<span class="edit" value="'.$subToAppend->id.'"><a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id='.$subToAppend->id.'&read=unread&submissionsId='.$subToAppend->contact_id.'">Show</a></span>';
 					}
-					$customer_spam_or_not='';
-					$customer_spam_or_not2='';
-					if($subToAppend->customer_spam == 1) { $customer_spam_or_not2="display: none"; }else{ $customer_spam_or_not2="";}
-					if($subToAppend->customer_spam != 1) { $customer_spam_or_not="display: none"; }else{ $customer_spam_or_not="";}
+					$customer_spam_or_not2 = $subToAppend->customer_spam == 1 ? "display: none" : "";
+					$customer_spam_or_not  = $subToAppend->customer_spam != 1 ? "display: none" : "";
 					$ipOfSub = array_filter(explode("*()*", $subToAppend->submission_ip),'strlen');
 					$output.='<tr id="comment-'.$subToAppend->id.'" class="comment even thread-even '.$readOrNot.' '.$spamOrNot.' depth-'.$keyForBackground.' '.$depth.' prepended">
 									<th scope="row" class="check-column">
@@ -255,7 +262,10 @@ function hugeit_contact_ajax_action_callback(){
 							</tr>';
 							$keyForBackground++;
 				}
-				echo json_encode(array("output"=>$output,"countTorefresh"=>$submitionsCount[0]->all_count));
+				echo json_encode(array(
+					"output"=>$output,
+					"countTorefresh"=>$submitionsCount[0]->all_count
+				));
 			}else{
 				return;
 			}
@@ -265,7 +275,7 @@ function hugeit_contact_ajax_action_callback(){
 		
 	}
 	//SEARCH Submission
-	if(isset($_POST['task'])&&$_POST['task']=='searchSubmission'){
+	if(isset($_POST['task']) && $_POST['task'] == 'searchSubmission') {
 		if(isset($_POST['nonce'])){
 			$nonce = $_POST['nonce'];
 		}else{
@@ -275,6 +285,7 @@ function hugeit_contact_ajax_action_callback(){
 		$search_value=$_POST['searchData'];
 		$subID=$_POST['subID'];
 		if(!empty($search_value)&&$subID!='empty'){
+			$subID = absint($subID);
 			$pattern='/\%/';
 			if(preg_match($pattern, $search_value)){
 				$search_value=preg_replace($pattern, '\%', $search_value);
@@ -290,13 +301,10 @@ function hugeit_contact_ajax_action_callback(){
 			$output='';
 			$keyForBackground = 1;
 			foreach ($subToAppends2 as $subToAppend) {
-				$readOrNot='';
-				if($subToAppend->customer_read_or_not == 1){ $readOrNot="read"; } else { $readOrNot="unread"; }
-				$spamOrNot='';
-				if($subToAppend->customer_spam == 1){ $spamOrNot=" spam"; } else { $spamOrNot=""; }
+				$readOrNot = $subToAppend->customer_read_or_not == 1 ? "read" : "unread";
+				$spamOrNot = $subToAppend->customer_spam == 1 ? " spam" : "";
 				$depth='';
 				if($keyForBackground%2 == 0) $depth=" alt";
-				$spamer='';
 				$displayOrNot='';
 				if($subToAppend->customer_spam != 1) $displayOrNot="style= 'display: none'";
 				if ($subToAppend->customer_read_or_not == 1){
@@ -308,10 +316,8 @@ function hugeit_contact_ajax_action_callback(){
 		            	<p class="spamer" '.$displayOrNot.'>Spam!</p>';
 		            	$show='<span class="edit" value="'.$subToAppend->id.'"><a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id='.$subToAppend->id.'&read=unread&submissionsId='.$subToAppend->contact_id.'">Show</a></span>';
 		        	}
-	        	$customer_spam_or_not='';
-	        	$customer_spam_or_not2='';
-	        	if($subToAppend->customer_spam == 1) { $customer_spam_or_not2="display: none"; }else{ $customer_spam_or_not2="";}
-	        	if($subToAppend->customer_spam != 1) { $customer_spam_or_not="display: none"; }else{ $customer_spam_or_not="";}
+				$customer_spam_or_not2 = $subToAppend->customer_spam == 1 ? "display: none" : "";
+				$customer_spam_or_not  = $subToAppend->customer_spam != 1 ? "display: none" : "";
 	        	$ipOfSub = array_filter(explode("*()*", $subToAppend->submission_ip),'strlen');
 				$output.='<tr id="comment-'.$subToAppend->id.'" class="comment even thread-even '.$readOrNot.' '.$spamOrNot.' depth-'.$keyForBackground.' '.$depth.'">
 						        <th scope="row" class="check-column">
@@ -365,4 +371,3 @@ function hugeit_contact_ajax_action_callback(){
 ////////////////////////SUBMISSION PAGE////////////////////////END
 	die();
 }
-?>

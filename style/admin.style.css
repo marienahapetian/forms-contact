@@ -2,7 +2,7 @@
 .ui_custom_pl * { visibility: hidden; }
 
 #poststuff #post-body.columns-2.huge_contacts {
-	margin:0px;
+	margin:0;
 }
 button[disabled], input[disabled], select[disabled], textarea[disabled] {
     cursor: pointer !important;
@@ -14,7 +14,7 @@ button[disabled], input[disabled], select[disabled], textarea[disabled] {
 /*######### Huge IT Contact Forms ###########*/
 #save-button-block {
 	float:left;
-	margin:0px 0px 0px 0px;
+	margin:0 0 0 0;
 }
 #poststuff h2{
     display: inline-block !important;
@@ -38,7 +38,7 @@ img.themeSpinner{
 }
 #save-button-block  .select-theme {
 	width:150px;
-	margin:1px 0px 0px 0px;
+	margin:1px 0 0 0;
 }
 #save-button-block  .select-theme:focus {
 	border: 1px solid #ddd;
@@ -117,7 +117,7 @@ img.themeSpinner{
 /*top tabs*/
 .hugeit_tabs_block .hugeit_contact_top_tabs  {
 	width:100%;
-	margin:0px 0px 0px 0px;
+	margin:0 0 0 0;
 	border-bottom:1px solid #ccc;
 	height:30px;
 }
@@ -126,8 +126,8 @@ img.themeSpinner{
 	display:block;
 	float:left;
 	height:29px;
-	margin:0px 5px 0px 0px;
-	padding:0px 0px 0px 0px;
+	margin:0 5px 0 0;
+	padding:0 0 0 0;
 	border:1px solid #ccc;
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li.active {
@@ -153,12 +153,12 @@ img.themeSpinner{
 	cursor:pointer;
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li.active input {
-	margin:2px 0px 0px 0px;
+	margin:2px 0 0 0;
 	background:#f1f1f1;
 	outline:none;
 	width:auto;
 	box-shadow:none;
-	border:0px;
+	border:0;
 	width: 90px;
 }
 /*############### OPTIONS BLOCKS ###################*/
@@ -172,7 +172,7 @@ img.themeSpinner{
 	display:block;
 	float:left;
 	margin:10px 1% 25px 1%;
-	padding:0px 1% 10px 1%;
+	padding:0 1% 10px 1%;
 	width:46%;
 	background:#f9f9f9;
 }
@@ -181,7 +181,7 @@ img.themeSpinner{
 		width:96%;
 		float:none;
 		clear:both;
-		margin-top:0px !important;
+		margin-top:0 !important;
 	}
 }
 .options-block   div.has-background {background:#fff;}
@@ -190,21 +190,21 @@ img.themeSpinner{
 .options-block form > div  h3 {
 	display:block;
 	text-align:center;
-	margin:10px 0px 10px 0px;
+	margin:10px 0 10px 0;
 }
 .options-block form > div > div {
 	position:relative;
 	clear:both;
 	width:100%;
 	height:35px;
-	padding:5px 0px 0px 0px;
-	margin:0px !important;
+	padding:5px 0 0 0;
+	margin:0 !important;
 }
 .options-block form > div > div.autoheight {height:auto;}
 .options-block form > div > div label {
 	display:inline-block;
 	width:50%;
-	padding:5px 0px 0px 2%;
+	padding:5px 0 0 2%;
 	height:30px;
 	float:left;
 }
@@ -225,21 +225,21 @@ img.themeSpinner{
 }
 .options-block form > div > div input[type='text'].half {
 	width:90px;
-	margin:0px;
+	margin:0;
 }
 .options-block form > div > div input[type='text'].none {
 	display:none;
 }
 .options-block form > div > div input[type='checkbox'] {
-	margin:7px 0px 3px 0px;
+	margin:7px 0 3px 0;
 }
 .options-block form > div.brlable > div {
 	height:auto;
-	margin:3px 0px 10px 0px !important;
+	margin:3px 0 10px 0 !important;
 }
 .options-block form > div.brlable > div label {
 	width:100%;
-	padding:0px;
+	padding:0;
 	height:20px;
 	clear:both;
 	float:none;
@@ -257,7 +257,7 @@ img.themeSpinner{
 	display:table;
 	width:98%;
 	padding:1%;
-	margin:0px;
+	margin:0;
 }
 .options-block .reset-icons-block{
 	overflow:visible !important;
@@ -271,7 +271,7 @@ img.themeSpinner{
 	float:left;
 	padding:3px;
 	text-align: center;
-	margin:0px 3px 3px 0px;
+	margin:0 3px 3px 0;
 	border:1px solid #555;
 	border-radius:3px;
 	cursor:pointer;
@@ -292,8 +292,8 @@ img.themeSpinner{
 .options-block  .icons-block ul li input {
 	position:absolute;
 	top:2px;
-	left:0px;
-	border-radius:0px;
+	left:0;
+	border-radius:0;
 	width:35px;
 	height:35px;
 	opacity:0;
@@ -306,7 +306,7 @@ img.themeSpinner{
 /*CONTENT*/
 #post-body-heading {
 	width:100%;
-	padding:10px 0px 10px 0px;
+	padding:10px 0 10px 0;
 	height:40px;
 	background:#f1f1f1;
 	border-bottom: 1px solid #CCCCCC;
@@ -314,13 +314,13 @@ img.themeSpinner{
 }
 #post-body-heading h3 {
 	float:left;
-	margin:-5px 0px 0px 5px !important;
-	padding:0px;
+	margin:-5px 0 0 5px !important;
+	padding:0;
 }
 #add-fields-block {
 	float:right;
 	list-style:none;
-	margin:0px 30px 0px 0px;
+	margin:0 30px 0 0;
 	display:table;
 }
 #add-fields-block  > li {
@@ -329,7 +329,7 @@ img.themeSpinner{
 	display:block;
 	padding:10px;
 	padding-right:30px;
-	margin:0px 5px 0px 5px;
+	margin:0 5px 0 5px;
 	color:#fff;
 	cursor:pointer;
 	background:url(../images/plus.white.png) right center no-repeat #222;
@@ -358,10 +358,10 @@ img.themeSpinner{
 	z-index:100;
 	position:absolute;
 	top:37px;
-	right:0px;
+	right:0;
 	width:100%;
 	background:url(../images/menu.arrow.down.png) center top no-repeat #222;
-	padding:10px 0px 0px 0px;
+	padding:10px 0 0 0;
 	text-align:right;
 }
 #add-fields-block  > li:hover > ul {
@@ -374,7 +374,7 @@ img.themeSpinner{
 #add-fields-block  > li:hover > ul  li a, #add-fields-block  > li:hover > ul  li a:link, #add-fields-block  > li:hover > ul  li a:visited {
 	display:block;
 	text-decoration:none;
-	padding:5px 10% 5px 0px;
+	padding:5px 10% 5px 0;
 	outline:none;
 	color:#fff;
 }
@@ -401,7 +401,7 @@ img.themeSpinner{
 	display:block;
 	width:100%;
 	height:auto;
-	margin:0px 1% 0px 0px;
+	margin:0 1% 0 0;
 	min-height:50px;
 }
 #fields-list-right{
@@ -416,7 +416,7 @@ img.themeSpinner{
 	display:block;
 	background:#fff;
 	height:5px;
-	margin:0px 0px 10px 0px !important;
+	margin:0 0 10px 0 !important;
 	padding:25px 10px 10px 10px;
 	overflow:hidden;
 	z-index:0;
@@ -448,8 +448,8 @@ img.themeSpinner{
 }
 .fields-list li h4 {
 	font-size:15px;
-	margin:-15px 0px 20px 3px;
-	padding: 0px 80px 5px 0px;
+	margin:-15px 0 20px 3px;
+	padding: 0 80px 5px 0;
 	text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -457,23 +457,23 @@ img.themeSpinner{
 }
 .fields-list .fields-type-list {
 	display:inline-block;
-	margin:0px 0px 0px 20px;
+	margin:0 0 0 20px;
 }
 .fields-list li .fields-options {
 	float:left;
 	width:100%;
-	margin:0px 0px 0px 0px;
+	margin:0 0 0 0;
 }
 .fields-list li .fields-options div.left {
 	float:left;
 	width:48%;
-	margin:0px 1% 10px 0px;
+	margin:0 1% 10px 0;
 }
 .fields-list li .fields-options div.left > div {
 	width:100%;
 	min-height:48px;
-	padding:0px 0px 0px 0px;
-	margin:0px 0px 10px 0px;
+	padding:0 0 0 0;
+	margin:0 0 10px 0;
 	clear:both;
 }
 /*.fields-list li .fields-options div.secondBlock{
@@ -493,12 +493,12 @@ img.themeSpinner{
 .fields-list li .fields-options .input-block {	
 	display:block;
 	/*float:left;*/
-	padding: 2px 2% 2px 0px;
+	padding: 2px 2% 2px 0;
 } 
 .fields-list li .fields-options  label {
 	width:98%;
-	padding:0px 2% 0px 0px;
-	margin:0px 0px 0px 0px;
+	padding:0 2% 0 0;
+	margin:0 0 0 0;
 }
 .fields-list li .fields-options input[type='text'],
 .fields-list li .fields-options input[type='number'],
@@ -577,7 +577,7 @@ img.themeSpinner{
 	float:right;
 	width:20px;
 	height:21px;
-	margin:0px 5px 0px 0px;
+	margin:0 5px 0 0;
 	outline:none;
 	opacity:0.5;
 	border-radius:3px;
@@ -595,14 +595,14 @@ img.themeSpinner{
 	height:26px;
 	display:none;
 	z-index:10;
-	padding:0px 8px 0px 0px;
+	padding:0 8px 0 0;
 	background:url(../images/arrow.right.png) right center no-repeat;
 }
 .fields-list .field-top-options-block  a span p {
 	background:#000;
 	white-space: nowrap;
-	margin:0px;
-	padding:3px 4px 0px 4px;
+	margin:0;
+	padding:3px 4px 0 4px;
 	height:23px;
 	color:#fff;
 	font-weight:bold;
@@ -621,7 +621,7 @@ img.themeSpinner{
 } 
 .fields-list li .textbox_file_type label {
 	width:48%;
-	margin:0px 0px 5px 0px;
+	margin:0 0 5px 0;
 	display:block;
 	float:left;
 }
@@ -668,13 +668,13 @@ img.themeSpinner{
 	float:right;
 	width:65%;
 	min-width:305px;
-	padding:5px 0px 500px 0px;
+	padding:5px 0 500px 0;
 	min-width:310px;
 	overflow: hidden;
 }
 #hugeit-contact-wrapper  {
 	padding-top:5px; 
-	margin:0px auto;
+	margin:0 auto;
 	min-width:315px;
 	/*overflow: hidden;*/
 	/*padding:0px 0px 10px 0px;*/
@@ -684,7 +684,7 @@ img.themeSpinner{
 	float:left;
 	width:93%;
 	min-width:305px;
-	margin:5px 1% 0px 2%;
+	margin:5px 1% 0 2%;
 	height:auto;
 	min-height:30px;
 	padding-bottom: 200em;
@@ -752,19 +752,19 @@ img.themeSpinner{
 #hugeit-contact-wrapper .hugeit-contact-column-block > div .field-block ul li {
 	float:left;
 }
-#hugeit-contact-wrapper .hugeit-contact-column-block > div .field-block ul li label {margin:0px 10px 0px 0px;}
+#hugeit-contact-wrapper .hugeit-contact-column-block > div .field-block ul li label {margin:0 10px 0 0;}
 #hugeit-contact-wrapper .hugeit-contact-column-block > div .field-block ul li label span.sublable{vertical-align: super;}
 
 #hugeit-contact-wrapper .hugeit-contact-column-block > div  ul {
 	position:relative;
 	display:table ;
-	padding:0px !important;
-	margin:0px !important;
+	padding:0 !important;
+	margin:0 !important;
 }
 #hugeit-contact-wrapper .hugeit-contact-column-block > div > label  ul li {
 	clear:both;
-	padding:0px !important;
-	margin:0px !important;
+	padding:0 !important;
+	margin:0 !important;
 	cursor: pointer;
 }
 #hugeit-contact-wrapper #huge_it_captcha {
@@ -830,16 +830,16 @@ img.themeSpinner{
 	float:left;
 	width:40%;
 	height:40px;
-	padding:0px 40px 0px 5px;
-	margin:0px -40px 0px 0px;
+	padding:0 40px 0 5px;
+	margin:0 -40px 0 0;
 }
 #hugeit_messages_page .search_block .button {
 	position:relative;
 	display:block;
 	width:40px;
 	height:40px;
-	margin:0px;
-	padding:0px;
+	margin:0;
+	padding:0;
 	text-indent:-9999px;
 	background:url(../images/search.png) left top no-repeat;
 }
@@ -852,12 +852,12 @@ img.themeSpinner{
 	position:relative;
 	float:left;
 	display:block;
-	margin:0px 1px 0px 0px;
+	margin:0 1px 0 0;
     background: #FAFAFA;
     height: 28px;
 }
 #hugeit_top_controls .controls-list li.select {
-	margin:0px 20px 0px 0px;
+	margin:0 20px 0 0;
 	border-radius:3px;
 	background:url(../images/gicons.png) center -473px no-repeat #fafafa;
 }
@@ -873,7 +873,7 @@ img.themeSpinner{
 #hugeit_top_controls .controls-list li.select select {
 	width:65px;
 	height:28px;
-	margin:0px 0px 0px 0px;
+	margin:0 0 0 0;
 	opacity:0;
 	z-index:1;
 	cursor:pointer;
@@ -935,12 +935,12 @@ img.themeSpinner{
 
 #hugeit_single_submission_page .page-navigation {
 	float:right;
-    margin:0px 45px 0px 0px !important;
+    margin:0 45px 0 0 !important;
 }
 #hugeit_top_controls  .page-navigation .count {
 	display:block;
 	height:25px;
-	padding:5px 10px 0px 0px;
+	padding:5px 10px 0 0;
 	float:left;
 }
 #hugeit_top_controls  .page-navigation  .buttons {
@@ -952,7 +952,7 @@ img.themeSpinner{
 	min-width:20px;
 	text-indent:-9999px;
 	padding:5px 10px 5px 10px;
-	margin:0px 1px 0px 0px;
+	margin:0 1px 0 0;
 	background-color:#fefefe;
 	float:left;	
 }
@@ -996,7 +996,7 @@ a {
 	color: #999 !important;
 }
 #submission_details>table.detailsTable tr td {
-    padding-left: 0px;
+    padding-left: 0;
 }
 #submission_details>table.detailsTable tr td:last-child {
     padding-left: 10px;
@@ -1007,7 +1007,7 @@ a {
 #submission_details>h3{
     font-size: 14px;
     padding: 0;
-    line-height: 0px;
+    line-height: 0;
     font-weight: normal;
 }
 #submission_content{
@@ -1017,7 +1017,7 @@ a {
 	font-weight: bold;
     font-size: 17px;
     padding: 0;
-    line-height: 0px;
+    line-height: 0;
 }
 #submission_attachements .attachement_wrapper .file_wrapper{
 	width: 180px;
@@ -1160,8 +1160,8 @@ a {
 	float:left;
 	width:40%;
 	height:40px;
-	padding:0px 40px 0px 5px;
-	margin:-1px -40px 0px 0px;
+	padding:0 40px 0 5px;
+	margin:-1px -40px 0 0;
 	border-radius:5px; 
 }
 #hugeit_submission_page .search_block .button {
@@ -1169,8 +1169,8 @@ a {
 	display:block;
 	width:39px;
 	height:38px;
-	margin:0px;
-	padding:0px;
+	margin:0;
+	padding:0;
 	text-indent:-9999px;
 	background:url(../images/search.png) left top no-repeat;	
     -webkit-box-shadow: none;
@@ -1211,16 +1211,16 @@ a {
     -webkit-border-radius: 3px;
     border-radius: 3px;
     white-space: nowrap;
-    -webkit-box-shadow: inset 0 0px 0 #fff,0 1px 0 rgba(0,0,0,.08); 
-    box-shadow: inset 0 0px 0 #fff,0 1px 0 rgba(0,0,0,.08);
+    -webkit-box-shadow: inset 0 0 0 #fff,0 1px 0 rgba(0,0,0,.08);
+    box-shadow: inset 0 0 0 #fff,0 1px 0 rgba(0,0,0,.08);
     webkit-box-sizing: border-box; 
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 #hugeit_top_controls .controls-list li a.apply:hover {
     border:1px solid #ccc;
-    -webkit-box-shadow: inset 0 0px 0 #fff,0 0px 0 rgba(0,0,0,.08); 
-    box-shadow: inset 0 0px 0 #fff,0 0px 0 rgba(0,0,0,.08);
+    -webkit-box-shadow: inset 0 0 0 #fff,0 0 0 rgba(0,0,0,.08);
+    box-shadow: inset 0 0 0 #fff,0 0 0 rgba(0,0,0,.08);
     color:#000;
 }
 #hugeit_top_controls .controls-list li a.apply:active{
@@ -1239,7 +1239,7 @@ a {
 	display: none;
 }
 #hugeit_top_controls .controls-list li.select_actions {
-	margin:0px 10px 0px 7px;
+	margin:0 10px 0 7px;
 	border-radius:3px;
 	background:url(../images/gicons.png) center -473px no-repeat #fafafa;
 }
@@ -1249,7 +1249,7 @@ a {
 #hugeit_top_controls .controls-list li.select_actions select {
 	height:28px;
 	color:#555;
-	margin:0px 0px 0px 0px;
+	margin:0 0 0 0;
 	padding:0;
 	border:none;
 	z-index:1;
@@ -1268,7 +1268,7 @@ a {
 } 
 #hugeit_submission_page .spamer{
 	color: red;
-	margin: 0px;
+	margin: 0;
 }
 #hugeit_submission_page #the-comment-list .unread {
     font-weight: bold;
@@ -1365,8 +1365,8 @@ a {
     font-size: 17px !important;
     border-top-left-radius: 3px !important;
     border-top-right-radius: 3px !important;
-    border-bottom-left-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
     margin-top: -3px !important;
     margin-left: -2px !important;
     margin-right: -3px !important;
@@ -1582,7 +1582,7 @@ a {
     padding: 0 !important;
 }
 .text_area_title:hover{
-	border -bottom: 1px solid rgba(128, 128, 128, 0.4) !important;
+	border-bottom: 1px solid rgba(128, 128, 128, 0.4) !important;
 }
 #hugeit-contact-wrapper > div > h3:hover{
 	border: 2px dashed #0085BA !important;
@@ -1693,12 +1693,11 @@ a {
 	left:25px;
 	top:9px;
 	background-image:url('../images/wp_shop.png');
-	background-position:0px 0px;
-	background-repeat;
+	background-position:0 0;
 }
 
 .free_version_banner .get_full_version:hover:before {
-	background-position:0px -27px;
+	background-position:0 -27px;
 }
 
 .free_version_banner .huge_it_logo {
