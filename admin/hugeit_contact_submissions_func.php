@@ -19,10 +19,10 @@ function hugeit_contact_show_submissions() {
 		$_POST['search_events_by_title'] = esc_html( stripslashes( $_POST['search_events_by_title'] ) );
 	}
 	if ( isset( $_POST['asc_or_desc'] ) ) {
-		$_POST['asc_or_desc'] = esc_js( $_POST['asc_or_desc'] );
+		$_POST['asc_or_desc'] = sanitize_text_field( $_POST['asc_or_desc'] );
 	}
 	if ( isset( $_POST['order_by'] ) ) {
-		$_POST['order_by'] = esc_js( $_POST['order_by'] );
+		$_POST['order_by'] = sanitize_text_field( $_POST['order_by'] );
 	}
 	$where                 = '';
 	$sort["custom_style"]  = "manage-column column-autor sortable desc";
@@ -46,7 +46,7 @@ function hugeit_contact_show_submissions() {
 			}
 		}
 		if ( $_POST['page_number'] ) {
-			$limit = ( $_POST['page_number'] - 1 ) * 20;
+			$limit = ( (float)$_POST['page_number'] - 1 ) * 20;
 		} else {
 			$limit = 0;
 		}

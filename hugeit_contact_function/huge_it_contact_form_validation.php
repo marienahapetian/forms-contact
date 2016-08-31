@@ -44,7 +44,6 @@ function hugeit_contact_contact_form_validation_callback(){
    	$query2=str_replace("'","",$query2);
    	$huge_it_gen_opt=$wpdb->get_results($query2);
    	$spamError=$huge_it_gen_opt[14]->value;
-   	$postDataStr=$_POST['postData'];
 	$all=$_POST['postData'];
 	parse_str("$all",$myArray);
 	$frontendformid = absint($_POST['formId']);

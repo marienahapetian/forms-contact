@@ -90,9 +90,9 @@ function hugeit_contact_email_ajax_action_callback() {
 		if ( ! wp_next_scheduled( 'huge_it_cron_action' ) ) {
 			$schedule        = (int)$_POST['sub_interval'];
 			$limit           = $_POST['sub_count_by_parts'];
-			$limit           = ( (int) $limit > 0 ) ? $limit : 10;
-			$sub_choose_form = $_POST['sub_choose_form'];
-			$sub_choose_form = ( (int) $sub_choose_form > 0 ) ? $sub_choose_form : 'all';
+			$limit           = ( (int) $limit > 0 ) ? (int) $limit : 10;
+			$sub_choose_form = sanitize_text_field($_POST['sub_choose_form']);
+			$sub_choose_form = ( (int) $sub_choose_form > 0 ) ? (int) $sub_choose_form : 'all';
 			$email_subject   = sanitize_text_field($_POST['email_subject']);
 			$schedules       = wp_get_schedules();
 
@@ -149,11 +149,12 @@ function hugeit_contact_email_ajax_action_callback() {
 			return;
 		}
 		global $wpdb;
-		$formId = absint($_POST['data']);
+		$formId = $_POST['data'];
 		if ( $formId == 'all' ) {
 			$subscribers = $wpdb->get_results( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_subscribers ORDER BY subscriber_id DESC", ARRAY_A );
 			$count       = $wpdb->get_var( "SELECT COUNT(*) FROM " . $wpdb->prefix . "huge_it_contact_subscribers" );
 		} else {
+			$formId = absint($_POST['data']);
 			$subscribers = $wpdb->get_results( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_subscribers WHERE subscriber_form_id=" . $formId . " ORDER BY subscriber_id DESC", ARRAY_A );
 			$count       = $wpdb->get_var( $wpdb->prepare("SELECT COUNT(*) FROM " . $wpdb->prefix . "huge_it_contact_subscribers WHERE subscriber_form_id = %d", $formId));
 		}
@@ -191,7 +192,7 @@ function hugeit_contact_email_ajax_action_callback() {
 	}
 
 	if(isset($_POST['task'])&&$_POST['task']=='deleteSubscriber'){
-		$id=$_POST['subID'];
+		$id=absint($_POST['subID']);
 		$formId= sanitize_text_field($_POST['formId']);
 		global $wpdb;
 		$wpdb->query($wpdb->prepare("DELETE FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE subscriber_id=%d",$id));
@@ -207,7 +208,7 @@ function hugeit_contact_email_ajax_action_callback() {
 	if(isset($_POST['task'])&&$_POST['task']=='addSubscriber'){
 		global $wpdb;
 		$email= sanitize_email($_POST['email']);
-		$formId=$_POST['data'];	
+		$formId=$_POST['data'];
 		$table_name = $wpdb->prefix . "huge_it_contact_subscribers";
 		if($formId=='all'){
 			$subscribers=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_contact_subscribers ORDER by subscriber_id DESC", ARRAY_A);
@@ -228,7 +229,6 @@ function hugeit_contact_email_ajax_action_callback() {
 				    array('%d', '%s')
 			    );
 	            $subscribers=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_contact_subscribers ORDER by subscriber_id DESC", ARRAY_A);
-				$count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers");
 				$tableRows='';
 				foreach($subscribers as $subscriber){
 					$tableRows.='<tr id="sub_row_'.$subscriber['subscriber_id'].'">';
@@ -266,6 +266,7 @@ function hugeit_contact_email_ajax_action_callback() {
 			}
 
 		}else{
+			$formId = absint($formId);
 			$subscribers=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE subscriber_form_id=".$formId." ORDER by subscriber_id DESC", ARRAY_A);
 			$count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE subscriber_form_id=".$formId);
 			$insert=1;
@@ -284,7 +285,6 @@ function hugeit_contact_email_ajax_action_callback() {
 					array('%d', '%s')
 				);
 				$subscribers=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE subscriber_form_id=".$formId." ORDER by subscriber_id DESC", ARRAY_A);
-				$count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE subscriber_form_id=".$formId."");
 				$tableRows='';
 				foreach($subscribers as $subscriber){
 					$tableRows.='<tr id="sub_row_'.$subscriber['subscriber_id'].'">';
@@ -335,6 +335,7 @@ function hugeit_contact_email_ajax_action_callback() {
 			$subscribers=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_contact_subscribers ORDER by subscriber_id DESC", ARRAY_A);
 			$count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers");
 		}else{
+			$formId = absint($formId);
 			$subscribers=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE subscriber_form_id=".$formId." ORDER by subscriber_id DESC", ARRAY_A);
 			$count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE subscriber_form_id=".$formId);
 		}
@@ -550,7 +551,7 @@ function hugeit_contact_email_ajax_action_callback() {
 			echo json_encode(array("output"=>esc_html($output)));
 		}elseif ($mail_status=='finish') {
 			if(!isset($_POST['noCancel']))$_POST['noCancel']='';
-			$done=$_POST['noCancel'];
+			$done=sanitize_text_field($_POST['noCancel']);
 			if($done=='true'){
 				$doneHtml='<span id="done" style="padding-left: 9px;">Successfully Sent <i class="hugeicons-check" style="color: #00A0D2;font-size: 21px;vertical-align: baseline;"></i></span>';
 			}else{

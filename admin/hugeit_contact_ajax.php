@@ -15,13 +15,14 @@ function hugeit_contact_ajax_action_callback(){
 		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
 		$arrayOfids=$_POST['spam_submitions'];
 		$allNumbers = true;
-		foreach ($arrayOfids as $item) {
+		foreach ($arrayOfids as &$item) {
 			$item = absint($item);
 		    if (!is_numeric($item)) {
 		        $allNumbers = false;
 		        break;
 		    }
 		}
+		unset($item);
 		if($allNumbers){
 			foreach ($arrayOfids as $arrayOfid) {
 				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_submission SET customer_spam = '%d'  WHERE id = '%d' ", 1, $arrayOfid));
@@ -54,13 +55,14 @@ function hugeit_contact_ajax_action_callback(){
 		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
 		$arrayOfids=$_POST['spam_submitions'];
 		$allNumbers = true;
-		foreach ($arrayOfids as $item) {
+		foreach ($arrayOfids as &$item) {
 			$item = absint($item);
 		    if (!is_numeric($item)) {
 		        $allNumbers = false;
 		        break;
 		    }
 		}
+		unset($item);
 		if($allNumbers){
 			foreach ($arrayOfids as $arrayOfid) {
 				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_submission SET customer_spam = '%d'  WHERE id = '%d' ", 0, $arrayOfid));
@@ -93,13 +95,14 @@ function hugeit_contact_ajax_action_callback(){
 		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
 		$arrayOfids=$_POST['submitions_for_delete'];
 		$allNumbers = true;
-		foreach ($arrayOfids as $item) {
+		foreach ($arrayOfids as &$item) {
 			$item = absint($item);
 		    if (!is_numeric($item)) {
 		        $allNumbers = false;
 		        break;
 		    }
 		}
+		unset($item);
 		if($allNumbers){
 			foreach ($arrayOfids as $arrayOfid) {
 				$arrayOfid = absint($arrayOfid);
@@ -189,7 +192,7 @@ function hugeit_contact_ajax_action_callback(){
 		}else{
 			$markedSubmitions='';
 		}		
-		$counmarked=$_POST['countTorefresh'];
+		$counmarked=absint($_POST['countTorefresh']);
 		if(trim($markedSubmitions)!=''){
 			if(isset($submitionsCount[0]) && $submitionsCount[0]->all_count != $counmarked && $counmarked != 0){
 				$subToAppend=$wpdb->prepare("SELECT * FROM ". $wpdb->prefix . "huge_it_contact_submission WHERE `id` > %d",$markedSubmitions);
@@ -282,10 +285,9 @@ function hugeit_contact_ajax_action_callback(){
 			$nonce ='';
 		}		
 		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
-		$search_value=$_POST['searchData'];
-		$subID=$_POST['subID'];
+		$search_value=sanitize_text_field($_POST['searchData']);
+		$subID=absint($_POST['subID']);
 		if(!empty($search_value)&&$subID!='empty'){
-			$subID = absint($subID);
 			$pattern='/\%/';
 			if(preg_match($pattern, $search_value)){
 				$search_value=preg_replace($pattern, '\%', $search_value);
@@ -363,6 +365,7 @@ function hugeit_contact_ajax_action_callback(){
     					</tr>';
     					$keyForBackground++;
 			}
+			// todo: escape
 			echo json_encode(array("output"=>$output));
 		}else{
 			return;

@@ -156,8 +156,8 @@ function hugeit_contact_html_styles($rows){
 				</tbody>
 			</table>
 			<input type="hidden" name="oreder_move" id="oreder_move" value="" />
-			<input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo $_POST['asc_or_desc'];?>"  />
-			<input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo $_POST['order_by'];?>"  />
+			<input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo esc_attr($_POST['asc_or_desc']);?>"  />
+			<input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo esc_attr($_POST['order_by']);?>"  />
 			<input type="hidden" name="saveorder" id="saveorder" value="" />
 			</form>
 		</div>
