@@ -3,8 +3,8 @@ Contributors: Huge-IT
 Donate link: http://huge-it.com/forms/
 Tags: forms, contact form, contact forms, forms plugin, contact form builder, wordpress contact form, contact us, form, form builder, form creation, form maker, forms builder,
 Requires at least: 3.0.1
-Tested up to: 4.5.3
-Stable tag: 1.3.5
+Tested up to: 4.6
+Stable tag: 1.3.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,9 +15,11 @@ Form builder are one of the most important elements of your website. If you need
 ### Wordpress Forms
 
 * [Wordpress Forms](http://huge-it.com/forms/)
-* [Demo](http://huge-it.com/wordpress-forms-demo-1-delivery-form/)
-* [FAQ](http://huge-it.com/wordpress-forms-faq/)
-* [User Manual](http://huge-it.com/wordpress-forms-user-manual/)
+* [Forms Demo](http://huge-it.com/wordpress-forms-demo-1-delivery-form/)
+* [Forms FAQ](http://huge-it.com/wordpress-forms-faq/)
+* [Forms User Manual](http://huge-it.com/wordpress-forms-user-manual/)
+* [Forms Support](http://huge-it.com/contact-us/)
+* [Forms GitHub Project](https://github.com/Huge-IT/forms-contact)
 
 Huge -IT Forms is one of the most important element for the WordPress website because without Forms Builder you will not be able to keep in touch with your visitors, partners and customers, give an easy filling form for submissions, delivery form or other types of forms. Besides that, a good-looking form gives your site a professional appearance.
 
@@ -332,6 +334,29 @@ If you think, that you found a bug in our [WordPress Forms](http://huge-it.com/f
 35.  [WordPress Form](https://wordpress.org/plugins/forms-contact/) - Form General Options
 
 == Changelog ==
+
+= 1.3.7 =
+
+**In the series of updates we continue to go through our plugins one by one and fix all technical issues with our code in order to meet the WordPress Coding Standards. These are the major updates that had been implemented to Forms plugin in this new version. We strongly reccomend to update the plugin.**
+
+* 1) Changed function names, defines and classnames to have unique prefixes
+* 2) Fixed the issue where the plugin was calling files remotely
+* 3) Made further code optimization in order to meet required WordPress coding standards
+* 4) Code optimization loads the admin panel more quickly now as well
+* 5) Added nonces for all _POST, _GET requests
+* 6) Removed PHP Sessions forcing PHP lines to run on all pages
+* 7) Sanitize the user data and validated post/get calls of the plugin
+* 8) Added a nonce to post calls to prevent unauthorized access
+
+**Also:**
+
+**Now users can edit or add form title both from working area and form title placehlders.**
+
+= 1.3.6 =
+
+* 1) Fixed the reported security exploit issue.
+* 2) Tested and made the plugin compatible with WordPress version: 4.6
+* 3) Added link to Forms GitHub Project.
 
 = 1.3.5 =
 **More advanced subject line for forms was added to the plugin:**
@@ -659,12 +684,12 @@ Add New Theme. Start customising your own theme
 
 **Labels Styles**
 
-* Label Size. Change label size
-* Label Font Family. Define label font family			
-* Label Color. Define label font color
-* Label Error Color.  Define error label font color
-* Label * Color. Define * label font color
-* Label Success Message Color.  Define success message label after form has submitted
+* Label Size. Change label size.
+* Label Font Family. Define label font family.		
+* Label Color. Define label font color.
+* Label Error Color.  Define error label font color.
+* Label * Color. Define * label font color.
+* Label Success Message Color.  Define success message label after form has submitted.
 
 **Input-Text Styles**
 
@@ -720,12 +745,12 @@ Add New Theme. Start customising your own theme
 * Spam. Block IP address, so the user will not be able to send any message from that iP.
 * Trash. Delete the submission.
 * The same as standard inbox mail you may select submissions, make bulk of them as read/unread spam/not spam, remove selected at once.
-* When you click show and open the submission message, you may delete it from inside and if message has some attachment you may download it by one simple click
+* When you click show and open the submission message, you may delete it from inside and if message has some attachment you may download it by one simple click.
 * Plus, search bar will help you quickly find required submission.
 
 ### Step 5. Newsletter Manager (Pro)
 
-* Choose The Forms. Here select the form you need (form will be displayed in case it has at least one subscriber)
+* Choose The Forms. Here select the form you need (form will be displayed in case it has at least one subscriber).
 * Emails in One Flow. Choose how many newsletter emails should be sent at once.
 * Interval Between Mailings. Choose the interval between each flow.
 * Email Subject. Write newsletter email subject.
