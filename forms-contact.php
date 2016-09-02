@@ -1180,10 +1180,12 @@ register_deactivation_hook( __FILE__, 'hugeit_contact_subscriber_deactivate' );
 
 add_action('init', 'hugeit_contact_new_form_callback');
 function hugeit_contact_new_form_callback() {
+	$wp_upload_dir = wp_upload_dir();
+
 	$condition1 = isset($_GET['page'], $_GET['task'], $_GET['hugeit_forms_nonce']) && $_GET['page'] === 'hugeit_forms_main_page' && $_GET['task'] === 'add_cat';
-	$condition2 = isset($_GET['page'], $_GET['task'], $_GET['file']) && file_exists(wp_upload_dir()['basedir'] . DIRECTORY_SEPARATOR . $_GET['file']);
+	$condition2 = isset($_GET['page'], $_GET['task'], $_GET['file']) && file_exists($wp_upload_dir['basedir'] . DIRECTORY_SEPARATOR . $_GET['file']);
 	$condition3 = isset($_GET['page'], $_GET['task'], $_GET['inputtype']) && $_GET['task'] == 'apply' && $_GET['inputtype'] == 'custom_text';
-		//    task=apply&inputtype=custom_text
+
 	if ($condition1 || $condition2 || $condition3) {
 		ob_start();
 	}
