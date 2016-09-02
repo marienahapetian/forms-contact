@@ -293,7 +293,7 @@ function hugeit_contact_contact_form_validation_callback(){
 					if($huge_it_gen_opt[6]->value=='on'){
 						if(isset($_POSTED['hc_email_r'])){
 							$subject=$huge_it_gen_opt[7]->value;
-							$sendmessage=$huge_it_gen_opt[8]->value;
+							$sendmessage=wp_kses_post(html_entity_decode($huge_it_gen_opt[8]->value));
 							add_filter( 'wp_mail_content_type', 'hugeit_contact_set_html_content_type2' );
 							$headers = array('From: '.$huge_it_gen_opt[35]->value.' <'.$huge_it_gen_opt[34]->value.'>');
 							
@@ -336,7 +336,9 @@ function hugeit_contact_contact_form_validation_callback(){
 						$file_path=preg_replace($link_pattern,'',$value);
 						array_push($attachments, WP_CONTENT_DIR . '/uploads/'.$file_path);
 					}
-					$sendmessage=preg_replace('/{formContent}/', $adminSub, $sendmessage);
+					$sendmessage = preg_replace( '/{formContent}/', $adminSub, $sendmessage );
+					$sendmessage = html_entity_decode( $sendmessage );
+					$sendmessage = wp_kses_post( $sendmessage );
 					$headers = array('From: '.$huge_it_gen_opt[35]->value.' <'.$huge_it_gen_opt[34]->value.'>');
 					
 					//------------------if subject empty sends the name of the form
