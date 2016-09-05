@@ -50,7 +50,7 @@ function hugeit_contact_editstyles($op_type = "0"){
 	//$optids = 'style '.$optids;
 	if(isset($_GET["task"])&&$_GET["task"] == 'add_styles'){
 	$today = getdate();
-	$dateupdate = $today[wday].'/'.$today[mon].'/'.$today[year];
+	$dateupdate = $today['wday'].'/'.$today['mon'].'/'.$today['year'];
 	
 	$table_name = $wpdb->prefix . "huge_it_contact_styles";
 	$wpdb->insert(

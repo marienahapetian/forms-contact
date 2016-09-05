@@ -1,13 +1,16 @@
 <?php
-if(! defined( 'ABSPATH' )) exit;	
-if(function_exists('current_user_can'))
-if(!current_user_can('manage_options')) {
-die('Access Denied');
-}	
-if(!function_exists('current_user_can')){
-	die('Access Denied');
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
-require_once("hugeit_free_version.php");
+if ( function_exists( 'current_user_can' ) ) {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		die( 'Access Denied' );
+	}
+}
+if ( ! function_exists( 'current_user_can' ) ) {
+	die( 'Access Denied' );
+}
+require_once( "hugeit_free_version.php" );
 function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles){
 	global $wpdb;
 	?>
@@ -22,8 +25,16 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 			<?php
 
 			$serch_value='';
-			if(!isset($_POST['search_events_by_title']))$_POST['search_events_by_title']='';
-			if(isset($_POST['serch_or_not'])) {if($_POST['serch_or_not']=="search"){ $serch_value=esc_html(stripslashes($_POST['search_events_by_title'])); }else{$serch_value="";}} 
+			if ( ! isset( $_POST['search_events_by_title'] ) ) {
+				$_POST['search_events_by_title'] = '';
+			}
+			if ( isset( $_POST['serch_or_not'] ) ) {
+				if ( $_POST['serch_or_not'] == "search" ) {
+					$serch_value = esc_html( stripslashes( $_POST['search_events_by_title'] ) );
+				} else {
+					$serch_value = "";
+				}
+			}
 			$serch_fields='<div class="alignleft actions"">
 									<label for="search_events_by_title" style="font-size:14px">Filter: </label>
 									<input type="text" name="search_events_by_title" value="'.$serch_value.'" id="search_events_by_title" onchange="hugeit_contact_clear_search_texts()">
@@ -128,8 +139,8 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 				</tbody>
 			</table>
 			 <input type="hidden" name="oreder_move" id="oreder_move" value="" />
-			 <input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo $_POST['asc_or_desc'];?>"  />
-			 <input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo $_POST['order_by'];?>"  />
+			 <input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo esc_attr($_POST['asc_or_desc']);?>"  />
+			 <input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo esc_attr($_POST['order_by']);?>"  />
 			 <input type="hidden" name="saveorder" id="saveorder" value="" />
 			</form>
 		</div>
@@ -269,10 +280,6 @@ function submitbutton(pressbutton){
 							<?php else:?>
 							<li class="disabled"><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Policy Agreement</a></li>
 							<?php endif;?>
-							
-							
-							<!--<li><a href="admin.php?page=hugeit_forms_main_page&id=<?php echo $row->id; ?>&task=apply&inputtype=file_box" class="" id="">Address</a></li>
-							<li><a href="admin.php?page=hugeit_forms_main_page&id=<?php echo $row->id; ?>&task=apply&inputtype=file_box" class="" id="">Map</a></li> -->							
 						</ul>
 					</li>
 					<li class="spinnerLi" data-idForm="<?php echo $id;?>">
