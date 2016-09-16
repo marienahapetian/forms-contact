@@ -20,7 +20,7 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 		<div id="hugeit_contacts-list-page">
 			<form method="post"  onkeypress="doNothing()" action="admin.php?page=hugeit_forms_main_page" id="admin_form" name="admin_form">
 			<h2>Huge IT Forms
-				<a onclick="window.location.href='<?php print wp_nonce_url(admin_url('admin.php?page=hugeit_forms_main_page&task=add_cat'), 'huge_it_add_cat', 'hugeit_forms_nonce');?>'" class="add-new-h2" >Add New Form</a>
+				<a onclick="window.location.href='<?php echo wp_nonce_url(admin_url('admin.php?page=hugeit_forms_main_page&task=add_cat'), 'add_form', 'hugeit_contact_add_form_nonce');?>'" class="add-new-h2" >Add New Form</a>
 			</h2>
 			<?php
 
@@ -121,19 +121,28 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 						}
 					}
 
-					$uncat=$rows[$i]->par_name;
-					if(isset($rows[$i]->prod_count))
-						$pr_count=$rows[$i]->prod_count;
-					else
-						$pr_count=0;
-
-
+					  $uncat = $rows[ $i ]->par_name;
+					  if ( isset( $rows[ $i ]->prod_count ) ) {
+						  $pr_count = $rows[ $i ]->prod_count;
+					  } else {
+						  $pr_count = 0;
+					  }
+					  $edit_form_safe_link = wp_nonce_url(
+						  'admin.php?page=hugeit_forms_main_page&task=edit_cat&id=' . $rows[$i]->id,
+						  'edit_form_' . $rows[$i]->id,
+						  'hugeit_contact_edit_form_nonce'
+					  );
+					$remove_form_safe_link = wp_nonce_url(
+						admin_url('admin.php?page=hugeit_forms_main_page&task=remove_cat&id=' . $rows[$i]->id.''),
+						'remove_form_' . $rows[$i]->id,
+						'hugeit_forms_remove_form_nonce'
+					);
 					?>
-					<tr <?php if($trcount%2==0){ echo 'class="has-background"';}?>>
+					<tr <?php if ($trcount%2==0) { echo 'class="has-background"';}?>>
 						<td><?php echo $rows[$i]->id; ?></td>
-						<td><a  href="<?php print wp_nonce_url(admin_url('admin.php?page=hugeit_forms_main_page&task=edit_cat&id='.$rows[$i]->id.''), 'huge_it_edit_cat_'.$rows[$i]->id.'', 'hugeit_forms_nonce');?>"><?php echo esc_html(stripslashes($rows[$i]->name)); ?></a></td>
+						<td><a  href="<?php echo $edit_form_safe_link; ?>"><?php echo esc_html(stripslashes($rows[$i]->name)); ?></a></td>
 						<td>(<?php if(!($pr_count)){echo '0';} else{ echo $rows[$i]->prod_count;} ?>)</td>
-						<td><a  href="<?php print wp_nonce_url(admin_url('admin.php?page=hugeit_forms_main_page&task=remove_cat&amp;id='.$rows[$i]->id.''), 'huge_it_remove_cat_'.$rows[$i]->id.'', 'hugeit_forms_nonce');?>">Delete</a></td>
+						<td><a href="<?php echo $remove_form_safe_link; ?>" class="hugeit_forms_delete_form">Delete</a></td>
 					</tr> 
 				 <?php } ?>
 				</tbody>
@@ -152,12 +161,22 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 function hugeit_contact_html_edithugeit_contact($id, $ord_elem, $count_ord,$images, $row, $cat_row, $rowim, $rowsld, $paramssld, $rowsposts, $rowsposts8, $postsbycat, $form_styles,$style_values,$themeId){
  	global $wpdb;
 	
-	if(isset($_GET["addslide"])&&$_GET["addslide"] == 1){
-		header('Location: admin.php?page=hugeit_forms_main_page&id='.$row->id.'&task=apply');
+	if(isset($_GET["addslide"]) && $_GET["addslide"] == 1){
+		$apply_safe_link = wp_nonce_url(
+			'admin.php?page=hugeit_forms_main_page&id=' . $row->id . '&task=apply',
+			'apply_form_' . $row->id,
+			'hugeit_contact_apply_form_nonce'
+		);
+		header('Location: ' . $apply_safe_link);
 	}
 	
-	if (isset($_GET["inputtype"])&&$_GET["inputtype"]){
-		header('Location: admin.php?page=hugeit_forms_main_page&id='.$row->id.'&task=apply');
+	if (isset($_GET["inputtype"]) && $_GET["inputtype"]) {
+		$apply_safe_link = wp_nonce_url(
+			'admin.php?page=hugeit_forms_main_page&id=' . $row->id . '&task=apply',
+			'apply_form_' . $row->id,
+			'hugeit_contact_apply_form_nonce'
+		);
+		header('Location: ' . $apply_safe_link);
 	}	
 ?>
 <script type="text/javascript">
@@ -191,17 +210,29 @@ function submitbutton(pressbutton){
 </script>
 <!-- GENERAL PAGE, ADD FIELDS PAGE -->
 <div class="wrap">
-	<?php hugeit_contact_drawFreeBanner();?>
-<form action="admin.php?page=hugeit_forms_main_page&id=<?php echo $id; ?>" method="post" name="adminForm" id="adminForm">
+	<?php
+	hugeit_contact_drawFreeBanner();
+	$apply_safe_link = wp_nonce_url(
+		'admin.php?page=hugeit_forms_main_page&id=' . $id,
+		'apply_form_' . $id,
+		'hugeit_contact_apply_form_nonce'
+	);
+	?>
+<form action="<?php echo $apply_safe_link; ?>" method="post" name="adminForm" id="adminForm">
 	<div id="poststuff" >
 	<div class="hugeit_tabs_block">
 		<ul id="" class="hugeit_contact_top_tabs">			
 			<?php
 			foreach ($rowsld as $rowsldires) :
 				if ($rowsldires->id != $_GET['id']) :
+					$edit_form_safe_link = wp_nonce_url(
+						'admin.php?page=hugeit_forms_main_page&task=edit_cat&id=' . $rowsldires->id,
+						'edit_form_' . $rowsldires->id,
+						'hugeit_contact_edit_form_nonce'
+					);
 				?>
 					<li>
-						<a href="#" onclick="window.location.href='<?php print wp_nonce_url(admin_url('admin.php?page=hugeit_forms_main_page&task=edit_cat&id='.$rowsldires->id.''), 'huge_it_edit_cat_'.$rowsldires->id.'', 'hugeit_forms_nonce');?>'" ><?php echo $rowsldires->name; ?></a>
+						<a href="#" onclick="window.location.href='<?php echo $edit_form_safe_link; ?>'" ><?php echo $rowsldires->name; ?></a>
 					</li>
 				<?php
 				else : ?>
@@ -213,7 +244,7 @@ function submitbutton(pressbutton){
 			endforeach;
 			?>
 			<li class="add-new">
-				<a onclick="window.location.href='<?php print wp_nonce_url(admin_url('admin.php?page=hugeit_forms_main_page&task=add_cat'), 'huge_it_add_cat', 'hugeit_forms_nonce');?>'">+</a>
+				<a onclick="window.location.href='<?php echo wp_nonce_url(admin_url('admin.php?page=hugeit_forms_main_page&task=add_cat'), 'add_form', 'hugeit_contact_add_form_nonce');?>'">+</a>
 			</li>
 		</ul>
 	</div>

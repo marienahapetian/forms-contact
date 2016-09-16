@@ -289,9 +289,11 @@ function hugeit_contacts_huge_it_contact() {
 	global $wpdb;
 	switch ( $task ) {
 		case 'add_cat':
-			if ( isset( $_GET['hugeit_forms_nonce'] ) && wp_verify_nonce( $_GET['hugeit_forms_nonce'], 'huge_it_add_cat' ) ) {
-				hugeit_contact_add_hugeit_contact();
+			if ( !isset( $_REQUEST['hugeit_contact_add_form_nonce'] ) || !wp_verify_nonce( $_REQUEST['hugeit_contact_add_form_nonce'], 'add_form' ) ) {
+				wp_die('Security check failure');
 			}
+
+			hugeit_contact_add_hugeit_contact();
 			break;
 		case 'captcha_keys':
 			if ( $id ) {
@@ -303,9 +305,10 @@ function hugeit_contacts_huge_it_contact() {
 			break;
 		case 'edit_cat':
 			if ( $id ) {
-				if ( isset( $_GET['hugeit_forms_nonce'] ) && wp_verify_nonce( $_GET['hugeit_forms_nonce'], 'huge_it_edit_cat_' . $id . '' ) ) {
-					hugeit_contact_edit_hugeit_contact( $id );
+				if ( !isset( $_REQUEST['hugeit_contact_edit_form_nonce'] ) || !wp_verify_nonce( $_REQUEST['hugeit_contact_edit_form_nonce'], 'edit_form_' . $id ) ) {
+					wp_die('Security check failure');
 				}
+				hugeit_contact_edit_hugeit_contact( $id );
 			} else {
 				$id = $wpdb->get_var( "SELECT MAX( id ) FROM " . $wpdb->prefix . "huge_it_contact_contacts" );
 				if ( isset( $_GET['hugeit_forms_nonce'] ) && wp_verify_nonce( $_GET['hugeit_forms_nonce'], 'huge_it_edit_cat_' . $id . '' ) ) {
@@ -318,13 +321,19 @@ function hugeit_contacts_huge_it_contact() {
 				hugeit_contact_apply_cat( $id );
 			}
 		case 'apply':
+			if (!isset($_REQUEST['hugeit_contact_apply_form_nonce']) || !wp_verify_nonce($_REQUEST['hugeit_contact_apply_form_nonce'], 'apply_form_' . $id)) {
+				wp_die('Security check failure');
+			}
 			if ( $id ) {
 				hugeit_contact_apply_cat( $id );
 				hugeit_contact_edit_hugeit_contact( $id );
 			}
 			break;
 		case 'remove_cat':
-			if ( isset( $_GET['hugeit_forms_nonce'] ) && wp_verify_nonce( $_GET['hugeit_forms_nonce'], 'huge_it_remove_cat_' . $id . '' ) ) {
+			if ( !isset( $_REQUEST['hugeit_forms_remove_form_nonce'] ) || !wp_verify_nonce( $_REQUEST['hugeit_forms_remove_form_nonce'], 'remove_form_' . $id ) ) {
+				wp_die('Security check failure');
+			}
+			if (isset($id) && $id) {
 				hugeit_contact_remove_contact( $id );
 				hugeit_contact_show_contact();
 			}
@@ -1180,7 +1189,7 @@ add_action('init', 'hugeit_contact_new_form_callback');
 function hugeit_contact_new_form_callback() {
 	$wp_upload_dir = wp_upload_dir();
 
-	$condition1 = isset($_GET['page'], $_GET['task'], $_GET['hugeit_forms_nonce']) && $_GET['page'] === 'hugeit_forms_main_page' && $_GET['task'] === 'add_cat';
+	$condition1 = isset($_GET['page'], $_GET['task'], $_GET['hugeit_contact_add_form_nonce']) && $_GET['page'] === 'hugeit_forms_main_page' && $_GET['task'] === 'add_cat';
 	$condition2 = isset($_GET['page'], $_GET['task'], $_GET['file']) && file_exists($wp_upload_dir['basedir'] . DIRECTORY_SEPARATOR . $_GET['file']);
 	$condition3 = isset($_GET['page'], $_GET['task'], $_GET['inputtype']) && $_GET['task'] == 'apply' && $_GET['inputtype'] == 'custom_text';
 

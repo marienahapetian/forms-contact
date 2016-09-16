@@ -1,4 +1,4 @@
-  jQuery(document).ready(function () {	
+  jQuery(document).ready(function () {
   /*******//////////////////Submission Scripts////////////////*********/
   //   CHECK OR UNCHECK ALL SUBMITIONS
     var check_all = "#hugeit_submission_page #hugeit_top_controls .select input[name='all']";
@@ -1332,6 +1332,14 @@
 	jQuery('.form_background_color').on('change keyup', function() {
 		var bgcolor = jQuery('.form_first_background_color').val() + ',' + jQuery('.form_second_background_color').val();
 		jQuery('#form_wrapper_background_color').val(bgcolor);
+	});
+
+	jQuery('.hugeit_forms_delete_form').on('click', function() {
+	  var c = confirm('Are you sure you want to delete this form ?');
+
+	  if (!c) {
+		  return false;
+	  }
 	});
 });
 var checkAnimate;
