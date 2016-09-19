@@ -167,6 +167,7 @@ function hugeit_contact_html_edithugeit_contact($id, $ord_elem, $count_ord,$imag
 			'apply_form_' . $row->id,
 			'hugeit_contact_apply_form_nonce'
 		);
+		$apply_safe_link = htmlspecialchars_decode($apply_safe_link);
 		header('Location: ' . $apply_safe_link);
 	}
 	
@@ -176,6 +177,8 @@ function hugeit_contact_html_edithugeit_contact($id, $ord_elem, $count_ord,$imag
 			'apply_form_' . $row->id,
 			'hugeit_contact_apply_form_nonce'
 		);
+		$apply_safe_link = htmlspecialchars_decode($apply_safe_link);
+
 		header('Location: ' . $apply_safe_link);
 	}	
 ?>

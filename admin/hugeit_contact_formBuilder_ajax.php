@@ -2143,14 +2143,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				) );
 				break;
 
-			case 'license':
-				echo json_encode( array(
-					"outputField"         => hugeit_contact_licenseHtml( $rowimages[0] ),
-					"outputFieldSettings" => hugeit_contact_licenseSettingsHtml( $rowimages[0] ),
-					"beforeId"            => $fieldID,
-				) );
-				break;
-
 		}
 	}
 	//Save Form

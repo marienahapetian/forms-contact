@@ -207,7 +207,6 @@ function hugeit_contact_email_options() {
 	$mailing_progress  = $genOptions[33]->value;
 	$translation_array = array(
 		'mail_status' => $mailing_progress,
-		//todo: review
 		'nonce'       => wp_create_nonce( 'email_nonce' )
 	);
 	wp_localize_script( 'hugeit_contact_email_script', 'huge_it_obj', $translation_array );

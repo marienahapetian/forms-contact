@@ -121,7 +121,6 @@ GROUP BY " . $wpdb->prefix . "huge_it_contact_contacts_fields.hugeit_contact_id)
 			}
 		}
 	}
-	// todo: rename
 	$rows      = hugeit_contact_open_cat_in_tree( $rows );
 	$query     = "SELECT  " . $wpdb->prefix . "huge_it_contact_contacts.ordering," . $wpdb->prefix . "huge_it_contact_contacts.id, COUNT( " . $wpdb->prefix . "huge_it_contact_contacts_fields.hugeit_contact_id ) AS prod_count
 FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields, " . $wpdb->prefix . "huge_it_contact_contacts
@@ -229,6 +228,7 @@ function hugeit_contact_edit_hugeit_contact( $id ) {
 				'apply_form_' . $id,
 				'hugeit_contact_apply_form_nonce'
 			);
+			$apply_safe_link = htmlspecialchars_decode($apply_safe_link);
 			header( 'Location: ' . $apply_safe_link );
 		}
 

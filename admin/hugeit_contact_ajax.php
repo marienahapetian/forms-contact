@@ -365,7 +365,6 @@ function hugeit_contact_ajax_action_callback(){
     					</tr>';
     					$keyForBackground++;
 			}
-			// todo: escape
 			echo json_encode(array("output"=>$output));
 		}else{
 			return;
