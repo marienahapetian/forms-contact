@@ -24,7 +24,7 @@ function hugeit_contact_drawFreeBanner( $freeText = 'no' ) {
 			<a target="_blank" class="yt"  href="https://www.youtube.com/channel/UCueCH_ulkgQZhSuc0L5rS5Q"></a>
 		</div>
 		<div class="hg_view_plugins_block">
-			<a target="_blank"  href="https://wordpress.org/support/view/plugin-reviews/forms-contact">Rate Us</a>
+			<a target="_blank"  href="https://wordpress.org/support/plugin/forms-contact/reviews">Rate Us</a>
 			<a target="_blank"  href="http://huge-it.com/wordpress-forms-demo-1-delivery-form/">Full Demo</a>
 			<a target="_blank"  href="http://huge-it.com/wordpress-forms-faq/">FAQ</a>
 			<a target="_blank"  href="http://huge-it.com/contact-us/">Contact Us</a>

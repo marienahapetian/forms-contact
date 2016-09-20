@@ -1349,12 +1349,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 	//ADD FIELDS
 	if (isset($_POST['task']) && $_POST['task']=='addFieldsTask') {
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'builder_nonce' ) )return;
+		$nonce = isset( $_POST['nonce'] ) ? $_POST['nonce'] : '';
+
+		if ( ! wp_verify_nonce( $nonce, 'builder_nonce' ) ) {
+			return;
+		}
+
 		$formId= absint($_POST['formId']);
 		$inputtype= sanitize_text_field($_POST['inputType']);
 		$themeId= sanitize_text_field($_POST['themeId']);
@@ -1904,12 +1904,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 	//REMOVE FIELDS
 	if( isset($_POST['task']) && $_POST['task']=='removeFieldTask') {
-		if (isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		} else {
-			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'builder_nonce' ) )return false;
+		$nonce = isset( $_POST['nonce'] ) ? $_POST['nonce'] : '';
+
+		if ( ! wp_verify_nonce( $nonce, 'builder_nonce' ) ) {
+			return false;
+		}
+
 		$formId = absint($_POST['formId']);
 		$all = $_POST['formData'];
 		parse_str("$all",$myArray);
@@ -1966,11 +1966,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 	//DUBLICATE FIELDS
 	if (isset($_POST['task']) && $_POST['task'] == 'dublicateFieldTask'){
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce ='';
-		}
+		$nonce = isset( $_POST['nonce'] ) ? $_POST['nonce'] : '';
+
 		if ( ! wp_verify_nonce( $nonce, 'builder_nonce' ) ) {
 			return false;
 		}
@@ -2027,11 +2024,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		$rowduble=$wpdb->get_row($query);
 		$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = %d order by id ASC", $formId);
 		$rowplusorder=$wpdb->get_results($query);
-				   
-		foreach ($rowplusorder as $key=>$rowplusorders){
-			if($rowplusorders->ordering > $rowduble->ordering){
-				$rowplusorderspl=$rowplusorders->ordering+1;
-				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET ordering = %d WHERE id = %d ", $rowplusorderspl,$rowplusorders->id));
+
+		foreach ( $rowplusorder as $key => $rowplusorders ) {
+			if ( $rowplusorders->ordering > $rowduble->ordering ) {
+				$rowplusorderspl = $rowplusorders->ordering + 1;
+				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET ordering = %d WHERE id = %d ", $rowplusorderspl, $rowplusorders->id ) );
 			}
 		}
 		
@@ -2066,80 +2063,83 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 		switch ( $inputtype ) {
 			case 'text':
-				echo json_encode( array( "outputField"         => hugeit_contact_textBoxHtml( $rowimages[0] ),
-				                         "outputFieldSettings" => hugeit_contact_textBoxSettingsHtml( $rowimages[0] ),
-				                         "beforeId"            => $fieldID,
+				echo json_encode( array(
+					"outputField"         => hugeit_contact_textBoxHtml( $rowimages[0] ),
+					"outputFieldSettings" => hugeit_contact_textBoxSettingsHtml( $rowimages[0] ),
+					"beforeId"            => $fieldID,
 				) );
 				break;
 
 			case 'textarea':
-				echo json_encode( array( "outputField"         => hugeit_contact_textareaHtml( $rowimages[0] ),
-				                         "outputFieldSettings" => hugeit_contact_textareaSettingsHtml( $rowimages[0] ),
-				                         "beforeId"            => $fieldID,
+				echo json_encode( array(
+					"outputField"         => hugeit_contact_textareaHtml( $rowimages[0] ),
+					"outputFieldSettings" => hugeit_contact_textareaSettingsHtml( $rowimages[0] ),
+					"beforeId"            => $fieldID,
 				) );
 				break;
 
 			case 'selectbox':
-				echo json_encode( array( "outputField"         => hugeit_contact_selectboxHtml( $rowimages[0] ),
-				                         "outputFieldSettings" => hugeit_contact_selectboxSettingsHtml( $rowimages[0] ),
-				                         "beforeId"            => $fieldID,
+				echo json_encode( array(
+					"outputField"         => hugeit_contact_selectboxHtml( $rowimages[0] ),
+					"outputFieldSettings" => hugeit_contact_selectboxSettingsHtml( $rowimages[0] ),
+					"beforeId"            => $fieldID,
 				) );
 				break;
 
 			case 'checkbox':
-				echo json_encode( array( "outputField"         => hugeit_contact_checkboxHtml( $rowimages[0], $themeId ),
-				                         "outputFieldSettings" => hugeit_contact_checkboxSettingsHtml( $rowimages[0] ),
-				                         "beforeId"            => $fieldID,
+				echo json_encode( array(
+					"outputField"         => hugeit_contact_checkboxHtml( $rowimages[0], $themeId ),
+					"outputFieldSettings" => hugeit_contact_checkboxSettingsHtml( $rowimages[0] ),
+					"beforeId"            => $fieldID,
 				) );
 				break;
 
 			case 'radio_box':
-				echo json_encode( array( "outputField"         => hugeit_contact_radioboxHtml( $rowimages[0], $themeId ),
-				                         "outputFieldSettings" => hugeit_contact_radioboxSettingsHtml( $rowimages[0] ),
-				                         "beforeId"            => $fieldID,
+				echo json_encode( array(
+					"outputField"         => hugeit_contact_radioboxHtml( $rowimages[0], $themeId ),
+					"outputFieldSettings" => hugeit_contact_radioboxSettingsHtml( $rowimages[0] ),
+					"beforeId"            => $fieldID,
 				) );
 				break;
 
 			case 'file_box':
-				echo json_encode( array( "outputField"         => hugeit_contact_fileboxHtml( $rowimages[0], $themeId ),
-				                         "outputFieldSettings" => hugeit_contact_fileboxSettingsHtml( $rowimages[0] ),
-				                         "beforeId"            => $fieldID,
+				echo json_encode( array(
+					"outputField"         => hugeit_contact_fileboxHtml( $rowimages[0], $themeId ),
+					"outputFieldSettings" => hugeit_contact_fileboxSettingsHtml( $rowimages[0] ),
+					"beforeId"            => $fieldID,
 				) );
 				break;
 
 			case 'custom_text':
-				echo json_encode( array( "outputField"         => hugeit_contact_cutomtextHtml( $rowimages[0] ),
-				                         "outputFieldSettings" => hugeit_contact_cutomtextSettingsHtml( $rowimages[0] ),
-				                         "customText"          => "titleimage" . $fieldID . "",
-				                         "beforeId"            => $fieldID,
+				echo json_encode( array(
+					"outputField"         => hugeit_contact_cutomtextHtml( $rowimages[0] ),
+					"outputFieldSettings" => hugeit_contact_cutomtextSettingsHtml( $rowimages[0] ),
+					"customText"          => "titleimage" . $fieldID . "",
+					"beforeId"            => $fieldID,
 				) );
 				break;
 
 			case 'e_mail':
-				echo json_encode( array( "outputField"         => hugeit_contact_emailHtml( $rowimages[0] ),
-				                         "outputFieldSettings" => hugeit_contact_emailSettingsHtml( $rowimages[0] ),
-				                         "beforeId"            => $fieldID,
+				echo json_encode( array(
+					"outputField"         => hugeit_contact_emailHtml( $rowimages[0] ),
+					"outputFieldSettings" => hugeit_contact_emailSettingsHtml( $rowimages[0] ),
+					"beforeId"            => $fieldID,
 				) );
 				break;
 
 			case 'nameSurname':
-				echo json_encode( array( "outputField"         => hugeit_contact_nameSurnameHtml( $rowimages[0] ),
-				                         "outputFieldSettings" => hugeit_contact_nameSurnameSettingsHtml( $rowimages[0] ),
-				                         "beforeId"            => $fieldID,
+				echo json_encode( array(
+					"outputField"         => hugeit_contact_nameSurnameHtml( $rowimages[0] ),
+					"outputFieldSettings" => hugeit_contact_nameSurnameSettingsHtml( $rowimages[0] ),
+					"beforeId"            => $fieldID,
 				) );
 				break;
 
 			case 'phone':
-				echo json_encode( array( "outputField"         => hugeit_contact_phoneHtml( $rowimages[0] ),
-				                         "outputFieldSettings" => hugeit_contact_phoneSettingsHtml( $rowimages[0] ),
-				                         "beforeId"            => $fieldID,
-				) );
-				break;
-
-			case 'license':
-				echo json_encode( array( "outputField"         => hugeit_contact_licenseHtml( $rowimages[0] ),
-				                         "outputFieldSettings" => hugeit_contact_licenseSettingsHtml( $rowimages[0] ),
-				                         "beforeId"            => $fieldID,
+				echo json_encode( array(
+					"outputField"         => hugeit_contact_phoneHtml( $rowimages[0] ),
+					"outputFieldSettings" => hugeit_contact_phoneSettingsHtml( $rowimages[0] ),
+					"beforeId"            => $fieldID,
 				) );
 				break;
 

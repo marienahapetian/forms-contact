@@ -121,7 +121,6 @@ GROUP BY " . $wpdb->prefix . "huge_it_contact_contacts_fields.hugeit_contact_id)
 			}
 		}
 	}
-	// todo: rename
 	$rows      = hugeit_contact_open_cat_in_tree( $rows );
 	$query     = "SELECT  " . $wpdb->prefix . "huge_it_contact_contacts.ordering," . $wpdb->prefix . "huge_it_contact_contacts.id, COUNT( " . $wpdb->prefix . "huge_it_contact_contacts_fields.hugeit_contact_id ) AS prod_count
 FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields, " . $wpdb->prefix . "huge_it_contact_contacts
@@ -224,7 +223,13 @@ function hugeit_contact_edit_hugeit_contact( $id ) {
 					'hc_left_right'         => $rowduble->hc_left_right,
 				), array( '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s', ) );
 
-			header( 'Location: admin.php?page=hugeit_forms_main_page&id=' . $id . '&task=apply' );
+			$apply_safe_link = wp_nonce_url(
+				'admin.php?page=hugeit_forms_main_page&id=' . $id . '&task=apply',
+				'apply_form_' . $id,
+				'hugeit_contact_apply_form_nonce'
+			);
+			$apply_safe_link = htmlspecialchars_decode($apply_safe_link);
+			header( 'Location: ' . $apply_safe_link );
 		}
 
 	}
@@ -353,13 +358,15 @@ function hugeit_contact_edit_hugeit_contact( $id ) {
 function hugeit_contact_add_hugeit_contact() {
 	global $wpdb;
 
-	$query    = "SELECT name,ordering FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE hc_width=0 ORDER BY `ordering`";
-	$ord_elem = $wpdb->get_results( $query ); ///////ordering elements list
-	$cat_row  = $wpdb->get_results( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE hc_width=0" );
-	$cat_row  = hugeit_contact_open_cat_in_tree( $cat_row );
+//	$query    = "SELECT name,ordering FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE hc_width=0 ORDER BY `ordering`";
+//	$ord_elem = $wpdb->get_results( $query ); ///////ordering elements list
+//	$cat_row  = $wpdb->get_results( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE hc_width=0" );
+//	$cat_row  = hugeit_contact_open_cat_in_tree( $cat_row );
 
 	$table_name = $wpdb->prefix . "huge_it_contact_contacts";
-	$wpdb->insert( $table_name, array(
+	$wpdb->insert(
+		$table_name,
+		array(
 			'name'         => 'New Form',
 			'hc_acceptms'  => '500',
 			'hc_width'     => '300',
@@ -369,12 +376,16 @@ function hugeit_contact_add_hugeit_contact() {
 			'param'        => '1000',
 			'ordering'     => '1',
 			'published'    => '300',
-		), array( '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%d', '%s' ) );
+		)
+	);
 
-	$query    = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts ORDER BY id ASC", $id );
-	$rowsldcc = $wpdb->get_results( $query );
-
-	header( 'Location: admin.php?page=hugeit_forms_main_page&id=' . $rowsldcc[ count( $rowsldcc ) - 1 ]->id . '&task=apply' );
+	$apply_safe_link = wp_nonce_url(
+		'admin.php?page=hugeit_forms_main_page&id=' . $wpdb->insert_id . '&task=apply',
+		'apply_form_' . $wpdb->insert_id,
+		'hugeit_contact_apply_form_nonce'
+	);
+	$apply_safe_link = htmlspecialchars_decode($apply_safe_link);
+	header( 'Location: ' . $apply_safe_link );
 
 	ob_flush();
 

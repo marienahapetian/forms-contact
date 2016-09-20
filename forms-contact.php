@@ -207,7 +207,6 @@ function hugeit_contact_email_options() {
 	$mailing_progress  = $genOptions[33]->value;
 	$translation_array = array(
 		'mail_status' => $mailing_progress,
-		//todo: review
 		'nonce'       => wp_create_nonce( 'email_nonce' )
 	);
 	wp_localize_script( 'hugeit_contact_email_script', 'huge_it_obj', $translation_array );
@@ -289,9 +288,11 @@ function hugeit_contacts_huge_it_contact() {
 	global $wpdb;
 	switch ( $task ) {
 		case 'add_cat':
-			if ( isset( $_GET['hugeit_forms_nonce'] ) && wp_verify_nonce( $_GET['hugeit_forms_nonce'], 'huge_it_add_cat' ) ) {
-				hugeit_contact_add_hugeit_contact();
+			if ( !isset( $_REQUEST['hugeit_contact_add_form_nonce'] ) || !wp_verify_nonce( $_REQUEST['hugeit_contact_add_form_nonce'], 'add_form' ) ) {
+				wp_die('Security check failure');
 			}
+
+			hugeit_contact_add_hugeit_contact();
 			break;
 		case 'captcha_keys':
 			if ( $id ) {
@@ -303,9 +304,10 @@ function hugeit_contacts_huge_it_contact() {
 			break;
 		case 'edit_cat':
 			if ( $id ) {
-				if ( isset( $_GET['hugeit_forms_nonce'] ) && wp_verify_nonce( $_GET['hugeit_forms_nonce'], 'huge_it_edit_cat_' . $id . '' ) ) {
-					hugeit_contact_edit_hugeit_contact( $id );
+				if ( !isset( $_REQUEST['hugeit_contact_edit_form_nonce'] ) || !wp_verify_nonce( $_REQUEST['hugeit_contact_edit_form_nonce'], 'edit_form_' . $id ) ) {
+					wp_die('Security check failure');
 				}
+				hugeit_contact_edit_hugeit_contact( $id );
 			} else {
 				$id = $wpdb->get_var( "SELECT MAX( id ) FROM " . $wpdb->prefix . "huge_it_contact_contacts" );
 				if ( isset( $_GET['hugeit_forms_nonce'] ) && wp_verify_nonce( $_GET['hugeit_forms_nonce'], 'huge_it_edit_cat_' . $id . '' ) ) {
@@ -318,13 +320,19 @@ function hugeit_contacts_huge_it_contact() {
 				hugeit_contact_apply_cat( $id );
 			}
 		case 'apply':
+			if (!isset($_REQUEST['hugeit_contact_apply_form_nonce']) || !wp_verify_nonce($_REQUEST['hugeit_contact_apply_form_nonce'], 'apply_form_' . $id)) {
+				wp_die('Security check failure');
+			}
 			if ( $id ) {
 				hugeit_contact_apply_cat( $id );
 				hugeit_contact_edit_hugeit_contact( $id );
 			}
 			break;
 		case 'remove_cat':
-			if ( isset( $_GET['hugeit_forms_nonce'] ) && wp_verify_nonce( $_GET['hugeit_forms_nonce'], 'huge_it_remove_cat_' . $id . '' ) ) {
+			if ( !isset( $_REQUEST['hugeit_forms_remove_form_nonce'] ) || !wp_verify_nonce( $_REQUEST['hugeit_forms_remove_form_nonce'], 'remove_form_' . $id ) ) {
+				wp_die('Security check failure');
+			}
+			if (isset($id) && $id) {
 				hugeit_contact_remove_contact( $id );
 				hugeit_contact_show_contact();
 			}
@@ -509,6 +517,13 @@ function hugeit_contact_register_Huge_it_contact_Widget() {
 //////////////////////////////////////////////////////                                             ///////////////////////////////////////////////////////
 function hugeit_contact_activate() {
 	global $wpdb;
+
+	$collate = '';
+
+	if ( $wpdb->has_cap( 'collation' ) ) {
+		$collate = $wpdb->get_charset_collate();
+	}
+
 /// create database tables
 	$sql_huge_it_contact_style_fields = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_style_fields`(
@@ -519,7 +534,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_style_fields`(
   `options_name` text NOT NULL,
   `value` varchar(200) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+) " . $collate . " AUTO_INCREMENT=1";
 // DON'T EDIT HERE NOTHING!!!!!!!!!!!!!
 	$sql_huge_it_contact_general_options = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_general_options`(
@@ -529,7 +544,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_general_options
   `description` text CHARACTER SET utf8 NOT NULL,
   `value` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+) " . $collate . " AUTO_INCREMENT=1";
 // DON'T EDIT HERE NOTHING!!!!!!!!!!!!!
 	$sql_huge_it_contact_styles          = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_styles`(
@@ -539,7 +554,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_styles`(
   `ordering` int(11) NOT NULL,
   `published` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0";
+) " . $collate .  " AUTO_INCREMENT=0";
 	$sql_huge_it_contact_submission      = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_submission`(
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -554,7 +569,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_submission`(
   `files_url` text NULL,
   `files_type` text NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0";
+) " . $collate . " AUTO_INCREMENT=0";
 	$sql_huge_it_contact_contacts_fields = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_contacts_fields` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -572,7 +587,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_contacts_fields
   `hc_left_right` text NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+) " . $collate . "  AUTO_INCREMENT=1";
 	$sql_huge_it_contact_contacts        = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_contacts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -587,7 +602,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_contacts` (
   `published` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ";
+) " . $collate . " AUTO_INCREMENT=8 ";
 	$sql_huge_it_contact_subscribers     = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_subscribers` (
     `subscriber_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -596,7 +611,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_subscribers` (
     `text` text NOT NULL,
     `send` enum('0','1','2','3') NOT NULL DEFAULT '0',
     PRIMARY KEY (`subscriber_id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+    ) " . $collate . ";";
 	/**
 	 *DANGER!!!DON'T EDIT THIS TABLE!!!
 	 **/
@@ -1180,7 +1195,7 @@ add_action('init', 'hugeit_contact_new_form_callback');
 function hugeit_contact_new_form_callback() {
 	$wp_upload_dir = wp_upload_dir();
 
-	$condition1 = isset($_GET['page'], $_GET['task'], $_GET['hugeit_forms_nonce']) && $_GET['page'] === 'hugeit_forms_main_page' && $_GET['task'] === 'add_cat';
+	$condition1 = isset($_GET['page'], $_GET['task'], $_GET['hugeit_contact_add_form_nonce']) && $_GET['page'] === 'hugeit_forms_main_page' && $_GET['task'] === 'add_cat';
 	$condition2 = isset($_GET['page'], $_GET['task'], $_GET['file']) && file_exists($wp_upload_dir['basedir'] . DIRECTORY_SEPARATOR . $_GET['file']);
 	$condition3 = isset($_GET['page'], $_GET['task'], $_GET['inputtype']) && $_GET['task'] == 'apply' && $_GET['inputtype'] == 'custom_text';
 
