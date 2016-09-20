@@ -1764,19 +1764,19 @@ a {
 }
 
 .free_version_banner .hg_social_link_buttons a.fb {
-	background-position: 0 0;
-}
-
-.free_version_banner .hg_social_link_buttons a.twitter {
-	background-position: -40px 0;
-}
-
-.free_version_banner .hg_social_link_buttons a.gplus {
 	background-position: -80px 0;
 }
 
-.free_version_banner .hg_social_link_buttons a.yt {
+.free_version_banner .hg_social_link_buttons a.twitter {
+	background-position: 0 0;
+}
+
+.free_version_banner .hg_social_link_buttons a.gplus {
 	background-position: -120px 0;
+}
+
+.free_version_banner .hg_social_link_buttons a.yt {
+	background-position: -40px 0;
 }
 
 @media screen and (max-width:1400px){
@@ -1887,3 +1887,22 @@ a {
 .huge_it_forms_mess_subject_help_box:hover::before {opacity: 1;}
 .huge_it_forms_mess_subject_help_box:hover::after {top: 30px;}
 .huge_it_forms_mess_subject_help_box:hover::before {top: 20px;}
+
+.hugeit_contact_black_overlay {
+	position: relative;
+}
+
+.hugeit_contact_black_overlay:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0, 0, 0, .2);
+}
+
+.hugeit_contact_theme_pro_attention {
+	font-weight: 400;
+}
