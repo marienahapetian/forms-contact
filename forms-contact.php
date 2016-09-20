@@ -517,6 +517,13 @@ function hugeit_contact_register_Huge_it_contact_Widget() {
 //////////////////////////////////////////////////////                                             ///////////////////////////////////////////////////////
 function hugeit_contact_activate() {
 	global $wpdb;
+
+	$collate = '';
+
+	if ( $wpdb->has_cap( 'collation' ) ) {
+		$collate = $wpdb->get_charset_collate();
+	}
+
 /// create database tables
 	$sql_huge_it_contact_style_fields = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_style_fields`(
@@ -527,7 +534,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_style_fields`(
   `options_name` text NOT NULL,
   `value` varchar(200) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+) " . $collate . " AUTO_INCREMENT=1";
 // DON'T EDIT HERE NOTHING!!!!!!!!!!!!!
 	$sql_huge_it_contact_general_options = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_general_options`(
@@ -537,7 +544,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_general_options
   `description` text CHARACTER SET utf8 NOT NULL,
   `value` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+) " . $collate . " AUTO_INCREMENT=1";
 // DON'T EDIT HERE NOTHING!!!!!!!!!!!!!
 	$sql_huge_it_contact_styles          = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_styles`(
@@ -547,7 +554,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_styles`(
   `ordering` int(11) NOT NULL,
   `published` text,
   PRIMARY KEY (`id`)
-) DEFAULT CHARSET=utf8 AUTO_INCREMENT=0";
+) " . $collate .  " AUTO_INCREMENT=0";
 	$sql_huge_it_contact_submission      = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_submission`(
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -562,7 +569,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_submission`(
   `files_url` text NULL,
   `files_type` text NULL,
   PRIMARY KEY (`id`)
-) DEFAULT CHARSET=utf8 AUTO_INCREMENT=0";
+) " . $collate . " AUTO_INCREMENT=0";
 	$sql_huge_it_contact_contacts_fields = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_contacts_fields` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -580,7 +587,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_contacts_fields
   `hc_left_right` text NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+) " . $collate . "  AUTO_INCREMENT=1";
 	$sql_huge_it_contact_contacts        = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_contacts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -595,7 +602,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_contacts` (
   `published` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ";
+) " . $collate . " AUTO_INCREMENT=8 ";
 	$sql_huge_it_contact_subscribers     = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_subscribers` (
     `subscriber_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -604,7 +611,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_subscribers` (
     `text` text NOT NULL,
     `send` enum('0','1','2','3') NOT NULL DEFAULT '0',
     PRIMARY KEY (`subscriber_id`)
-    ) DEFAULT CHARSET=utf8;";
+    ) " . $collate . ";";
 	/**
 	 *DANGER!!!DON'T EDIT THIS TABLE!!!
 	 **/
