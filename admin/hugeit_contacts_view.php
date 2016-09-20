@@ -300,23 +300,6 @@ function submitbutton(pressbutton){
 				?>
 				<ul id="add-fields-block">
 					<li class="spinnerLi" data-idForm="<?php echo $id;?>">
-						<img class="readySpin"src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
-					</li>
-					<li>
-						<strong>Ready-To-Go Fields  <i>(Pro)</i></strong>
-						<ul id="add-default-fields" class="readyFields">
-							<li><a onclick="" class="" id="nameSurname" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Full Name</a></li>
-							<li><a onclick="" class="" id="phone" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Phone</a></li>
-							<li><a onclick="" class="" id="date" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Date</a></li>
-							<li><a onclick="" class="" id="address" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Address</a></li>
-							<?php if($fordisablelicense==0):?>
-							<li><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Policy Agreement</a></li>
-							<?php else:?>
-							<li class="disabled"><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Policy Agreement</a></li>
-							<?php endif;?>
-						</ul>
-					</li>
-					<li class="spinnerLi" data-idForm="<?php echo $id;?>">
 						<img class="defSpin" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
 					</li>
 					<li>
@@ -362,6 +345,23 @@ function submitbutton(pressbutton){
 								                        data-themeId="<?php echo $row->hc_yourstyle; ?>">Buttons</a>
 								</li>
 							<?php endif; ?>
+						</ul>
+					</li>
+					<li class="spinnerLi" data-idForm="<?php echo $id;?>">
+						<img class="readySpin" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
+					</li>
+					<li>
+						<strong>Ready-To-Go Fields  <i>(Pro)</i></strong>
+						<ul id="add-default-fields" class="readyFields">
+							<li><a onclick="" class="" id="nameSurname" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Full Name</a></li>
+							<li><a onclick="" class="" id="phone" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Phone</a></li>
+							<li><a onclick="" class="" id="date" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Date</a></li>
+							<li><a onclick="" class="" id="address" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Address</a></li>
+							<?php if($fordisablelicense==0):?>
+								<li><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Policy Agreement</a></li>
+							<?php else:?>
+								<li class="disabled"><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Policy Agreement</a></li>
+							<?php endif;?>
 						</ul>
 					</li>
 				</ul>
