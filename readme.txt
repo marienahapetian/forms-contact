@@ -3,8 +3,8 @@ Contributors: Huge-IT
 Donate link: http://huge-it.com/forms/
 Tags: forms, contact form, contact forms, forms plugin, contact form builder, wordpress contact form, contact us, form, form builder, form creation, form maker, forms builder,
 Requires at least: 3.0.1
-Tested up to: 4.6
-Stable tag: 1.3.8
+Tested up to: 4.6.1
+Stable tag: 1.3.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,14 +44,15 @@ Make the form box required or not, active or solid, configure type of the text n
 
 * This kind of form is very convenient for those users who leads a blog posts on website. Addition of subscribe form in the page or in the widget will attract the readers to subscribe and follow you. 
 
-With the subscribe form you can increase the interest of the audience on your blogs. 
+With the subscribe form you can increase the interest of the audience on your blogs. Form builder allows to customize details of subscribe form and make it understandable and pleasant.
 
 Subscribers  through Huge-IT Forms, will be listed in the subscribers list inside the Forms plugin, which you may easily manage on the newsletter manager section. 
 
 Newsletter section of Forms plugin is very easy in usage, as you may send a bunch of letters to the subscribers.
 
 * Delivery Form
-Plugin is perfect for Delivery form types. Here you may use Selecbox, by adding options for selection, radio box and other fields of forms due to their necessarily.
+
+Form builder made for delivery purposes is perfect for Delivery companies. Here you may use Selecbox, by adding options for selection, radio box and other fields of forms due to their necessarily.
 
 All these form types are not the limit, no matter what Form you would like to have, be sure our Form Builder will be rather useful for them. 
 
@@ -317,6 +318,46 @@ For other help contact info@huge-it.com
 
 *  Yes this is additional customization. Contacting info@huge-it.com you may get it.
 
+
+= Does your form builder plugin supports Themes? =
+
+*  Yes, Huge-IT form builder plugin has six themes. Go to Huge-IT Forms, then Theme Options and select one of unique theme for making your Form more attractive.
+
+
+= Will Huge-IT form builder plugin allow for submissions to be exported to CSV or similar? =
+
+*  We have a sub-plugin for form builder to export all your submissions as CSV, PDF and Excel formats.
+
+
+= Is it possible to have several administrator email on your form builder plugin? =
+
+*  You can add as many admin email as you need, for that procedure go to General Options of form builder plugin, write your email next to Administrator Email separating email address by coma.
+
+
+= What is the function of Ready To-Go-Fields of Forms Plugin? =
+
+*  Form builder provides users with Ready To-Go-Fields, which includes the following important ready to use placeholders: Full Name, Date, Phone, Address and Policy Agreement. 
+
+
+= Does your form builder Plugin include default forms to use? =
+
+*  Yes, there are several pre-installed forms to use, which are Subscribe Form
+*  Delivery Form,Contact US Form, Reservation Form. Form builder is flexible you can create any form you desire.
+
+
+= May I change the “New Form” name of form builder Plugin? =
+
+*  Yes, you just need to click on “New Form” name and it will allow you to write any title for your Form.
+*  Does form builder Plugin provide with Responsive design.
+
+**Yes, form builder plugin is entirely responsive, you can open your form on any device.**
+
+
+= How can the administrator change the subject of the email when receiving a form from a user on email? =
+
+*  In general options of form builder plugin if you leave the message subject field blank, the email subject will take the name of the submitted form. Alternatively you can set your prefered message title to all submission.
+
+
 If you think, that you found a bug in our [WordPress Forms](http://huge-it.com/forms/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com)
 
 == Screenshots ==
@@ -334,6 +375,14 @@ If you think, that you found a bug in our [WordPress Forms](http://huge-it.com/f
 35.  [WordPress Form](https://wordpress.org/plugins/forms-contact/) - Form General Options
 
 == Changelog ==
+
+= 1.3.9 =
+
+* 1) Fixed the MyISAM table structure as requested in support ticket by removing the dependency on MyISAM.
+* 2) Fixed the issues with collations and added additional standards to meet WordPress requirements of collation 
+* 3) Rate Us URL leading to the review page of WordPress has been changed to lead to the new/correct one after WP.org update of links
+* 4) Finalise addition of nonces for edit/create/delete requests
+* 5) Added an alert asking whether user wants to delete the form or not
 
 = 1.3.8 =
 
@@ -490,15 +539,27 @@ We strongly recommend you to clean your browser cache after updating plugin by p
 
 ==Adding a form==
 
-**Step 1. Creating form**
+**Step 1. Creating forms**
 
-### 1.1 form
+### 1.1 Form
 
-From this admin page you may start creating your form, add new form pressing on "add new" form or  + sign inside the form next to each form title - Form
-Get start with the black button called "ADD SIMPLE FIELDS" from this toggle option you may choose what kind of field you add in your form. as soon as you click to add any of them you may see a block of the field with 3 labels, - Form
-pencil - edit
-sheets - duplicate
-bin - delete
+From the admin page of the form builder you may start creating your form. There are two ways of creating a new form: pressing the "add new" form or + sign inside the form next to each form title.
+
+The form builder tools gives an opportunity to change the names of the forms - press the pencil icon and write the new name and gives the ready fields or buttons.
+
+The black button called "ADD SIMPLE FIELDS" from this toggle option contains different kinds of fields to add in your form.
+
+As soon as you click to add any of them you may see a block of the field with 3 labels, - Form pencil - edit sheets - duplicate bin - delete. Next to the “ADD SIMPLE FIELDS” toggle you can see the “READY-TO-GO FIELDS”. 
+
+This form builder option includes address, phone,  data, name, policy and agreement ready fields which are possible to customize.
+
+**Drag and drop functionality**
+
+* The arrangement of the fields of the form builder fields arrangement is quite easy: drag the field with the left click and drop it to the required place.
+
+**Making two columns with drag and drop**
+
+* Drag the field and drop it next to another field on the right.
 
 **Custom Text**
 
@@ -566,7 +627,7 @@ bin - delete
 * Submit Button text. Write text on your custom button
 * Actions After Submission. Choose what action to do after pressing on the custom button
 * Got To Url: Button click with direct to the custom URL
-* Print Success Message.  Accept the submission and print a custom text as success message
+* Print Success Message. Accept the submission and print a custom text as success message
 * Refresh Page. Accept the submission but only refresh the page
 * Reset Button Text. Write text on reset button
 * Show reset Button. Select to show reset button or not
@@ -575,10 +636,12 @@ bin - delete
 
 ### 1.2 Inserting Form in a page/post
 
+**The Huge-IT form builder offers an easy way of inserting the created form in the page/post**
+
 * In the same admin page you will find a button called "Get Shortcode"
 * This will give you two types of shortcodes
 * Shortcode: [huge_it_forms id="n"]. Where n is the iD of form, add this code in page or post
-* Template Include: <?php echo do_shortcode("[huge_it_forms id='n']"); ?>. This code should be added in a particular place of your template
+* Template Include: . This code should be added in a particular place of your template
 
 ### Step 2 . General Options
 
@@ -593,9 +656,9 @@ bin - delete
 **Email To Administrator**
 
 * Send Email For Each Submission. Select to send each submission to administrator
-* Administrator Email. Write email address of the administrator
+* Administrator Email. Write email address of the administrator. Here you can write several email addresses to administrator : just separate emails with the comma
 * Message Subject. Write subject of the message to administrator
-* Message. Write the notification  message to administrator. Always Leave {formContent} to get submission form, data and attached files to administrator email
+* Message. Write the notification message to administrator. Always Leave {formContent} to get submission form, data and attached files to administrator email
 
 **Form Messages**
 
@@ -603,11 +666,11 @@ bin - delete
 * Sender's message was failed to send. Write a custom text in case message failed to be send
 * Submission was referred to as spam. Write a custom text in case submission was referred to as spam
 * Captcha is Not Validated. Write a custom text in case if captcha checkbox is not selected
-* Required Field Is Empty.  Write a custom text in case some required field is empty
-* Email address that the sender entered is invalid.  Write a warning text in case email address is in incorrect form
+* Required Field Is Empty. Write a custom text in case some required field is empty
+* Email address that the sender entered is invalid. Write a warning text in case email address is in incorrect form
 * Uploading a file fails for any reason. Write a warning text in case file failed to be uploaded due to some reasons
 * Uploaded file is not allowed file type. Write a warning text in case uploaded file was in format, which is not allowed
-* Uploaded file is too large.  Write a warning text in case the uploaded file was larger than max allowed size
+* Uploaded file is too large. Write a warning text in case the uploaded file was larger than max allowed size
 
 **Email To User**
 
@@ -617,15 +680,16 @@ bin - delete
 
 ### Step 3. Theme Options (Pro)
 
-These options are available for premium version users, here you can create new themes or make changes on default 5 themes
-Add New Theme. Start customising your own theme 
+**These form builder options are available for premium version users. It gives an opportunity to create new themes or make changes on default 5 themes Add New Theme. Start customizing your own theme.**
 
 ### 3.1 Theme options
+
+* It is vital that the form builder has the options for the styles customization, that is you can change the form’s appearance, textarea, checkbox, input-radio, button styles and so on.
 
 **Form Block Styles**
 
 * Form Width. Change form width within your page
-* Form Background Type. Chose type for form background
+* Form Background Type. Choose type for form background
 * Form Background Color. Select a color for form background
 * Form Border Size. Write a number to decide border width
 * Form Border Color. Decide a color for the border
@@ -639,7 +703,7 @@ Add New Theme. Start customising your own theme
 * Textarea Background Color. Choose a color for textarea box
 * Textarea Border Size. Write some number to decide border width for textarea box
 * Textarea Border Radius. Write border radius for textarea border
-* Textarea Border Color. Choose  a color for textarea box border
+* Textarea Border Color. Choose a color for textarea box border
 * Textarea Font Size. Choose font size for textarea
 * Textarea Font Color. Decide color of the font in textarea
 
@@ -649,23 +713,25 @@ Add New Theme. Start customising your own theme
 * Checkbox Type. Choose whether have circle checkbox or square
 * Checkbox Color. Select color for not selected checkbox
 * Checkbox Hover Color. Select color for not selected checkbox on hover
-* Checkbox Checked Color. Select color for  selected checkbox
+* Checkbox Checked Color. Select color for selected checkbox
 
 **Input-Radio Styles**
 
 * Input-Radio Size. Configure input-radio size
-* Input-Radio  Type. Choose whether have circle input or square	
+* Input-Radio Type. Choose whether have circle input or square
 * Input-Radio Color. Select color for not selected input-radio
-* Input-Radio  Hover Color. Select color for not selected input-rado on hover
-* Input-Radio Checked Color. Select color for  selected input-radio
+* Input-Radio Hover Color. Select color for not selected input-rado on hover
+* Input-Radio Checked Color. Select color for selected input-radio
 
 **Button Styles**
+
+**With the help of the form builder it is even possible to customize the button style, its size, color, title, position etc.**
 
 * Button Position. Choose where to posit your custom button
 * Make Buttons Full-Width. Select to make button full-width
 * Button Padding. Set up padding for the button
 * Buttons Font Size. Decide font size for the button text
-* Icons Position. If button has icon, choose it's position						
+* Icons Position. If button has icon, choose it's position
 * Submit Button Has Icon. Select to add some icon to submit button
 * Submit Icon Style. Choose one of the icon styles for submit button
 * Submit Icon Color. Change icon color for submit color
@@ -675,28 +741,28 @@ Add New Theme. Start customising your own theme
 * Submit Button Background Color. Select background color for submit button
 * Submit Button Background Hover Color. Select background color for submit button on hover
 * Submit Button Border Size. Write some number to decide border width for submit button
-* Submit Button Border Color. Choose  a color for submit button border
-* Submit Button Border Radius.  Write border radius for submit button border
+* Submit Button Border Color. Choose a color for submit button border
+* Submit Button Border Radius. Write border radius for submit button border
 * Reset Button Has Icon. Select to add some icon to reset button
 * Reset Icon Style. Choose one of the icon styles for reset button
-* Reset Button Font Color.  Choose reset button text font color
+* Reset Button Font Color. Choose reset button text font color
 * Reset Button Font Hover Color. Choose color for reset button text on hover
 * Reset Button Background Color. Select background color for reset button
 * Reset Button Background Hover Color. Select background color for reset button on hover
 * Reset Button Border Size. Write some number to decide border width for reset button
-* Reset Button Border Color.  Choose  a color for reset button border
+* Reset Button Border Color. Choose a color for reset button border
 * Reset Button Border Radius. Write border radius for reset button border
-* Reset Icon Color.  Choose  a color for reset button border
+* Reset Icon Color. Choose a color for reset button border
 * Reset Icon Hover Color. Change icon color for reset color on hover
 
 **Labels Styles**
 
 * Label Size. Change label size.
-* Label Font Family. Define label font family.		
+* Label Font Family. Define label font family.
 * Label Color. Define label font color.
-* Label Error Color.  Define error label font color.
+* Label Error Color. Define error label font color.
 * Label * Color. Define * label font color.
-* Label Success Message Color.  Define success message label after form has submitted.
+* Label Success Message Color. Define success message label after form has submitted.
 
 **Input-Text Styles**
 
@@ -704,56 +770,56 @@ Add New Theme. Start customising your own theme
 * Input-Text Background Color. Select color for input-text background.
 * Input-Text Border Size. Write some number to decide border width for input-textbox.
 * Input-Text Border Radius. Write border radius for input-text box border.
-* Input-Text Border Color.  Choose  a color for input-text border.
+* Input-Text Border Color. Choose a color for input-text border.
 * Input-Text Font Size. Set font size for the input-text.
-* Input-Text Font Color. Set up a font  color for input-text.
- 
+* Input-Text Font Color. Set up a font color for input-text.
+
 **Selectbox Styles**
 
 * Selectbox Has Background. Select whether selectbox should have background.
 * Selectbox Background Color. Select color for selectbox background.
 * Selectbox Border Size. Write some number to decide border width for selectbox.
 * Selectbox Border Radius. Write border radius for selectbox border.
-* Selectbox Border Color. Choose  a color for selectbox border.
+* Selectbox Border Color. Choose a color for selectbox border.
 * Selectbox Font Size. Set font size for the selectbox.
-* Selectbox Font Color. Set up a font  color for selectbox.
+* Selectbox Font Color. Set up a font color for selectbox.
 * Selectbox Arrow Color. Set up a color for selectbox arrow.
 
 **File Uploader Styles**
 
-* FileBox Has Background. Select whether selectbox should have background.
-* FileBox Background Color.  Select color for filebox background.
+* FileBox Has Background. Select whether the selectbox of the form builder should have background or not
+* FileBox Background Color. Select color for filebox background.
 * FileBox Border Size. Write some number to decide border width for filebox.
-* FileBox Border Radius.  Write border radius for filebox border.
-* FileBox Border Color. Choose  a color for filebox border.
+* FileBox Border Radius. Write border radius for filebox border.
+* FileBox Border Color. Choose a color for filebox border.
 * FileBox Font Size. Set font size for the filebox.
-* FileBox Font Color.  Set up a font  color for filebox.
+* FileBox Font Color. Set up a font color for filebox.
 * Button Text. Write filebox button text.
 * Button Background Color. Choose color of the background for filebox button.
 * Button Background Hover Color. Choose color of the background for filebox button on hover.
 * Button Text Color. Choose font color of the filebox button.
-* Button Text Hover Color.  Choose font color of the filebox button on hover.
-* FileBox Button Has Icon.  Select to add some icon to filebox button.
+* Button Text Hover Color. Choose font color of the filebox button on hover.
+* FileBox Button Has Icon. Select to add some icon to filebox button.
 * Button's Icon Style. Choose one of the icon styles for filebox button.
-* Button's Icon Position.  Choose button's icon position.
+* Button's Icon Position. Choose button's icon position.
 * Button's Icon Color. Choose a color for button's icon.
 * Button's Icon Hover Color. Choose a color for button's icon on hover.
 
 ### Step 4. All Submissions.
 
-* Here you will see the list of your form. Enter in each you will find a list of all submissions.
+* This part of the form builder shows the list of your form. Enter in each you will find a list of all submissions.
 * Each submission includes.
 * Customer Message.
 * Customer Country.
 * Customer Submission Date.
 * Customer IP.
 * Hover on submission you will find following features.
-* Show.  Open the message of the submission.
+* Show. Open the message of the submission.
 * Spam. Block IP address, so the user will not be able to send any message from that iP.
 * Trash. Delete the submission.
 * The same as standard inbox mail you may select submissions, make bulk of them as read/unread spam/not spam, remove selected at once.
 * When you click show and open the submission message, you may delete it from inside and if message has some attachment you may download it by one simple click.
-* Plus, search bar will help you quickly find required submission.
+* Plus, search bar of the form builder will help you quickly find required submission.
 
 ### Step 5. Newsletter Manager (Pro)
 
