@@ -1341,6 +1341,30 @@
 		  return false;
 	  }
 	});
+
+	jQuery('.hugeit_contact_duplicate_form').on('click', function(e) {
+		e.preventDefault();
+
+		var id = jQuery(this).data('form-id'),
+			nonce = jQuery(this).data('nonce');
+
+		jQuery.ajax({
+			url: ajaxurl,
+			dataType: 'JSON',
+			type: 'POST',
+			data: {
+				action: 'hugeit_contact_duplicate_form',
+				nonce: nonce,
+				id: id
+			}
+		}).done(function(response) {
+			console.log(response);
+
+			if (response.success) {
+				location.reload();
+			}
+		})
+	})
 });
 var checkAnimate;
 jQuery(function() {

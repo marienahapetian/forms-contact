@@ -275,14 +275,14 @@ function hugeit_contact_contact_form_validation_callback(){
 						}
 					}
 				}
-				$emailArray=array_filter(explode('*()*',$emailArray),'strlen');
-				$email_form_id=$frontendformid;
-				foreach ($emailArray as  $emailSingle) {
-					$subscribers=$wpdb->get_results("SELECT `subscriber_email` FROM ".$wpdb->prefix ."huge_it_contact_subscribers WHERE subscriber_form_id=".$email_form_id,ARRAY_A);
-					$insert=1;
-					foreach ($subscribers as $subscriber) {
-						if($subscriber['subscriber_email']==$emailSingle){
-							$insert=0;
+				$emailArray    = array_filter( explode( '*()*', $emailArray ), 'strlen' );
+				$email_form_id = $frontendformid;
+				foreach ( $emailArray as $emailSingle ) {
+					$subscribers = $wpdb->get_results( "SELECT `subscriber_email` FROM " . $wpdb->prefix . "huge_it_contact_subscribers WHERE subscriber_form_id=" . $email_form_id, ARRAY_A );
+					$insert      = 1;
+					foreach ( $subscribers as $subscriber ) {
+						if ( $subscriber['subscriber_email'] == $emailSingle ) {
+							$insert = 0;
 						}
 					}
 					if($insert){
@@ -290,42 +290,78 @@ function hugeit_contact_contact_form_validation_callback(){
 						$email_insert = "INSERT INTO `" . $table_name . "` (`subscriber_form_id`,`subscriber_email`) VALUES (".$email_form_id.",'".$emailSingle."')";
 						$wpdb->query($email_insert);
 					}
-					if($huge_it_gen_opt[6]->value=='on'){
-						if(isset($_POSTED['hc_email_r'])){
-							$subject=$huge_it_gen_opt[7]->value;
-							$sendmessage=wp_kses_post(html_entity_decode($huge_it_gen_opt[8]->value));
-							add_filter( 'wp_mail_content_type', 'hugeit_contact_set_html_content_type2' );
-							$headers = array('From: '.$huge_it_gen_opt[35]->value.' <'.$huge_it_gen_opt[34]->value.'>');
-							
+					if ( $huge_it_gen_opt[6]->value == 'on' ) {
+						$user_custom_text_enabled = get_option('hugeit_contact_form_custom_text_for_user_enabled_' . $email_form_id);
+						if ($user_custom_text_enabled) {
+							$user_custom_message = get_option('hugeit_contact_form_user_message_' . $email_form_id);
+							$user_custom_subject = get_option('hugeit_contact_form_user_subject_' . $email_form_id);
+							if (!empty($user_custom_message)) {
+								$sendmessage = $user_custom_message;
+							}
+							if (!empty($user_custom_subject)) {
+								$subject = $user_custom_subject;
+							}
+						} else {
+							$subject = $huge_it_gen_opt[7]->value;
+							$sendmessage = $huge_it_gen_opt[8]->value;
+						}
+						if ( isset( $_POSTED['hc_email_r'] ) ) {
+							add_filter( 'wp_mail_content_type', 'set_html_content_type2' );
+							$headers = array( 'From: ' . $huge_it_gen_opt[35]->value . ' <' . $huge_it_gen_opt[34]->value . '>' );
 							//------------------if subject empty sends the name of the form
-							if(empty($subject)){
-								$query = "SELECT name from " . $wpdb->prefix . "huge_it_contact_contacts where id = " . $frontendformid;
+							if ( empty( $subject ) ) {
+								$query      = $wpdb->prepare( "SELECT name  FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE id = %d", $frontendformid );
 								$subject = $wpdb->get_var( $query );
 							}
-							
-							wp_mail($emailSingle, $subject, $sendmessage,$headers);
-							remove_filter( 'wp_mail_content_type', 'hugeit_contact_set_html_content_type2' );
+							wp_mail( $emailSingle, $subject, $sendmessage, $headers );
+							remove_filter( 'wp_mail_content_type', 'set_html_content_type2' );
 						}
 					}
 				}
 			////
 				if($huge_it_gen_opt[2]->value=='on'){
-					function hugeit_contact_set_html_content_type() {
+					function set_html_content_type() {
 						return 'text/html';
 					}
-
-					$subject=$huge_it_gen_opt[4]->value;
-					$sendmessage=$huge_it_gen_opt[5]->value;
-					$email=$huge_it_gen_opt[3]->value;
-					add_filter( 'wp_mail_content_type', 'hugeit_contact_set_html_content_type' );
+					$admin_custom_text_enabled = get_option('hugeit_contact_form_custom_text_for_admin_enabled_' . $email_form_id);
+					if ($admin_custom_text_enabled) {
+						$admin_custom_message = get_option('hugeit_contact_form_admin_message_' . $email_form_id);
+						$admin_custom_subject = get_option('hugeit_contact_form_admin_subject_' . $email_form_id);
+						if (!empty($admin_custom_message)) {
+							$sendmessage = $admin_custom_message;
+						}
+						if (!empty($admin_custom_subject)) {
+							$subject = $admin_custom_subject;
+						}
+					} else {
+						$subject=$huge_it_gen_opt[4]->value;
+						$sendmessage=$huge_it_gen_opt[5]->value;
+					}
+					$receivers_group = get_option('hugeit_contact_receivers_group_' . $email_form_id);
+					switch ($receivers_group) {
+						case 'custom' :
+							$custom_receivers = get_option('hugeit_contact_form_custom_admin_receivers_' . $email_form_id);
+							$email = explode(', ', $custom_receivers);
+							break;
+						case 'both' :
+							$custom_receivers = get_option('hugeit_contact_form_custom_admin_receivers_' . $email_form_id);
+							$email = explode(', ', $custom_receivers);
+							array_push($email, $huge_it_gen_opt[3]->value);
+							break;
+						default :
+							$email = $huge_it_gen_opt[3]->value;
+					}
+					add_filter( 'wp_mail_content_type', 'set_html_content_type' );
 					$messagelabbelsexp = array_filter(explode("*()*", $sub_label),'strlen');
 					$messagesubmisexp = explode("*()*", $submition_text);
 					$adminSub='<table class="message-block">';
 					$separator=':';
-					foreach($messagelabbelsexp as $key=>$messagelabbelsexpls){	
+					foreach($messagelabbelsexp as $key=>$messagelabbelsexpls){
 						$messagelabbelsexpls=stripslashes($messagelabbelsexpls);
 						if($messagesubmisexp[$key]!=''){
-							$adminSub.='<tr><td><strong>'.$messagelabbelsexpls.'</strong>'.$separator.' '.$messagesubmisexp[$key].'</td></tr>';
+							$adminSub.='<tr>
+											<td><strong>'.$messagelabbelsexpls.'</strong>'.$separator.' '.$messagesubmisexp[$key].'</td>
+										</tr>';
 						}
 					}
 					$adminSub.='</table>';
@@ -336,21 +372,24 @@ function hugeit_contact_contact_form_validation_callback(){
 						$file_path=preg_replace($link_pattern,'',$value);
 						array_push($attachments, WP_CONTENT_DIR . '/uploads/'.$file_path);
 					}
-					$sendmessage = preg_replace( '/{formContent}/', $adminSub, $sendmessage );
-					$sendmessage = html_entity_decode( $sendmessage );
-					$sendmessage = wp_kses_post( $sendmessage );
+					$sendmessage=preg_replace('/{formContent}/', $adminSub, $sendmessage);
 					$headers = array('From: '.$huge_it_gen_opt[35]->value.' <'.$huge_it_gen_opt[34]->value.'>');
-					
+
 					//------------------if subject empty sends the name of the form
 					if(empty($subject)){
-						$query = "SELECT name  from " . $wpdb->prefix . "huge_it_contact_contacts where id = " . $frontendformid;
+						$query = $wpdb->prepare("SELECT name  from " . $wpdb->prefix . "huge_it_contact_contacts where id = %d", $frontendformid);
 						$select_res = $wpdb->get_var( $query );
 						$subject = $select_res;
 					}
-					
-					wp_mail($email, $subject, $sendmessage,$headers,$attachments);
-					remove_filter( 'wp_mail_content_type', 'hugeit_contact_set_html_content_type' );
-									
+					if (is_array($email)) {
+						foreach ( $email as $email_address ) {
+							wp_mail($email_address, $subject, $sendmessage,$headers,$attachments);
+						}
+					} else {
+						wp_mail($email, $subject, $sendmessage,$headers,$attachments);
+					}
+					remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
+
 				}
 				if($huge_it_gen_opt[1]->value=='on'){
 					$table_name = $wpdb->prefix . "huge_it_contact_submission";

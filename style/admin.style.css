@@ -610,7 +610,19 @@ img.themeSpinner{
 .fields-list .field-top-options-block  a:hover span {display:block;}
 .fields-list .field-top-options-block  a span:hover,.fields-list .field-top-options-block  a:hover span:hover {display:none;}
 .fields-list  .field-top-options-block  a.open-close {background:url(../images/fields.opt.png) left -21px no-repeat;}
-.fields-list .field-top-options-block a.copy-field {background:url(../images/fields.opt.png) left bottom no-repeat;}
+
+.fields-list .field-top-options-block a.copy-field{
+	background: url(../images/fields.opt.png) left bottom no-repeat;
+}
+
+.wp-list-table a.copy-field {
+	background: url(../images/fields.opt.png) left bottom no-repeat;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	opacity: 0.5;
+}
+
 .fields-list .field-top-options-block a.remove-field {background:url(../images/fields.opt.png) left top no-repeat;}
 .fields-list .field-top-options-block a.remove-spinner {background: url(../images/spinner.gif) center center no-repeat !important;}
 .fields-list  .field-top-options-block  a.open-close:focus,
@@ -667,8 +679,7 @@ img.themeSpinner{
 	position:relative;
 	float:right;
 	width:65%;
-	min-width:305px;
-	padding:5px 0 500px 0;
+	padding:5px 0 50px 0;
 	min-width:310px;
 	overflow: hidden;
 }
@@ -1905,4 +1916,83 @@ a {
 
 .hugeit_contact_theme_pro_attention {
 	font-weight: 400;
+}
+
+/*
+Custom Settings
+*/
+
+.hugeit_contact_custom_settings_outer_wrapper {
+	position: relative;
+	float: left;
+	width: 100%;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	color: #555459;
+	background: #fff;
+	padding: 15px;
+	box-sizing: border-box;
+	box-shadow: 1px 2px 2px 2px rgba(0,0,0,0.15);
+	border-radius: 3px;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper h3 {
+	font-size: 2rem;
+	color:#555459;
+}
+
+.hugeit_contact_custom_settings_inner_wrapper:first-of-type {
+	margin-right: 4%;
+}
+
+.hugeit_contact_custom_settings_inner_wrapper {
+	float: left;
+	width: 48%;
+}
+
+.hugeit_contact_custom_settings_inner_wrapper.leftblock {
+	margin-right:4%;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper label {
+	display:inline-block;
+	width: 255px;
+	font-size: 14px;
+	float:left;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper input[type='text'],
+.hugeit_contact_custom_settings_outer_wrapper select {
+	width: 230px;
+	font-size: 14px;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper .primary-label {
+	font-weight: 700;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper input[type='checkbox'] {
+	vertical-align: middle;
+	margin-top:3px;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper input[type='checkbox'] ~ .primary-label {
+	color: #dcc9ab;
+	font-size: 17px;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper input[type='checkbox']:checked ~ .primary-label {
+	color: #e8954c;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper .wp-editor-tabs {
+	float:left
+}
+
+.hugeit_contact_custom_settings_outer_wrapper .small-label {
+	width: 105px;
 }
