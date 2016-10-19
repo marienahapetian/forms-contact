@@ -95,16 +95,7 @@ function wp_ajax_hugeit_contact_duplicate_form_callback() {
 				);
 			}
 
-			$options['hugeit_contact_form_admin_message'] = get_option('hugeit_contact_form_admin_message_' . $id);
-			$options['hugeit_contact_form_user_message'] = get_option('hugeit_contact_form_user_message_' . $id);
-			$options['hugeit_contact_form_custom_text_for_admin_enabled'] = get_option('hugeit_contact_form_custom_text_for_admin_enabled_' . $id);
-			$options['hugeit_contact_form_custom_text_for_user_enabled'] = get_option('hugeit_contact_form_custom_text_for_user_enabled_' . $id);
-			$options['hugeit_contact_form_admin_subject'] = get_option('hugeit_contact_form_admin_subject_' . $id);
-			$options['hugeit_contact_form_user_subject'] = get_option('hugeit_contact_form_user_subject_' . $id);
 			$options['hugeit_contact_show_title_for_form'] = get_option('hugeit_contact_show_title_for_form_' . $id);
-			$options['hugeit_contact_receivers_group'] = get_option('hugeit_contact_receivers_group_' . $id);
-			$options['hugeit_contact_form_custom_admin_receivers'] = get_option('hugeit_contact_form_custom_admin_receivers_' . $id);
-			$options['hugeit_contact_send_email_to_custom_receivers'] = get_option('hugeit_contact_send_email_to_custom_receivers_' . $id);
 
 			foreach ( $options as $name => $value ) {
 				if ($value !== false) {
