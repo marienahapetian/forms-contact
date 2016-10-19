@@ -15,6 +15,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 /*INCLUDING HUGE IT AJAX FILE*/
 require_once( "admin/hugeit_contact_ajax.php" );
+
+add_filter( 'tiny_mce_before_init', 'hugeit_contact_tinymce_readonly' );
+
+function hugeit_contact_tinymce_readonly( $args ) {
+
+	if ( 1 == 1 ){
+		$args['readonly'] = 1;
+	}
+
+
+	return $args;
+}
+
 /*INCLUDING HUGE IT FORM BUILDER AJAX FILE*/
 function hugeit_contact_formBuilder_ajax_action_callback() {
 	require( "admin/hugeit_contact_formBuilder_ajax.php" );

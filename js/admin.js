@@ -1,4 +1,25 @@
   jQuery(document).ready(function () {
+  	jQuery(".hugeit_contact_custom_settings_dropdown_heading").on("click",function () {
+		jQuery(".hugeit_contact_custom_settings_dropdown_content").toggleClass("-hidden");
+		if( jQuery(".hugeit_contact_custom_settings_dropdown_heading i").hasClass("hugeicons-chevron-down") ){
+			jQuery(".hugeit_contact_custom_settings_dropdown_heading i")
+				.removeClass("hugeicons-chevron-down")
+				.addClass("hugeicons-chevron-up");
+		}else{
+			jQuery(".hugeit_contact_custom_settings_dropdown_heading i")
+				.removeClass("hugeicons-chevron-up")
+				.addClass("hugeicons-chevron-down");
+		}
+	});
+
+	  if( jQuery("#hugeit_contact_user_message").length ){
+		  jQuery("#hugeit_contact_user_message").attr("disabled","disabled");
+	  }
+
+	  if( jQuery("#hugeit_contact_admin_message").length ){
+		  jQuery("#hugeit_contact_admin_message").attr("disabled","disabled");
+	  }
+
   /*******//////////////////Submission Scripts////////////////*********/
   //   CHECK OR UNCHECK ALL SUBMITIONS
     var check_all = "#hugeit_submission_page #hugeit_top_controls .select input[name='all']";
