@@ -150,7 +150,7 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 								data-form-id="<?php echo $rows[$i]->id; ?>"
 								data-nonce="<?php echo wp_create_nonce('duplicate_form_' . $rows[$i]->id) ?>"></a>
 						</td>
-						<td><a href="<?php echo $remove_form_safe_link; ?>" class="hugeit_forms_delete_form">Delete</a></td>
+						<td><a href="<?php echo $remove_form_safe_link; ?>" class="hugeit_forms_delete_form"><span class="hugeit-contact-delete"></span></a></td>
 					</tr>
 				  <?php } ?>
 				</tbody>

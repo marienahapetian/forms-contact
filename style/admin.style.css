@@ -626,6 +626,10 @@ img.themeSpinner{
 	opacity: 0.5;
 }
 
+.wp-list-table a.copy-field:hover {
+	opacity: 1;
+}
+
 .fields-list .field-top-options-block a.remove-field {background:url(../images/fields.opt.png) left top no-repeat;}
 .fields-list .field-top-options-block a.remove-spinner {background: url(../images/spinner.gif) center center no-repeat !important;}
 .fields-list  .field-top-options-block  a.open-close:focus,
@@ -2046,4 +2050,24 @@ Custom Settings
 
 .hugeit_contact_custom_settings_outer_wrapper .small-label {
 	width: 105px;
+}
+
+.hugeit-contact-delete {
+	background: url(../images/fields.opt.png) left top no-repeat;
+	display: block;
+	width: 20px;
+	height: 21px;
+	margin: 0 5px 0 0;
+	outline: none;
+	opacity: 0.5;
+	border-radius: 3px;
+	border: 1px solid rgba(0,0,0,0.1);
+}
+
+.hugeit-contact-delete:hover {
+	opacity: 1;
+}
+
+.hugeit_forms_delete_form {
+	display: inline-block;
 }
