@@ -317,7 +317,7 @@ function submitbutton(pressbutton){
 						<img class="defSpin" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
 					</li>
 					<li>
-						<strong>Add Simple Fields</strong>
+						<strong>Add Form Fields</strong>
 						<ul id="add-default-fields">
 							<li><a onclick="" class="" id="text" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Text Box</a><li>
 							<li><a onclick="" class="" id="textarea" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Textarea</a></li>
