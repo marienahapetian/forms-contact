@@ -1960,7 +1960,6 @@ Custom Settings
 	cursor: pointer;
 	display: inline-block;
 	position: relative;
-	margin-top: 10px;
 	padding: 10px 30px 10px 10px;
 	background-color: #ff6011;
 	color: #fff;
@@ -1970,7 +1969,7 @@ Custom Settings
 .hugeit_contact_custom_settings_dropdown_description {
 	float: right;
 	position: relative;
-	width: calc(100% - 350px);
+	width: calc(100% - 260px);
 	margin-bottom: 10px;
 	font-style: italic;
 	font-size: 13px;
@@ -1988,6 +1987,7 @@ Custom Settings
 	height: 15px;
 	background: url(../images/forms-pro-icon.png) no-repeat;
 	vertical-align: middle;
+	margin-left: 5px;
 }
 
 .hugeit_contact_custom_settings_dropdown_heading i {
