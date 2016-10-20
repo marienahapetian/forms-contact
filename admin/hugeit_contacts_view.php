@@ -1246,6 +1246,7 @@ function submitbutton(pressbutton){
 									<option value="both" <?php if ( get_option( 'hugeit_contact_receivers_group_' . $id ) === 'both' ) echo ' selected'; ?>>Default &amp; Custom Receivers</option>
 									<option value="custom" <?php if ( get_option( 'hugeit_contact_receivers_group_' . $id ) === 'custom' ) echo ' selected'; ?>>Custom Recievers</option>
 								</select>
+								<dfn class="huge_it_forms_mess_subject_help_box" data-info="Add multiple emails separating them with commas.">?</dfn>
 							</p>
 							<p>
 								<label for="hugeit_contact_form_custom_admin_receivers">Admin Custom Receivers:</label>

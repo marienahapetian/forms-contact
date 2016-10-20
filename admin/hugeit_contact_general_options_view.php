@@ -54,6 +54,7 @@ function hugeit_contact_html_show_settings($param_values) {
 							<div>
 								<label for="form_adminstrator_email">Administrator Email</label>
 								<input type="text" id="form_adminstrator_email" name="params[form_adminstrator_email]" value="<?php echo $param_values['form_adminstrator_email']; ?>" />
+								<dfn class="huge_it_forms_mess_subject_help_box" data-info="Add multiple emails separating them with commas.">?</dfn>
 							</div>
 							<div>
 								<label for="form_message_subject">Message Subject</label>
