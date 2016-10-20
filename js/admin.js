@@ -1,4 +1,6 @@
-  jQuery(document).ready(function () {
+var defaultTitleVisibility;
+
+jQuery(document).ready(function () {
 
   	jQuery(".hugeit_contact_custom_settings_dropdown_heading").on("click",function () {
 		jQuery(".hugeit_contact_custom_settings_dropdown_content").toggleClass("-hidden");
@@ -1380,8 +1382,6 @@
 				id: id
 			}
 		}).done(function(response) {
-			console.log(response);
-
 			if (response.success) {
 				location.reload();
 			}
@@ -1393,6 +1393,20 @@
 		  jQuery(".free_version_banner").css("display","none");
 		  HugeitContactSetCookie( 'hgFormsFreeBannerShow', 'no', {expires:3600} );
 	  });
+		defaultTitleVisibility = jQuery('#hugeit-contact-wrapper').find('h3').css('display');
+
+	  jQuery('#select_form_show_title').on('change', function() {
+		  switch (jQuery(this).val()) {
+			  case 'yes' :
+				  jQuery('#hugeit-contact-wrapper').find('h3').css('display', 'block');
+				  break;
+			  case 'no' :
+				  jQuery('#hugeit-contact-wrapper').find('h3').css('display', 'none');
+				  break;
+			  case 'default' :
+				  jQuery('#hugeit-contact-wrapper').find('h3').css('display', defaultTitleVisibility);
+		  }
+	  })
 });
 
   function HugeitContactSetCookie(name, value, options) {

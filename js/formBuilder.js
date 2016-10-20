@@ -433,6 +433,7 @@ jQuery(document).ready(function(e) {
 						script = document.getElementsByTagName('script')[0],
 						styles = response;
 					script.parentNode.insertBefore(style, script);
+					console.log(styles);
 					try {
 						style.innerHTML = styles;
 					}
