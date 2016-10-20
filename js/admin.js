@@ -1,4 +1,5 @@
   jQuery(document).ready(function () {
+
   	jQuery(".hugeit_contact_custom_settings_dropdown_heading").on("click",function () {
 		jQuery(".hugeit_contact_custom_settings_dropdown_content").toggleClass("-hidden");
 		if( jQuery(".hugeit_contact_custom_settings_dropdown_heading i").hasClass("hugeicons-chevron-down") ){

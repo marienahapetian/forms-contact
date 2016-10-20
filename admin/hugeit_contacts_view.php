@@ -1234,7 +1234,7 @@ function submitbutton(pressbutton){
 			<div class="hugeit_contact_custom_settings_main">
 				<div class="hugeit_contact_custom_settings_dropdown_heading_wrapper">
 					<div class="hugeit_contact_custom_settings_dropdown_heading"><h4>Advanced email options</h4><i class="hugeicons-chevron-down"></i></div>
-					<div class="hugeit_contact_custom_settings_dropdown_description">By default in Free version of the plugin you may send emails to admin/user using ONE CUSTOM email message. Yet, in the Pro version of Forms you may activate more advanced options and send custom content for admins and users for/from each form. You can also have multiple admins to receive your emails.</div>
+					<div class="hugeit_contact_custom_settings_dropdown_description">In your LITE version of the plugin you can send ONE custom email message and set the same admin recipients for ALL forms, whereas Advanced email options in PRO version allow you to customize your email messages and admin recipients for EACH form.</div>
 				</div>
 				<div class="hugeit_contact_custom_settings_dropdown_content -hidden">
 					<div class="hugeit_contact_custom_settings_outer_wrapper">
@@ -1246,7 +1246,6 @@ function submitbutton(pressbutton){
 									<option value="both" <?php if ( get_option( 'hugeit_contact_receivers_group_' . $id ) === 'both' ) echo ' selected'; ?>>Default &amp; Custom Receivers</option>
 									<option value="custom" <?php if ( get_option( 'hugeit_contact_receivers_group_' . $id ) === 'custom' ) echo ' selected'; ?>>Custom Recievers</option>
 								</select>
-								<dfn class="huge_it_forms_mess_subject_help_box" data-info="Add multiple emails separating them with commas.">?</dfn>
 							</p>
 							<p>
 								<label for="hugeit_contact_form_custom_admin_receivers">Admin Custom Receivers:</label>
@@ -1257,6 +1256,7 @@ function submitbutton(pressbutton){
 									name="hugeit_contact_form_custom_admin_receivers"
 									placeholder="Use comma-separated email addresses"
 									value="<?php $custom_receivers = get_option( 'hugeit_contact_form_custom_admin_receivers_' . $id ); if ( $custom_receivers ) echo $custom_receivers; ?>"/>
+								<dfn class="huge_it_forms_mess_subject_help_box" data-info="Add multiple emails separating them with commas.">?</dfn>
 							</p>
 						</div>
 						<div class="hugeit_contact_custom_settings_inner_wrapper leftblock">

@@ -167,14 +167,24 @@ img.themeSpinner{
 	width:100%;
 	background:#fff;
 }
-.options-block form > div {
+.options-block form {
+	-webkit-column-count: 2;
+	-moz-column-count: 2;
+	column-count: 2;
+	display: flex;
+}
+
+.hugeit-contact-general-options-column {
+	display: block;
+	width: 50%;
+}
+
+.hugeit-contact-general-options-block {
 	position:relative;
 	display:block;
-	float:left;
-	margin:10px 1% 25px 1%;
-	padding:0 1% 10px 1%;
-	width:46%;
 	background:#f9f9f9;
+	margin: 10px 1% 25px;
+	padding: 0px 1% 10px;
 }
 @media only screen and (max-width:1220px){
 	 .options-block form > div {
@@ -187,12 +197,12 @@ img.themeSpinner{
 .options-block   div.has-background {background:#fff;}
 .options-block   div.has-height {height:auto;}
 .options-block   div.has-height > div {display:inline-block;}
-.options-block form > div  h3 {
+.hugeit-contact-general-options-block h3 {
 	display:block;
 	text-align:center;
 	margin:10px 0 10px 0;
 }
-.options-block form > div > div {
+.hugeit-contact-general-options-block > div {
 	position:relative;
 	clear:both;
 	width:100%;
@@ -200,54 +210,54 @@ img.themeSpinner{
 	padding:5px 0 0 0;
 	margin:0 !important;
 }
-.options-block form > div > div.autoheight {height:auto;}
-.options-block form > div > div label {
+.hugeit-contact-general-options-block > div.autoheight {height:auto;}
+.hugeit-contact-general-options-block > div label {
 	display:inline-block;
 	width:50%;
 	padding:5px 0 0 2%;
 	height:30px;
 	float:left;
 }
-.options-block form > div > div div.slider-container {
+.hugeit-contact-general-options-block div.slider-container {
 	position:relative;
 	display: inline-block;
 	width: 220px;
 	margin-left:-5px;
 	padding-top:6px;
 }
-.options-block form > div > div div.slider-container span {
+.hugeit-contact-general-options-block > div div.slider-container span {
 	position:absolute;
 	top:3px;
 	right:-9px;
 }
-.options-block form > div > div input[type='text'],.options-block form > div > div input[type='number'],.options-block form > div > div select {
+.hugeit-contact-general-options-block > div input[type='text'],.options-block form > div > div input[type='number'],.options-block form > div > div select {
 	width:180px;
 }
-.options-block form > div > div input[type='text'].half {
+.hugeit-contact-general-options-block > div input[type='text'].half {
 	width:90px;
 	margin:0;
 }
-.options-block form > div > div input[type='text'].none {
+.hugeit-contact-general-options-block > div input[type='text'].none {
 	display:none;
 }
-.options-block form > div > div input[type='checkbox'] {
+.hugeit-contact-general-options-block > div input[type='checkbox'] {
 	margin:7px 0 3px 0;
 }
-.options-block form > div.brlable > div {
+.hugeit-contact-general-options-block.brlable > div {
 	height:auto;
 	margin:3px 0 10px 0 !important;
 }
-.options-block form > div.brlable > div label {
+.hugeit-contact-general-options-block.brlable > div label {
 	width:100%;
 	padding:0;
 	height:20px;
 	clear:both;
 	float:none;
 }
-.options-block form > div.brlable > div  input[type='text']{
+.hugeit-contact-general-options-block.brlable > div  input[type='text']{
 	width:80%;
 }
-.options-block  .icons-block {
+.options-block .icons-block {
 	position:relative;
 	width:180px;
 	height:115px;
@@ -300,7 +310,7 @@ img.themeSpinner{
 	z-index:2;
 }
 .fields-list .wp-media-buttons ,.options-block  .wp-media-buttons {display:none !important;}
-#adminForm>div>div:nth-child(even){
+.hugeit-contact-general-options-block > div:nth-child(even){
 	background: #fff;
 }
 /*CONTENT*/
@@ -1960,7 +1970,7 @@ Custom Settings
 .hugeit_contact_custom_settings_dropdown_description {
 	float: right;
 	position: relative;
-	width: calc(100% - 250px);
+	width: calc(100% - 350px);
 	margin-bottom: 10px;
 	font-style: italic;
 	font-size: 13px;
@@ -1969,6 +1979,15 @@ Custom Settings
 
 .hugeit_contact_custom_settings_dropdown_heading h4 {
 	margin:0;
+}
+
+.hugeit_contact_custom_settings_dropdown_heading h4:after {
+	content: '';
+	display: inline-block;
+	width: 30px;
+	height: 15px;
+	background: url(../images/forms-pro-icon.png) no-repeat;
+	vertical-align: middle;
 }
 
 .hugeit_contact_custom_settings_dropdown_heading i {

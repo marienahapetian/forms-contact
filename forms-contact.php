@@ -19,8 +19,7 @@ require_once( "admin/hugeit_contact_ajax.php" );
 add_filter( 'tiny_mce_before_init', 'hugeit_contact_tinymce_readonly' );
 
 function hugeit_contact_tinymce_readonly( $args ) {
-
-	if ( 1 == 1 ){
+	if ( $args['selector'] == '#hugeit_contact_admin_message' || $args['selector'] == '#hugeit_contact_user_message' ){
 		$args['readonly'] = 1;
 	}
 
