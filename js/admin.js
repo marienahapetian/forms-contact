@@ -1391,7 +1391,7 @@ jQuery(document).ready(function () {
 
 	  jQuery(".close_free_banner").on("click",function(){
 		  jQuery(".free_version_banner").css("display","none");
-		  HugeitContactSetCookie( 'hgFormsFreeBannerShow', 'no', {expires:3600} );
+		  HugeitContactSetCookie( 'hgFormsFreeBannerShow', 'no', {expires:86400} );
 	  });
 		defaultTitleVisibility = jQuery('#hugeit-contact-wrapper').find('h3').css('display');
 
