@@ -190,6 +190,27 @@
 <div class="element hugeitmicro-item">
 	<div class="left-block">
 		<div class="main-image-block">
+			<a href="http://huge-it.com/wordpress-responsive-slider/" target="_blank"><img src="<?php echo plugins_url( '../images/responsive-slider-logo.png', __FILE__ ); ?>" /></a>
+		</div>
+	</div>
+	<div class="right-block">
+		<div class="title-block"><a href="http://huge-it.com/wordpress-responsive-slider/" target="_blank"><h3>WordPress Responsive Slider</h3></a>
+		</div>
+		<p>The newly launched Responsive Slider from Huge-IT is the fastest loading slider for WordPress.
+			Besides being fully responsive, allowing to post unlimited slides in free version,
+			Professional version of this plugin will allow changing every corner of sliders, including buttons, arrows, bullets and more.
+			Check out the link for more details.
+		</p>
+		<div class="description-block">
+		</div>
+		<div class="button-block">
+			<a href="http://huge-it.com/wordpress-responsive-slider/" target="_blank">View Plugin</a>
+		</div>
+	</div>
+</div>
+<div class="element hugeitmicro-item">
+	<div class="left-block">
+		<div class="main-image-block">
 			<a href="http://huge-it.com/wordpress-gallery/" target="_blank" rel="content">
                 <img src="<?php echo plugins_url( '../images/Gallery.png' , __FILE__ ); ?>">
             </a>

@@ -20,7 +20,8 @@ function hugeit_contact_html_show_settings($param_values) {
 				</div>
 				<div class="options-block">
 				<form action="admin.php?page=hugeit_forms_general_options&task=save" method="post" id="adminForm" name="adminForm">
-						<div>
+					<div class="hugeit-contact-general-options-column hugeit-contact-general-options-left">
+						<div class="hugeit-contact-general-options-block">
 							<h3>Your Form Settings</h3>
 							<div>
 								<label for="form_adminstrator_user_name">Send Emails From Name</label>
@@ -44,7 +45,7 @@ function hugeit_contact_html_show_settings($param_values) {
 								<input type="checkbox" id="form_save_to_database" <?php if($param_values['form_save_to_database']  == 'on'){ echo 'checked="checked"'; } ?>  name="params[form_save_to_database]" value="on" />
 							</div>
 						</div>
-						<div class="brlable" >
+						<div class="hugeit-contact-general-options-block brlable" >
 							<h3>Form Messages</h3>
 							<div>
 								<label for="msg_send_success">Sender's message was sent successfully</label>
@@ -111,7 +112,9 @@ function hugeit_contact_html_show_settings($param_values) {
 								<input name="params[msg_large_file]" type="text" id="msg_large_file" value="<?php echo $param_values['msg_large_file']; ?>" />
 							</div>
 						</div>
-						<div style="margin-top: -380px;">
+					</div>
+					<div class="hugeit-contact-general-options-column hugeit-contact-general-options-right">
+						<div class="hugeit-contact-general-options-block">
 							<h3>Email To Administrator</h3>
 							<div>
 								<label for="form_send_email_for_each_submition">Send Email For Each Submission</label>
@@ -121,6 +124,7 @@ function hugeit_contact_html_show_settings($param_values) {
 							<div>
 								<label for="form_adminstrator_email">Administrator Email</label>
 								<input type="text" id="form_adminstrator_email" name="params[form_adminstrator_email]" value="<?php echo $param_values['form_adminstrator_email']; ?>" />
+								<dfn class="huge_it_forms_mess_subject_help_box" data-info="Add multiple emails separating them with commas.">?</dfn>
 							</div>
 							<div>
 								<label for="form_message_subject">Message Subject</label>
@@ -130,21 +134,22 @@ function hugeit_contact_html_show_settings($param_values) {
 							<div class="autoheight">
 								<label for="form_adminstrator_message">Message</label>
 								<?php
-									function hugeit_contact_wptiny($initArray){
-										$initArray['height'] = '300px';
-										$initArray['forced_root_block'] = false;
-										$initArray['remove_linebreaks']=false;
-									    $initArray['remove_redundant_brs'] = false;
-									    $initArray['wpautop']=false;
-										return $initArray;
-									}
-									add_filter('tiny_mce_before_init', 'hugeit_contact_wptiny' );
-									wp_editor(html_entity_decode($param_values['form_adminstrator_message']), "adminmessage");;
+								function hugeit_contact_wptiny($initArray){
+									$initArray['height'] = '300px';
+									$initArray['forced_root_block'] = false;
+									$initArray['remove_linebreaks']=false;
+									$initArray['remove_redundant_brs'] = false;
+									$initArray['wpautop']=false;
+									return $initArray;
+								}
+								add_filter('tiny_mce_before_init', 'hugeit_contact_wptiny' );
+								wp_editor(html_entity_decode($param_values['form_adminstrator_message']), "adminmessage");;
 								?>
 								<div class="clear"></div>
 							</div>
 						</div>
-						<div>
+
+						<div class="hugeit-contact-general-options-block">
 							<h3>Email To User</h3>
 							<div>
 								<label for="form_send_to_email_user">Send Email To User</label>
@@ -161,6 +166,7 @@ function hugeit_contact_html_show_settings($param_values) {
 								<?php wp_editor(html_entity_decode(stripslashes($param_values['form_user_message'])), "usermessage"); ?>
 							</div>
 						</div>
+					</div>
 				</form>
 				</div>
 			</div>

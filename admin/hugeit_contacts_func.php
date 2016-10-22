@@ -367,7 +367,7 @@ function hugeit_contact_add_hugeit_contact() {
 	$wpdb->insert(
 		$table_name,
 		array(
-			'name'         => 'New Form',
+			'name'         => 'My New Form',
 			'hc_acceptms'  => '500',
 			'hc_width'     => '300',
 			'hc_userms'    => 'true',

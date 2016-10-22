@@ -167,14 +167,24 @@ img.themeSpinner{
 	width:100%;
 	background:#fff;
 }
-.options-block form > div {
+.options-block form {
+	-webkit-column-count: 2;
+	-moz-column-count: 2;
+	column-count: 2;
+	display: flex;
+}
+
+.hugeit-contact-general-options-column {
+	display: block;
+	width: 50%;
+}
+
+.hugeit-contact-general-options-block {
 	position:relative;
 	display:block;
-	float:left;
-	margin:10px 1% 25px 1%;
-	padding:0 1% 10px 1%;
-	width:46%;
 	background:#f9f9f9;
+	margin: 10px 1% 25px;
+	padding: 0px 1% 10px;
 }
 @media only screen and (max-width:1220px){
 	 .options-block form > div {
@@ -187,12 +197,12 @@ img.themeSpinner{
 .options-block   div.has-background {background:#fff;}
 .options-block   div.has-height {height:auto;}
 .options-block   div.has-height > div {display:inline-block;}
-.options-block form > div  h3 {
+.hugeit-contact-general-options-block h3 {
 	display:block;
 	text-align:center;
 	margin:10px 0 10px 0;
 }
-.options-block form > div > div {
+.hugeit-contact-general-options-block > div {
 	position:relative;
 	clear:both;
 	width:100%;
@@ -200,54 +210,54 @@ img.themeSpinner{
 	padding:5px 0 0 0;
 	margin:0 !important;
 }
-.options-block form > div > div.autoheight {height:auto;}
-.options-block form > div > div label {
+.hugeit-contact-general-options-block > div.autoheight {height:auto;}
+.hugeit-contact-general-options-block > div label {
 	display:inline-block;
 	width:50%;
 	padding:5px 0 0 2%;
 	height:30px;
 	float:left;
 }
-.options-block form > div > div div.slider-container {
+.hugeit-contact-general-options-block div.slider-container {
 	position:relative;
 	display: inline-block;
 	width: 220px;
 	margin-left:-5px;
 	padding-top:6px;
 }
-.options-block form > div > div div.slider-container span {
+.hugeit-contact-general-options-block > div div.slider-container span {
 	position:absolute;
 	top:3px;
 	right:-9px;
 }
-.options-block form > div > div input[type='text'],.options-block form > div > div input[type='number'],.options-block form > div > div select {
+.hugeit-contact-general-options-block > div input[type='text'],.options-block form > div > div input[type='number'],.options-block form > div > div select {
 	width:180px;
 }
-.options-block form > div > div input[type='text'].half {
+.hugeit-contact-general-options-block > div input[type='text'].half {
 	width:90px;
 	margin:0;
 }
-.options-block form > div > div input[type='text'].none {
+.hugeit-contact-general-options-block > div input[type='text'].none {
 	display:none;
 }
-.options-block form > div > div input[type='checkbox'] {
+.hugeit-contact-general-options-block > div input[type='checkbox'] {
 	margin:7px 0 3px 0;
 }
-.options-block form > div.brlable > div {
+.hugeit-contact-general-options-block.brlable > div {
 	height:auto;
 	margin:3px 0 10px 0 !important;
 }
-.options-block form > div.brlable > div label {
+.hugeit-contact-general-options-block.brlable > div label {
 	width:100%;
 	padding:0;
 	height:20px;
 	clear:both;
 	float:none;
 }
-.options-block form > div.brlable > div  input[type='text']{
+.hugeit-contact-general-options-block.brlable > div  input[type='text']{
 	width:80%;
 }
-.options-block  .icons-block {
+.options-block .icons-block {
 	position:relative;
 	width:180px;
 	height:115px;
@@ -300,7 +310,7 @@ img.themeSpinner{
 	z-index:2;
 }
 .fields-list .wp-media-buttons ,.options-block  .wp-media-buttons {display:none !important;}
-#adminForm>div>div:nth-child(even){
+.hugeit-contact-general-options-block > div:nth-child(even){
 	background: #fff;
 }
 /*CONTENT*/
@@ -320,7 +330,7 @@ img.themeSpinner{
 #add-fields-block {
 	float:right;
 	list-style:none;
-	margin:0 30px 0 0;
+	margin: 0 10px 0 0;
 	display:table;
 }
 #add-fields-block  > li {
@@ -333,6 +343,7 @@ img.themeSpinner{
 	color:#fff;
 	cursor:pointer;
 	background:url(../images/plus.white.png) right center no-repeat #222;
+	border-radius: 4px;
 }
 #add-fields-block  > li.spinnerLi{
     background: none !important;
@@ -352,6 +363,8 @@ img.themeSpinner{
 #add-fields-block  > li:hover {
 	background-color:#0074a2;
 	color:#fff;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
 }
 #add-fields-block  > li > ul {
 	display:none;
@@ -610,7 +623,23 @@ img.themeSpinner{
 .fields-list .field-top-options-block  a:hover span {display:block;}
 .fields-list .field-top-options-block  a span:hover,.fields-list .field-top-options-block  a:hover span:hover {display:none;}
 .fields-list  .field-top-options-block  a.open-close {background:url(../images/fields.opt.png) left -21px no-repeat;}
-.fields-list .field-top-options-block a.copy-field {background:url(../images/fields.opt.png) left bottom no-repeat;}
+
+.fields-list .field-top-options-block a.copy-field{
+	background: url(../images/fields.opt.png) left bottom no-repeat;
+}
+
+.wp-list-table a.copy-field {
+	background: url(../images/fields.opt.png) left bottom no-repeat;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	opacity: 0.5;
+}
+
+.wp-list-table a.copy-field:hover {
+	opacity: 1;
+}
+
 .fields-list .field-top-options-block a.remove-field {background:url(../images/fields.opt.png) left top no-repeat;}
 .fields-list .field-top-options-block a.remove-spinner {background: url(../images/spinner.gif) center center no-repeat !important;}
 .fields-list  .field-top-options-block  a.open-close:focus,
@@ -667,8 +696,7 @@ img.themeSpinner{
 	position:relative;
 	float:right;
 	width:65%;
-	min-width:305px;
-	padding:5px 0 500px 0;
+	padding:5px 0 50px 0;
 	min-width:310px;
 	overflow: hidden;
 }
@@ -1764,7 +1792,7 @@ a {
 }
 
 .free_version_banner .hg_social_link_buttons a.fb {
-	background-position: -80px 0;
+	background-position: -81px 0;
 }
 
 .free_version_banner .hg_social_link_buttons a.twitter {
@@ -1772,7 +1800,7 @@ a {
 }
 
 .free_version_banner .hg_social_link_buttons a.gplus {
-	background-position: -120px 0;
+	background-position: -121px 0;
 }
 
 .free_version_banner .hg_social_link_buttons a.yt {
@@ -1905,4 +1933,161 @@ a {
 
 .hugeit_contact_theme_pro_attention {
 	font-weight: 400;
+}
+
+/*
+Custom Settings
+*/
+.hugeit_contact_custom_settings_main {
+	position: relative;
+	float: left;
+	width: 100%;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	color: #555459;
+	background: #fff;
+	padding: 10px 15px;
+	box-sizing: border-box;
+	box-shadow: 1px 2px 2px 2px rgba(0,0,0,0.15);
+	border-radius: 3px;
+	z-index: 2;
+}
+
+.-hidden {
+	display: none;
+}
+
+.hugeit_contact_custom_settings_dropdown_heading {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	padding: 10px 30px 10px 10px;
+	background-color: #ff6011;
+	color: #fff;
+	border-radius: 4px;
+}
+
+.hugeit_contact_custom_settings_dropdown_description {
+	float: right;
+	position: relative;
+	width: calc(100% - 260px);
+	margin-bottom: 10px;
+	font-style: italic;
+	font-size: 13px;
+}
+
+
+.hugeit_contact_custom_settings_dropdown_heading h4 {
+	margin:0;
+}
+
+.hugeit_contact_custom_settings_dropdown_heading h4:after {
+	content: '';
+	display: inline-block;
+	width: 30px;
+	height: 15px;
+	background: url(../images/forms-pro-icon.png) no-repeat;
+	vertical-align: middle;
+	margin-left: 5px;
+}
+
+.hugeit_contact_custom_settings_dropdown_heading i {
+	position: absolute;
+	top: 12px;
+	right: 8px;
+	font-size: 14px;
+}
+
+.hugeit_contact_custom_settings_dropdown_heading p {
+	margin-bottom: 0;
+}
+
+.hugeit_contact_custom_settings_dropdown_content {
+	margin-top: 40px;
+}
+
+
+.hugeit_contact_custom_settings_outer_wrapper {
+	position: relative;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper h3 {
+	font-size: 1.4rem;
+	color:#555459;
+}
+
+.hugeit_contact_custom_settings_inner_wrapper:first-of-type {
+	margin-right: 4%;
+}
+
+.hugeit_contact_custom_settings_inner_wrapper {
+	float: left;
+	width: 48%;
+}
+
+.hugeit_contact_custom_settings_inner_wrapper.leftblock {
+	margin-right:4%;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper label {
+	display:inline-block;
+	width: 255px;
+	font-size: 14px;
+	float:left;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper input[type='text'],
+.hugeit_contact_custom_settings_outer_wrapper select {
+	width: 230px;
+	font-size: 14px;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper .primary-label {
+	font-weight: 700;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper input[type='checkbox'] {
+	vertical-align: middle;
+	margin-top:3px;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper input[type='checkbox'] ~ .primary-label {
+	color: #dcc9ab;
+	font-size: 17px;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper input[type='checkbox']:checked ~ .primary-label {
+	color: #e8954c;
+}
+
+.hugeit_contact_custom_settings_outer_wrapper .wp-editor-tabs {
+	float:left
+}
+
+.hugeit_contact_custom_settings_outer_wrapper .small-label {
+	width: 105px;
+}
+
+.hugeit-contact-delete {
+	background: url(../images/fields.opt.png) left top no-repeat;
+	display: block;
+	width: 20px;
+	height: 21px;
+	margin: 0 5px 0 0;
+	outline: none;
+	opacity: 0.5;
+	border-radius: 3px;
+	border: 1px solid rgba(0,0,0,0.1);
+}
+
+.hugeit-contact-delete:hover {
+	opacity: 1;
+}
+
+.hugeit_forms_delete_form {
+	display: inline-block;
 }

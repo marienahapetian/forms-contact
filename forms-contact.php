@@ -15,6 +15,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 /*INCLUDING HUGE IT AJAX FILE*/
 require_once( "admin/hugeit_contact_ajax.php" );
+
+add_filter( 'tiny_mce_before_init', 'hugeit_contact_tinymce_readonly' );
+
+function hugeit_contact_tinymce_readonly( $args ) {
+	if ( $args['selector'] == '#hugeit_contact_admin_message' || $args['selector'] == '#hugeit_contact_user_message' ){
+		$args['readonly'] = 1;
+	}
+
+
+	return $args;
+}
+
 /*INCLUDING HUGE IT FORM BUILDER AJAX FILE*/
 function hugeit_contact_formBuilder_ajax_action_callback() {
 	require( "admin/hugeit_contact_formBuilder_ajax.php" );
@@ -62,6 +74,53 @@ function hugeit_contact_add_contact_button( $context ) {
     </a>';
 
 	return $context;
+}
+
+add_action('wp_ajax_hugeit_contact_duplicate_form', 'wp_ajax_hugeit_contact_duplicate_form_callback');
+function wp_ajax_hugeit_contact_duplicate_form_callback() {
+	$id = $_POST['id'];
+	$nonce = $_POST['nonce'];
+
+	if (wp_verify_nonce($nonce, 'duplicate_form_' . $id)) {
+		global $wpdb;
+
+		$form = $wpdb->get_row("SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE id = " . $id, ARRAY_A);
+		unset($form['id']);
+
+		$inserted = $wpdb->insert(
+			$wpdb->prefix . 'huge_it_contact_contacts',
+			$form
+		);
+
+		if ($inserted) {
+			$inserted_form_id = $wpdb->insert_id;
+
+			$fields = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE hugeit_contact_id = " . $id, ARRAY_A);
+
+			foreach ( $fields as $field ) {
+				unset($field['id']);
+				$field['hugeit_contact_id'] = $inserted_form_id;
+
+				$fields_result[] = $wpdb->insert(
+					$wpdb->prefix . 'huge_it_contact_contacts_fields',
+					$field
+				);
+			}
+
+			$options['hugeit_contact_show_title_for_form'] = get_option('hugeit_contact_show_title_for_form_' . $id);
+
+			foreach ( $options as $name => $value ) {
+				if ($value !== false) {
+					update_option($name . '_' . $inserted_form_id, $value);
+				}
+			}
+		}
+
+		echo json_encode(array(
+			'success' => $inserted && !in_array(false, $fields_result, true)
+		));
+		wp_die();
+	}
 }
 
 add_action( 'admin_footer', 'hugeit_contact_add_inline_contact_popup_content' );

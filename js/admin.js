@@ -1,4 +1,28 @@
-  jQuery(document).ready(function () {
+var defaultTitleVisibility;
+
+jQuery(document).ready(function () {
+
+  	jQuery(".hugeit_contact_custom_settings_dropdown_heading").on("click",function () {
+		jQuery(".hugeit_contact_custom_settings_dropdown_content").toggleClass("-hidden");
+		if( jQuery(".hugeit_contact_custom_settings_dropdown_heading i").hasClass("hugeicons-chevron-down") ){
+			jQuery(".hugeit_contact_custom_settings_dropdown_heading i")
+				.removeClass("hugeicons-chevron-down")
+				.addClass("hugeicons-chevron-up");
+		}else{
+			jQuery(".hugeit_contact_custom_settings_dropdown_heading i")
+				.removeClass("hugeicons-chevron-up")
+				.addClass("hugeicons-chevron-down");
+		}
+	});
+
+	  if( jQuery("#hugeit_contact_user_message").length ){
+		  jQuery("#hugeit_contact_user_message").attr("disabled","disabled");
+	  }
+
+	  if( jQuery("#hugeit_contact_admin_message").length ){
+		  jQuery("#hugeit_contact_admin_message").attr("disabled","disabled");
+	  }
+
   /*******//////////////////Submission Scripts////////////////*********/
   //   CHECK OR UNCHECK ALL SUBMITIONS
     var check_all = "#hugeit_submission_page #hugeit_top_controls .select input[name='all']";
@@ -1341,7 +1365,82 @@
 		  return false;
 	  }
 	});
+
+	jQuery('.hugeit_contact_duplicate_form').on('click', function(e) {
+		e.preventDefault();
+
+		var id = jQuery(this).data('form-id'),
+			nonce = jQuery(this).data('nonce');
+
+		jQuery.ajax({
+			url: ajaxurl,
+			dataType: 'JSON',
+			type: 'POST',
+			data: {
+				action: 'hugeit_contact_duplicate_form',
+				nonce: nonce,
+				id: id
+			}
+		}).done(function(response) {
+			if (response.success) {
+				location.reload();
+			}
+		})
+	});
+
+
+	  jQuery(".close_free_banner").on("click",function(){
+		  jQuery(".free_version_banner").css("display","none");
+		  HugeitContactSetCookie( 'hgFormsFreeBannerShow', 'no', {expires:86400} );
+	  });
+		defaultTitleVisibility = jQuery('#hugeit-contact-wrapper').find('h3').css('display');
+
+	  jQuery('#select_form_show_title').on('change', function() {
+		  switch (jQuery(this).val()) {
+			  case 'yes' :
+				  jQuery('#hugeit-contact-wrapper').find('h3').css('display', 'block');
+				  break;
+			  case 'no' :
+				  jQuery('#hugeit-contact-wrapper').find('h3').css('display', 'none');
+				  break;
+			  case 'default' :
+				  jQuery('#hugeit-contact-wrapper').find('h3').css('display', defaultTitleVisibility);
+		  }
+	  })
 });
+
+  function HugeitContactSetCookie(name, value, options) {
+	  options = options || {};
+
+	  var expires = options.expires;
+
+	  if (typeof expires == "number" && expires) {
+		  var d = new Date();
+		  d.setTime(d.getTime() + expires * 1000);
+		  expires = options.expires = d;
+	  }
+	  if (expires && expires.toUTCString) {
+		  options.expires = expires.toUTCString();
+	  }
+
+
+	  if(typeof value == "object"){
+		  value = JSON.stringify(value);
+	  }
+	  value = encodeURIComponent(value);
+	  var updatedCookie = name + "=" + value;
+
+	  for (var propName in options) {
+		  updatedCookie += "; " + propName;
+		  var propValue = options[propName];
+		  if (propValue !== true) {
+			  updatedCookie += "=" + propValue;
+		  }
+	  }
+
+	  document.cookie = updatedCookie;
+  }
+
 var checkAnimate;
 jQuery(function() {
 	jQuery(".hugeit-contact-column-block").sortable({

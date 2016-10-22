@@ -53,7 +53,8 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 					<th scope="col" id="id" style="width:30px" ><span>ID</span><span class="sorting-indicator"></span></th>
 					<th scope="col" id="name" style="width:85px" ><span>Name</span><span class="sorting-indicator"></span></th>
 					<th scope="col" id="prod_count"  style="width:75px;" ><span>Fields</span><span class="sorting-indicator"></span></th>
-					<th style="width:40px"><span>Delete</span><span class="sorting-indicator"></span></th>
+					 <th style="width:40px"><span>Duplicate</span><span class="sorting-indicator"></span></th>
+					 <th style="width:40px"><span>Delete</span><span class="sorting-indicator"></span></th>
 				 </tr>
 				</thead>
 				<tbody>
@@ -142,9 +143,16 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 						<td><?php echo $rows[$i]->id; ?></td>
 						<td><a  href="<?php echo $edit_form_safe_link; ?>"><?php echo esc_html(stripslashes($rows[$i]->name)); ?></a></td>
 						<td>(<?php if(!($pr_count)){echo '0';} else{ echo $rows[$i]->prod_count;} ?>)</td>
-						<td><a href="<?php echo $remove_form_safe_link; ?>" class="hugeit_forms_delete_form">Delete</a></td>
-					</tr> 
-				 <?php } ?>
+						<td>
+							<a
+								href="#"
+								class="copy-field hugeit_contact_duplicate_form"
+								data-form-id="<?php echo $rows[$i]->id; ?>"
+								data-nonce="<?php echo wp_create_nonce('duplicate_form_' . $rows[$i]->id) ?>"></a>
+						</td>
+						<td><a href="<?php echo $remove_form_safe_link; ?>" class="hugeit_forms_delete_form"><span class="hugeit-contact-delete"></span></a></td>
+					</tr>
+				  <?php } ?>
 				</tbody>
 			</table>
 			 <input type="hidden" name="oreder_move" id="oreder_move" value="" />
@@ -268,6 +276,12 @@ function submitbutton(pressbutton){
 						<option <?php if($form_style->id == $row->hc_yourstyle){ echo 'selected'; } ?> value="<?php echo $form_style->id; ?>"><?php echo $form_style->name; ?></option>
 					<?php } ?>
 					</select>
+					<label for="select_form_show_title">Show Form Title</label>
+					<select id="select_form_show_title" name="hugeit_contact_show_title_for_form_<?php echo $id; ?>">
+						<option value="default">Use Default Settings</option>
+						<option value="yes" <?php if (get_option('hugeit_contact_show_title_for_form_' . $id) === 'yes') echo ' selected' ?>>Yes</option>
+						<option value="no" <?php if (get_option('hugeit_contact_show_title_for_form_' . $id) === 'no') echo ' selected' ?>>No</option>
+					</select>
 					<img class="themeSpinner" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">						
 				</div>
 				<div id="shortcode_fields">
@@ -303,7 +317,7 @@ function submitbutton(pressbutton){
 						<img class="defSpin" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
 					</li>
 					<li>
-						<strong>Add Simple Fields</strong>
+						<strong>Add Form Fields</strong>
 						<ul id="add-default-fields">
 							<li><a onclick="" class="" id="text" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Text Box</a><li>
 							<li><a onclick="" class="" id="textarea" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Textarea</a></li>
@@ -1205,6 +1219,11 @@ function submitbutton(pressbutton){
 										}
 									}
 								}
+								$hugeit_contact_form_admin_subject = get_option('hugeit_contact_form_admin_subject_' . $id);
+								$hugeit_contact_form_admin_subject = $hugeit_contact_form_admin_subject ? $hugeit_contact_form_admin_subject : '';
+
+								$hugeit_contact_form_user_subject = get_option('hugeit_contact_form_user_subject_' . $id);
+								$hugeit_contact_form_user_subject = $hugeit_contact_form_user_subject ? $hugeit_contact_form_user_subject : '';
 							?>
 						</div>
 					<div class="clear"></div>
@@ -1212,7 +1231,81 @@ function submitbutton(pressbutton){
 				</div>
 				</form>
 			</div>
-			<!-- ################################################ LIVE PREVIEW GOESE TO FRONT END #################################################### -->	
+			<div class="hugeit_contact_custom_settings_main">
+				<div class="hugeit_contact_custom_settings_dropdown_heading_wrapper">
+					<div class="hugeit_contact_custom_settings_dropdown_heading"><h4>Advanced email options</h4><i class="hugeicons-chevron-down"></i></div>
+					<div class="hugeit_contact_custom_settings_dropdown_description">In your LITE version of the plugin you can send ONE custom email message and set the same admin recipients for ALL forms, whereas Advanced email options in PRO version allow you to customize your email messages and admin recipients for EACH form.</div>
+				</div>
+				<div class="hugeit_contact_custom_settings_dropdown_content -hidden">
+					<div class="hugeit_contact_custom_settings_outer_wrapper">
+						<div style="width:48%">
+							<p>
+								<label for="hugeit_contact_receivers_group">Send Email To:</label>
+								<select disabled="disabled" id="hugeit_contact_receivers_group" name="hugeit_contact_receivers_group">
+									<option value="default" <?php if ( get_option( 'hugeit_contact_receivers_group_' . $id ) === 'default' ) echo ' selected'; ?>>Default Receivers</option>
+									<option value="both" <?php if ( get_option( 'hugeit_contact_receivers_group_' . $id ) === 'both' ) echo ' selected'; ?>>Default &amp; Custom Receivers</option>
+									<option value="custom" <?php if ( get_option( 'hugeit_contact_receivers_group_' . $id ) === 'custom' ) echo ' selected'; ?>>Custom Recievers</option>
+								</select>
+							</p>
+							<p>
+								<label for="hugeit_contact_form_custom_admin_receivers">Admin Custom Receivers:</label>
+								<input
+									disabled="disabled"
+									type="text"
+									id="hugeit_contact_form_custom_admin_receivers"
+									name="hugeit_contact_form_custom_admin_receivers"
+									placeholder="Use comma-separated email addresses"
+									value="<?php $custom_receivers = get_option( 'hugeit_contact_form_custom_admin_receivers_' . $id ); if ( $custom_receivers ) echo $custom_receivers; ?>"/>
+								<dfn class="huge_it_forms_mess_subject_help_box" data-info="Add multiple emails separating them with commas.">?</dfn>
+							</p>
+						</div>
+						<div class="hugeit_contact_custom_settings_inner_wrapper leftblock">
+							<div>
+								<p>
+									<input disabled="disabled" class="primary-check" type="checkbox" id="enable_custom_text_for_admin_email"
+										   name="enable_custom_text_for_admin_email"
+										   value="1" <?php if ( get_option( 'hugeit_contact_form_custom_text_for_admin_enabled_' . $id ) ) echo ' checked' ?> />
+									<label class="primary-label" for="enable_custom_text_for_admin_email">Custom settings for admin</label>
+								</p>
+							</div>
+							<h3>Email To Admin</h3>
+							<div>
+								<p>
+									<label class="small-label" for="hugeit_contact_form_admin_subject">Admin Subject:</label>
+									<input disabled="disabled" type="text" id="hugeit_contact_form_admin_subject"
+										   name="hugeit_contact_form_admin_subject"
+										   value="<?php echo $hugeit_contact_form_admin_subject; ?>"/>
+								</p>
+							</div>
+							<div class="autoheight">
+								<?php
+								wp_editor( get_option( 'hugeit_contact_form_admin_message_' . $id ), "hugeit_contact_admin_message", array( 'media_buttons' => false ) );
+								?>
+							</div>
+						</div>
+						<div class="hugeit_contact_custom_settings_inner_wrapper">
+							<p>
+								<input disabled="disabled" class="primary-check" type="checkbox" id="enable_custom_text_for_user_email"
+									   name="enable_custom_text_for_user_email"
+									   value="1" <?php if ( get_option( 'hugeit_contact_form_custom_text_for_user_enabled_' . $id ) ) echo ' checked' ?> />
+								<label class="primary-label" for="enable_custom_text_for_user_email">Custom settings for user</label>
+							</p>
+							<h3>Email To User</h3>
+							<p>
+								<label class="small-label" for="hugeit_contact_form_user_subject">User Subject:</label>
+								<input disabled="disabled" type="text" id="hugeit_contact_form_user_subject" name="hugeit_contact_form_user_subject"
+									   value="<?php echo $hugeit_contact_form_user_subject; ?>"/>
+							</p>
+							<div class="autoheight">
+								<?php
+								wp_editor( get_option( 'hugeit_contact_form_user_message_' . $id ), "hugeit_contact_user_message", array( 'media_buttons' => false ) );
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ################################################ LIVE PREVIEW GOESE TO FRONT END #################################################### -->
 		</div>
 	</div>
 	<input type="hidden" name="task" value="" />

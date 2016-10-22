@@ -433,6 +433,9 @@ jQuery(document).ready(function(e) {
 						script = document.getElementsByTagName('script')[0],
 						styles = response;
 					script.parentNode.insertBefore(style, script);
+					var regexp = /#hugeit-contact-wrapper\s?>\s?div\s?>\s?h3\s?{.+?display\s?:\s?([a-zA-Z-]+)/i;
+					defaultTitleVisibility = regexp.exec(styles)[1];
+					jQuery('#select_form_show_title').trigger('change');
 					try {
 						style.innerHTML = styles;
 					}
