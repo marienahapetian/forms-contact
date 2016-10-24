@@ -4,7 +4,7 @@ Donate link: http://huge-it.com/forms/
 Tags: forms, contact form, contact forms, forms plugin, contact form builder, wordpress contact form, contact us, form, form builder, form creation, form maker, forms builder,
 Requires at least: 3.0.1
 Tested up to: 4.6.1
-Stable tag: 1.3.9
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -375,6 +375,13 @@ If you think, that you found a bug in our [WordPress Forms](http://huge-it.com/f
 35.  [WordPress Form](https://wordpress.org/plugins/forms-contact/) - Form General Options
 
 == Changelog ==
+
+= 1.4.0 =
+
+* 1) We have added the form title to be shown constantly in the back, even when changing between themes.
+* 2) We have also made some UI/UX customization in the back end of the plugin, so the forms and form as well as menu appear more friendly to end users.
+* 3) delete and duplicate icons were added for each form
+* 4) Made changes in the form emails. In the LITE version of the plugin you can send ONE custom email message and set the same admin recipients of ALL forms, whereas Advanced email options now available in PRO version allow you to customize your email messages and admin recipients for EACH form.
 
 = 1.3.9 =
 
