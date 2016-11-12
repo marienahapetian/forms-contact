@@ -140,13 +140,8 @@ function hugeit_contact_email_ajax_action_callback() {
 	}
 
 	if ( isset( $_POST['task'] ) && $_POST['task'] == 'showForms' ) {
-		if ( isset( $_POST['nonce'] ) ) {
-			$nonce = $_POST['nonce'];
-		} else {
-			$nonce = '';
-		}
-		if ( ! wp_verify_nonce( $nonce, 'email_nonce' ) ) {
-			return;
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'email_nonce')) {
+			return false;
 		}
 		global $wpdb;
 		$formId = $_POST['data'];
@@ -323,12 +318,9 @@ function hugeit_contact_email_ajax_action_callback() {
 		}
 	}
 	if(isset($_POST['task'])&&$_POST['task']=='refreshTable'){
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'email_nonce' ) )return;
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'email_nonce')) {
+			return false;
+		}
 		global $wpdb;
 		$formId=$_POST['data'];
 		if($formId=='all'){

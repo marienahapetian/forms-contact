@@ -7,12 +7,9 @@ function hugeit_contact_ajax_action_callback(){
 ////////////////////////SUBMISSION PAGE////////////////////////BEGIN
 	// Mark as Spam
 	if(isset($_POST['task'])&&$_POST['task']=='moveTospamSubmitions'){
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+			return false;
+		}
 		$arrayOfids=$_POST['spam_submitions'];
 		$allNumbers = true;
 		foreach ($arrayOfids as &$item) {
@@ -32,12 +29,9 @@ function hugeit_contact_ajax_action_callback(){
 	}
 	// Mark as Spam Single
 	if(isset($_POST['task'])&&$_POST['task']=='moveToSpamSingleSubmition'){
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+			return false;
+		}
 		$subId= sanitize_text_field($_POST['submissionId']);
 		if(is_numeric($subId)){
 			$subId = absint($subId);
@@ -47,12 +41,9 @@ function hugeit_contact_ajax_action_callback(){
 	}
 	// Unmark as Spam
 	if(isset($_POST['task'])&&$_POST['task']=='moveFromspamSubmitions'){
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+			return false;
+		}
 		$arrayOfids=$_POST['spam_submitions'];
 		$allNumbers = true;
 		foreach ($arrayOfids as &$item) {
@@ -72,12 +63,9 @@ function hugeit_contact_ajax_action_callback(){
 	}
 	// Unmark as Spam Single
 	if(isset($_POST['task'])&&$_POST['task']=='moveFromSpamSingleSubmition'){
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+			return false;
+		}
 		$subId=$_POST['submissionId'];	
 		if(is_numeric($subId)){
 			$subId = absint($subId);
@@ -87,12 +75,9 @@ function hugeit_contact_ajax_action_callback(){
 	}
 	// Delete
 	if(isset($_POST['task'])&&$_POST['task']=='deleteSubmitions'){
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+			return false;
+		}
 		$arrayOfids=$_POST['submitions_for_delete'];
 		$allNumbers = true;
 		foreach ($arrayOfids as &$item) {
@@ -113,12 +98,9 @@ function hugeit_contact_ajax_action_callback(){
 	}
 	// Delete Single
 	if(isset($_POST['task'])&&$_POST['task']=='deleteSingleSubmition'){
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+			return false;
+		}
 		$subId=$_POST['submissionId'];
 		if(is_numeric($subId)){
 			$subId = absint($subId);
@@ -128,12 +110,9 @@ function hugeit_contact_ajax_action_callback(){
 	}
 	// Mark as Read
 	if(isset($_POST['task'])&&$_POST['task']=='markAsRead'){
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+			return false;
+		}
 		$arrayOfids=$_POST['read_submitions'];
 		$allNumbers = true;
 		foreach ($arrayOfids as $item) {
@@ -152,12 +131,9 @@ function hugeit_contact_ajax_action_callback(){
 	}
 	// Mark as Unread
 	if(isset($_POST['task'])&&$_POST['task']=='markAsUnread'){
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+			return false;
+		}
 		$arrayOfids=$_POST['unread_submitions'];
 		$allNumbers = true;
 		foreach ($arrayOfids as $item) {
@@ -176,12 +152,9 @@ function hugeit_contact_ajax_action_callback(){
 	}
 	// Refreshing submissions page
 	if(isset($_POST['task'])&&$_POST['task']=='refreshSubmissions'){
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+			return false;
+		}
 		$countSub= absint($_POST['countTorefresh']);
 		$subID= absint($_POST['subID']);
 		if($countSub!=0){
@@ -279,12 +252,9 @@ function hugeit_contact_ajax_action_callback(){
 	}
 	//SEARCH Submission
 	if(isset($_POST['task']) && $_POST['task'] == 'searchSubmission') {
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'admin_nonce' ) )return;
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+			return false;
+		}
 		$search_value=sanitize_text_field($_POST['searchData']);
 		$subID=absint($_POST['subID']);
 		if(!empty($search_value)&&$subID!='empty'){

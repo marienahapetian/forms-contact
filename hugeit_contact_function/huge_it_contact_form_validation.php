@@ -71,12 +71,10 @@ function hugeit_contact_contact_form_validation_callback(){
 	}
 
 	if(isset($_POSTED['submitok'])){
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce='';
+
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'hugeit_contact_front_nonce')) {
+			die('Authorization failed');
 		}
-		if ( !wp_verify_nonce( $nonce, 'hugeit_contact_front_nonce' ) ) die(__( 'Authorization failed', 'hugeit_contact' ));
 		if($_POSTED['submitok'] == 'ok'){
 			$thisdate = date("d.m.Y H:i");
 			foreach ($rowim as $key=>$rowimages){
