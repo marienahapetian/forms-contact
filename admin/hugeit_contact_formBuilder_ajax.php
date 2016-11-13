@@ -1349,10 +1349,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 	//ADD FIELDS
 	if (isset($_POST['task']) && $_POST['task']=='addFieldsTask') {
-		$nonce = isset( $_POST['nonce'] ) ? $_POST['nonce'] : '';
 
-		if ( ! wp_verify_nonce( $nonce, 'builder_nonce' ) ) {
-			return;
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'builder_nonce')) {
+			return false;
 		}
 
 		$formId= absint($_POST['formId']);
@@ -1904,9 +1903,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 	//REMOVE FIELDS
 	if( isset($_POST['task']) && $_POST['task']=='removeFieldTask') {
-		$nonce = isset( $_POST['nonce'] ) ? $_POST['nonce'] : '';
-
-		if ( ! wp_verify_nonce( $nonce, 'builder_nonce' ) ) {
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'builder_nonce')) {
 			return false;
 		}
 
@@ -1966,9 +1963,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 	//DUBLICATE FIELDS
 	if (isset($_POST['task']) && $_POST['task'] == 'dublicateFieldTask'){
-		$nonce = isset( $_POST['nonce'] ) ? $_POST['nonce'] : '';
-
-		if ( ! wp_verify_nonce( $nonce, 'builder_nonce' ) ) {
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'builder_nonce')) {
 			return false;
 		}
 		$formId = absint($_POST['formId']);
@@ -2147,13 +2142,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	}
 	//Save Form
 if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
-	if ( isset( $_POST['nonce'] ) ) {
-		$nonce = $_POST['nonce'];
-	} else {
-		$nonce = '';
-	}
-	if ( ! wp_verify_nonce( $nonce, 'builder_nonce' ) ) {
-		return;
+	if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'builder_nonce')) {
+		return false;
 	}
 	$formId = $_POST['formId'];
 	$all    = $_POST['formData'];
@@ -2265,12 +2255,10 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
 }
 	//Change Theme
 	if (isset($_POST['task'])&&$_POST['task']=='changeFormTheme') {
-		if(isset($_POST['nonce'])){
-			$nonce = $_POST['nonce'];
-		}else{
-			$nonce ='';
-		}		
-		if ( !wp_verify_nonce( $nonce, 'builder_nonce' ) )return;
+		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'builder_nonce')) {
+			return false;
+		}
+
 		$themeId = absint($_POST['themeId']);
 		$formId = absint($_POST['formId']);
 		$all = $_POST['formData'];

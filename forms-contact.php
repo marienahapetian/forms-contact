@@ -78,49 +78,49 @@ function hugeit_contact_add_contact_button( $context ) {
 
 add_action('wp_ajax_hugeit_contact_duplicate_form', 'wp_ajax_hugeit_contact_duplicate_form_callback');
 function wp_ajax_hugeit_contact_duplicate_form_callback() {
+	if ( ! isset( $_POST['nonce'], $_POST['id'] ) || ! wp_verify_nonce( $_POST['nonce'], 'duplicate_form_' . $_POST['id'] ) ) {
+		return false;
+	}
 	$id = $_POST['id'];
-	$nonce = $_POST['nonce'];
 
-	if (wp_verify_nonce($nonce, 'duplicate_form_' . $id)) {
-		global $wpdb;
+	global $wpdb;
 
-		$form = $wpdb->get_row("SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE id = " . $id, ARRAY_A);
-		unset($form['id']);
+	$form = $wpdb->get_row("SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE id = " . $id, ARRAY_A);
+	unset($form['id']);
 
-		$inserted = $wpdb->insert(
-			$wpdb->prefix . 'huge_it_contact_contacts',
-			$form
-		);
+	$inserted = $wpdb->insert(
+		$wpdb->prefix . 'huge_it_contact_contacts',
+		$form
+	);
 
-		if ($inserted) {
-			$inserted_form_id = $wpdb->insert_id;
+	if ($inserted) {
+		$inserted_form_id = $wpdb->insert_id;
 
-			$fields = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE hugeit_contact_id = " . $id, ARRAY_A);
+		$fields = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE hugeit_contact_id = " . $id, ARRAY_A);
 
-			foreach ( $fields as $field ) {
-				unset($field['id']);
-				$field['hugeit_contact_id'] = $inserted_form_id;
+		foreach ( $fields as $field ) {
+			unset($field['id']);
+			$field['hugeit_contact_id'] = $inserted_form_id;
 
-				$fields_result[] = $wpdb->insert(
-					$wpdb->prefix . 'huge_it_contact_contacts_fields',
-					$field
-				);
-			}
-
-			$options['hugeit_contact_show_title_for_form'] = get_option('hugeit_contact_show_title_for_form_' . $id);
-
-			foreach ( $options as $name => $value ) {
-				if ($value !== false) {
-					update_option($name . '_' . $inserted_form_id, $value);
-				}
-			}
+			$fields_result[] = $wpdb->insert(
+				$wpdb->prefix . 'huge_it_contact_contacts_fields',
+				$field
+			);
 		}
 
-		echo json_encode(array(
-			'success' => $inserted && !in_array(false, $fields_result, true)
-		));
-		wp_die();
+		$options['hugeit_contact_show_title_for_form'] = get_option('hugeit_contact_show_title_for_form_' . $id);
+
+		foreach ( $options as $name => $value ) {
+			if ($value !== false) {
+				update_option($name . '_' . $inserted_form_id, $value);
+			}
+		}
 	}
+
+	echo json_encode(array(
+		'success' => $inserted && !in_array(false, $fields_result, true)
+	));
+	wp_die();
 }
 
 add_action( 'admin_footer', 'hugeit_contact_add_inline_contact_popup_content' );
@@ -369,7 +369,7 @@ function hugeit_contacts_huge_it_contact() {
 				hugeit_contact_edit_hugeit_contact( $id );
 			} else {
 				$id = $wpdb->get_var( "SELECT MAX( id ) FROM " . $wpdb->prefix . "huge_it_contact_contacts" );
-				if ( isset( $_GET['hugeit_forms_nonce'] ) && wp_verify_nonce( $_GET['hugeit_forms_nonce'], 'huge_it_edit_cat_' . $id . '' ) ) {
+				if ( isset( $_GET['hugeit_forms_nonce'] ) && wp_verify_nonce( $_GET['hugeit_forms_nonce'], 'huge_it_edit_cat_' . $id ) ) {
 					hugeit_contact_edit_hugeit_contact( $id );
 				}
 			}
