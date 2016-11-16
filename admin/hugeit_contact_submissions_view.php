@@ -287,8 +287,7 @@ $keyForBackground = 1;
                 </ul>
                 <?php
                 	echo do_action('huge_it_forms_export_single',$id);
-                ?>
-                <?php if($limitPage['count_pages'] >1):?>
+                if($limitPage['count_pages'] >1):?>
                 <div class="page-navigation">
                         <span class="count"><?php if(isset($limitPage['countOfPages'])&&$limitPage['countOfPages'] > $limitPage['perpage'] && $limitPage['countOfPages']!=0 ){ echo $limitPage['start']."-".$limitPage['fromTo']." From ".$limitPage['countOfPages']; }?></span>
                         <div class="buttons">
@@ -393,10 +392,7 @@ $keyForBackground = 1;
         });
     });
 </script>
-<?php } ?>
-
-
-<?php
+<?php }
 
 function hugeit_contact_html_show_messages($messageInArray, $submitionsCount) {
 	if ( isset( $_GET["id"] ) ) {
