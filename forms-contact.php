@@ -45,7 +45,7 @@ add_action( 'wp_ajax_hugeit_email_action', 'hugeit_contact_email_ajax_action_cal
 /*ADDING to HEADER of FRONT END */
 function hugeit_contact_frontend_scripts_and_styles() {
 	wp_enqueue_style( "font_awesome_frontend", plugins_url( "style/iconfonts/css/hugeicons.css", __FILE__ ), false );
-	$recaptcha = 'https://www.google.com/recaptcha/api.js?onload=hugeit_forms_onloadCallback&render=explicit';
+	$recaptcha = '//www.google.com/recaptcha/api.js?onload=hugeit_forms_onloadCallback&render=explicit';
 	wp_enqueue_script( 'recaptcha', $recaptcha, array( 'jquery' ), '1.0.0', true );
 	wp_enqueue_script( "hugeit_forms_front_end_js", plugins_url( "js/recaptcha_front.js", __FILE__ ), false );
 	$hugeit_contact_nonce = array(
@@ -440,7 +440,7 @@ function hugeit_contact_submissions() {
 		case 'remove_submissions':
 			hugeit_contact_remove_submissions( $id, $subId );
 			hugeit_contact_view_submissions( $subId );
-			$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+			$actual_link = "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 			$pattern     = '/\?(.*)/';
 			$actual_link = preg_replace( $pattern, '?page=hugeit_forms_submissions&task=view_submissions&id=' . $subId . '', $actual_link );
 			header( "Location: " . $actual_link . "" );
