@@ -275,6 +275,19 @@ function hugeit_contact_contact_form_validation_callback(){
 				}
 				$emailArray=array_filter(explode('*()*',$emailArray),'strlen');
 				$email_form_id=$frontendformid;
+
+				$messagelabbelsexp = array_filter(explode("*()*", $sub_label),'strlen');
+				$messagesubmisexp = explode("*()*", $submition_text);
+				$adminSub='<table class="message-block">';
+				$separator=':';
+				foreach($messagelabbelsexp as $key=>$messagelabbelsexpls){
+					$messagelabbelsexpls=stripslashes($messagelabbelsexpls);
+					if($messagesubmisexp[$key]!=''){
+						$adminSub.='<tr><td><strong>'.$messagelabbelsexpls.'</strong>'.$separator.' '.$messagesubmisexp[$key].'</td></tr>';
+					}
+				}
+				$adminSub.='</table>';
+
 				foreach ($emailArray as  $emailSingle) {
 					$subscribers=$wpdb->get_results("SELECT `subscriber_email` FROM ".$wpdb->prefix ."huge_it_contact_subscribers WHERE subscriber_form_id=".$email_form_id,ARRAY_A);
 					$insert=1;
@@ -301,6 +314,8 @@ function hugeit_contact_contact_form_validation_callback(){
 								$subject = $wpdb->get_var( $query );
 							}
 
+							$sendmessage=preg_replace('/{userMessage}/', $adminSub, $sendmessage);
+
 							wp_mail($emailSingle, $subject, $sendmessage,$headers);
 							remove_filter( 'wp_mail_content_type', 'hugeit_contact_set_html_content_type2' );
 						}
@@ -316,17 +331,7 @@ function hugeit_contact_contact_form_validation_callback(){
 					$sendmessage=$huge_it_gen_opt[5]->value;
 					$email=$huge_it_gen_opt[3]->value;
 					add_filter( 'wp_mail_content_type', 'hugeit_contact_set_html_content_type' );
-					$messagelabbelsexp = array_filter(explode("*()*", $sub_label),'strlen');
-					$messagesubmisexp = explode("*()*", $submition_text);
-					$adminSub='<table class="message-block">';
-					$separator=':';
-					foreach($messagelabbelsexp as $key=>$messagelabbelsexpls){
-						$messagelabbelsexpls=stripslashes($messagelabbelsexpls);
-						if($messagesubmisexp[$key]!=''){
-							$adminSub.='<tr><td><strong>'.$messagelabbelsexpls.'</strong>'.$separator.' '.$messagesubmisexp[$key].'</td></tr>';
-						}
-					}
-					$adminSub.='</table>';
+
 					$attachments = array();
 					$fileUrls = array_filter(explode("*()*", $files_url),'strlen');
 					foreach ($fileUrls as $key => $value) {

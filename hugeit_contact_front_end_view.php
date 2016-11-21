@@ -993,9 +993,6 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 								$i=2;
 								foreach ($rowim as $key=>$rowimages){
 									if($rowimages->hc_left_right == 'right'){
-										?>
-										
-										<?php
 										$inputtype = $rowimages->conttype;
 										switch ($inputtype) {
 											case 'text':  //1
