@@ -43,10 +43,17 @@ add_action( 'wp_ajax_hugeit_contact_action', 'hugeit_contact_ajax_action_callbac
 add_action( 'wp_ajax_hugeit_contact_formBuilder_action', 'hugeit_contact_formBuilder_ajax_action_callback' );
 add_action( 'wp_ajax_hugeit_email_action', 'hugeit_contact_email_ajax_action_callback' );
 /*ADDING to HEADER of FRONT END */
-function hugeit_contact_frontend_scripts_and_styles() {
+function hugeit_contact_frontend_scripts_and_styles($id) {
 	wp_enqueue_style( "font_awesome_frontend", plugins_url( "style/iconfonts/css/hugeicons.css", __FILE__ ), false );
-	$recaptcha = '//www.google.com/recaptcha/api.js?onload=hugeit_forms_onloadCallback&render=explicit';
-	wp_enqueue_script( 'recaptcha', $recaptcha, array( 'jquery' ), '1.0.0', true );
+	global $wpdb;
+	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = %d order by ordering DESC", $id);
+	$rowim=$wpdb->get_results($query);
+	foreach ($rowim as $key=>$rowimages) {
+		if ( $rowimages->conttype == 'captcha' ) {
+			$recaptcha = 'https://www.google.com/recaptcha/api.js?onload=hugeit_forms_onloadCallback&render=explicit';
+			wp_enqueue_script( 'recaptcha', $recaptcha, array( 'jquery' ), '1.0.0', true );
+		}
+	}
 	wp_enqueue_script( "hugeit_forms_front_end_js", plugins_url( "js/recaptcha_front.js", __FILE__ ), false );
 	$hugeit_contact_nonce = array(
 		'nonce' => wp_create_nonce( 'hugeit_contact_front_nonce' )
@@ -63,7 +70,6 @@ function hugeit_contact_scripts_async( $tag, $handle ) {
 }
 
 add_filter( 'script_loader_tag', 'hugeit_contact_scripts_async', 10, 2 );
-add_action( 'wp_enqueue_scripts', 'hugeit_contact_frontend_scripts_and_styles' );
 add_action( 'media_buttons_context', 'hugeit_contact_add_contact_button' );
 function hugeit_contact_add_contact_button( $context ) {
 	$img          = plugins_url( '/images/huge_it_contactLogoHover-for_menu.png', __FILE__ );
@@ -175,7 +181,7 @@ function hugeit_contact_images_list_shotrcode( $atts ) {
 	if ( ! ( is_numeric( $atts['id'] ) || $atts['id'] == 'ALL_CAT' ) ) {
 		return 'insert numerical or `ALL_CAT` shortcode in `id`';
 	}
-
+ 	hugeit_contact_frontend_scripts_and_styles($atts['id']);
 	return hugeit_contact_cat_images_list( $atts['id'] );
 }
 
@@ -443,7 +449,6 @@ function hugeit_contact_submissions() {
 			$actual_link = "//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 			$pattern     = '/\?(.*)/';
 			$actual_link = preg_replace( $pattern, '?page=hugeit_forms_submissions&task=view_submissions&id=' . $subId . '', $actual_link );
-			header( "Location: " . $actual_link . "" );
 			break;
 		case 'view_submissions':
 			hugeit_contact_view_submissions( $id );

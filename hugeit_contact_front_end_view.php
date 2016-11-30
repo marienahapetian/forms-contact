@@ -988,6 +988,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 								}
 							?>
 						</div>
+						<?php if (!hugeit_contact_is_single_column($rowim)): ?>
 						<div class="hugeit-contact-column-block hugeit-contact-block-right" id="hugeit-contact-block-right">
 														<?php
 								$i=2;
@@ -1196,6 +1197,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 								}
 							?>	
 						</div>
+						<?php endif ?>
 						<div class="clear"></div>
 						</div>
 					</div>
