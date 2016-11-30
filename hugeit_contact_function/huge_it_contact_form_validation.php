@@ -306,6 +306,20 @@ function hugeit_contact_contact_form_validation_callback(){
 							$subject=$huge_it_gen_opt[7]->value;
 							$sendmessage=wp_kses_post(html_entity_decode($huge_it_gen_opt[8]->value));
 							add_filter( 'wp_mail_content_type', 'hugeit_contact_set_html_content_type2' );
+							$messagelabbelsexp = array_filter(explode("*()*", $sub_label),'strlen');
+							$messagesubmisexp = explode("*()*", $submition_text);
+							$userSub='<table class="message-block">';
+							$separator=':';
+							foreach($messagelabbelsexp as $key=>$messagelabbelsexpls){
+								$messagelabbelsexpls=stripslashes($messagelabbelsexpls);
+								if($messagesubmisexp[$key]!=''){
+									$userSub.='<tr>
+											<td><strong>'.$messagelabbelsexpls.'</strong>'.$separator.' '.$messagesubmisexp[$key].'</td>
+										</tr>';
+								}
+							}
+							$userSub.='</table>';
+							$sendmessage=preg_replace('/{userContent}/', $userSub, $sendmessage);
 							$headers = array('From: '.$huge_it_gen_opt[35]->value.' <'.$huge_it_gen_opt[34]->value.'>');
 
 							//------------------if subject empty sends the name of the form
