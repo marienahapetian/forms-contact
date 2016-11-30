@@ -43,7 +43,7 @@ add_action( 'wp_ajax_hugeit_contact_action', 'hugeit_contact_ajax_action_callbac
 add_action( 'wp_ajax_hugeit_contact_formBuilder_action', 'hugeit_contact_formBuilder_ajax_action_callback' );
 add_action( 'wp_ajax_hugeit_email_action', 'hugeit_contact_email_ajax_action_callback' );
 /*ADDING to HEADER of FRONT END */
-function hugeit_contact_frontend_scripts_and_styles() {
+function hugeit_contact_frontend_scripts_and_styles($id) {
 	wp_enqueue_style( "font_awesome_frontend", plugins_url( "style/iconfonts/css/hugeicons.css", __FILE__ ), false );
 	global $wpdb;
 	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = %d order by ordering DESC", $id);
