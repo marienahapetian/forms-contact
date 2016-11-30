@@ -4,7 +4,7 @@ Donate link: http://huge-it.com/forms/
 Tags: forms, contact form, contact forms, forms plugin, contact form builder, wordpress contact form, contact us, form, form builder, form creation, form maker, forms builder,
 Requires at least: 3.0.1
 Tested up to: 4.6.1
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +20,8 @@ Form builder are one of the most important elements of your website. If you need
 * [Forms User Manual](http://huge-it.com/wordpress-forms-user-manual/)
 * [Forms Support](http://huge-it.com/contact-us/)
 * [Forms GitHub Project](https://github.com/Huge-IT/forms-contact)
+
+https://www.youtube.com/watch?v=FEALuSSsELw
 
 Huge -IT Forms is one of the most important element for the WordPress website because without Forms Builder you will not be able to keep in touch with your visitors, partners and customers, give an easy filling form for submissions, delivery form or other types of forms. Besides that, a good-looking form gives your site a professional appearance.
 
@@ -375,6 +377,14 @@ If you think, that you found a bug in our [WordPress Forms](http://huge-it.com/f
 35.  [WordPress Form](https://wordpress.org/plugins/forms-contact/) - Form General Options
 
 == Changelog ==
+
+= 1.4.1 =
+
+* 1) Fixed an issue with a blank block appearing in backend 
+* 2) Optimized scripts that were running on every page
+* 3) Added: {userContent}, so that users can receive/send user content data
+* 4) Fixed an issue where deleted submission was bringing an error
+* 5) Updated licensing page with more vivid options of Pro features of the plugin
 
 = 1.4.0 =
 
