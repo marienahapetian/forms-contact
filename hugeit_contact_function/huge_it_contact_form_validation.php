@@ -319,7 +319,9 @@ function hugeit_contact_contact_form_validation_callback(){
 								}
 							}
 							$userSub.='</table>';
-							$sendmessage=preg_replace('/{userContent}/', $userSub, $sendmessage);
+
+                            $userSub = preg_replace('/\$(\d)/', '\\\$$1', $userSub);
+                            $sendmessage=preg_replace('/{userContent}/', $userSub, $sendmessage);
 							$headers = array('From: '.$huge_it_gen_opt[35]->value.' <'.$huge_it_gen_opt[34]->value.'>');
 
 							//------------------if subject empty sends the name of the form
@@ -353,7 +355,10 @@ function hugeit_contact_contact_form_validation_callback(){
 						$file_path=preg_replace($link_pattern,'',$value);
 						array_push($attachments, WP_CONTENT_DIR . '/uploads/'.$file_path);
 					}
-					$sendmessage = preg_replace( '/{formContent}/', $adminSub, $sendmessage );
+
+                    $adminSub = preg_replace('/\$(\d)/', '\\\$$1', $adminSub);
+
+                    $sendmessage = preg_replace( '/{formContent}/', $adminSub, $sendmessage );
 					$sendmessage = html_entity_decode( $sendmessage );
 					$sendmessage = wp_kses_post( $sendmessage );
 					$headers = array('From: '.$huge_it_gen_opt[35]->value.' <'.$huge_it_gen_opt[34]->value.'>');
