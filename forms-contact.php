@@ -13,6 +13,7 @@ License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 /*INCLUDING HUGE IT AJAX FILE*/
 require_once( "admin/hugeit_contact_ajax.php" );
 
@@ -32,6 +33,9 @@ function hugeit_contact_formBuilder_ajax_action_callback() {
 	require( "admin/hugeit_contact_formBuilder_ajax.php" );
 	die();
 }
+
+
+
 
 /*INCLUDING HUGE IT EMAIL MANAGER SCHEDULE FILE*/
 require_once( "hugeit_contact_function/huge_it_email_manager_schedule.php" );
@@ -286,23 +290,48 @@ function hugeit_contact_formBuilder_options() {
 }
 
 function hugeit_forms_licensing() {
+	wp_enqueue_style( 'licensing-style', plugin_dir_url(__FILE__) . 'style/licensing.css' );
 	?>
-	<div style="width:95%">
-		<p>
-			This plugin is the non-commercial version of the Huge IT Forms. If you want to use pro options,than you need
-			to buy a license.
-			Purchasing a license will add possibility to customize the themes of forms and use newsletter manager option
-			of the Huge IT Forms.
-		</p>
-		<br/><br/><br/>
-		<p>After the purchasing the commercial version follow this steps:</p>
-		<ol>
-			<li>Deactivate Forms Plugin</li>
-			<li>Delete Forms Plugin</li>
-			<li>Install the downloaded commercial version of the plugin</li>
-		</ol>
-		<br/><br/>
-		<a href="http://huge-it.com/forms/" class="button-primary" target="_blank">Purchase a License</a>
+	<div class="forms">
+		<div class="forms-block">
+			<div class="licens">
+				<a href="http://huge-it.com/forms/">
+					<span class="icon multiple"></span>
+					<span class="text">Multiple Email For Recipients</span>
+				</a>
+			</div>
+			<div class="licens">
+				<a href="http://huge-it.com/forms/">
+					<span class="icon newsletters"></span>
+					<span class="text">Email Newsletters</span>
+				</a>
+			</div>
+			<div class="licens">
+				<a href="http://huge-it.com/forms/">
+					<span class="icon themes"></span>
+					<span class="text">Themes Customization</span>
+				</a>
+			</div>
+			<div class="licens">
+				<a href="http://huge-it.com/forms/">
+					<span class="icon advanced"></span>
+					<span class="text">Advanced Design</span>
+				</a>
+			</div>
+
+			<div class="licens">
+				<a href="http://huge-it.com/forms/">
+					<span class="icon ready"></span>
+					<span class="text">Ready-To-Go Fields</span>
+				</a>
+			</div>
+			<div class="licens">
+				<a href="http://huge-it.com/forms/">
+					<span class="icon layout"></span>
+					<span class="text">Layout Customization</span>
+				</a>
+			</div>
+		</div>
 	</div>
 
 	<?php
@@ -489,6 +518,7 @@ function hugeit_contact_general_options() {
 }
 
 function hugeit_forms_featured_plugins() {
+	wp_enqueue_style('featured-plugins-css',plugin_dir_url(__FILE__).'style/featured-plugins.css',true);
 	require_once( "admin/hugeit_contact_featured_plugins.php" );
 }
 

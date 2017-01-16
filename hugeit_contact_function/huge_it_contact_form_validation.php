@@ -2,6 +2,7 @@
 
 if(! defined( 'ABSPATH' )) exit;
 global $wpdb;
+session_start();
 
 function hugeit_contact_set_html_content_type2(){
 	return 'text/html';
@@ -80,7 +81,8 @@ function hugeit_contact_contact_form_validation_callback(){
 			foreach ($rowim as $key=>$rowimages){
 				$inputtype = $rowimages->conttype;
 				$rowimages->hc_field_label=addslashes($rowimages->hc_field_label);
-				if($inputtype == 'text' or $inputtype == 'textarea' or $inputtype == 'selectbox' or $inputtype == 'checkbox' or $inputtype == 'radio_box' or $inputtype == 'file_box' or $inputtype == 'e_mail' or $inputtype == 'buttons' or $inputtype == 'captcha' or $inputtype =='nameSurname' or $inputtype =='phone' or $inputtype =='license'){
+                $inputAllowedTypes=array('text','textarea','selectbox','checkbox','radio_box','file_box','e_mail','buttons','captcha','nameSurname','phone','license','simple_captcha_box');
+				if(in_array($inputtype,$inputAllowedTypes)){
 					if($inputtype == 'captcha'){
 						$url='https://www.google.com/recaptcha/api/siteverify';
 						$privatekey=$huge_it_gen_opt[10]->value;
@@ -90,6 +92,17 @@ function hugeit_contact_contact_form_validation_callback(){
 							$submition_errors.='huge-contact-field-'.$rowimages->id.':'.$huge_it_gen_opt[37]->value.'*()*';
 						}
 					}
+					if($inputtype=='simple_captcha_box'){
+                        if(!isset($_POSTED['simple_captcha_'.$frontendformid.'']) || $_POSTED['simple_captcha_'.$frontendformid.'']==''){
+                            $submition_errors.='simple_captcha_'.$rowimages->id.':'.$huge_it_gen_opt[36]->value.'*()*';
+                        }
+                        else{
+                            if($_POSTED['simple_captcha_'.$frontendformid.'']!=$_SESSION['captcha-'.$rowimages->id]){
+                                $submition_errors.='huge-contact-field-'.$rowimages->id.':'.$huge_it_gen_opt[36]->value.'*()*';
+                            }
+
+                        }
+                    }
 					if($inputtype == 'buttons'){
 						$buttonsField='huge-contact-field-'.$rowimages->id;
 						$afterSubmit=$rowimages->hc_other_field;
@@ -210,7 +223,7 @@ function hugeit_contact_contact_form_validation_callback(){
 					}
 				}
 			}
-			///////////////
+			// if there are no validation errors, proceed
 			if($submition_errors==''){
 				if(isset($_FILES)){
 					foreach ($_FILES as $keyofFile=>$fileSingle) {
@@ -301,6 +314,8 @@ function hugeit_contact_contact_form_validation_callback(){
 						$email_insert = "INSERT INTO `" . $table_name . "` (`subscriber_form_id`,`subscriber_email`) VALUES (".$email_form_id.",'".$emailSingle."')";
 						$wpdb->query($email_insert);
 					}
+
+                    // Send Email to the user
 					if($huge_it_gen_opt[6]->value=='on'){
 						if(isset($_POSTED['hc_email_r'])){
 							$subject=$huge_it_gen_opt[7]->value;
@@ -337,7 +352,7 @@ function hugeit_contact_contact_form_validation_callback(){
 						}
 					}
 				}
-				////
+				// Send Email to Admin
 				if($huge_it_gen_opt[2]->value=='on'){
 					function hugeit_contact_set_html_content_type() {
 						return 'text/html';
@@ -361,6 +376,7 @@ function hugeit_contact_contact_form_validation_callback(){
                     $sendmessage = preg_replace( '/{formContent}/', $adminSub, $sendmessage );
 					$sendmessage = html_entity_decode( $sendmessage );
 					$sendmessage = wp_kses_post( $sendmessage );
+
 					$headers = array('From: '.$huge_it_gen_opt[35]->value.' <'.$huge_it_gen_opt[34]->value.'>');
 
 					//------------------if subject empty sends the name of the form

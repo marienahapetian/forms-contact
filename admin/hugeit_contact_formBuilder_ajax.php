@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	<?php
 	    return ob_get_clean();
 	}
-	//1 Textbox //
+	//1 Textbox // Left Column
 	function hugeit_contact_textBoxHtml($rowimages) { ob_start(); ?>
 	    <div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 			<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
@@ -35,6 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	<?php
 	    return ob_get_clean();
 	}
+	//Text box Right Column
 	function hugeit_contact_textBoxSettingsHtml($rowimages){ob_start(); ?>
 		<li id="huge-contact-field-<?php echo $rowimages->id; ?>"  data-fieldNum="<?php echo $rowimages->id; ?>">	
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="Textbox"/>
@@ -665,7 +666,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	<?php
 	    return ob_get_clean();
 	}
-	//8 Captcha //
+	//8 ReCaptcha //
 	function hugeit_contact_captchaHtml($rowimages) { ob_start(); ?>
 		<div class="hugeit-field-block captcha-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 			<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
@@ -683,16 +684,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     	<li id="huge-contact-field-<?php echo $rowimages->id; ?>"  data-fieldNum="<?php echo $rowimages->id; ?>" data-fieldType="captcha">
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" />
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
-			<h4>Captcha</h4>
+			<h4>ReCaptcha</h4>
 			<div class="fields-options">
 				<div class="left">
-					<label class="input-block">Captcha Type
+					<label class="input-block">ReCaptcha Type
 						<select name="titleimage<?php echo $rowimages->id; ?>">
 							<option <?php if($rowimages->name == 'image'){ echo 'selected="selected"'; } ?> value="image">Image</option>
 							<option <?php if($rowimages->name == 'audio'){ echo 'selected="selected"'; } ?> value="audio">Audio</option>
 						</select>
 					</label>
-					<label class="input-block">Captcha Position
+					<label class="input-block">ReCaptcha Position
 						<select class="captcha_position" name="hc_input_show_default<?php echo $rowimages->id; ?>">
 							<option <?php if($rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="1">Right</option>
 							<option <?php if($rowimages->hc_input_show_default == '2'){ echo 'selected="selected"'; } ?> value="2">Left</option>
@@ -700,7 +701,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					</label>
 				</div>	
 				<div class="left">
-					<label class="input-block">Captcha Theme
+					<label class="input-block">ReCaptcha Theme
 						<select class="hugeit_contact_captcha_theme" name="hc_required<?php echo $rowimages->id; ?>">
 							<option <?php if($rowimages->hc_required == 'dark'){ echo 'selected="selected"'; } ?> value="dark">Dark</option>
 							<option <?php if($rowimages->hc_required == 'light'){ echo 'selected="selected"'; } ?> value="light">Light</option>
@@ -717,6 +718,75 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	<?php
 	    return ob_get_clean();
 	}
+
+//8.1 Simple Captcha //
+//Simple Captcha DEMO HTML(Right Column)
+function hugeit_contact_simple_captchaHtml($rowimages) { ob_start(); ?>
+	<div class="hugeit-field-block simple-captcha-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+		<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
+		<label class="formsAboveAlign">
+			<img src="<?=plugin_dir_url(__FILE__);?>captcha.php?id=<?=$rowimages->id; ?>&l=<?=$rowimages->hc_other_field;?>">
+			<span class="captcha_refresh_button" data-captcha-id="<?=$rowimages->id;?>" data-digits="<?=$rowimages->hc_other_field;?>" data-form-id="<?=$frontendformid; ?>">
+				<img src="<?=plugin_dir_url(__FILE__);?>../images/refresh-icon.png" width="32px">
+			</span>
+		</label>
+		<div class="field-block">
+			<input type="text" name="simple_captcha" placeholder="<?php echo $rowimages->name;?>">
+		</div>
+
+		<span class="hugeOverlay"></span>
+		<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>">
+		<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" />
+
+	</div>
+	<?php
+	return ob_get_clean();
+}
+
+// Simple Captcha Field HTML(Left Column)
+function hugeit_contact_simple_captchaSettingsHtml($rowimages) { ob_start(); ?>
+	<li id="huge-contact-field-<?php echo $rowimages->id; ?>"  data-fieldNum="<?php echo $rowimages->id; ?>" data-fieldType="captcha">
+		<h4>Simple Captcha</h4>
+		<div class="fields-options">
+			<div class="left">
+				<label class="input-block">Simple Captcha Digits(3-7)
+					<input type="number" min="3" max="7" name="hc_other_field<?=$rowimages->id; ?>" value="<?=($rowimages->hc_other_field)?$rowimages->hc_other_field:5;?>">
+				</label>
+<!--				<label class="input-block">Simple Captcha Position-->
+<!--					<select id="form_label_position" class="captcha_position" name="hc_input_show_default--><?php //echo $rowimages->id; ?><!--">-->
+<!--						<option --><?php //if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?><!-- value="formsLeftAlign">Left Align</option>-->
+<!--						<option --><?php //if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?><!-- value="formsRightAlign">Right Align</option>-->
+<!--						<option --><?php //if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?><!-- value="formsAboveAlign">Above Field</option>-->
+<!--					</select>-->
+<!--				</label>-->
+			</div>
+
+			<span class="hugeOverlay"></span>
+			<input type="hidden" class="ordering" name="hc_ordering<?=$rowimages->id; ?>" value="<?=$rowimages->ordering; ?>">
+			<input type="hidden" class="left-right-position" name="hc_left_right<?=$rowimages->id; ?>" value="<?=$rowimages->hc_left_right; ?>" />
+<!--			<div class="left">-->
+<!--				<label class="input-block">Simple Captcha Type-->
+<!--					<select class="captcha_position" name="hc_input_show_default--><?php //echo $rowimages->id; ?><!--">-->
+<!--						<option --><?php //if($rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?><!-- value="1">Number</option>-->
+<!--						<option --><?php //if($rowimages->hc_input_show_default == '2'){ echo 'selected="selected"'; } ?><!-- value="2">Text</option>-->
+<!--					</select>-->
+<!--				</label>-->
+<!--			</div>-->
+
+			<div class="field-top-options-block">
+				<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
+				<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</li>
+	<?php
+	return ob_get_clean();
+}
+
+
+
+
 	//9 Buttons //
 	function hugeit_contact_buttonsHtml($rowimages,$themeId) { ob_start();
 		$themeId = sanitize_text_field($themeId);
@@ -1684,7 +1754,54 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					));
 				}
 		     	break;
+			case 'simple_captcha_box'://simple captcha to do
+				$field_exists_in_the_form=$wpdb->prepare(
+					"SELECT id 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE conttype='simple_captcha_box' AND hugeit_contact_id=%d",
+					$formId
+				);
+				$field_exists_in_the_form=$wpdb->query($field_exists_in_the_form);
+				//var_dump($field_exists_in_the_form);
+				if(!$field_exists_in_the_form){
+					$wpdb->insert(
+						$inserttexttype,
+						array(
+							'name' => 'Type the code on the image',
+							'hugeit_contact_id' => $formId,
+							'description' => 'on',
+							'conttype' => $inputtype,
+							'hc_field_label' => 'Simple Captcha',
+							'hc_other_field' => '5',
+							'field_type' => 'simple_captcha_box',
+							'hc_required' => '',
+							'ordering' => 0,
+							'published' => 2,
+							'hc_input_show_default' => '1',
+							'hc_left_right' => 'left',
+						),
+						array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+					);
 
+					$queryMax=$wpdb->prepare(
+						"SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",
+						$formId
+					);
+					$row81=$wpdb->get_results($queryMax);
+					$fieldID=$row81[0]->resId;
+					$fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
+					$rowimages=$wpdb->get_results($fieldQuery);
+					echo json_encode(array(
+						"outputField" => hugeit_contact_simple_captchaHtml($rowimages[0]),
+						"outputFieldSettings"=>hugeit_contact_simple_captchaSettingsHtml($rowimages[0])
+					));
+				}
+				else{
+					echo json_encode(array());
+				}
+				break;
 	     	case 'buttons':
 		     	$query=$wpdb->prepare(
 		     		"SELECT MAX(ordering) AS res 
@@ -2140,7 +2257,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 		}
 	}
-	//Save Form
+	//Save Form Action
 if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
 	if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'builder_nonce')) {
 		return false;
@@ -2158,6 +2275,7 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
 		}
 	}
 	foreach ( $rowim as $key => $rowimages ) {
+		//var_dump($_POSTED['simple_captcha_length']);
 		if ( isset( $_POSTED ) && isset( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) ) {
 			if ( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) {
 				$id = $rowimages->id;
