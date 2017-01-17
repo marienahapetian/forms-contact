@@ -295,40 +295,40 @@ function hugeit_forms_licensing() {
 	<div class="forms">
 		<div class="forms-block">
 			<div class="licens">
-				<a target="_blank" href="http://huge-it.com/forms/">
+				<a href="http://huge-it.com/forms/" target="_blank">
 					<span class="icon multiple"></span>
-					<span class="text">Multiple Email For Recipients</span>
+					<span class="text"><?php _e('Multiple Email For Recipients', 'hugeit_contact'); ?></span>
 				</a>
 			</div>
 			<div class="licens">
-				<a target="_blank" href="http://huge-it.com/forms/">
+				<a href="http://huge-it.com/forms/" target="_blank">
 					<span class="icon newsletters"></span>
-					<span class="text">Email Newsletters</span>
+					<span class="text"><?php _e('Email Newsletters', 'hugeit_contact'); ?></span>
 				</a>
 			</div>
 			<div class="licens">
-				<a target="_blank" href="http://huge-it.com/forms/">
+				<a href="http://huge-it.com/forms/" target="_blank">
 					<span class="icon themes"></span>
-					<span class="text">Themes Customization</span>
+					<span class="text"><?php _e('Themes Customization', 'hugeit_contact'); ?></span>
 				</a>
 			</div>
 			<div class="licens">
-				<a target="_blank" href="http://huge-it.com/forms/">
+				<a href="http://huge-it.com/forms/" target="_blank">
 					<span class="icon advanced"></span>
-					<span class="text">Advanced Design</span>
+					<span class="text"><?php _e('Advanced Design', 'hugeit_contact'); ?></span>
 				</a>
 			</div>
 
 			<div class="licens">
-				<a target="_blank" href="http://huge-it.com/forms/">
+				<a href="http://huge-it.com/forms/" target="_blank">
 					<span class="icon ready"></span>
-					<span class="text">Ready-To-Go Fields</span>
+					<span class="text"><?php _e('Ready-To-Go Fields', 'hugeit_contact'); ?></span>
 				</a>
 			</div>
 			<div class="licens">
-				<a target="_blank" href="http://huge-it.com/forms/">
+				<a href="http://huge-it.com/forms/" target="_blank">
 					<span class="icon layout"></span>
-					<span class="text">Layout Customization</span>
+					<span class="text"><?php _e('Layout Customization', 'hugeit_contact'); ?></span>
 				</a>
 			</div>
 		</div>
