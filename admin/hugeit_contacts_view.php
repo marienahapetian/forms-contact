@@ -349,8 +349,12 @@ function submitbutton(pressbutton){
 								                        data-formId="<?php echo $id; ?>"
 								                        data-themeId="<?php echo $row->hc_yourstyle; ?>">Captcha</a>
 								</li>
-							<?php endif;
-							if ( $fordisablebut == 0 ) : ?>
+							<?php endif;?>
+
+							<!-- simple captcha -->
+							<li><a onclick="" class="" id="simple_captcha_box" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Simple Captcha</a></li>
+
+							<?php if ( $fordisablebut == 0 ) : ?>
 								<li class=""><a onclick="" class="" id="buttons" data-formId="<?php echo $id; ?>"
 								                data-themeId="<?php echo $row->hc_yourstyle; ?>">Buttons</a></li>
 							<?php else : ?>
@@ -450,6 +454,10 @@ function submitbutton(pressbutton){
 
 								echo hugeit_contact_captchaSettingsHtml( $rowimages );
 								break;
+							case 'simple_captcha_box':  //8.1
+
+								echo hugeit_contact_simple_captcha_settings_html( $rowimages );
+								break;
 							case 'buttons':  //9
 
 								echo hugeit_contact_buttonsSettingsHtml( $rowimages );
@@ -508,6 +516,11 @@ function submitbutton(pressbutton){
 						
 						echo hugeit_contact_captchaSettingsHtml($rowimages);
 						break;
+
+						case 'simple_captcha_box':  //8.1
+
+							echo hugeit_contact_simple_captcha_settings_html($rowimages);
+							break;
 
 						case 'buttons':  //9
 
@@ -1118,6 +1131,30 @@ function submitbutton(pressbutton){
 												</div>
 											<?php
 											break;
+
+											case 'simple_captcha_box': //8.1
+												?>
+												<?php if($rowimages->hc_input_show_default=='formsLeftAlign'){$hg_left_right_class='text-left';}
+											    else{$hg_left_right_class='text-right';}?>
+												<div class="hugeit-field-block simple-captcha-block <?php echo $hg_left_right_class;?>" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+													<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
+													<label  class="formsAboveAlign">
+														<img src="<?php echo plugin_dir_url(__FILE__);?>hugeit_contact_captcha.php?id=<?php echo $rowimages->id; ?>&l=<?php echo $rowimages->hc_other_field;?>">
+                                                        <span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $rowimages->hc_other_field;?>" data-form-id="<?php echo $frontendformid; ?>">
+                                                            <img src="<?php echo plugin_dir_url(__FILE__);?>../images/refresh-icon.png" width="32px">
+                                                        </span>
+                                                    </label>
+													<div class="field-block">
+														<input type="text" name="simple_captcha" placeholder="<?php echo $rowimages->name;?>">
+													</div>
+
+													<span class="hugeOverlay"></span>
+													<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>">
+													<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" />
+												</div>
+												<?php
+												break;
+
 											case 'buttons': //9									
 											
 											echo hugeit_contact_buttonsHtml($rowimages,$themeId);
@@ -1142,38 +1179,32 @@ function submitbutton(pressbutton){
 										$inputtype = $rowimages->conttype;
 										switch ($inputtype) {
 											case 'text'://1
-
-											echo hugeit_contact_textBoxHtml($rowimages);
-											break;
+												echo hugeit_contact_textBoxHtml($rowimages);
+												break;
 
 											case 'textarea'://2
-
-											echo hugeit_contact_textareaHtml($rowimages);
-											break;
+												echo hugeit_contact_textareaHtml($rowimages);
+												break;
 
 											case 'selectbox'://3
-											
-											echo hugeit_contact_selectboxHtml($rowimages);
-											break;
+												echo hugeit_contact_selectboxHtml($rowimages);
+												break;
 
 											case 'checkbox':  //4
-
-											echo hugeit_contact_checkboxHtml($rowimages,$themeId);
-											break;
+												echo hugeit_contact_checkboxHtml($rowimages,$themeId);
+												break;
 
 											case 'radio_box':  //5
-											
-											echo hugeit_contact_radioboxHtml($rowimages,$themeId);
-											break;
+												echo hugeit_contact_radioboxHtml($rowimages,$themeId);
+												break;
+
 											case 'file_box':  //6
-											
-											echo hugeit_contact_fileboxHtml($rowimages,$themeId);
-											break;
+												echo hugeit_contact_fileboxHtml($rowimages,$themeId);
+												break;
 
 											case 'custom_text':  //7
-
-											echo hugeit_contact_cutomtextHtml($rowimages);
-											break;
+												echo hugeit_contact_cutomtextHtml($rowimages);
+												break;
 
 											case 'captcha': //8
 											?>
@@ -1206,16 +1237,19 @@ function submitbutton(pressbutton){
 													<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" />
 												</div>
 											<?php
-											break;
-											case 'buttons': //9									
-											
-											echo hugeit_contact_buttonsHtml($rowimages,$themeId);
-											break;
+												break;
+											//here
+											case 'simple_captcha_box'://8.1
+												echo hugeit_contact_simple_captcha_html($rowimages,$themeId);
+												break;
+
+											case 'buttons': //9
+												echo hugeit_contact_buttonsHtml($rowimages,$themeId);
+												break;
 
 											case 'e_mail':  //10
-
-											echo hugeit_contact_emailHtml($rowimages);
-											break;
+												echo hugeit_contact_emailHtml($rowimages);
+												break;
 										}
 									}
 								}

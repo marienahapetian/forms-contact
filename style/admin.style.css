@@ -1,6 +1,7 @@
 .ui_custom_pl { border-radius:5px;background: #ededf0; visibility: visible !important; }
 .ui_custom_pl * { visibility: hidden; }
-
+.text-right{text-align: right;}
+.text-left{text-align: left;}
 #poststuff #post-body.columns-2.huge_contacts {
 	margin:0;
 }

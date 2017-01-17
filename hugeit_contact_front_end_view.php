@@ -5,7 +5,15 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 	?>
 	<style>
 			/*########### PREVIEW CONTAINER ##############*/
-
+.simple-captcha-block input[type='text']{
+	max-width: 300px;
+}
+.text-right{
+	text-align: right;
+}
+.text-left{
+	text-align: left;
+}
 #hugeit-contact-preview-container {
 	position:relative;
 	float:right;
@@ -786,127 +794,132 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 										$inputtype = $rowimages->conttype;
 										switch ($inputtype) {
 											case 'text':  //1
-											?>
-												<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-													<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
-													<div class="field-block input-text-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
-														<input id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>" type="<?php echo $rowimages->field_type;?>" placeholder="<?php echo $rowimages->name;?>" class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>"  <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?>/>
-														<span class="hugeit-error-message"></span>
+												?>
+													<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+														<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
+														<div class="field-block input-text-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
+															<input id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>" type="<?php echo $rowimages->field_type;?>" placeholder="<?php echo $rowimages->name;?>" class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>"  <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?>/>
+															<span class="hugeit-error-message"></span>
+														</div>
 													</div>
-												</div>
-											<?php
-											break;
+												<?php
+												break;
+
 											case 'textarea':  //2
-											?>
-												<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-													<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
-													<div class="field-block textarea-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
-														<textarea style="height:<?php echo $rowimages->hc_other_field;?>px;resize:<?php if($rowimages->field_type=='on'){echo 'vertical';}else{ echo 'none';}?>;" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>" id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?> class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>" placeholder="<?php echo $rowimages->name; ?>"></textarea>
-														<span class="hugeit-error-message"></span>
-													</div>													
-												</div>
-											<?php 
-											break;
+												?>
+													<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+														<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
+														<div class="field-block textarea-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
+															<textarea style="height:<?php echo $rowimages->hc_other_field;?>px;resize:<?php if($rowimages->field_type=='on'){echo 'vertical';}else{ echo 'none';}?>;" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>" id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?> class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>" placeholder="<?php echo $rowimages->name; ?>"></textarea>
+															<span class="hugeit-error-message"></span>
+														</div>
+													</div>
+												<?php
+												break;
+
 											case 'selectbox':  //3
-											?>
-												<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-													<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
-													<div class="field-block selectbox-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
-														<?php
-															 $options=explode(';;',$rowimages->name);
-															 $j=0;
-															 foreach($options as $option){
-															 if($rowimages->hc_other_field==$j){
-														?>
-															<input type="text" disabled="disabled" class="textholder" value="<?php echo $option; ?>" />
-														<?php } $j++; } ?>
-														
-														<select id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>" >
+												?>
+													<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+														<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
+														<div class="field-block selectbox-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
 															<?php
-															 $options=explode(';;',$rowimages->name);
-															 $i=0;
-															 foreach($options as $opt_key=>$option){
+																 $options=explode(';;',$rowimages->name);
+																 $j=0;
+																 foreach($options as $option){
+																 if($rowimages->hc_other_field==$j){
 															?>
-																<option <?php if($rowimages->hc_input_show_default=='formsInsideAlign'&&$opt_key==0) echo 'disabled ';?><?php if($rowimages->hc_other_field==$i){echo 'selected="selected"';} ?>><?php echo $option; ?></option>
-															<?php $i++; } ?>
-														</select>
-														<i class="hugeicons-chevron-down"></i>
-														<span class="hugeit-error-message"></span>
+																<input type="text" disabled="disabled" class="textholder" value="<?php echo $option; ?>" />
+															<?php } $j++; } ?>
+
+															<select id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>" >
+																<?php
+																 $options=explode(';;',$rowimages->name);
+																 $i=0;
+																 foreach($options as $opt_key=>$option){
+																?>
+																	<option <?php if($rowimages->hc_input_show_default=='formsInsideAlign'&&$opt_key==0) echo 'disabled ';?><?php if($rowimages->hc_other_field==$i){echo 'selected="selected"';} ?>><?php echo $option; ?></option>
+																<?php $i++; } ?>
+															</select>
+															<i class="hugeicons-chevron-down"></i>
+															<span class="hugeit-error-message"></span>
+														</div>
 													</div>
-												</div>
-											<?php	
-											break;
+												<?php
+												break;
+
 											case 'checkbox':  //4
-											?>
-												<div class="hugeit-field-block hugeit-check-field" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-													<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
-													<div class="field-block checkbox-field-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign')echo $rowimages->hc_input_show_default;?>">
-														<ul id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" class="hugeit-checkbox-list">
-															<?php
-															 $options=explode(';;',$rowimages->name);
-															 $actives=explode(';;',$rowimages->hc_other_field);
-															
-															 $i=0;
-															 $j=0;
-															 foreach($options as $keys=>$option){
-															?>
-																<li style="width:<?php if($rowimages->field_type!=0){echo 100/intval($rowimages->field_type);}?>%;">
-																	<label class="secondary-label">
-																		<div class="checkbox-block big">
-																		<input <?php if(isset($actives[$j])&&$actives[$j]==''.$keys.''){echo 'checked="checked"';$j++;} ?> type="checkbox" value="<?php echo $option;?>" name="check_<?php echo $frontendformid.'_'.$rowimages->id; ?>[huge_it_<?php echo $frontendformid.'_'.$rowimages->id.'_'.$keys; ?>]" <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?>/>
-																			<?php if($style_values['form_checkbox_type']=='circle'){ ?>
-																				<i class="hugeicons-dot-circle-o active"></i>
-																				<i class="hugeicons-circle-o passive"></i>
-																			<?php }else{ ?>			
-																				<i class="hugeicons-check-square active"></i>
-																				<i class="hugeicons-square-o passive"></i>
-																			<?php }?>	
-																		</div>
-																		<span class="sublable"><?php echo $option; ?></span>
-																	</label>
-																</li>
-															<?php $i++; } ?>
-														</ul>
-														<span class="hugeit-error-message"></span>
-													</div>													
-												</div>
-											<?php
-											break;
-											case 'radio_box':  //5
-											?>
-												<div class="hugeit-field-block hugeit-radio-field" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-													<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';}?></label>
-													<div class="field-block radio-field-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign')echo $rowimages->hc_input_show_default;?>">
-														<ul id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" class="hugeit-radiobox-list">
-															<?php
-															 $options=explode(';;',$rowimages->name);
-															 $i=0;
-															 foreach($options as $keys=>$option){
-															?>
- 																<li style="width:<?php if($rowimages->description!=0){echo 100/$rowimages->description;}?>%;">
-																	<label class="secondary-label">
-																		<div class="radio-block big">
-																		<input <?php if(trim($rowimages->hc_other_field)==$i){echo 'checked="checked"';} ?> type="radio" value="<?php echo $option; ?>" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>">
-																		
-																			<?php if($style_values['form_radio_type']=='circle'){ ?>
-																				<i class="hugeicons-dot-circle-o active"></i>
-																				<i class="hugeicons-circle-o passive"></i>
-																			<?php }else{ ?>			
-																				<i class="hugeicons-check-square active"></i>
-																				<i class="hugeicons-square-o passive"></i>
-																			<?php }?>	
-																		</div>
-																		<span class="sublable"><?php echo $option; ?></span>
-																	</label>
-																</li>
-															<?php $i++; } ?>
-														</ul>
+												?>
+													<div class="hugeit-field-block hugeit-check-field" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+														<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
+														<div class="field-block checkbox-field-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign')echo $rowimages->hc_input_show_default;?>">
+															<ul id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" class="hugeit-checkbox-list">
+																<?php
+																 $options=explode(';;',$rowimages->name);
+																 $actives=explode(';;',$rowimages->hc_other_field);
+
+																 $i=0;
+																 $j=0;
+																 foreach($options as $keys=>$option){
+																?>
+																	<li style="width:<?php if($rowimages->field_type!=0){echo 100/intval($rowimages->field_type);}?>%;">
+																		<label class="secondary-label">
+																			<div class="checkbox-block big">
+																			<input <?php if(isset($actives[$j])&&$actives[$j]==''.$keys.''){echo 'checked="checked"';$j++;} ?> type="checkbox" value="<?php echo $option;?>" name="check_<?php echo $frontendformid.'_'.$rowimages->id; ?>[huge_it_<?php echo $frontendformid.'_'.$rowimages->id.'_'.$keys; ?>]" <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?>/>
+																				<?php if($style_values['form_checkbox_type']=='circle'){ ?>
+																					<i class="hugeicons-dot-circle-o active"></i>
+																					<i class="hugeicons-circle-o passive"></i>
+																				<?php }else{ ?>
+																					<i class="hugeicons-check-square active"></i>
+																					<i class="hugeicons-square-o passive"></i>
+																				<?php }?>
+																			</div>
+																			<span class="sublable"><?php echo $option; ?></span>
+																		</label>
+																	</li>
+																<?php $i++; } ?>
+															</ul>
+															<span class="hugeit-error-message"></span>
+														</div>
 													</div>
-												</div>
-											<?php 
-											break;
+												<?php
+												break;
+
+											case 'radio_box':  //5
+												?>
+													<div class="hugeit-field-block hugeit-radio-field" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+														<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';}?></label>
+														<div class="field-block radio-field-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign')echo $rowimages->hc_input_show_default;?>">
+															<ul id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" class="hugeit-radiobox-list">
+																<?php
+																 $options=explode(';;',$rowimages->name);
+																 $i=0;
+																 foreach($options as $keys=>$option){
+																?>
+																	<li style="width:<?php if($rowimages->description!=0){echo 100/$rowimages->description;}?>%;">
+																		<label class="secondary-label">
+																			<div class="radio-block big">
+																			<input <?php if(trim($rowimages->hc_other_field)==$i){echo 'checked="checked"';} ?> type="radio" value="<?php echo $option; ?>" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>">
+
+																				<?php if($style_values['form_radio_type']=='circle'){ ?>
+																					<i class="hugeicons-dot-circle-o active"></i>
+																					<i class="hugeicons-circle-o passive"></i>
+																				<?php }else{ ?>
+																					<i class="hugeicons-check-square active"></i>
+																					<i class="hugeicons-square-o passive"></i>
+																				<?php }?>
+																			</div>
+																			<span class="sublable"><?php echo $option; ?></span>
+																		</label>
+																	</li>
+																<?php $i++; } ?>
+															</ul>
+														</div>
+													</div>
+												<?php
+												break;
+
 											case 'file_box':  //6
-											?>
+												?>
 												<script>
 												jQuery(document).ready(function(){
 													function mbToBytes(mb){
@@ -936,26 +949,51 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 														<span class="hugeit-error-message"></span>
 													</div>													
 												</div>
-											<?php 
-											break;
+												<?php
+												break;
+
 											case 'custom_text':  //7
-											?>
-												<div class="hugeit-field-block custom-text-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-													<?php echo $rowimages->name; ?>
-												</div>
-											<?php 
-											break;
+												?>
+													<div class="hugeit-field-block custom-text-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+														<?php echo $rowimages->name; ?>
+													</div>
+												<?php
+												break;
+
 											case 'captcha': //8
-											?>
-												<div class="hugeit-field-block captcha-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>" data-form_id="<?php echo $frontendformid; ?>" data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>" data-theme="<?php echo $rowimages->hc_required; ?>" data-cname="<?php echo $rowimages->name; ?>">
-													<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
-													<div style="float:<?php echo $capPos; ?>;" id="huge_it_captcha_<?php echo $frontendformid; ?>"></div>
+												?>
+													<div class="hugeit-field-block captcha-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>" data-form_id="<?php echo $frontendformid; ?>" data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>" data-theme="<?php echo $rowimages->hc_required; ?>" data-cname="<?php echo $rowimages->name; ?>">
+														<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
+														<div style="float:<?php echo $capPos; ?>;" id="huge_it_captcha_<?php echo $frontendformid; ?>"></div>
+														<span style="text-align:right;" class="hugeit-error-message"></span>
+													</div>
+												<?php
+												break;
+
+											case 'simple_captcha_box': //8.1
+												?>
+												<?php if($rowimages->hc_input_show_default=='formsLeftAlign'){$hg_left_right_class='text-left';}
+												else{$hg_left_right_class='text-right';}?>
+												<div class="hugeit-field-block simple-captcha-block <?php echo $hg_left_right_class;?>" rel="huge-contact-field-<?php echo $rowimages->id; ?>" data-form_id="<?php echo $frontendformid; ?>" data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>" data-theme="<?php echo $rowimages->hc_required; ?>" data-cname="<?php echo $rowimages->name; ?>">
+													<label class="formsAboveAlign ">
+														<img src="<?php echo plugin_dir_url(__FILE__);?>/admin/hugeit_contact_captcha.php?id=<?php echo $rowimages->id;?>&l=<?php echo $rowimages->hc_other_field;?>">
+														<span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $rowimages->hc_other_field;?>" data-form-id="<?php echo $frontendformid; ?>">
+															<img src="<?php echo plugin_dir_url(__FILE__);?>/images/refresh-icon.png" width="32px">
+														</span>
+													</label>
+
+													<div class="field-block">
+														<input type="text" name="simple_captcha_<?php echo $frontendformid; ?>" placeholder="<?php echo $rowimages->name;?>">
+													</div>
+
+													<div style="float:<?php echo $capPos; ?>;" id="huge_it_simple_captcha_<?php echo $frontendformid; ?>"></div>
 													<span style="text-align:right;" class="hugeit-error-message"></span>
 												</div>
-											<?php
-											break;
+												<?php
+												break;
+
 											case 'buttons': //9										
-											?>
+												?>
 												<div class="hugeit-field-block buttons-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 													<button type="submit" class="submit" id="hugeit_preview_button__submit_<?php echo $rowimages->id;?>" value="Submit">
 														<?php if($style_values['form_button_icons_position']=="left" and $style_values['form_button_submit_has_icon']=="on"){?><i class="<?php echo $style_values['form_button_submit_icon_style']; ?>"></i><?php }?>
@@ -970,19 +1008,20 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 													</button>
 													<?php endif;?>
 												</div>
-											<?php
-											break;
+												<?php
+												break;
+
 											case 'e_mail':  //10
-											?>
-												<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-													<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
-													<div class="field-block input-text-block email-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
-														<input id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>" type="email" placeholder="<?php echo $rowimages->name;?>" class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>" <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?> />
-														<span class="hugeit-error-message"></span>
-													</div>													
-												</div>
-											<?php
-											break;
+												?>
+													<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+														<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
+														<div class="field-block input-text-block email-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
+															<input id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>" type="email" placeholder="<?php echo $rowimages->name;?>" class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>" <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?> />
+															<span class="hugeit-error-message"></span>
+														</div>
+													</div>
+												<?php
+												break;
 										}
 									}
 								}
@@ -997,174 +1036,204 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 										$inputtype = $rowimages->conttype;
 										switch ($inputtype) {
 											case 'text':  //1
-											?>
-												<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-													<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
-													<div class="field-block input-text-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
-														<input id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>" type="<?php echo $rowimages->field_type;?>" placeholder="<?php echo $rowimages->name;?>" class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>"  <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?>/>
-														<span class="hugeit-error-message"></span>
-													</div>													
-												</div>
-											<?php
-											break;
+												?>
+													<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+														<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
+														<div class="field-block input-text-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
+															<input id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>" type="<?php echo $rowimages->field_type;?>" placeholder="<?php echo $rowimages->name;?>" class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>"  <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?>/>
+															<span class="hugeit-error-message"></span>
+														</div>
+													</div>
+												<?php
+												break;
+
 											case 'textarea':  //2
-											?>
-												<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-													<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
-													<div class="field-block textarea-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
-														<textarea style="height:<?php echo $rowimages->hc_other_field;?>px;resize:<?php if($rowimages->field_type=='on'){echo 'vertical';}else{ echo 'none';}?>;" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>" id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?> class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>" placeholder="<?php echo $rowimages->name; ?>"></textarea>
-														<span class="hugeit-error-message"></span>
-													</div>													
-												</div>
-											<?php 
-											break;
+												?>
+													<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+														<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
+														<div class="field-block textarea-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
+															<textarea style="height:<?php echo $rowimages->hc_other_field;?>px;resize:<?php if($rowimages->field_type=='on'){echo 'vertical';}else{ echo 'none';}?>;" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>" id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?> class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>" placeholder="<?php echo $rowimages->name; ?>"></textarea>
+															<span class="hugeit-error-message"></span>
+														</div>
+													</div>
+												<?php
+												break;
+
 											case 'selectbox':  //3
-											?>
-												<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-													<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
-													<div class="field-block selectbox-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
-														<?php
-															 $options=explode(';;',$rowimages->name);
-															 $j=0;
-															 foreach($options as $option){
-															 if($rowimages->hc_other_field==$j){
-														?>
-															<input type="text" disabled="disabled" class="textholder" value="<?php echo $option; ?>" />
-														<?php } $j++; } ?>
-														
-														<select id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>" >
+												?>
+													<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+														<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
+														<div class="field-block selectbox-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
 															<?php
-															 $options=explode(';;',$rowimages->name);
-															 $i=0;
-															 foreach($options as $opt_key=>$option){
+																 $options=explode(';;',$rowimages->name);
+																 $j=0;
+																 foreach($options as $option){
+																 if($rowimages->hc_other_field==$j){
 															?>
-																<option <?php if($rowimages->hc_input_show_default=='formsInsideAlign'&&$opt_key==0) echo 'disabled ';?><?php if($rowimages->hc_other_field==$i){echo 'selected="selected"';} ?>><?php echo $option; ?></option>
-															<?php $i++; } ?>
-														</select>
-														<i class="hugeicons-chevron-down"></i>
-														<span class="hugeit-error-message"></span>
+																<input type="text" disabled="disabled" class="textholder" value="<?php echo $option; ?>" />
+															<?php } $j++; } ?>
+
+															<select id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>" >
+																<?php
+																 $options=explode(';;',$rowimages->name);
+																 $i=0;
+																 foreach($options as $opt_key=>$option){
+																?>
+																	<option <?php if($rowimages->hc_input_show_default=='formsInsideAlign'&&$opt_key==0) echo 'disabled ';?><?php if($rowimages->hc_other_field==$i){echo 'selected="selected"';} ?>><?php echo $option; ?></option>
+																<?php $i++; } ?>
+															</select>
+															<i class="hugeicons-chevron-down"></i>
+															<span class="hugeit-error-message"></span>
+														</div>
 													</div>
-												</div>
-											<?php	
-											break;
+												<?php
+												break;
+
 											case 'checkbox':  //4
-											?>
-												<div class="hugeit-field-block hugeit-check-field" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-													<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
-													<div class="field-block checkbox-field-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign')echo $rowimages->hc_input_show_default;?>">
-														<ul id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" class="hugeit-checkbox-list">
-															<?php
-															 $options=explode(';;',$rowimages->name);
-															 $actives=explode(';;',$rowimages->hc_other_field);															
-															 $i=0;
-															 $j=0;
-															 foreach($options as $keys=>$option){
-															?>
-																<li style="width:<?php if($rowimages->field_type!=0){echo 100/intval($rowimages->field_type);}?>%;">
-																	<label class="secondary-label">
-																		<div class="checkbox-block big">
-																		<input <?php if(isset($actives[$j])&&$actives[$j]==''.$keys.''){echo 'checked="checked"';$j++;} ?> type="checkbox" name="check_<?php echo $frontendformid.'_'.$rowimages->id; ?>[huge_it_<?php echo $frontendformid.'_'.$rowimages->id.'_'.$keys; ?>]" value="<?php echo $option; ?>" <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?>/>
-																			<?php if($style_values['form_checkbox_type']=='circle'){ ?>
-																				<i class="hugeicons-dot-circle-o active"></i>
-																				<i class="hugeicons-circle-o passive"></i>
-																			<?php }else{ ?>			
-																				<i class="hugeicons-check-square active"></i>
-																				<i class="hugeicons-square-o passive"></i>
-																			<?php }?>	
-																		</div>
-																		<span class="sublable"><?php echo $option; ?></span>
-																	</label>
-																</li>
-															<?php $i++; } ?>
-														</ul>
-														<span class="hugeit-error-message"></span>
-													</div>													
-												</div>
-											<?php
-											break;
+												?>
+													<div class="hugeit-field-block hugeit-check-field" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+														<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
+														<div class="field-block checkbox-field-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign')echo $rowimages->hc_input_show_default;?>">
+															<ul id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" class="hugeit-checkbox-list">
+																<?php
+																 $options=explode(';;',$rowimages->name);
+																 $actives=explode(';;',$rowimages->hc_other_field);
+																 $i=0;
+																 $j=0;
+																 foreach($options as $keys=>$option){
+																?>
+																	<li style="width:<?php if($rowimages->field_type!=0){echo 100/intval($rowimages->field_type);}?>%;">
+																		<label class="secondary-label">
+																			<div class="checkbox-block big">
+																			<input <?php if(isset($actives[$j])&&$actives[$j]==''.$keys.''){echo 'checked="checked"';$j++;} ?> type="checkbox" name="check_<?php echo $frontendformid.'_'.$rowimages->id; ?>[huge_it_<?php echo $frontendformid.'_'.$rowimages->id.'_'.$keys; ?>]" value="<?php echo $option; ?>" <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?>/>
+																				<?php if($style_values['form_checkbox_type']=='circle'){ ?>
+																					<i class="hugeicons-dot-circle-o active"></i>
+																					<i class="hugeicons-circle-o passive"></i>
+																				<?php }else{ ?>
+																					<i class="hugeicons-check-square active"></i>
+																					<i class="hugeicons-square-o passive"></i>
+																				<?php }?>
+																			</div>
+																			<span class="sublable"><?php echo $option; ?></span>
+																		</label>
+																	</li>
+																<?php $i++; } ?>
+															</ul>
+															<span class="hugeit-error-message"></span>
+														</div>
+													</div>
+												<?php
+												break;
+
 											case 'radio_box':  //5
-											?>
-												<div class="hugeit-field-block hugeit-radio-field" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-													<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';}?></label>
-													<div class="field-block radio-field-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign')echo $rowimages->hc_input_show_default;?>">
-														<ul id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" class="hugeit-radiobox-list">
-															<?php
-															 $options=explode(';;',$rowimages->name);
-															 $i=0;
-															 foreach($options as $keys=>$option){?>
-																<li style="width:<?php if($rowimages->description!=0){echo 100/$rowimages->description;}?>%;">
-																	<label class="secondary-label">
-																		<div class="radio-block big">
-																		<input <?php if(trim($rowimages->hc_other_field)==$i){echo 'checked="checked"';} ?> type="radio" value="<?php echo $option; ?>" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>">
-																		
-																			<?php if($style_values['form_radio_type']=='circle'){ ?>
-																				<i class="hugeicons-dot-circle-o active"></i>
-																				<i class="hugeicons-circle-o passive"></i>
-																			<?php }else{ ?>			
-																				<i class="hugeicons-check-square active"></i>
-																				<i class="hugeicons-square-o passive"></i>
-																			<?php }?>	
-																		</div>
-																		<span class="sublable"><?php echo $option; ?></span>
-																	</label>
-																</li>
-															<?php $i++; } ?>
-														</ul>
+												?>
+													<div class="hugeit-field-block hugeit-radio-field" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+														<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';}?></label>
+														<div class="field-block radio-field-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign')echo $rowimages->hc_input_show_default;?>">
+															<ul id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" class="hugeit-radiobox-list">
+																<?php
+																 $options=explode(';;',$rowimages->name);
+																 $i=0;
+																 foreach($options as $keys=>$option){?>
+																	<li style="width:<?php if($rowimages->description!=0){echo 100/$rowimages->description;}?>%;">
+																		<label class="secondary-label">
+																			<div class="radio-block big">
+																			<input <?php if(trim($rowimages->hc_other_field)==$i){echo 'checked="checked"';} ?> type="radio" value="<?php echo $option; ?>" name="huge_it_<?php echo $frontendformid.'_'.$rowimages->id; ?>">
+
+																				<?php if($style_values['form_radio_type']=='circle'){ ?>
+																					<i class="hugeicons-dot-circle-o active"></i>
+																					<i class="hugeicons-circle-o passive"></i>
+																				<?php }else{ ?>
+																					<i class="hugeicons-check-square active"></i>
+																					<i class="hugeicons-square-o passive"></i>
+																				<?php }?>
+																			</div>
+																			<span class="sublable"><?php echo $option; ?></span>
+																		</label>
+																	</li>
+																<?php $i++; } ?>
+															</ul>
+														</div>
 													</div>
-												</div>
-											<?php 
-											break;
+												<?php
+												break;
+
 											case 'file_box':  //6
-											?>
-												<script>
-												jQuery(document).ready(function(){
-													function mbToBytes(mb){
-														return Math.round(mb * 1048576 * 100000) / 100000;
-													}
-													var byteRes=mbToBytes(<?php echo $rowimages->name;?>);
-													jQuery(".hugeit-contact-column-block div[rel='huge-contact-field-<?php echo $rowimages->id;?>']").find("input[name='MAX_FILE_SIZE']").attr('value',byteRes);
-												});													
-												</script>
-												<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-													<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo htmlspecialchars($rowimages->id);?>"><?php echo $rowimages->hc_field_label;  if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
-													<div class="field-block file-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
-														<input type="text" class="textholder" placeholder="<?php if($rowimages->hc_input_show_default=='formsInsideAlign') echo $rowimages->hc_field_label;?>"/>
-														<span class="uploadbutton">
-															<?php if($style_values['form_file_has_icon']=='on'):?>
-															<?php if($style_values['form_file_icon_position']=="left"){?><i class="<?php echo $style_values['form_file_icon_style']; ?>"></i><?php } ?>
-															<?php endif;?>
-															<?php echo $style_values['form_file_button_text'];?>
-															<?php if($style_values['form_file_has_icon']=='on'):?>
-															<?php if($style_values['form_file_icon_position']=="right"){?><i class="<?php echo $style_values['form_file_icon_style']; ?>"></i><?php }?>
-															<?php endif;?>
-														</span>
-														<input type="hidden" name="MAX_FILE_SIZE" value="" />
-														<input type="hidden" name="fileTypeArr" value="<?php echo $rowimages->hc_other_field; ?>">
-														<input id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" type="file" class="fileUploader <?php if($rowimages->hc_required == 'on'){echo 'required';}?>" name="userfile_<?php echo $rowimages->id;?>"/>
-														<span class="hugeit-error-message"></span>
+												?>
+													<script>
+													jQuery(document).ready(function(){
+														function mbToBytes(mb){
+															return Math.round(mb * 1048576 * 100000) / 100000;
+														}
+														var byteRes=mbToBytes(<?php echo $rowimages->name;?>);
+														jQuery(".hugeit-contact-column-block div[rel='huge-contact-field-<?php echo $rowimages->id;?>']").find("input[name='MAX_FILE_SIZE']").attr('value',byteRes);
+													});
+													</script>
+													<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+														<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo htmlspecialchars($rowimages->id);?>"><?php echo $rowimages->hc_field_label;  if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?></label>
+														<div class="field-block file-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
+															<input type="text" class="textholder" placeholder="<?php if($rowimages->hc_input_show_default=='formsInsideAlign') echo $rowimages->hc_field_label;?>"/>
+															<span class="uploadbutton">
+																<?php if($style_values['form_file_has_icon']=='on'):?>
+																<?php if($style_values['form_file_icon_position']=="left"){?><i class="<?php echo $style_values['form_file_icon_style']; ?>"></i><?php } ?>
+																<?php endif;?>
+																<?php echo $style_values['form_file_button_text'];?>
+																<?php if($style_values['form_file_has_icon']=='on'):?>
+																<?php if($style_values['form_file_icon_position']=="right"){?><i class="<?php echo $style_values['form_file_icon_style']; ?>"></i><?php }?>
+																<?php endif;?>
+															</span>
+															<input type="hidden" name="MAX_FILE_SIZE" value="" />
+															<input type="hidden" name="fileTypeArr" value="<?php echo $rowimages->hc_other_field; ?>">
+															<input id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" type="file" class="fileUploader <?php if($rowimages->hc_required == 'on'){echo 'required';}?>" name="userfile_<?php echo $rowimages->id;?>"/>
+															<span class="hugeit-error-message"></span>
+														</div>
 													</div>
-												</div>
-											<?php 
-											break;
+												<?php
+												break;
+
 											case 'custom_text':  //7
-											?>
-												<div class="hugeit-field-block custom-text-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-													<?php echo $rowimages->name; ?>
-												</div>
-											<?php 
-											break;
+												?>
+													<div class="hugeit-field-block custom-text-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+														<?php echo $rowimages->name; ?>
+													</div>
+												<?php
+												break;
+
 											case 'captcha': //8
-											?>
-												<div class="hugeit-field-block captcha-block custom-text-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>" data-form_id="<?php echo $frontendformid; ?>" data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>" data-theme="<?php echo $rowimages->hc_required; ?>" data-cname="<?php echo $rowimages->name; ?>">
-													<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
-													<div style="float:<?php echo $capPos; ?>;" id="huge_it_captcha_<?php echo $frontendformid; ?>"></div>
+												?>
+													<div class="hugeit-field-block captcha-block custom-text-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>" data-form_id="<?php echo $frontendformid; ?>" data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>" data-theme="<?php echo $rowimages->hc_required; ?>" data-cname="<?php echo $rowimages->name; ?>">
+														<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
+														<div style="float:<?php echo $capPos; ?>;" id="huge_it_captcha_<?php echo $frontendformid; ?>"></div>
+														<span style="text-align:right;" class="hugeit-error-message"></span>
+													</div>
+												<?php
+												break;
+
+											case 'simple_captcha_box': //8.1
+												?>
+												<?php if($rowimages->hc_input_show_default=='formsLeftAlign'){$hg_left_right_class='text-left';}
+												else{$hg_left_right_class='text-right';}?>
+												<div class="hugeit-field-block simple-captcha-block <?php echo $hg_left_right_class;?>" rel="huge-contact-field-<?php echo $rowimages->id; ?>" data-form_id="<?php echo $frontendformid; ?>" data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>" data-theme="<?php echo $rowimages->hc_required; ?>" data-cname="<?php echo $rowimages->name; ?>">
+
+													<label class="formsAboveAlign">
+														<img src="<?php echo plugin_dir_url(__FILE__);?>/admin/hugeit_contact_captcha.php?id=<?php echo $rowimages->id;?>&l=<?php echo $rowimages->hc_other_field;?>">
+														<span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $rowimages->hc_other_field;?>" data-form-id="<?php echo $frontendformid; ?>">
+															<img src="<?php echo plugin_dir_url(__FILE__);?>/images/refresh-icon.png" width="32px">
+														</span>
+													</label>
+
+													<div class="field-block">
+														<input type="text" name="simple_captcha_<?php echo $frontendformid; ?>" placeholder="<?php echo $rowimages->name;?>">
+													</div>
+
+													<div style="float:<?php echo $capPos; ?>;" id="huge_it_simple_captcha_<?php echo $frontendformid; ?>"></div>
 													<span style="text-align:right;" class="hugeit-error-message"></span>
 												</div>
-											<?php
-											break;
-											case 'buttons': //9									
+												<?php
+												break;
 
-											?>
+											case 'buttons': //9
+												?>
 												<div class="hugeit-field-block buttons-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 													<button type="submit" class="submit" id="hugeit_preview_button__submit_<?php echo $rowimages->id;?>" value="Submit">
 														<?php if($style_values['form_button_icons_position']=="left" and $style_values['form_button_submit_has_icon']=="on"){?><i class="<?php echo $style_values['form_button_submit_icon_style']; ?>"></i><?php }?>
@@ -1179,10 +1248,11 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 													</button>
 													<?php endif;?>
 												</div>
-											<?php
-											break;
+												<?php
+												break;
+
 											case 'e_mail':  //10
-											?>
+												?>
 												<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 													<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
 													<div class="field-block input-text-block email-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
@@ -1190,8 +1260,8 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 														<span class="hugeit-error-message"></span>
 													</div>
 												</div>
-											<?php
-											break;
+												<?php
+												break;
 										}
 									}
 								}
@@ -1204,6 +1274,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 		<input type="hidden" value="hc_email_r" name="hc_email_r">
 		<input type="hidden" value="ok" name="submitok">
 	</form>
+
 <script>
 		jQuery.fn.ForceNumericOnly =function(){
 		    return this.each(function()		    {
@@ -1727,10 +1798,31 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 			jQuery('#hugeit-contact-wrapper_<?php echo $frontendformid; ?>').find('.hugeit-field-block').find('label>em.required-star').removeClass('error');
 	 	});
 
+
+
+
+			function refresh_captcha() {
+				captchacontainer=jQuery(this).closest('.formsAboveAlign');
+				img=captchacontainer.find('img').eq(0);
+				captchaid=jQuery(this).data('captcha-id');
+				formid=jQuery(this).data('form-id');
+				digits=jQuery(this).data('digits');
+
+				img.remove();
+
+			    newimg='<img src="<?php echo plugin_dir_url(__FILE__);?>/admin/hugeit_contact_captcha.php?id='+captchaid+'&l='+digits+'">';
+
+				jQuery(newimg).prependTo(captchacontainer);
+
+			}
+			jQuery('#huge_it_contact_form_<?php echo $frontendformid;?> .captcha_refresh_button').click(refresh_captcha);
+
+
+
 									
 
 	})
-</script>	
+</script>
 <?php  
 	return ob_get_clean();
 }

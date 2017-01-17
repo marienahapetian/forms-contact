@@ -1,7 +1,9 @@
 jQuery(document).ready(function(e) {
 	////ADD FIELDS START///
 
+
 	jQuery('#add-fields-block #add-default-fields').on('click', 'li>a', function(event) {
+
 		event.preventDefault();
 		var readyDef;
 		if (jQuery(this).parents('#add-default-fields').hasClass('readyFields')) {
@@ -229,6 +231,9 @@ jQuery(document).ready(function(e) {
 				});
 			}
 		}
+
+		main_top=jQuery('.hugeit_contact_custom_settings_main').offset().top;
+		console.log(main_top);
 	});
 	////ADD FIELDS END///
 	/***************************/
@@ -310,6 +315,8 @@ jQuery(document).ready(function(e) {
 				}
 			}
 		});
+		main_top=jQuery('.hugeit_contact_custom_settings_main').offset().top;
+		console.log(main_top);
 	});
 	////DELETE FIELDS END//
 	////DUBLICATE FIELDS START///
