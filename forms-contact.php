@@ -282,16 +282,17 @@ function hugeit_contact_email_options() {
 }
 
 function hugeit_contact_formBuilder_options() {
-	wp_enqueue_script( 'hugeit_contact_formBuilder_script', plugins_url( 'js/formBuilder.js', __FILE__ ), array( 'jquery' ) );
-	$translation_array = array(
-		'nonce' => wp_create_nonce( 'builder_nonce' )
-	);
-	wp_localize_script( 'hugeit_contact_formBuilder_script', 'huge_it_obj', $translation_array );
-}
-
-function hugeit_forms_licensing() {
 	wp_enqueue_style( 'licensing-style', plugin_dir_url(__FILE__) . 'style/licensing.css' );
 	?>
+	<div style="width:95%">
+		<p style="font-size: 13px; line-height: 1.5; margin-top: 30px;">
+			<?php _e('You are using the Lite version of the Forms Plugin for WordPress. If you want to get more awesome options,
+            advanced features, settings to customize every area of the plugin, then check out the Full License plugin. The
+            full version of the plugin is available in 3 different packages of one-time payment.','hugeit_contact'); ?>
+		</p>
+		<br><br><br>
+		<a  target="_blank" href="http://huge-it.com/forms/" class="button-primary" target="_blank"><?php _e('Purchase a License', 'hugeit_contact' ); ?></a>
+	</div>
 	<div class="forms">
 		<div class="forms-block">
 			<div class="licens">
@@ -333,8 +334,17 @@ function hugeit_forms_licensing() {
 			</div>
 		</div>
 	</div>
+	<div style="width:95%; margin-top: 30px; font-size: 13px; line-height: 1.5;">
+		<p><?php _e('After the purchasing the commercial version follow this steps:','hugeit_contact'); ?></p>
+		<ol style="list-style: square; padding-left: 15px;">
+			<li><?php _e('Deactivate Huge IT Forms Plugin','hugeit_contact'); ?></li>
+			<li><?php _e('Delete Huge IT Forms','hugeit_contact'); ?></li>
+			<li><?php _e('Install the downloaded commercial version of the plugin','hugeit_contact'); ?></li>
+		</ol>
+	</div>
 
 	<?php
+
 
 }
 
