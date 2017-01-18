@@ -657,32 +657,36 @@ jQuery(document).ready(function () {
 
 
 
-	//initial main top value
-	main_top=jQuery('.hugeit_contact_custom_settings_main').offset().top;
-	//console.log(main_top);
-
 	//Open Close Functionality
 	jQuery('.fields-list ').on('click tap','li > div .open-close',function(){
-
 
 		var fieldWidth=jQuery('#fields-list-block').width();
 		fieldWidth=fieldWidth-20;
 		if(jQuery(this).parent().parent().parent().hasClass('open')){
-			console.log(main_top);
-
-			main_moved=jQuery('.hugeit_contact_custom_settings_main').offset().top-main_top;
-
-			console.log(main_moved);
 
 			jQuery('.fields-list li').removeClass('open');
-
-			//jQuery('.hugeit_contact_custom_settings_main').animate({ "top": "-="+main_moved+"px" }, "slow" );
 
 			jQuery('.fields-list>li').each(function(){
 				jQuery(this).css('display','block')
 			});
 			jQuery(this).parent().parent().parent().removeClass('fixedStyles');
+
+			jQuery('.hugeit_contact_custom_settings_main').animate({top: 0 + 'px'});
 		}else {
+			var height_1, height_2, height_3;
+			setTimeout(function(){
+				height_1 = +(jQuery('.fields-list > li.open').height());
+				height_2 = +(jQuery('#hugeit-contact-preview-container').height());
+				if(height_2 < height_1){
+					height_3 = Math.max(height_1 - height_2, height_2 - height_1);
+				} else {
+					height_3 = 0;
+				}
+				jQuery('.hugeit_contact_custom_settings_main').animate({top:  height_3 + 'px'});
+			}, 100);
+
+
+
 			jQuery('.fields-list>li').each(function(){
 				jQuery(this).css('display','block')
 			})
@@ -695,24 +699,11 @@ jQuery(document).ready(function () {
 				}
 			});
 
-			// var scrollTop     = jQuery(window).scrollTop(),
-			// 	elementOffset = jQuery('.hugeit_contact_custom_settings_main').offset().top,
-			// 	distance      = (elementOffset - scrollTop);
-			// if(distance<=jQuery('.fields-list li.open').height()+50){
-			// 	alert();
-			// }
-
-			//console.log(jQuery('#fields-list-left .open').height());
-			//console.log(distance);
 			if(jQuery(window).scrollTop() > jQuery('#fields-list-left').offset().top){
 				jQuery(this).parent().parent().parent().addClass('fixedStyles');
 			}
 			else{
-				open_bottom=jQuery('.fields-list li.open').offset().top+jQuery('.fields-list li.open').outerHeight();
-				if(main_top<=open_bottom+30){
-					difference=open_bottom-main_top+50;
-					//jQuery('.hugeit_contact_custom_settings_main').animate({ "top": "+="+difference+"px" }, "slow" );
-				}
+				
 			}
 		}
 		return false;
