@@ -231,9 +231,6 @@ jQuery(document).ready(function(e) {
 				});
 			}
 		}
-
-		main_top=jQuery('.hugeit_contact_custom_settings_main').offset().top;
-		console.log(main_top);
 	});
 	////ADD FIELDS END///
 	/***************************/
@@ -315,8 +312,6 @@ jQuery(document).ready(function(e) {
 				}
 			}
 		});
-		main_top=jQuery('.hugeit_contact_custom_settings_main').offset().top;
-		console.log(main_top);
 	});
 	////DELETE FIELDS END//
 	////DUBLICATE FIELDS START///
