@@ -185,7 +185,7 @@ function hugeit_contact_images_list_shotrcode( $atts ) {
 	if ( ! ( is_numeric( $atts['id'] ) || $atts['id'] == 'ALL_CAT' ) ) {
 		return 'insert numerical or `ALL_CAT` shortcode in `id`';
 	}
- 	hugeit_contact_frontend_scripts_and_styles($atts['id']);
+	hugeit_contact_frontend_scripts_and_styles($atts['id']);
 	return hugeit_contact_cat_images_list( $atts['id'] );
 }
 
@@ -282,6 +282,14 @@ function hugeit_contact_email_options() {
 }
 
 function hugeit_contact_formBuilder_options() {
+	wp_enqueue_script( 'hugeit_contact_formBuilder_script', plugins_url( 'js/formBuilder.js', __FILE__ ), array( 'jquery' ) );
+	$translation_array = array(
+		'nonce' => wp_create_nonce( 'builder_nonce' )
+	);
+	wp_localize_script( 'hugeit_contact_formBuilder_script', 'huge_it_obj', $translation_array );
+}
+
+function hugeit_forms_licensing() {
 	wp_enqueue_style( 'licensing-style', plugin_dir_url(__FILE__) . 'style/licensing.css' );
 	?>
 	<div style="width:95%">
@@ -344,7 +352,6 @@ function hugeit_contact_formBuilder_options() {
 	</div>
 
 	<?php
-
 
 }
 
@@ -555,7 +562,7 @@ class Hugeit_Contact_Form_Widget extends WP_Widget {
 		 * @var string $before_title;
 		 * @var string $after_title;
 		 * @var string $after_widget;
-		*/
+		 */
 		extract( $args );
 		if ( isset( $instance['contact_id'] ) ) {
 			$contact_id = $instance['contact_id'];
@@ -596,14 +603,14 @@ class Hugeit_Contact_Form_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
-			       name="<?php echo $this->get_field_name( 'title' ); ?>" type="text"
-			       value="<?php echo esc_attr( $title ); ?>"/>
+				   name="<?php echo $this->get_field_name( 'title' ); ?>" type="text"
+				   value="<?php echo esc_attr( $title ); ?>"/>
 		</p>
 		<label for="<?php echo $this->get_field_id( 'contact_id' ); ?>"><?php _e( 'Select Form:', 'huge_it_forms' ); ?></label>
 		<select id="<?php echo $this->get_field_id( 'contact_id' ); ?>" name="<?php echo $this->get_field_name( 'contact_id' ); ?>">
-		<?php foreach ( $row_widgets as $row_widget ) : ?>
-			<option <?php if ( isset( $row_widget->id ) && $row_widget->id == $instance['contact_id'] ) {	echo 'selected';} ?> value="<?php echo $row_widget->id; ?>"><?php echo $row_widget->name; ?></option>
-		<?php endforeach; ?>
+			<?php foreach ( $row_widgets as $row_widget ) : ?>
+				<option <?php if ( isset( $row_widget->id ) && $row_widget->id == $instance['contact_id'] ) {	echo 'selected';} ?> value="<?php echo $row_widget->id; ?>"><?php echo $row_widget->name; ?></option>
+			<?php endforeach; ?>
 		</select>
 		</p>
 		<?php
