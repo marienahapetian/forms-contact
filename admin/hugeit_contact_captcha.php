@@ -5,12 +5,12 @@ if(!isset($_SESSION))session_start();
 if(isset($_GET['id'])){
     $captcha_id=$_GET['id'];
     if(isset($_GET['l']))$digitsLength=$_GET['l'];
-    create_new_captcha($captcha_id,$digitsLength);
+    hugeit_contact_create_new_captcha($captcha_id,$digitsLength);
 }
 
 
 
-function create_new_captcha($captcha_id,$digitsLength=5){
+function hugeit_contact_create_new_captcha($captcha_id,$digitsLength=5){
     $captcha='';
     for($i=1;$i<=$digitsLength;$i++){
         $captcha.=chr(rand(97,122));
