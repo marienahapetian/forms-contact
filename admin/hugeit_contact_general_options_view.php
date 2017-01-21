@@ -112,6 +112,20 @@ function hugeit_contact_html_show_settings($param_values) {
 								<input name="params[msg_large_file]" type="text" id="msg_large_file" value="<?php echo $param_values['msg_large_file']; ?>" />
 							</div>
 						</div>
+
+						<div class="hugeit-contact-general-options-block">
+							<h3>Submissions Settings</h3>
+							<div>
+								<label for="hf_submission_view">Front End Submissions View</label>
+								<input type="radio" name="params[hf_submission_view]" value="default" <?php if($param_values['hf_submission_view']=='default') echo 'checked';?> > View 1<br>
+								<input type="radio" name="params[hf_submission_view]" value="2" <?php if($param_values['hf_submission_view']==2) echo 'checked';?>> View 2<br>
+							</div>
+							<div>
+								<label for="hf_submission_per_page">Submissions Per Page</label>
+								<input type="number" id="hf_submission_per_page" name="params[hf_submission_per_page]" value="<?php echo $param_values['hf_submission_per_page']; ?>" />
+							</div>
+						</div>
+
 					</div>
 					<div class="hugeit-contact-general-options-column hugeit-contact-general-options-right">
 						<div class="hugeit-contact-general-options-block">

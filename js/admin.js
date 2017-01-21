@@ -1169,21 +1169,38 @@ jQuery(document).ready(function () {
 		}
 
 	});
+    jQuery('#fields-list-block').on('keypress keyup change', 'input[type=color]', function(){
+        jQuery(this).siblings('input.color').val(jQuery(this).val());
+    });
+
+    jQuery('#fields-list-block').on('keypress keyup change', 'input.default-custom[type=radio]', function() {
+        if(jQuery(this).val()=='default'){
+            jQuery(this).siblings('input.custom-option').prop('disabled',true);
+        }
+        else{
+            jQuery(this).siblings('input.custom-option').prop('disabled',false);
+        }
+    });
+
+
+
+
 
 	jQuery('#fields-list-block').on('keypress keyup change', '.fieldisactive', function() {
-		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
-		var previewfieldtextarea = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] textarea');
-		var previewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block input');
-		if (jQuery(this).is(':checked')) {
-			previewfield.removeAttr("disabled");
-			previewfieldtextarea.removeAttr("disabled");
-		} else {
-			previewfield.attr("disabled", "disabled");
-			previewfieldtextarea.attr("disabled", "disabled");
-		}
+            var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
+            var previewfieldtextarea = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] textarea');
+            var previewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block input');
+            if (jQuery(this).is(':checked')) {
+                previewfield.removeAttr("disabled");
+                previewfieldtextarea.removeAttr("disabled");
+            } else {
+                previewfield.attr("disabled", "disabled");
+                previewfieldtextarea.attr("disabled", "disabled");
+            }
 	});
 
 	jQuery('#fields-list-block').on('keypress keyup change', '.placeholder', function() {
+		//debugger;
 		if (jQuery(this).parents('.fields-options').find('select#form_label_position').val() == 'formsInsideAlign') {
 			var toChange = jQuery(this).parents('.fields-options').find('input.placeholder').val();
 			jQuery(this).parents('.fields-options').find('input.label').attr('value', toChange);

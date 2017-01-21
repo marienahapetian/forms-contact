@@ -35,6 +35,8 @@ function hugeit_contact_formBuilder_ajax_action_callback() {
 }
 
 
+// Include simple captcha generation file
+require( "admin/hugeit_contact_captcha.php" );
 
 
 /*INCLUDING HUGE IT EMAIL MANAGER SCHEDULE FILE*/
@@ -74,6 +76,8 @@ function hugeit_contact_scripts_async( $tag, $handle ) {
 }
 
 add_filter( 'script_loader_tag', 'hugeit_contact_scripts_async', 10, 2 );
+
+//Add Form Button in editor tools
 add_action( 'media_buttons_context', 'hugeit_contact_add_contact_button' );
 function hugeit_contact_add_contact_button( $context ) {
 	$img          = plugins_url( '/images/huge_it_contactLogoHover-for_menu.png', __FILE__ );
@@ -85,6 +89,69 @@ function hugeit_contact_add_contact_button( $context ) {
 
 	return $context;
 }
+
+//Add Shortcode Button in editor tools
+add_action( 'media_buttons_context', 'hugeit_contact_add_shortcode' );
+function hugeit_contact_add_shortcode( $context ) {
+	$img          = plugins_url( '/images/huge_it_contact_shortcode_logo.png', __FILE__ );
+	$container_id = 'huge_it_form_shortcode';
+	$context .= '<a class="button thickbox" title="Select Huge IT Form Shortcode to Insert Into Post"    href="#TB_inline?width=400&inlineId=' . $container_id . '">
+        <span class="wp-media-buttons-icon" style="background: url(' . $img . '); background-repeat: no-repeat; background-position: left bottom;"></span>
+    Add Shortcode
+    </a>';
+
+	return $context;
+}
+
+add_action( 'admin_footer', 'hugeit_contact_add_shortcode_popup_content' );
+function hugeit_contact_add_shortcode_popup_content() {
+	?>
+	<script type="text/javascript">
+		jQuery(document).ready(function () {
+			jQuery('#hugeithugeit_shortcodeinsert').on('click', function () {
+				var id = jQuery('#huge_it_contact_shortcode-select option:selected').val();
+				if(id=='all'){
+					window.send_to_editor('[huge_it_submissions]');
+				}
+				else{
+					window.send_to_editor('[huge_it_submissions id='+id+']');
+				}
+				tb_remove();
+			})
+		});
+	</script>
+	<div id="huge_it_form_shortcode" style="display:none;">
+		<h3>Select Subscriptions to Display</h3>
+		<?php
+		global $wpdb;
+		$tablename                = $wpdb->prefix . "huge_it_contact_contacts";
+		$query                    = $wpdb->prepare( 'SELECT * FROM %s order by id ASC', $tablename );
+		$query                    = str_replace( "'", "", $query );
+		$shortcodehugeit_contacts = $wpdb->get_results( $query );
+
+		if ( count( $shortcodehugeit_contacts ) ) {
+			echo "<select id='huge_it_contact_shortcode-select'>";
+			echo "<option value='all' selected>" . 'All' . "</option>";
+			foreach ( $shortcodehugeit_contacts as $shortcodehugeit_contact ) {
+				echo "<option value='" . $shortcodehugeit_contact->id . "'>" . $shortcodehugeit_contact->name . "</option>";
+			}
+			echo "</select>";
+			echo "<button class='button primary' id='hugeithugeit_shortcodeinsert'>Insert Shortcode</button>";
+		} else {
+			echo "No Form Found", "huge_it_forms";
+		}
+		?>
+	</div>
+	<?php
+}
+//shortcode button in editor tools
+
+
+
+
+
+
+
 
 add_action('wp_ajax_hugeit_contact_duplicate_form', 'wp_ajax_hugeit_contact_duplicate_form_callback');
 function wp_ajax_hugeit_contact_duplicate_form_callback() {
@@ -133,6 +200,7 @@ function wp_ajax_hugeit_contact_duplicate_form_callback() {
 	wp_die();
 }
 
+//Add Form Popup Div
 add_action( 'admin_footer', 'hugeit_contact_add_inline_contact_popup_content' );
 function hugeit_contact_add_inline_contact_popup_content() {
 	?>
@@ -207,6 +275,18 @@ function hugeit_contact_cat_images_list( $id ) {
 
 	return hugeit_contact_show_published_contact_1( $id );
 }
+
+
+//front end submissions//
+add_shortcode( 'huge_it_submissions', 'hugeit_contact_submissions_frontend' );
+function hugeit_contact_submissions_frontend( $args=array()) {
+	require_once( "templates/frontend/hugeit_contact_submissions.php" );
+	require_once( "hugeit_contact_front_end_func.php" );
+
+	return hugeit_contact_show_contact_submissions( $args );
+}
+//end front end submissions//
+
 
 add_filter( 'admin_head', 'hugeit_contact_ShowTinyMCE' );
 function hugeit_contact_ShowTinyMCE() {

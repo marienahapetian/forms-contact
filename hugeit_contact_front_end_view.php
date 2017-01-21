@@ -976,8 +976,8 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 												else{$hg_left_right_class='text-right';}?>
 												<div class="hugeit-field-block simple-captcha-block <?php echo $hg_left_right_class;?>" rel="huge-contact-field-<?php echo $rowimages->id; ?>" data-form_id="<?php echo $frontendformid; ?>" data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>" data-theme="<?php echo $rowimages->hc_required; ?>" data-cname="<?php echo $rowimages->name; ?>">
 													<label class="formsAboveAlign ">
-														<img src="<?php echo plugin_dir_url(__FILE__);?>/admin/hugeit_contact_captcha.php?id=<?php echo $rowimages->id;?>&l=<?php echo $rowimages->hc_other_field;?>">
-														<span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $rowimages->hc_other_field;?>" data-form-id="<?php echo $frontendformid; ?>">
+														<img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'user');?>">
+														<span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $hc_other_field->digits;?>" data-form-id="<?php echo $frontendformid; ?>">
 															<img src="<?php echo plugin_dir_url(__FILE__);?>/images/refresh-icon.png" width="32px">
 														</span>
 													</label>
@@ -1213,10 +1213,11 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 												?>
 												<?php if($rowimages->hc_input_show_default=='formsLeftAlign'){$hg_left_right_class='text-left';}
 												else{$hg_left_right_class='text-right';}?>
+											    <?php $hc_other_field=$rowimages->hc_other_field;?>
 												<div class="hugeit-field-block simple-captcha-block <?php echo $hg_left_right_class;?>" rel="huge-contact-field-<?php echo $rowimages->id; ?>" data-form_id="<?php echo $frontendformid; ?>" data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>" data-theme="<?php echo $rowimages->hc_required; ?>" data-cname="<?php echo $rowimages->name; ?>">
 
 													<label class="formsAboveAlign">
-														<img src="<?php echo plugin_dir_url(__FILE__);?>/admin/hugeit_contact_captcha.php?id=<?php echo $rowimages->id;?>&l=<?php echo $rowimages->hc_other_field;?>">
+														<img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'user');?>">
 														<span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $rowimages->hc_other_field;?>" data-form-id="<?php echo $frontendformid; ?>">
 															<img src="<?php echo plugin_dir_url(__FILE__);?>/images/refresh-icon.png" width="32px">
 														</span>
@@ -1807,10 +1808,11 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				captchaid=jQuery(this).data('captcha-id');
 				formid=jQuery(this).data('form-id');
 				digits=jQuery(this).data('digits');
+				user='user';
 
 				img.remove();
 
-			    newimg='<img src="<?php echo plugin_dir_url(__FILE__);?>/admin/hugeit_contact_captcha.php?id='+captchaid+'&l='+digits+'">';
+			    newimg='<img src="<?php echo hugeit_contact_create_new_captcha(captchaid,user);?>">';
 
 				jQuery(newimg).prependTo(captchacontainer);
 
