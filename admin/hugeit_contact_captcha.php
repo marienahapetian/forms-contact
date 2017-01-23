@@ -35,7 +35,7 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
 
     $captcha='';
 
-    if($digitsLength=='null'){
+    if(!$digitsLength){
         $digitsLength=5;
     }
 
@@ -79,7 +79,7 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
         wp_send_json(plugin_dir_url(__FILE__)."../images/tmp/".$filename);
     }
 
-    return plugin_dir_path(__FILE__)."../images/tmp/".$filename;
+    return plugin_dir_url(__FILE__)."../images/tmp/".$filename;
 
 
 }
