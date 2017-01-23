@@ -54,10 +54,6 @@ function hugeit_contact_front_end_submissions($submissionsArray,$view,$per_page,
             }
             echo "</tr>";
 
-
-
-            //var_dump($submissionsArray);
-            //var_dump($fields);
             break;
     }
 

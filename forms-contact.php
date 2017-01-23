@@ -38,6 +38,11 @@ function hugeit_contact_formBuilder_ajax_action_callback() {
 // Include simple captcha generation file
 require( "admin/hugeit_contact_captcha.php" );
 
+add_action( 'wp_ajax_hugeit_refresh_simple_captcha', 'hugeit_contact_create_new_captcha' );
+add_action( 'wp_ajax_nopriv_hugeit_refresh_simple_captcha', 'hugeit_contact_create_new_captcha' );
+
+
+
 
 /*INCLUDING HUGE IT EMAIL MANAGER SCHEDULE FILE*/
 require_once( "hugeit_contact_function/huge_it_email_manager_schedule.php" );

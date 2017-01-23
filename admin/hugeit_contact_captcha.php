@@ -12,7 +12,13 @@ function hugeit_contact_get_field_row($id){
 
 
 
-function hugeit_contact_create_new_captcha($captcha_id,$from){
+function hugeit_contact_create_new_captcha($captcha_id='',$from=''){
+    $is_ajax_request=false;
+    if(isset($_POST['captchaid'])){
+        $captcha_id=$_POST['captchaid']; $from='user';
+        $is_ajax_request=true;
+    }
+
     $field=hugeit_contact_get_field_row($captcha_id);
 
     $captchaRow=json_decode($field['hc_other_field']);
@@ -37,7 +43,7 @@ function hugeit_contact_create_new_captcha($captcha_id,$from){
     else{$font_size=25;}
 
 
-    $_SESSION['hugeit_contact_captcha-'.$captcha_id]=$captcha;
+    $_SESSION['hugeit_contact_captcha-'.$from.'-'.$captcha_id]=$captcha;
 
 
 
@@ -62,9 +68,13 @@ function hugeit_contact_create_new_captcha($captcha_id,$from){
     //var_dump($font);
 
     $time=time();
-    $filename='captcha-'.$from.'-'.$captcha_id.'.png';
+    $filename='captcha-'.$from.'-'.$time.'.png';
 
     imagepng($image,plugin_dir_path(__FILE__)."../images/tmp/".$filename);
+
+    if($is_ajax_request){
+        wp_send_json(plugin_dir_url(__FILE__)."../images/tmp/".$filename);
+    }
 
     return plugin_dir_url(__FILE__)."../images/tmp/".$filename;
 

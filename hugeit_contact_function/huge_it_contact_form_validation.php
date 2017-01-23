@@ -97,7 +97,7 @@ function hugeit_contact_contact_form_validation_callback(){
                             $submition_errors.='simple_captcha_'.$rowimages->id.':'.$huge_it_gen_opt[36]->value.'*()*';
                         }
                         else{
-                            if($_POSTED['simple_captcha_'.$frontendformid.'']!=$_SESSION['hugeit_contact_captcha-'.$rowimages->id]){
+                            if($_POSTED['simple_captcha_'.$frontendformid.'']!=$_SESSION['hugeit_contact_captcha-user-'.$rowimages->id]){
                                 $submition_errors.='huge-contact-field-'.$rowimages->id.':'.$huge_it_gen_opt[36]->value.'*()*';
                             }
 

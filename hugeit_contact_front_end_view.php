@@ -1812,9 +1812,26 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 
 				img.remove();
 
-			    newimg='<img src="<?php echo hugeit_contact_create_new_captcha(captchaid,user);?>">';
+				var url='<?php echo admin_url("admin-ajax.php"); ?>';
 
-				jQuery(newimg).prependTo(captchacontainer);
+				jQuery.ajax({
+					type: 'POST',
+					url: url,
+					data:{
+						captchaid: captchaid, action: "hugeit_refresh_simple_captcha"
+					},
+					beforeSend: function(){
+					},
+					success: function(response){
+						console.log(response);
+
+						newimg='<img src="'+response+'">';
+
+						jQuery(newimg).prependTo(captchacontainer);
+					}
+				});//here
+
+
 
 			}
 			jQuery('#huge_it_contact_form_<?php echo $frontendformid;?> .captcha_refresh_button').click(refresh_captcha);
