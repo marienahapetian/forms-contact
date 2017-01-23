@@ -1718,7 +1718,9 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 		                fd.append(obj.name, file);
 		            })
 		        });
-				var time=<?php echo $current_time;?>
+				var time=jQuery('.captcha_refresh_button').data('time');
+
+				console.log(time);
 
 		        fd.append('action', 'hugeit_validation_action');
 		        fd.append('formId', '<?php echo $frontendformid; ?>');
@@ -1809,7 +1811,9 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				captchacontainer=jQuery(this).closest('.formsAboveAlign');
 				img=captchacontainer.find('img').eq(0);
 				captchaid=jQuery(this).data('captcha-id');
-				time=jQuery(this).data('time');
+				var d = new Date();
+				time = d.getTime();
+				jQuery('.captcha_refresh_button').attr('data-time',time);
 				formid=jQuery(this).data('form-id');
 				digits=jQuery(this).data('digits');
 				user='user';
