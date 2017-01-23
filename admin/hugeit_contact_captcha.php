@@ -43,7 +43,6 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
     if($digitsLength<=5){$font_size=30;}
     else{$font_size=25;}
 
-
     $_SESSION['hugeit_contact_captcha-'.$from.'-'.$captcha_id.'-'.$time]=$captcha;
 
 
