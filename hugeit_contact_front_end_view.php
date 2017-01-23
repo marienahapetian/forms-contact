@@ -976,8 +976,9 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 												else{$hg_left_right_class='text-right';}?>
 												<div class="hugeit-field-block simple-captcha-block <?php echo $hg_left_right_class;?>" rel="huge-contact-field-<?php echo $rowimages->id; ?>" data-form_id="<?php echo $frontendformid; ?>" data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>" data-theme="<?php echo $rowimages->hc_required; ?>" data-cname="<?php echo $rowimages->name; ?>">
 													<label class="formsAboveAlign ">
-														<img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'user');?>">
-														<span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $hc_other_field->digits;?>" data-form-id="<?php echo $frontendformid; ?>">
+														<?php $current_time=time();?>
+														<img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'user',$current_time);?>">
+														<span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>"  data-time="<?php echo $current_time;?>">
 															<img src="<?php echo plugin_dir_url(__FILE__);?>/images/refresh-icon.png" width="32px">
 														</span>
 													</label>
@@ -1716,13 +1717,15 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 		            jQuery.each(obj.files,function(j,file){
 		                fd.append(obj.name, file);
 		            })
-		        });       
+		        });
+				var time=<?php echo $current_time;?>
 
 		        fd.append('action', 'hugeit_validation_action');
 		        fd.append('formId', '<?php echo $frontendformid; ?>');
 		        fd.append('browser',browserName);
 		        fd.append('nonce', huge_it_obj.nonce);
 		        fd.append('postData', postData);
+		        fd.append('time', time);
 	            jQuery.ajax({
 		            type: 'POST',
 		            url: '<?php echo admin_url("admin-ajax.php"); ?>',
@@ -1806,6 +1809,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				captchacontainer=jQuery(this).closest('.formsAboveAlign');
 				img=captchacontainer.find('img').eq(0);
 				captchaid=jQuery(this).data('captcha-id');
+				time=jQuery(this).data('time');
 				formid=jQuery(this).data('form-id');
 				digits=jQuery(this).data('digits');
 				user='user';
@@ -1818,7 +1822,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 					type: 'POST',
 					url: url,
 					data:{
-						captchaid: captchaid, action: "hugeit_refresh_simple_captcha"
+						captchaid: captchaid, action: "hugeit_refresh_simple_captcha", time: time
 					},
 					beforeSend: function(){
 					},
