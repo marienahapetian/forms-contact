@@ -17,6 +17,20 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
     if (!file_exists(plugin_dir_path(__FILE__)."../images/tmp")) {
         mkdir(plugin_dir_path(__FILE__)."../images/tmp", 0777, true);
     }
+    $dir = plugin_dir_path(__FILE__)."../images/tmp/";
+
+    /*** cycle through all files in the directory ***/
+    foreach (glob($dir."*") as $file) {
+
+        /*** if file is 1/2 hours (1800 seconds) old then delete it ***/
+        if (filemtime($file) < time() - 1800) {
+            unlink($file);
+        }
+    }
+
+
+
+
     $is_ajax_request=false;
     if(isset($_POST['captchaid'])){
         $captcha_id=$_POST['captchaid']; $from='user';
