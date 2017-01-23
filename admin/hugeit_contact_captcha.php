@@ -47,6 +47,8 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
     if($digitsLength<=5){$font_size=30;}
     else{$font_size=25;}
 
+    $time=$captcha_id.time();
+
 
     $_SESSION['hugeit_contact_captcha-'.$from.'-'.$captcha_id.'-'.$time]=$captcha;
 
@@ -70,7 +72,6 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
     imagefilledrectangle($image,0,0,200,100,$color);
     imagettftext($image,$font_size,5,30,45,$white,$font,$captcha);
 
-    $time=$captcha_id.time();
     $filename='captcha-'.$from.'-'.md5($time).'.png';
 
     imagepng($image,plugin_dir_path(__FILE__)."../images/tmp/".$filename);
