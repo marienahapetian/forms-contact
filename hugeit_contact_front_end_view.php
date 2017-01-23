@@ -987,7 +987,6 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 														<input type="text" name="simple_captcha_<?php echo $frontendformid; ?>" placeholder="<?php echo $rowimages->name;?>">
 													</div>
 
-													<div style="float:<?php echo $capPos; ?>;" id="huge_it_simple_captcha_<?php echo $frontendformid; ?>"></div>
 													<span style="text-align:right;" class="hugeit-error-message"></span>
 												</div>
 												<?php
@@ -1718,7 +1717,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 		                fd.append(obj.name, file);
 		            })
 		        });
-				var time=jQuery('.captcha_refresh_button').data('time');
+				var time=jQuery('.captcha_refresh_button').attr('data-time');
 
 				console.log(time);
 
@@ -1810,7 +1809,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 			function refresh_captcha() {
 				captchacontainer=jQuery(this).closest('.formsAboveAlign');
 				img=captchacontainer.find('img').eq(0);
-				captchaid=jQuery(this).data('captcha-id');
+				captchaid=jQuery(this).attr('data-captcha-id');
 				var d = new Date();
 				time = d.getTime();
 				jQuery('.captcha_refresh_button').attr('data-time',time);
