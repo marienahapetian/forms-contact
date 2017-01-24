@@ -88,7 +88,7 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
     imagefilledrectangle($image,0,0,200,100,$color);
     imagettftext($image,$font_size,5,30,45,$white,$font,$captcha);
 
-    $filename='captcha-'.$from.'-'.md5($time).'.png';
+    $filename='captcha-'.$from.'-'.md5($captcha_id.$time).'.png';
 
     imagepng($image,plugin_dir_path(__FILE__)."../images/tmp/".$filename);
 
