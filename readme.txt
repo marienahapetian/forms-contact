@@ -3,8 +3,8 @@ Contributors: Huge-IT
 Donate link: http://huge-it.com/forms/
 Tags: forms, contact form, contact forms, forms plugin, contact form builder, wordpress contact form, contact us, form, form builder, form creation, form maker, forms builder,
 Requires at least: 3.0.1
-Tested up to: 4.6.1
-Stable tag: 1.4.1
+Tested up to: 4.7.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -377,6 +377,12 @@ If you think, that you found a bug in our [WordPress Forms](http://huge-it.com/f
 35.  [WordPress Form](https://wordpress.org/plugins/forms-contact/) - Form General Options
 
 == Changelog ==
+
+= 1.4.2 =
+
+* 1) Added  a new simple captcha, especialy for those usrs to have issues with reCaptcha.
+* 2) Added featured plugins list.
+* 3) Added licensing page.
 
 = 1.4.1 =
 
