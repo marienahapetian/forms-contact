@@ -28,12 +28,9 @@ function hugeit_contact_save_styles_options(){
     global $wpdb;
     if (isset($_POST['params'])){
     $params = $_POST['params'];
-        //var_dump($params);
         foreach ($params as $key => $value) {
-            $query='SELECT * FROM '.$wpdb->prefix . 'huge_it_contact_general_options WHERE name="'.$key.'"';
-            $options_exists_in_db=$wpdb->get_results($query);
-            //var_dump($options_exists_in_db);
-            if(count($options_exists_in_db)){
+            $option_exists=count($wpdb->get_results('SELECT * FROM '.$wpdb->prefix . 'huge_it_contact_general_options WHERE name="'.$key.'"'));
+            if($option_exists) {
                 $wpdb->update($wpdb->prefix . 'huge_it_contact_general_options',
                     array('value' => $value),
                     array('name' => $key),
@@ -42,13 +39,12 @@ function hugeit_contact_save_styles_options(){
             }
             else{
                 $wpdb->insert($wpdb->prefix . 'huge_it_contact_general_options',
-                    array(
-                        'name'=>$key,
-                        'value'=>$value
-                    ));
+                    array('value' => $value,'name' => $key),
+                    array('%s')
+                );
             }
-
         }
+
         $adminMessage = sanitize_text_field(htmlspecialchars(stripslashes($_POST['adminmessage'])));
         $userMessage = sanitize_text_field(htmlspecialchars(stripslashes($_POST['usermessage'])));
         $images='';

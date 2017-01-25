@@ -11,8 +11,6 @@ function is_hugeit_public_submission($submission_label){
 
 function hugeit_contact_front_end_submissions($submissionsArray,$view,$per_page,$fields=array())
 {
-    echo "bbbbb";
-
     //ob_start();
 
     echo "<table>";

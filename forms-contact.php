@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Forms
 Plugin URI: http://huge-it.com/forms
 Description: Form Builder. this is one of the most important elements of WordPress website because without it you cannot to always keep in touch with your visitors
-Version: 1.4.2
+Version: 1.4.3
 Author: Huge-IT
 Author: http://huge-it.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -36,7 +36,7 @@ function hugeit_contact_formBuilder_ajax_action_callback() {
 
 
 // Include simple captcha generation file
-require( "admin/hugeit_contact_captcha.php" );
+require_once( "admin/hugeit_contact_captcha.php" );
 
 add_action( 'wp_ajax_hugeit_refresh_simple_captcha', 'hugeit_contact_create_new_captcha' );
 add_action( 'wp_ajax_nopriv_hugeit_refresh_simple_captcha', 'hugeit_contact_create_new_captcha' );
@@ -94,68 +94,6 @@ function hugeit_contact_add_contact_button( $context ) {
 
 	return $context;
 }
-
-//Add Shortcode Button in editor tools
-add_action( 'media_buttons_context', 'hugeit_contact_add_shortcode' );
-function hugeit_contact_add_shortcode( $context ) {
-	$img          = plugins_url( '/images/huge_it_contact_shortcode_logo.png', __FILE__ );
-	$container_id = 'huge_it_form_shortcode';
-	$context .= '<a class="button thickbox" title="Select Huge IT Form Shortcode to Insert Into Post"    href="#TB_inline?width=400&inlineId=' . $container_id . '">
-        <span class="wp-media-buttons-icon" style="background: url(' . $img . '); background-repeat: no-repeat; background-position: left bottom;"></span>
-    Add Shortcode
-    </a>';
-
-	return $context;
-}
-
-add_action( 'admin_footer', 'hugeit_contact_add_shortcode_popup_content' );
-function hugeit_contact_add_shortcode_popup_content() {
-	?>
-	<script type="text/javascript">
-		jQuery(document).ready(function () {
-			jQuery('#hugeithugeit_shortcodeinsert').on('click', function () {
-				var id = jQuery('#huge_it_contact_shortcode-select option:selected').val();
-				if(id=='all'){
-					window.send_to_editor('[huge_it_submissions]');
-				}
-				else{
-					window.send_to_editor('[huge_it_submissions id='+id+']');
-				}
-				tb_remove();
-			})
-		});
-	</script>
-	<div id="huge_it_form_shortcode" style="display:none;">
-		<h3>Select Subscriptions to Display</h3>
-		<?php
-		global $wpdb;
-		$tablename                = $wpdb->prefix . "huge_it_contact_contacts";
-		$query                    = $wpdb->prepare( 'SELECT * FROM %s order by id ASC', $tablename );
-		$query                    = str_replace( "'", "", $query );
-		$shortcodehugeit_contacts = $wpdb->get_results( $query );
-
-		if ( count( $shortcodehugeit_contacts ) ) {
-			echo "<select id='huge_it_contact_shortcode-select'>";
-			echo "<option value='all' selected>" . 'All' . "</option>";
-			foreach ( $shortcodehugeit_contacts as $shortcodehugeit_contact ) {
-				echo "<option value='" . $shortcodehugeit_contact->id . "'>" . $shortcodehugeit_contact->name . "</option>";
-			}
-			echo "</select>";
-			echo "<button class='button primary' id='hugeithugeit_shortcodeinsert'>Insert Shortcode</button>";
-		} else {
-			echo "No Form Found", "huge_it_forms";
-		}
-		?>
-	</div>
-	<?php
-}
-//shortcode button in editor tools
-
-
-
-
-
-
 
 
 add_action('wp_ajax_hugeit_contact_duplicate_form', 'wp_ajax_hugeit_contact_duplicate_form_callback');
@@ -282,15 +220,7 @@ function hugeit_contact_cat_images_list( $id ) {
 }
 
 
-//front end submissions//
-add_shortcode( 'huge_it_submissions', 'hugeit_contact_submissions_frontend' );
-function hugeit_contact_submissions_frontend( $args=array()) {
-	require_once( "templates/frontend/hugeit_contact_submissions.php" );
-	require_once( "hugeit_contact_front_end_func.php" );
 
-	return hugeit_contact_show_contact_submissions( $args );
-}
-//end front end submissions//
 
 
 add_filter( 'admin_head', 'hugeit_contact_ShowTinyMCE' );
@@ -351,6 +281,7 @@ function hugeit_contact_less_options() {
 	$translation_array = array(
 		'nonce' => wp_create_nonce( 'admin_nonce' )
 	);
+	wp_enqueue_script('param_block3', plugins_url("elements/jscolor/jscolor.js", __FILE__));
 	wp_localize_script( 'hugeit_contact_admin_js', 'huge_it_obj', $translation_array );
 }
 

@@ -111,21 +111,11 @@ function hugeit_contact_html_show_settings($param_values) {
 								<label for="msg_large_file">Uploaded file is too large</label>
 								<input name="params[msg_large_file]" type="text" id="msg_large_file" value="<?php echo $param_values['msg_large_file']; ?>" />
 							</div>
-						</div>
-
-						<div class="hugeit-contact-general-options-block">
-							<h3>Submissions Settings</h3>
 							<div>
-								<label for="hf_submission_view">Front End Submissions View</label>
-								<input type="radio" name="params[hf_submission_view]" value="default" <?php if($param_values['hf_submission_view']=='default') echo 'checked';?> > View 1<br>
-								<input type="radio" name="params[hf_submission_view]" value="2" <?php if($param_values['hf_submission_view']==2) echo 'checked';?>> View 2<br>
-							</div>
-							<div>
-								<label for="hf_submission_per_page">Submissions Per Page</label>
-								<input type="number" id="hf_submission_per_page" name="params[hf_submission_per_page]" value="<?php echo $param_values['hf_submission_per_page']; ?>" />
+								<label for="msg_simple_captcha_error"><?php _e('Simple Captcha Code Incorrect','hugeit_contact');?></label>
+								<input name="params[msg_simple_captcha_error]" type="text" id="msg_simple_captcha_error" value="<?php echo $param_values['msg_simple_captcha_error']; ?>" />
 							</div>
 						</div>
-
 					</div>
 					<div class="hugeit-contact-general-options-column hugeit-contact-general-options-right">
 						<div class="hugeit-contact-general-options-block">
@@ -142,7 +132,7 @@ function hugeit_contact_html_show_settings($param_values) {
 							</div>
 							<div>
 								<label for="form_message_subject">Message Subject</label>
-								<input name="params[form_message_subject]" type="text" class="color" id="form_message_subject" value="<?php echo $param_values['form_message_subject']; ?>" size="10" />
+								<input name="params[form_message_subject]" type="text" class="" id="form_message_subject" value="<?php echo $param_values['form_message_subject']; ?>" size="10" />
 								<dfn class="huge_it_forms_mess_subject_help_box" data-info="If you leave this field empty, the name of the submitted form will be used as the subject of the email.">?</dfn>
 							</div>
 							<div class="autoheight">
@@ -172,7 +162,7 @@ function hugeit_contact_html_show_settings($param_values) {
 							</div>
 							<div>
 								<label for="form_user_message_subject">Message Subject</label>
-								<input name="params[form_user_message_subject]" type="text" class="color" id="form_user_message_subject" value="<?php echo $param_values['form_user_message_subject']; ?>" size="10" />
+								<input name="params[form_user_message_subject]" type="text" class="" id="form_user_message_subject" value="<?php echo $param_values['form_user_message_subject']; ?>" size="10" />
 								<dfn class="huge_it_forms_mess_subject_help_box" data-info="If you leave this field empty, the name of the submitted form will be used as the subject of the email.">?</dfn>
 							</div>
 							<div class="autoheight">

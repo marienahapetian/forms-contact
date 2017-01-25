@@ -726,7 +726,7 @@ function hugeit_contact_simple_captcha_html($rowimages) { ob_start(); ?>
 	<div class="hugeit-field-block simple-captcha-block <?php echo $capPos;?>" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 		<label class="formsAboveAlign">
 			<img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'admin');?>">
-			<span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $hc_other_field->digits;?>" data-form-id="<?php echo $frontendformid; ?>">
+			<span class="hugeit_captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $hc_other_field->digits;?>" data-form-id="<?php echo $frontendformid; ?>">
 				<img src="<?php echo plugin_dir_url(__FILE__);?>../images/refresh-icon.png" width="32px">
 			</span>
 		</label>
@@ -769,8 +769,12 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 					<input type="radio" <?php if($rowimages->description == 'default') echo 'checked';?> name="im_description<?php echo $rowimages->id; ?>" value="default" class="default-custom">Default
 					<input type="radio" <?php if($rowimages->description == 'custom') echo 'checked';?> name="im_description<?php echo $rowimages->id; ?>" value="custom" class="default-custom">Custom
 
-					<input <?php if($rowimages->description == 'default') echo 'disabled';?> class='custom-option' type="color" style="margin-top:10px;   max-width: 150px; width:100%;" value="<?php echo ($hc_other_field->color)?$hc_other_field->color:'#000000';?>" >
-					<input type="hidden" class="color" name="hc_other_field<?php echo $rowimages->id; ?>[color]" value="<?php echo ($hc_other_field->color)?$hc_other_field->color:'#000000';?>">
+					<input <?php if($rowimages->description == 'default') echo 'disabled';?> class='custom-option color' type="text" style="margin-top:10px;   max-width: 150px; width:100%;" value="<?php echo ($hc_other_field->color)?$hc_other_field->color:'#000000';?>" name="hc_other_field<?php echo $rowimages->id; ?>[color]">
+
+<!--					<input --><?php //if($rowimages->description == 'default') echo 'disabled';?><!-- class='custom-option' type="color" style="margin-top:10px;   max-width: 150px; width:100%;" value="--><?php //echo ($hc_other_field->color)?$hc_other_field->color:'#000000';?><!--" >-->
+<!---->
+<!---->
+<!--					<input type="hidden" class="color" name="hc_other_field--><?php //echo $rowimages->id; ?><!--[color]" value="--><?php //echo ($hc_other_field->color)?$hc_other_field->color:'#000000';?><!--">-->
 				</label>
 
 			</div>
@@ -2289,7 +2293,6 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
 					$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  field_type = %s WHERE id = %d", $_POSTED[ "field_type" . $rowimages->id . "" ], $id ) );
 				}
 				if ( isset( $_POSTED[ "hc_other_field" . $rowimages->id . "" ] ) ) {
-					//var_dump($_POSTED[ "hc_other_field" . $rowimages->id . "" ] );
 					if(is_array( $_POSTED[ "hc_other_field" . $rowimages->id . "" ])){
 						$wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_other_field = %s WHERE id = %d", json_encode( $_POSTED[ "hc_other_field" . $rowimages->id . "" ]), $id));
 					}

@@ -92,17 +92,19 @@ function hugeit_contact_contact_form_validation_callback(){
 							$submition_errors.='huge-contact-field-'.$rowimages->id.':'.$huge_it_gen_opt[37]->value.'*()*';
 						}
 					}
+
 					if($inputtype=='simple_captcha_box'){
                         if(!isset($_POSTED['simple_captcha_'.$frontendformid.'']) || $_POSTED['simple_captcha_'.$frontendformid.'']==''){
                             $submition_errors.='simple_captcha_'.$rowimages->id.':'.$huge_it_gen_opt[36]->value.'*()*';
                         }
                         else{
                             if($_POSTED['simple_captcha_'.$frontendformid.'']!=$_SESSION['hugeit_contact_captcha-user-'.$rowimages->id.'-'.$rowimages->id.$_POST['time']]){
-                                $submition_errors.='simple_captcha_'.$rowimages->id.':'.$huge_it_gen_opt[36]->value.'*()*';
+                                $simple_captcha_error_message=($huge_it_gen_opt[38]->value)?$huge_it_gen_opt[38]->value:'Incorrect Input';
+                                $submition_errors.='simple_captcha_'.$rowimages->id.':'.$simple_captcha_error_message.'*()*';
                             }
-
                         }
                     }
+
 					if($inputtype == 'buttons'){
 						$buttonsField='huge-contact-field-'.$rowimages->id;
 						$afterSubmit=$rowimages->hc_other_field;
@@ -135,6 +137,7 @@ function hugeit_contact_contact_form_validation_callback(){
 							$submition_errors.='huge-contact-field-'.$rowimages->id.':'.$huge_it_gen_opt[36]->value.'*()*';
 						}
 					}
+
 					$checkBoxes='';
 					if($inputtype == 'checkbox'){
 						if(!isset($_POSTED['check_'.$frontendformid.'_'.$rowimages->id]))$_POSTED['check_'.$frontendformid.'_'.$rowimages->id]='';
@@ -153,6 +156,7 @@ function hugeit_contact_contact_form_validation_callback(){
 							$submition_errors.='huge-contact-field-'.$rowimages->id.':'.$huge_it_gen_opt[36]->value.'*()*';
 						}
 					}
+
 					$fullname='';
 					if($inputtype == 'nameSurname'){
 						if(!isset($_POSTED['fullName_'.$frontendformid.'_'.$rowimages->id]))$_POSTED['fullName_'.$frontendformid.'_'.$rowimages->id]='';
@@ -166,6 +170,7 @@ function hugeit_contact_contact_form_validation_callback(){
 							$submition_errors.='huge-contact-field-'.$rowimages->id.':'.$huge_it_gen_opt[36]->value.'*()*';
 						}
 					}
+
 					if($inputtype == 'phone'){
 						if(!isset($_POSTED['huge_it_'.$frontendformid.'_'.$rowimages->id]))$_POSTED['huge_it_'.$frontendformid.'_'.$rowimages->id]='';
 						$phoneNum=$_POSTED['huge_it_'.$frontendformid.'_'.$rowimages->id];
@@ -173,12 +178,14 @@ function hugeit_contact_contact_form_validation_callback(){
 							$submition_errors.='huge-contact-field-'.$rowimages->id.':'.$huge_it_gen_opt[36]->value.'*()*';
 						}
 					}
+
 					if($inputtype == 'license'){
 						if(!isset($_POSTED['huge_it_'.$frontendformid.'_'.$rowimages->id])){
 							$_POSTED['huge_it_'.$frontendformid.'_'.$rowimages->id]='';
 							$submition_errors.='huge-contact-field-'.$rowimages->id.': Please tick on checkbox*()*';
 						}
 					}
+
 					if ( $inputtype == 'file_box' ) {
 						if ( ( $rowimages->hc_required == 'on' && isset( $_FILES[ 'userfile_' . $rowimages->id ] ) ) || $rowimages->hc_required != 'on' ) {
 							require_once( "mime_types.php" );
@@ -214,9 +221,11 @@ function hugeit_contact_contact_form_validation_callback(){
 						}
 
 					}
+
 					if ( ! isset( $_POSTED[ 'huge_it_' . $frontendformid . '_' . $rowimages->id ] ) ) {
 						$_POSTED[ 'huge_it_' . $frontendformid . '_' . $rowimages->id ] = '';
 					}
+
 					if ( $inputtype != 'checkbox' && $inputtype != 'nameSurname' ) {
 						$submition_text .= $_POSTED[ 'huge_it_' . $frontendformid . '_' . $rowimages->id ] . '*()*';
 						$sub_label .= $rowimages->hc_field_label . '*()*';

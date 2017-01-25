@@ -978,16 +978,16 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 													<label class="formsAboveAlign ">
 														<?php $current_time=time();?>
 														<img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'user',$current_time);?>">
-														<span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>"  data-time="<?php echo $current_time;?>">
+														<span class="hugeit_captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>"  data-time="<?php echo $current_time;?>">
 															<img src="<?php echo plugin_dir_url(__FILE__);?>/images/refresh-icon.png" width="32px">
 														</span>
 													</label>
 
-													<div class="field-block">
+													<div class="field-block" rel="simple_captcha_<?php echo $rowimages->id; ?>">
 														<input type="text" name="simple_captcha_<?php echo $frontendformid; ?>" placeholder="<?php echo $rowimages->name;?>">
+														<span style="display:block;text-align:right;" class="hugeit-error-message"></span>
 													</div>
 
-													<span style="text-align:right;" class="hugeit-error-message"></span>
 												</div>
 												<?php
 												break;
@@ -1217,18 +1217,18 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 												<div class="hugeit-field-block simple-captcha-block <?php echo $hg_left_right_class;?>" rel="huge-contact-field-<?php echo $rowimages->id; ?>" data-form_id="<?php echo $frontendformid; ?>" data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>" data-theme="<?php echo $rowimages->hc_required; ?>" data-cname="<?php echo $rowimages->name; ?>">
 
 													<label class="formsAboveAlign">
-														<img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'user');?>">
-														<span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $rowimages->hc_other_field;?>" data-form-id="<?php echo $frontendformid; ?>">
+														<?php $current_time=time();?>
+														<img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'user',$current_time);?>">
+														<span class="hugeit_captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-time="<?php echo $current_time;?>">
 															<img src="<?php echo plugin_dir_url(__FILE__);?>/images/refresh-icon.png" width="32px">
 														</span>
 													</label>
 
-													<div class="field-block">
+													<div class="field-block" rel="simple_captcha_<?php echo $rowimages->id; ?>">
 														<input type="text" name="simple_captcha_<?php echo $frontendformid; ?>" placeholder="<?php echo $rowimages->name;?>">
+														<span style="display:block;text-align:right;" class="hugeit-error-message"></span>
 													</div>
 
-													<div style="float:<?php echo $capPos; ?>;" id="huge_it_simple_captcha_<?php echo $frontendformid; ?>"></div>
-													<span style="text-align:right;" class="hugeit-error-message"></span>
 												</div>
 												<?php
 												break;
@@ -1717,7 +1717,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 		                fd.append(obj.name, file);
 		            })
 		        });
-				var time=jQuery('.captcha_refresh_button').attr('data-time');
+				var time=jQuery('.hugeit_captcha_refresh_button').attr('data-time');
 
 				console.log(time);
 
@@ -1806,13 +1806,13 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 
 
 
-			function refresh_captcha() {
+			function hugeit_refresh_captcha() {
 				captchacontainer=jQuery(this).closest('.formsAboveAlign');
 				img=captchacontainer.find('img').eq(0);
 				captchaid=jQuery(this).attr('data-captcha-id');
 				var d = new Date();
 				time = d.getTime();
-				jQuery('.captcha_refresh_button').attr('data-time',time);
+				jQuery('.hugeit_captcha_refresh_button').attr('data-time',time);
 				formid=jQuery(this).data('form-id');
 				digits=jQuery(this).data('digits');
 				user='user';
@@ -1841,7 +1841,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 
 
 			}
-			jQuery('#huge_it_contact_form_<?php echo $frontendformid;?> .captcha_refresh_button').click(refresh_captcha);
+			jQuery('#huge_it_contact_form_<?php echo $frontendformid;?> .hugeit_captcha_refresh_button').click(hugeit_refresh_captcha);
 
 
 

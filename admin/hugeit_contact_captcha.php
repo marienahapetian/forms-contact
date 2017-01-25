@@ -17,6 +17,7 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
     if (!file_exists(plugin_dir_path(__FILE__)."../images/tmp")) {
         mkdir(plugin_dir_path(__FILE__)."../images/tmp", 0777, true);
     }
+
     $dir = plugin_dir_path(__FILE__)."../images/tmp/";
 
     /*** cycle through all files in the directory ***/
@@ -27,7 +28,6 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
             unlink($file);
         }
     }
-
 
 
 
@@ -46,7 +46,6 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
     $captchaRow=json_decode($field['hc_other_field']);
 
     $digitsLength=$captchaRow->digits;
-    $color=$captchaRow->color;
 
     $colorOption=$field['description'];
 
@@ -57,7 +56,11 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
     }
 
     for($i=1;$i<=$digitsLength;$i++){
-        $captcha.=chr(rand(97,122));
+        $randnumber=rand(65,122);
+        while(in_array($randnumber,array(91,92,93,94,95,96))){
+            $randnumber=rand(65,122);
+        }
+        $captcha.=chr($randnumber);
     }
 
 
@@ -70,7 +73,7 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
 
 
 
-    $font=plugin_dir_path(__FILE__).'../elements/fonts/Super_Webcomic_Bros.ttf';
+    $font=plugin_dir_path(__FILE__).'../elements/fonts/Roboto-Regular.ttf';
     $image=imagecreatetruecolor(170,60);
 
     $black=imagecolorallocate($image,0,0,0);
@@ -80,6 +83,7 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
         $color=imagecolorallocate($image,rand(0,200),rand(0,200),rand(0,200));
     }
     else{
+        $color=$captchaRow->color;
         $rgbArray=hugeit_hex_to_rgb($color);
         $color=imagecolorallocate($image,$rgbArray['red'],$rgbArray['green'],$rgbArray['blue']);
     }

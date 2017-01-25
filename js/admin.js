@@ -2,7 +2,6 @@ var defaultTitleVisibility;
 
 jQuery(document).ready(function () {
 
-
 	jQuery(".hugeit_contact_custom_settings_dropdown_heading").on("click",function () {
 		jQuery(".hugeit_contact_custom_settings_dropdown_content").toggleClass("-hidden");
 		if( jQuery(".hugeit_contact_custom_settings_dropdown_heading i").hasClass("hugeicons-chevron-down") ){
@@ -614,12 +613,15 @@ jQuery(document).ready(function () {
 		}
 	}
 	jQuery(window).scroll(function(){
-		if (jQuery(this).scrollTop() > jQuery('#fields-list-left').offset().top) {
-			jQuery('.fields-list > li.open').addClass('fixedStyles');
+		if(jQuery('#fields-list-left').offset() !== undefined ){
+			if (jQuery(this).scrollTop() > jQuery('#fields-list-left').offset().top) {
+				jQuery('.fields-list > li.open').addClass('fixedStyles');
 
-		}else{
-			jQuery('.fields-list > li.open').removeClass('fixedStyles');
+			}else{
+				jQuery('.fields-list > li.open').removeClass('fixedStyles');
+			}
 		}
+
 	});
 	jQuery("#shortcode_toggle").toggle(function(){
 		jQuery('#post-body-heading').stop().animate({height:145},500,function(){

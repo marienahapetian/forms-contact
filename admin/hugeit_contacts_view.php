@@ -1141,7 +1141,7 @@ function submitbutton(pressbutton){
 													<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
 													<label  class="formsAboveAlign">
                                                         <img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'admin');?>">
-                                                        <span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $hc_other_field->digits;?>" data-form-id="<?php echo $frontendformid; ?>">
+                                                        <span class="hugeit_captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $hc_other_field->digits;?>" data-form-id="<?php echo $frontendformid; ?>">
                                                             <img src="<?php echo plugin_dir_url(__FILE__);?>../images/refresh-icon.png" width="32px">
                                                         </span>
                                                     </label>
