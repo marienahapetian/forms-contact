@@ -30,7 +30,6 @@ jQuery(document).ready(function(){
 				            }
 					},
 					error: function(){
-						//alert('Error!');
 					}
 				});
 		});
@@ -89,13 +88,10 @@ jQuery(document).ready(function(){
 				            }
 						},
 						error: function(){
-							//alert('Error!');
 						}
 					});
 		}
-		// if(typeof huge_it_obj =="undefined"){
-		// 		var huge_it_obj=new Array();
-		// 	}
+
 		if(huge_it_obj.mail_status=='start'){
 			setInterval(function(){
 				jQuery.ajax({
@@ -117,7 +113,6 @@ jQuery(document).ready(function(){
 								}
 						},
 						error: function(){
-							//alert('Error!');
 						}
 					});
 			},10000);
@@ -141,7 +136,6 @@ jQuery(document).ready(function(){
 							}
 						},
 						error: function(){
-							//alert('Error!');
 						}
 					});
 
@@ -165,7 +159,6 @@ jQuery(document).ready(function(){
 							}
 						},
 						error: function(){
-							//alert('Error!');
 						}
 					});
 				//})
@@ -191,7 +184,6 @@ jQuery(document).ready(function(){
 							refreshTable(sub_choose_form);
 						},
 						error: function(){
-							//alert('Error!');
 						}
 					});
 		})

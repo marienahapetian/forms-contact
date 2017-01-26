@@ -1350,7 +1350,6 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				phone_field.on('keypress keyup change blur',function(){
         			var phoneVal=jQuery(this).val();
         			jQuery(this).parents('.field-block').find('input[type="hidden"]').val(phoneVal);
-        			//alert(phoneVal)
         		})
 			}
         	if(jQuery(this).find('div.input-text-block >input').hasClass('required')){
@@ -1549,7 +1548,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 			 fullVersion  = ''+parseFloat(navigator.appVersion); 
 			 majorVersion = parseInt(navigator.appVersion,10);
 		}
-////
+
       jQuery('#hugeit-contact-wrapper_<?php echo $frontendformid; ?>').find('.hugeit-field-block').not('.buttons-block').each(function(){
 	        	if(jQuery(this).find('div.input-text-block >input').hasClass('required')){
 	        		var text_emailField=jQuery(this).find('input');
@@ -1719,7 +1718,6 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 		        });
 				var time=jQuery('.hugeit_captcha_refresh_button').attr('data-time');
 
-				console.log(time);
 
 		        fd.append('action', 'hugeit_validation_action');
 		        fd.append('formId', '<?php echo $frontendformid; ?>');
@@ -1830,13 +1828,12 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 					beforeSend: function(){
 					},
 					success: function(response){
-						console.log(response);
 
 						newimg='<img src="'+response+'">';
 
 						jQuery(newimg).prependTo(captchacontainer);
 					}
-				});//here
+				});
 
 
 

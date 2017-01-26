@@ -123,7 +123,6 @@ function hugeit_hex_to_rgb($hex) {
         'green'=>$g,
         'blue'=>$b
     );
-    //return implode(",", $rgb); // returns the rgb values separated by commas
     return $rgb; // returns an array with the rgb values
 }
 

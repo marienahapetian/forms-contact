@@ -820,12 +820,7 @@ jQuery(document).ready(function () {
 		}
 		else {
 			var width=100/parseInt(jQuery(this).parents('.fields-options').find('.field-columns-count').val())+"%";
-			/*var isactive='disabled="disabled"'
-			 if(jQuery(this).parents('.fields-options').find('.fieldisactive').is(':checked')){
-			 isactive='';
-			 }
 
-			 alert(isactive);*/
 			var previewradio = jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-' + fieldID + '"]').find('.field-block input').last();
 			var radiocont = previewradio.parent().html().replace('checked="checked"', '');
 			var inputclass = "";
@@ -837,7 +832,6 @@ jQuery(document).ready(function () {
 				inputclass = "radio-block big";
 				previewradio.parent().parent().parent().after('<li style="width:' + width + ';"><label class="secondary-label"><div class="' + inputclass + '">' + radiocont + '</div><span class="sublable">' + value + '</span></label></li>');
 			}
-			//previewradio.parent().parent().parent().after('<li style="width:'+width+';"><label class="secondary-label"><div class="'+inputclass+'">'+radiocont+'</div>'+value+'</label></li>');
 		}
 
 
