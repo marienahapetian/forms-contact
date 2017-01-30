@@ -985,7 +985,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 
 													<div class="field-block" rel="simple_captcha_<?php echo $rowimages->id; ?>">
 														<input type="text" name="simple_captcha_<?php echo $frontendformid; ?>" placeholder="<?php echo $rowimages->name;?>">
-														<span style="display:block;text-align:right;" class="hugeit-error-message"></span>
+														<span style="display:block;" class="hugeit-error-message"></span>
 													</div>
 
 												</div>
@@ -1226,7 +1226,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 
 													<div class="field-block" rel="simple_captcha_<?php echo $rowimages->id; ?>">
 														<input type="text" name="simple_captcha_<?php echo $frontendformid; ?>" placeholder="<?php echo $rowimages->name;?>">
-														<span style="display:block;text-align:right;" class="hugeit-error-message"></span>
+														<span style="display:block;" class="hugeit-error-message"></span>
 													</div>
 
 												</div>

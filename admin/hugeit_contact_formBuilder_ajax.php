@@ -771,10 +771,6 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 
 					<input <?php if($rowimages->description == 'default') echo 'disabled';?> class='custom-option color' type="text" style="margin-top:10px;   max-width: 150px; width:100%;" value="<?php echo ($hc_other_field->color)?$hc_other_field->color:'#000000';?>" name="hc_other_field<?php echo $rowimages->id; ?>[color]">
 
-<!--					<input --><?php //if($rowimages->description == 'default') echo 'disabled';?><!-- class='custom-option' type="color" style="margin-top:10px;   max-width: 150px; width:100%;" value="--><?php //echo ($hc_other_field->color)?$hc_other_field->color:'#000000';?><!--" >-->
-<!---->
-<!---->
-<!--					<input type="hidden" class="color" name="hc_other_field--><?php //echo $rowimages->id; ?><!--[color]" value="--><?php //echo ($hc_other_field->color)?$hc_other_field->color:'#000000';?><!--">-->
 				</label>
 
 			</div>
@@ -2285,7 +2281,6 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
 		}
 	}
 	foreach ( $rowim as $key => $rowimages ) {
-		//var_dump($_POSTED['simple_captcha_length']);
 		if ( isset( $_POSTED ) && isset( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) ) {
 			if ( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) {
 				$id = $rowimages->id;

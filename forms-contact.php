@@ -23,8 +23,6 @@ function hugeit_contact_tinymce_readonly( $args ) {
 	if ( $args['selector'] == '#hugeit_contact_admin_message' || $args['selector'] == '#hugeit_contact_user_message' ){
 		$args['readonly'] = 1;
 	}
-
-
 	return $args;
 }
 
@@ -252,7 +250,8 @@ function hugeit_contact_options_panel() {
 	$page_allsubmissions  = add_submenu_page( 'hugeit_forms_main_page', 'All Submissions', 'All Submissions', 'manage_options', 'hugeit_forms_submissions', 'hugeit_contact_submissions' );
 	$page_emailmanager    = add_submenu_page( 'hugeit_forms_main_page', 'Newsletter Manager', 'Newsletter Manager', 'manage_options', 'hugeit_forms_email_manager', 'hugeit_contact_email_manager' );
 	$page_featuredplugins = add_submenu_page( 'hugeit_forms_main_page', 'Featured Plugins', 'Featured Plugins', 'manage_options', 'hugeit_forms_featured_plugins', 'hugeit_forms_featured_plugins' );
-	add_submenu_page( 'hugeit_forms_main_page', 'Licensing', 'Licensing', 'manage_options', 'huge_it_forms_licensing', 'hugeit_forms_licensing' );
+	$custom_scripts       = add_submenu_page( 'hugeit_forms_main_page', 'Custom CSS', 'Custom CSS', 'manage_options', 'hugeit_forms_custom_scripts', 'hugeit_forms_custom_scripts' );
+	$licensing            = add_submenu_page( 'hugeit_forms_main_page', 'Licensing', 'Licensing', 'manage_options', 'huge_it_forms_licensing', 'hugeit_forms_licensing' );
 
 	add_action( 'admin_print_styles-' . $page_main, 'hugeit_contact_less_options' );
 	add_action( 'admin_print_styles-' . $page_main, 'hugeit_contact_formBuilder_options' );
@@ -261,6 +260,8 @@ function hugeit_contact_options_panel() {
 	add_action( 'admin_print_styles-' . $page_allsubmissions, 'hugeit_contact_less_options' );
 	add_action( 'admin_print_styles-' . $page_emailmanager, 'hugeit_contact_less_options' );
 	add_action( 'admin_print_styles-' . $page_emailmanager, 'hugeit_contact_email_options' );
+
+	add_action( 'admin_print_styles-' . $custom_scripts, 'hugeit_contact_less_options' );
 }
 
 //Captcha
@@ -305,71 +306,7 @@ function hugeit_contact_formBuilder_options() {
 	wp_localize_script( 'hugeit_contact_formBuilder_script', 'huge_it_obj', $translation_array );
 }
 
-function hugeit_forms_licensing() {
-	wp_enqueue_style( 'licensing-style', plugin_dir_url(__FILE__) . 'style/licensing.css' );
-	?>
-	<div style="width:95%">
-		<p style="font-size: 13px; line-height: 1.5; margin-top: 30px;">
-			<?php _e('You are using the Lite version of the Forms Plugin for WordPress. If you want to get more awesome options,
-            advanced features, settings to customize every area of the plugin, then check out the Full License plugin. The
-            full version of the plugin is available in 3 different packages of one-time payment.','hugeit_contact'); ?>
-		</p>
-		<br><br><br>
-		<a  target="_blank" href="http://huge-it.com/forms/" class="button-primary" target="_blank"><?php _e('Purchase a License', 'hugeit_contact' ); ?></a>
-	</div>
-	<div class="forms">
-		<div class="forms-block">
-			<div class="licens">
-				<a href="http://huge-it.com/forms/" target="_blank">
-					<span class="icon multiple"></span>
-					<span class="text"><?php _e('Multiple Email For Recipients', 'hugeit_contact'); ?></span>
-				</a>
-			</div>
-			<div class="licens">
-				<a href="http://huge-it.com/forms/" target="_blank">
-					<span class="icon newsletters"></span>
-					<span class="text"><?php _e('Email Newsletters', 'hugeit_contact'); ?></span>
-				</a>
-			</div>
-			<div class="licens">
-				<a href="http://huge-it.com/forms/" target="_blank">
-					<span class="icon themes"></span>
-					<span class="text"><?php _e('Themes Customization', 'hugeit_contact'); ?></span>
-				</a>
-			</div>
-			<div class="licens">
-				<a href="http://huge-it.com/forms/" target="_blank">
-					<span class="icon advanced"></span>
-					<span class="text"><?php _e('Advanced Design', 'hugeit_contact'); ?></span>
-				</a>
-			</div>
 
-			<div class="licens">
-				<a href="http://huge-it.com/forms/" target="_blank">
-					<span class="icon ready"></span>
-					<span class="text"><?php _e('Ready-To-Go Fields', 'hugeit_contact'); ?></span>
-				</a>
-			</div>
-			<div class="licens">
-				<a href="http://huge-it.com/forms/" target="_blank">
-					<span class="icon layout"></span>
-					<span class="text"><?php _e('Layout Customization', 'hugeit_contact'); ?></span>
-				</a>
-			</div>
-		</div>
-	</div>
-	<div style="width:95%; margin-top: 30px; font-size: 13px; line-height: 1.5;">
-		<p><?php _e('After the purchasing the commercial version follow this steps:','hugeit_contact'); ?></p>
-		<ol style="list-style: square; padding-left: 15px;">
-			<li><?php _e('Deactivate Huge IT Forms Plugin','hugeit_contact'); ?></li>
-			<li><?php _e('Delete Huge IT Forms','hugeit_contact'); ?></li>
-			<li><?php _e('Install the downloaded commercial version of the plugin','hugeit_contact'); ?></li>
-		</ol>
-	</div>
-
-	<?php
-
-}
 
 function hugeit_contact_with_options() {
 	wp_enqueue_media();
@@ -474,6 +411,7 @@ function hugeit_contacts_huge_it_contact() {
 	}
 }
 
+/* Theme Options Page */
 function hugeit_contact_contact_style_options() {
 	require_once( "admin/hugeit_contact_style_options_func.php" );
 	require_once( "admin/hugeit_contact_style_options_view.php" );
@@ -490,6 +428,7 @@ function hugeit_contact_contact_style_options() {
 	}
 }
 
+/* All Submissions Page */
 function hugeit_contact_submissions() {
 	require_once( "admin/hugeit_contact_submissions_func.php" );
 	require_once( "admin/hugeit_contact_submissions_view.php" );
@@ -538,6 +477,7 @@ function hugeit_contact_email_manager() {
 	}
 }
 
+/* General Options Page */
 function hugeit_contact_general_options() {
 	require_once( "admin/hugeit_contact_general_options_func.php" );
 	require_once( "admin/hugeit_contact_general_options_view.php" );
@@ -550,9 +490,62 @@ function hugeit_contact_general_options() {
 	hugeit_contact_show_settings();
 }
 
+/* Featured Plugins Page */
 function hugeit_forms_featured_plugins() {
 	wp_enqueue_style('featured-plugins-css',plugin_dir_url(__FILE__).'style/featured-plugins.css',true);
 	require_once( "admin/hugeit_contact_featured_plugins.php" );
+}
+
+/* Custom CSS/JS Page */
+function hugeit_forms_custom_scripts(){
+
+	wp_enqueue_style('hugeit-custom_scripts-css',plugin_dir_url(__FILE__).'style/custom-scripts.css',true);
+	require_once( "admin/hugeit_contact_custom_scripts.php" );
+
+	if(isset($_GET['task']) && $_GET['task']=='save'){hugeit_contact_save_custom_scripts();}
+	hugeit_generate_custom_scripts_page();
+}
+
+add_action('plugins_loaded','hugeit_print_custom_style');
+
+add_action('wp_enqueue_scripts','hugeit_regitser_custom_style');
+
+function hugeit_regitser_custom_style(){
+
+	$url = home_url();
+
+	if ( is_ssl() ) {
+		$url = home_url( '/', 'https' );
+	}
+
+	wp_register_style( 'hugeit_custom_style', add_query_arg( array( 'hugeit_custom_css' => 1 ), $url ) );
+
+	wp_enqueue_style( 'hugeit_custom_style' );
+}
+
+function hugeit_print_custom_style(){
+	// Only print CSS if this is a stylesheet request
+	if( ! isset( $_GET['hugeit_custom_css'] ) || intval( $_GET['hugeit_custom_css'] ) !== 1 ) {
+		return;
+	}
+
+	ob_start();
+	header( 'Content-type: text/css' );
+	require_once( "admin/hugeit_contact_custom_scripts.php" );
+
+	$style     = stripslashes(hugeit_get_option( 'hugeit_custom_css' ));
+	$raw_content = isset( $style ) ? $style : '';
+	$content     = wp_kses( $raw_content, array( '\'', '\"' ) );
+	$content     = str_replace( '&gt;', '>', $content );
+	echo $content; //xss okay
+	die();
+}
+
+/* Licensing Page */
+function hugeit_forms_licensing() {
+	wp_enqueue_style( 'licensing-style', plugin_dir_url(__FILE__) . 'style/licensing.css' );
+	require_once ( "admin/hugeit_contact_licensing.php" );
+
 }
 
 function hugeit_contact_subscriber_deactivate() {
