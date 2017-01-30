@@ -976,18 +976,18 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 												else{$hg_left_right_class='text-right';}?>
 												<div class="hugeit-field-block simple-captcha-block <?php echo $hg_left_right_class;?>" rel="huge-contact-field-<?php echo $rowimages->id; ?>" data-form_id="<?php echo $frontendformid; ?>" data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>" data-theme="<?php echo $rowimages->hc_required; ?>" data-cname="<?php echo $rowimages->name; ?>">
 													<label class="formsAboveAlign ">
-														<img src="<?php echo plugin_dir_url(__FILE__);?>/admin/hugeit_contact_captcha.php?id=<?php echo $rowimages->id;?>&l=<?php echo $rowimages->hc_other_field;?>">
-														<span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $rowimages->hc_other_field;?>" data-form-id="<?php echo $frontendformid; ?>">
+														<?php $current_time=time();?>
+														<img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'user',$current_time);?>">
+														<span class="hugeit_captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>"  data-time="<?php echo $current_time;?>">
 															<img src="<?php echo plugin_dir_url(__FILE__);?>/images/refresh-icon.png" width="32px">
 														</span>
 													</label>
 
-													<div class="field-block">
+													<div class="field-block" rel="simple_captcha_<?php echo $rowimages->id; ?>">
 														<input type="text" name="simple_captcha_<?php echo $frontendformid; ?>" placeholder="<?php echo $rowimages->name;?>">
+														<span style="display:block;" class="hugeit-error-message"></span>
 													</div>
 
-													<div style="float:<?php echo $capPos; ?>;" id="huge_it_simple_captcha_<?php echo $frontendformid; ?>"></div>
-													<span style="text-align:right;" class="hugeit-error-message"></span>
 												</div>
 												<?php
 												break;
@@ -1213,21 +1213,22 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 												?>
 												<?php if($rowimages->hc_input_show_default=='formsLeftAlign'){$hg_left_right_class='text-left';}
 												else{$hg_left_right_class='text-right';}?>
+											    <?php $hc_other_field=$rowimages->hc_other_field;?>
 												<div class="hugeit-field-block simple-captcha-block <?php echo $hg_left_right_class;?>" rel="huge-contact-field-<?php echo $rowimages->id; ?>" data-form_id="<?php echo $frontendformid; ?>" data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>" data-theme="<?php echo $rowimages->hc_required; ?>" data-cname="<?php echo $rowimages->name; ?>">
 
 													<label class="formsAboveAlign">
-														<img src="<?php echo plugin_dir_url(__FILE__);?>/admin/hugeit_contact_captcha.php?id=<?php echo $rowimages->id;?>&l=<?php echo $rowimages->hc_other_field;?>">
-														<span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $rowimages->hc_other_field;?>" data-form-id="<?php echo $frontendformid; ?>">
+														<?php $current_time=time();?>
+														<img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'user',$current_time);?>">
+														<span class="hugeit_captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-time="<?php echo $current_time;?>">
 															<img src="<?php echo plugin_dir_url(__FILE__);?>/images/refresh-icon.png" width="32px">
 														</span>
 													</label>
 
-													<div class="field-block">
+													<div class="field-block" rel="simple_captcha_<?php echo $rowimages->id; ?>">
 														<input type="text" name="simple_captcha_<?php echo $frontendformid; ?>" placeholder="<?php echo $rowimages->name;?>">
+														<span style="display:block;" class="hugeit-error-message"></span>
 													</div>
 
-													<div style="float:<?php echo $capPos; ?>;" id="huge_it_simple_captcha_<?php echo $frontendformid; ?>"></div>
-													<span style="text-align:right;" class="hugeit-error-message"></span>
 												</div>
 												<?php
 												break;
@@ -1349,7 +1350,6 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				phone_field.on('keypress keyup change blur',function(){
         			var phoneVal=jQuery(this).val();
         			jQuery(this).parents('.field-block').find('input[type="hidden"]').val(phoneVal);
-        			//alert(phoneVal)
         		})
 			}
         	if(jQuery(this).find('div.input-text-block >input').hasClass('required')){
@@ -1548,7 +1548,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 			 fullVersion  = ''+parseFloat(navigator.appVersion); 
 			 majorVersion = parseInt(navigator.appVersion,10);
 		}
-////
+
       jQuery('#hugeit-contact-wrapper_<?php echo $frontendformid; ?>').find('.hugeit-field-block').not('.buttons-block').each(function(){
 	        	if(jQuery(this).find('div.input-text-block >input').hasClass('required')){
 	        		var text_emailField=jQuery(this).find('input');
@@ -1715,13 +1715,16 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 		            jQuery.each(obj.files,function(j,file){
 		                fd.append(obj.name, file);
 		            })
-		        });       
+		        });
+				var time=jQuery('.hugeit_captcha_refresh_button').attr('data-time');
+
 
 		        fd.append('action', 'hugeit_validation_action');
 		        fd.append('formId', '<?php echo $frontendformid; ?>');
 		        fd.append('browser',browserName);
 		        fd.append('nonce', huge_it_obj.nonce);
 		        fd.append('postData', postData);
+		        fd.append('time', time);
 	            jQuery.ajax({
 		            type: 'POST',
 		            url: '<?php echo admin_url("admin-ajax.php"); ?>',
@@ -1801,21 +1804,41 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 
 
 
-			function refresh_captcha() {
+			function hugeit_refresh_captcha() {
 				captchacontainer=jQuery(this).closest('.formsAboveAlign');
 				img=captchacontainer.find('img').eq(0);
-				captchaid=jQuery(this).data('captcha-id');
+				captchaid=jQuery(this).attr('data-captcha-id');
+				var d = new Date();
+				time = d.getTime();
+				jQuery('.hugeit_captcha_refresh_button').attr('data-time',time);
 				formid=jQuery(this).data('form-id');
 				digits=jQuery(this).data('digits');
+				user='user';
 
 				img.remove();
 
-			    newimg='<img src="<?php echo plugin_dir_url(__FILE__);?>/admin/hugeit_contact_captcha.php?id='+captchaid+'&l='+digits+'">';
+				var url='<?php echo admin_url("admin-ajax.php"); ?>';
 
-				jQuery(newimg).prependTo(captchacontainer);
+				jQuery.ajax({
+					type: 'POST',
+					url: url,
+					data:{
+						captchaid: captchaid, action: "hugeit_refresh_simple_captcha", time: time
+					},
+					beforeSend: function(){
+					},
+					success: function(response){
+
+						newimg='<img src="'+response+'">';
+
+						jQuery(newimg).prependTo(captchacontainer);
+					}
+				});
+
+
 
 			}
-			jQuery('#huge_it_contact_form_<?php echo $frontendformid;?> .captcha_refresh_button').click(refresh_captcha);
+			jQuery('#huge_it_contact_form_<?php echo $frontendformid;?> .hugeit_captcha_refresh_button').click(hugeit_refresh_captcha);
 
 
 

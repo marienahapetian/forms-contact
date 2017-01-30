@@ -2,7 +2,6 @@ var defaultTitleVisibility;
 
 jQuery(document).ready(function () {
 
-
 	jQuery(".hugeit_contact_custom_settings_dropdown_heading").on("click",function () {
 		jQuery(".hugeit_contact_custom_settings_dropdown_content").toggleClass("-hidden");
 		if( jQuery(".hugeit_contact_custom_settings_dropdown_heading i").hasClass("hugeicons-chevron-down") ){
@@ -614,12 +613,15 @@ jQuery(document).ready(function () {
 		}
 	}
 	jQuery(window).scroll(function(){
-		if (jQuery(this).scrollTop() > jQuery('#fields-list-left').offset().top) {
-			jQuery('.fields-list > li.open').addClass('fixedStyles');
+		if(jQuery('#fields-list-left').offset() !== undefined ){
+			if (jQuery(this).scrollTop() > jQuery('#fields-list-left').offset().top) {
+				jQuery('.fields-list > li.open').addClass('fixedStyles');
 
-		}else{
-			jQuery('.fields-list > li.open').removeClass('fixedStyles');
+			}else{
+				jQuery('.fields-list > li.open').removeClass('fixedStyles');
+			}
 		}
+
 	});
 	jQuery("#shortcode_toggle").toggle(function(){
 		jQuery('#post-body-heading').stop().animate({height:145},500,function(){
@@ -818,12 +820,7 @@ jQuery(document).ready(function () {
 		}
 		else {
 			var width=100/parseInt(jQuery(this).parents('.fields-options').find('.field-columns-count').val())+"%";
-			/*var isactive='disabled="disabled"'
-			 if(jQuery(this).parents('.fields-options').find('.fieldisactive').is(':checked')){
-			 isactive='';
-			 }
 
-			 alert(isactive);*/
 			var previewradio = jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-' + fieldID + '"]').find('.field-block input').last();
 			var radiocont = previewradio.parent().html().replace('checked="checked"', '');
 			var inputclass = "";
@@ -835,7 +832,6 @@ jQuery(document).ready(function () {
 				inputclass = "radio-block big";
 				previewradio.parent().parent().parent().after('<li style="width:' + width + ';"><label class="secondary-label"><div class="' + inputclass + '">' + radiocont + '</div><span class="sublable">' + value + '</span></label></li>');
 			}
-			//previewradio.parent().parent().parent().after('<li style="width:'+width+';"><label class="secondary-label"><div class="'+inputclass+'">'+radiocont+'</div>'+value+'</label></li>');
 		}
 
 
@@ -1169,21 +1165,38 @@ jQuery(document).ready(function () {
 		}
 
 	});
+    jQuery('#fields-list-block').on('keypress keyup change', 'input[type=color]', function(){
+        jQuery(this).siblings('input.color').val(jQuery(this).val());
+    });
+
+    jQuery('#fields-list-block').on('keypress keyup change', 'input.default-custom[type=radio]', function() {
+        if(jQuery(this).val()=='default'){
+            jQuery(this).siblings('input.custom-option').prop('disabled',true);
+        }
+        else{
+            jQuery(this).siblings('input.custom-option').prop('disabled',false);
+        }
+    });
+
+
+
+
 
 	jQuery('#fields-list-block').on('keypress keyup change', '.fieldisactive', function() {
-		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
-		var previewfieldtextarea = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] textarea');
-		var previewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block input');
-		if (jQuery(this).is(':checked')) {
-			previewfield.removeAttr("disabled");
-			previewfieldtextarea.removeAttr("disabled");
-		} else {
-			previewfield.attr("disabled", "disabled");
-			previewfieldtextarea.attr("disabled", "disabled");
-		}
+            var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
+            var previewfieldtextarea = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] textarea');
+            var previewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block input');
+            if (jQuery(this).is(':checked')) {
+                previewfield.removeAttr("disabled");
+                previewfieldtextarea.removeAttr("disabled");
+            } else {
+                previewfield.attr("disabled", "disabled");
+                previewfieldtextarea.attr("disabled", "disabled");
+            }
 	});
 
 	jQuery('#fields-list-block').on('keypress keyup change', '.placeholder', function() {
+		//debugger;
 		if (jQuery(this).parents('.fields-options').find('select#form_label_position').val() == 'formsInsideAlign') {
 			var toChange = jQuery(this).parents('.fields-options').find('input.placeholder').val();
 			jQuery(this).parents('.fields-options').find('input.label').attr('value', toChange);

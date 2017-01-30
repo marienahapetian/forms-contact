@@ -39,6 +39,7 @@ function hugeit_contact_show_published_contact_1($id){
   return hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_contact, $frontendformid,$style_values,$huge_it_gen_opt,$rowspar,$messageInArrayFront);
 }
 
+
 function hugeit_contact_is_single_column($rows) {
 	foreach ( $rows as $row ) {
 		if ($row->hc_left_right === 'right') {
@@ -48,3 +49,6 @@ function hugeit_contact_is_single_column($rows) {
 
 	return true;
 }
+
+
+

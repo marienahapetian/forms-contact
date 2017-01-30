@@ -1054,7 +1054,7 @@ function submitbutton(pressbutton){
 			</script>
 			<!--LIVE PREVIEW-->
 			<div id="hugeit-contact-preview-container">
-				<form onkeypress="doNothing()" id="hugeit-contact-preview-form">
+					<form onkeypress="doNothing()" id="hugeit-contact-preview-form">
 					<div id="hugeit-contact-wrapper" class="<?php echo $style_values['form_radio_size']; ?>-radio <?php echo $style_values['form_checkbox_size']; ?>-checkbox">
 					<div <?php foreach ($rowim as $key=>$rowimages){if($rowimages->hc_left_right == 'right'){echo 'class="multicolumn"';}} ?>>
 						<?php foreach($rowsld as $key=>$rowsldires) {if($id==$rowsldires->id) {echo "<h3><input class='text_area_title' type='text' maxlength='250' value='".$rowsldires->name."' /><span class='hugeItTitleOverlay'></span></h3>";}} ?>
@@ -1062,6 +1062,7 @@ function submitbutton(pressbutton){
 							<?php
 								$i=2;
 								foreach ($rowim as $key=>$rowimages){
+
 									if($rowimages->hc_left_right == 'left'){
 										$inputtype = $rowimages->conttype;
 										switch ($inputtype) {
@@ -1139,8 +1140,8 @@ function submitbutton(pressbutton){
 												<div class="hugeit-field-block simple-captcha-block <?php echo $hg_left_right_class;?>" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 													<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
 													<label  class="formsAboveAlign">
-														<img src="<?php echo plugin_dir_url(__FILE__);?>hugeit_contact_captcha.php?id=<?php echo $rowimages->id; ?>&l=<?php echo $rowimages->hc_other_field;?>">
-                                                        <span class="captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $rowimages->hc_other_field;?>" data-form-id="<?php echo $frontendformid; ?>">
+                                                        <img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'admin');?>">
+                                                        <span class="hugeit_captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $hc_other_field->digits;?>" data-form-id="<?php echo $frontendformid; ?>">
                                                             <img src="<?php echo plugin_dir_url(__FILE__);?>../images/refresh-icon.png" width="32px">
                                                         </span>
                                                     </label>
