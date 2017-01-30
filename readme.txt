@@ -3,8 +3,8 @@ Contributors: Huge-IT
 Donate link: http://huge-it.com/forms/
 Tags: forms, contact form, contact forms, forms plugin, contact form builder, wordpress contact form, contact us, form, form builder, form creation, form maker, forms builder,
 Requires at least: 3.0.1
-Tested up to: 4.7.1
-Stable tag: 1.4.2
+Tested up to: 4.7.2
+Stable tag: 1.4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,13 +25,13 @@ https://www.youtube.com/watch?v=FEALuSSsELw
 
 Huge -IT Forms is one of the most important element for the WordPress website because without Forms Builder you will not be able to keep in touch with your visitors, partners and customers, give an easy filling form for submissions, delivery form or other types of forms. Besides that, a good-looking form gives your site a professional appearance.
 
-* It is very important to use good quality and good design Form Builder plugin
-* Need a simple configured and best functioning form builder, then do not hesitate to choose this form plugin 
-* Huge-IT Form is what you are looking for, as it is simple to install and configurable via a simple configuration page
+* It is very important to use good quality and good design Form Builder plugin.
+* Need a simple configured and best functioning form builder, then do not hesitate to choose this form plugin.
+* Huge-IT Form is what you are looking for, as it is simple to install and configurable via a simple configuration page.
 
 ### What can you do with Huge-IT Forms Plugin
 
-* Plugin allows you to create many different forms and send the results to your email box
+* Plugin allows you to create many different forms and send the results to your email box.
 * Use the shortcode consists of a single line, you can insert a form to any page or post.
 * Unlike other Form Builder plugins, our Forms never asks any profile registration.
 * Let's see the examples of some form types that you may build.
@@ -377,6 +377,12 @@ If you think, that you found a bug in our [WordPress Forms](http://huge-it.com/f
 35.  [WordPress Form](https://wordpress.org/plugins/forms-contact/) - Form General Options
 
 == Changelog ==
+
+= 1.4.3 =
+
+* 1) Now users can edit the placeholder of simple captcha.
+* 2) Usrs can select default color of the simple captcha.
+
 
 = 1.4.2 =
 
