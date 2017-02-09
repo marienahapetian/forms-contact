@@ -14,20 +14,25 @@ function hugeit_contact_get_field_row($id){
 
 function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
 
-    if (!file_exists(wp_upload_dir()['basedir']."/hugeit_tmp")) {
-        mkdir(wp_upload_dir()['basedir']."/hugeit_tmp", 0777, true);
+    $upload_dir=wp_upload_dir();
+
+
+    if (!file_exists($upload_dir['basedir']."/hugeit_forms_tmp")) {
+        mkdir($upload_dir['basedir']."/hugeit_forms_tmp", 0777, true);
     }
 
-    $dir = wp_upload_dir()['basedir']."/hugeit_tmp";
+    $current_dir = getcwd(); // Save the current directory
+    $dir = $upload_dir['basedir']."/hugeit_forms_tmp/";
 
+    chdir($dir);
     /*** cycle through all files in the directory ***/
     foreach (glob($dir."*") as $file) {
-
         /*** if file is 1/2 hours (1800 seconds) old then delete it ***/
         if (filemtime($file) < time() - 1800) {
             unlink($file);
         }
     }
+    chdir($current_dir); // Restore the old working directory
 
 
 
@@ -94,14 +99,13 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
 
     $filename='captcha-'.$from.'-'.md5($captcha_id.$time).'.png';
 
-    imagepng($image,wp_upload_dir()['basedir']."/hugeit_tmp/".$filename);
+    imagepng($image,$dir.'/'.$filename);
 
     if($is_ajax_request){
-        wp_send_json(wp_upload_dir()['baseurl']."/hugeit_tmp/".$filename);
+        wp_send_json($upload_dir['baseurl']."/hugeit_forms_tmp/".$filename);
     }
 
-    return wp_upload_dir()['baseurl']."/hugeit_tmp/".$filename;
-
+    return $upload_dir['baseurl']."/hugeit_forms_tmp/".$filename;
 
 }
 

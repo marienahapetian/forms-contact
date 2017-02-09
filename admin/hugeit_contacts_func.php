@@ -358,11 +358,6 @@ function hugeit_contact_edit_hugeit_contact( $id ) {
 function hugeit_contact_add_hugeit_contact() {
 	global $wpdb;
 
-//	$query    = "SELECT name,ordering FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE hc_width=0 ORDER BY `ordering`";
-//	$ord_elem = $wpdb->get_results( $query ); ///////ordering elements list
-//	$cat_row  = $wpdb->get_results( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE hc_width=0" );
-//	$cat_row  = hugeit_contact_open_cat_in_tree( $cat_row );
-
 	$table_name = $wpdb->prefix . "huge_it_contact_contacts";
 	$wpdb->insert(
 		$table_name,

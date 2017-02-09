@@ -640,7 +640,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			<h4>Custom Text</h4>
 			<div class="fields-options">	
 				<div class="left tinymce_custom_text">
-					<?php	wp_editor($rowimages->name, "titleimage".$rowimages->id); ?>
+					<?php	wp_editor($rowimages->name, "hugeit_contact_titleimage".$rowimages->id); ?>
 				</div>
 				<div class="field-top-options-block">
 					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
@@ -769,7 +769,7 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 					<input type="radio" <?php if($rowimages->description == 'default') echo 'checked';?> name="im_description<?php echo $rowimages->id; ?>" value="default" class="default-custom">Default
 					<input type="radio" <?php if($rowimages->description == 'custom') echo 'checked';?> name="im_description<?php echo $rowimages->id; ?>" value="custom" class="default-custom">Custom
 
-					<input <?php if($rowimages->description == 'default') echo 'disabled';?> class='custom-option color' type="text" style="margin-top:10px;   max-width: 150px; width:100%;" value="<?php echo ($hc_other_field->color)?$hc_other_field->color:'#000000';?>" name="hc_other_field<?php echo $rowimages->id; ?>[color]">
+					<input <?php if($rowimages->description == 'default') echo 'disabled';?> class='custom-option color' type="text" style="margin-top:10px;   max-width: 150px; width:100%;" value="<?php echo ($hc_other_field->color)?$hc_other_field->color:'FF601C';?>" name="hc_other_field<?php echo $rowimages->id; ?>[color]">
 
 				</label>
 
@@ -1778,7 +1778,7 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 							'description' => 'default',
 							'conttype' => $inputtype,
 							'hc_field_label' => 'Simple Captcha',
-							'hc_other_field' => '{"digits":"5","color":"#000000"}',
+							'hc_other_field' => '{"digits":"5","color":"FF601C"}',
 							'field_type' => 'simple_captcha_box',
 							'hc_required' => '',
 							'ordering' => 0,
