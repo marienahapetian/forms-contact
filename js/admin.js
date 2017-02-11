@@ -59,6 +59,7 @@ jQuery(document).ready(function () {
 			});
 		}
 	});
+
 	// Delete or Mark as Spam
 	jQuery('#hugeit_submission_page #hugeit_top_controls .controls-list li').click(function(e){
 		var command = jQuery(this).attr("class");                 // VALUES CAN BE SPAM OR TRASH
@@ -1566,7 +1567,7 @@ jQuery(function() {
 			jQuery('#fields-list-left').html(leftelement);
 			jQuery('#fields-list-right').html(rightelement);
 
-			i = 0;
+			var i = 0;
 			jQuery("#fields-list-right > li").each(function() {
 				jQuery(this).find('.ordering').val(i);
 				i++;
@@ -1580,7 +1581,8 @@ jQuery(function() {
 					jQuery(this).find('button.switch-html').click();
 				}
 			});
-			i = 0;
+
+			var i = 0;
 			jQuery("#fields-list-left > li").each(function() {
 				jQuery(this).find('.ordering').val(i);
 				i++;
@@ -1594,16 +1596,19 @@ jQuery(function() {
 					jQuery(this).find('button.switch-html').click();
 				}
 			});
-			i = 0;
+
+			var j = 0;
 			jQuery(".hugeit-contact-block-left > div.hugeit-field-block").each(function() {
-				jQuery(this).find('input.ordering').val(i);
-				i++;
+				jQuery(this).find('input.ordering').val(j);
+				j++;
 			});
-			i = 0;
+
+			var k = 0;
 			jQuery(".hugeit-contact-block-right > div.hugeit-field-block").each(function() {
-				jQuery(this).find('input.ordering').val(i);
-				i++;
+				jQuery(this).find('input.ordering').val(k);
+				k++;
 			});
+
 			if (jQuery("#hugeit-contact-wrapper  div.hugeit-contact-block-right>div").length > 0) {
 				if (jQuery("#hugeit-contact-wrapper  div.hugeit-contact-block-right>div").length == 1 && checkAnimate == false) {
 					jQuery("#hugeit-contact-wrapper  div.hugeit-contact-block-left").animate({'width': "47%"}, 500);

@@ -227,6 +227,7 @@ jQuery(document).ready(function(e) {
 							}
 							readyDef.css('display', 'none');
 						}
+						jscolor.init();
 					}
 				});
 			}

@@ -8,6 +8,9 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 .simple-captcha-block input[type='text']{
 	max-width: 300px;
 }
+.simple-captcha-block label {
+	max-width: 100%;
+}
 .text-right{
 	text-align: right;
 }
@@ -111,6 +114,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block input[type="number"] {
 	width:100%;
 	line-height: initial !important;
+	font-size: inherit;
 }
 
 #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block ul {

@@ -147,7 +147,7 @@ function hugeit_contact_html_show_settings($param_values) {
 									return $initArray;
 								}
 								add_filter('tiny_mce_before_init', 'hugeit_contact_wptiny' );
-								wp_editor(html_entity_decode($param_values['form_adminstrator_message']), "adminmessage");;
+								wp_editor(html_entity_decode($param_values['form_adminstrator_message']), "hugeit_contact_adminmessage");;
 								?>
 								<div class="clear"></div>
 							</div>
@@ -167,7 +167,7 @@ function hugeit_contact_html_show_settings($param_values) {
 							</div>
 							<div class="autoheight">
 								<label for="form_user_message">Message</label>
-								<?php wp_editor(html_entity_decode(stripslashes($param_values['form_user_message'])), "usermessage"); ?>
+								<?php wp_editor(html_entity_decode(stripslashes($param_values['form_user_message'])), "hugeit_contact_usermessage"); ?>
 							</div>
 						</div>
 					</div>

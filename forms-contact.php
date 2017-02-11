@@ -60,7 +60,7 @@ function hugeit_contact_frontend_scripts_and_styles($id) {
 	foreach ($rowim as $key=>$rowimages) {
 		if ( $rowimages->conttype == 'captcha' ) {
 			$recaptcha = 'https://www.google.com/recaptcha/api.js?onload=hugeit_forms_onloadCallback&render=explicit';
-			wp_enqueue_script( 'recaptcha', $recaptcha, array( 'jquery' ), '1.0.0', true );
+			wp_enqueue_script( 'hugeit_contact_recaptcha', $recaptcha, array( 'jquery' ), '1.0.0', true );
 		}
 	}
 	wp_enqueue_script( "hugeit_forms_front_end_js", plugins_url( "js/recaptcha_front.js", __FILE__ ), false );
@@ -272,8 +272,11 @@ function hugeit_contact_admin_captcha() {
 function hugeit_contact_less_options() {
 	wp_enqueue_media();
 	wp_enqueue_script('jquery');
-	wp_enqueue_script('jquery-ui-core');
+	//wp_enqueue_script('jquery-ui-core');
 	wp_enqueue_script('jquery-ui-sortable');
+
+
+	wp_enqueue_script("jquery_ui_new2", "//code.jquery.com/ui/1.10.4/jquery-ui.js", FALSE);
 	wp_enqueue_style( "jquery_ui_new", plugins_url( "style/jquery-ui.css", __FILE__ ), false );
 	wp_enqueue_style( "hugeit_contact_hugeicons", plugins_url( "style/iconfonts/css/hugeicons.css", __FILE__ ), false );
 	add_action( 'admin_footer', 'hugeit_contact_admin_captcha' );
@@ -1305,6 +1308,30 @@ query1;
 	}
 	if ( ! $wpdb->get_var( "select count(*) from " . $wpdb->prefix . "huge_it_contact_contacts" ) ) {
 		$wpdb->query( $sql_3 );
+	}
+
+
+	/* change submission_date column type if required */
+	$type=$wpdb->get_var("SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS 
+  WHERE table_name = '" . $wpdb->prefix . "huge_it_contact_submission' AND COLUMN_NAME = 'submission_date'");
+
+	if($type=='text'){
+		$submissions=$wpdb->get_results("SELECT id,submission_date FROM " . $wpdb->prefix . "huge_it_contact_submission ");
+
+		/* change submission_date column type from text to datetime */
+		$column_type_changed=$wpdb->query("ALTER TABLE ".$wpdb->prefix."huge_it_contact_submission MODIFY submission_date datetime");
+
+		/* change submission_date column type from text to datetime */
+		if($column_type_changed){
+			foreach($submissions as $key=>$submission){
+				$submission_date=date('Y-m-d H:i:s',strtotime($submission->submission_date));
+				$id=$submission->id;
+				$wpdb->query("UPDATE ".$wpdb->prefix."huge_it_contact_submission
+            SET submission_date ='".$submission_date."'
+            WHERE id = ".$id." ");
+			}
+		}
+
 	}
 }
 

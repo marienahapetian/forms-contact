@@ -57,7 +57,7 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 
 					add_filter( 'tiny_mce_before_init', 'hugeit_contact_wptiny2' );
 					$settings = array( 'media_buttons' => false );
-					wp_editor( '', "subscriber_message", $settings );
+					wp_editor( '', "hugeit_contact_subscriber_message", $settings );
 					?>
 					<div id="showCont">
 						<?php if($mailerParams['mailing_progress']=='finish'):?>
