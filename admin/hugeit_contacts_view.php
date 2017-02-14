@@ -1273,70 +1273,7 @@ function submitbutton(pressbutton){
 				</div>
 				<div class="hugeit_contact_custom_settings_dropdown_content -hidden">
 					<div class="hugeit_contact_custom_settings_outer_wrapper">
-						<div style="width:48%">
-							<p>
-								<label for="hugeit_contact_receivers_group">Send Email To:</label>
-								<select disabled="disabled" id="hugeit_contact_receivers_group" name="hugeit_contact_receivers_group">
-									<option value="default" <?php if ( get_option( 'hugeit_contact_receivers_group_' . $id ) === 'default' ) echo ' selected'; ?>>Default Receivers</option>
-									<option value="both" <?php if ( get_option( 'hugeit_contact_receivers_group_' . $id ) === 'both' ) echo ' selected'; ?>>Default &amp; Custom Receivers</option>
-									<option value="custom" <?php if ( get_option( 'hugeit_contact_receivers_group_' . $id ) === 'custom' ) echo ' selected'; ?>>Custom Recievers</option>
-								</select>
-							</p>
-							<p>
-								<label for="hugeit_contact_form_custom_admin_receivers">Admin Custom Receivers:</label>
-								<input
-									disabled="disabled"
-									type="text"
-									id="hugeit_contact_form_custom_admin_receivers"
-									name="hugeit_contact_form_custom_admin_receivers"
-									placeholder="Use comma-separated email addresses"
-									value="<?php $custom_receivers = get_option( 'hugeit_contact_form_custom_admin_receivers_' . $id ); if ( $custom_receivers ) echo $custom_receivers; ?>"/>
-								<dfn class="huge_it_forms_mess_subject_help_box" data-info="Add multiple emails separating them with commas.">?</dfn>
-							</p>
-						</div>
-						<div class="hugeit_contact_custom_settings_inner_wrapper leftblock">
-							<div>
-								<p>
-									<input disabled="disabled" class="primary-check" type="checkbox" id="enable_custom_text_for_admin_email"
-										   name="enable_custom_text_for_admin_email"
-										   value="1" <?php if ( get_option( 'hugeit_contact_form_custom_text_for_admin_enabled_' . $id ) ) echo ' checked' ?> />
-									<label class="primary-label" for="enable_custom_text_for_admin_email">Custom settings for admin</label>
-								</p>
-							</div>
-							<h3>Email To Admin</h3>
-							<div>
-								<p>
-									<label class="small-label" for="hugeit_contact_form_admin_subject">Admin Subject:</label>
-									<input disabled="disabled" type="text" id="hugeit_contact_form_admin_subject"
-										   name="hugeit_contact_form_admin_subject"
-										   value="<?php echo $hugeit_contact_form_admin_subject; ?>"/>
-								</p>
-							</div>
-							<div class="autoheight">
-								<?php
-								wp_editor( get_option( 'hugeit_contact_form_admin_message_' . $id ), "hugeit_contact_admin_message", array( 'media_buttons' => false ) );
-								?>
-							</div>
-						</div>
-						<div class="hugeit_contact_custom_settings_inner_wrapper">
-							<p>
-								<input disabled="disabled" class="primary-check" type="checkbox" id="enable_custom_text_for_user_email"
-									   name="enable_custom_text_for_user_email"
-									   value="1" <?php if ( get_option( 'hugeit_contact_form_custom_text_for_user_enabled_' . $id ) ) echo ' checked' ?> />
-								<label class="primary-label" for="enable_custom_text_for_user_email">Custom settings for user</label>
-							</p>
-							<h3>Email To User</h3>
-							<p>
-								<label class="small-label" for="hugeit_contact_form_user_subject">User Subject:</label>
-								<input disabled="disabled" type="text" id="hugeit_contact_form_user_subject" name="hugeit_contact_form_user_subject"
-									   value="<?php echo $hugeit_contact_form_user_subject; ?>"/>
-							</p>
-							<div class="autoheight">
-								<?php
-								wp_editor( get_option( 'hugeit_contact_form_user_message_' . $id ), "hugeit_contact_user_message", array( 'media_buttons' => false ) );
-								?>
-							</div>
-						</div>
+						<img src="<?php echo plugins_url('../images/hugeit_contact_pro_advanced_options.png',__FILE__);?>" width="100%">
 					</div>
 				</div>
 			</div>

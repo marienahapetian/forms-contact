@@ -322,18 +322,14 @@ function hugeit_contact_contact_form_validation_callback(){
 				$adminSub.='</table>';
 
 				foreach ($emailArray as  $emailSingle) {
-					$subscribers=$wpdb->get_results("SELECT `subscriber_email` FROM ".$wpdb->prefix ."huge_it_contact_subscribers WHERE subscriber_form_id=".$email_form_id,ARRAY_A);
-					$insert=1;
-					foreach ($subscribers as $subscriber) {
-						if($subscriber['subscriber_email']==$emailSingle){
-							$insert=0;
-						}
-					}
-					if($insert){
-						$table_name = $wpdb->prefix . "huge_it_contact_subscribers";
-						$email_insert = "INSERT INTO `" . $table_name . "` (`subscriber_form_id`,`subscriber_email`) VALUES (".$email_form_id.",'".$emailSingle."')";
-						$wpdb->query($email_insert);
-					}
+                    $subscriber_exists = $wpdb->get_var( "SELECT count(subscriber_id) FROM " . $wpdb->prefix . "huge_it_contact_subscribers WHERE subscriber_form_id={$email_form_id} AND subscriber_email='".$emailSingle."' ", ARRAY_A );
+
+
+                    if (!$subscriber_exists ) {
+                        $table_name   = $wpdb->prefix . "huge_it_contact_subscribers";
+                        $email_insert = " INSERT INTO `" . $table_name . "` (`subscriber_form_id`,`subscriber_email`) VALUES (" . $email_form_id . ",'" . $emailSingle . "')";
+                        $wpdb->query( $email_insert );
+                    }
 
                     // Send Email to the user
 					if($huge_it_gen_opt_assoc['form_send_to_email_user']=='on'){
