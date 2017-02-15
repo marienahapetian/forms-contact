@@ -162,6 +162,8 @@ jQuery(document).ready(function(e) {
 								jQuery("#fields-list-right > li").eq(i).addClass("has-background");
 							}
 							readyDef.css('display', 'none');
+
+							location.reload();
 						} else if (response.buttons) {
 							if (jQuery('#fields-list-block #fields-list-right li').length == 0) {
 								jQuery('#fields-list-block #fields-list-left').append(response.outputFieldSettings);

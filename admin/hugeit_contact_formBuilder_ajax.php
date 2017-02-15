@@ -754,7 +754,7 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 					<input type="number" min="3" max="7" name="hc_other_field<?php echo $rowimages->id; ?>[digits]" value="<?php echo ($hc_other_field->digits)?$hc_other_field->digits:5;?>">
 				</label>
 				<label class="input-block">Simple Captcha Position
-					<select id="form_label_position" class="captcha_position simple_captcha_position" name="hc_input_show_default<?php echo $rowimages->id; ?>">
+					<select id="form_label_position" class="simple_captcha_position" name="hc_input_show_default<?php echo $rowimages->id; ?>">
 						<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' ){ echo 'selected="selected"'; } ?> value="formsLeftAlign">Left Align</option>
 						<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign">Right Align</option>
 					</select>
