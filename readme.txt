@@ -1,12 +1,12 @@
 === Forms ===
 Contributors: Huge-IT
-Donate link: http://huge-it.com/forms/
+Donate link: https://huge-it.com/forms/
 Tags: forms, contact form, contact forms, forms plugin, contact form builder, wordpress contact form, contact us, form, form builder, form creation, form maker, forms builder,
 Requires at least: 3.0.1
 Tested up to: 4.7.2
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Form builder are one of the most important elements of your website. If you need a simple configured and best functioning forms.
 
@@ -14,11 +14,12 @@ Form builder are one of the most important elements of your website. If you need
 
 ### Wordpress Forms
 
-* [Wordpress Forms](http://huge-it.com/forms/)
-* [Forms Demo](http://huge-it.com/wordpress-forms-demo-1-delivery-form/)
-* [Forms FAQ](http://huge-it.com/wordpress-forms-faq/)
-* [Forms User Manual](http://huge-it.com/wordpress-forms-user-manual/)
-* [Forms Support](http://huge-it.com/contact-us/)
+* [Wordpress Forms](https://huge-it.com/forms/)
+* [Forms Demo](https://huge-it.com/wordpress-forms-demo-1-delivery-form/)
+* [Forms FAQ](https://huge-it.com/wordpress-forms-faq/)
+* [Forms User Manual](https://huge-it.com/wordpress-forms-user-manual/)
+* [Forms Support](https://huge-it.com/contact-us/)
+* [Forms Forum](https://huge-it.com/forums/forum/wordpress/wordpress-forms/)
 * [Forms GitHub Project](https://github.com/Huge-IT/forms-contact)
 
 https://www.youtube.com/watch?v=FEALuSSsELw
@@ -104,6 +105,7 @@ Main features of Huge-IT Forms are the following
 * User submission field of the Form Builder provides
   the ID of the submitter, user browser, user country,the submission date, form submitters IP address and the all form fields
 * With the Form your website becomes more professional and attractive
+* Front-End Submissions allow to add submissions on front end in 2 beautiful views.
 
 Here is the list of most important features, that you may find in our Forms plugin
 
@@ -141,51 +143,55 @@ Important feature for all websites responsiveness. You may beautifully watch you
 
 Using widgets and Shortcode easy insert your form in a page/post or integrate as widget.
 
-**[Wordpress Forms demo 1 Delivery Form](http://huge-it.com/wordpress-forms-demo-1-delivery-form/#plugin_demo_wrapper)**
+### Front-End Submissions
+
+Forms plugin for WordPress allows users to showcase front end submissions on a website in 2 beautiful views. You will be able to demonstrate submitted data with all details in responsive spreadsheet.
+
+**[Wordpress Forms demo 1 Delivery Form](https://huge-it.com/wordpress-forms-demo-1-delivery-form/#plugin_demo_wrapper)**
 
 It was always hard to get correct address and all information from the client when he tried to order a delivery of some goods by telephone, so make it easy creating Delivery Form, and put it in your website. It will take a few minutes to create and will easy your work more than 10 times.
 
-**[Wordpress Forms demo 2 Contact US Form](http://huge-it.com/wordpress-forms-demo-2-contact-us-form/#plugin_demo_wrapper)**
+**[Wordpress Forms demo 2 Contact US Form](https://huge-it.com/wordpress-forms-demo-2-contact-us-form/#plugin_demo_wrapper)**
 
 Each website should have Contact US page, where includes a neat contact form to get in touch with site visitors. We offer most continent way to create Contact Forma with most beautiful theme designed for you. Availability and simplicity will help your customers/visitors easy and communicate with you and enjoy doing it
 
-**[Wordpress Forms Demo 3 Reservation Form](http://huge-it.com/wordpress-forms-demo-3-reservation-form/#plugin_demo_wrapper)**
+**[Wordpress Forms Demo 3 Reservation Form](https://huge-it.com/wordpress-forms-demo-3-reservation-form/#plugin_demo_wrapper)**
 
 Have a restaurant, cafe, medical center, what ever where you submit appointments or reservations? Create Reservation Form. It includes all necessary fields that will make your clients happy to always make reservation at your place. Choose custom design ad here you go.
 
-**[Wordpress Forms Demo 4 Website Visitors](http://huge-it.com/wordpress-forms-demo-4-website-visitor-profile/#plugin_demo_wrapper)**
+**[Wordpress Forms Demo 4 Website Visitors](https://huge-it.com/wordpress-forms-demo-4-website-visitor-profile/#plugin_demo_wrapper)**
 
 You may have a million of visitors and our form will help you get information about their opinion of your website, of your activity, and this way you may collect statistic information that will help you to improve your business. Take a look at the example of Website Visitor Profile Form. Isn't it wonderful?
 
-**[Wordpress Forms Demo 5 Employment Application](http://huge-it.com/wordpress-forms-demo-5-employment-application/#plugin_demo_wrapper)**
+**[Wordpress Forms Demo 5 Employment Application](https://huge-it.com/wordpress-forms-demo-5-employment-application/#plugin_demo_wrapper)**
 
 Why not to make employment process affordable, quality and convenient for applicants? Use Huge-IT Forms and put this type of form in your website. Professional way to employee people will attract them better than ever.
 
-**[Wordpress Forms Demo 6 Order a T-Shirt](http://huge-it.com/wordpress-forms-demo-6-order-a-t-shirt/#plugin_demo_wrapper)**
+**[Wordpress Forms Demo 6 Order a T-Shirt](https://huge-it.com/wordpress-forms-demo-6-order-a-t-shirt/#plugin_demo_wrapper)**
 
 One day you decided to order a T-Shirt, or let it be something else. You will enjoy doing it with this form. Create a wonderful form for ordering some goods. In our example it's order a T-Shirt. See how convenient it is.
 
 > #### Forms Demos 
 >
->[Delivery Form](http://huge-it.com/wordpress-forms-demo-1-delivery-form/#plugin_demo_wrapper)
+>[Delivery Form](https://huge-it.com/wordpress-forms-demo-1-delivery-form/#plugin_demo_wrapper)
 >
->[Contact US Form](http://huge-it.com/wordpress-forms-demo-2-contact-us-form/#plugin_demo_wrapper/)
+>[Contact US Form](https://huge-it.com/wordpress-forms-demo-2-contact-us-form/#plugin_demo_wrapper/)
 >
->[Reservation Form](http://huge-it.com/wordpress-forms-demo-3-reservation-form/#plugin_demo_wrapper)
+>[Reservation Form](https://huge-it.com/wordpress-forms-demo-3-reservation-form/#plugin_demo_wrapper)
 >
->[Website Visitor Profile](http://huge-it.com/wordpress-forms-demo-4-website-visitor-profile/#plugin_demo_wrapper)
+>[Website Visitor Profile](https://huge-it.com/wordpress-forms-demo-4-website-visitor-profile/#plugin_demo_wrapper)
 >
->[Employment Application](http://huge-it.com/wordpress-forms-demo-5-employment-application/#plugin_demo_wrapper)
+>[Employment Application](https://huge-it.com/wordpress-forms-demo-5-employment-application/#plugin_demo_wrapper)
 >
->[Trivia Quiz](http://huge-it.com/wordpress-forms-demo-6-trivia-quiz/#plugin_demo_wrapper)
+>[Trivia Quiz](https://huge-it.com/wordpress-forms-demo-6-trivia-quiz/#plugin_demo_wrapper)
 
 > #### FAQ & User Manual
 >
->[FAQ](http://huge-it.com/wordpress-forms-faq/)
+>[FAQ](https://huge-it.com/wordpress-forms-faq/)
 >
->[User Manual](http://huge-it.com/wordpress-forms-user-manual/)
+>[User Manual](https://huge-it.com/wordpress-forms-user-manual/)
 
-If you think, that you found a bug in our [WordPress Forms](http://huge-it.com/forms/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com)
+If you think, that you found a bug in our [WordPress Forms](https://huge-it.com/forms/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com)
 
 == Installation ==
 
@@ -219,7 +225,7 @@ If you think, that you found a bug in our [WordPress Forms](http://huge-it.com/f
 
 Now you can set your Forms options, use our Forms.
 
-If you think, that you found a bug in our [WordPress Forms](http://huge-it.com/forms/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com)
+If you think, that you found a bug in our [WordPress Forms](https://huge-it.com/forms/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com)
 
 == Frequently asked questions ==
 
@@ -360,16 +366,16 @@ For other help contact info@huge-it.com
 *  In general options of form builder plugin if you leave the message subject field blank, the email subject will take the name of the submitted form. Alternatively you can set your prefered message title to all submission.
 
 
-If you think, that you found a bug in our [WordPress Forms](http://huge-it.com/forms/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com)
+If you think, that you found a bug in our [WordPress Forms](https://huge-it.com/forms/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com)
 
 == Screenshots ==
 
-1.  [WordPress Form](http://huge-it.com/wordpress-forms-demo-1-delivery-form/#plugin_demo_wrapper) - Delivery Form
-2.  [WordPress Form](http://huge-it.com/wordpress-forms-demo-2-contact-us-form/#plugin_demo_wrapper) - Contact US Form
-22.  [WordPress Form](http://huge-it.com/wordpress-forms-demo-3-reservation-form/#plugin_demo_wrapper) - Reservation Form
-23.  [WordPress Form](http://huge-it.com/wordpress-forms-demo-4-website-visitor-profile/#plugin_demo_wrapper) - Website Visitor Profile
-24.  [WordPress Form](http://huge-it.com/wordpress-forms-demo-5-employment-application/#plugin_demo_wrapper) - Employment Application
-25.  [WordPress Form](http://huge-it.com/wordpress-forms-demo-6-order-a-t-shirt/#plugin_demo_wrapper) - Order a T-Shirt
+1.  [WordPress Form](https://huge-it.com/wordpress-forms-demo-1-delivery-form/#plugin_demo_wrapper) - Delivery Form
+2.  [WordPress Form](https://huge-it.com/wordpress-forms-demo-2-contact-us-form/#plugin_demo_wrapper) - Contact US Form
+22.  [WordPress Form](https://huge-it.com/wordpress-forms-demo-3-reservation-form/#plugin_demo_wrapper) - Reservation Form
+23.  [WordPress Form](https://huge-it.com/wordpress-forms-demo-4-website-visitor-profile/#plugin_demo_wrapper) - Website Visitor Profile
+24.  [WordPress Form](https://huge-it.com/wordpress-forms-demo-5-employment-application/#plugin_demo_wrapper) - Employment Application
+25.  [WordPress Form](https://huge-it.com/wordpress-forms-demo-6-order-a-t-shirt/#plugin_demo_wrapper) - Order a T-Shirt
 3.  [WordPress Form](https://wordpress.org/plugins/forms-contact/) - Form Admin
 32.  [WordPress Form](https://wordpress.org/plugins/forms-contact/) - Form Admin
 33.  [WordPress Form](https://wordpress.org/plugins/forms-contact/) - Form All Submissions
@@ -378,11 +384,25 @@ If you think, that you found a bug in our [WordPress Forms](http://huge-it.com/f
 
 == Changelog ==
 
+= 1.4.4 =
+
+* 1) We have added front-end submissions in 2 new views horizontal and vertical 
+* 2) Changed the back-end submissions desing to apear more UX/UX friendly 
+* 3) Added prefixes in general ptions (WP-editors)
+* 4) Fixed reported error in CAPTCHA
+* 5) Fixed unlined function of CAPTCHA error when paged is refreshed 
+* 6) Fixed the issue with default date picker of current date (Pro)
+* 7) We have made code optimization
+* 8) Deleted the Pro codes form the Free version that were stored in the save form
+* 9) Took off additional php and HTML in order to make plugin work faster 
+* 10) Fixed the recet button show/hide option 
+* 11) Optimized the javascript query when the form didn't update the forms when the plugin had more than 100 requests
+* 12) Optimized the query structure
+
 = 1.4.3 =
 
 * 1) Now users can edit the placeholder of simple captcha.
 * 2) Usrs can select default color of the simple captcha.
-
 
 = 1.4.2 =
 
@@ -859,4 +879,4 @@ This form builder option includes address, phone,  data, name, policy and agreem
 * Type your text here. Write newsletter text here.
 * Emails Table. From this section you may manage the emails for newsletter, delete, add new and follow the progress of sending.
 
-If you think, that you found a bug in our [WordPress Form](http://huge-it.com/forms/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com)
+If you think, that you found a bug in our [WordPress Form](https://huge-it.com/forms/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com)
