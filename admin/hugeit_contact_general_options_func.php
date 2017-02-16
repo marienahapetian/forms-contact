@@ -45,8 +45,8 @@ function hugeit_contact_save_styles_options(){
             }
         }
 
-        $adminMessage = sanitize_text_field(htmlspecialchars(stripslashes($_POST['adminmessage'])));
-        $userMessage = sanitize_text_field(htmlspecialchars(stripslashes($_POST['usermessage'])));
+        $adminMessage = sanitize_text_field(htmlspecialchars(stripslashes($_POST['hugeit_contact_adminmessage'])));
+        $userMessage = sanitize_text_field(htmlspecialchars(stripslashes($_POST['hugeit_contact_usermessage'])));
         $images='';
         $pattern='/(<img.*?>)/';
         preg_match_all($pattern, $userMessage, $images);

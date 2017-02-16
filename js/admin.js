@@ -812,10 +812,7 @@ jQuery(document).ready(function () {
 		var value=jQuery(this).parent().find('.add-new-name').val();
 
 
-
-
 		if(jQuery(this).parents(".field-multiple-option-list").hasClass('selectbox')){
-			if(value==""){return false;}
 			var previewselect=jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] select');
 			previewselect.append('<option>'+value+'</options>');
 		}

@@ -162,6 +162,8 @@ jQuery(document).ready(function(e) {
 								jQuery("#fields-list-right > li").eq(i).addClass("has-background");
 							}
 							readyDef.css('display', 'none');
+
+							location.reload();
 						} else if (response.buttons) {
 							if (jQuery('#fields-list-block #fields-list-right li').length == 0) {
 								jQuery('#fields-list-block #fields-list-left').append(response.outputFieldSettings);
@@ -390,6 +392,45 @@ jQuery(document).ready(function(e) {
 		var formId = jQuery("#add-fields-block").find('li.spinnerLi').attr('data-idForm');
 		var form = jQuery('#adminForm');
 		var spinner = jQuery(this).parent().find('.saveSpinnerWrapper>img');
+
+		var formData = {};
+		var captcha_digits=5;
+		var captcha_color="FF601C";
+		jQuery(form).find("input[name],select[name],textarea[name]").each(function (index, node) {
+			if(jQuery(this).is(':checkbox') ){
+				if(!jQuery(this).is(':checked') ){
+					formData[node.name] = '';
+				}
+				else{
+					formData[node.name] = node.value;
+				}
+			}
+			else if(jQuery(this).is(':radio')){
+				if(jQuery(this).is(':checked') ) {
+					formData[node.name] = node.value;
+				}
+			}
+			else{
+				var nodename=node.name;
+
+				if(nodename.indexOf('[color]')>0 ){
+					nodename=nodename.replace('[color]','');
+					captcha_color=node.value;
+
+					formData[nodename]={'digits':captcha_digits,'color':captcha_color};
+				}
+				else if(nodename.indexOf('[digits]')>0 ){
+					nodename=nodename.replace('[digits]','');
+					captcha_digits=node.value;
+					formData[nodename]={'digits':captcha_digits,'color':captcha_color};
+				}
+				else{
+					formData[node.name] = node.value;
+				}
+			}
+
+		});
+
 		jQuery.ajax({
 			type: "POST",
 			url: ajaxurl,
@@ -398,7 +439,7 @@ jQuery(document).ready(function(e) {
 				task: 'saveEntireForm',
 				formId: formId,
 				nonce: huge_it_obj.nonce,
-				formData: form.serialize()
+				formData: formData
 			},
 			beforeSend: function() {
 				spinner.css('display', 'block');
@@ -411,13 +452,16 @@ jQuery(document).ready(function(e) {
 			}
 		});
 	});
-	///SAVE FORM END///
-	///CHANGE THEME START///
+	/* SAVE FORM END */
+
+	/* CHANGE THEME START */
 	jQuery('#save-button-block').on('change', 'select#select_form_theme', function(event) {
 		var themeId = jQuery(this).val();
 		var formId = jQuery("#add-fields-block").find('li.spinnerLi').attr('data-idForm');
 		var form = jQuery('#adminForm');
 		var spinner = jQuery(this).parent().find('img.themeSpinner');
+
+
 		jQuery.ajax({
 			type: "POST",
 			url: ajaxurl,
