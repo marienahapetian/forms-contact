@@ -624,7 +624,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	//7 Custom Text //
 	function hugeit_contact_cutomtextHtml($rowimages) { ob_start(); ?>
 		<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-			<div class="custom_text_content"><?php echo wp_kses($rowimages->name); ?></div>
+			<div class="custom_text_content"><?php echo wp_kses_post($rowimages->name); ?></div>
 			<span class="hugeOverlay"></span>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>">
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" />
