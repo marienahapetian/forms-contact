@@ -12,43 +12,43 @@
             full version of the plugin is available in 3 different packages of one-time payment.','hugeit_contact'); ?>
     </p>
     <br><br><br>
-    <a  target="_blank" href="http://huge-it.com/forms/" class="button-primary" target="_blank"><?php _e('Purchase a License', 'hugeit_contact' ); ?></a>
+    <a  target="_blank" href="https://goo.gl/ycVtso" class="button-primary" target="_blank"><?php _e('Purchase a License', 'hugeit_contact' ); ?></a>
 </div>
 <div class="forms">
     <div class="forms-block">
         <div class="licens">
-            <a href="http://huge-it.com/forms/" target="_blank">
+            <a href="https://goo.gl/ycVtso" target="_blank">
                 <span class="icon multiple"></span>
                 <span class="text"><?php _e('Multiple Email For Recipients', 'hugeit_contact'); ?></span>
             </a>
         </div>
         <div class="licens">
-            <a href="http://huge-it.com/forms/" target="_blank">
+            <a href="https://goo.gl/ycVtso" target="_blank">
                 <span class="icon newsletters"></span>
                 <span class="text"><?php _e('Email Newsletters', 'hugeit_contact'); ?></span>
             </a>
         </div>
         <div class="licens">
-            <a href="http://huge-it.com/forms/" target="_blank">
+            <a href="https://goo.gl/ycVtso" target="_blank">
                 <span class="icon themes"></span>
                 <span class="text"><?php _e('Themes Customization', 'hugeit_contact'); ?></span>
             </a>
         </div>
         <div class="licens">
-            <a href="http://huge-it.com/forms/" target="_blank">
+            <a href="https://goo.gl/ycVtso" target="_blank">
                 <span class="icon advanced"></span>
                 <span class="text"><?php _e('Advanced Design', 'hugeit_contact'); ?></span>
             </a>
         </div>
 
         <div class="licens">
-            <a href="http://huge-it.com/forms/" target="_blank">
+            <a href="https://goo.gl/ycVtso" target="_blank">
                 <span class="icon ready"></span>
                 <span class="text"><?php _e('Ready-To-Go Fields', 'hugeit_contact'); ?></span>
             </a>
         </div>
         <div class="licens">
-            <a href="http://huge-it.com/forms/" target="_blank">
+            <a href="https://goo.gl/ycVtso" target="_blank">
                 <span class="icon layout"></span>
                 <span class="text"><?php _e('Layout Customization', 'hugeit_contact'); ?></span>
             </a>

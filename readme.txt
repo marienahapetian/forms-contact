@@ -4,7 +4,7 @@ Donate link: https://huge-it.com/forms/
 Tags: forms, contact form, contact forms, forms plugin, contact form builder, wordpress contact form, contact us, form, form builder, form creation, form maker, forms builder,
 Requires at least: 3.0.1
 Tested up to: 4.7.2
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -383,6 +383,10 @@ If you think, that you found a bug in our [WordPress Forms](https://huge-it.com/
 35.  [WordPress Form](https://wordpress.org/plugins/forms-contact/) - Form General Options
 
 == Changelog ==
+
+= 1.4.5 =
+
+* We have fixed the issue with custom date when user addes additional symols for the first time.
 
 = 1.4.4 =
 
