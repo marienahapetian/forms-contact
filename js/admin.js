@@ -1194,7 +1194,6 @@ jQuery(document).ready(function () {
 	});
 
 	jQuery('#fields-list-block').on('keypress keyup change', '.placeholder', function() {
-		//debugger;
 		if (jQuery(this).parents('.fields-options').find('select#form_label_position').val() == 'formsInsideAlign') {
 			var toChange = jQuery(this).parents('.fields-options').find('input.placeholder').val();
 			jQuery(this).parents('.fields-options').find('input.label').attr('value', toChange);
@@ -1230,7 +1229,6 @@ jQuery(document).ready(function () {
 	});
 
 	jQuery('#fields-list-block').on('change keyup', '.textarea-size', function() {
-
 		var value = jQuery(this).val();
 		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
 		var textarea = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] textarea');
@@ -1298,6 +1296,7 @@ jQuery(document).ready(function () {
 		}
 	});
 	jQuery('#fields-list-block').on('change', 'select[id="form_checkbox_size"]', function() {
+
 		if (jQuery(this).val() != 'go_to_url') {
 			jQuery('div[id="go_to_url_field"]').hide();
 		} else {
@@ -1306,6 +1305,7 @@ jQuery(document).ready(function () {
 	});
 	//Ready to Go Onchange//
 	jQuery('#fields-list-block').on('keypress keyup change', 'select#ready_form_label_position', function() {
+
 		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
 		var currentClass = jQuery(this).val();
 		var previewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] label');
@@ -1330,18 +1330,21 @@ jQuery(document).ready(function () {
 		}
 	});
 	jQuery('#fields-list-block').on('keypress keyup change', '.placeholderName', function() {
+
 		var value = jQuery(this).val();
 		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
 		var previewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block input.pl_name');
 		previewfield.attr("placeholder", value);
 	});
 	jQuery('#fields-list-block').on('keypress keyup change', '.placeholderSur', function() {
+
 		var value = jQuery(this).val();
 		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
 		var previewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block input.pl_surname');
 		previewfield.attr("placeholder", value);
 	});
 	jQuery('#fields-list-block').on('keypress keyup change', 'select.country-list', function() {
+
 		var codeName = jQuery(this).val();
 		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
 		var numCode = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block ul.country-list').find('li[data-country-code="' + codeName + '"]').attr('data-dial-code');
@@ -1353,16 +1356,19 @@ jQuery(document).ready(function () {
 		jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block ul.country-list').find('li[data-country-code="' + codeName + '"]').click();
 	});
 	jQuery('#fields-list-block').on('keypress keyup change', 'input.linkName', function() {
+
 		var codeName = jQuery(this).val();
 		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
 		jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .license-block').find('span.sublable a').text(codeName);
 	});
 	jQuery('#fields-list-block').on('keypress keyup change', 'input.linkUrl', function() {
+
 		var url = jQuery(this).val();
 		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
 		jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .license-block').find('span.sublable a').attr('href', url);
 	});
 	jQuery('#fields-list-block').on('keypress keyup change', 'textarea.fieldContent', function() {
+
 		var fieldContent = jQuery(this).val();
 		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
 		var linkName = jQuery(this).parents('.fields-options').find('input.linkName').val();

@@ -624,7 +624,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	//7 Custom Text //
 	function hugeit_contact_cutomtextHtml($rowimages) { ob_start(); ?>
 		<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-			<?php echo $rowimages->name; ?>
+			<div class="custom_text_content"><?php echo wp_kses_post($rowimages->name); ?></div>
 			<span class="hugeOverlay"></span>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>">
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" />
@@ -654,7 +654,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					function editorchange(value){
 						var fieldid=jQuery('.fields-list li.open').attr('id');
 						var previewfield=jQuery('.hugeit-contact-column-block > div[rel="'+fieldid+'"]');										
-						previewfield.html(value);
+						previewfield.find('.custom_text_content').html(value);
 					}
 					jQuery('#fields-list-block').on('keyup','#wp-titleimage'+<?php echo $rowimages->id; ?>+'-wrap',function(){
 
@@ -2295,9 +2295,9 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
                     'hc_input_show_default' => $_POSTED['hc_input_show_default' . $id],
                     'hc_left_right' => $_POSTED['hc_left_right' . $id],
                     'hc_other_field' => is_array($_POSTED['hc_other_field' . $id]) ? json_encode($_POSTED['hc_other_field' . $id]) : $_POSTED['hc_other_field' . $id],
-                    'name' => $_POSTED['titleimage' . $id],
+                    'name' => wp_unslash($_POSTED['titleimage' . $id]),
                     'description' => ($_POSTED['im_description' . $id]) ? $_POSTED['im_description' . $id] : '',
-                    'hc_field_label' => $_POSTED['imagess' . $id],
+                    'hc_field_label' => wp_unslash($_POSTED['imagess' . $id]),
 					'field_type'=> ($_POSTED['field_type' . $id]) ? $_POSTED['field_type' . $id] : '',
                 ),
                 array('id' => $rowimages->id)

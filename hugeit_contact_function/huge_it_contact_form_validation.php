@@ -417,7 +417,7 @@ function hugeit_contact_contact_form_validation_callback(){
 							'contact_id' => $frontendformid,
 							'sub_labels' => $sub_label,
 							'submission' => $submition_text,
-							'submission_date' => $thisdate,
+							'submission_date' => date('Y-m-d h:i:s'),
 							'submission_ip' => $ipaddress.'*()*'.$browser,
 							'customer_country' => '(Only In Pro)',
 							'customer_spam' => '0',
