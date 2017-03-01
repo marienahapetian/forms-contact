@@ -511,7 +511,7 @@ function hugeit_forms_custom_scripts(){
 
 add_action('plugins_loaded','hugeit_print_custom_style');
 
-add_action('wp_enqueue_scripts','hugeit_regitser_custom_style');
+add_action('wp_footer','hugeit_regitser_custom_style');
 
 function hugeit_regitser_custom_style(){
 
