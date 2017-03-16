@@ -32,31 +32,22 @@ function hugeit_contact_show_emails() {
 		}
 	}
 	$mailing = array();
-	if ( $mailing_progress == 'start' ) {
-		$formsID  = $genOptions[29]->value;
-		$limit    = $genOptions[30]->value;
-		$schedule = $genOptions[31]->value;
-		if ( $formsID == 'all' ) {
-			$count_subscribers     = $wpdb->get_var( "SELECT COUNT(*) FROM " . $wpdb->prefix . "huge_it_contact_subscribers WHERE `send`='1'" );
-			$total_total_percent   = $wpdb->get_var( "SELECT COUNT(*) FROM " . $wpdb->prefix . "huge_it_contact_subscribers WHERE send='1' OR send='3'" );
-			$current_total_percent = $wpdb->get_var( "SELECT COUNT(*) FROM " . $wpdb->prefix . "huge_it_contact_subscribers WHERE send='3'" );
-			$need_time             = ceil( $count_subscribers / $limit ) * $schedule;
-			$need_time             = date( "H:i:s", mktime( 0, 0, $need_time ) );
-			$percent               = round( $current_total_percent / $total_total_percent * 100 );
-			$mailing['need_time']  = $need_time;
-			$mailing['percent']    = $percent;
-		} else {
-			$count_subscribers     = $wpdb->get_var( "SELECT COUNT(*) FROM " . $wpdb->prefix . "huge_it_contact_subscribers  WHERE `send`='1' AND subscriber_form_id=" . $formsID . "" );
-			$total_total_percent   = $wpdb->get_var( "SELECT COUNT(*) FROM " . $wpdb->prefix . "huge_it_contact_subscribers WHERE subscriber_form_id=" . $formsID . " AND (send='1' OR send='3')" );
-			$current_total_percent = $wpdb->get_var( "SELECT COUNT(*) FROM " . $wpdb->prefix . "huge_it_contact_subscribers WHERE subscriber_form_id=" . $formsID . " AND send='3'" );
-			$need_time             = ceil( $count_subscribers / $limit ) * $schedule;
-			$need_time             = date( "H:i:s", mktime( 0, 0, $need_time ) );
-			$percent               = round( $current_total_percent / $total_total_percent * 100 );
-			$mailing['need_time']  = $need_time;
-			$mailing['percent']    = $percent;
+    if($mailing_progress=='start'){
+        $formsID=$genOptions[29]->value;
+        $limit=$genOptions[30]->value;
+        $schedule=$genOptions[31]->value;
+        $query_form_string=($formsID!=='all')?" AND subscriber_form_id=".$formsID." ":' ';
 
-		}
-	}
+        $count_subscribers = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE `send`='1'".$query_form_string);
+        $total_total_percent = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE send='1' OR send='3'".$query_form_string);
+        $current_total_percent=$wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE send='3'".$query_form_string);
+
+        $need_time = ceil($count_subscribers / $limit) * $schedule;
+        $need_time = date("H:i:s", mktime(0, 0, $need_time));
+        $percent=($total_total_percent)?round($current_total_percent/$total_total_percent*100):100;
+        $mailing['need_time']=$need_time;
+        $mailing['percent']=$percent;
+    }
 	hugeit_contact_html_show_emails( $subscribers, $mailerParams, $count, $formsToShow, $mailing );
 }
 

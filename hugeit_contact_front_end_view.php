@@ -3,213 +3,12 @@ if(! defined( 'ABSPATH' )) exit;
 function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $frontendformid, $style_values, $huge_it_gen_opt,$rowspar){
 	ob_start();
 	?>
-	<style>
-			/*########### PREVIEW CONTAINER ##############*/
-.simple-captcha-block input[type='text']{
-	max-width: 300px;
-}
-.simple-captcha-block label {
-	max-width: 100%;
-}
-.text-right{
-	text-align: right;
-}
-.text-left{
-	text-align: left;
-}
-#hugeit-contact-preview-container {
-	position:relative;
-	float:right;
-	width:60%;
-	padding:10px 0 10px 0;
-	background:#fff;
-	min-width:310px;
-	
-}
+    <div class="hugeit-contact-form-container">
 
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?>  {
-	margin:0 auto;
-	min-width:315px;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block  {
-	position:relative;
-	float:left;
-	width:94%;
-	min-width:305px;
-	margin:0 1% 0 1%;
-	height:auto;
-	min-height:30px;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?>  div.multicolumn .hugeit-contact-column-block  {
-	width:47%;
-	padding-top: 10px;
-}
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?>  .hugeit-contact-column-block  {
-	padding-top: 10px;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div {
-	width:100%;
-	padding:5px 0 5px 0;
-	clear:both;
-	line-height: 0;
-}
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div.custom-text-block{
-	font-size:<?php echo $style_values['form_label_size']; ?>px !important;
-	line-height:<?php echo $style_values['form_label_size']+1; ?>px !important;
-}
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div.hugeit-check-field,
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div.hugeit-radio-field{
-	padding:5px 0 5px 0;
-}
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div.buttons-block{
-	position: relative;
-}
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div.hover-active {
-	border:2px dashed #2EA2CC;
-	padding-left:2px;
-	padding-right:2px;
-	padding-bottom:2px;
-	margin-left:-4px;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div.captcha-block {
-	/*height:78px;*/
-}
-
-/***fvpps***/
-.free_video .portelemented .play-icss {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-	overflow: hidden;
-	outline:none; 
-}	
-/***fvpps***/
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div > label {
-	display:block;
-	width:38%;
-	float:left;
-	cursor: pointer;
-	margin-right: 2%;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block {
-	display:inline-block;
-	width:60%;
-	vertical-align: super !important;
-    line-height: 0;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block select,
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block textarea,
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block input[type="text"],
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block input[type="password"],
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block input[type="name"],
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block input[type="email"],
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block input[type="number"] {
-	width:100%;
-	line-height: initial !important;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block ul {
-	width:100%;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block ul li {
-	float:left;
-	line-height: 1 !important;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block ul li label {margin:0 10px 0 0;}
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block ul li label span.sublable{vertical-align: super;}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div  ul {
-	position:relative;
-	display:table !important;
-	padding:0 !important;
-	margin:0 !important;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div > label  ul li {
-	clear:both;
-	padding:0 !important;
-	margin:0 !important;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?> #huge_it_captcha {
-	float:right;
-}
-/*FIELDS CUSTOM STYLES*/
-
-
-/*radio + checkbox*/
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.big-radio .radio-block, #hugeit-contact-wrapper_<?php echo $frontendformid; ?>.big-checkbox .checkbox-block {
-	width: 24px;
-    height: 24px;
-	border-radius:13px;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.big-radio .radio-block input:checked + span,#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.big-checkbox .checkbox-block  input:checked + span {
-	width: 12px;
-    height: 12px;
-	border-radius:6px;
-	top:5px;
-	left:5px;
-}
-
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.medium-radio .radio-block,#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.medium-checkbox .checkbox-block {
-	width: 20px;
-    height: 20px;
-	border-radius:10px;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.medium-radio .radio-block input:checked + span,#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.medium-checkbox .checkbox-block  input:checked + span{
-	width: 10px;
-    height: 10px;
-	border-radius:5px;
-	top:4px;
-	left:4px;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.small-radio .radio-block.small,#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.small-checkbox .checkbox-block {
-	width: 15px;
-    height: 15px;
-	border-radius:8px;
-}
-
-#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.small-radio .radio-block input:checked + span, #hugeit-contact-wrapper_<?php echo $frontendformid; ?>.small-checkbox  .checkbox-block  input:checked + span{
-	width: 7px;
-    height: 7px;
-	border-radius:7px;
-	top:3px;
-	left:3px;
-}
-
-#huge-it-captcha-popup > div > label {
-	display:inline-block;
-	height:30px;
-	width:150px;
-}
-
-#huge-it-captcha-popup > div > input {
-	width:350px;
-}
-
-/*######################## END OFO CHOR ######################*/
-
-			body #hugeit-contact-wrapper_<?php echo $frontendformid; ?> input, body #hugeit-contact-wrapper_<?php echo $frontendformid; ?> textarea {padding:0; margin:0;}
-			
+<style>
 			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> {
 				width:<?php echo $style_values['form_wrapper_width']; ?>%;
-			
-							
+
 				<?php
 					$color = explode(',', $style_values['form_wrapper_background_color']);
 				 if($style_values['form_wrapper_background_type']=="color"){?>
@@ -222,24 +21,19 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 						background: linear-gradient(#<?php echo $color[0]; ?>, #<?php echo $color[1]; ?>); /* Standard syntax */
 				<?php
 					}
-				?>	
+				?>
 			}
-			
+
 			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> > div {
 				border:<?php echo $style_values['form_border_size']; ?>px solid #<?php echo $style_values['form_border_color']; ?>;
 			}
-			
+
 			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> > div > h3 {
-				position:relative;
-				display:block;
-				clear:both !important;
-				padding:5px 0 10px 1% !important;
 				font-size:<?php echo $style_values['form_title_size']; ?>px !important;
 				line-height:<?php echo $style_values['form_title_size']; ?>px !important;
 				color:#<?php echo $style_values['form_title_color']; ?> !important;
-				margin: 10px 0 15px 0 !important;
 			}
-			
+
 			/*LABELS*/
 			
 			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> label {
@@ -259,13 +53,9 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				color: #<?php echo $style_values['form_label_error_color']; ?>;
 			}
 			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-field-block span.hugeit-error-message{
-				font-size: 12px !important;
 				color: #<?php echo $style_values['form_label_error_color']; ?>;
 				line-height:<?php echo $style_values['form_label_size']; ?>px !important;
 				font-family:<?php echo $style_values['form_label_font_family']; ?>;
-				display: inline;
-				vertical-align: top;
-				padding-top: 5px;
 			}
 			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-field-block span.huge_it_success_msg{
 				font-size: 16px !important;
@@ -276,46 +66,8 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				color:#<?php echo $style_values['form_label_success_message']; ?>;
 			}
 			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-field-block span.huge_it_spam_msg{
-				font-size: 16px !important;
-				display: block;
-				text-align: center;
-				vertical-align:super;
 				font-family:<?php echo $style_values['form_label_font_family']; ?>;
 				color:#<?php echo $style_values['form_label_error_color']; ?>;
-			}
-			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-field-block span.huge_it_button_overlay{
-				background: rgba(241, 241, 241, 0.85);
-			    position: absolute;
-			    top: 0;
-			    left: 0;
-			    text-align: center;
-			}
-			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-field-block span.huge_it_button_overlay>img#buttLoad{
-				width: 20px;
-				height: 20px;
-			}
-			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div > label.formsRightAlign{
-				text-align: right !important;
-			}
-			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div > label.formsAboveAlign{
-				width:100% !important;
-				float:none !important;
-				padding-bottom: 5px !important;
-			}
-			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .formsAboveAlign {
-				width:100% !important;				
-			}
-			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div > label.formsLabelHide{
-				display: none;!
-			}
-			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .formsLabelHide {
-				width:100% !important;				
-			}
-			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div > label.formsInsideAlign{
-				display:none !important;				
-			}
-			#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .formsInsideAlign {
-				width:100% !important;
 			}
 			/*FIELDS CUSTOM STYLES*/
 			
@@ -325,15 +77,12 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .input-text-block input:focus {
 					height:<?php echo $style_values['form_input_text_font_size']*2; ?>px;
 					<?php if($style_values['form_input_text_has_background']=="on"){?>
-					background:#<?php echo $style_values['form_input_text_background_color']; ?>;
+					    background:#<?php echo $style_values['form_input_text_background_color']; ?>;
 					<?php }else { ?>
-					background:none;
+					    background:none;
 					<?php } ?>
-					border:<?php echo $style_values['form_input_text_border_size']; ?>px solid #<?php echo $style_values['form_input_text_border_color']; ?> !important;
 					box-shadow:none  !important ;
 					border-radius:<?php echo $style_values['form_input_text_border_radius']; ?>px;
-					font-size:<?php echo $style_values['form_input_text_font_size']; ?>px;
-					color:#<?php echo $style_values['form_input_text_font_color']; ?>;
 					margin:0 !important;
 					padding:0 0 0 5px !important;
 					outline:none;
@@ -341,21 +90,34 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 					box-sizing: border-box;
 					-moz-box-sizing: border-box;
 				}
+
+            #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .input-text-block input,
+            #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .input-text-block input:focus,
+            #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .textarea-block textarea,
+            #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .selectbox-block .textholder{
+                border:1px solid #<?php echo $style_values['form_input_text_border_color']; ?> !important;
+                color:#<?php echo $style_values['form_input_text_font_color']; ?>;
+                margin:0 !important;
+                padding:0 0 0 5px !important;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+            #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .field-block{
+                font-size:<?php echo $style_values['form_input_text_font_size']; ?>px;
+            }
 				
 				/*/////INPUT TEXT FullName//////*/
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?>  .input-name-block{
-					font-size: 0 !important;
-				}
+
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .input-name-block input,
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .input-name-block input:focus {
 					width: 49% !important;
 					height:<?php echo $style_values['form_input_text_font_size']*2; ?>px;
 					<?php if($style_values['form_input_text_has_background']=="on"){?>
-					background:#<?php echo $style_values['form_input_text_background_color']; ?>;
+					    background:#<?php echo $style_values['form_input_text_background_color']; ?>;
 					<?php }else { ?>
-					background:none;
+					    background:none;
 					<?php } ?>
-					border:<?php echo $style_values['form_input_text_border_size']; ?>px solid #<?php echo $style_values['form_input_text_border_color']; ?> !important;
+					border:1px solid #<?php echo $style_values['form_input_text_border_color']; ?> !important;
 					box-shadow:none  !important ;
 					border-radius:<?php echo $style_values['form_input_text_border_radius']; ?>px;
 					font-size:<?php echo $style_values['form_input_text_font_size']; ?>px;
@@ -366,10 +128,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 					box-sizing: border-box;
 					-moz-box-sizing: border-box;
 				}
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?>  .input-name-block input:first-child,
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?>  .input-name-block input:first-child:focus{
-					margin-right: 2% !important;
-				}
+
 				/*/////INPUT TEXT FullName//////*/
 				/*/////////*/
 				/*############ Phone Field############*/
@@ -391,74 +150,24 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 					outline:none;
 				    padding-left: 48px;
 				}
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div ul.hide{
-					display: none !important;
-				}
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div ul.country-list{
-					display: block !important;
-				    z-index: 10;
-				}
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-contact-column-block > div .field-block ul.country-list li{
-					float: none !important;
-					margin: 0 !important;
-				}
+
 				/*############TEXTAREA############*/
 				
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .textarea-block textarea {
 					<?php if($style_values['form_textarea_has_background']=="on"){?>
-					background:#<?php echo $style_values['form_textarea_background_color']; ?>;
+					    background:#<?php echo $style_values['form_textarea_background_color']; ?>;
 					<?php }else { ?>
-					background:none;
+					    background:none;
 					<?php } ?>
-					border:<?php echo $style_values['form_textarea_border_size']; ?>px solid #<?php echo $style_values['form_textarea_border_color']; ?>;
-					border-radius:<?php echo $style_values['form_textarea_border_radius']; ?>px;
 					font-size:<?php echo $style_values['form_textarea_font_size']; ?>px;
 					color:#<?php echo $style_values['form_textarea_font_color']; ?>;
-					margin:0 !important;
-					padding:0 0 0 5px !important;
-					 box-sizing: border-box;
-					-moz-box-sizing: border-box;
 				}
 				
 				/*############CHECKBOX RADIOBOX############ */
-				
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-checkbox-list {
-					list-style:none;					
-				}
-				
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-checkbox-list li,
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-radiobox-list li {
-					
-					margin:0 0 6px 0 !important;
-					padding:0 !important;
-					list-style:none;	
-				 }
-				 
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-checkbox-list li label ,
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-radiobox-list li label {
-					cursor:pointer;					
-				}
-		
-			
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .radio-block, 
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .checkbox-block {
-					position:relative;
-					float:left;
-					margin:0 5px 0 5px !important;
-					display: block;
-				}
-				
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .radio-block input,
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .checkbox-block input {
-					visibility:hidden;
-					position:absolute;
-					top:0;
-					left:0;
-				}
+
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .radio-block i {
-					display:inline-block;
 					float:left;
 					width:20px;
 					color:#<?php echo $style_values['form_radio_color']; ?>;
@@ -466,25 +175,8 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				}
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .checkbox-block i {
-					display:inline-block;
-					float:left;
-					width:20px;
 					color:#<?php echo $style_values['form_checkbox_color']; ?>;
 				 }
-
-
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.big-radio .radio-block i ,
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.big-checkbox .checkbox-block i {
-					font-size:24px;
-				}
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.medium-radio .radio-block i ,
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.medium-checkbox .checkbox-block i {
-					font-size:20px;
-				}
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.small-radio .radio-block i ,
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.small-checkbox .checkbox-block i {
-					font-size:15px;
-				}
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .radio-block i:hover {
 					color:#<?php echo $style_values['form_radio_hover_color']; ?>;
@@ -493,25 +185,15 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.checkbox-block i:hover {
 					color:#<?php echo $style_values['form_checkbox_hover_color']; ?>;
 				}
-				
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .radio-block i.active, 
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .checkbox-block i.active {
-					display:none;
-				}/*Voch checked inputi motic heracnumenq active@*/
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .radio-block input:checked + i.active + i.passive,
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .checkbox-block  input:checked + i.active + i.passive {
-					display:none;
-				}
+
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .radio-block input:checked + i.active, 
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .radio-block input:checked + i.active:hover {
-					display:inline-block;
 					color:#<?php echo $style_values['form_radio_active_color']; ?>;
 				}
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .checkbox-block	input:checked + i.active, 
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .checkbox-block input:checked + i.active:hover {
-					display:inline-block;
 					color:#<?php echo $style_values['form_checkbox_active_color']; ?>;
 				}
 
@@ -524,35 +206,15 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				}
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .selectbox-block select {
-					position:relative;
 					height:<?php echo $style_values['form_selectbox_font_size']*2-$style_values['form_selectbox_border_size']*2; ?>px;
 					margin:<?php echo $style_values['form_selectbox_border_size']; ?>px 0 0 1px !important;
-					opacity:0;
-					z-index:2;
 				}
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .selectbox-block .textholder {
-					position:absolute;
 					height:<?php echo $style_values['form_selectbox_font_size']*2; ?>px;
-					width:90%;
-					margin:0 !important;
-					top:0;
-					color:#<?php echo $style_values['form_selectbox_font_color']; ?>; 
-					left:0;
-					border:0;
-					opacity: 1 !important;
-					background:none;
-					border:<?php echo $style_values['form_selectbox_border_size']; ?>px solid #<?php echo $style_values['form_selectbox_border_color']; ?>;
-					border-radius:<?php echo $style_values['form_selectbox_border_radius']; ?>px;
-					font-size:<?php echo $style_values['form_selectbox_font_size']; ?>px;
 					<?php if($style_values['form_selectbox_has_background']=="on"){?>
-					background:#<?php echo $style_values['form_selectbox_background_color']; ?>;
-					<?php  }else { ?>
-					background:none;
-					<?php } ?>
-					padding:0 10% 0 5px !important;
-					 box-sizing: border-box;
-					-moz-box-sizing: border-box;
+					    background:#<?php echo $style_values['form_selectbox_background_color']; ?>;
+					<?php  }?>
 				}
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .selectbox-block i {
@@ -563,40 +225,19 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 					color:#<?php echo $style_values['form_selectbox_arrow_color']; ?>;
 					font-size:<?php echo $style_values['form_selectbox_font_size']; ?>px;
 				}
-				
-				/*############FILE#############*/
-				
-				
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .file-block {
-					position:relative;
-					cursor:pointer;
-				}
-								
+
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .file-block .textholder {
-					position:relative;
-					float:left;
 					width:calc(60% - <?php echo $style_values['form_file_border_size']*2 + 5; ?>px) !important;
 					height:<?php echo $style_values['form_file_font_size']*2; ?>px;
-					margin:0;
 					border:<?php echo $style_values['form_file_border_size']; ?>px solid #<?php echo $style_values['form_file_border_color']; ?> !important;
 					border-radius:<?php echo $style_values['form_file_border_radius']; ?>px !important;
-					font-size:<?php echo $style_values['form_file_font_size']; ?>px;
 					color:#<?php echo $style_values['form_file_font_color']; ?>;
 					<?php if($style_values['form_file_has_background']=="on"){?>
 					background:#<?php echo $style_values['form_file_background']; ?>;
-					<?php  }else { ?>
-					background:none;
-					<?php } ?>
-					padding:0 40% 0 5px !important;
-					box-sizing: content-box;
-					-moz-box-sizing: content-box;
+					<?php  }?>
 				}
 				
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .file-block .uploadbutton {	
-					position:absolute;
-					top:0;
-					right:0;
-					width:38%;
+				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .file-block .uploadbutton {
 					border-top:<?php echo $style_values['form_file_border_size']; ?>px solid #<?php echo $style_values['form_file_border_color']; ?> !important;
 					border-bottom:<?php echo $style_values['form_file_border_size']; ?>px solid #<?php echo $style_values['form_file_border_color']; ?> !important;
 					border-right:<?php echo $style_values['form_file_border_size']; ?>px solid #<?php echo $style_values['form_file_border_color']; ?> !important;
@@ -604,17 +245,10 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 					border-bottom-right-radius:<?php echo $style_values['form_file_border_radius']; ?>px !important;
 					<?php $fileheight=$style_values['form_file_font_size']*2; ?>
 					height:<?php echo $fileheight; ?>px;
-					padding:0 1%;
-					margin:0;
-					overflow: hidden;
 					font-size:<?php echo $style_values['form_file_font_size']; ?>px;
 					line-height:<?php echo $style_values['form_file_font_size']*2; ?>px;
 					color:#<?php echo $style_values['form_file_button_text_color']; ?>;
 					background:#<?php echo $style_values['form_file_button_background_color']; ?>;
-					text-align:center;
-					-webkit-transition: all 0.5s ease;
-					transition: all 0.5s ease;		
-					box-sizing:content-box;			
 				}
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .file-block:hover .uploadbutton {	
@@ -626,9 +260,6 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .file-block .uploadbutton i {
 					color:#<?php echo $style_values['form_file_icon_color']; ?>;
 					font-size:<?php echo $style_values['form_file_font_size']; ?>px;
-					vertical-align: baseline;
-					-webkit-transition: all 0.5s ease;
-					transition: all 0.5s ease;
 				}
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .file-block:hover .uploadbutton {
@@ -639,25 +270,6 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .file-block:hover .uploadbutton i {
 					color:#<?php echo $style_values['form_file_icon_hover_color']; ?>;
 				}
-							
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .file-block input[type='file'] {
-					height:30px;
-					width:100%;
-					position:absolute;
-					top:0;
-					left:0;
-					opacity:0;
-					cursor:pointer;
-				}
-				
-
-				/*###########CAPTCHA#############*/
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .captcha-block div {
-					margin-right:-1px;
-					float: right;
-				}
-				/*############BUTTONS#############*/
-				
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .buttons-block  {
 					<?php
@@ -668,18 +280,12 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				}
 
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .buttons-block button {
-					height:auto;
 					padding:<?php echo $style_values['form_button_padding']; ?>px <?php echo $style_values['form_button_padding']*2; ?>px <?php echo $style_values['form_button_padding']; ?>px <?php echo $style_values['form_button_padding']*2; ?>px;
-					cursor:pointer;
-					text-transform: none;
 					<?php
 						if($style_values['form_button_fullwidth']=="on") :
 					?>
 						clear:both;
 						width:100%;
-						margin:0 0 0 0 !important;
-						padding-left:0;
-						padding-right:0;
 					<?php endif; ?>
 					font-size:<?php echo $style_values['form_button_font_size']; ?>px;
 				}
@@ -689,10 +295,6 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 					background-color:#<?php echo $style_values['form_button_submit_background']; ?> !important;
 					border:<?php echo $style_values['form_button_submit_border_size']; ?>px solid #<?php echo $style_values['form_button_submit_border_color']; ?> !important;
 					border-radius:<?php echo $style_values['form_button_submit_border_radius']; ?>px !important;
-					-webkit-transition: all 0.5s ease !important;
-					transition: all 0.5s ease !important;
-					margin:0 0 5px 0 !important;
-					background-image: none !important;
 				}				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .buttons-block button.submit:hover {
 					color:#<?php echo $style_values['form_button_submit_font_hover_color']; ?> !important;
@@ -701,9 +303,6 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .buttons-block button.submit i {
 					color:#<?php echo $style_values['form_button_submit_icon_color']; ?> !important;
 					font-size:<?php echo $style_values['form_button_font_size']; ?>px !important;
-					vertical-align: baseline !important;
-					-webkit-transition: all 0.5s ease !important;
-					transition: all 0.5s ease !important;
 				}				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .buttons-block button.submit:hover i {
 					color:#<?php echo $style_values['form_button_submit_icon_hover_color']; ?> !important;
@@ -713,38 +312,19 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 					background-color:#<?php echo $style_values['form_button_reset_background']; ?> !important;
 					border:<?php echo $style_values['form_button_reset_border_size']; ?>px solid #<?php echo $style_values['form_button_reset_border_color']; ?> !important;
 					border-radius:<?php echo $style_values['form_button_reset_border_radius']; ?>px !important;
-					-webkit-transition: all 0.5s ease !important;
-					transition: all 0.5s ease !important;
-					background-image: none !important;
 				}				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .buttons-block button.reset:hover {
 					color:#<?php echo $style_values['form_button_reset_font_hover_color']; ?> !important;
 					background:#<?php echo $style_values['form_button_reset_hover_background']; ?> !important;
 				}				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .buttons-block button.reset i {
-				
 					color:#<?php echo $style_values['form_button_reset_icon_color']; ?> !important;
 					font-size:<?php echo $style_values['form_button_font_size']; ?>px !important;
-					vertical-align: baseline !important;
-					-webkit-transition: all 0.5s ease !important;
-					transition: all 0.5s ease !important;
 				}				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .buttons-block button.reset:hover i {
 					color:#<?php echo $style_values['form_button_reset_icon_hover_color']; ?> !important;
 				}
-				/*############ License Field ############*/
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-check-field >.license-block{
-					width: 100% !important;
-				}
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-check-field > .license-block >.secondary-label{
-					vertical-align: super !important;
-				}
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-check-field > .license-block >.secondary-label > .checkbox-block{
-					margin: 0 5px 0 0 !important;
-					float: none !important;
-					display: inline-block;
-					vertical-align: middle !important;
-				}
+
 			</style>
 			<script>
 				jQuery(document).ready(function () {						
@@ -768,7 +348,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 				});
 			</script>
 	<form action="" method="post" enctype="multipart/form-data" verified="0" id="huge_it_contact_form_<?php echo $frontendformid; ?>" class="hugeit_form">
-		<div id="hugeit-contact-wrapper_<?php echo $frontendformid; ?>" class="<?php echo $style_values['form_radio_size']; ?>-radio <?php echo $style_values['form_checkbox_size']; ?>-checkbox"   >
+		<div id="hugeit-contact-wrapper_<?php echo $frontendformid; ?>" class="hugeit-contact-wrapper <?php echo $style_values['form_radio_size']; ?>-radio <?php echo $style_values['form_checkbox_size']; ?>-checkbox"   >
 					<?php $rowim=array_reverse($rowim); ?>
 					<div <?php foreach ($rowim as $key=>$rowimages){if($rowimages->hc_left_right == 'right'){echo 'class="multicolumn"';}} ?>>
 						<?php foreach ( $hugeit_contact as $key => $row_contact ) {
@@ -1842,13 +1422,10 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 
 			}
 			jQuery('#huge_it_contact_form_<?php echo $frontendformid;?> .hugeit_captcha_refresh_button').click(hugeit_refresh_captcha);
-
-
-
-									
-
 	})
 </script>
-<?php  
+    </div>
+
+    <?php
 	return ob_get_clean();
 }

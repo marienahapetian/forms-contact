@@ -293,24 +293,23 @@ function submitbutton(pressbutton){
 					</div>
 				</div>
 				<?php
-				$fordisablebut = '0';						
-				foreach ($rowim as $key=>$rowimages){
-					if($rowimages->conttype == 'buttons'){ 
-					$fordisablebut = '1';
-					}
-				}	
-				$fordisablecaptcha = '0';
-				foreach ($rowim as $key=>$rowimages){
-					if($rowimages->conttype == 'captcha'){ 
-					$fordisablecaptcha = '1';
-					}
-				}	
-				$fordisablelicense = '0';
-				foreach ($rowim as $key=>$rowimages){
-					if($rowimages->conttype == 'license'){ 
-					$fordisablelicense = '1';
-					}
-				}						
+                $fordisablebut = '0';
+                $fordisablecaptcha = '0';
+                $disablesimplecaptcha = '0';
+
+                foreach ($rowim as $key=>$rowimages){
+                    switch($rowimages->conttype){
+                        case 'captcha':
+                            $fordisablecaptcha = '1';
+                            break;
+                        case 'buttons':
+                            $fordisablebut = '1';
+                            break;
+                        case 'simple_captcha_box':
+                            $disablesimplecaptcha = '1';
+                            break;
+                    }
+                }
 				?>
 				<ul id="add-fields-block">
 					<li class="spinnerLi" data-idForm="<?php echo $id;?>">
@@ -352,16 +351,16 @@ function submitbutton(pressbutton){
 							<?php endif;?>
 
 							<!-- simple captcha -->
-							<li><a onclick="" class="" id="simple_captcha_box" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Simple Captcha</a></li>
+                            <?php if ( $disablesimplecaptcha == 0 ) : ?>
+                                <li><a onclick="" class="" id="simple_captcha_box" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Simple Captcha</a></li>
+                            <?php else : ?>
+                                <li class="disabled"><a onclick="" class="" id="simple_captcha_box" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Simple Captcha</a></li>
+                            <?php endif; ?>
 
 							<?php if ( $fordisablebut == 0 ) : ?>
-								<li class=""><a onclick="" class="" id="buttons" data-formId="<?php echo $id; ?>"
-								                data-themeId="<?php echo $row->hc_yourstyle; ?>">Buttons</a></li>
+								<li class=""><a onclick="" class="" id="buttons" data-formId="<?php echo $id; ?>" data-themeId="<?php echo $row->hc_yourstyle; ?>">Buttons</a></li>
 							<?php else : ?>
-								<li class="disabled"><a onclick="" class="" id="buttons"
-								                        data-formId="<?php echo $id; ?>"
-								                        data-themeId="<?php echo $row->hc_yourstyle; ?>">Buttons</a>
-								</li>
+								<li class="disabled"><a onclick="" class="" id="buttons" data-formId="<?php echo $id; ?>" data-themeId="<?php echo $row->hc_yourstyle; ?>">Buttons</a></li>
 							<?php endif; ?>
 						</ul>
 					</li>
@@ -371,15 +370,13 @@ function submitbutton(pressbutton){
 					<li>
 						<strong>Ready-To-Go Fields  <i>(Pro)</i></strong>
 						<ul id="add-default-fields" class="readyFields">
-							<li><a onclick="" class="" id="nameSurname" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Full Name</a></li>
-							<li><a onclick="" class="" id="phone" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Phone</a></li>
-							<li><a onclick="" class="" id="date" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Date</a></li>
-							<li><a onclick="" class="" id="address" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Address</a></li>
-							<?php if($fordisablelicense==0):?>
-								<li><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Policy Agreement</a></li>
-							<?php else:?>
-								<li class="disabled"><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Policy Agreement</a></li>
-							<?php endif;?>
+							<li><a onclick="" class="" id="nameSurname" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>"><?php _e('Full Name','hugeit_contact');?></a></li>
+							<li><a onclick="" class="" id="phone" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>"><?php _e('Phone','hugeit_contact');?></a></li>
+							<li><a onclick="" class="" id="date" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>"><?php _e('Date','hugeit_contact');?></a></li>
+							<li><a onclick="" class="" id="address" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>"><?php _e('Address','hugeit_contact');?></a></li>
+                            <li><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>"><?php _e('Policy Agreement','hugeit_contact');?></a></li>
+                            <li><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>"><?php _e('Paypal','hugeit_contact');?></a></li>
+                            <li><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>"><?php _e('Google Map','hugeit_contact');?></a></li>
 						</ul>
 					</li>
 				</ul>

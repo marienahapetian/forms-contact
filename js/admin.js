@@ -688,6 +688,10 @@ jQuery(document).ready(function () {
 				jQuery('.hugeit_contact_custom_settings_main').animate({top:  height_3 + 'px'});
 			}, 100);
 
+            jQuery('a.add-new ').on('click',function(){
+                height_4 = +(jQuery('.fields-list > li.open').height());
+                jQuery('.hugeit_contact_custom_settings_main').animate({top:  height_4 - height_1 + 40 + 'px'});
+            });
 
 
 			jQuery('.fields-list>li').each(function(){
@@ -851,6 +855,10 @@ jQuery(document).ready(function () {
 			return this.nodeName === 'LI';
 		}).length;
 		if (elemCount != 2) {
+            var $top = jQuery('.hugeit_contact_custom_settings_main').css('top');
+
+            jQuery('.hugeit_contact_custom_settings_main').animate({top:  parseInt($top) - 30 + 'px'});
+
 			jQuery(this).parent().find('.field-multiple-option').addClass('removeing');
 			var allvalues = '';
 			jQuery(this).parents(".field-multiple-option-list").find('.field-multiple-option').not('.removeing').each(function() {
