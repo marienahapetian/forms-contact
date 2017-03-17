@@ -2295,15 +2295,15 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
                 $row_updated = $wpdb->update(
                     $wpdb->prefix . "huge_it_contact_contacts_fields",
                     array(
-                        'ordering' => $_POSTED['hc_ordering' . $id],
-                        'hc_required' => $_POSTED['hc_required' . $id],
-                        'hc_input_show_default' => $_POSTED['hc_input_show_default' . $id],
-                        'hc_left_right' => (isset($_POSTED['hc_left_right' . $id])) ? $_POSTED['hc_left_right' . $id] : 'left',
+                        'ordering' => isset($_POSTED['hc_ordering' . $id])?$_POSTED['hc_ordering' . $id]:0,
+                        'hc_required' => isset($_POSTED['hc_required' . $id])?$_POSTED['hc_required' . $id]:'off',
+                        'hc_input_show_default' => isset($_POSTED['hc_input_show_default' . $id])?$_POSTED['hc_input_show_default' . $id]:'',
+                        'hc_left_right' => isset($_POSTED['hc_left_right' . $id]) ? $_POSTED['hc_left_right' . $id] : 'left',
                         'hc_other_field' => $hc_other_field,
-                        'name' => (isset($_POSTED['titleimage' . $id])) ? wp_unslash($_POSTED['titleimage' . $id]) : '',
-                        'description' => (isset($_POSTED['im_description' . $id])) ? $_POSTED['im_description' . $id] : '',
-                        'hc_field_label' => wp_unslash($_POSTED['imagess' . $id]),
-                        'field_type' => (isset($_POSTED['field_type' . $id])) ? $_POSTED['field_type' . $id] : '',
+                        'name' => isset($_POSTED['titleimage' . $id]) ? wp_unslash($_POSTED['titleimage' . $id]) : '',
+                        'description' => isset($_POSTED['im_description' . $id]) ? $_POSTED['im_description' . $id] : '',
+                        'hc_field_label' => isset($_POSTED['imagess' . $id])?wp_unslash($_POSTED['imagess' . $id]):'',
+                        'field_type' => isset($_POSTED['field_type' . $id]) ? $_POSTED['field_type' . $id] : '',
                     ),
                     array('id' => $rowimages->id)
                 );
