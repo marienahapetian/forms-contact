@@ -347,7 +347,7 @@ function hugeit_contact_email_ajax_action_callback() {
 		}
 		$output=$tableRows;
 
-		echo json_encode(array("output"=>esc_html($output)));
+		echo json_encode(array("output"=>$output));
 	}
 	if(isset($_POST['task'])&&$_POST['task']=='refreshProgress'){
 		global $wpdb;
