@@ -355,7 +355,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 					        echo 'class="multicolumn"';
 					    }
 					} ?>>
-					<?php $show_title_custom_setting = get_option( 'hugeit_contact_show_title_for_form_' . $frontendformid );
+					<?php   $show_title_custom_setting = get_option( 'hugeit_contact_show_title_for_form_' . $frontendformid );
 							switch ( $show_title_custom_setting ) {
 								case 'yes' :
 									$show_title = true;
