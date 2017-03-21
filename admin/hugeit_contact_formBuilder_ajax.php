@@ -2278,7 +2278,12 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
             if ($_POSTED["name"] != '') {
                 $wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  name = %s  WHERE id = %d ", wp_unslash($_POSTED["name"]), $formId));
                 $wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $_POSTED["select_form_theme"], $formId));
+                $wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $_POSTED["select_form_theme"], $formId));
             }
+        }
+
+        if (isset($_POSTED['hugeit_contact_show_title_for_form_' . $formId]) && in_array($_POSTED['hugeit_contact_show_title_for_form_' . $formId], array('yes', 'no', 'default'))) {
+            update_option('hugeit_contact_show_title_for_form_' . $formId, $_POSTED['hugeit_contact_show_title_for_form_' . $formId]);
         }
 
         foreach ($rowim as $key => $rowimages) {

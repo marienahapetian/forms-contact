@@ -350,9 +350,12 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 	<form action="" method="post" enctype="multipart/form-data" verified="0" id="huge_it_contact_form_<?php echo $frontendformid; ?>" class="hugeit_form">
 		<div id="hugeit-contact-wrapper_<?php echo $frontendformid; ?>" class="hugeit-contact-wrapper <?php echo $style_values['form_radio_size']; ?>-radio <?php echo $style_values['form_checkbox_size']; ?>-checkbox"   >
 					<?php $rowim=array_reverse($rowim); ?>
-					<div <?php foreach ($rowim as $key=>$rowimages){if($rowimages->hc_left_right == 'right'){echo 'class="multicolumn"';}} ?>>
-						<?php foreach ( $hugeit_contact as $key => $row_contact ) {
-							$show_title_custom_setting = get_option( 'hugeit_contact_show_title_for_form_' . $row_contact->id );
+					<div <?php foreach ($rowim as $key=>$rowimages){
+					    if($rowimages->hc_left_right == 'right'){
+					        echo 'class="multicolumn"';
+					    }
+					} ?>>
+					<?php $show_title_custom_setting = get_option( 'hugeit_contact_show_title_for_form_' . $frontendformid );
 							switch ( $show_title_custom_setting ) {
 								case 'yes' :
 									$show_title = true;
@@ -366,9 +369,9 @@ function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_co
 									$show_title = $style_values['form_show_title'] === 'on' ? true : false;
 							}
 							if ( $show_title ) {
-								echo "<h3>" . $row_contact->name . "</h3>";
+								echo "<h3>" . $hugeit_contact[0]->name . "</h3>";
 							}
-						} ?>
+					 ?>
 						<div class="hugeit-contact-column-block hugeit-contact-block-left" id="hugeit-contact-block-left">
 							<?php
 								$i=2;

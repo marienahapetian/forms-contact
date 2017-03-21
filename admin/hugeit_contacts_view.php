@@ -168,7 +168,7 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 }
 function hugeit_contact_html_edithugeit_contact($id, $ord_elem, $count_ord,$images, $row, $cat_row, $rowim, $rowsld, $paramssld, $rowsposts, $rowsposts8, $postsbycat, $form_styles,$style_values,$themeId){
  	global $wpdb;
-	
+
 	if(isset($_GET["addslide"]) && $_GET["addslide"] == 1){
 		$apply_safe_link = wp_nonce_url(
 			'admin.php?page=hugeit_forms_main_page&id=' . $row->id . '&task=apply',
@@ -1053,8 +1053,29 @@ function submitbutton(pressbutton){
 			<div id="hugeit-contact-preview-container">
 					<form onkeypress="doNothing()" id="hugeit-contact-preview-form">
 					<div id="hugeit-contact-wrapper" class="<?php echo $style_values['form_radio_size']; ?>-radio <?php echo $style_values['form_checkbox_size']; ?>-checkbox">
-					<div <?php foreach ($rowim as $key=>$rowimages){if($rowimages->hc_left_right == 'right'){echo 'class="multicolumn"';}} ?>>
-						<?php foreach($rowsld as $key=>$rowsldires) {if($id==$rowsldires->id) {echo '<h3><input class="text_area_title" type="text" maxlength="250" value="'.$rowsldires->name.'" /><span class="hugeItTitleOverlay"></span></h3>';}} ?>
+					<div <?php foreach ($rowim as $key=>$rowimages){
+					    if($rowimages->hc_left_right == 'right'){
+					        echo 'class="multicolumn"';
+					    }
+					} ?>>
+						<?php foreach($rowsld as $key=>$rowsldires) {
+						    $show_form_title=get_option('hugeit_contact_show_title_for_form_' . $id);
+                            switch ( $show_form_title ) {
+                                case 'yes' :
+                                    $show_form_title = true;
+                                    break;
+
+                                case 'no' :
+                                    $show_form_title = false;
+                                    break;
+
+                                default :
+                                    $show_form_title = $style_values['form_show_title'] === 'on' ? true : false;
+                            }
+						    if($id==$rowsldires->id && $show_form_title) {
+						          echo '<h3><input class="text_area_title" type="text" maxlength="250" value="'.$rowsldires->name.'" /><span class="hugeItTitleOverlay"></span></h3>';
+						    }
+						} ?>
 						<div class="hugeit-contact-column-block hugeit-contact-block-left" id="hugeit-contact-block-left">
 							<?php
 								$i=2;
