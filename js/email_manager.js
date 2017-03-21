@@ -56,13 +56,11 @@ jQuery(document).ready(function(){
 			                nonce : huge_it_obj.nonce
 						},
 						beforeSend: function(){
-							//jQuery("#hugeit_contact_email_manager #huge_it-table").find("tbody").css('overflow','hidden');
 						},
 						success: function(response){
 							var response = JSON.parse(response);
 				   			if(response.output){
-				   				var decoded = jQuery("<textarea/>").html(response.output).text();
-				   				jQuery("#hugeit_contact_email_manager #huge_it-table").find("tbody").html(decoded);
+				   				jQuery("#hugeit_contact_email_manager #huge_it-table").find("tbody").html(response.output);
 				            }
 						},
 					});
@@ -84,7 +82,7 @@ jQuery(document).ready(function(){
 						success: function(response){
 							var response = jQuery.parseJSON(response);
 				   			if(response.output){
-				   				jQuery("#hugeit_contact_email_manager #huge_it-table").find("tbody").html(response.output);                             
+				   				jQuery("#hugeit_contact_email_manager #huge_it-table").find("tbody").html(response.output);
 				            }
 						},
 						error: function(){
