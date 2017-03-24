@@ -32,6 +32,9 @@ button[disabled], input[disabled], select[disabled], textarea[disabled] {
 .saveSpinnerWrapper>img{
 	display: none;
 }
+img{
+	max-width: 100%;
+}
 img.themeSpinner{
 	vertical-align: middle;
     margin-left: 2px;

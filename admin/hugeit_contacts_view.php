@@ -166,13 +166,14 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
     <?php
 
 }
-function hugeit_contact_html_edithugeit_contact($id, $ord_elem, $count_ord,$images, $row, $cat_row, $rowim, $rowsld, $paramssld, $rowsposts, $rowsposts8, $postsbycat, $form_styles,$style_values,$themeId){
+function hugeit_contact_html_edithugeit_contact($current_form, $ord_elem, $count_ord,$images, $cat_row, $rowim, $rowsld, $paramssld, $rowsposts, $rowsposts8, $postsbycat, $form_styles,$style_values,$themeId){
  	global $wpdb;
-	
+ 	$id=$current_form->id;
+
 	if(isset($_GET["addslide"]) && $_GET["addslide"] == 1){
 		$apply_safe_link = wp_nonce_url(
-			'admin.php?page=hugeit_forms_main_page&id=' . $row->id . '&task=apply',
-			'apply_form_' . $row->id,
+			'admin.php?page=hugeit_forms_main_page&id=' . $id . '&task=apply',
+			'apply_form_' . $id,
 			'hugeit_contact_apply_form_nonce'
 		);
 		$apply_safe_link = htmlspecialchars_decode($apply_safe_link);
@@ -181,8 +182,8 @@ function hugeit_contact_html_edithugeit_contact($id, $ord_elem, $count_ord,$imag
 	
 	if (isset($_GET["inputtype"]) && $_GET["inputtype"]) {
 		$apply_safe_link = wp_nonce_url(
-			'admin.php?page=hugeit_forms_main_page&id=' . $row->id . '&task=apply',
-			'apply_form_' . $row->id,
+			'admin.php?page=hugeit_forms_main_page&id=' . $id . '&task=apply',
+			'apply_form_' . $id,
 			'hugeit_contact_apply_form_nonce'
 		);
 		$apply_safe_link = htmlspecialchars_decode($apply_safe_link);
@@ -248,7 +249,7 @@ function submitbutton(pressbutton){
 				<?php
 				else : ?>
 					<li class="active" onclick="this.firstElementChild.style.width = ((this.firstElementChild.value.length + 1) * 8) + 'px';" style="background-image:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>);cursor:pointer;">
-						<input class="text_area" onfocus="this.style.width = ((this.value.length + 1) * 8) + 'px'" type="text" name="name" id="huge_it_contact_formname" maxlength="250" value="<?php echo esc_html(stripslashes($row->name));?>" />
+						<input class="text_area" onfocus="this.style.width = ((this.value.length + 1) * 8) + 'px'" type="text" name="name" id="huge_it_contact_formname" maxlength="250" value="<?php echo esc_html(stripslashes($current_form->name));?>" />
 					</li>
 				<?php	
 				endif;
@@ -273,7 +274,7 @@ function submitbutton(pressbutton){
 					<label for="select_form_theme">Select Theme</label>
 					<select width="200" id="select_form_theme" name="select_form_theme" class="select-theme">
 					<?php foreach($form_styles as $form_style){ ?>
-						<option <?php if($form_style->id == $row->hc_yourstyle){ echo 'selected'; } ?> value="<?php echo $form_style->id; ?>"><?php echo $form_style->name; ?></option>
+						<option <?php if($form_style->id == $current_form->hc_yourstyle){ echo 'selected'; } ?> value="<?php echo $form_style->id; ?>"><?php echo $form_style->name; ?></option>
 					<?php } ?>
 					</select>
 					<label for="select_form_show_title">Show Form Title</label>
@@ -293,24 +294,23 @@ function submitbutton(pressbutton){
 					</div>
 				</div>
 				<?php
-				$fordisablebut = '0';						
-				foreach ($rowim as $key=>$rowimages){
-					if($rowimages->conttype == 'buttons'){ 
-					$fordisablebut = '1';
-					}
-				}	
-				$fordisablecaptcha = '0';
-				foreach ($rowim as $key=>$rowimages){
-					if($rowimages->conttype == 'captcha'){ 
-					$fordisablecaptcha = '1';
-					}
-				}	
-				$fordisablelicense = '0';
-				foreach ($rowim as $key=>$rowimages){
-					if($rowimages->conttype == 'license'){ 
-					$fordisablelicense = '1';
-					}
-				}						
+                $fordisablebut = '0';
+                $fordisablecaptcha = '0';
+                $disablesimplecaptcha = '0';
+
+                foreach ($rowim as $key=>$rowimages){
+                    switch($rowimages->conttype){
+                        case 'captcha':
+                            $fordisablecaptcha = '1';
+                            break;
+                        case 'buttons':
+                            $fordisablebut = '1';
+                            break;
+                        case 'simple_captcha_box':
+                            $disablesimplecaptcha = '1';
+                            break;
+                    }
+                }
 				?>
 				<ul id="add-fields-block">
 					<li class="spinnerLi" data-idForm="<?php echo $id;?>">
@@ -319,14 +319,14 @@ function submitbutton(pressbutton){
 					<li>
 						<strong>Add Form Fields</strong>
 						<ul id="add-default-fields">
-							<li><a onclick="" class="" id="text" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Text Box</a><li>
-							<li><a onclick="" class="" id="textarea" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Textarea</a></li>
-							<li><a onclick="" class="" id="e_mail" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Email</a></li>
-							<li><a onclick="" class="" id="selectbox" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Selectbox</a></li>
-							<li><a onclick="" class="" id="checkbox" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Checkbox</a></li>
-							<li><a onclick=""  class="" id="radio_box" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Radio Box</a></li>
-							<li><a onclick="" class="" id="file_box" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">File Box</a></li>
-							<li><a onclick="submitbuttonSave('custom_text')" class="" id="custom_text" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Custom Text</a></li>
+							<li><a onclick="" class="" id="text" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>">Text Box</a><li>
+							<li><a onclick="" class="" id="textarea" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>">Textarea</a></li>
+							<li><a onclick="" class="" id="e_mail" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>">Email</a></li>
+							<li><a onclick="" class="" id="selectbox" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>">Selectbox</a></li>
+							<li><a onclick="" class="" id="checkbox" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>">Checkbox</a></li>
+							<li><a onclick=""  class="" id="radio_box" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>">Radio Box</a></li>
+							<li><a onclick="" class="" id="file_box" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>">File Box</a></li>
+							<li><a onclick="submitbuttonSave('custom_text')" class="" id="custom_text" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>">Custom Text</a></li>
 
 
 							<?php if ( $fordisablecaptcha == 0 ) :
@@ -334,34 +334,34 @@ function submitbutton(pressbutton){
 									?>
 									<li class="bbdisabled"><a onclick="" class="captcha" id="captcha"
 									                          data-formId="<?php echo $id; ?>"
-									                          data-themeId="<?php echo $row->hc_yourstyle; ?>">Captcha</a>
+									                          data-themeId="<?php echo $current_form->hc_yourstyle; ?>">Captcha</a>
 									</li>
 								<?php else : ?>
 									<li class="bbdisabled"><a
 											href="admin.php?page=hugeit_forms_main_page&task=captcha_keys&id=<?php echo esc_html( $_GET['id'] ); ?>&TB_iframe=1"
 											id="Nocaptcha" data-formId="<?php echo $id; ?>"
-											data-themeId="<?php echo $row->hc_yourstyle; ?>"
+											data-themeId="<?php echo $current_form->hc_yourstyle; ?>"
 											class="thickbox">Captcha</a></li>
 									<?php
 								endif;
 							else : ?>
 								<li class="disabled"><a onclick="" class="captcha" id="captcha"
 								                        data-formId="<?php echo $id; ?>"
-								                        data-themeId="<?php echo $row->hc_yourstyle; ?>">Captcha</a>
+								                        data-themeId="<?php echo $current_form->hc_yourstyle; ?>">Captcha</a>
 								</li>
 							<?php endif;?>
 
 							<!-- simple captcha -->
-							<li><a onclick="" class="" id="simple_captcha_box" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Simple Captcha</a></li>
+                            <?php if ( $disablesimplecaptcha == 0 ) : ?>
+                                <li><a onclick="" class="" id="simple_captcha_box" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>">Simple Captcha</a></li>
+                            <?php else : ?>
+                                <li class="disabled"><a onclick="" class="" id="simple_captcha_box" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>">Simple Captcha</a></li>
+                            <?php endif; ?>
 
 							<?php if ( $fordisablebut == 0 ) : ?>
-								<li class=""><a onclick="" class="" id="buttons" data-formId="<?php echo $id; ?>"
-								                data-themeId="<?php echo $row->hc_yourstyle; ?>">Buttons</a></li>
+								<li class=""><a onclick="" class="" id="buttons" data-formId="<?php echo $id; ?>" data-themeId="<?php echo $current_form->hc_yourstyle; ?>">Buttons</a></li>
 							<?php else : ?>
-								<li class="disabled"><a onclick="" class="" id="buttons"
-								                        data-formId="<?php echo $id; ?>"
-								                        data-themeId="<?php echo $row->hc_yourstyle; ?>">Buttons</a>
-								</li>
+								<li class="disabled"><a onclick="" class="" id="buttons" data-formId="<?php echo $id; ?>" data-themeId="<?php echo $current_form->hc_yourstyle; ?>">Buttons</a></li>
 							<?php endif; ?>
 						</ul>
 					</li>
@@ -371,15 +371,13 @@ function submitbutton(pressbutton){
 					<li>
 						<strong>Ready-To-Go Fields  <i>(Pro)</i></strong>
 						<ul id="add-default-fields" class="readyFields">
-							<li><a onclick="" class="" id="nameSurname" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Full Name</a></li>
-							<li><a onclick="" class="" id="phone" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Phone</a></li>
-							<li><a onclick="" class="" id="date" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Date</a></li>
-							<li><a onclick="" class="" id="address" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Address</a></li>
-							<?php if($fordisablelicense==0):?>
-								<li><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Policy Agreement</a></li>
-							<?php else:?>
-								<li class="disabled"><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $row->hc_yourstyle;?>">Policy Agreement</a></li>
-							<?php endif;?>
+							<li><a onclick="" class="" id="nameSurname" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>"><?php _e('Full Name','hugeit_contact');?></a></li>
+							<li><a onclick="" class="" id="phone" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>"><?php _e('Phone','hugeit_contact');?></a></li>
+							<li><a onclick="" class="" id="date" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>"><?php _e('Date','hugeit_contact');?></a></li>
+							<li><a onclick="" class="" id="address" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>"><?php _e('Address','hugeit_contact');?></a></li>
+                            <li><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>"><?php _e('Policy Agreement','hugeit_contact');?></a></li>
+                            <li><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>"><?php _e('Paypal','hugeit_contact');?></a></li>
+                            <li><a onclick="" class="" id="license" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>"><?php _e('Google Map','hugeit_contact');?></a></li>
 						</ul>
 					</li>
 				</ul>
@@ -577,8 +575,6 @@ function submitbutton(pressbutton){
 				line-height:<?php echo $style_values['form_title_size']; ?>px !important;
 				color:#<?php echo $style_values['form_title_color']; ?> !important;
 				margin: 10px 0 15px 0 !important;
-				<?php else:?>
-				display:none;
 				<?php endif;?>
 			}
 			.text_area_title{
@@ -1056,8 +1052,29 @@ function submitbutton(pressbutton){
 			<div id="hugeit-contact-preview-container">
 					<form onkeypress="doNothing()" id="hugeit-contact-preview-form">
 					<div id="hugeit-contact-wrapper" class="<?php echo $style_values['form_radio_size']; ?>-radio <?php echo $style_values['form_checkbox_size']; ?>-checkbox">
-					<div <?php foreach ($rowim as $key=>$rowimages){if($rowimages->hc_left_right == 'right'){echo 'class="multicolumn"';}} ?>>
-						<?php foreach($rowsld as $key=>$rowsldires) {if($id==$rowsldires->id) {echo "<h3><input class='text_area_title' type='text' maxlength='250' value='".$rowsldires->name."' /><span class='hugeItTitleOverlay'></span></h3>";}} ?>
+					<div <?php foreach ($rowim as $key=>$rowimages){
+					    if($rowimages->hc_left_right == 'right'){
+					        echo 'class="multicolumn"';
+					    }
+					} ?>>
+						<?php
+                            $show_form_title_option=get_option('hugeit_contact_show_title_for_form_' . $id);
+                            switch ( $show_form_title_option ) {
+                                case 'yes' :
+                                    $show_form_title = true;
+                                    break;
+
+                                case 'no' :
+                                    $show_form_title = false;
+                                    break;
+
+                                default :
+                                    $show_form_title = $style_values['form_show_title'] === 'on' ? true : false;
+                            }
+						    if($show_form_title) {
+						          echo '<h3><input class="text_area_title" type="text" maxlength="250" value="'.$current_form->name.'" /><span class="hugeItTitleOverlay"></span></h3>';
+						    }
+						?>
 						<div class="hugeit-contact-column-block hugeit-contact-block-left" id="hugeit-contact-block-left">
 							<?php
 								$i=2;

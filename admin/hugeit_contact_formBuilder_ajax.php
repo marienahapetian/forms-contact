@@ -624,7 +624,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	//7 Custom Text //
 	function hugeit_contact_cutomtextHtml($rowimages) { ob_start(); ?>
 		<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
-			<div class="custom_text_content"><?php echo wp_kses_post($rowimages->name); ?></div>
+			<div class="custom_text_content"><?php echo $rowimages->name; ?></div>
 			<span class="hugeOverlay"></span>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>">
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" />
@@ -745,7 +745,7 @@ function hugeit_contact_simple_captcha_html($rowimages) { ob_start(); ?>
 
 // Simple Captcha Field HTML(Left Column)
 function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?>
-	<li id="huge-contact-field-<?php echo $rowimages->id; ?>"  data-fieldNum="<?php echo $rowimages->id; ?>" data-fieldType="captcha">
+	<li id="huge-contact-field-<?php echo $rowimages->id; ?>"  data-fieldNum="<?php echo $rowimages->id; ?>" data-fieldType="simple_captcha_box">
 		<h4>Simple Captcha</h4>
 		<div class="fields-options">
 			<div class="left">
@@ -880,7 +880,7 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 		<div class="hugeit-field-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 			<label class="<?php if($rowimages->hc_input_show_default!='1')echo $rowimages->hc_input_show_default;?>" for="hugeit_preview_textbox_<?php echo $rowimages->id;?>"><?php echo $rowimages->hc_field_label; if($rowimages->hc_required == 'on'){ echo '<em class="required-star">*</em>';} ?> </label>
 			<div class="field-block input-text-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign'||$rowimages->hc_input_show_default=='formsInsideAlign')echo $rowimages->hc_input_show_default;?>">
-				<input id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" type="<?php echo $rowimages->field_type;?>" placeholder="<?php echo $rowimages->name;?>" class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>"  <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?>/>
+				<input id="hugeit_preview_textbox_<?php echo $rowimages->id;?>" type="email" placeholder="<?php echo $rowimages->name;?>" class="<?php if($rowimages->hc_required == 'on'){echo 'required';}?>"  <?php if($rowimages->description != 'on'){echo 'disabled="disabled"';}?>/>
 			</div>
 			<span class="hugeit-error-message"></span>
 			<span class="hugeOverlay"></span>
@@ -1511,7 +1511,6 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 		        break;
 
 		    case 'selectbox':
-
 		    	$wpdb->insert(
 				    $inserttexttype,
 				    array(
@@ -1528,8 +1527,6 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 				    ),
 				    array('%s', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
 			    );
-
-			     $wpdb->query($sql_type_text);
 
 			    $queryMax=$wpdb->prepare(
 			    	"SELECT MAX(id) AS resId 
@@ -2279,29 +2276,43 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
 
         if (isset($_POSTED["name"])) {
             if ($_POSTED["name"] != '') {
-                $wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  name = %s  WHERE id = %d ", $_POSTED["name"], $formId));
+                $wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  name = %s  WHERE id = %d ", wp_unslash($_POSTED["name"]), $formId));
+                $wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $_POSTED["select_form_theme"], $formId));
                 $wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $_POSTED["select_form_theme"], $formId));
             }
         }
 
-        foreach ($rowim as $key => $rowimages) {
-            $id = $rowimages->id;
+        if (isset($_POSTED['hugeit_contact_show_title_for_form_' . $formId]) && in_array($_POSTED['hugeit_contact_show_title_for_form_' . $formId], array('yes', 'no', 'default'))) {
+            update_option('hugeit_contact_show_title_for_form_' . $formId, $_POSTED['hugeit_contact_show_title_for_form_' . $formId]);
+        }
 
-            $row_updated = $wpdb->update(
-                $wpdb->prefix . "huge_it_contact_contacts_fields",
-                array(
-                    'ordering' => $_POSTED['hc_ordering' . $id],
-                    'hc_required' => $_POSTED['hc_required' . $id],
-                    'hc_input_show_default' => $_POSTED['hc_input_show_default' . $id],
-                    'hc_left_right' => $_POSTED['hc_left_right' . $id],
-                    'hc_other_field' => is_array($_POSTED['hc_other_field' . $id]) ? json_encode($_POSTED['hc_other_field' . $id]) : $_POSTED['hc_other_field' . $id],
-                    'name' => wp_unslash($_POSTED['titleimage' . $id]),
-                    'description' => ($_POSTED['im_description' . $id]) ? $_POSTED['im_description' . $id] : '',
-                    'hc_field_label' => wp_unslash($_POSTED['imagess' . $id]),
-					'field_type'=> ($_POSTED['field_type' . $id]) ? $_POSTED['field_type' . $id] : '',
-                ),
-                array('id' => $rowimages->id)
-            );
+        foreach ($rowim as $key => $rowimages) {
+            $inputAllowedTypes = array('text', 'textarea', 'selectbox', 'checkbox', 'radio_box', 'file_box', 'e_mail', 'buttons', 'captcha', 'simple_captcha_box');
+            $inputtype = $rowimages->conttype;
+            if (in_array($inputtype, $inputAllowedTypes)) {
+                $id = $rowimages->id;
+
+                $hc_other_field = '';
+
+                if (isset($_POSTED['hc_other_field' . $id])) {
+                    $hc_other_field = is_array($_POSTED['hc_other_field' . $id]) ? json_encode($_POSTED['hc_other_field' . $id]) : $_POSTED['hc_other_field' . $id];
+                }
+                $row_updated = $wpdb->update(
+                    $wpdb->prefix . "huge_it_contact_contacts_fields",
+                    array(
+                        'ordering' => isset($_POSTED['hc_ordering' . $id])?$_POSTED['hc_ordering' . $id]:0,
+                        'hc_required' => isset($_POSTED['hc_required' . $id])?$_POSTED['hc_required' . $id]:'off',
+                        'hc_input_show_default' => isset($_POSTED['hc_input_show_default' . $id])?$_POSTED['hc_input_show_default' . $id]:'',
+                        'hc_left_right' => isset($_POSTED['hc_left_right' . $id]) ? $_POSTED['hc_left_right' . $id] : 'left',
+                        'hc_other_field' => $hc_other_field,
+                        'name' => isset($_POSTED['titleimage' . $id]) ? wp_unslash($_POSTED['titleimage' . $id]) : '',
+                        'description' => isset($_POSTED['im_description' . $id]) ? $_POSTED['im_description' . $id] : '',
+                        'hc_field_label' => isset($_POSTED['imagess' . $id])?wp_unslash($_POSTED['imagess' . $id]):'',
+                        'field_type' => isset($_POSTED['field_type' . $id]) ? $_POSTED['field_type' . $id] : '',
+                    ),
+                    array('id' => $rowimages->id)
+                );
+            }
         }
 
         echo json_encode(array("saveForm" => "success"));
@@ -2324,7 +2335,7 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
 	    $rowim=$wpdb->get_results($query);
 		if ( isset( $_POSTED["name"] ) ) {
 			if ( $_POSTED["name"] != '' ) {
-				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  name = %s  WHERE id = %d ", $_POSTED["name"], $formId ) );
+				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  name = %s  WHERE id = %d ", wp_unslash($_POSTED["name"]), $formId ) );
 				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $themeId, $formId ) );
 			}
 		}

@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Forms
 Plugin URI: https://huge-it.com/forms
 Description: Form Builder. this is one of the most important elements of WordPress website because without it you cannot to always keep in touch with your visitors
-Version: 1.4.5
+Version: 1.4.6
 Author: Huge-IT
 Author URI: https://huge-it.com/
 License: GNU/GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
@@ -54,6 +54,7 @@ add_action( 'wp_ajax_hugeit_email_action', 'hugeit_contact_email_ajax_action_cal
 /*ADDING to HEADER of FRONT END */
 function hugeit_contact_frontend_scripts_and_styles($id) {
 	wp_enqueue_style( "font_awesome_frontend", plugins_url( "style/iconfonts/css/hugeicons.css", __FILE__ ), false );
+	wp_enqueue_style( "hugeit_contact_front_css", plugins_url( "style/form-front.css", __FILE__ ), false );
 	global $wpdb;
 	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = %d order by ordering DESC", $id);
 	$rowim=$wpdb->get_results($query);
@@ -505,7 +506,7 @@ function hugeit_forms_custom_scripts(){
 	wp_enqueue_style('hugeit-custom_scripts-css',plugin_dir_url(__FILE__).'style/custom-scripts.css',true);
 	require_once( "admin/hugeit_contact_custom_scripts.php" );
 
-	if(isset($_GET['task']) && $_GET['task']=='save'){hugeit_contact_save_custom_scripts();}
+	if(isset($_POST['submit'])){hugeit_contact_save_custom_scripts();}
 	hugeit_generate_custom_scripts_page();
 }
 

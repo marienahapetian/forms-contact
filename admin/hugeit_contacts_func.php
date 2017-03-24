@@ -348,11 +348,11 @@ function hugeit_contact_edit_hugeit_contact( $id ) {
 	}
 
 	$query = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE id=%d", $id );
-	$row   = $wpdb->get_row( $query );
+	$current_form   = $wpdb->get_row( $query );
 	if ( ! isset( $postsbycat ) ) {
 		$postsbycat = '';
 	}
-	hugeit_contact_html_edithugeit_contact( $id, $ord_elem, $count_ord, $images, $row, $cat_row, $rowim, $rowsld, $paramssld, $rowsposts, $rowsposts8, $postsbycat, $form_styles, $style_values, $themeId );
+	hugeit_contact_html_edithugeit_contact( $current_form, $ord_elem, $count_ord, $images, $cat_row, $rowim, $rowsld, $paramssld, $rowsposts, $rowsposts8, $postsbycat, $form_styles, $style_values, $themeId );
 }
 
 function hugeit_contact_add_hugeit_contact() {

@@ -57,7 +57,7 @@ $path_site = plugins_url("Front_images", __FILE__); ?>
             <div id="post-body-content">
 
                 <div class="scripts-block">
-                    <form action="admin.php?page=hugeit_forms_custom_scripts&task=save" method="post" id="adminForm" name="adminForm">
+                    <form action="admin.php?page=hugeit_forms_custom_scripts" method="post" id="adminForm" name="adminForm">
                         <div id="post-body-heading">
                             <input type="submit" value="Save" class="button-primary">
                         </div>

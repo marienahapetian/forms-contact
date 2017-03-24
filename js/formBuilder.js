@@ -19,7 +19,7 @@ jQuery(document).ready(function(e) {
 			inputTypeStatus = 'disabled';
 		}
 		var themeId = jQuery(this).attr('data-themeId');
-		if (inputType == 'captcha' || inputType == 'buttons' || inputType == 'license') {
+		if (inputType == 'captcha' || inputType == 'buttons' || inputType=='simple_captcha_box') {
 			jQuery('#add-default-fields').find('li>a#' + inputType + '').parent().addClass('disabled');
 		}
 		if (jQuery('#add-fields-block li.spinnerLi>img').css('display') != 'inline') {
@@ -250,10 +250,10 @@ jQuery(document).ready(function(e) {
 			inputTypeStatus = 'captcha';
 		} else if (jQuery(this).parents('#huge-contact-field-' + fieldId + '').attr('data-fieldType') == 'buttons') {
 			inputTypeStatus = 'buttons';
-		} else if (jQuery(this).parents('#huge-contact-field-' + fieldId + '').attr('data-fieldType') == 'license') {
-			inputTypeStatus = 'license';
-		}
-		;
+		}  else if(jQuery(this).parents('#huge-contact-field-'+fieldId+'').attr('data-fieldType')=='simple_captcha_box'){
+            inputTypeStatus='simple_captcha_box';
+        }
+
 		jQuery.ajax({
 			type: "POST",
 			url: ajaxurl,
@@ -310,14 +310,14 @@ jQuery(document).ready(function(e) {
 						jQuery(this).css('display', 'block');
 					});
 				}
-				if (inputTypeStatus == 'captcha' || inputTypeStatus == 'buttons' || inputTypeStatus == 'license') {
+				if (inputTypeStatus == 'captcha' || inputTypeStatus == 'buttons' ||  inputTypeStatus=='simple_captcha_box') {
 					jQuery('#add-default-fields').find('li>a#' + inputTypeStatus + '').parent().removeClass('disabled');
 				}
 			}
 		});
 	});
-	////DELETE FIELDS END//
-	////DUBLICATE FIELDS START///
+	/* DELETE FIELDS END */
+	/* DUBLICATE FIELDS START */
 	jQuery('#fields-list-block').on('click', '.field-top-options-block>a.copy-field', function(event) {
 		var self = jQuery(this);
 		var formId = jQuery("#add-fields-block").find('li.spinnerLi').attr('data-idForm');
