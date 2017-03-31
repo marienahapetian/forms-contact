@@ -60,7 +60,6 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
     width: 100%;
     padding: 5px 0 5px 0;
     clear: both;
-    line-height: 0;
 }
 .hugeit-contact-wrapper .hugeit-contact-column-block > div.hugeit-check-field,
 .hugeit-contact-wrapper .hugeit-contact-column-block > div.hugeit-radio-field {
@@ -111,7 +110,6 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
     display: inline-block;
     width: 60%;
     vertical-align: super !important;
-    line-height: 0;
 }
 
 .hugeit-contact-wrapper .hugeit-contact-column-block > div .field-block select,
