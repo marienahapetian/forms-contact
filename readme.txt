@@ -1,10 +1,10 @@
-=== Forms - Form builder and Form maker & Forms ===
+=== Forms - Form builder and Contact form ===
 Contributors: Huge-IT
 Donate link: https://huge-it.com/forms/
 Tags: forms, contact form, form, form builder, form maker,
 Requires at least: 3.0.1
 Tested up to: 4.7.3
-Stable tag: 1.4.6
+Stable tag: 1.4.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Form builder are one of the most important elements of your website. If you need
 
 == Description ==
 
-### Wordpress Forms
+https://www.youtube.com/watch?v=FEALuSSsELw
 
 * [Wordpress Forms](https://huge-it.com/forms/)
 * [Forms Demo](https://huge-it.com/wordpress-forms-demo-1-delivery-form/)
@@ -21,8 +21,6 @@ Form builder are one of the most important elements of your website. If you need
 * [Forms Support](https://huge-it.com/contact-us/)
 * [Forms Forum](https://huge-it.com/forums/forum/wordpress/wordpress-forms/)
 * [Forms GitHub Project](https://github.com/Huge-IT/forms-contact)
-
-https://www.youtube.com/watch?v=FEALuSSsELw
 
 Huge -IT Forms is one of the most important element for the WordPress website because without Forms Builder you will not be able to keep in touch with your visitors, partners and customers, give an easy filling form for submissions, delivery form or other types of forms. Besides that, a good-looking form gives your site a professional appearance.
 
@@ -383,6 +381,10 @@ If you think, that you found a bug in our [WordPress Forms](https://huge-it.com/
 35.  [WordPress Form](https://wordpress.org/plugins/forms-contact/) - Form General Options
 
 == Changelog ==
+
+= 1.4.7 =
+
+* The latest 1.4.6 version did not process a line of a code which brought to an issue with custom text field. Please, update to 1.4.7 in order to be able save the custom text field. We are sorry about the system issue with the update.
 
 = 1.4.6 =
 
