@@ -2287,7 +2287,7 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
         }
 
         foreach ($rowim as $key => $rowimages) {
-            $inputAllowedTypes = array('text', 'textarea', 'selectbox','custom_text', 'checkbox', 'radio_box', 'file_box', 'e_mail', 'buttons', 'captcha', 'simple_captcha_box');
+            $inputAllowedTypes = array('text','custom_text', 'textarea', 'selectbox', 'checkbox', 'radio_box', 'file_box', 'e_mail', 'buttons', 'captcha', 'simple_captcha_box');
             $inputtype = $rowimages->conttype;
             if (in_array($inputtype, $inputAllowedTypes)) {
                 $id = $rowimages->id;
