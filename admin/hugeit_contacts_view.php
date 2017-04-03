@@ -207,7 +207,7 @@ function submitbuttonRemove(pressbutton){
 		alert("Name is required.");
 		return;
 	}	
-	document.getElementById("adminForm").action=document.getElementById("adminForm").action+"&task=apply&removeslide="+pressbutton;
+	document.getElementById("adminForm").action=document.getElementById("adminForm").action+"&task=apply&removeform="+pressbutton;
 	document.getElementById("adminForm").submit();
 }
 function submitbutton(pressbutton){
