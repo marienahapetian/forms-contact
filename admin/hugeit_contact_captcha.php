@@ -4,6 +4,7 @@ if(!isset($_SESSION))session_start();
 
 function hugeit_contact_get_field_row($id){
     global $wpdb;
+    $id=intval($id);
     $query="SELECT * FROM  " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE id={$id}";
     $captcha_field=$wpdb->get_results($query,'ARRAY_A');
 

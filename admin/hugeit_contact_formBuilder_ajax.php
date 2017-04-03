@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	    return ob_get_clean();
 	}
 	//Text box Right Column
-	function hugeit_contact_textBoxSettingsHtml($rowimages){ob_start(); ?>
+	function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
 		<li id="huge-contact-field-<?php echo $rowimages->id; ?>"  data-fieldNum="<?php echo $rowimages->id; ?>">	
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="Textbox"/>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
@@ -1765,8 +1765,7 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 					$formId
 				);
 				$field_exists_in_the_form=$wpdb->query($field_exists_in_the_form);
-				//var_dump($field_exists_in_the_form);
-				if(!$field_exists_in_the_form){
+				if( !$field_exists_in_the_form ){
 					$wpdb->insert(
 						$inserttexttype,
 						array(
@@ -2036,8 +2035,8 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 	    $rowim=$wpdb->get_results($query);
 		if(isset($_POSTED["name"])){
 			if($_POSTED["name"] != ''){
-				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  name = %s  WHERE id = %d ", $_POSTED["name"], $formId));
-				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  hc_yourstyle = %s WHERE id = %d ", $_POSTED["select_form_theme"], $formId));
+				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  name = %s  WHERE id = %d ", sanitize_text_field($_POSTED["name"]), $formId));
+				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  hc_yourstyle = %s WHERE id = %d ", sanitize_text_field($_POSTED["select_form_theme"]), $formId));
 			}
 		}	   
 	   foreach ($rowim as $key=>$rowimages){
@@ -2045,29 +2044,29 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 			   if($_POSTED["hc_left_right".$rowimages->id.""]){
 			   	$id = absint($rowimages->id);
 					if ( isset( $_POSTED[ "field_type" . $rowimages->id . "" ] ) )
-						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  field_type = %s WHERE id = %d", $_POSTED[ "field_type" . $rowimages->id . "" ], $id ) );
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  field_type = %s WHERE id = %d", sanitize_text_field($_POSTED[ "field_type" . $rowimages->id . "" ]), $id ) );
 				   if ( isset( $_POSTED[ "hc_other_field" . $rowimages->id . "" ] ) ) {
-					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_other_field = %s WHERE id = %d", $_POSTED[ "hc_other_field" . $rowimages->id . "" ], $id ) );
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_other_field = %s WHERE id = %d", sanitize_text_field($_POSTED[ "hc_other_field" . $rowimages->id . "" ]), $id ) );
 				   }
 				   if ( isset( $_POSTED[ "titleimage" . $rowimages->id . "" ] ) ) {
-					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  name = %s  WHERE id = %d", stripslashes( $_POSTED[ "titleimage" . $rowimages->id . "" ] ), $id ) );
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  name = %s  WHERE id = %d", sanitize_text_field(stripslashes( $_POSTED[ "titleimage" . $rowimages->id . "" ] )), $id ) );
 				   }
 				   if ( isset( $_POSTED[ "im_description" . $rowimages->id . "" ] ) ) {
-					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  description = %s  WHERE id = %d", $_POSTED[ "im_description" . $rowimages->id . "" ], $id ) );
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  description = %s  WHERE id = %d", sanitize_text_field($_POSTED[ "im_description" . $rowimages->id . "" ]), $id ) );
 				   }
 				   if ( isset( $_POSTED[ "hc_required" . $rowimages->id . "" ] ) ) {
-					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_required = %s WHERE id = %d", $_POSTED[ "hc_required" . $rowimages->id . "" ], $id ) );
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_required = %s WHERE id = %d", sanitize_text_field($_POSTED[ "hc_required" . $rowimages->id . "" ]), $id ) );
 				   }
 				   if ( isset( $_POSTED[ "imagess" . $rowimages->id . "" ] ) ) {
-					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_field_label = %s  WHERE id = %d", stripslashes( $_POSTED[ "imagess" . $rowimages->id . "" ] ), $id ) );
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_field_label = %s  WHERE id = %d", sanitize_text_field(stripslashes( $_POSTED[ "imagess" . $rowimages->id . "" ] )), $id ) );
 				   }
 				   if ( isset( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) ) {
-					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_left_right = %s  WHERE id = %d", $_POSTED[ "hc_left_right" . $rowimages->id . "" ], $id ) );
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_left_right = %s  WHERE id = %d", sanitize_text_field($_POSTED[ "hc_left_right" . $rowimages->id . "" ]), $id ) );
 				   }
 				   if ( isset( $_POSTED[ "hc_ordering" . $rowimages->id . "" ] ) ) {
-					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  ordering = %s  WHERE id = %d", $_POSTED[ "hc_ordering" . $rowimages->id . "" ], $id ) );
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  ordering = %s  WHERE id = %d", intval($_POSTED[ "hc_ordering" . $rowimages->id . "" ]), $id ) );
 				   }
-				   if ( isset( $_POSTED["hc_input_show_default".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_input_show_default = %s  WHERE id = %d",$_POSTED["hc_input_show_default".$rowimages->id.""],$id));
+				   if ( isset( $_POSTED["hc_input_show_default".$rowimages->id.""]))$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts_fields SET  hc_input_show_default = %s  WHERE id = %d",sanitize_text_field($_POSTED["hc_input_show_default".$rowimages->id.""]),$id));
 				}
 			}
 		}
@@ -2096,8 +2095,8 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 	    $rowim = $wpdb->get_results($query);
 		if (isset($_POSTED["name"])){
 			if($_POSTED["name"] != '') {
-				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  name = %s  WHERE id = %d ", $_POSTED["name"], $formId));
-				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $_POSTED["select_form_theme"], $formId));
+				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  name = %s  WHERE id = %d ", sanitize_text_field($_POSTED["name"]), $formId));
+				$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", sanitize_text_field($_POSTED["select_form_theme"]), $formId));
 			}
 		}
 		foreach ( $rowim as $key => $rowimages ) {
@@ -2105,31 +2104,31 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 				if ( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) {
 					$id = absint($rowimages->id);
 					if ( isset( $_POSTED[ "field_type" . $rowimages->id . "" ] ) ) {
-						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  field_type = %s WHERE id = %d", $_POSTED[ "field_type" . $rowimages->id . "" ], $id ) );
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  field_type = %s WHERE id = %d", sanitize_text_field($_POSTED[ "field_type" . $rowimages->id . "" ]), $id ) );
 					}
 					if ( isset( $_POSTED[ "hc_other_field" . $rowimages->id . "" ] ) ) {
-						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_other_field = %s WHERE id = %d", $_POSTED[ "hc_other_field" . $rowimages->id . "" ], $id ) );
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_other_field = %s WHERE id = %d", sanitize_text_field($_POSTED[ "hc_other_field" . $rowimages->id . "" ]), $id ) );
 					}
 					if ( isset( $_POSTED[ "titleimage" . $rowimages->id . "" ] ) ) {
-						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  name = %s  WHERE id = %d", stripslashes( $_POSTED[ "titleimage" . $rowimages->id . "" ] ), $id ) );
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  name = %s  WHERE id = %d", sanitize_text_field(stripslashes( $_POSTED[ "titleimage" . $rowimages->id . "" ] )), $id ) );
 					}
 					if ( isset( $_POSTED[ "im_description" . $rowimages->id . "" ] ) ) {
-						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  description = %s  WHERE id = %d", $_POSTED[ "im_description" . $rowimages->id . "" ], $id ) );
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  description = %s  WHERE id = %d", sanitize_text_field($_POSTED[ "im_description" . $rowimages->id . "" ]), $id ) );
 					}
 					if ( isset( $_POSTED[ "hc_required" . $rowimages->id . "" ] ) ) {
-						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_required = %s WHERE id = %d", $_POSTED[ "hc_required" . $rowimages->id . "" ], $id ) );
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_required = %s WHERE id = %d", sanitize_text_field($_POSTED[ "hc_required" . $rowimages->id . "" ]), $id ) );
 					}
 					if ( isset( $_POSTED[ "imagess" . $rowimages->id . "" ] ) ) {
-						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_field_label = %s  WHERE id = %d", stripslashes( $_POSTED[ "imagess" . $rowimages->id . "" ] ), $id ) );
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_field_label = %s  WHERE id = %d", sanitize_text_field(stripslashes( $_POSTED[ "imagess" . $rowimages->id . "" ] )), $id ) );
 					}
 					if ( isset( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) ) {
-						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_left_right = %s  WHERE id = %d", $_POSTED[ "hc_left_right" . $rowimages->id . "" ], $id ) );
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_left_right = %s  WHERE id = %d", sanitize_text_field($_POSTED[ "hc_left_right" . $rowimages->id . "" ]), $id ) );
 					}
 					if ( isset( $_POSTED[ "hc_ordering" . $rowimages->id . "" ] ) ) {
-						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  ordering = %s  WHERE id = %d", $_POSTED[ "hc_ordering" . $rowimages->id . "" ], $id ) );
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  ordering = %s  WHERE id = %d", intval($_POSTED[ "hc_ordering" . $rowimages->id . "" ]), $id ) );
 					}
 					if ( isset( $_POSTED[ "hc_input_show_default" . $rowimages->id . "" ] ) ) {
-						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_input_show_default = %s  WHERE id = %d", $_POSTED[ "hc_input_show_default" . $rowimages->id . "" ], $id ) );
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_input_show_default = %s  WHERE id = %d", sanitize_text_field($_POSTED[ "hc_input_show_default" . $rowimages->id . "" ]), $id ) );
 					}
 				}
 			}
@@ -2265,7 +2264,7 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
 	if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'builder_nonce')) {
 		return false;
 	}
-	$formId = $_POST['formId'];
+	$formId = sanitize_text_field($_POST['formId']);
 
     $_POSTED=$_POST['formData'];
 
@@ -2276,9 +2275,9 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
 
         if (isset($_POSTED["name"])) {
             if ($_POSTED["name"] != '') {
-                $wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  name = %s  WHERE id = %d ", wp_unslash($_POSTED["name"]), $formId));
-                $wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $_POSTED["select_form_theme"], $formId));
-                $wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $_POSTED["select_form_theme"], $formId));
+                $wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  name = %s  WHERE id = %d ", sanitize_text_field(wp_unslash($_POSTED["name"])), $formId));
+                $wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", sanitize_text_field($_POSTED["select_form_theme"]), $formId));
+                $wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", sanitize_text_field($_POSTED["select_form_theme"]), $formId));
             }
         }
 
@@ -2287,28 +2286,28 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
         }
 
         foreach ($rowim as $key => $rowimages) {
-            $inputAllowedTypes = array('text','custom_text', 'textarea', 'selectbox', 'checkbox', 'radio_box', 'file_box', 'e_mail', 'buttons', 'captcha', 'simple_captcha_box');
+            $inputAllowedTypes = array('text', 'custom_text', 'textarea', 'selectbox', 'checkbox', 'radio_box', 'file_box', 'e_mail', 'buttons', 'captcha', 'simple_captcha_box');
             $inputtype = $rowimages->conttype;
             if (in_array($inputtype, $inputAllowedTypes)) {
                 $id = $rowimages->id;
 
                 $hc_other_field = '';
 
-                if (isset($_POSTED['hc_other_field' . $id])) {
+                if ( isset($_POSTED['hc_other_field' . $id]) ) {
                     $hc_other_field = is_array($_POSTED['hc_other_field' . $id]) ? json_encode($_POSTED['hc_other_field' . $id]) : $_POSTED['hc_other_field' . $id];
                 }
                 $row_updated = $wpdb->update(
                     $wpdb->prefix . "huge_it_contact_contacts_fields",
                     array(
-                        'ordering' => isset($_POSTED['hc_ordering' . $id])?$_POSTED['hc_ordering' . $id]:0,
-                        'hc_required' => isset($_POSTED['hc_required' . $id])?$_POSTED['hc_required' . $id]:'off',
-                        'hc_input_show_default' => isset($_POSTED['hc_input_show_default' . $id])?$_POSTED['hc_input_show_default' . $id]:'',
-                        'hc_left_right' => isset($_POSTED['hc_left_right' . $id]) ? $_POSTED['hc_left_right' . $id] : 'left',
+                        'ordering' => isset($_POSTED['hc_ordering' . $id])? intval($_POSTED['hc_ordering' . $id]):0,
+                        'hc_required' => isset($_POSTED['hc_required' . $id])? sanitize_text_field($_POSTED['hc_required' . $id]):'off',
+                        'hc_input_show_default' => isset($_POSTED['hc_input_show_default' . $id])? sanitize_text_field($_POSTED['hc_input_show_default' . $id]):'',
+                        'hc_left_right' => isset($_POSTED['hc_left_right' . $id]) ? sanitize_text_field($_POSTED['hc_left_right' . $id]) : 'left',
                         'hc_other_field' => $hc_other_field,
-                        'name' => isset($_POSTED['titleimage' . $id]) ? wp_unslash($_POSTED['titleimage' . $id]) : '',
-                        'description' => isset($_POSTED['im_description' . $id]) ? $_POSTED['im_description' . $id] : '',
-                        'hc_field_label' => isset($_POSTED['imagess' . $id])?wp_unslash($_POSTED['imagess' . $id]):'',
-                        'field_type' => isset($_POSTED['field_type' . $id]) ? $_POSTED['field_type' . $id] : '',
+                        'name' => isset($_POSTED['titleimage' . $id]) ? sanitize_text_field(wp_unslash($_POSTED['titleimage' . $id])) : '',
+                        'description' => isset($_POSTED['im_description' . $id]) ? sanitize_text_field($_POSTED['im_description' . $id]) : '',
+                        'hc_field_label' => isset($_POSTED['imagess' . $id])? sanitize_text_field(wp_unslash($_POSTED['imagess' . $id])):'',
+                        'field_type' => isset($_POSTED['field_type' . $id]) ? sanitize_text_field($_POSTED['field_type' . $id]) : '',
                     ),
                     array('id' => $rowimages->id)
                 );
@@ -2335,8 +2334,8 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
 	    $rowim=$wpdb->get_results($query);
 		if ( isset( $_POSTED["name"] ) ) {
 			if ( $_POSTED["name"] != '' ) {
-				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  name = %s  WHERE id = %d ", wp_unslash($_POSTED["name"]), $formId ) );
-				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", $themeId, $formId ) );
+				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  name = %s  WHERE id = %d ", sanitize_text_field(wp_unslash($_POSTED["name"])), $formId ) );
+				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  hc_yourstyle = %s  WHERE id = %d ", intval($themeId), $formId ) );
 			}
 		}
 		foreach ( $rowim as $key => $rowimages ) {
@@ -2347,63 +2346,63 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
 						$wpdb->query( $wpdb->prepare(
 							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
 							SET  field_type = %s 
-							WHERE id = %d", $_POSTED[ "field_type" . $rowimages->id . "" ],
+							WHERE id = %d", sanitize_text_field($_POSTED[ "field_type" . $rowimages->id . "" ]),
 							$id ) );
 					}
 					if ( isset( $_POSTED[ "hc_other_field" . $rowimages->id . "" ] ) ) {
 						$wpdb->query( $wpdb->prepare(
 							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
 							SET  hc_other_field = %s 
-							WHERE id = %d", $_POSTED[ "hc_other_field" . $rowimages->id . "" ],
+							WHERE id = %d", sanitize_text_field($_POSTED[ "hc_other_field" . $rowimages->id . "" ]),
 							$id ) );
 					}
 					if ( isset( $_POSTED[ "titleimage" . $rowimages->id . "" ] ) ) {
 						$wpdb->query( $wpdb->prepare(
 							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
 							SET  name = %s  
-							WHERE id = %d", stripslashes( $_POSTED[ "titleimage" . $rowimages->id . ""
-						] ), $id ) );
+							WHERE id = %d", sanitize_text_field(stripslashes( $_POSTED[ "titleimage" . $rowimages->id . ""
+						] )), $id ) );
 					}
 					if ( isset( $_POSTED[ "im_description" . $rowimages->id . "" ] ) ) {
 						$wpdb->query( $wpdb->prepare(
 							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
 							SET  description = %s  
-							WHERE id = %d", $_POSTED[ "im_description" . $rowimages->id . "" ],
+							WHERE id = %d", sanitize_text_field($_POSTED[ "im_description" . $rowimages->id . "" ]),
 							$id ) );
 					}
 					if ( isset( $_POSTED[ "hc_required" . $rowimages->id . "" ] ) ) {
 						$wpdb->query( $wpdb->prepare(
 							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
 							SET  hc_required = %s 
-							WHERE id = %d", $_POSTED[ "hc_required" . $rowimages->id . "" ],
+							WHERE id = %d", sanitize_text_field($_POSTED[ "hc_required" . $rowimages->id . "" ]),
 							$id ) );
 					}
 					if ( isset( $_POSTED[ "imagess" . $rowimages->id . "" ] ) ) {
 						$wpdb->query( $wpdb->prepare(
 							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
 							SET  hc_field_label = %s  
-							WHERE id = %d", stripslashes( $_POSTED[ "imagess" . $rowimages->id . ""
-						] ), $id ) );
+							WHERE id = %d", sanitize_text_field(stripslashes( $_POSTED[ "imagess" . $rowimages->id . ""
+						] )), $id ) );
 					}
 					if ( isset( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) ) {
 						$wpdb->query( $wpdb->prepare(
 							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
 							SET  hc_left_right = %s  
-							WHERE id = %d", $_POSTED[ "hc_left_right" . $rowimages->id . "" ],
+							WHERE id = %d", sanitize_text_field($_POSTED[ "hc_left_right" . $rowimages->id . "" ]),
 							$id ) );
 					}
 					if ( isset( $_POSTED[ "hc_ordering" . $rowimages->id . "" ] ) ) {
 						$wpdb->query( $wpdb->prepare(
 							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
 							SET  ordering = %s  
-							WHERE id = %d", $_POSTED[ "hc_ordering" . $rowimages->id . "" ],
+							WHERE id = %d", intval($_POSTED[ "hc_ordering" . $rowimages->id . "" ]),
 							$id ) );
 					}
 					if ( isset( $_POSTED[ "hc_input_show_default" . $rowimages->id . "" ] ) ) {
 						$wpdb->query( $wpdb->prepare(
 							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
 							SET  hc_input_show_default = %s  
-							WHERE id = %d", $_POSTED[ "hc_input_show_default" . $rowimages->id . "" ],
+							WHERE id = %d", sanitize_text_field($_POSTED[ "hc_input_show_default" . $rowimages->id . "" ]),
 							$id ) );
 					}
 				}

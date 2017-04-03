@@ -254,7 +254,7 @@ function hugeit_contact_email_ajax_action_callback() {
 									'.$tableRows.'	
 								</tbody>
 							</table>';
-				echo json_encode(array("output"=>esc_html($output)));
+				echo json_encode(array("output"=>$output));
 			}else{
 				$output='Email Already Exists';
 				echo json_encode(array("exists"=>$output));
@@ -557,7 +557,7 @@ function hugeit_contact_email_ajax_action_callback() {
 							<span id="loader" style="display: none;"><img src="'.plugins_url( 'forms-contact/images/spinner.gif').'" alt=""></span>'.$doneHtml.'							
 							<div id="res"></div>
 					</div>';
-			echo json_encode(array("output"=>esc_html($output)));
+			echo json_encode(array("output"=>$output));
 		}
 		
 	}
