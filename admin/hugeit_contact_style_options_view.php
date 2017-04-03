@@ -53,9 +53,9 @@ function hugeit_contact_html_styles($rows){
 			<form method="post"  onkeypress="doNothing()" action="admin.php?page=hugeit_forms_main_page" id="admin_form" name="admin_form">
 				<?php if(!isset($_GET["form_id"]))$_GET["form_id"]='';?>
 			<h2>
-                <?php _e('Email Newsletters', 'hugeit_contact'); ?>Huge IT Forms Themes
+                <?php _e('Huge IT Forms Themes', 'hugeit_contact'); ?>
 				<a onclick="alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');" class="add-new-h2" >
-                    <?php _e('Email Newsletters', 'hugeit_contact'); ?>Add New Theme <i>(pro)</i>
+                    <?php _e('Add New Theme', 'hugeit_contact'); ?> <i>(pro)</i>
                 </a>
 			</h2>
 			
@@ -73,10 +73,10 @@ function hugeit_contact_html_styles($rows){
 			<table class="wp-list-table widefat fixed pages" style="width:95%">
 				<thead>
 				 <tr>
-					<th scope="col" id="id" style="width:30px" ><span><?php _e('Email Newsletters', 'hugeit_contact'); ?>ID</span><span class="sorting-indicator"></span></th>
-					<th scope="col" id="name" style="width:85px" ><span><?php _e('Email Newsletters', 'hugeit_contact'); ?>Name</span><span class="sorting-indicator"></span></th>
-					<th scope="col" id="prod_count"  style="width:75px;" ><span><?php _e('Email Newsletters', 'hugeit_contact'); ?>Last Update</span><span class="sorting-indicator"></span></th>
-					<th style="width:40px"><?php _e('Email Newsletters', 'hugeit_contact'); ?>Delete</th>
+					<th scope="col" id="id" style="width:30px" ><span><?php _e('ID', 'hugeit_contact'); ?></span><span class="sorting-indicator"></span></th>
+					<th scope="col" id="name" style="width:85px" ><span><?php _e('Name', 'hugeit_contact'); ?></span><span class="sorting-indicator"></span></th>
+					<th scope="col" id="prod_count"  style="width:75px;" ><span><?php _e('Last Update', 'hugeit_contact'); ?></span><span class="sorting-indicator"></span></th>
+					<th style="width:40px"><?php _e('Delete', 'hugeit_contact'); ?></th>
 				 </tr>
 				</thead>
 				<tbody>

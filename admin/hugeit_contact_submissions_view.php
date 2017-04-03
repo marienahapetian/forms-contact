@@ -142,10 +142,10 @@ function hugeit_contact_html_showhugeit_contacts( $rows,  $pageNav,$sort,$cat_ro
 			<table class="wp-list-table widefat fixed pages" style="width:95%">
 				<thead>
 				 <tr>
-					<th scope="col" id="id" style="width:30px" ><span>ID</span><span class="sorting-indicator"></span></th>
-					<th scope="col" id="name" style="width:85px" ><span>Name</span><span class="sorting-indicator"></span></th>
-					<th scope="col" id="prod_count"  style="width:75px;" ><span>Submissions</span><span class="sorting-indicator"></span></th>
-					<th style="width:40px">Delete</th>
+					<th scope="col" id="id" style="width:30px" ><span><?php _e('ID','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
+					<th scope="col" id="name" style="width:85px" ><span><?php _e('Name','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
+					<th scope="col" id="prod_count"  style="width:75px;" ><span><?php _e('Submissions','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
+					<th style="width:40px"><?php _e('Delete','hugeit_contact');?></th>
 				 </tr>
 				</thead>
 				<tbody>
@@ -225,7 +225,7 @@ function hugeit_contact_html_showhugeit_contacts( $rows,  $pageNav,$sort,$cat_ro
                             </a>
                         </td>
 						<td>(<?php echo !($pr_count) ? '0' : esc_html($rows[$i]->prod_count); ?>)</td>
-						<td><a  href="admin.php?page=hugeit_forms_submissions&task=remove_submissions&amp;id=<?php echo esc_html($rows[$i]->id); ?>">Delete</a></td>
+						<td><a  href="admin.php?page=hugeit_forms_submissions&task=remove_submissions&amp;id=<?php echo esc_html($rows[$i]->id); ?>"><?php _e('Delete','hugeit_contact');?></a></td>
 					</tr> 
 				 <?php } ?>
 				</tbody>
