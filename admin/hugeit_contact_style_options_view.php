@@ -961,7 +961,6 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 				</div>
 			</div>
 		<div style="claer:both;"></div>
-			<a onclick="document.getElementById('adminForm').submit()" class="save-hugeit_contact-options button-primary">Save</a>
 	</div>
 </div>
 </div>

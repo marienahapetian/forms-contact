@@ -89,6 +89,15 @@ function selectbox_field_html($rowimages, $frontendformid)
     <?php
 }
 
+function customtext_field_html($rowimages)
+{
+    ?>
+    <div class="hugeit-field-block custom-text-block" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
+        <?php echo do_shortcode($rowimages->name); ?>
+    </div>
+    <?php
+}
+
 function checkbox_field_html($rowimages, $frontendformid, $style_values)
 {
     ?>
@@ -257,7 +266,7 @@ function simplecaptcha_field_html($rowimages, $frontendformid,$paramssld)
 
     <div class="hugeit-field-block simple-captcha-block <?php echo esc_attr($hg_left_right_class); ?>"
          rel="huge-contact-field-<?php echo esc_attr($rowimages->id); ?>" data-form_id="<?php echo esc_attr($frontendformid); ?>"
-         data-sitekey="<?php echo $paramssld['form_captcha_public_key']; ?>"
+         data-sitekey="<?php echo esc_attr($paramssld['form_captcha_public_key']); ?>"
          data-theme="<?php echo esc_attr($rowimages->hc_required); ?>" data-cname="<?php echo esc_attr($rowimages->name); ?>">
 
         <label class="formsAboveAlign">
@@ -337,11 +346,9 @@ function email_field_html($rowimages, $frontendformid)
     <?php
 }
 
-function hugeit_contact_front_end_hugeit_contact($rowim,  $paramssld, $hugeit_contact, $frontendformid, $style_values, $huge_it_gen_opt,$rowspar){
+function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_contact, $frontendformid, $style_values, $huge_it_gen_opt, $rowspar){
 	ob_start();
 	$frontendformid=esc_html($frontendformid);
-    $paramssld=esc_html($paramssld);
-    $hugeit_contact=esc_html($hugeit_contact);
 	?>
     <div class="hugeit-contact-form-container">
 
