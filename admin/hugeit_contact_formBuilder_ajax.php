@@ -1031,7 +1031,7 @@ esc_html($rowimages->hc_input_show_default);?>">
 			<span class="hugeit-error-message"></span>
 			<span class="hugeOverlay"></span>
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo esc_html($rowimages->id); ?>" value="<?php echo esc_html($rowimages->ordering); ?>">
-			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" />
+			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo esc_html($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_left_right); ?>" />
 		</div>
 		<script>
 			jQuery(document).ready(function(){
@@ -1044,20 +1044,20 @@ esc_html($rowimages->hc_input_show_default);?>">
 	}
 
 	function hugeit_contact_phoneSettingsHtml($rowimages){ob_start(); ?>
-		<li id="huge-contact-field-<?php echo $rowimages->id; ?>" data-fieldNum="<?php echo $rowimages->id; ?>">	
-			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_left_right; ?>" fileType="nameSurname"/>
-			<input type="hidden" class="ordering" name="hc_ordering<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->ordering; ?>" />
-			<h4><?php if($rowimages->hc_field_label!=''){echo $rowimages->hc_field_label;}else{ echo "Phone";} ?></h4>
+		<li id="huge-contact-field-<?php echo esc_html($rowimages->id); ?>" data-fieldNum="<?php echo esc_html($rowimages->id); ?>">
+			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo esc_html($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_left_right); ?>" fileType="nameSurname"/>
+			<input type="hidden" class="ordering" name="hc_ordering<?php echo esc_html($rowimages->id); ?>" value="<?php echo esc_html($rowimages->ordering); ?>" />
+			<h4><?php if($rowimages->hc_field_label!=''){echo esc_html($rowimages->hc_field_label);}else{ echo "Phone";} ?></h4>
 			<div class="fields-options">
 				<div class="left">
 					<div>
 						<label class="input-block">Label:
-							<input class="label" type="text" name="imagess<?php echo $rowimages->id; ?>" value="<?php echo $rowimages->hc_field_label; ?>" />
+							<input class="label" type="text" name="imagess<?php echo esc_html($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_field_label); ?>" />
 						</label>
 					</div>
 					<div>
 						<label class="input-block" for="form_label_position">Label Position:
-							<select id="ready_form_label_position" name="hc_input_show_default<?php echo $rowimages->id; ?>">
+							<select id="ready_form_label_position" name="hc_input_show_default<?php echo esc_html($rowimages->id); ?>">
 								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign">Left Align</option>
 								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign">Right Align</option>
 								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign">Above Field</option>
@@ -1066,15 +1066,15 @@ esc_html($rowimages->hc_input_show_default);?>">
 					</div>						
 					<div>
 						<label class="input-block">Field Is Required:
-							<input type="hidden" name="hc_required<?php echo $rowimages->id; ?>" value=""/>
-							<input class="required" type="checkbox" <?php if($rowimages->hc_required == 'on'){ echo 'checked="checked"';} ?> name="hc_required<?php echo $rowimages->id; ?>" value="on" />
+							<input type="hidden" name="hc_required<?php echo esc_html($rowimages->id); ?>" value=""/>
+							<input class="required" type="checkbox" <?php if($rowimages->hc_required == 'on'){ echo 'checked="checked"';} ?> name="hc_required<?php echo esc_html($rowimages->id); ?>" value="on" />
 						</label>
 					</div>														
 				</div>
 				<div class="left">
 					<div>
 						<label class="input-block">Placeholder:
-							<input class="placeholder" class="placeholder" class="text_area" type="text" name="hc_other_field<?php echo $rowimages->id; ?>" id="hc_other_field<?php echo $rowimages->id; ?>"  oldvalue="<?php echo $rowimages->hc_other_field; ?>"  value="<?php echo $rowimages->hc_other_field; ?>">
+							<input class="placeholder" class="placeholder" class="text_area" type="text" name="hc_other_field<?php echo esc_html($rowimages->id); ?>" id="hc_other_field<?php echo esc_html($rowimages->id); ?>"  oldvalue="<?php echo esc_html($rowimages->hc_other_field); ?>"  value="<?php echo esc_html($rowimages->hc_other_field); ?>">
 						</label>
 					</div>
 					<div>
