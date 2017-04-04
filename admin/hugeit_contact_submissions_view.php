@@ -117,7 +117,8 @@ function hugeit_contact_html_showhugeit_contacts( $rows,  $pageNav,$sort,$cat_ro
 	<div id="poststuff">
 		<div id="hugeit_contacts-list-page">
 			<form method="post"  onkeypress="doNothing()" action="admin.php?page=hugeit_forms_main_page" id="admin_form" name="admin_form">
-			<h2>Huge IT Submissions
+			<h2>
+                Huge IT Submissions
 			</h2>
 			
 			<?php
@@ -141,10 +142,10 @@ function hugeit_contact_html_showhugeit_contacts( $rows,  $pageNav,$sort,$cat_ro
 			<table class="wp-list-table widefat fixed pages" style="width:95%">
 				<thead>
 				 <tr>
-					<th scope="col" id="id" style="width:30px" ><span>ID</span><span class="sorting-indicator"></span></th>
-					<th scope="col" id="name" style="width:85px" ><span>Name</span><span class="sorting-indicator"></span></th>
-					<th scope="col" id="prod_count"  style="width:75px;" ><span>Submissions</span><span class="sorting-indicator"></span></th>
-					<th style="width:40px">Delete</th>
+					<th scope="col" id="id" style="width:30px" ><span><?php _e('ID','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
+					<th scope="col" id="name" style="width:85px" ><span><?php _e('Name','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
+					<th scope="col" id="prod_count"  style="width:75px;" ><span><?php _e('Submissions','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
+					<th style="width:40px"><?php _e('Delete','hugeit_contact');?></th>
 				 </tr>
 				</thead>
 				<tbody>
@@ -217,10 +218,14 @@ function hugeit_contact_html_showhugeit_contacts( $rows,  $pageNav,$sort,$cat_ro
 
 					?>
 					<tr <?php if($trcount%2==0){ echo 'class="has-background"';}?>>
-						<td><?php echo $rows[$i]->id; ?></td>
-						<td><a  href="admin.php?page=hugeit_forms_submissions&task=view_submissions&id=<?php echo $rows[$i]->id; ?>"><?php echo esc_html(stripslashes($rows[$i]->name)); ?></a></td>
-						<td>(<?php echo !($pr_count) ? '0' : $rows[$i]->prod_count; ?>)</td>
-						<td><a  href="admin.php?page=hugeit_forms_submissions&task=remove_submissions&amp;id=<?php echo $rows[$i]->id; ?>">Delete</a></td>
+						<td><?php echo esc_html($rows[$i]->id); ?></td>
+						<td>
+                            <a  href="admin.php?page=hugeit_forms_submissions&task=view_submissions&id=<?php echo $rows[$i]->id; ?>">
+                                <?php echo esc_html(stripslashes($rows[$i]->name)); ?>
+                            </a>
+                        </td>
+						<td>(<?php echo !($pr_count) ? '0' : esc_html($rows[$i]->prod_count); ?>)</td>
+						<td><a  href="admin.php?page=hugeit_forms_submissions&task=remove_submissions&amp;id=<?php echo esc_html($rows[$i]->id); ?>"><?php _e('Delete','hugeit_contact');?></a></td>
 					</tr> 
 				 <?php } ?>
 				</tbody>
@@ -252,7 +257,7 @@ $keyForBackground = 1;
                 </form>
             </div>
             <div style="clear:both;"></div> 
-            <div class="current_form"><p><?php if(isset($subName[0]->name)) echo $subName[0]->name; ?> Submissions</p></div>
+            <div class="current_form"><p><?php if(isset($subName[0]->name)) echo esc_html($subName[0]->name); ?> Submissions</p></div>
             <div style="clear:both;"></div> 
             <div id="hugeit_top_controls">
                 <ul class="controls-list">
@@ -292,8 +297,8 @@ $keyForBackground = 1;
                         <span class="count"><?php if(isset($limitPage['countOfPages'])&&$limitPage['countOfPages'] > $limitPage['perpage'] && $limitPage['countOfPages']!=0 ){ echo $limitPage['start']."-".$limitPage['fromTo']." From ".$limitPage['countOfPages']; }?></span>
                         <div class="buttons">
                             <form action="admin.php?page=hugeit_forms_submissions" method="POST">
-                                <a <?php if($limitPage['page'] <= 1) echo'style="display:none;"'; ?> href="<?php echo $limitPage['prevLink']; ?>" class="prev">Prev</a>
-                                <a <?php if($limitPage['page'] >= $limitPage['count_pages']) echo'style="display:none;"'; ?> href="<?php echo $limitPage['nextLink']; ?>" class="next">Next</a>                                
+                                <a <?php if($limitPage['page'] <= 1) echo 'style="display:none;"'; ?> href="<?php echo esc_url($limitPage['prevLink']); ?>" class="prev">Prev</a>
+                                <a <?php if($limitPage['page'] >= $limitPage['count_pages']) echo 'style="display:none;"'; ?> href="<?php echo esc_url($limitPage['nextLink']); ?>" class="next">Next</a>
                             </form>
                         </div>
                 </div>
@@ -311,16 +316,21 @@ $keyForBackground = 1;
                 </thead>		
 				<tbody id="the-comment-list" data-wp-lists="list:comment">
 				<?php foreach ($submitionsArray as $submition) {?>
-				    <tr id="comment-<?php echo $submition->id; ?>" class="comment even thread-even <?php if($submition->customer_read_or_not == 1){ echo "read"; } else { echo "unread"; } if($submition->customer_spam == 1){ echo " spam"; } else { echo ""; }?> depth-<?php echo $keyForBackground; if($keyForBackground%2 == 0) echo " alt"; ?> ">
+                <?php
+                $submition_id=esc_html($submition->id);
+                $submition_contact_id=esc_html($submition->contact_id);
+                $submition_contact_country=esc_html($submition->contact_country);
+                ?>
+				    <tr id="comment-<?php echo $submition_id; ?>" class="comment even thread-even <?php if($submition->customer_read_or_not == 1){ echo "read"; } else { echo "unread"; } if($submition->customer_spam == 1){ echo " spam"; } else { echo ""; }?> depth-<?php echo $keyForBackground; if($keyForBackground%2 == 0) echo " alt"; ?> ">
 				        <th scope="row" class="check-column">
-				            <label class="screen-reader-text" for="cb-select-<?php echo $submition->id; ?>">Select Submission</label>
-				            <input id="cb-select-<?php echo $keyForBackground; ?>" type="checkbox" name="check_comments" value="<?php echo $submition->id; ?>">
+				            <label class="screen-reader-text" for="cb-select-<?php echo $submition_id; ?>">Select Submission</label>
+				            <input id="cb-select-<?php echo esc_attr($keyForBackground); ?>" type="checkbox" name="check_comments" value="<?php echo $submition_id; ?>">
 				        </th>
 				        <td class="comment column-comment">
 				            <div class="comment-author">
 				            </div>
-				            <div class="submitted-on">Submitted on <a><?php echo "  ".$submition->submission_date; ?></a></div>
-				                <div class="submition_message" id_for_edit="<?php echo $submition->id; ?>" readonly>
+				            <div class="submitted-on">Submitted on <a><?php echo "  ".esc_html($submition->submission_date); ?></a></div>
+				                <div class="submition_message" id_for_edit="<?php echo $submition_id; ?>" readonly>
 				                </div>
 				            <div id="inline-1" class="hidden">
 				            <textarea class="comment" rows="1" cols="1" readonly="readonly" ></textarea>
@@ -329,53 +339,53 @@ $keyForBackground = 1;
 				            <div class="comment_status">1</div>
 				            </div>
 				            <div class="row-actions">
-				                <span class="edit" value="<?php echo $submition->id; ?>">
+				                <span class="edit" value="<?php echo $submition_id; ?>">
 				                    <?php if ($submition->customer_read_or_not == 1):?>
-				                    <a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id=<?php echo $submition->id; ?>&submissionsId=<?php echo $submition->contact_id; ?>">Show</a>
+				                    <a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id=<?php echo $submition_id; ?>&submissionsId=<?php echo $submition_contact_id; ?>">Show</a>
 				                    <?php else:?>
-				                    <a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id=<?php echo $submition->id; ?>&read=unread&submissionsId=<?php echo $submition->contact_id; ?>">Show</a>
+				                    <a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id=<?php echo $submition_id; ?>&read=unread&submissionsId=<?php echo $submition_contact_id; ?>">Show</a>
 				                    <?php endif;?>
 				                </span>
-				                <span class="spam" value="<?php echo $submition->id; ?>" style='<?php  if($submition->customer_spam == 1) { echo "display: none"; } ?>'>  |
+				                <span class="spam" value="<?php echo $submition_id; ?>" style='<?php  if($submition->customer_spam == 1) { echo "display: none"; } ?>'>  |
 				                    <a class="vim-s vim-destructive" title="Mark this comment as spam">Spam</a>
 				                </span>
-				                <span class="not_spam" value="<?php echo $submition->id; ?>" style='<?php  if($submition->customer_spam != 1) { echo "display: none"; } ?>'>  |
+				                <span class="not_spam" value="<?php echo $submition_id; ?>" style='<?php  if($submition->customer_spam != 1) { echo "display: none"; } ?>'>  |
 				                    <a class="vim-s vim-destructive" title="Unmark as Spam">Not Spam</a>
 				                </span>
-				                <span class="trash" value="<?php echo $submition->id; ?>"> |
+				                <span class="trash" value="<?php echo $submition_id; ?>"> |
 				                    <a class="delete vim-d vim-destructive" title="Move this comment to the trash">Trash</a>
 				                </span>
-				                <span id="huge_it_spinner_<?php echo $submition->id; ?>" class="huge_it_spinner">
+				                <span id="huge_it_spinner_<?php echo $submition_id; ?>" class="huge_it_spinner">
 				                    <img src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
 				                </span>
 				            </div>
 				        </td>
 				        <td class="author column-author user-name">
 				            <?php if ($submition->customer_read_or_not == 1):?>
-							<a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id=<?php echo $submition->id; ?>&submissionsId=<?php echo $submition->contact_id; ?>"><?php echo $submition->customer_country; ?></a>
+							<a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id=<?php echo $submition_id; ?>&submissionsId=<?php echo $submition_contact_id; ?>"><?php echo $submition_customer_country; ?></a>
 				            <p class='spamer' <?php  if($submition->customer_spam != 1) echo "style= 'display: none'"; ?>>Spam!</p>
 				            <?php else:?>
-				            <a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id=<?php echo $submition->id; ?>&read=unread&submissionsId=<?php echo $submition->contact_id; ?>"><?php echo $submition->customer_country; ?></a>
+				            <a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id=<?php echo $submition_id; ?>&read=unread&submissionsId=<?php echo $submition->contact_id; ?>"><?php echo $submition->customer_country; ?></a>
 				            <p class='spamer' <?php  if($submition->customer_spam != 1) echo "style= 'display: none'"; ?>>Spam!</p>
 				            <?php endif;?>
 				        </td>
 				        <td class="author column-author user_email">
-				            <input value="<?php echo $submition->submission_date; ?>" id_for_edit="<?php echo $submition->id; ?>" readonly="readonly" />
+				            <input value="<?php echo $submition->submission_date; ?>" id_for_edit="<?php echo $submition_id; ?>" readonly="readonly" />
 				        </td>
 				        <?php $ipOfSub = array_filter(explode("*()*", $submition->submission_ip),'strlen');?>
 				        <td class="author column-author user_phone">
-				            <input value="<?php echo $ipOfSub[0]; ?>" id_for_edit="<?php echo $submition->id; ?>" readonly="readonly" />
+				            <input value="<?php echo $ipOfSub[0]; ?>" id_for_edit="<?php echo $submition_id; ?>" readonly="readonly" />
 				        </td>
 				    </tr>
 				</tbody>
 				<?php $keyForBackground++; } ?>
 			</table>
 			<input type="hidden" name="oreder_move" id="oreder_move" value="" />
-			<input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo $_POST['asc_or_desc'];?>"  />
-			<input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo $_POST['order_by'];?>"  />
+			<input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo esc_attr($_POST['asc_or_desc']);?>"  />
+			<input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo esc_attr($_POST['order_by']);?>"  />
 			<input type="hidden" name="saveorder" id="saveorder" value="" />
-			<input type="hidden" name="countTorefresh" id="countTorefresh" value="<?php echo $submitionsCount[0]->all_count; ?>" />
-			<input type="hidden" name="subID" id="subID" value="<?php if(isset($submition->contact_id)) {echo $submition->contact_id;}else {echo 'empty';} ?>" />
+			<input type="hidden" name="countTorefresh" id="countTorefresh" value="<?php echo esc_attr($submitionsCount[0]->all_count); ?>" />
+			<input type="hidden" name="subID" id="subID" value="<?php if(isset($submition->contact_id)) { echo $submition_contact_id;}else {echo 'empty';} ?>" />
 			<div id="huge-it-contact-dialog-confirm" title="Delete Submission(s)">Are you sure?</div>
     </div>
 </div>
@@ -418,8 +428,8 @@ function hugeit_contact_html_show_messages($messageInArray, $submitionsCount) {
 		} else {
 			$next_page_id = $submitionsCount[0]->id;
 		}
-		$next_page_url     = str_replace( $current_page_id, $next_page_id, $current_page_url );
-		$previous_page_url = str_replace( $current_page_id, $previous_page_id, $current_page_url );
+		$next_page_url     = esc_url(str_replace( $current_page_id, $next_page_id, $current_page_url ));
+		$previous_page_url = esc_url(str_replace( $current_page_id, $previous_page_id, $current_page_url ));
 	}
 require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 ?>
@@ -431,9 +441,9 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
             <div style="clear: both;"></div>
             <div id="hugeit_top_controls">
                 <ul class="controls-list" style="overflow: hidden;margin: 3px 0;">
-                        <li class="back"><a href="admin.php?page=hugeit_forms_submissions&task=view_submissions&id=<?php echo $messageInArray[0]->contact_id; ?>" title="Back">Back</a></li>
-                        <li class="spam <?php if($messageInArray[0]->customer_spam==1) echo "spamed"?>" value="<?php echo $messageInArray[0]->id; ?>" need_to_reload="yes" ><a href="#" title="Mark as spam">Spam</a></li>
-                        <li class="trash" value="<?php echo $messageInArray[0]->id; ?>" need_to_reload="yes" title="Delete"><a href="admin.php?page=hugeit_forms_submissions&task=remove_submissions&amp;id=<?php echo $messageInArray[0]->id; ?>&subId=<?php echo $messageInArray[0]->contact_id; ?>">Trash</a></li>
+                        <li class="back"><a href="admin.php?page=hugeit_forms_submissions&task=view_submissions&id=<?php echo esc_url($messageInArray[0]->contact_id); ?>" title="Back">Back</a></li>
+                        <li class="spam <?php if($messageInArray[0]->customer_spam==1) echo "spamed"?>" value="<?php echo esc_html($messageInArray[0]->id); ?>" need_to_reload="yes" ><a href="#" title="Mark as spam">Spam</a></li>
+                        <li class="trash" value="<?php echo esc_attr($messageInArray[0]->id); ?>" need_to_reload="yes" title="Delete"><a href="admin.php?page=hugeit_forms_submissions&task=remove_submissions&amp;id=<?php echo esc_html($messageInArray[0]->id); ?>&subId=<?php echo esc_html($messageInArray[0]->contact_id); ?>">Trash</a></li>
                         <li>
                         	<img class="control_list_spinner" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
                         </li>
@@ -457,10 +467,10 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
             	<div id="submission_details">
             		<?php $ipOfSub2 = array_filter(explode("*()*", $messageInArray[0]->submission_ip),'strlen');?>			
 					<table class="detailsTable">
-						<tr><td>Submission Date:</td><td ><?php echo $messageInArray[0]->submission_date; ?></td></tr>
-						<tr><td>User Browser:</td><td><?php if(isset($ipOfSub2[1])){echo $ipOfSub2[1].'  <img style="vertical-align: sub;"src="'.plugins_url( '../images/'.$ipOfSub2[1].'.png', __FILE__ ).'">';}else{echo '';} ?></td></tr>
-						<tr><td>User Country:</td><td><?php echo $messageInArray[0]->customer_country; ?></td></tr>
-						<tr><td>User IP:</td><td><?php echo $ipOfSub2[0]; ?></td></tr>
+						<tr><td>Submission Date:</td><td ><?php echo esc_html($messageInArray[0]->submission_date); ?></td></tr>
+						<tr><td>User Browser:</td><td><?php if(isset($ipOfSub2[1])){echo esc_html($ipOfSub2[1]).'  <img style="vertical-align: sub;"src="'.plugins_url( '../images/'.$ipOfSub2[1].'.png', __FILE__ ).'">';}else{echo '';} ?></td></tr>
+						<tr><td>User Country:</td><td><?php echo esc_html($messageInArray[0]->customer_country); ?></td></tr>
+						<tr><td>User IP:</td><td><?php echo esc_html($ipOfSub2[0]); ?></td></tr>
 
 					</table>
 				</div>
@@ -476,7 +486,7 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 					$separator=':';
 					foreach($messagelabbelsexp as $key=>$messagelabbelsexpls){	
 						if(isset($messagesubmisexp[$key]) && $messagesubmisexp[$key]!=''){
-							echo '<strong>'.$messagelabbelsexpls.'</strong> '.$separator.' '.$messagesubmisexp[$key].'<br>';						
+							echo '<strong>'.esc_html($messagelabbelsexpls).'</strong> '.$separator.' '.esc_html($messagesubmisexp[$key]).'<br>';
 						}
 					}
 					?>
@@ -493,137 +503,51 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 									$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
 									$secure_link = wp_nonce_url($actual_link.'&file='.$file_path,'hugeit_contact_donwload_file');
 
-									if(preg_match('/image\//',$filesTypeExplodeds)){
-										$link_pattern='/^(.*)\/uploads\//';
-										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
-									?>
-									<a href="<?php echo esc_attr($secure_link) ;?>" class="file_wrapper image">
-										<div class="wrapper_icon image_wrapper_icon"></div>
-										<div class="file_info"><?php
-											$pattern='/^(.*)\//';
-											$filesUrlExploded[$key]=preg_replace($pattern,'',$filesUrlExploded[$key]);
-											echo $filesUrlExploded[$key];
-									 ?></div>
-									</a>
-									<?php
-									}elseif(preg_match('/pdf/',$filesTypeExplodeds)){
-										$link_pattern='/^(.*)\/uploads\//';
-										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
-									?>
-										<a href="<?php echo esc_attr($secure_link) ;?>" class="file_wrapper pdf">
-											<div class="wrapper_icon pdf_wrapper_icon"></div>
-											<div class="file_info"><?php
-											$pattern='/^(.*)\//';
-											$filesUrlExploded[$key]=preg_replace($pattern,'',$filesUrlExploded[$key]);
-											echo $filesUrlExploded[$key];
-										 ?></div>
-										</a>
-									<?php
-									}elseif(preg_match('/application\/msword/',$filesTypeExplodeds)||preg_match('/application\/vnd.openxmlformats-officedocument.wordprocessingml.document/',$filesTypeExplodeds)){
-										$link_pattern='/^(.*)\/uploads\//';
-										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
-									?>
-										<a href="<?php echo esc_attr($secure_link) ;?>" class="file_wrapper word">
-											<div class="wrapper_icon word_wrapper_icon"></div>
-											<div class="file_info"><?php
-											$pattern='/^(.*)\//';
-											$filesUrlExploded[$key]=preg_replace($pattern,'',$filesUrlExploded[$key]);
-											echo $filesUrlExploded[$key];
-										 ?></div>
-										</a>
-									<?php
-									}elseif(preg_match('/application\/zip/',$filesTypeExplodeds)||preg_match('/application\/x-gzip/',$filesTypeExplodeds)){
-										$link_pattern='/^(.*)\/uploads\//';
-										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
-									?>
-										<a href="<?php echo esc_attr($secure_link) ;?>" class="file_wrapper zip">
-											<div class="wrapper_icon zip_wrapper_icon"></div>
-											<div class="file_info"><?php
-											$pattern='/^(.*)\//';
-											$filesUrlExploded[$key]=preg_replace($pattern,'',$filesUrlExploded[$key]);
-											echo $filesUrlExploded[$key];
-										 ?></div>
-										</a>
-									<?php
-									}elseif(preg_match('/application\/rar/',$filesTypeExplodeds)||preg_match('/application\/x-7z-compressed/',$filesTypeExplodeds)){
-										$link_pattern='/^(.*)\/uploads\//';
-										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
-									?>
-										<a href="<?php echo esc_attr($secure_link) ;?>" class="file_wrapper rar">
-											<div class="wrapper_icon rar_wrapper_icon"></div>
-											<div class="file_info"><?php
-											$pattern='/^(.*)\//';
-											$filesUrlExploded[$key]=preg_replace($pattern,'',$filesUrlExploded[$key]);
-											echo $filesUrlExploded[$key];
-										 ?></div>
-										</a>
-									<?php
-									}elseif(preg_match('/application\/vnd.openxmlformats-officedocument.spreadsheetml.sheet/',$filesTypeExplodeds)){
-										$link_pattern='/^(.*)\/uploads\//';
-										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
-									?>
-										<a href="<?php echo esc_attr($secure_link) ;?>" class="file_wrapper excel">
-											<div class="wrapper_icon excel_wrapper_icon"></div>
-											<div class="file_info"><?php
-											$pattern='/^(.*)\//';
-											$filesUrlExploded[$key]=preg_replace($pattern,'',$filesUrlExploded[$key]);
-											echo $filesUrlExploded[$key];
-										 ?></div>
-										</a>
-									<?php
-									}elseif(preg_match('/audio\//',$filesTypeExplodeds)){
-										$link_pattern='/^(.*)\/uploads\//';
-										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
-									?>
-										<a href="<?php echo esc_attr($secure_link) ;?>" class="file_wrapper audio">
-											<div class="wrapper_icon audio_wrapper_icon"></div>
-											<div class="file_info"><?php
-											$pattern='/^(.*)\//';
-											$filesUrlExploded[$key]=preg_replace($pattern,'',$filesUrlExploded[$key]);
-											echo $filesUrlExploded[$key];
-										 ?></div>
-										</a>
-									<?php
-									}elseif(preg_match('/video\//',$filesTypeExplodeds)){
-										$link_pattern='/^(.*)\/uploads\//';
-										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
-									?>
-										<a href="<?php echo esc_attr($secure_link) ;?>" class="file_wrapper video">
-											<div class="wrapper_icon video_wrapper_icon"></div>
-											<div class="file_info"><?php
-											$pattern='/^(.*)\//';
-											$filesUrlExploded[$key]=preg_replace($pattern,'',$filesUrlExploded[$key]);
-											echo $filesUrlExploded[$key];
-										 ?></div>
-										</a>
-									<?php
-									}elseif(preg_match('/text\/csv/',$filesTypeExplodeds)){
-										$link_pattern='/^(.*)\/uploads\//';
-										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
-									?>
-										<a href="<?php echo esc_attr($secure_link) ;?>" class="file_wrapper csv">
-											<div class="wrapper_icon csv_wrapper_icon"></div>
-											<div class="file_info"><?php
-											$pattern='/^(.*)\//';
-											$filesUrlExploded[$key]=preg_replace($pattern,'',$filesUrlExploded[$key]);
-											echo $filesUrlExploded[$key];
-										 ?></div>
-										</a>
-									<?php
-									}else{
-										$link_pattern='/^(.*)\/uploads\//';
-										$file_path=preg_replace($link_pattern,'',$filesUrlExploded[$key]);
-									?>
-										<a href="<?php echo esc_attr($secure_link) ;?>" class="file_wrapper all">
-											<div class="wrapper_icon all_wrapper_icon"></div>
-											<div class="file_info"><?php
-												$pattern='/^(.*)\//';
-												$filesUrlExploded[$key]=preg_replace($pattern,'',$filesUrlExploded[$key]);
-												echo $filesUrlExploded[$key];
-											?></div>
-										</a>
-									<?php
+                                    $output_wrapper=true;
+									if( preg_match('/image\//',$filesTypeExplodeds) ){
+                                        $link_class='image';
+                                        $wrapper_class='image_wrapper_icon';
+									} elseif ( preg_match('/pdf/',$filesTypeExplodeds) ){
+                                        $link_class='pdf';
+                                        $wrapper_class='pdf_wrapper_icon';
+									} elseif ( preg_match('/application\/msword/',$filesTypeExplodeds) || preg_match('/application\/vnd.openxmlformats-officedocument.wordprocessingml.document/',$filesTypeExplodeds) ){
+                                        $link_class='word';
+                                        $wrapper_class='word_wrapper_icon';
+									} elseif ( preg_match('/application\/zip/',$filesTypeExplodeds) || preg_match('/application\/x-gzip/',$filesTypeExplodeds)){
+                                        $link_class='zip';
+                                        $wrapper_class='zip_wrapper_icon';
+									} elseif ( preg_match('/application\/rar/',$filesTypeExplodeds) || preg_match('/application\/x-7z-compressed/',$filesTypeExplodeds) ) {
+                                        $link_class='rar';
+                                        $wrapper_class='rar_wrapper_icon';
+									} elseif ( preg_match('/application\/vnd.openxmlformats-officedocument.spreadsheetml.sheet/',$filesTypeExplodeds) ) {
+                                        $link_class='excel';
+                                        $wrapper_class='excel_wrapper_icon';
+									} elseif ( preg_match('/audio\//',$filesTypeExplodeds) ) {
+                                        $link_class='audio';
+                                        $wrapper_class='audio_wrapper_icon';
+									} elseif ( preg_match('/video\//',$filesTypeExplodeds) ) {
+                                        $link_class='video';
+                                        $wrapper_class='video_wrapper_icon';
+									} elseif ( preg_match('/text\/csv/',$filesTypeExplodeds) ) {
+                                        $link_class='csv';
+                                        $wrapper_class='csv_wrapper_icon';
+									} else {
+										$link_class='all';
+										$wrapper_class='all_wrapper_icon';
 									}
+									?>
+
+                                    <?php if ( $output_wrapper ) { ?>
+                                        <a href="<?php echo esc_url($secure_link) ;?>" class="file_wrapper <?php echo $link_class;?>">
+                                            <div class="wrapper_icon <?php echo $wrapper_class;?>"></div>
+                                            <div class="file_info">
+                                                <?php
+                                                    echo esc_html($file_path);
+                                                ?>
+                                            </div>
+                                        </a>
+                                    <?php
+                                    }
 								}
 								?>
 								</form>

@@ -180,18 +180,18 @@ function hugeit_contact_edit_hugeit_contact( $id ) {
 
 	global $wpdb;
 
-	if ( isset( $_GET["removeslide"] ) && $_GET["removeslide"] != '' ) {
-		$remove_slide = sanitize_text_field( $_GET["removeslide"] );
+	if ( isset( $_GET["removeform"] ) && $_GET["removeform"] != '' ) {
+		$remove_form = sanitize_text_field( $_GET["removeform"] );
 
-		$query = $wpdb->prepare( "DELETE FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields  WHERE id = %d", $remove_slide );
+		$query = $wpdb->prepare( "DELETE FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields  WHERE id = %d", $remove_form );
 		$wpdb->query( $query );
 
 	}
 
 	if ( isset( $_GET["dublicate"] ) ) {
-		if ( absint($_GET["dublicate"]) > 0 ) {
-			$_GET["dublicate"] = absint($_GET["dublicate"]);
-			$query    = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE id=%d", $_GET["dublicate"] );
+        $dublicate = absint($_GET["dublicate"]);
+		if ( $dublicate > 0 ) {
+			$query    = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE id=%d", $dublicate );
 			$rowduble = $wpdb->get_row( $query );
 
 			$query        = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE id=%d", $id );
@@ -235,7 +235,7 @@ function hugeit_contact_edit_hugeit_contact( $id ) {
 	}
 
 	if ( isset( $_GET["inputtype"] ) ) {
-		$_GET["inputtype"] = sanitize_text_field( $_GET["inputtype"] );
+		$inputtype = sanitize_text_field( $_GET["inputtype"] );
 		$query             = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts WHERE id=%d", $id );
 		$row               = $wpdb->get_row( $query );
 		$inputtype         = esc_html( $_GET["inputtype"] );
@@ -256,7 +256,7 @@ function hugeit_contact_edit_hugeit_contact( $id ) {
 						'name'                  => 'Placeholder',
 						'hugeit_contact_id'     => $row->id,
 						'description'           => 'on',
-						'conttype'              => $_GET["inputtype"],
+						'conttype'              => $inputtype,
 						'hc_field_label'        => 'Label',
 						'hc_other_field'        => '80',
 						'field_type'            => 'on',
