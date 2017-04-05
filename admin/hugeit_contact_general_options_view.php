@@ -27,25 +27,25 @@ function hugeit_contact_html_show_settings($param_values) {
 								<label for="form_adminstrator_user_name">
                                     <?php _e('Send Emails From Name', 'hugeit_contact');?>
                                 </label>
-								<input type="text" id="form_adminstrator_user_name" name="params[form_adminstrator_user_name]" value="<?php echo $param_values['form_adminstrator_user_name']; ?>" />
+								<input type="text" id="form_adminstrator_user_name" name="params[form_adminstrator_user_name]" value="<?php echo esc_html($param_values['form_adminstrator_user_name']); ?>" />
 							</div>
 							<div>
 								<label for="form_adminstrator_user_mail">
                                     <?php _e('Send Emails From Email', 'hugeit_contact');?>
                                 </label>
-								<input type="text" id="form_adminstrator_user_mail" name="params[form_adminstrator_user_mail]" value="<?php echo $param_values['form_adminstrator_user_mail']; ?>" />
+								<input type="text" id="form_adminstrator_user_mail" name="params[form_adminstrator_user_mail]" value="<?php echo esc_html($param_values['form_adminstrator_user_mail']); ?>" />
 							</div>
 							<div>
 								<label for="form_captcha_public_key">
                                     <?php _e('Captcha Public Key', 'hugeit_contact');?>
                                 </label>
-								<input type="text" id="form_captcha_public_key" name="params[form_captcha_public_key]" value="<?php echo $param_values['form_captcha_public_key']; ?>" />
+								<input type="text" id="form_captcha_public_key" name="params[form_captcha_public_key]" value="<?php echo esc_html($param_values['form_captcha_public_key']); ?>" />
 							</div>
 							<div>
 								<label for="form_captcha_private_key">
                                     <?php _e('Captcha Private Key', 'hugeit_contact');?>
                                 </label>
-								<input type="text" id="form_captcha_private_key" name="params[form_captcha_private_key]" value="<?php echo $param_values['form_captcha_private_key']; ?>" />
+								<input type="text" id="form_captcha_private_key" name="params[form_captcha_private_key]" value="<?php echo esc_html($param_values['form_captcha_private_key']); ?>" />
 							</div>
 							<div>
 								<label for="form_save_to_database">
@@ -61,101 +61,101 @@ function hugeit_contact_html_show_settings($param_values) {
 								<label for="msg_send_success">
                                     <?php _e("Sender's message was sent successfully", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_send_success]" type="text" id="msg_send_success" value="<?php echo $param_values['msg_send_success']; ?>" />
+								<input name="params[msg_send_success]" type="text" id="msg_send_success" value="<?php echo esc_html($param_values['msg_send_success']); ?>" />
 							</div>
 							<div>
 								<label for="msg_send_false">
                                     <?php _e("Sender's message was failed to send", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_send_false]" type="text" id="msg_send_false" value="<?php echo $param_values['msg_send_false']; ?>" />
+								<input name="params[msg_send_false]" type="text" id="msg_send_false" value="<?php echo esc_html($param_values['msg_send_false']); ?>" />
 							</div>
 							<div>
 								<label for="msg_refered_spam">
                                     <?php _e("Submission was referred to as spam", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_refered_spam]" type="text" id="msg_refered_spam" value="<?php echo $param_values['msg_refered_spam']; ?>" />
+								<input name="params[msg_refered_spam]" type="text" id="msg_refered_spam" value="<?php echo esc_html($param_values['msg_refered_spam']); ?>" />
 							</div>
 							<div style="display:none;">
 								<label for="msg_number_smaller">
                                     <?php _e("Number is smaller than minimum limit", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_number_smaller]" type="text" id="msg_number_smaller" value="<?php echo $param_values['msg_number_smaller']; ?>" />
+								<input name="params[msg_number_smaller]" type="text" id="msg_number_smaller" value="<?php echo esc_html($param_values['msg_number_smaller']); ?>" />
 							</div>
 							<div style="display:none;">
 								<label for="msg_number_large">
                                     <?php _e("Number is larger than maximum limit", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_number_large]" type="text" id="msg_number_large" value="<?php echo $param_values['msg_number_large']; ?>" />
+								<input name="params[msg_number_large]" type="text" id="msg_number_large" value="<?php echo esc_html($param_values['msg_number_large']); ?>" />
 							</div>
 							<div>
 								<label for="msg_captcha_error">
                                     <?php _e("Captcha is Not Validated", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_captcha_error]" type="text" id="msg_captcha_error" value="<?php echo $param_values['msg_captcha_error']; ?>" />
+								<input name="params[msg_captcha_error]" type="text" id="msg_captcha_error" value="<?php echo esc_html($param_values['msg_captcha_error']); ?>" />
 							</div>
 							<div>
 								<label for="required_empty_field">
                                     <?php _e("Required Field Is Empty", 'hugeit_contact');?>
                                 </label>
-								<input name="params[required_empty_field]" type="text" id="required_empty_field" value="<?php echo $param_values['required_empty_field']; ?>" />
+								<input name="params[required_empty_field]" type="text" id="required_empty_field" value="<?php echo esc_html($param_values['required_empty_field']); ?>" />
 							</div>
 							<div>
 								<label for="msg_invalid_email">
                                     <?php _e("Email address that the sender entered is invalid", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_invalid_email]" type="text" id="msg_invalid_email" value="<?php echo $param_values['msg_invalid_email']; ?>" />
+								<input name="params[msg_invalid_email]" type="text" id="msg_invalid_email" value="<?php echo esc_html($param_values['msg_invalid_email']); ?>" />
 							</div>
 							<div style="display:none;">
 								<label for="msg_invalid_url">
                                     <?php _e("URL that the sender entered is invalid", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_invalid_url]" type="text" id="msg_invalid_url" value="<?php echo $param_values['msg_invalid_url']; ?>" />
+								<input name="params[msg_invalid_url]" type="text" id="msg_invalid_url" value="<?php echo esc_html($param_values['msg_invalid_url']); ?>" />
 							</div>
 							<div style="display:none;">
 								<label for="msg_invalid_tel">
                                     <?php _e("Phone number that the sender entered is invalid", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_invalid_tel]" type="text" id="msg_invalid_tel" value="<?php echo $param_values['msg_invalid_tel']; ?>" />
+								<input name="params[msg_invalid_tel]" type="text" id="msg_invalid_tel" value="<?php echo esc_html($param_values['msg_invalid_tel']); ?>" />
 							</div>
 							<div style="display:none;">
 								<label for="msg_invalid_date">
                                     <?php _e("Date format that the sender entered is invalid", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_invalid_date]" type="text" id="msg_invalid_date" value="<?php echo $param_values['msg_invalid_date']; ?>" />
+								<input name="params[msg_invalid_date]" type="text" id="msg_invalid_date" value="<?php echo esc_html($param_values['msg_invalid_date']); ?>" />
 							</div>
 							<div style="display:none;">
 								<label for="msg_early_date">
                                     <?php _e("Date is earlier than minimum limit", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_early_date]" type="text" id="msg_early_date" value="<?php echo $param_values['msg_early_date']; ?>" />
+								<input name="params[msg_early_date]" type="text" id="msg_early_date" value="<?php echo esc_html($param_values['msg_early_date']); ?>" />
 							</div>
 							<div style="display:none;">
 								<label for="msg_late_date">
                                     <?php _e("Date is later than maximum limit", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_late_date]" type="text" id="msg_late_date" value="<?php echo $param_values['msg_late_date']; ?>" />
+								<input name="params[msg_late_date]" type="text" id="msg_late_date" value="<?php echo esc_html($param_values['msg_late_date']); ?>" />
 							</div>
 							<div>
 								<label for="msg_fail_failed">
                                     <?php _e("Uploading a file fails for any reason", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_fail_failed]" type="text" id="msg_fail_failed" value="<?php echo $param_values['msg_fail_failed']; ?>" />
+								<input name="params[msg_fail_failed]" type="text" id="msg_fail_failed" value="<?php echo esc_html($param_values['msg_fail_failed']); ?>" />
 							</div>
 							<div>
 								<label for="msg_file_format">
                                     <?php _e("Uploaded file is not allowed file type", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_file_format]" type="text" id="msg_file_format" value="<?php echo $param_values['msg_file_format']; ?>" />
+								<input name="params[msg_file_format]" type="text" id="msg_file_format" value="<?php echo esc_html($param_values['msg_file_format']); ?>" />
 							</div>
 							<div>
 								<label for="msg_large_file">
                                     <?php _e("Uploaded file is too large", 'hugeit_contact');?>
                                 </label>
-								<input name="params[msg_large_file]" type="text" id="msg_large_file" value="<?php echo $param_values['msg_large_file']; ?>" />
+								<input name="params[msg_large_file]" type="text" id="msg_large_file" value="<?php echo esc_html($param_values['msg_large_file']); ?>" />
 							</div>
 							<div>
 								<label for="msg_simple_captcha_error"><?php _e('Simple Captcha Code Incorrect','hugeit_contact');?></label>
-								<input name="params[msg_simple_captcha_error]" type="text" id="msg_simple_captcha_error" value="<?php echo $param_values['msg_simple_captcha_error']; ?>" />
+								<input name="params[msg_simple_captcha_error]" type="text" id="msg_simple_captcha_error" value="<?php echo esc_html($param_values['msg_simple_captcha_error']); ?>" />
 							</div>
 						</div>
 					</div>
@@ -173,14 +173,14 @@ function hugeit_contact_html_show_settings($param_values) {
 								<label for="form_adminstrator_email">
                                     <?php _e("Administrator Email", 'hugeit_contact');?>
                                 </label>
-								<input type="text" id="form_adminstrator_email" name="params[form_adminstrator_email]" value="<?php echo $param_values['form_adminstrator_email']; ?>" />
+								<input type="text" id="form_adminstrator_email" name="params[form_adminstrator_email]" value="<?php echo esc_html($param_values['form_adminstrator_email']); ?>" />
 								<dfn class="huge_it_forms_mess_subject_help_box" data-info="Add multiple emails separating them with commas.">?</dfn>
 							</div>
 							<div>
 								<label for="form_message_subject">
                                     <?php _e("Message Subject", 'hugeit_contact');?>
                                 </label>
-								<input name="params[form_message_subject]" type="text" class="" id="form_message_subject" value="<?php echo $param_values['form_message_subject']; ?>" size="10" />
+								<input name="params[form_message_subject]" type="text" class="" id="form_message_subject" value="<?php echo esc_html($param_values['form_message_subject']); ?>" size="10" />
 								<dfn class="huge_it_forms_mess_subject_help_box" data-info="If you leave this field empty, the name of the submitted form will be used as the subject of the email.">?</dfn>
 							</div>
 							<div class="autoheight">
@@ -216,7 +216,7 @@ function hugeit_contact_html_show_settings($param_values) {
 								<label for="form_user_message_subject">
                                     <?php _e("Message Subject", 'hugeit_contact');?>
                                 </label>
-								<input name="params[form_user_message_subject]" type="text" class="" id="form_user_message_subject" value="<?php echo $param_values['form_user_message_subject']; ?>" size="10" />
+								<input name="params[form_user_message_subject]" type="text" class="" id="form_user_message_subject" value="<?php echo esc_html($param_values['form_user_message_subject']); ?>" size="10" />
 								<dfn class="huge_it_forms_mess_subject_help_box" data-info="If you leave this field empty, the name of the submitted form will be used as the subject of the email.">?</dfn>
 							</div>
 							<div class="autoheight">

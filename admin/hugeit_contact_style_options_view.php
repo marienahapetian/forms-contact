@@ -151,7 +151,7 @@ function hugeit_contact_html_styles($rows){
 					 ?>
 					<tr <?php if($trcount%2==0) { echo 'class="has-background"';}?>>
 						<td><?php echo $rows[$i]->id; ?></td>
-						<td><a  href="admin.php?page=hugeit_forms_theme_options&form_id=<?php echo $rows[$i]->id?>"><?php echo esc_html(stripslashes($rows[$i]->name)); ?></a></td>
+						<td><a  href="admin.php?page=hugeit_forms_theme_options&form_id=<?php echo esc_html($rows[$i]->id)?>"><?php echo esc_html(stripslashes($rows[$i]->name)); ?></a></td>
 						<td><?php if(!($pr_count)){echo '0';} else{ echo $rows[$i]->last_update;} ?></td>
 						<td><?php if($rows[$i]->id!=1):?><a  href="#" onclick="alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');	" >Delete <i>(pro)</i></a><?php endif; ?></td>
 					</tr> 
@@ -188,7 +188,7 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 					if($style_theme->id != $_GET['form_id']){
 					?>
 						<li>
-							<a href="#" onclick="window.location.href='admin.php?page=hugeit_forms_theme_options&form_id=<?php echo $style_theme->id; ?>'" ><?php echo $style_theme->name; ?></a>
+							<a href="#" onclick="window.location.href='admin.php?page=hugeit_forms_theme_options&form_id=<?php echo esc_html($style_theme->id); ?>'" ><?php echo esc_html($style_theme->name); ?></a>
 						</li>
 					<?php
 					}
@@ -252,20 +252,20 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<input name="params[form_wrapper_background_color]" type="text" class="color <?php if($bg == 'gradient'){echo "half";} ?> form_background_color form_first_background_color" value="#<?php echo $color[0]; ?>" size="10" />
 									<input name="params[form_wrapper_background_color]" type="text" class="color half <?php if($bg == 'color' or $bg == 'transparent' ){echo "none";} ?> form_background_color form_second_background_color" value="#<?php echo $color[1]; ?>" size="10" />
 
-									<input name="params[form_wrapper_background_color]" id="form_wrapper_background_color" type="hidden" value="<?php echo $param_values['form_wrapper_background_color']; ?>" />
+									<input name="params[form_wrapper_background_color]" id="form_wrapper_background_color" type="hidden" value="<?php echo esc_html($param_values['form_wrapper_background_color']) ; ?>" />
 								</div>
 								<div>
 									<label for="form_border_size">
                                         <?php _e('Form Border Size', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_border_size]" id="form_border_size" value="<?php echo $param_values['form_border_size']; ?>" class="text" />
+									<input type="number" name="params[form_border_size]" id="form_border_size" value="<?php echo esc_html($param_values['form_border_size']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_border_color">
                                         <?php _e('Form Border Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_border_color]" type="text" class="color" id="form_border_color" value="#<?php echo $param_values['form_border_color']; ?>" size="10" />
+									<input name="params[form_border_color]" type="text" class="color" id="form_border_color" value="#<?php echo esc_html($param_values['form_border_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_show_title">
@@ -278,14 +278,14 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_title_size">
                                         <?php _e('Form Title Size', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_title_size]" id="form_title_size" value="<?php echo $param_values['form_title_size']; ?>" class="text" />
+									<input type="number" name="params[form_title_size]" id="form_title_size" value="<?php echo esc_html($param_values['form_title_size']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_title_color">
                                         <?php _e('Form Title Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_title_color]" type="text" class="color" id="form_title_color" value="#<?php echo $param_values['form_title_color']; ?>" size="10" />
+									<input name="params[form_title_color]" type="text" class="color" id="form_title_color" value="#<?php echo esc_html($param_values['form_title_color']); ?>" size="10" />
 								</div>
 							</div>
 							<div class="hugeit-contact-general-options-block">
@@ -301,40 +301,40 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_textarea_background_color">
                                         <?php _e('Textarea Background Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_textarea_background_color]" type="text" class="color" id="form_textarea_background_color" value="#<?php echo $param_values['form_textarea_background_color']; ?>" size="10" />
+									<input name="params[form_textarea_background_color]" type="text" class="color" id="form_textarea_background_color" value="#<?php echo esc_html($param_values['form_textarea_background_color']) ; ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_textarea_border_size">
                                         <?php _e('Textarea Border Size', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_textarea_border_size]" id="form_textarea_border_size" value="<?php echo $param_values['form_textarea_border_size']; ?>" class="text" />
+									<input type="number" name="params[form_textarea_border_size]" id="form_textarea_border_size" value="<?php echo esc_html($param_values['form_textarea_border_size']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_textarea_border_radius">
                                         <?php _e('Textarea Border Radius', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_textarea_border_radius]" id="form_textarea_border_radius" value="<?php echo $param_values['form_textarea_border_radius']; ?>" class="text" />
+									<input type="number" name="params[form_textarea_border_radius]" id="form_textarea_border_radius" value="<?php echo esc_html($param_values['form_textarea_border_radius']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_textarea_border_color">
                                         <?php _e('Textarea Border Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_textarea_border_color]" type="text" class="color" id="form_textarea_border_color" value="#<?php echo $param_values['form_textarea_border_color']; ?>" size="10" />
+									<input name="params[form_textarea_border_color]" type="text" class="color" id="form_textarea_border_color" value="#<?php echo esc_html($param_values['form_textarea_border_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_textarea_font_size">
                                         <?php _e('Textarea Font Size', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_textarea_font_size]" id="form_textarea_font_size" value="<?php echo $param_values['form_textarea_font_size']; ?>" class="text" />
+									<input type="number" name="params[form_textarea_font_size]" id="form_textarea_font_size" value="<?php echo esc_html($param_values['form_textarea_font_size']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_textarea_font_color">
                                         <?php _e('Textarea Font Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_textarea_font_color]" type="text" class="color" id="form_textarea_font_color" value="#<?php echo $param_values['form_textarea_font_color']; ?>" size="10" />
+									<input name="params[form_textarea_font_color]" type="text" class="color" id="form_textarea_font_color" value="#<?php echo esc_html($param_values['form_textarea_font_color']); ?>" size="10" />
 								</div>
 							</div>
 							<div class="hugeit-contact-general-options-block">
@@ -369,13 +369,13 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_checkbox_hover_color">
                                         <?php _e('Checkbox Hover Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_checkbox_hover_color]" type="text" class="color" id="form_checkbox_hover_color" value="#<?php echo $param_values['form_checkbox_hover_color']; ?>" size="10" />
+									<input name="params[form_checkbox_hover_color]" type="text" class="color" id="form_checkbox_hover_color" value="#<?php echo esc_html($param_values['form_checkbox_hover_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_checkbox_active_color">
                                         <?php _e('Checkbox Checked Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_checkbox_active_color]" type="text" class="color" id="form_checkbox_active_color" value="#<?php echo $param_values['form_checkbox_active_color']; ?>" size="10" />
+									<input name="params[form_checkbox_active_color]" type="text" class="color" id="form_checkbox_active_color" value="#<?php echo esc_html($param_values['form_checkbox_active_color']); ?>" size="10" />
 								</div>
 							</div>
 							<div class="hugeit-contact-general-options-block">
@@ -403,19 +403,19 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_radio_color">
                                         <?php _e('Input-Radio Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_radio_color]" type="text" class="color" id="form_radio_color" value="#<?php echo $param_values['form_radio_color']; ?>" size="10" />
+									<input name="params[form_radio_color]" type="text" class="color" id="form_radio_color" value="#<?php echo esc_html($param_values['form_radio_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_radio_hover_color">
                                         <?php _e('Input-Radio Hover Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_radio_hover_color]" type="text" class="color" id="form_radio_hover_color" value="#<?php echo $param_values['form_radio_hover_color']; ?>" size="10" />
+									<input name="params[form_radio_hover_color]" type="text" class="color" id="form_radio_hover_color" value="#<?php echo esc_html($param_values['form_radio_hover_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_radio_active_color">
                                         <?php _e('Input-Radio Checked Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_radio_active_color]" type="text" class="color" id="form_radio_active_color" value="#<?php echo $param_values['form_radio_active_color']; ?>" size="10" />
+									<input name="params[form_radio_active_color]" type="text" class="color" id="form_radio_active_color" value="#<?php echo esc_html($param_values['form_radio_active_color']); ?>" size="10" />
 								</div>
 							</div>
 							<div class="hugeit-contact-general-options-block">
@@ -431,70 +431,70 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_file_background">
                                         <?php _e('FileBox Background Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_file_background]" type="text" class="color" id="form_file_background" value="#<?php echo $param_values['form_file_background']; ?>" size="10" />
+									<input name="params[form_file_background]" type="text" class="color" id="form_file_background" value="#<?php echo esc_html($param_values['form_file_background']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_file_border_size">
                                         <?php _e('FileBox Border Size', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_file_border_size]" id="form_file_border_size" value="<?php echo $param_values['form_file_border_size']; ?>" class="text" />
+									<input type="number" name="params[form_file_border_size]" id="form_file_border_size" value="<?php echo esc_html($param_values['form_file_border_size']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_file_border_radius">
                                         <?php _e('FileBox Border Radius', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_file_border_radius]" id="form_file_border_radius" value="<?php echo $param_values['form_file_border_radius']; ?>" class="text" />
+									<input type="number" name="params[form_file_border_radius]" id="form_file_border_radius" value="<?php echo esc_html($param_values['form_file_border_radius']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_file_border_color">
                                         <?php _e('FileBox Border Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_file_border_color]" type="text" class="color" id="form_file_border_color" value="#<?php echo $param_values['form_file_border_color']; ?>" size="10" />
+									<input name="params[form_file_border_color]" type="text" class="color" id="form_file_border_color" value="#<?php echo esc_html($param_values['form_file_border_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_file_font_size">
                                         <?php _e('FileBox Font Size', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_file_font_size]" id="form_file_font_size" value="<?php echo $param_values['form_file_font_size']; ?>" class="text" />
+									<input type="number" name="params[form_file_font_size]" id="form_file_font_size" value="<?php echo esc_html($param_values['form_file_font_size']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_file_font_color">
                                         <?php _e('FileBox Font Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_file_font_color]" type="text" class="color" id="form_file_font_color" value="#<?php echo $param_values['form_file_font_color']; ?>" size="10" />
+									<input name="params[form_file_font_color]" type="text" class="color" id="form_file_font_color" value="#<?php echo esc_html($param_values['form_file_font_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_file_button_text">
                                         <?php _e('Button Text', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_file_button_text]" type="text" id="form_file_button_text" value="<?php echo $param_values['form_file_button_text']; ?>"/>
+									<input name="params[form_file_button_text]" type="text" id="form_file_button_text" value="<?php echo esc_html($param_values['form_file_button_text']); ?>"/>
 								</div>
 								<div>
 									<label for="form_file_button_background_color">
                                         <?php _e('Button Background Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_file_button_background_color]" type="text" class="color" id="form_file_button_background_color" value="#<?php echo $param_values['form_file_button_background_color']; ?>" size="10" />
+									<input name="params[form_file_button_background_color]" type="text" class="color" id="form_file_button_background_color" value="#<?php echo esc_html($param_values['form_file_button_background_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_file_button_background_hover_color">
                                         <?php _e('Button Background Hover Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_file_button_background_hover_color]" type="text" class="color" id="form_file_button_background_hover_color" value="#<?php echo $param_values['form_file_button_background_hover_color']; ?>" size="10" />
+									<input name="params[form_file_button_background_hover_color]" type="text" class="color" id="form_file_button_background_hover_color" value="#<?php echo esc_html($param_values['form_file_button_background_hover_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_file_button_text_color">
                                         <?php _e('Button Text Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_file_button_text_color]" type="text" class="color" id="form_file_button_text_color" value="#<?php echo $param_values['form_file_button_text_color']; ?>" size="10" />
+									<input name="params[form_file_button_text_color]" type="text" class="color" id="form_file_button_text_color" value="#<?php echo esc_html($param_values['form_file_button_text_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_file_button_text_hover_color">
                                         <?php _e('Button Text Hover Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_file_button_text_hover_color]" type="text" class="color" id="form_file_button_text_hover_color" value="#<?php echo $param_values['form_file_button_text_hover_color']; ?>" size="10" />
+									<input name="params[form_file_button_text_hover_color]" type="text" class="color" id="form_file_button_text_hover_color" value="#<?php echo esc_html($param_values['form_file_button_text_hover_color']); ?>" size="10" />
 								</div>
 
 								<div>
@@ -547,13 +547,13 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_file_icon_color">
                                         <?php _e('Button\'s Icon Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_file_icon_color]" type="text" class="color" id="form_file_icon_color" value="#<?php echo $param_values['form_file_icon_color']; ?>" size="10" />
+									<input name="params[form_file_icon_color]" type="text" class="color" id="form_file_icon_color" value="#<?php echo esc_html($param_values['form_file_icon_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_file_icon_hover_color">
                                         <?php _e("Button's Icon Hover Color", 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_file_icon_hover_color]" type="text" class="color" id="form_file_icon_hover_color" value="#<?php echo $param_values['form_file_icon_hover_color']; ?>" size="10" />
+									<input name="params[form_file_icon_hover_color]" type="text" class="color" id="form_file_icon_hover_color" value="#<?php echo esc_html($param_values['form_file_icon_hover_color']); ?>" size="10" />
 								</div>
 							</div>
 						</div>
@@ -564,7 +564,7 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_label_size">
                                         <?php _e('Label Size', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_label_size]" id="form_label_size" value="<?php echo $param_values['form_label_size']; ?>" class="text" />
+									<input type="number" name="params[form_label_size]" id="form_label_size" value="<?php echo esc_html($param_values['form_label_size']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
@@ -598,25 +598,25 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_label_color">
                                         <?php _e('Label Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_label_color]" type="text" class="color" id="form_label_color" value="#<?php echo $param_values['form_label_color']; ?>" size="10" />
+									<input name="params[form_label_color]" type="text" class="color" id="form_label_color" value="#<?php esc_html($param_values['form_label_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_label_error_color">
                                         <?php _e('Label Error Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_label_error_color]" type="text" class="color" id="form_label_error_color" value="#<?php echo $param_values['form_label_error_color']; ?>" size="10" />
+									<input name="params[form_label_error_color]" type="text" class="color" id="form_label_error_color" value="#<?php echo esc_html($param_values['form_label_error_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_label_required_color">
                                         <?php _e('Label * Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_label_required_color]" type="text" class="color" id="form_label_required_color" value="#<?php echo $param_values['form_label_required_color']; ?>" size="10" />
+									<input name="params[form_label_required_color]" type="text" class="color" id="form_label_required_color" value="#<?php echo esc_html($param_values['form_label_required_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_label_success_message">
                                         <?php _e('Label Success Message Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_label_success_message]" type="text" class="color" id="form_label_success_message" value="#<?php echo $param_values['form_label_success_message']; ?>" size="10" />
+									<input name="params[form_label_success_message]" type="text" class="color" id="form_label_success_message" value="#<?php echo esc_html($param_values['form_label_success_message']); ?>" size="10" />
 								</div>
 							</div>
 							<div class="hugeit-contact-general-options-block">
@@ -632,40 +632,40 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_input_text_background_color">
                                         <?php _e('Input-Text Background Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_input_text_background_color]" type="text" class="color" id="form_input_text_background_color" value="#<?php echo $param_values['form_input_text_background_color']; ?>" size="10" />
+									<input name="params[form_input_text_background_color]" type="text" class="color" id="form_input_text_background_color" value="#<?php echo esc_html($param_values['form_input_text_background_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_input_text_border_size">
                                         <?php _e('Input-Text Border Size', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_input_text_border_size]" id="form_input_text_border_size" value="<?php echo $param_values['form_input_text_border_size']; ?>" class="text" />
+									<input type="number" name="params[form_input_text_border_size]" id="form_input_text_border_size" value="<?php echo esc_html($param_values['form_input_text_border_size']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_input_text_border_radius">
                                         <?php _e('Input-Text Border Radius', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_input_text_border_radius]" id="form_input_text_border_radius" value="<?php echo $param_values['form_input_text_border_radius']; ?>" class="text" />
+									<input type="number" name="params[form_input_text_border_radius]" id="form_input_text_border_radius" value="<?php echo esc_html($param_values['form_input_text_border_radius']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_input_text_border_color">
                                         <?php _e('Input-Text Border Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_input_text_border_color]" type="text" class="color" id="form_input_text_border_color" value="#<?php echo $param_values['form_input_text_border_color']; ?>" size="10" />
+									<input name="params[form_input_text_border_color]" type="text" class="color" id="form_input_text_border_color" value="#<?php echo esc_html($param_values['form_input_text_border_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_input_text_font_size">
                                         <?php _e('Input-Text Font Size', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_input_text_font_size]" id="form_input_text_font_size" value="<?php echo $param_values['form_input_text_font_size']; ?>" class="text" />
+									<input type="number" name="params[form_input_text_font_size]" id="form_input_text_font_size" value="<?php echo esc_html($param_values['form_input_text_font_size']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_input_text_font_color">
                                         <?php _e('Input-Text Font Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_input_text_font_color]" type="text" class="color" id="form_input_text_font_color" value="#<?php echo $param_values['form_input_text_font_color']; ?>" size="10" />
+									<input name="params[form_input_text_font_color]" type="text" class="color" id="form_input_text_font_color" value="#<?php echo esc_html($param_values['form_input_text_font_color']); ?>" size="10" />
 								</div>
 							</div>
 							<div class="hugeit-contact-general-options-block">
@@ -683,46 +683,46 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_selectbox_background_color">
                                         <?php _e('Selectbox Background Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_selectbox_background_color]" type="text" class="color" id="form_selectbox_background_color" value="#<?php echo $param_values['form_selectbox_background_color']; ?>" size="10" />
+									<input name="params[form_selectbox_background_color]" type="text" class="color" id="form_selectbox_background_color" value="#<?php echo esc_html($param_values['form_selectbox_background_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_selectbox_border_size">
                                         <?php _e('Selectbox Border Size', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_selectbox_border_size]" id="form_selectbox_border_size" value="<?php echo $param_values['form_selectbox_border_size']; ?>" class="text" />
+									<input type="number" name="params[form_selectbox_border_size]" id="form_selectbox_border_size" value="<?php echo esc_html($param_values['form_selectbox_border_size']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_selectbox_border_radius">
                                         <?php _e('Selectbox Border Radius', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_selectbox_border_radius]" id="form_selectbox_border_radius" value="<?php echo $param_values['form_selectbox_border_radius']; ?>" class="text" />
+									<input type="number" name="params[form_selectbox_border_radius]" id="form_selectbox_border_radius" value="<?php echo esc_html($param_values['form_selectbox_border_radius']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_selectbox_border_color">
                                         <?php _e('Selectbox Border Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_selectbox_border_color]" type="text" class="color" id="form_selectbox_border_color" value="#<?php echo $param_values['form_selectbox_border_color']; ?>" size="10" />
+									<input name="params[form_selectbox_border_color]" type="text" class="color" id="form_selectbox_border_color" value="#<?php echo esc_html($param_values['form_selectbox_border_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_selectbox_font_size">
                                         <?php _e('Selectbox Font Size', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_selectbox_font_size]" id="form_selectbox_font_size" value="<?php echo $param_values['form_selectbox_font_size']; ?>" class="text" />
+									<input type="number" name="params[form_selectbox_font_size]" id="form_selectbox_font_size" value="<?php echo esc_html($param_values['form_selectbox_font_size']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_selectbox_font_color">
                                         <?php _e('Selectbox Font Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_selectbox_font_color]" type="text" class="color" id="form_selectbox_font_color" value="#<?php echo $param_values['form_selectbox_font_color']; ?>" size="10" />
+									<input name="params[form_selectbox_font_color]" type="text" class="color" id="form_selectbox_font_color" value="#<?php echo esc_html($param_values['form_selectbox_font_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_selectbox_arrow_color">
                                         <?php _e('Selectbox Arrow Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_selectbox_arrow_color]" type="text" class="color" id="form_selectbox_arrow_color" value="#<?php echo $param_values['form_selectbox_arrow_color']; ?>" size="10" />
+									<input name="params[form_selectbox_arrow_color]" type="text" class="color" id="form_selectbox_arrow_color" value="#<?php echo esc_html($param_values['form_selectbox_arrow_color']); ?>" size="10" />
 								</div>
 							</div>
 							<div class="hugeit-contact-general-options-block">
@@ -748,14 +748,14 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_button_padding">
                                         <?php _e('Button Padding', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_button_padding]" id="form_button_padding" value="<?php echo $param_values['form_button_padding']; ?>" class="text" />
+									<input type="number" name="params[form_button_padding]" id="form_button_padding" value="<?php echo esc_html($param_values['form_button_padding']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
 									<label for="form_button_font_size">
                                         <?php _e('Buttons Font Size', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_button_font_size]" id="form_button_font_size" value="<?php echo $param_values['form_button_font_size']; ?>" class="text" />
+									<input type="number" name="params[form_button_font_size]" id="form_button_font_size" value="<?php echo esc_html($param_values['form_button_font_size']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
@@ -804,20 +804,20 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_button_submit_icon_color">
                                         <?php _e('Submit Icon Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_button_submit_icon_color]" type="text" class="color" id="form_button_submit_icon_color" value="#<?php echo $param_values['form_button_submit_icon_color']; ?>" size="10" />
+									<input name="params[form_button_submit_icon_color]" type="text" class="color" id="form_button_submit_icon_color" value="#<?php echo esc_html($param_values['form_button_submit_icon_color']); ?>" size="10" />
 								</div>
 
 								<div>
 									<label for="form_button_submit_icon_hover_color">
                                         <?php _e('Submit Icon Hover Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_button_submit_icon_hover_color]" type="text" class="color" id="form_button_submit_icon_hover_color" value="#<?php echo $param_values['form_button_submit_icon_hover_color']; ?>" size="10" />
+									<input name="params[form_button_submit_icon_hover_color]" type="text" class="color" id="form_button_submit_icon_hover_color" value="#<?php echo esc_html($param_values['form_button_submit_icon_hover_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_button_submit_font_color">
                                         <?php _e('Submit Button Font Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_button_submit_font_color]" type="text" class="color" id="form_button_submit_font_color" value="#<?php echo $param_values['form_button_submit_font_color']; ?>" size="10" />
+									<input name="params[form_button_submit_font_color]" type="text" class="color" id="form_button_submit_font_color" value="#<?php echo esc_html($param_values['form_button_submit_font_color']); ?>" size="10" />
 								</div>
 
 								<div>
@@ -831,21 +831,21 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_button_submit_background">
                                         <?php _e('Submit Button Background Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_button_submit_background]" type="text" class="color" id="form_button_submit_background" value="#<?php echo $param_values['form_button_submit_background']; ?>" size="10" />
+									<input name="params[form_button_submit_background]" type="text" class="color" id="form_button_submit_background" value="#<?php echo esc_html($param_values['form_button_submit_background']); ?>" size="10" />
 								</div>
 
 								<div>
 									<label for="form_button_submit_hover_background">
                                         <?php _e('Submit Button Background Hover Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_button_submit_hover_background]" type="text" class="color" id="form_button_submit_hover_background" value="#<?php echo $param_values['form_button_submit_hover_background']; ?>" size="10" />
+									<input name="params[form_button_submit_hover_background]" type="text" class="color" id="form_button_submit_hover_background" value="#<?php echo esc_html($param_values['form_button_submit_hover_background']); ?>" size="10" />
 								</div>
 
 								<div>
 									<label for="form_button_submit_border_size">
                                         <?php _e('Submit Button Border Size', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_button_submit_border_size]" id="form_button_submit_border_size" value="<?php echo $param_values['form_button_submit_border_size']; ?>" class="text" />
+									<input type="number" name="params[form_button_submit_border_size]" id="form_button_submit_border_size" value="<?php echo esc_html($param_values['form_button_submit_border_size']); ?>" class="text" />
 									<span>px</span>
 								</div>
 
@@ -853,14 +853,14 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_button_submit_border_color">
                                         <?php _e('Submit Button Border Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_button_submit_border_color]" type="text" class="color" id="form_button_submit_border_color" value="#<?php echo $param_values['form_button_submit_border_color']; ?>" size="10" />
+									<input name="params[form_button_submit_border_color]" type="text" class="color" id="form_button_submit_border_color" value="#<?php echo esc_html($param_values['form_button_submit_border_color']); ?>" size="10" />
 								</div>
 
 								<div>
 									<label for="form_button_submit_border_radius">
                                         <?php _e('Submit Button Border Radius', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_button_submit_border_radius]" id="form_button_submit_border_radius" value="<?php echo $param_values['form_button_submit_border_radius']; ?>" class="text" />
+									<input type="number" name="params[form_button_submit_border_radius]" id="form_button_submit_border_radius" value="<?php echo esc_html($param_values['form_button_submit_border_radius']); ?>" class="text" />
 									<span>px</span>
 								</div>
 								<div>
@@ -895,47 +895,47 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_button_reset_icon_color">
                                         <?php _e('Reset Icon Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_button_reset_icon_color]" type="text" class="color" id="form_button_reset_icon_color" value="#<?php echo $param_values['form_button_reset_icon_color']; ?>" size="10" />
+									<input name="params[form_button_reset_icon_color]" type="text" class="color" id="form_button_reset_icon_color" value="#<?php echo esc_html($param_values['form_button_reset_icon_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_button_reset_icon_hover_color">
                                         <?php _e('Reset Icon Hover Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_button_reset_icon_hover_color]" type="text" class="color" id="form_button_reset_icon_hover_color" value="#<?php echo $param_values['form_button_reset_icon_hover_color']; ?>" size="10" />
+									<input name="params[form_button_reset_icon_hover_color]" type="text" class="color" id="form_button_reset_icon_hover_color" value="#<?php echo esc_html($param_values['form_button_reset_icon_hover_color']); ?>" size="10" />
 								</div>
 								<div>
 									<label for="form_button_reset_font_color">
                                         <?php _e('Reset Button Font Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_button_reset_font_color]" type="text" class="color" id="form_button_reset_font_color" value="#<?php echo $param_values['form_button_reset_font_color']; ?>" size="10" />
+									<input name="params[form_button_reset_font_color]" type="text" class="color" id="form_button_reset_font_color" value="#<?php echo esc_html($param_values['form_button_reset_font_color']); ?>" size="10" />
 								</div>
 
 								<div>
 									<label for="form_button_reset_font_hover_color">
                                         <?php _e('Reset Button Font Hover Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_button_reset_font_hover_color]" type="text" class="color" id="form_button_reset_font_hover_color" value="#<?php echo $param_values['form_button_reset_font_hover_color']; ?>" size="10" />
+									<input name="params[form_button_reset_font_hover_color]" type="text" class="color" id="form_button_reset_font_hover_color" value="#<?php echo esc_html($param_values['form_button_reset_font_hover_color']); ?>" size="10" />
 								</div>
 
 								<div>
 									<label for="form_button_reset_background">
                                         <?php _e('Reset Button Background Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_button_reset_background]" type="text" class="color" id="form_button_reset_background" value="#<?php echo $param_values['form_button_reset_background']; ?>" size="10" />
+									<input name="params[form_button_reset_background]" type="text" class="color" id="form_button_reset_background" value="#<?php echo esc_html($param_values['form_button_reset_background']); ?>" size="10" />
 								</div>
 
 								<div>
 									<label for="form_button_reset_hover_background">
                                         <?php _e('Reset Button Background Hover Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_button_reset_hover_background]" type="text" class="color" id="form_button_reset_hover_background" value="#<?php echo $param_values['form_button_reset_hover_background']; ?>" size="10" />
+									<input name="params[form_button_reset_hover_background]" type="text" class="color" id="form_button_reset_hover_background" value="#<?php echo esc_html($param_values['form_button_reset_hover_background']); ?>" size="10" />
 								</div>
 
 								<div>
 									<label for="form_button_reset_border_size">
                                         <?php _e('Reset Button Border Size', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_button_reset_border_size]" id="form_button_reset_border_size" value="<?php echo $param_values['form_button_reset_border_size']; ?>" class="text" />
+									<input type="number" name="params[form_button_reset_border_size]" id="form_button_reset_border_size" value="<?php echo esc_html($param_values['form_button_reset_border_size']); ?>" class="text" />
 									<span>px</span>
 								</div>
 
@@ -944,14 +944,14 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<label for="form_button_reset_border_color">
                                         <?php _e('Reset Button Border Color', 'hugeit_contact'); ?>
                                     </label>
-									<input name="params[form_button_reset_border_color]" type="text" class="color" id="form_button_reset_border_color" value="#<?php echo $param_values['form_button_reset_border_color']; ?>" size="10" />
+									<input name="params[form_button_reset_border_color]" type="text" class="color" id="form_button_reset_border_color" value="#<?php echo esc_html($param_values['form_button_reset_border_color']); ?>" size="10" />
 								</div>
 
 								<div>
 									<label for="form_button_reset_border_radius">
                                         <?php _e('Reset Button Border Radius', 'hugeit_contact'); ?>
                                     </label>
-									<input type="number" name="params[form_button_reset_border_radius]" id="form_button_reset_border_radius" value="<?php echo $param_values['form_button_reset_border_radius']; ?>" class="text" />
+									<input type="number" name="params[form_button_reset_border_radius]" id="form_button_reset_border_radius" value="<?php echo esc_html($param_values['form_button_reset_border_radius']); ?>" class="text" />
 									<span>px</span>
 								</div>
 							</div>
