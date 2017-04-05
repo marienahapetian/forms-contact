@@ -36,66 +36,65 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	    return ob_get_clean();
 	}
 	//Text box Right Column
-	function hugeit_contact_textBoxSettingsHtml($rowimages){ob_start(); ?>
-		<li id="huge-contact-field-<?php echo esc_html($rowimages->id); ?>"  data-fieldNum="<?php echo esc_html($rowimages->id); ?>">
-			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo $rowimages->id; ?>" value="<?php echo esc_html($rowimages->hc_left_right); ?>" fileType="Textbox"/>
-			<input type="hidden" class="ordering" name="hc_ordering<?php echo esc_html($rowimages->id); ?>" value="<?php echo esc_html($rowimages->ordering); ?>" />
-			<h4><?php if($rowimages->hc_field_label!=''){echo esc_html($rowimages->hc_field_label);}else{ echo "Textbox";} ?></h4
-			<div class="fields-options">
-				<div class="left">
-					<div>
-						<label class="input-block">Label:
-							<input class="label" type="t
-							ext" name="imagess<?php echo esc_html($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_field_label); ?>" />
-						</label>
-					</div>
-					<div>
-						<label class="input-block" for="form_label_position">Label Position:
-							<select id="form_label_position" name="hc_input_show_default<?php echo esc_html($rowimages->id); ?>">
-								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign">Left Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign">Right Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign">Above Field</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsInsideAlign'){ echo 'selected="selected"'; } ?> value="formsInsideAlign">Inside Placeholder</option>
-							</select>
-						</label>
-					</div>
-					<div>
-						<label class="input-block">Field Is Required:
-							<input type="hidden" name="hc_required<?php echo esc_html($rowimages->id); ?>" value=""/>
-							<input class="required" type="checkbox" <?php if($rowimages->hc_required == 'on'){ echo 'checked="checked"';} ?> name="hc_required<?php echo esc_html($rowimages->id); ?>" value="on" />
-						</label>
-						<label class="input-block">Field Is Active:
-							<input type="hidden" name="im_description<?php echo esc_html($rowimages->id); ?>" value=""/>
-							<input class="fieldisactive" class="isactive" type="checkbox" <?php if($rowimages->description == 'on'){ echo 'checked="checked"';} ?> name="im_description<?php echo esc_html($rowimages->id); ?>" value="on" />
-						</label>
-					</div>										
-				</div>
-				<div class="left">
-					<div>
-						<label class="input-block">Value If Empty:
-							<input class="placeholder text_area" type="text" name="titleimage<?php echo esc_html($rowimages->id); ?>" id="titleimage<?php echo esc_html($rowimages->id); ?>"  oldvalue="<?php echo esc_html($rowimages->name); ?>" value="<?php echo esc_html($rowimages->name); ?>">
-						</label>
-					</div>
-					<div>
-						<div class="input-block textbox_file_type">
-							<div>Field type:</div>
-							<label><input  type="radio" <?php if($rowimages->field_type == 'text'){ echo 'checked="checked"';} ?> name="field_type<?php echo esc_html($rowimages->id); ?>"  value="text" >Simple Text</label>
-							<label><input  type="radio" <?php if($rowimages->field_type == 'number'){ echo 'checked="checked"';} ?> name="field_type<?php echo esc_html($rowimages->id); ?>"  value="number" >Number</label>
-						</div>
-					</div>
-				</div>
-				<div class="field-top-options-block">
-					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-					<a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
-					<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
-				</div>
-			</div>
-			
-			<div class="clear"></div>
-		</li>
-	<?php
-	    return ob_get_clean();
-	}
+function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
+    <li id="huge-contact-field-<?php echo esc_html($rowimages->id); ?>"  data-fieldNum="<?php echo esc_html($rowimages->id); ?>">
+        <input type="hidden" class="left-right-position" name="hc_left_right<?php echo esc_html($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_left_right); ?>" fileType="Textbox"/>
+        <input type="hidden" class="ordering" name="hc_ordering<?php echo esc_html($rowimages->id); ?>" value="<?php echo esc_html($rowimages->ordering); ?>" />
+        <h4><?php if($rowimages->hc_field_label!=''){echo esc_html($rowimages->hc_field_label);}else{ echo "Textbox";} ?></h4>
+        <div class="fields-options">
+            <div class="left">
+                <div>
+                    <label class="input-block">Label:
+                        <input class="label" type="text" name="imagess<?php echo esc_html($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_field_label); ?>" />
+                    </label>
+                </div>
+                <div>
+                    <label class="input-block" for="form_label_position">Label Position:
+                        <select id="form_label_position" name="hc_input_show_default<?php echo esc_html($rowimages->id); ?>">
+                            <option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign">Left Align</option>
+                            <option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign">Right Align</option>
+                            <option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign">Above Field</option>
+                            <option <?php if($rowimages->hc_input_show_default == 'formsInsideAlign'){ echo 'selected="selected"'; } ?> value="formsInsideAlign">Inside Placeholder</option>
+                        </select>
+                    </label>
+                </div>
+                <div>
+                    <label class="input-block">Field Is Required:
+                        <input type="hidden" name="hc_required<?php echo esc_html($rowimages->id); ?>" value=""/>
+                        <input class="required" type="checkbox" <?php if($rowimages->hc_required == 'on'){ echo 'checked="checked"';} ?> name="hc_required<?php echo esc_html($rowimages->id); ?>" value="on" />
+                    </label>
+                    <label class="input-block">Field Is Active:
+                        <input type="hidden" name="im_description<?php echo esc_html($rowimages->id); ?>" value=""/>
+                        <input class="fieldisactive" class="isactive" type="checkbox" <?php if($rowimages->description == 'on'){ echo 'checked="checked"';} ?> name="im_description<?php echo esc_html($rowimages->id); ?>" value="on" />
+                    </label>
+                </div>
+            </div>
+            <div class="left">
+                <div>
+                    <label class="input-block">Value If Empty:
+                        <input class="placeholder text_area" type="text" name="titleimage<?php echo esc_html($rowimages->id); ?>" id="titleimage<?php echo esc_html($rowimages->id); ?>"  oldvalue="<?php echo esc_html($rowimages->name); ?>" value="<?php echo esc_html($rowimages->name); ?>">
+                    </label>
+                </div>
+                <div>
+                    <div class="input-block textbox_file_type">
+                        <div>Field type:</div>
+                        <label><input  type="radio" <?php if($rowimages->field_type == 'text'){ echo 'checked="checked"';} ?> name="field_type<?php echo esc_html($rowimages->id); ?>"  value="text" >Simple Text</label>
+                        <label><input  type="radio" <?php if($rowimages->field_type == 'number'){ echo 'checked="checked"';} ?> name="field_type<?php echo esc_html($rowimages->id); ?>"  value="number" >Number</label>
+                    </div>
+                </div>
+            </div>
+            <div class="field-top-options-block">
+                <a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
+                <a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
+                <a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+    </li>
+    <?php
+    return ob_get_clean();
+}
 
 	//2 Textarea //
     function hugeit_contact_textareaHtml($rowimages) { ob_start(); ?>
