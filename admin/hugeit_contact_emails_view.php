@@ -13,7 +13,7 @@ if ( ! function_exists( 'current_user_can' ) ) {
 require_once( "hugeit_free_version.php" );
 function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$formsToShow,$mailing) {
 ?>
-<div class="wrap">
+<div class="wrap" id="hugeit_newsletter_manager">
 	<?php hugeit_contact_drawFreeBanner('yes');?>
 	<div id="poststuff">
 		<?php $path_site = plugins_url("Front_images", __FILE__); ?>

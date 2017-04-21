@@ -51,7 +51,7 @@ function hugeit_get_option($option){
 /* Generate Page html */
 function hugeit_generate_custom_scripts_page(){
 $path_site = plugins_url("Front_images", __FILE__); ?>
-    <div class="wrap">
+    <div class="wrap" id="hugeit_custom_scripts">
         <?php hugeit_contact_drawFreeBanner();?>
         <div id="poststuff">
             <div id="post-body-content">

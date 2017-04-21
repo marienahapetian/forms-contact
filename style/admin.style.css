@@ -1,3 +1,9 @@
+body{
+	background: #fff;
+}
+.wrap{
+	border: 1px solid #1279b9;
+}
 .ui_custom_pl { border-radius:5px;background: #ededf0; visibility: visible !important; }
 .ui_custom_pl * { visibility: hidden; }
 .text-right{text-align: right;}
@@ -55,16 +61,26 @@ img.themeSpinner{
 	width: 95% !important;
 }
 #hugeit_contacts-list-page{
-	width: 100%;
+	padding: 15px;
+}
+#hugeit_contacts-list-page .tablenav{
+	margin-bottom: 10px;
+}
+#hugeit_contacts-list-page .tablenav .displaying-num{
+	font-weight: 500;
+	color: #116faa;
 }
 #hugeit_contacts-list-page .actions label {
 	display:block;
 	float:left;
 	margin-top:5px;
+	margin-right: 5px;
 }
+
 #hugeit_contacts-list-page .actions input {
 	display:block;
 	float:left;
+	margin-right: 5px;
 }
 #hugeit_contacts-list-page table tr.has-background {background:#f9f9f9;}
 #hugeit_contacts-list-page .add-new-h2{
@@ -119,9 +135,11 @@ img.themeSpinner{
 /*top tabs*/
 .hugeit_tabs_block .hugeit_contact_top_tabs  {
 	width:100%;
-	margin:0 0 0 0;
+	margin:0;
 	border-bottom:1px solid #ccc;
-	height:30px;
+	padding-left: 10px;
+	height: 31px;
+	box-sizing: border-box;
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li {	
 	position:relative;
@@ -133,7 +151,7 @@ img.themeSpinner{
 	border:1px solid #ccc;
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li.active {
-	border-bottom:1px solid #f1f1f1;	
+	border-bottom:1px solid #fff;
 	padding-right:16px;
 	background-position:right center;
 	background-repeat:no-repeat;
@@ -148,20 +166,20 @@ img.themeSpinner{
 	outline:none;
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li a:hover,.hugeit_tabs_block .hugeit_contact_top_tabs li a:focus,.hugeit_tabs_block .hugeit_contact_top_tabs li a:active {
-	color:#444;
-	background:#f1f1f1;
+	color: rgb(18, 121, 185);
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li.add-new a:hover,.hugeit_tabs_block .hugeit_contact_top_tabs li.add-new a:focus,.hugeit_tabs_block .hugeit_contact_top_tabs li.add-new a:active {
 	cursor:pointer;
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li.active input {
-	margin:2px 0 0 0;
-	background:#f1f1f1;
+	/*margin:2px 0 0 0;*/
 	outline:none;
 	width:auto;
 	box-shadow:none;
 	border:0;
-	width: 90px;
+	height: 100%;
+	font-weight: 500;
+	/*width: 90px;*/
 }
 /*############### OPTIONS BLOCKS ###################*/
 .options-block {
@@ -320,7 +338,7 @@ img.themeSpinner{
 	width:100%;
 	padding:10px 0 10px 0;
 	height:40px;
-	background:#f1f1f1;
+	background:#fff;
 	border-bottom: 1px solid #CCCCCC;
     position: relative;
 }
@@ -344,7 +362,7 @@ img.themeSpinner{
 	margin:0 5px 0 5px;
 	color:#fff;
 	cursor:pointer;
-	background:url(../images/plus.white.png) right center no-repeat #222;
+	background:url(../images/plus.white.png) right center no-repeat #c7a589;
 	border-radius: 4px;
 }
 #add-fields-block  > li.spinnerLi{
@@ -660,8 +678,8 @@ img.themeSpinner{
 	width: 20px;
 	height: 20px;
 	position: absolute;
-	top: 1px;
-	right: 1px;
+	top: 15px;
+	right: 10px;
 	background: url(../images/fields.opt.png) left -21px no-repeat #fff;
 	opacity: 0.5;
 	border-radius: 2px;
@@ -1159,7 +1177,23 @@ a {
     padding-left: 12px;
 }
 #hugeit_submission_page{
-	width: 95%;
+	padding: 15px;
+}
+#hugeit_general_options,
+#hugeit_newsletter_manager,
+#hugeit_custom_scripts,
+#hugeit_theme_options_page{
+	float: left;
+	width: 99%;
+}
+#hugeit_theme_options_page #post-body-content{
+	margin-bottom: 0;
+}
+#hugeit_custom_scripts input[type=submit]{
+	margin-left: 10px;
+}
+#hugeit_newsletter_manager #post-body-content{
+	box-sizing: border-box;
 }
 #hugeit_submission_page .search_block {
 	width:100%;
@@ -1606,6 +1640,9 @@ a {
 #hugeit_contact_email_manager button.btn{
 	margin-top:20px;
 }
+.hugeit_contact_email{
+	padding: 15px;
+}
 .hugeit_contact_email > h3{
     font-size: 20px !important;
     font-weight: 500 !important;
@@ -1642,25 +1679,18 @@ a {
 .free_version_banner .manual_icon {
 	position:absolute;
 	display:block;
-	top:15px;
-	left:15px;
-	width: 140px;
+	top:30px;
+	left:20px;
+	/*width: 140px;*/
 }
 
 .free_version_banner .usermanual_text {
-	font-weight: bold !important;
-	display:block;
-	float:left;
-	width:300px;
-	margin-left:75px;
-	font-family:'Open Sans',sans-serif;
-	font-size:14px;
-	font-style:italic;
-	color:#ffffff;
-	line-height:10px;
-	margin-top: 0;
-	padding-top: 15px;
-    position: absolute;
+	font-family: 'Open Sans',sans-serif;
+	font-size: 20pt;
+	color: #ffffff;
+	line-height: 1;
+	margin: 35px 0 0 125px;
+	display: inline-block;
 }
 
 .free_version_banner .usermanual_text a,
@@ -1685,28 +1715,30 @@ a {
 .free_version_banner .get_full_version,
 .free_version_banner .get_full_version:link,
 .free_version_banner .get_full_version:visited {
-	padding-left: 60px;
-	padding-right: 4px;
 	display: inline-block;
 	position: absolute;
 	top: 15px;
-	right: calc(50% - 167px);
-	height: 38px;
-	width: 290px;
+	right: calc(50% - 100px);
 	border: 1px solid rgba(255,255,255,.6);
 	font-family: 'Open Sans',sans-serif;
-	font-size: 23px;
+	font-size: 16pt;
 	color: #ffffff;
-	line-height: 43px;
 	text-decoration: none;
 	border-radius: 2px;
+	padding: 10px 60px;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 .free_version_banner .get_full_version:hover {
-	background:#ffffff;
-	color:#bf1e2e;
 	text-decoration:none;
 	outline:none;
+	box-shadow: 0px 0px 7px 2px #fff;
+	background: #0d6fad;
+
 }
 
 .free_version_banner .get_full_version:focus,
@@ -1714,16 +1746,15 @@ a {
 
 }
 
-.free_version_banner .get_full_version:before {
+.free_version_banner .get_full_version:after {
 	content:'';
-	display:block;
-	position:absolute;
-	width:33px;
+	display: inline-block;
+	width:26px;
 	height:23px;
-	left:25px;
-	top:9px;
-	background-image:url('../images/wp_shop.png');
+	background-image:url('../images/shop.png');
 	background-position:0 0;
+	position: relative;
+	top: 2px;
 }
 
 .free_version_banner .get_full_version:hover:before {
@@ -1733,23 +1764,25 @@ a {
 .free_version_banner .huge_it_logo {
 	float:right;
 	margin:15px 15px;
+	margin-right: 25px;
 }
 
 .free_version_banner .description_text {
-	padding:0 0 13px 0;
-	position:relative;
-	display:block;
-	text-align:center;
-	font-family:'Open Sans',sans-serif;
-	color:#fffefe;
-	line-height:inherit;
-	margin: 0 auto;
-	width: 52%;
+	padding: 0 0 13px 0;
+	/* position: relative; */
+	display: inline-block;
+	/* text-align: center; */
+	font-family: 'Open Sans',sans-serif;
+	color: #fffefe;
+	/* line-height: inherit; */
+	/* margin: 0 auto; */
+	/* width: 52%; */
+	margin-left: 100px;
 }
 .free_version_banner .description_text p{
 	margin:0;
 	padding:0;
-	font-size: 14px;
+	font-size: 16pt;
 }
 .free_version_banner .hg_free_banner_bottom a {
 	text-decoration: none;
@@ -1757,16 +1790,44 @@ a {
 .free_version_banner .hg_view_plugins_block {
 	float: left;
 	position: relative;
+	width: 65%;
+	margin-left: 17%;
+	margin-top: -10px;
+}
+.free_version_banner .hg_view_plugins_block ul{
+	display: inline-block;
+	margin-top: 0;
+}
+.free_version_banner .hg_view_plugins_block ul li{
+	display: inline-block;
+	/*vertical-align: top;*/
+	/*height: 18px;*/
+}
+.free_version_banner .hg_view_plugins_block ul li ul{
+	/*	display: none;*/
+	padding-top: 5px;
+	background: rgba(11, 104, 162, 0.81);
+	padding-left: 15px;
+	opacity:0;
+	transition: opacity 450ms;
+	position: absolute;
+	left: 4%;
+
+}
+.free_version_banner .hg_view_plugins_block ul li:hover ul{
+	/*	display: block;*/
+	position: absolute;
+	left: 4%;
+	opacity:1;
 }
 .free_version_banner .hg_social_link_buttons {
 	float: right;
-	width:170px;
+	width:15%;
 	height:36px;
-	background:#fff;
 	border-radius:30px;
-	text-align:center;
-	margin-bottom: 20px;
-	margin-right: 15px;
+	text-align:right;
+	margin-bottom: 10px;
+	margin-right: 20px;
 }
 .free_version_banner .hg_social_link_buttons a {
 	display: inline-block;
@@ -1774,40 +1835,50 @@ a {
 	margin: 3px 3px;
 	width: 30px;
 	height: 30px;
-	background:url('../images/f.png') no-repeat;
+	line-height: 30px;
+	color: #fff;
+	border: 1px solid #fff;
+	border-radius: 50%;
+	transition: all 0.2s;
+	text-align: center;
+	/*background:url('../images/f.png') no-repeat;*/
+}
+.free_version_banner .hg_social_link_buttons a:hover{
+	box-shadow: 0px 0px 7px 2px #fff;
+	background: #0d6fad;
 }
 
-.free_version_banner .hg_social_link_buttons a:after {
-	content: '';
-	display:block;
-	position:absolute;
-	top:0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-color: transparent;
-	transition: background-color .1s linear;
-}
+/*.free_version_banner .hg_social_link_buttons a:after {*/
+	/*content: '';*/
+	/*display:block;*/
+	/*position:absolute;*/
+	/*top:0;*/
+	/*right: 0;*/
+	/*bottom: 0;*/
+	/*left: 0;*/
+	/*background-color: transparent;*/
+	/*transition: background-color .1s linear;*/
+/*}*/
 
-.free_version_banner .hg_social_link_buttons a:hover:after {
-	background-color: rgba( 255, 255, 255, .3 );
-}
+/*.free_version_banner .hg_social_link_buttons a:hover:after {*/
+	/*background-color: rgba( 255, 255, 255, .3 );*/
+/*}*/
 
-.free_version_banner .hg_social_link_buttons a.fb {
-	background-position: -81px 0;
-}
+/*.free_version_banner .hg_social_link_buttons a.fb {*/
+	/*background-position: -81px 0;*/
+/*}*/
 
-.free_version_banner .hg_social_link_buttons a.twitter {
-	background-position: 0 0;
-}
+/*.free_version_banner .hg_social_link_buttons a.twitter {*/
+	/*background-position: 0 0;*/
+/*}*/
 
-.free_version_banner .hg_social_link_buttons a.gplus {
-	background-position: -121px 0;
-}
+/*.free_version_banner .hg_social_link_buttons a.gplus {*/
+	/*background-position: -121px 0;*/
+/*}*/
 
-.free_version_banner .hg_social_link_buttons a.yt {
-	background-position: -40px 0;
-}
+/*.free_version_banner .hg_social_link_buttons a.yt {*/
+	/*background-position: -40px 0;*/
+/*}*/
 
 @media screen and (max-width:1400px){
 	.hg_view_plugins_block {
@@ -1829,11 +1900,8 @@ a {
 	font-weight: 600;
 	box-shadow: none;
 }
-.hg_view_plugins_block a:nth-child(1) {
-	margin-left: 15px;
-}
 .hg_view_plugins_block a:hover {
-	text-decoration: underline;
+	text-decoration: none;
 }
 .close_free_banner {
 	float: right;
@@ -1930,7 +1998,7 @@ a {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: rgba(0, 0, 0, .2);
+	background: rgba(18, 121, 185, 0.31);
 }
 
 .hugeit_contact_theme_pro_attention {
@@ -1950,7 +2018,7 @@ Custom Settings
 	background: #fff;
 	padding: 10px 15px;
 	box-sizing: border-box;
-	box-shadow: 1px 2px 2px 2px rgba(0,0,0,0.15);
+	/*box-shadow: 1px 2px 2px 2px rgba(0,0,0,0.15);*/
 	border-radius: 3px;
 	z-index: 2;
 }

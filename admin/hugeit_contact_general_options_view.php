@@ -10,7 +10,7 @@ if (!function_exists('current_user_can')) {
 require_once("hugeit_free_version.php");
 function hugeit_contact_html_show_settings($param_values) {
 	$path_site = plugins_url("Front_images", __FILE__); ?>
-	<div class="wrap">
+	<div class="wrap" id="hugeit_general_options">
 		<?php hugeit_contact_drawFreeBanner();?>
 		<div id="poststuff">
 			<div id="post-body-content">

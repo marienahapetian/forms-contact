@@ -46,7 +46,7 @@ function hugeit_contact_html_styles($rows){
 		}
 	</script>
 
-<div class="wrap">
+<div class="wrap" >
 	<?php hugeit_contact_drawFreeBanner('yes');?>
 	<div id="poststuff">
 		<div id="hugeit_contacts-list-page">
@@ -70,7 +70,7 @@ function hugeit_contact_html_styles($rows){
 				 <input type="button" value="Reset" onclick="window.location.href=\'admin.php?page=hugeit_forms_main_page\'" class="button-secondary action">
 			</div>';
 			?>
-			<table class="wp-list-table widefat fixed pages" style="width:95%">
+			<table class="wp-list-table widefat fixed pages">
 				<thead>
 				 <tr>
 					<th scope="col" id="id" style="width:30px" ><span><?php _e('ID', 'hugeit_contact'); ?></span><span class="sorting-indicator"></span></th>
@@ -170,7 +170,7 @@ function hugeit_contact_html_styles($rows){
 }
 function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){?>
 <!-- STYLES CUSTOMIZATION PAGE -->
-<div class="wrap">
+<div class="wrap" id="hugeit_theme_options_page">
 <?php hugeit_contact_drawFreeBanner('yes');?>
 <div id="poststuff">
 		<?php $path_site = plugins_url("Front_images", __FILE__); ?>

@@ -319,7 +319,7 @@ $keyForBackground = 1;
                 <?php
                 $submition_id=esc_html($submition->id);
                 $submition_contact_id=esc_html($submition->contact_id);
-                $submition_contact_country=esc_html($submition->contact_country);
+                $submition_contact_country =esc_html ($submition->contact_country);
                 ?>
 				    <tr id="comment-<?php echo $submition_id; ?>" class="comment even thread-even <?php if($submition->customer_read_or_not == 1){ echo "read"; } else { echo "unread"; } if($submition->customer_spam == 1){ echo " spam"; } else { echo ""; }?> depth-<?php echo $keyForBackground; if($keyForBackground%2 == 0) echo " alt"; ?> ">
 				        <th scope="row" class="check-column">

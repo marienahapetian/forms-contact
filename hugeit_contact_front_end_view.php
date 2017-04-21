@@ -148,6 +148,55 @@ function checkbox_field_html($rowimages, $frontendformid, $style_values)
     <?php
 }
 
+function hidden_field_html($rowimages, $frontendformid)
+{
+    ?>
+    <div class="hugeit-field-block" rel="huge-contact-field-<?php echo esc_attr($rowimages->id); ?>" style="display: none;">
+        <label class="<?php if ($rowimages->hc_input_show_default != '1') echo esc_attr($rowimages->hc_input_show_default); ?>"
+               class="<?php if ($rowimages->hc_input_show_default != '1') echo esc_attr($rowimages->hc_input_show_default); ?>"
+               for="hugeit_preview_textbox_<?php echo esc_attr($rowimages->id); ?>">
+        </label>
+
+        <div class="field-block">
+            <?php
+            $current_user = wp_get_current_user();
+
+            switch (esc_attr($rowimages->hc_other_field)) {
+                case "user_id":
+                    $hidden_value = "User ID is ".$current_user->ID;
+                    break;
+                case "user_login":
+                    $hidden_value = "Username is ".$current_user->user_login;
+                    break;
+                case "user_email":
+                    $hidden_value = "User email is ".$current_user->user_email;
+                    break;
+                case "ip_address":
+                    function get_the_user_ip() {
+                        if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+                            $ip = $_SERVER['HTTP_CLIENT_IP'];
+                        } elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+                            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+                        } else {
+                            $ip = $_SERVER['REMOTE_ADDR'];
+                        }
+                        return $ip;
+                    }
+
+                    $hidden_value = "User IP Address is ".get_the_user_ip();
+                    break;
+
+            }
+
+            ?>
+            <input id="hugeit_preview_textbox_<?php echo esc_attr($rowimages->id); ?>"
+                   name="huge_it_<?php echo esc_attr($frontendformid) . '_' . esc_attr($rowimages->id); ?>" type="hidden"
+                   value="<?php echo $hidden_value; ?>" />
+        </div>
+    </div>
+    <?php
+}
+
 function radiobox_field_html($rowimages, $frontendformid, $style_values)
 {
     ?>
@@ -232,7 +281,7 @@ function filebox_field_html($rowimages, $style_values)
             <input id="hugeit_preview_textbox_<?php echo esc_html($rowimages->id); ?>" type="file" multiple="multiple"
                    class="fileUploader <?php if ($rowimages->hc_required == 'on') {
                        echo 'required';
-                   } ?>" name="userfile_<?php echo esc_html($rowimages->id); ?>[]"/>
+                   } ?>" name="userfile_<?php echo esc_html($rowimages->id); ?>"/>
             <span class="hugeit-error-message"></span>
         </div>
     </div>
@@ -351,7 +400,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 	$frontendformid=esc_html($frontendformid);
 	?>
     <div class="hugeit-contact-form-container">
-
+    <?php ?>
 <style>
     <?php $frontendformid=esc_html($frontendformid);?>
 			#hugeit-contact-wrapper_<?php echo esc_html($frontendformid); ?> {
@@ -764,6 +813,9 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
                                         break;
                                     case 'e_mail':  //10
                                         email_field_html($rowimages, $frontendformid);
+                                        break;
+                                    case 'hidden_field':  //4
+                                        hidden_field_html($rowimages, $frontendformid, $style_values);
                                         break;
                                 } /*end switch case */
                             } /*endif */

@@ -404,6 +404,69 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
 	<?php
 	    return ob_get_clean();
 	}
+
+function hugeit_contact_hiddenFieldHtml($rowimages,$themeId) { ob_start();
+    global $wpdb;
+    $themeId = sanitize_text_field($themeId);
+    $query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeId."' ";
+    $rows = $wpdb->get_results($query);
+    $style_values = array();
+    foreach ($rows as $row) {
+        $key = $row->name;
+        $value = $row->value;
+        $style_values[$key] = $value;
+    }?>
+    <div class="hugeit-field-block hugeit-check-field" rel="huge-contact-field-<?php echo esc_html($rowimages->id); ?>" style="background-color: rgba(211, 211, 211, 0.45) !important; font-weight: bold !important; border-radius: 3px !important;">
+        <label class="<?php if($rowimages->hc_input_show_default!='1')echo esc_html($rowimages->hc_input_show_default);?>" for="hugeit_preview_textbox_<?php echo esc_html($rowimages->id);?>">
+            <?php if($rowimages->hc_field_label!=''){echo esc_html($rowimages->hc_field_label);}else{ echo "Hidden Field";} ?>
+        </label>
+
+        <div class="field-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign')echo esc_html($rowimages->hc_input_show_default);?>">
+        </div>
+
+        <span class="hugeit-error-message"></span>
+        <span class="hugeOverlay"></span>
+        <input type="hidden" class="ordering" name="hc_ordering<?php echo esc_html($rowimages->id); ?>" value="<?php echo esc_html($rowimages->ordering); ?>">
+        <input type="hidden" class="left-right-position" name="hc_left_right<?php echo esc_html($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_left_right); ?>" />
+    </div>
+    <?php
+    return ob_get_clean();
+}
+
+function hugeit_contact_hiddenFieldSettingsHtml($rowimages) { ob_start(); ?>
+    <li id="huge-contact-field-<?php echo esc_html($rowimages->id); ?>"  data-fieldNum="<?php echo esc_html($rowimages->id); ?>">
+        <input type="hidden" class="left-right-position"  name="hc_left_right<?php echo esc_html($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_left_right); ?>" />
+        <input type="hidden" class="ordering" name="hc_ordering<?php echo esc_html($rowimages->id); ?>" value="<?php echo esc_html($rowimages->ordering); ?>" />
+        <h4><?php if($rowimages->hc_field_label!=''){echo esc_html($rowimages->hc_field_label);}else{ echo "Hidden Field";} ?></h4>
+        <div class="fields-options">
+
+            <div class="left">
+                <div>
+                        <?php _e('Default Value: ','hugeit_contact');?><br>
+                        <label class="input-block">
+                            <input  type="hidden" name="imagess<?php echo esc_html($rowimages->id); ?>"         value="Hidden Field">
+                            <input  type="radio"  name="hc_other_field<?php echo esc_html($rowimages->id); ?>"  value="user_id" <?php if($rowimages->hc_other_field=="user_id"){echo 'checked="checked"';} ?> >User ID
+                            <br>
+                            <input  type="radio"  name="hc_other_field<?php echo esc_html($rowimages->id); ?>"  value="user_login" <?php if($rowimages->hc_other_field=="user_login"){echo 'checked="checked"';} ?> >Username
+                            <br>
+                            <input  type="radio"  name="hc_other_field<?php echo esc_html($rowimages->id); ?>"  value="user_email" <?php if($rowimages->hc_other_field=="user_email"){echo 'checked="checked"';} ?>>User Email
+                            <br>
+                            <input  type="radio"  name="hc_other_field<?php echo esc_html($rowimages->id); ?>"  value="ip_address" <?php if($rowimages->hc_other_field=="ip_address"){echo 'checked="checked"';} ?>>IP Address
+                        </label><br>
+                </div>
+            </div>
+
+            <div class="field-top-options-block">
+                <a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
+                <a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
+                <a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </li>
+    <?php
+    return ob_get_clean();
+}
 	//5 Radiobox //
 	function hugeit_contact_radioboxHtml($rowimages, $themeId) { ob_start();
 		$themeId = sanitize_text_field($themeId);
@@ -1581,6 +1644,43 @@ esc_html($rowimages->hc_input_show_default);?>">
 			    ));
 		     	break;
 
+            case 'hidden_field':
+
+                $wpdb->insert(
+                    $inserttexttype,
+                    array(
+                        'name' => 'Hidden Field',
+                        'hugeit_contact_id' => $formId,
+                        'description' => 'Hidden Field',
+                        'conttype' => $inputtype,
+                        'hc_field_label' => 'Hidden Field',
+                        'hc_other_field' => 'user_id',
+                        'hc_required' => 'text',
+                        'ordering' => 0,
+                        'field_type' => '1',
+                        'published' => 2,
+                        'hc_input_show_default' => '1',
+                        'hc_left_right' => 'left',
+                    ),
+                    array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%d','%s','%s')
+                );
+
+                $queryMax=$wpdb->prepare(
+                    "SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",
+                    $formId
+                );
+                $row8=$wpdb->get_results($queryMax);
+                $fieldID=$row8[0]->resId;
+                $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
+                $rowimages=$wpdb->get_results($fieldQuery);
+                echo json_encode(array(
+                    "outputField" => hugeit_contact_hiddenFieldHtml($rowimages[0],$themeId),
+                    "outputFieldSettings" =>hugeit_contact_hiddenFieldSettingsHtml($rowimages[0])
+                ));
+                break;
+
 	     	case 'radio_box':
 
 	     		$wpdb->insert(
@@ -2258,6 +2358,14 @@ esc_html($rowimages->hc_input_show_default);?>">
 				) );
 				break;
 
+            case 'hidden_field':
+                echo json_encode( array(
+                    "outputField"         => hugeit_contact_hiddenFieldHtml( $rowimages[0], $themeId ),
+                    "outputFieldSettings" => hugeit_contact_hiddenFieldSettingsHtml($rowimages[0]),
+                    "beforeId"            => $fieldID,
+                ) );
+                break;
+
 		}
 	}
 	//Save Form Action
@@ -2269,11 +2377,11 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
 
     $_POSTED=$_POST['formData'];
 
+
 	$query   = $wpdb->prepare( "SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields WHERE hugeit_contact_id = %d ORDER BY id ASC", $formId );
 	$rowim   = $wpdb->get_results( $query );
 
     if ( isset( $_POSTED ) ) {
-
         if (isset($_POSTED["name"])) {
             if ($_POSTED["name"] != '') {
                 $wpdb->query($wpdb->prepare("UPDATE " . $wpdb->prefix . "huge_it_contact_contacts SET  name = %s  WHERE id = %d ", sanitize_text_field(wp_unslash($_POSTED["name"])), $formId));
@@ -2287,7 +2395,7 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
         }
 
         foreach ($rowim as $key => $rowimages) {
-            $inputAllowedTypes = array('text', 'custom_text', 'textarea', 'selectbox', 'checkbox', 'radio_box', 'file_box', 'e_mail', 'buttons', 'captcha', 'simple_captcha_box');
+            $inputAllowedTypes = array('text', 'custom_text', 'textarea', 'selectbox', 'checkbox', 'radio_box', 'file_box', 'e_mail', 'buttons', 'captcha', 'simple_captcha_box','hidden_field');
             $inputtype = $rowimages->conttype;
             if (in_array($inputtype, $inputAllowedTypes)) {
                 $id = $rowimages->id;
@@ -2314,6 +2422,7 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
                 );
             }
         }
+
 
         echo json_encode(array("saveForm" => "success"));
     }
