@@ -18,8 +18,6 @@ button[disabled], input[disabled], select[disabled], textarea[disabled] {
 	margin:0 0 0 0;
 }
 #poststuff h2{
-    display: inline-block !important;
-    /*float: left !important;*/
     font-size: 19px;
     padding: 0 0 15px 0;
 }

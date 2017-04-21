@@ -280,6 +280,10 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
     width: 100% !important;
 }
 
+.hugeit-contact-wrapper .input-text-block input{
+    width: 100%;
+}
+
 .hugeit-contact-wrapper .input-name-block {
     font-size: 0 !important;
 }

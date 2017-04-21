@@ -6,8 +6,8 @@ function hugeit_contact_ajax_action_callback(){
 	global $wpdb;
 ////////////////////////SUBMISSION PAGE////////////////////////BEGIN
 	// Mark as Spam
-	if(isset($_POST['task'])&&$_POST['task']=='moveTospamSubmitions'){
-		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+	if( isset($_POST['task']) && $_POST['task']=='moveTospamSubmitions' ){
+		if ( !isset($_POST['nonce'] ) || ! wp_verify_nonce($_POST['nonce'], 'admin_nonce') ) {
 			return false;
 		}
 		$arrayOfids=$_POST['spam_submitions'];
@@ -29,7 +29,7 @@ function hugeit_contact_ajax_action_callback(){
 	}
 	// Mark as Spam Single
 	if(isset($_POST['task'])&&$_POST['task']=='moveToSpamSingleSubmition'){
-		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+		if ( ! isset($_POST['nonce']) || ! wp_verify_nonce($_POST['nonce'], 'admin_nonce') ) {
 			return false;
 		}
 		$subId= sanitize_text_field($_POST['submissionId']);
@@ -62,33 +62,33 @@ function hugeit_contact_ajax_action_callback(){
 		return;
 	}
 	// Unmark as Spam Single
-	if(isset($_POST['task'])&&$_POST['task']=='moveFromSpamSingleSubmition'){
-		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+	if( isset($_POST['task']) && $_POST['task']=='moveFromSpamSingleSubmition' ){
+		if ( ! isset($_POST['nonce']) || ! wp_verify_nonce($_POST['nonce'], 'admin_nonce') ) {
 			return false;
 		}
 		$subId=$_POST['submissionId'];	
-		if(is_numeric($subId)){
+		if( is_numeric($subId) ){
 			$subId = absint($subId);
 			$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_submission SET customer_spam = '%d'  WHERE id = '%d' ", 0, $subId));
 		}
 		return;
 	}
 	// Delete
-	if(isset($_POST['task'])&&$_POST['task']=='deleteSubmitions'){
-		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+	if( isset($_POST['task']) && $_POST['task']=='deleteSubmitions' ){
+		if ( ! isset($_POST['nonce']) || ! wp_verify_nonce($_POST['nonce'], 'admin_nonce') ) {
 			return false;
 		}
 		$arrayOfids=$_POST['submitions_for_delete'];
 		$allNumbers = true;
-		foreach ($arrayOfids as &$item) {
+		foreach ( $arrayOfids as &$item ) {
 			$item = absint($item);
-		    if (!is_numeric($item)) {
+		    if ( ! is_numeric($item) ) {
 		        $allNumbers = false;
 		        break;
 		    }
 		}
 		unset($item);
-		if($allNumbers){
+		if( $allNumbers ) {
 			foreach ($arrayOfids as $arrayOfid) {
 				$arrayOfid = absint($arrayOfid);
 				$wpdb->query($wpdb->prepare("DELETE FROM ".$wpdb->prefix."huge_it_contact_submission WHERE id=%d",$arrayOfid));
@@ -97,19 +97,19 @@ function hugeit_contact_ajax_action_callback(){
 		return;
 	}
 	// Delete Single
-	if(isset($_POST['task'])&&$_POST['task']=='deleteSingleSubmition'){
-		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
+	if( isset($_POST['task']) && $_POST['task']=='deleteSingleSubmition' ){
+		if ( ! isset($_POST['nonce'] ) || ! wp_verify_nonce($_POST['nonce'], 'admin_nonce') ) {
 			return false;
 		}
 		$subId=$_POST['submissionId'];
-		if(is_numeric($subId)){
+		if( is_numeric($subId) ){
 			$subId = absint($subId);
 			$wpdb->query($wpdb->prepare("DELETE FROM ".$wpdb->prefix."huge_it_contact_submission WHERE id=%d",$subId));
 		}	
 		return;
 	}
 	// Mark as Read
-	if(isset($_POST['task'])&&$_POST['task']=='markAsRead'){
+	if( isset($_POST['task'])&&$_POST['task']=='markAsRead' ){
 		if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'admin_nonce')) {
 			return false;
 		}

@@ -254,7 +254,7 @@ function hugeit_contact_email_ajax_action_callback() {
 									'.$tableRows.'	
 								</tbody>
 							</table>';
-				echo json_encode(array("output"=>esc_html($output)));
+				echo json_encode(array("output"=>$output));
 			}else{
 				$output='Email Already Exists';
 				echo json_encode(array("exists"=>$output));
@@ -309,7 +309,7 @@ function hugeit_contact_email_ajax_action_callback() {
 									'.$tableRows.'	
 								</tbody>
 							</table>';
-				echo json_encode(array("output"=>esc_html($output)));
+				echo json_encode(array("output"=>$output));
 			}else{
 				$output='Email Already Exists';
 				echo json_encode(array("exists"=>$output));
@@ -327,7 +327,7 @@ function hugeit_contact_email_ajax_action_callback() {
 			$subscribers=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_contact_subscribers ORDER by subscriber_id DESC", ARRAY_A);
 			$count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers");
 		}else{
-			$formId = absint($formId);
+			$formId = intval($formId);
 			$subscribers=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE subscriber_form_id=".$formId." ORDER by subscriber_id DESC", ARRAY_A);
 			$count = $wpdb->get_var("SELECT COUNT(*) FROM ".$wpdb->prefix."huge_it_contact_subscribers WHERE subscriber_form_id=".$formId);
 		}
@@ -396,7 +396,7 @@ function hugeit_contact_email_ajax_action_callback() {
 		$genOptions=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_contact_general_options order by id");
 		$mail_status=$genOptions[33]->value;
 		if($mail_status=='start'){
-			$formsID=$genOptions[29]->value;
+			$formsID=intval($genOptions[29]->value);
 			$limit=$genOptions[30]->value;
 			$schedule=$genOptions[31]->value;
 			if($formsID=='all'){
@@ -543,7 +543,7 @@ function hugeit_contact_email_ajax_action_callback() {
 						<button id="huge_it_cancel" class="button-primary">Cancel<i class="hugeicons-ban"></i></button>';
 			echo json_encode(array("output"=>esc_html($output)));
 		}elseif ($mail_status=='finish') {
-			if(!isset($_POST['noCancel']))$_POST['noCancel']='';
+			if(!isset($_POST['noCancel'])) $_POST['noCancel']='';
 			$done=sanitize_text_field($_POST['noCancel']);
 			if($done=='true'){
 				$doneHtml='<span id="done" style="padding-left: 9px;">Successfully Sent <i class="hugeicons-check" style="color: #00A0D2;font-size: 21px;vertical-align: baseline;"></i></span>';
@@ -557,7 +557,7 @@ function hugeit_contact_email_ajax_action_callback() {
 							<span id="loader" style="display: none;"><img src="'.plugins_url( 'forms-contact/images/spinner.gif').'" alt=""></span>'.$doneHtml.'							
 							<div id="res"></div>
 					</div>';
-			echo json_encode(array("output"=>esc_html($output)));
+			echo json_encode(array("output"=>$output));
 		}
 		
 	}
