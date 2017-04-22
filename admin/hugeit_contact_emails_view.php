@@ -186,16 +186,16 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 						<tbody>	
 							
 						<?php foreach($subscribers as $subscriber): ?>
-							<tr id="sub_row_<?php echo esc_html($subscriber['subscriber_id']); ?>">
+							<tr id="sub_row_<?php echo absint($subscriber['subscriber_id']); ?>">
 								<td colspan="5"><?php echo esc_html($subscriber['subscriber_email']); ?></td>
 								<?php if($subscriber['send']==1||$subscriber['send']==2):?>
-								<td colspan="2" id="<?php echo esc_html($subscriber['subscriber_id']); ?>" class="status_wrap_load"><a href="#" class="sub_status_load"></a></td>
+								<td colspan="2" id="<?php echo absint($subscriber['subscriber_id']); ?>" class="status_wrap_load"><a href="#" class="sub_status_load"></a></td>
 								<?php elseif($subscriber['send']==0):?>
-								<td colspan="2" id="<?php echo esc_html($subscriber['subscriber_id']); ?>"  class="status_wrap_none"><a href="#" class="sub_status_none"></a></td>
+								<td colspan="2" id="<?php echo absint($subscriber['subscriber_id']); ?>"  class="status_wrap_none"><a href="#" class="sub_status_none"></a></td>
 								<?php elseif($subscriber['send']==3):?>
-								<td colspan="2" id="<?php echo esc_html($subscriber['subscriber_id']); ?>"  class="status_wrap_done"><a href="#" class="sub_status_done"></a></td>
+								<td colspan="2" id="<?php echo absint($subscriber['subscriber_id']); ?>"  class="status_wrap_done"><a href="#" class="sub_status_done"></a></td>
 							    <?php endif;?>
-								<td colspan="1" id="<?php echo esc_html($subscriber['subscriber_id']); ?>" class="del_wrap"><a href="#" class="sub_delete"></a></td>
+								<td colspan="1" id="<?php echo absint($subscriber['subscriber_id']); ?>" class="del_wrap"><a href="#" class="sub_delete"></a></td>
 							</tr>
 						<?php endforeach; ?>
 						</tbody>

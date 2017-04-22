@@ -7,8 +7,7 @@ require_once("hugeit_free_version.php");
 /* Check if option exists in general options table */
 function hugeit_exists_in_gen_op_table($option){
     global $wpdb;
-    $result = $wpdb->get_var('SELECT COUNT(*) FROM '.$wpdb->prefix.'huge_it_contact_general_options WHERE name="'.sanitize_text_field($option).'"');
-
+    $result = $wpdb->get_var($wpdb->prepare('SELECT COUNT(*) FROM '.$wpdb->prefix.'huge_it_contact_general_options WHERE name= %s',$option));
     return $result;
 }
 
@@ -43,8 +42,7 @@ function hugeit_contact_save_custom_scripts(){
 function hugeit_get_option($option){
     global $wpdb;
 
-    $result = $wpdb->get_results('SELECT * FROM '.$wpdb->prefix.'huge_it_contact_general_options WHERE name="'.sanitize_text_field($option).'"');
-
+    $result = $wpdb->get_results($wpdb->prepare('SELECT * FROM '.$wpdb->prefix.'huge_it_contact_general_options WHERE name= %s',$option));
     return $result[0]->value;
 }
 

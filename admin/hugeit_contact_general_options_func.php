@@ -29,7 +29,7 @@ function hugeit_contact_save_styles_options(){
     if (isset($_POST['params'])){
     $params = $_POST['params'];
         foreach ($params as $key => $value) {
-            $option_exists=count($wpdb->get_results('SELECT * FROM '.$wpdb->prefix . 'huge_it_contact_general_options WHERE name="'.esc_sql($key).'"'));
+            $option_exists=count($wpdb->get_results($wpdb->prepare('SELECT * FROM '.$wpdb->prefix . 'huge_it_contact_general_options WHERE name= %s',$key)));
             if($option_exists) {
                 $wpdb->update($wpdb->prefix . 'huge_it_contact_general_options',
                     array('value' => esc_sql($value)),
