@@ -26,11 +26,11 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 							<select name="" id="huge_it_form_choose">
 								<option value="all">All Forms</option>
 								<?php foreach ($formsToShow as $key => $value) : ?>
-									<option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+									<option value="<?php echo esc_html($key); ?>"><?php echo esc_html($value); ?></option>
 								<?php endforeach; ?>
 							</select><br>
 							<label for="huge_it_setting_subscriber_limit_id">Emails in One Flow</label><br>
-							<input type="number" name="mailerParams[sub_count_by_parts]" id="huge_it_setting_subscriber_limit_id" value="<?php echo $mailerParams['sub_count_by_parts'] ?>" class="regular-text"><br>
+							<input type="number" name="mailerParams[sub_count_by_parts]" id="huge_it_setting_subscriber_limit_id" value="<?php echo esc_html($mailerParams['sub_count_by_parts']); ?>" class="regular-text"><br>
 							<label for="huge_it_setting_schedule_id">Interval Between Mailings</label><br>
 							<select name="mailerParams[sub_interval]" id="huge_it_setting_schedule_id">
 								<option value="60" <?php selected( '60', $mailerParams['sub_interval'], true ); ?>>1 Minute</option>
@@ -40,7 +40,7 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 							</select><br>
 
 							<label for="huge_it_email_subject">Email Subject</label><br>
-							<input type="text" name="mailerParams[email_subject]" id="huge_it_email_subject" value="<?php echo $mailerParams['email_subject']; ?>" class="regular-text"><br>
+							<input type="text" name="mailerParams[email_subject]" id="huge_it_email_subject" value="<?php echo esc_html($mailerParams['email_subject']); ?>" class="regular-text"><br>
 						<input type="hidden" name="task" value=""/>
 					</form>
 
@@ -68,7 +68,7 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 						</div>
 						<?php elseif($mailerParams['mailing_progress']=='start'):?>
 						<div id="sending_progress">
-							<div>Estimated Approximate Time <span id="progress_time"><?php echo $mailing['need_time']; ?></span></div>					
+							<div>Estimated Approximate Time <span id="progress_time"><?php echo esc_html($mailing['need_time']); ?></span></div>
 							<div class="meter">
 								<span id="progress_meter"><span></span></span>
 							</div>
@@ -186,16 +186,16 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 						<tbody>	
 							
 						<?php foreach($subscribers as $subscriber): ?>
-							<tr id="sub_row_<?php echo $subscriber['subscriber_id']; ?>">
-								<td colspan="5"><?php echo $subscriber['subscriber_email']; ?></td>
+							<tr id="sub_row_<?php echo absint($subscriber['subscriber_id']); ?>">
+								<td colspan="5"><?php echo esc_html($subscriber['subscriber_email']); ?></td>
 								<?php if($subscriber['send']==1||$subscriber['send']==2):?>
-								<td colspan="2" id="<?php echo $subscriber['subscriber_id']; ?>" class="status_wrap_load"><a href="#" class="sub_status_load"></a></td>
+								<td colspan="2" id="<?php echo absint($subscriber['subscriber_id']); ?>" class="status_wrap_load"><a href="#" class="sub_status_load"></a></td>
 								<?php elseif($subscriber['send']==0):?>
-								<td colspan="2" id="<?php echo $subscriber['subscriber_id']; ?>"  class="status_wrap_none"><a href="#" class="sub_status_none"></a></td>
+								<td colspan="2" id="<?php echo absint($subscriber['subscriber_id']); ?>"  class="status_wrap_none"><a href="#" class="sub_status_none"></a></td>
 								<?php elseif($subscriber['send']==3):?>
-								<td colspan="2" id="<?php echo $subscriber['subscriber_id']; ?>"  class="status_wrap_done"><a href="#" class="sub_status_done"></a></td>
+								<td colspan="2" id="<?php echo absint($subscriber['subscriber_id']); ?>"  class="status_wrap_done"><a href="#" class="sub_status_done"></a></td>
 							    <?php endif;?>
-								<td colspan="1" id="<?php echo $subscriber['subscriber_id']; ?>" class="del_wrap"><a href="#" class="sub_delete"></a></td>
+								<td colspan="1" id="<?php echo absint($subscriber['subscriber_id']); ?>" class="del_wrap"><a href="#" class="sub_delete"></a></td>
 							</tr>
 						<?php endforeach; ?>
 						</tbody>

@@ -88,7 +88,7 @@ function hugeit_contact_contact_form_validation_callback(){
 			foreach ($rowim as $key=>$rowimages){
 				$inputtype = $rowimages->conttype;
 				$rowimages->hc_field_label=addslashes($rowimages->hc_field_label);
-                $inputAllowedTypes=array('text','textarea','selectbox','checkbox','radio_box','file_box','e_mail','buttons','captcha','simple_captcha_box');
+                $inputAllowedTypes=array('text','textarea','selectbox','checkbox','radio_box','file_box','e_mail','buttons','captcha','simple_captcha_box','hidden_field');
 				if(in_array($inputtype,$inputAllowedTypes)){
 
 					if($inputtype == 'captcha'){
@@ -402,7 +402,6 @@ function hugeit_contact_contact_form_validation_callback(){
 						$select_res = $wpdb->get_var( $query );
 						$subject = $select_res;
 					}
-
 					wp_mail($email, $subject, $sendmessage,$headers,$attachments);
 					remove_filter( 'wp_mail_content_type', 'hugeit_contact_set_html_content_type' );
 

@@ -33,11 +33,11 @@
 			</div>
 		</div>
 		<div class="plugin">
-			<div class="image-block forms"><a href="http://huge-it.com/forms/" target="_blank"></a></div>
+			<div class="image-block forms"><a href="https://goo.gl/ycVtso" target="_blank"></a></div>
 			<div class="info-block">
-				<h2><a href="http://huge-it.com/forms/" target="_blank"><?php _e('Forms', 'hugeit_contact'); ?></a></h2>
+				<h2><a href="https://goo.gl/ycVtso" target="_blank"><?php _e('Forms', 'hugeit_contact'); ?></a></h2>
 				<p><?php _e('Create different recipients for each form, send newsletters, use ready-to-go fields and more with Forms Pro.', 'hugeit_contact'); ?></p>
-				<a href="http://huge-it.com/forms/" class="view" target="_blank"><?php _e('View Plugin', 'hugeit_contact'); ?></a>
+				<a href="https://goo.gl/ycVtso" class="view" target="_blank"><?php _e('View Plugin', 'hugeit_contact'); ?></a>
 			</div>
 		</div>
 		<div class="plugin">
