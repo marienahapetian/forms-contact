@@ -13,7 +13,7 @@ function hugeit_contact_drawFreeBanner( $freeText = 'no' ) {
 	<div class="free_version_banner" <?php if( isset($_COOKIE['hgFormsFreeBannerShow']) && $_COOKIE['hgFormsFreeBannerShow'] == "no" ){ echo 'style="display:none"'; } ?> >
 		<a class="close_free_banner">+</a>
 		<img class="manual_icon" src="<?php echo $path_site2; ?>/icon-user-manual.png" alt="user manual" />
-		<p class="usermanual_text">If you have any difficulties in using the options, Follow the link to <a href="http://huge-it.com/wordpress-forms-user-manual/" target="_blank">User Manual</a></p>
+		<p class="usermanual_text">If you have any difficulties in using the options, Follow the link to <a href="https://goo.gl/e5JzlV" target="_blank">User Manual</a></p>
 		<a class="get_full_version" href="https://goo.gl/ycVtso" target="_blank">GET THE FULL VERSION</a>
 		<a href="http://huge-it.com" target="_blank"><img class="huge_it_logo" src="<?php echo $path_site2; ?>/Huge-It-logo.png"/></a>
 		<div style="clear: both;"></div>
