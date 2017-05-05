@@ -27,7 +27,7 @@ function hugeit_contact_drawFreeBanner( $freeText = 'no' ) {
 			<a target="_blank"  href="https://wordpress.org/support/plugin/forms-contact/reviews">Rate Us</a>
 			<a target="_blank"  href="https://goo.gl/XWGBxi">Full Demo</a>
 			<a target="_blank"  href="https://goo.gl/rpDoYY">FAQ</a>
-			<a target="_blank"  href="http://huge-it.com/contact-us/">Contact Us</a>
+			<a target="_blank"  href="https://wordpress.org/support/plugin/forms-contact">Contact Us</a>
 		</div>
 		<div  class="description_text"><p>This is the LITE version of the plugin. Click "GET THE FULL VERSION" for more advanced options. We appreciate every customer.</p></div>
 		<div style="clear: both;"></div>

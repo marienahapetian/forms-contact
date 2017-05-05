@@ -3,8 +3,8 @@ Contributors: Huge-IT
 Donate link: https://huge-it.com/forms/
 Tags: forms, contact form, form, form builder, form maker,
 Requires at least: 3.0.1
-Tested up to: 4.7.3
-Stable tag: 1.4.7
+Tested up to: 4.7.4
+Stable tag: 1.4.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,7 +19,7 @@ https://www.youtube.com/watch?v=FEALuSSsELw
 * [Forms FAQ](https://huge-it.com/wordpress-forms-faq/)
 * [Forms User Manual](https://huge-it.com/wordpress-forms-user-manual/)
 * [Forms Support](https://huge-it.com/contact-us/)
-* [Forms Forum](https://huge-it.com/forums/forum/wordpress/wordpress-forms/)
+* [Forms Forum](https://wordpress.org/support/plugin/forms-contact)
 * [Forms GitHub Project](https://github.com/Huge-IT/forms-contact)
 
 Huge -IT Forms is one of the most important element for the WordPress website because without Forms Builder you will not be able to keep in touch with your visitors, partners and customers, give an easy filling form for submissions, delivery form or other types of forms. Besides that, a good-looking form gives your site a professional appearance.
@@ -43,11 +43,11 @@ Make the form box required or not, active or solid, configure type of the text n
 
 * Subscribe Form
 
-* This kind of form is very convenient for those users who leads a blog posts on website. Addition of subscribe form in the page or in the widget will attract the readers to subscribe and follow you.
+* This kind of form is very convenient for those users who leads a blog posts on website. Addition of subscribe form in the page or in the widget will attract the readers to subscribe and follow you. 
 
 With the subscribe form you can increase the interest of the audience on your blogs. Form builder allows to customize details of subscribe form and make it understandable and pleasant.
 
-Subscribers  through Huge-IT Forms, will be listed in the subscribers list inside the Forms plugin, which you may easily manage on the newsletter manager section.
+Subscribers  through Huge-IT Forms, will be listed in the subscribers list inside the Forms plugin, which you may easily manage on the newsletter manager section. 
 
 Newsletter section of Forms plugin is very easy in usage, as you may send a bunch of letters to the subscribers.
 
@@ -55,11 +55,11 @@ Newsletter section of Forms plugin is very easy in usage, as you may send a bunc
 
 Form builder made for delivery purposes is perfect for Delivery companies. Here you may use Selecbox, by adding options for selection, radio box and other fields of forms due to their necessarily.
 
-All these form types are not the limit, no matter what Form you would like to have, be sure our Form Builder will be rather useful for them.
+All these form types are not the limit, no matter what Form you would like to have, be sure our Form Builder will be rather useful for them. 
 
 Forms gives you a choice among 5 designed themes
 
-* Navy style
+* Navy style 
 * Black and White style
 * Victory style
 * Fresh Mint style
@@ -69,14 +69,40 @@ Forms gives you a choice among 5 designed themes
 
 * From the Forms plugin admin interface create your form and watch the changes of your form on live preview. Add unlimited fields for each form , make changes on your form as well as use google captchas at the bottom of the form , which will prove that your client is not a robot.
 
-* Google captcha in the form works with two keys, once you click to add the captcha in your form you can find those keys by simply following the link provided in the popup of the captcha. Cool ability to send files of various formats through your form created.
+* Besides the main fields of Forms, there are also Ready-To-Go fields in Forms plugin. Each field is customizable and you could edit, delete and even duplicate them.
+
+**Ready-To-Go Fields**
+
+* Ready-To-Go fields of form builder include fields for Full name, Date, Phone, Address, Policy agreement and recently two new and vital fields such as PayPal and Google Maps have been added into Forms.
+
+* Full name field of form builder is one of the most used fields as it is considered to be the key identifying option for each user while filling forms.
+
+* If you want to have dates in your forms, then Date field provided by this form builder is for you. With Huge-IT Forms you could also add Calendar icon to your Date field to make it more beautiful.
+
+* Phone and Address fields are also considered to be very important and most used fields in form builder.
+
+* Sometimes it is very necessary to have Policy agreement in your forms as you collect personal data from the users like first and last names, email addresses, etc. This form builder allows to add policy agreement in your forms.
+
+* Sometimes you need to have payment integration with form builder. Huge-IT Forms has PayPal integration and allows to make online payments and money transfers with it.
+
+* If you want to show locations on your website, then this forms is for you as it includes simple Google Maps integration.
+
+**CAPTCHAs in Forms**
+
+* Google captcha in the form works with two keys, once you click to add the captcha in your form you can find those keys by simply following the link provided in the popup of the captcha. 
+
+* Forms plugin includes two types of CAPTCHA. One is simple CAPTCHA that you could customize changing colors, texts and themes in form builder. The other is Google reCAPTCHA which requires click on the check box confirming “I am not a robot”.
+
+* Cool ability to send files of various formats through your created forms with Filebox field. This field allows to have Upload button in your forms to upload files with various formats.
+
+* Cool ability to send files of various formats through your form created.
 
 * Beside simple contact form, Forms allows you create other form types like Resume form , Subscribe form, Delivery forms, reservation forms, Goods order forms and others. We have created example forms on every possible form subject, so you may test them.
 
 * Newsletters form has a separate options, creating and designing your newsletter/subscribe form you may manage newsletter distribution to your subscribers. Forms has separate settings for newsletter manager.
 
 * Forms can be integrated as in page/post and be used as widget.
-* Layout is fully responsive and convenient for users. It's very important that you Form looked nice on every device.
+* Layout is fully responsive and convenient for users. It's very important that you Form looked nice on every device. 
 * User friendly admin is reached due to one of the most important features like Drag And Drop functionality. Move the boxes of the forms in form builder by just dragging and dropping them wherever you wish.
 * Pay attention to the section "All Submissions" in our Forms. Its functionality and usage is almost similar to real email site, like gmail or other, so you will enjoy working with that section of Forms.
 * On the front end of the form page you will be much pleased with it's highly responsive interface, so you will get that with our Forms plugin. We hope you will like everything about the Forms plugin as each detail made to be customized to your taste.
@@ -89,15 +115,15 @@ Main features of Huge-IT Forms are the following
 * Forms builder themes are fully customizable
 * Huge-IT Forms provides you with live preview function
 * Select among 5 incredible themes, to make your form complete
-* Plugin gives the opportunity to set required fields
+* Plugin gives the opportunity to set required fields 
 * Chance to be the designer of your own forms
 * Huge-IT Forms provides the user with the must have responsiveness
-* Plugin has Ready-To-Go Fields
-* Find already created 6 forms
+* Plugin has Ready-To-Go Fields 
+* Find already created 6 forms 
 * Huge-IT Form Builder provides the option to see all submissions
 * Newsletter Manager of the Form can help you to manage the process of emailing
-* Form has a General Option to manage more action
-* Form is easy to use, simple and very effective for any website
+* Form has a General Option to manage more action 
+* Form is easy to use, simple and very effective for any website 
 * Form provides with Captcha Protection
 * Create mobile Ready and SEO Friendly forms for your website
 * User submission field of the Form Builder provides
@@ -109,7 +135,7 @@ Here is the list of most important features, that you may find in our Forms plug
 
 All these features are available while creating any type of form.
 
-### Has Customizable Fields
+### Has Customizable Fields 
 
 Each field in Huge-IT Contact form may be deeply customized due to a number of controllers. You can edit, delete and hide some fields and make your forms exactly how you imagine it.
 
@@ -125,7 +151,7 @@ All settings that is performed on your form is seen in live preview. So you can 
 
 Our Contact form plugin includes a large bouquet of various themes, specially designed for you.
 
-### Huge Amount Of Design Options in the Form Builder
+### Huge Amount Of Design Options in the Form Builder 
 
 Using a huge amount of design options in the Form Plugin you may customize every detail in your form and make it look and act as needed.
 
@@ -144,6 +170,14 @@ Using widgets and Shortcode easy insert your form in a page/post or integrate as
 ### Front-End Submissions
 
 Forms plugin for WordPress allows users to showcase front end submissions on a website in 2 beautiful views. You will be able to demonstrate submitted data with all details in responsive spreadsheet.
+
+### Advanced Email Options
+
+Huge-IT Forms has Advanced email options which allow you to customize your email messages and admin recipients for each form. 
+
+### Clear Forms Messages
+
+Validation errors are inescapable part of Forms. Those errors could be improved with clear error messages. Huge-IT Forms has different message types where you could insert custom texts for each message.
 
 **[Wordpress Forms demo 1 Delivery Form](https://huge-it.com/wordpress-forms-demo-1-delivery-form/#plugin_demo_wrapper)**
 
@@ -169,7 +203,7 @@ Why not to make employment process affordable, quality and convenient for applic
 
 One day you decided to order a T-Shirt, or let it be something else. You will enjoy doing it with this form. Create a wonderful form for ordering some goods. In our example it's order a T-Shirt. See how convenient it is.
 
-> #### Forms Demos
+> #### Forms Demos 
 >
 >[Delivery Form](https://huge-it.com/wordpress-forms-demo-1-delivery-form/#plugin_demo_wrapper)
 >
@@ -193,10 +227,10 @@ If you think, that you found a bug in our [WordPress Forms](https://huge-it.com/
 
 == Installation ==
 
-### Uploading in WordPress Dashboard Forms
+#### Uploading in WordPress Dashboard Forms
 
 1. First download the Forms ZIP file from Wordpress website
-2. Log in to your website administrator panel
+2. Log in to your website administrator panel   
 3. Go to the 'Add New' in the plugins dashboard, click “Upload Plugin”
 4. Upload [WordPress Forms](https://wordpress.org/plugins/forms-contact/) ZIP file by choosing it from your computer
 5. Click **Install Now** button
@@ -223,7 +257,7 @@ If you think, that you found a bug in our [WordPress Forms](https://huge-it.com/
 
 Now you can set your Forms options, use our Forms.
 
-If you think, that you found a bug in our [WordPress Forms](https://huge-it.com/forms/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com)
+
 
 == Frequently asked questions ==
 
@@ -251,7 +285,7 @@ If you think, that you found a bug in our [WordPress Forms](https://huge-it.com/
 
 = I don't have the demo forms examples in the package? =
 
-*  Not all demo forms will be included in the package. All demo forms are created by us for demonstration and you easy can create them yourself.
+*  Not all demo forms will be included in the package. All demo forms are created by us for demonstration and you easy can create them yourself. 
 
 
 = I have problem with captcha, it doesn't work? =
@@ -266,15 +300,15 @@ If you think, that you found a bug in our [WordPress Forms](https://huge-it.com/
 
 = Can't /Don't get submitted form messages on my email? =
 
-* 1) Please make sure if the email or other information in general options are filled correctly.
-* 2) Please check your mail spam folder.
-* 3) Make sure your hosting or wordpress does receive or send messages from your website. In order to check that, just create a new user (users>add new) and try to get auto message.
+* 1) Please make sure if the email or other information in general options are filled correctly. 
+* 2) Please check your mail spam folder. 
+* 3) Make sure your hosting or wordpress does receive or send messages from your website. In order to check that, just create a new user (users>add new) and try to get auto message. 
 For other help contact info@huge-it.com
 
 
 = How to get a copy of most recent version if I am PRO user? =
 
-*  If you use PRO version please contact info@huge-it.com and ask if we have new updates, IF we have we will be glad to send you last version.
+*  If you use PRO version please contact info@huge-it.com and ask if we have new updates, IF we have we will be glad to send you last version. 
 
 
 = The Forms doesn't look correct on font end. =
@@ -284,7 +318,7 @@ For other help contact info@huge-it.com
 
 = How to change the label text? =
 
-*  Each form tab has a small pencil on it, press and you may make changes on it as well as change label text, when you change it, press 'save" button to see the result.
+*  Each form tab has a small pencil on it, press and you may make changes on it as well as change label text, when you change it, press 'save" button to see the result. 
 
 
 = How to change/remove  Title? =
@@ -296,8 +330,8 @@ For other help contact info@huge-it.com
 
 = I have problems with drag and drop, how it works? =
 
-*  In our Forms Drag and Drop is made straight on the Form, while creating it, you take the field drag wherever you need and drop it, synchronously you may see how changed the  order of options. You want to have 2 columns?
-*  Then again drag the field to the right side (all other fields will move to the left )
+*  In our Forms Drag and Drop is made straight on the Form, while creating it, you take the field drag wherever you need and drop it, synchronously you may see how changed the  order of options. You want to have 2 columns? 
+*  Then again drag the field to the right side (all other fields will move to the left ) 
 
 
 = How to Insert Created Forms? =
@@ -342,7 +376,7 @@ For other help contact info@huge-it.com
 
 = What is the function of Ready To-Go-Fields of Forms Plugin? =
 
-*  Form builder provides users with Ready To-Go-Fields, which includes the following important ready to use placeholders: Full Name, Date, Phone, Address and Policy Agreement.
+*  Form builder provides users with Ready To-Go-Fields, which includes the following important ready to use placeholders: Full Name, Date, Phone, Address and Policy Agreement. 
 
 
 = Does your form builder Plugin include default forms to use? =
@@ -381,6 +415,12 @@ If you think, that you found a bug in our [WordPress Forms](https://huge-it.com/
 35.  [WordPress Form](https://wordpress.org/plugins/forms-contact/) - Form General Options
 
 == Changelog ==
+
+= 1.4.8 =
+
+* 1) We have added Hidden Fields option, allowing to keep data IP address, Username, admin email as well as IP address of a form when users submits the form, when logged in.
+* 2) We have fixed minor security issues with SQL by adding additional escapes. 
+* 3) We have changed our display name of the plugin back to company name to follow guidelines.
 
 = 1.4.7 =
 
@@ -889,5 +929,15 @@ This form builder option includes address, phone,  data, name, policy and agreem
 * Email Subject. Write newsletter email subject.
 * Type your text here. Write newsletter text here.
 * Emails Table. From this section you may manage the emails for newsletter, delete, add new and follow the progress of sending.
+
+* To conclude, forms are crucial for getting in touch with customers, visitors, clients, etc. Contact forms, reservation forms, delivery forms and other types of forms are among the most important features of any website. People do not like complex forms and always tend to escape from filling out such forms. You need to use good quality form builder to make your form easy to use and pleasing to the eye. Huge-IT form builder is one of that plugins that will help to design your forms in such a way that you can get all necessary information using different fields of form builder.
+
+* You could easily customize any field of form builder fitting it to your needs.
+
+* A bundle of fields offered by this form builder are used for different purposes. Besides, simple fields you could also find such fields in form builder which are essential for some particular purposes. CAPTCHA which you could easily add to your form with this form builder and remain it secure from bots. PayPal integration of form builder to make online transactions and Google Maps to showcase some locations.
+
+* Different theme styles of Huge-IT form builder are designed to help you to make great impression on your visitors.
+
+* With this form builder keep users coming back to your website.
 
 If you think, that you found a bug in our [WordPress Form](https://huge-it.com/forms/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com)
