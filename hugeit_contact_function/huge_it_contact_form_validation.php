@@ -393,7 +393,9 @@ function hugeit_contact_contact_form_validation_callback(){
                     $sendmessage = preg_replace( '/{formContent}/', $adminSub, $sendmessage );
 					$sendmessage = html_entity_decode( $sendmessage );
 					$sendmessage = wp_kses_post( $sendmessage );
-
+                    if($huge_it_gen_opt_assoc['form_save_reply_to_user']=="on" && !empty($emailArray)){
+                        $huge_it_gen_opt_assoc['form_adminstrator_user_mail']= $emailArray[0];
+                    }
 					$headers = array('From: '.$huge_it_gen_opt_assoc['form_adminstrator_user_name'].' <'.$huge_it_gen_opt_assoc['form_adminstrator_user_mail'].'>');
 
 					//------------------if subject empty sends the name of the form

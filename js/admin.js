@@ -1501,7 +1501,19 @@ jQuery(document).ready(function () {
 			case 'default' :
 				jQuery('#hugeit-contact-wrapper').find('h3').css('display', defaultTitleVisibility);
 		}
-	})
+	});
+
+    //Reply To User
+    jQuery("#reply_to_user").on("change",function () {
+        if(jQuery(this).is(":checked")){
+            jQuery("#form_adminstrator_user_mail").attr('readonly','readonly');
+        }
+        else {
+            jQuery("#form_adminstrator_user_mail").removeAttr("readonly");
+        }
+    });
+//Reply To User
+
 });
 
 function HugeitContactSetCookie(name, value, options) {

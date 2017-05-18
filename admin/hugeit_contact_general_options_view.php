@@ -33,8 +33,15 @@ function hugeit_contact_html_show_settings($param_values) {
 								<label for="form_adminstrator_user_mail">
                                     <?php _e('Send Emails From Email', 'hugeit_contact');?>
                                 </label>
-								<input type="text" id="form_adminstrator_user_mail" name="params[form_adminstrator_user_mail]" value="<?php echo esc_html($param_values['form_adminstrator_user_mail']); ?>" />
+								<input type="text" id="form_adminstrator_user_mail" name="params[form_adminstrator_user_mail]" <?php if($param_values['form_save_reply_to_user']  == 'on'){ echo 'readonly="readonly"'; } ?> value="<?php echo esc_html($param_values['form_adminstrator_user_mail']); ?>" />
 							</div>
+                            <div>
+                                <label for="reply_to_user">
+                                    <?php _e('Reply To User','hugeit_contact');?>
+                                </label>
+                                <input type="hidden" value="off" name="params[form_save_reply_to_user]" />
+                                <input type="checkbox" id="reply_to_user" name="params[form_save_reply_to_user]" value="on" <?php if($param_values['form_save_reply_to_user']  == 'on'){ echo 'checked="checked"'; } ?>/>
+                            </div>
 							<div>
 								<label for="form_captcha_public_key">
                                     <?php _e('Captcha Public Key', 'hugeit_contact');?>
