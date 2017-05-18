@@ -1514,6 +1514,10 @@ jQuery(document).ready(function () {
     });
 //Reply To User
 
+    jQuery(".custom_css_save").on("click",function () {
+        window.onbeforeunload=null;
+    });
+
 });
 
 function HugeitContactSetCookie(name, value, options) {

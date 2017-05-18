@@ -1,5 +1,4 @@
 jQuery(document).ready(function () {
-    debugger;
     var x = (jQuery(document).find(".paj").length>1)? true : false;
     if(x){
         var parentPag = jQuery(document).find(".paj").parent();

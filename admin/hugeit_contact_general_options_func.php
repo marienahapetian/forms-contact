@@ -26,6 +26,9 @@ function hugeit_contact_show_settings() {
 
 function hugeit_contact_save_styles_options(){
     global $wpdb;
+    if ( !isset($_GET['_wpnonce'] ) || ! wp_verify_nonce($_GET['_wpnonce'], 'hugeit_forms_save_general_options') ) {
+        return false;
+    }
     if (isset($_POST['params'])){
     $params = $_POST['params'];
         foreach ($params as $key => $value) {

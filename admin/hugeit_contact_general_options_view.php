@@ -9,6 +9,9 @@ if (!function_exists('current_user_can')) {
 }
 require_once("hugeit_free_version.php");
 function hugeit_contact_html_show_settings($param_values) {
+    $save_generaloptions_link = admin_url( 'admin.php?page=hugeit_forms_general_options&task=save' );
+    $save_generaloptions_link = wp_nonce_url( $save_generaloptions_link, 'hugeit_forms_save_general_options' );
+
 	$path_site = plugins_url("Front_images", __FILE__); ?>
 	<div class="wrap">
 		<?php hugeit_contact_drawFreeBanner();?>
@@ -19,7 +22,7 @@ function hugeit_contact_html_show_settings($param_values) {
 					<a onclick="document.getElementById('adminForm').submit()" class="save-hugeit_contact-options button-primary">Save</a>
 				</div>
 				<div class="options-block">
-				<form action="admin.php?page=hugeit_forms_general_options&task=save" method="post" id="adminForm" name="adminForm">
+				<form action="<?php echo $save_generaloptions_link;?>" method="post" id="adminForm" name="adminForm">
 					<div class="hugeit-contact-general-options-column hugeit-contact-general-options-left">
 						<div class="hugeit-contact-general-options-block">
 							<h3><?php _e('Your Form Settings', 'hugeit_contact');?></h3>
