@@ -467,6 +467,52 @@ function hugeit_contact_hiddenFieldSettingsHtml($rowimages) { ob_start(); ?>
     <?php
     return ob_get_clean();
 }
+function hugeit_contact_pageBreakHtml($rowimages,$themeId) { ob_start();
+    global $wpdb;
+    $themeId = sanitize_text_field($themeId);
+    $query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeId."' ";
+    $rows = $wpdb->get_results($query);
+    $style_values = array();
+    foreach ($rows as $row) {
+        $key = $row->name;
+        $value = $row->value;
+        $style_values[$key] = $value;
+    }?>
+    <div class="hugeit-field-block hugeit-check-field" rel="huge-contact-field-<?php echo absint($rowimages->id); ?>"  style="text-align: center!important;font-weight: bold!important;">
+        <hr>
+        <label class="<?php if($rowimages->hc_input_show_default!='1')echo esc_html($rowimages->hc_input_show_default);?>" for="hugeit_preview_textbox_<?php echo absint($rowimages->id);?>" style="width:100%!important;">
+            <?php echo esc_textarea("Page Break");  ?>
+        </label>
+        <div class="field-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign')echo esc_html($rowimages->hc_input_show_default);?>">
+        </div>
+
+        <span class="hugeit-error-message"></span>
+        <span class="hugeOverlay"></span>
+        <input type="hidden" class="ordering" name="hc_ordering<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->ordering); ?>">
+        <input type="hidden" class="left-right-position" name="hc_left_right<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_left_right); ?>" />
+    </div>
+    <?php
+    return ob_get_clean();
+}
+function hugeit_contact_pageBreakSettingsHtml($rowimages) { ob_start(); ?>
+    <li id="huge-contact-field-<?php echo absint($rowimages->id); ?>"  data-fieldNum="<?php echo absint($rowimages->id); ?>">
+        <input type="hidden" class="left-right-position"  name="hc_left_right<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_left_right); ?>" />
+        <input type="hidden" class="ordering" name="hc_ordering<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->ordering); ?>" />
+        <h4><?php echo esc_textarea("Page Break"); ?></h4>
+        <div class="fields-options">
+
+            <div class="left">
+            </div>
+
+            <div class="field-top-options-block">
+                <a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </li>
+    <?php
+    return ob_get_clean();
+}
 	//5 Radiobox //
 	function hugeit_contact_radioboxHtml($rowimages, $themeId) { ob_start();
 		$themeId = sanitize_text_field($themeId);
@@ -1681,6 +1727,43 @@ esc_html($rowimages->hc_input_show_default);?>">
                 ));
                 break;
 
+            case 'page_break':
+
+                $wpdb->insert(
+                    $inserttexttype,
+                    array(
+                        'name' => 'Page Break',
+                        'hugeit_contact_id' => $formId,
+                        'description' => 'Page Break',
+                        'conttype' => $inputtype,
+                        'hc_field_label' => 'Page Break',
+                        'hc_other_field' => 'page_break',
+                        'hc_required' => 'text',
+                        'ordering' => 0,
+                        'field_type' => '1',
+                        'published' => 2,
+                        'hc_input_show_default' => '1',
+                        'hc_left_right' => 'left',
+                    ),
+                    array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%d','%s','%s')
+                );
+
+                $queryMax=$wpdb->prepare(
+                    "SELECT MAX(id) AS resId 
+					FROM ".$wpdb->prefix."huge_it_contact_contacts_fields 
+					WHERE hugeit_contact_id=%d",
+                    $formId
+                );
+                $row8=$wpdb->get_results($queryMax);
+                $fieldID=$row8[0]->resId;
+                $fieldQuery=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE id=%d",$fieldID);
+                $rowimages=$wpdb->get_results($fieldQuery);
+                echo json_encode(array(
+                    "outputField" => hugeit_contact_pageBreakHtml($rowimages[0],$themeId),
+                    "outputFieldSettings" =>hugeit_contact_pageBreakSettingsHtml($rowimages[0])
+                ));
+                break;
+
 	     	case 'radio_box':
 
 	     		$wpdb->insert(
@@ -2366,6 +2449,14 @@ esc_html($rowimages->hc_input_show_default);?>">
                 ) );
                 break;
 
+            case 'page_break':
+                echo json_encode( array(
+                    "outputField"         => hugeit_contact_pageBreakHtml( $rowimages[0], $themeId ),
+                    "outputFieldSettings" => hugeit_contact_pageBreakSettingsHtml($rowimages[0]),
+                    "beforeId"            => $fieldID,
+                ) );
+                break;
+
 		}
 	}
 	//Save Form Action
@@ -2395,7 +2486,7 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
         }
 
         foreach ($rowim as $key => $rowimages) {
-            $inputAllowedTypes = array('text', 'custom_text', 'textarea', 'selectbox', 'checkbox', 'radio_box', 'file_box', 'e_mail', 'buttons', 'captcha', 'simple_captcha_box','hidden_field');
+            $inputAllowedTypes = array('text', 'custom_text', 'textarea', 'selectbox', 'checkbox', 'radio_box', 'file_box', 'e_mail', 'buttons', 'captcha', 'simple_captcha_box','hidden_field','page_break');
             $inputtype = $rowimages->conttype;
             if (in_array($inputtype, $inputAllowedTypes)) {
                 $id = $rowimages->id;

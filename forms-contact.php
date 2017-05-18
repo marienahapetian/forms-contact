@@ -55,6 +55,7 @@ add_action( 'wp_ajax_hugeit_email_action', 'hugeit_contact_email_ajax_action_cal
 function hugeit_contact_frontend_scripts_and_styles($id) {
 	wp_enqueue_style( "font_awesome_frontend", plugins_url( "style/iconfonts/css/hugeicons.css", __FILE__ ), false );
 	wp_enqueue_style( "hugeit_contact_front_css", plugins_url( "style/form-front.css", __FILE__ ), false );
+    wp_enqueue_script("hugeit_forms_front_main_js",plugins_url("js/front.js", __FILE__), FALSE);
 	global $wpdb;
 	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = %d order by ordering DESC", $id);
 	$rowim=$wpdb->get_results($query);

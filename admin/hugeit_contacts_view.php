@@ -328,6 +328,7 @@ function submitbutton(pressbutton){
 							<li><a onclick="" class="" id="file_box" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>"><?php _e('File Box','hugeit_contact');?></a></li>
 							<li><a onclick="submitbuttonSave('custom_text')" class="" id="custom_text" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>"><?php _e('Custom Text','hugeit_contact');?></a></li>
                             <li><a onclick="" class="" id="hidden_field" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>"><?php _e('Hidden Field','hugeit_contact');?></a></li>
+                            <li><a onclick="" class="" id="page_break" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>"><?php _e('Page Break','hugeit_contact');?></a></li>
 
 
 							<?php if ( $fordisablecaptcha == 0 ) :
@@ -469,6 +470,10 @@ function submitbutton(pressbutton){
 
                                 echo hugeit_contact_hiddenFieldSettingsHtml( $rowimages );
                                 break;
+                            case 'page_break':  //10
+
+                                echo hugeit_contact_pageBreakSettingsHtml( $rowimages );
+                                break;
 						}
 					}
 				} ?>
@@ -538,6 +543,10 @@ function submitbutton(pressbutton){
                         case 'hidden_field':  //10
 
                         echo hugeit_contact_hiddenFieldSettingsHtml($rowimages);
+                        break;
+                        case 'page_break':  //10
+
+                        echo hugeit_contact_pageBreakSettingsHtml($rowimages);
                         break;
 					} 
 				} 
@@ -1118,6 +1127,11 @@ function submitbutton(pressbutton){
                                             echo hugeit_contact_hiddenFieldHtml($rowimages,$themeId);
                                             break;
 
+                                            case 'page_break':  //4
+
+                                            echo hugeit_contact_pageBreakHtml($rowimages,$themeId);
+                                            break;
+
 											case 'radio_box':  //5
 											
 											echo hugeit_contact_radioboxHtml($rowimages,$themeId);
@@ -1229,6 +1243,10 @@ function submitbutton(pressbutton){
 
                                             case 'hidden_field':  //4
                                                 echo hugeit_contact_hiddenFieldHtml($rowimages,$themeId);
+                                                break;
+
+                                            case 'page_break':  //4
+                                                echo hugeit_contact_pageBreakHtml($rowimages,$themeId);
                                                 break;
 
 											case 'radio_box':  //5

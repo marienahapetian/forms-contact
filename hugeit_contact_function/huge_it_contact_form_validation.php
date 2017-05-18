@@ -88,7 +88,7 @@ function hugeit_contact_contact_form_validation_callback(){
 			foreach ($rowim as $key=>$rowimages){
 				$inputtype = $rowimages->conttype;
 				$rowimages->hc_field_label=addslashes($rowimages->hc_field_label);
-                $inputAllowedTypes=array('text','textarea','selectbox','checkbox','radio_box','file_box','e_mail','buttons','captcha','simple_captcha_box','hidden_field');
+                $inputAllowedTypes=array('text','textarea','selectbox','checkbox','radio_box','file_box','e_mail','buttons','captcha','simple_captcha_box','hidden_field','page_break');
 				if(in_array($inputtype,$inputAllowedTypes)){
 
 					if($inputtype == 'captcha'){

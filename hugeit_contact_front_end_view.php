@@ -196,6 +196,24 @@ function hidden_field_html($rowimages, $frontendformid)
     </div>
     <?php
 }
+function page_break_html($rowimages, $frontendformid)
+{
+    ?>
+    <div class="page_break hugeit-field-block" rel="huge-contact-field-<?php echo esc_attr($rowimages->id); ?>" style="display: none;" value="page_break">
+        <label class="<?php if ($rowimages->hc_input_show_default != '1') echo esc_attr($rowimages->hc_input_show_default); ?>"
+               class="<?php if ($rowimages->hc_input_show_default != '1') echo esc_attr($rowimages->hc_input_show_default); ?>"
+               for="hugeit_preview_textbox_<?php echo esc_attr($rowimages->id); ?>">
+        </label>
+
+        <div class="field-block">
+
+            <input id="hugeit_preview_textbox_<?php echo esc_attr($rowimages->id); ?>"
+                   name="huge_it_<?php echo esc_attr($frontendformid) . '_' . esc_attr($rowimages->id); ?>" type="hidden"
+                   value="page_break<?php echo $rowimages->ordering; ?>" />
+        </div>
+    </div>
+    <?php
+}
 
 function radiobox_field_html($rowimages, $frontendformid, $style_values)
 {
@@ -744,40 +762,87 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 					});
 				});
 			</script>
-	<form action="" method="post" enctype="multipart/form-data" verified="0" id="huge_it_contact_form_<?php echo $frontendformid; ?>" class="hugeit_form">
-        <div id="hugeit-contact-wrapper_<?php echo $frontendformid; ?>"
-             class="hugeit-contact-wrapper <?php echo esc_html($style_values['form_radio_size']); ?>-radio <?php echo esc_html($style_values['form_checkbox_size']); ?>-checkbox">
-            <?php $rowim = array_reverse($rowim); ?>
-            <div <?php foreach ($rowim as $key => $rowimages) {
-                if ($rowimages->hc_left_right == 'right') {
-                    echo 'class="multicolumn"';
-                }
-            } ?>>
-                <?php
-                $show_title_custom_setting = get_option('hugeit_contact_show_title_for_form_' . $frontendformid);
-                switch ($show_title_custom_setting) {
-                    case 'yes' :
-                        $show_title = true;
-                        break;
-                    case 'no' :
-                        $show_title = false;
-                        break;
-                    default :
-                        $show_title = $style_values['form_show_title'] === 'on' ? true : false;
-                }
-                if ($show_title) echo "<h3>" . $hugeit_contact[0]->name . "</h3>";
-                ?>
-                <?php if (!hugeit_contact_is_single_column($rowim)) {
-                    $leftrightArray = array('left', 'right');
-                } else {
-                    $leftrightArray = array('left');
-                } ?>
-                <?php foreach ($leftrightArray as $leftright) { ?>
-                    <div class="hugeit-contact-column-block hugeit-contact-block-<?php echo $leftright; ?>"
-                         id="hugeit-contact-block-<?php echo $leftright; ?> ">
-                        <?php
-                        $i = 2;
-                        foreach ($rowim as $key => $rowimages) {
+        <form action="" method="post" enctype="multipart/form-data" verified="0" id="huge_it_contact_form_<?php echo $frontendformid; ?>" class="hugeit_form">
+            <div id="hugeit-contact-wrapper_<?php echo $frontendformid; ?>"
+                 class="hugeit-contact-wrapper <?php echo esc_html($style_values['form_radio_size']); ?>-radio <?php echo esc_html($style_values['form_checkbox_size']); ?>-checkbox">
+                <?php $rowim = array_reverse($rowim); ?>
+                <div <?php foreach ($rowim as $key => $rowimages) {
+                    if ($rowimages->hc_left_right == 'right') {
+                        echo 'class="multicolumn"';
+                    }
+                } ?>>
+                    <?php
+                    $show_title_custom_setting = get_option('hugeit_contact_show_title_for_form_' . $frontendformid);
+                    switch ($show_title_custom_setting) {
+                        case 'yes' :
+                            $show_title = true;
+                            break;
+                        case 'no' :
+                            $show_title = false;
+                            break;
+                        default :
+                            $show_title = $style_values['form_show_title'] === 'on' ? true : false;
+                    }
+                    if ($show_title) echo "<h3>" . $hugeit_contact[0]->name . "</h3>";
+                    ?>
+                    <?php if (!hugeit_contact_is_single_column($rowim)) {
+                        $leftrightArray = array('left', 'right');
+                    } else {
+                        $leftrightArray = array('left');
+                    }
+                    //Pagination
+                    $pagIndex="";
+                    $total= array();
+                    foreach ($rowim as $pagField => $pagValue){
+
+                        $pagCheck = $pagValue->conttype;
+                        if($pagCheck=="page_break"){
+                            $pagIndex = $pagField;
+                            break;
+                        }
+                    }
+                    if($pagIndex===0 || $pagIndex>0) {
+                        $tempArr= array();
+                        $total  = array();
+
+                        while($pagIndex > 0 || $pagIndex===0){
+
+                            array_splice($rowim,$pagIndex,1);
+                            $tempArr = array_splice($rowim,0,$pagIndex);
+                            if(count($tempArr)>0){array_push($total,$tempArr);}
+                            foreach ($rowim as $pagField => $pagValue){
+
+                                $pagCheck = $pagValue->conttype;
+                                if($pagCheck=="page_break"){
+                                    $pagIndex = $pagField;
+                                    break;
+                                }
+                                else {
+                                    $pagIndex=false;
+                                }
+                            }
+                            if(count($rowim)===0){
+                                break;
+                            }
+
+                        }
+                        if(count($rowim)>0){
+                            array_push($total,$rowim);
+                        }
+                    }
+                    //Pagination
+                    ?>
+
+                    <?php foreach ($leftrightArray as $leftright) { ?>
+
+
+                    <?php
+                    //Check pagination
+                    if(count($total)>0){
+                    for($x=0;$x<count($total);$x++){
+                    ?>                        <div class="paj hugeit-contact-column-block hugeit-contact-block-<?php echo $leftright; ?>"
+                                                   id="hugeit-contact-block-<?php echo $leftright; ?> "><?php
+                        foreach ($total[$x] as $key => $rowimages) {
                             if ($rowimages->hc_left_right == $leftright) {
                                 $inputtype = $rowimages->conttype;
                                 switch ($inputtype) {
@@ -814,22 +879,113 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
                                     case 'e_mail':  //10
                                         email_field_html($rowimages, $frontendformid);
                                         break;
-                                    case 'hidden_field':  //4
+                                    case 'nameSurname':
+                                        fullname_field_html($rowimages, $frontendformid);
+                                        break;
+                                    case 'phone':
+                                        phone_field_html($rowimages, $frontendformid);
+                                        break;
+                                    case 'license':
+                                        license_field_html($rowimages, $frontendformid, $style_values);
+                                        break;
+                                    case 'address':
+                                        address_field_html($rowimages, $frontendformid);
+                                        break;
+                                    case 'date':
+                                        date_field_html($rowimages, $frontendformid);
+                                        break;
+                                    case 'paypal':
+                                        paypal_field_html($rowimages, $frontendformid);
+                                        $formhaspaypal=true;
+                                        $paypaltype=$rowimages->field_type;
+                                        break;
+                                    case 'google_maps':
+                                        google_map_field_html($rowimages);
+                                        break;
+                                    case 'hidden_field':
                                         hidden_field_html($rowimages, $frontendformid, $style_values);
                                         break;
+                                    case 'page_break':
+                                        page_break_html($rowimages, $frontendformid, $style_values);
+                                        break;
+
                                 } /*end switch case */
                             } /*endif */
                         }
-                        ?>
-                    </div>
-                <?php } ?> <!-- end foreach -->
-                <div class="clear"></div>
-            </div>
-        </div>
-        <input type="hidden" value="hc_email_r" name="hc_email_r">
-        <input type="hidden" value="ok" name="submitok">
-    </form>
+                        echo "</div>";
+                        }
 
+                        }
+                        //Check pagination
+                        else {
+                        ?><div class="hugeit-contact-column-block hugeit-contact-block-<?php echo $leftright; ?>" id="hugeit-contact-block-<?php echo $leftright; ?> "><?php
+                            foreach ($rowim as $key => $rowimages) {
+                                if ($rowimages->hc_left_right == $leftright) {
+                                    $inputtype = $rowimages->conttype;
+                                    switch ($inputtype) {
+                                        case 'text':
+                                            text_field_html($rowimages, $frontendformid);
+                                            break;
+                                        case 'textarea':  //2
+                                            textarea_field_html($rowimages, $frontendformid);
+                                            break;
+                                        case 'selectbox':  //3
+                                            selectbox_field_html($rowimages, $frontendformid);
+                                            break;
+                                        case 'checkbox':  //4
+                                            checkbox_field_html($rowimages, $frontendformid, $style_values);
+                                            break;
+                                        case 'radio_box':  //5
+                                            radiobox_field_html($rowimages, $frontendformid, $style_values);
+                                            break;
+                                        case 'file_box':  //6
+                                            filebox_field_html($rowimages, $style_values);
+                                            break;
+                                        case 'custom_text':  //7
+                                            customtext_field_html($rowimages);
+                                            break;
+                                        case 'captcha': //8
+                                            recaptcha_field_html($rowimages, $frontendformid, $paramssld);
+                                            break;
+                                        case 'simple_captcha_box': //8.1
+                                            simplecaptcha_field_html($rowimages, $frontendformid,$paramssld);
+                                            break;
+                                        case 'buttons': //9
+                                            buttons_field_html($rowimages, $style_values);
+                                            break;
+                                        case 'e_mail':  //10
+                                            email_field_html($rowimages, $frontendformid);
+                                            break;
+                                        case 'hidden_field':
+                                            hidden_field_html($rowimages, $frontendformid, $style_values);
+                                            break;
+                                        case 'page_break':
+                                            page_break_html($rowimages, $frontendformid, $style_values);
+                                            break;
+
+                                    } /*end switch case */
+                                } /*endif */
+                            }
+                            }
+
+                            ?>
+                        </div>
+                        <?php } ?> <!-- end foreach -->
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <input type="hidden" value="hc_email_r" name="hc_email_r">
+                <input type="hidden" value="ok" name="submitok">
+        </form>
+
+        <!-- Check if page_break exists -->
+        <?php if(count($total)>1){?>
+            <ul class="paginationUl">
+                <li id="prev">&laquo;</li>
+                <li id="next">&raquo;</li>
+            </ul><?php }
+        ?>
+        <!-- Check if page_break exists -->
         <script>
 		jQuery.fn.ForceNumericOnly =function(){
 		    return this.each(function()		    {
