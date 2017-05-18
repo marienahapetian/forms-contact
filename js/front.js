@@ -8,6 +8,7 @@ jQuery(document).ready(function () {
             parentPag.html(jQuery(pages.hide()));
             jQuery(pages).eq(0).show();
             jQuery("#prev").css("visibility","hidden");
+            jQuery(".paginationUl").show();
         }
 
         function createPagination(){

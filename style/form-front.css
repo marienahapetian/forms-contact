@@ -490,6 +490,7 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
 }
 /* Pagination */
 .paginationUl {
+    display: none;
     margin-top:30px!important;
     width:100%;
     margin:0 auto;
