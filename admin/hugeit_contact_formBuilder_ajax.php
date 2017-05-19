@@ -2484,7 +2484,56 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
         if (isset($_POSTED['hugeit_contact_show_title_for_form_' . $formId]) && in_array($_POSTED['hugeit_contact_show_title_for_form_' . $formId], array('yes', 'no', 'default'))) {
             update_option('hugeit_contact_show_title_for_form_' . $formId, $_POSTED['hugeit_contact_show_title_for_form_' . $formId]);
         }
-
+        //Allowed html tags for wp_editor
+        global $allowedposttags;
+        $allowed_atts = array(
+            'align'      => array(),
+            'type'       => array(),
+            'style'      => array(),
+            'src'        => array(),
+            'alt'        => array(),
+            'href'       => array(),
+            'target'     => array(),
+            'value'      => array(),
+            'name'       => array(),
+            'for'        => array(),
+            'width'      => array(),
+            'height'     => array(),
+            'data'       => array(),
+            'title'      => array(),
+        );
+        $allowedposttags['form']     = $allowed_atts;
+        $allowedposttags['label']    = $allowed_atts;
+        $allowedposttags['input']    = $allowed_atts;
+        $allowedposttags['textarea'] = $allowed_atts;
+        $allowedposttags['strong']   = $allowed_atts;
+        $allowedposttags['small']    = $allowed_atts;
+        $allowedposttags['table']    = $allowed_atts;
+        $allowedposttags['span']     = $allowed_atts;
+        $allowedposttags['abbr']     = $allowed_atts;
+        $allowedposttags['code']     = $allowed_atts;
+        $allowedposttags['pre']      = $allowed_atts;
+        $allowedposttags['div']      = $allowed_atts;
+        $allowedposttags['img']      = $allowed_atts;
+        $allowedposttags['h1']       = $allowed_atts;
+        $allowedposttags['h2']       = $allowed_atts;
+        $allowedposttags['h3']       = $allowed_atts;
+        $allowedposttags['h4']       = $allowed_atts;
+        $allowedposttags['h5']       = $allowed_atts;
+        $allowedposttags['h6']       = $allowed_atts;
+        $allowedposttags['ol']       = $allowed_atts;
+        $allowedposttags['ul']       = $allowed_atts;
+        $allowedposttags['li']       = $allowed_atts;
+        $allowedposttags['em']       = $allowed_atts;
+        $allowedposttags['hr']       = $allowed_atts;
+        $allowedposttags['br']       = $allowed_atts;
+        $allowedposttags['tr']       = $allowed_atts;
+        $allowedposttags['td']       = $allowed_atts;
+        $allowedposttags['p']        = $allowed_atts;
+        $allowedposttags['a']        = $allowed_atts;
+        $allowedposttags['b']        = $allowed_atts;
+        $allowedposttags['i']        = $allowed_atts;
+        //Allowed html tags for wp_editor
         foreach ($rowim as $key => $rowimages) {
             $inputAllowedTypes = array('text', 'custom_text', 'textarea', 'selectbox', 'checkbox', 'radio_box', 'file_box', 'e_mail', 'buttons', 'captcha', 'simple_captcha_box','hidden_field','page_break');
             $inputtype = $rowimages->conttype;
@@ -2504,7 +2553,7 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
                         'hc_input_show_default' => isset($_POSTED['hc_input_show_default' . $id])? sanitize_text_field($_POSTED['hc_input_show_default' . $id]):'',
                         'hc_left_right' => isset($_POSTED['hc_left_right' . $id]) ? sanitize_text_field($_POSTED['hc_left_right' . $id]) : 'left',
                         'hc_other_field' => $hc_other_field,
-                        'name' => isset($_POSTED['titleimage' . $id]) ? sanitize_text_field(wp_unslash($_POSTED['titleimage' . $id])) : '',
+                        'name' => isset($_POSTED['titleimage' . $id]) ? wp_kses($_POSTED['titleimage' . $id],$allowedposttags) : '',
                         'description' => isset($_POSTED['im_description' . $id]) ? sanitize_text_field($_POSTED['im_description' . $id]) : '',
                         'hc_field_label' => isset($_POSTED['imagess' . $id])? sanitize_text_field(wp_unslash($_POSTED['imagess' . $id])):'',
                         'field_type' => isset($_POSTED['field_type' . $id]) ? sanitize_text_field($_POSTED['field_type' . $id]) : '',
