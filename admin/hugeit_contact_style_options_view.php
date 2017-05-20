@@ -725,6 +725,35 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<input name="params[form_selectbox_arrow_color]" type="text" class="color" id="form_selectbox_arrow_color" value="#<?php echo esc_html($param_values['form_selectbox_arrow_color']); ?>" size="10" />
 								</div>
 							</div>
+                            <!-- Pagination -->
+                            <div class="hugeit-contact-general-options-block">
+                                <h3><?php _e('Pagination Styles','hugeit_contact');?></h3>
+
+                                <div>
+                                    <label for="form_pagination_has_background"><?php _e('Pagination Background','hugeit_contact');?></label>
+                                    <input type="hidden" value="off" name="params[form_pagination_has_background]" />
+                                    <input type="checkbox" id="form_pagination_has_background"   name="params[form_pagination_has_background]" value="on" checked="checked" />
+                                </div>
+
+                                <div>
+                                    <label for="form_pagination_background_color"><?php _e('Pagination Background Color','hugeit_contact');?></label>
+                                    <input name="params[form_pagination_background_color]" type="text" class="color" id="form_pagination_background_color" value="#F4514C" size="10" />
+                                </div>
+                                <div>
+                                    <label for="form_pagination_background_hover_color"><?php _e('Pagination Background Hover Color','hugeit_contact');?></label>
+                                    <input name="params[form_pagination_background_hover_color]" type="text" class="color" id="form_pagination_background_hover_color" value="#F4514C" size="10" />
+                                </div>
+                                <div>
+                                    <label for="form_pagination_background_size"><?php _e('Pagination Background Size','hugeit_contact');?></label>
+                                    <input type="number" name="params[form_pagination_background_size]" id="form_pagination_background_size" value="34" class="text" min="0" />
+                                    <span>px</span>
+                                </div>
+                                <div>
+                                    <label for="form_pagination_font_color"><?php _e('Pagination Font Color','hugeit_contact');?></label>
+                                    <input name="params[form_pagination_font_color]" type="text" class="color" id="form_pagination_font_color" value="#FFFFFF" size="10" />
+                                </div>
+                            </div>
+                            <!-- Pagination -->
 							<div class="hugeit-contact-general-options-block">
 								<h3><?php _e('Button Styles', 'hugeit_contact'); ?></h3>
 								<div>
