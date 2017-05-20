@@ -1,146 +1,197 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&subset=greek,latin-ext');
+/****** custom style ******/
 
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
-}
-body {
-    line-height: 1;
-    font-size: 12px;
-    font-family: 'Roboto', sans-serif;
-}
-ol, ul {
-    list-style: none;
-}
-blockquote, q {
-    quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
+@font-face {
+    font-family: nunito;
+    src: url(iconfonts/src/Nunito-Light.ttf);
 }
 
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
+.col *, .license-footer * {
+    font-family: nunito;
 }
 
-.forms {
-    font-family: 'Roboto', sans-serif;
-}
-
-.forms .forms-block {
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
-    padding-top: 50px;
-}
-
-
-.forms .forms-block .licens {
-    width: 324px;
-    height: 115px;
-    background-color: #328fe6;
-    border-radius: 3px;
-    background-image: url(../images/sprite.png);
-    background-position: -118px -116px;
-    position: relative;
-    margin: 0 7px;
-    margin-bottom: 14px;
-}
-
-.forms .forms-block .licens a {
+/*  responsiveS  */
+.responsive {
+    clear: both;
+    padding: 0px;
+    margin: 0px;
     width: 100%;
-    height: 100%;
     display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
+    flex-basis: 33%;
+    flex-wrap: wrap;
 }
 
-.forms .forms-block .licens:hover {
-    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.25);
-}
-
-.forms .forms-block .licens .icon {
-    background-image: url(../images/sprite.png);
-}
-
-.forms .forms-block .licens .text {
-    color: #fff;
-    font-size: 19px;
-    text-transform: uppercase;
-    width: 100%;
+/*  COLUMN SETUP  */
+.col {
+    display: block;
+    float: left;
+    margin: 25px 2.5%;
+    background: #fff;
     text-align: center;
+    min-height: 300px;
+    width: 20%;
+    padding-bottom: 115px;
+    position: relative;
+    -webkit-box-shadow: -0.5px 2.598px 13px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: -0.5px 2.598px 13px 0px rgba(0, 0, 0, 0.1);
+}
+
+.col .header {
+    width: 100%;
+    height: 100px;
+    background: #328fe6;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    padding: 30px 0;
+    background-image: url(../images/sprite.png);
+    background-repeat: no-repeat;
+    background-position: -118px -116px;
+}
+
+.col .header .col-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto;
+    background-image: url(../images/sprite.png);
+}
+
+.col p {
+    font-size: 24px;
+    color: #262626;
+    padding: 0 25px;
+}
+
+.col a {
+    color: #FFF;
+    display: block;
+    width: 213px;
+    height: 73px;
+    background-color: #328fe6;
+    margin: 0 auto;
+    font-size: 32px;
+    line-height: 67px;
+    text-align: center;
+    border-radius: 3px;
+    box-shadow: 1.5px 2.598px 5px 0px rgba(0, 0, 0, 0.4);
+    transition-duration: 0.2s;
+    text-decoration: none;
+}
+
+.col-footer {
     position: absolute;
-    bottom: 20px;
+    text-align: center;
+    bottom: 27px;
+    width: 100%;
 }
 
-.forms .forms-block .licens .multiple {
-    width: 60px;
-    height: 45px;
-    background-position: -13px -577px;
-    margin-top: 18px;
+.col a:hover {
+    background-color: #399bf7;
 }
 
-.forms .forms-block .licens .newsletters {
-    width: 48px;
-    height: 50px;
-    background-position: -97px -572px;
-    margin-top: 15px;
+/*  gridING  */
+.grid:before,
+.grid:after {
+    content: "";
+    display: table;
 }
 
-.forms .forms-block .licens .themes {
-    width: 57px;
-    height: 57px;
-    background-position: -170px -565px;
-    margin-top: 9px;
+.grid:after {
+    clear: both;
 }
 
-.forms .forms-block .licens .advanced {
-    width: 57px;
-    height: 52px;
-    background-position: -241px -571px;
-    margin-top: 15px;
+.grid {
+    zoom: 1; /* For IE 6/7 */
 }
 
-.forms .forms-block .licens .ready {
-    width: 50px;
-    height: 44px;
-    background-position: -323px -577px;
-    margin-top: 24px;
+/***  footer style  *****/
+.license-footer {
+    background-color: #328fe6;
+    padding: 47px 10px 58px 10px;
+    box-sizing: border-box;
+    text-align: center;
+    width: 99%;
 }
 
-.forms .forms-block .licens .layout {
-    width: 49px;
-    height: 49px;
-    background-position: -400px -577px;
-    margin-top: 17px;
+.footer-text {
+    max-width: 100%;
+    color: #FFF;
+    font-size: 24px;
+    text-align: center;
+    width: 1175px;
+    margin: 0 auto;
+    margin-bottom: 48px;
+
 }
+
+.license-footer a {
+    width: 265px;
+    height: 76px;
+    text-align: center;
+    line-height: 76px;
+    font-size: 23px;
+    color: #FFF;
+    background-color: #4e80da;
+    border-radius: 3px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0.209px 2.993px 1px 0px rgba(0, 0, 0, 0.4);
+    transition-duration: 0.2s;
+    text-decoration: none;
+}
+
+.this-steps {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 32px;
+    color: #FFF;
+}
+
+.steps {
+    display: inline-block;
+    padding: 0;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 44px;
+    margin-left: 15px;
+    list-style: square;
+    color: #FFF;
+}
+
+.steps li {
+    text-align: left;
+}
+.license-footer a{
+    background-color: #f04d4c;
+}
+.license-footer a:hover {
+    background-color: #f55b5a;
+}
+
+@media only screen and (max-width: 1630px) {
+    .col {
+        width: 28%;
+    }
+}
+
+@media only screen and (max-width: 1158px) {
+    .col {
+        width: 44%;
+    }
+}
+
+@media only screen and (max-width: 617px) {
+    .col {
+        width: 100%;
+        margin: 25px 8%;
+    }
+}
+
+@media only screen and (max-width: 475px) {
+    .col {
+        width: 100%;
+        margin: 25px 2.5%;
+    }
+}
+
 
 
