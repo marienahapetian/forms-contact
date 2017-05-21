@@ -47,7 +47,7 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 
 			 hugeit_contact_print_html_nav($pageNav['total'],$pageNav['limit'],$serch_fields);
 			?>
-			<table class="wp-list-table widefat fixed pages" style="width:95%">
+			<table class="wp-list-table widefat fixed pages" style="width:100%">
 				<thead>
 				 <tr>
 					<th scope="col" id="id" style="width:30px" ><span><?php _e('ID','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
