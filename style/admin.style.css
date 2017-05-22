@@ -371,7 +371,7 @@ img.themeSpinner{
 	margin:0 5px 0 5px;
 	color:#fff;
 	cursor:pointer;
-	background:url(../images/plus.white.png) right center no-repeat #c7a589;
+	background: url(../images/plus.white.png) right center no-repeat #222;
 	border-radius: 4px;
 }
 #add-fields-block  > li.spinnerLi{
