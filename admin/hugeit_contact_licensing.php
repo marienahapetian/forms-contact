@@ -80,5 +80,5 @@ $license = array(
         <li>Delete Huge IT Forms</li>
         <li>Install the downloaded commercial version of the plugin</li>
     </ul>
-    <a href="https://huge-it.com/wordpress-photo-gallery/" target="_blank">Purchase a License</a>
+    <a href="https://goo.gl/ycVtso" target="_blank">Purchase a License</a>
 </div>
