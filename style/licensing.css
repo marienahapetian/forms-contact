@@ -57,8 +57,10 @@
 
 .col p {
     font-size: 24px;
+    line-height: 32px;
     color: #262626;
     padding: 0 25px;
+    margin: 45px 0;
 }
 
 .col a {
@@ -189,9 +191,22 @@
 @media only screen and (max-width: 475px) {
     .col {
         width: 100%;
-        margin: 25px 2.5%;
+        margin: 25px 5.5% 25px 2.5%;
     }
 }
+@media only screen and (max-width: 1220px) {
+    .col-footer a {
+        width: 170px;
+        font-size: 20px;
+        line-height: 47px;
+        height: 53px;
+        font-size: 25px;
+    }
 
+    .col p {
+        font-size: 20px;
+        line-height: 27px;
+    }
+}
 
 
