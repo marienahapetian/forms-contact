@@ -55,6 +55,7 @@ add_action( 'wp_ajax_hugeit_email_action', 'hugeit_contact_email_ajax_action_cal
 function hugeit_contact_frontend_scripts_and_styles($id) {
 	wp_enqueue_style( "font_awesome_frontend", plugins_url( "style/iconfonts/css/hugeicons.css", __FILE__ ), false );
 	wp_enqueue_style( "hugeit_contact_front_css", plugins_url( "style/form-front.css", __FILE__ ), false );
+    wp_enqueue_script("hugeit_forms_front_main_js",plugins_url("js/front.js", __FILE__), FALSE);
 	global $wpdb;
 	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = %d order by ordering DESC", $id);
 	$rowim=$wpdb->get_results($query);
@@ -252,8 +253,10 @@ function hugeit_contact_options_panel() {
 	$page_emailmanager    = add_submenu_page( 'hugeit_forms_main_page', 'Newsletter Manager', 'Newsletter Manager', 'manage_options', 'hugeit_forms_email_manager', 'hugeit_contact_email_manager' );
 	$page_featuredplugins = add_submenu_page( 'hugeit_forms_main_page', 'Featured Plugins', 'Featured Plugins', 'manage_options', 'hugeit_forms_featured_plugins', 'hugeit_forms_featured_plugins' );
 	$custom_scripts       = add_submenu_page( 'hugeit_forms_main_page', 'Custom CSS', 'Custom CSS', 'manage_options', 'hugeit_forms_custom_scripts', 'hugeit_forms_custom_scripts' );
+    $page_import_export = add_submenu_page("hugeit_forms_main_page", "Import/Export", "Import/Export", "manage_options", "import_export","hugeit_forms_import_export");
 	$licensing            = add_submenu_page( 'hugeit_forms_main_page', 'Licensing', 'Licensing', 'manage_options', 'huge_it_forms_licensing', 'hugeit_forms_licensing' );
 
+    add_submenu_page("hugeit_forms_main_page", "Upgrade to PRO", "<strong id=\"wfMenuCallout\" style=\"color: #2587e2;\">Upgrade to PRO</strong>", "manage_options", "upgradeLink","upgradeLink");
 	add_action( 'admin_print_styles-' . $page_main, 'hugeit_contact_less_options' );
 	add_action( 'admin_print_styles-' . $page_main, 'hugeit_contact_formBuilder_options' );
 	add_action( 'admin_print_styles-' . $page_generaloptions, 'hugeit_contact_less_options' );
@@ -262,12 +265,26 @@ function hugeit_contact_options_panel() {
 	add_action( 'admin_print_styles-' . $page_emailmanager, 'hugeit_contact_less_options' );
 	add_action( 'admin_print_styles-' . $page_emailmanager, 'hugeit_contact_email_options' );
 
+	add_action( 'admin_print_styles-' . $page_import_export, 'hugeit_contact_less_options' );
 	add_action( 'admin_print_styles-' . $custom_scripts, 'hugeit_contact_less_options' );
 }
 
 //Captcha
 function hugeit_contact_admin_captcha() {
 	echo '<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>';
+}
+function upgradeLink(){
+    if ( ! headers_sent() ) {
+        header('Location: https://huge-it.com/forms/');
+        exit;
+    } else {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="https://huge-it.com/forms/";';
+        echo '</script>';
+        echo '<noscript>';
+        echo '<meta http-equiv="refresh" content="0;url=https://huge-it.com/forms/" />';
+        echo '</noscript>'; exit;
+    }
 }
 
 function hugeit_contact_less_options() {
@@ -280,6 +297,7 @@ function hugeit_contact_less_options() {
 	wp_enqueue_script("jquery_ui_new2", "//code.jquery.com/ui/1.10.4/jquery-ui.js", FALSE);
 	wp_enqueue_style( "jquery_ui_new", plugins_url( "style/jquery-ui.css", __FILE__ ), false );
 	wp_enqueue_style( "hugeit_contact_hugeicons", plugins_url( "style/iconfonts/css/hugeicons.css", __FILE__ ), false );
+	wp_enqueue_style( "font-awesome", 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', true );
 	add_action( 'admin_footer', 'hugeit_contact_admin_captcha' );
 	wp_enqueue_style( "hugeit_contact_admin_css", plugins_url( "style/admin.style.css", __FILE__ ), false );
 	wp_enqueue_script( "hugeit_contact_admin_js", plugins_url( "js/admin.js", __FILE__ ), false );
@@ -322,6 +340,7 @@ function hugeit_contact_with_options() {
 	wp_enqueue_style( "hugeicons", plugins_url( "style/iconfonts/css/hugeicons.css", __FILE__ ), false );
 	wp_enqueue_style( "huge_it_admin_css", plugins_url( "style/admin.style.css", __FILE__ ), false );
 	wp_enqueue_script( "huge_it_admin_js", plugins_url( "js/admin.js", __FILE__ ), false );
+    wp_enqueue_style( "font-awesome", 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', true );
 }
 
 function hugeit_contact_option_admin_script() {
@@ -496,8 +515,133 @@ function hugeit_contact_general_options() {
 
 /* Featured Plugins Page */
 function hugeit_forms_featured_plugins() {
-	wp_enqueue_style('featured-plugins-css',plugin_dir_url(__FILE__).'style/featured-plugins.css',true);
+	wp_enqueue_style('featured-plugins-css',plugin_dir_url(__FILE__).'style/featured-plugins.css',false);
 	require_once( "admin/hugeit_contact_featured_plugins.php" );
+}
+/* Import Export Forms Page */
+function hugeit_forms_import_export() {
+    if(isset($_POST['import-form'])){
+        hugeit_contact_import_form();
+    }
+    wp_enqueue_script('import_export',plugin_dir_url(__FILE__).'js/import_export.js',true);
+    wp_localize_script('import_export','exportForm',array(
+        'nonce'=>wp_create_nonce( 'hugeit_contact_export_form' ),
+    ) );
+    require_once( "admin/hugeit_contact_import_export.php" );
+}
+/* Form is exported via ajax */
+add_action( 'wp_ajax_hugeit_contact_export_form', 'hugeit_contact_export_form' );
+add_action( 'wp_ajax_nopriv_hugeit_contact_export_form', 'hugeit_contact_export_form' );
+function hugeit_contact_export_form(){
+    if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'hugeit_contact_export_form' ) ) {
+        wp_die( __( 'Security check failed', 'hugeit_contact' ) );
+    }
+    if ( ! isset( $_REQUEST['form'] ) ) {
+        wp_die( __( 'missing "form" parameter', 'hugeit_contact' ) );
+    }
+    $form = $_REQUEST['form'];
+    $date_format = 'm/d/Y';
+    global $wpdb;
+    $export = array(
+        'form' => array(),
+        'fields' => array(),
+    );
+    $formRow= $wpdb->get_row("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts WHERE id={$form}",'ARRAY_A');
+    $fields = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id={$form}",'ARRAY_A');
+    $export['form'] = $formRow;
+    foreach( $fields as $field ){
+        $export['fields'][] = $field;
+    }
+    echo json_encode( array('success'=>true,'data'=> $export  ));
+    die();
+}
+function hugeit_contact_import_form(){
+    if( ! isset( $_FILES[ 'import-file' ] ) || ! $_FILES[ 'import-file' ] ) return;
+    $file=$_FILES['import-file'];
+    if(substr($file['name'],0,15)!=='hugeit_contact_' || substr($file['name'],-3)!=='hgf') return;
+    $data = file_get_contents( $_FILES[ 'import-file' ][ 'tmp_name' ] );
+    if( ! is_array( $data ) ){
+        $data = json_decode( html_entity_decode( $data ), true ) ;
+        if( ! is_array( $data ) ) {
+            $data =  json_decode(  $data , true ) ;
+        }
+        if( ! is_array( $data ) ){
+            if( ! is_array( $data ) ){
+                return false;
+            }
+        }
+        $import = $data;
+        $form = $import['form'];
+        global $wpdb;
+        $wpdb->insert(
+            $wpdb->prefix.'huge_it_contact_contacts',
+            array(
+                'name' => $form['name'],
+                'hc_acceptms' => $form['hc_acceptms'],
+                'hc_width' => $form['hc_width'],
+                'hc_userms' => $form['hc_userms'],
+                'hc_yourstyle' => $form['hc_yourstyle'],
+                'description' => $form['description'],
+                'param' => $form['param'],
+                'ordering' => $form['ordering'],
+                'published' => $form['published']
+            ),
+            array(
+                '%s',
+                '%s',
+                '%d',
+                '%s',
+                '%s',
+                '%s',
+                '%s',
+                '%d',
+                '%s'
+            )
+        );
+        $form_id = $wpdb->insert_id;
+        $fields = $import['fields'];
+        foreach ( $fields as $field ){
+            $wpdb->insert(
+                $wpdb->prefix.'huge_it_contact_contacts_fields',
+                array(
+                    'name' => $field['name'],
+                    'hugeit_contact_id' => $form_id,
+                    'description' => $field['description'],
+                    'conttype' => $field['conttype'],
+                    'hc_field_label' => $field['hc_field_label'],
+                    'hc_other_field' => $field['hc_other_field'],
+                    'field_type' => $field['field_type'],
+                    'hc_required' => $field['hc_required'],
+                    'ordering' => $field['ordering'],
+                    'published' => $field['published'],
+                    'hc_input_show_default' => $field['hc_input_show_default'],
+                    'hc_left_right' => $field['hc_left_right']
+                ),
+                array(
+                    '%s',
+                    '%d',
+                    '%s',
+                    '%s',
+                    '%s',
+                    '%s',
+                    '%s',
+                    '%s',
+                    '%d',
+                    '%d',
+                    '%s',
+                    '%s'
+                )
+            );
+        }
+        wp_redirect( admin_url().'?page=hugeit_forms_main_page' );
+        //exit;
+    }
+    if( ! $import ){
+        wp_die(
+            __( 'There uploaded file is not a valid format.', 'hugeit_contact' ) . ' ' . ( function_exists( 'json_last_error' ) ) ? json_last_error_msg() : '',
+            __( 'Invalid Form Upload.', 'hugeit_contact' )
+        );
+    }
 }
 
 /* Custom CSS/JS Page */
@@ -547,7 +691,7 @@ function hugeit_print_custom_style(){
 
 /* Licensing Page */
 function hugeit_forms_licensing() {
-	wp_enqueue_style( 'licensing-style', plugin_dir_url(__FILE__) . 'style/licensing.css' );
+	wp_enqueue_style( 'licensing-style', plugin_dir_url(__FILE__) . 'style/licensing.css' ,false );
 	require_once ( "admin/hugeit_contact_licensing.php" );
 
 }

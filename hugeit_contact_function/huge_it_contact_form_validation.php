@@ -88,7 +88,7 @@ function hugeit_contact_contact_form_validation_callback(){
 			foreach ($rowim as $key=>$rowimages){
 				$inputtype = $rowimages->conttype;
 				$rowimages->hc_field_label=addslashes($rowimages->hc_field_label);
-                $inputAllowedTypes=array('text','textarea','selectbox','checkbox','radio_box','file_box','e_mail','buttons','captcha','simple_captcha_box','hidden_field');
+                $inputAllowedTypes=array('text','textarea','selectbox','checkbox','radio_box','file_box','e_mail','buttons','captcha','simple_captcha_box','hidden_field','page_break');
 				if(in_array($inputtype,$inputAllowedTypes)){
 
 					if($inputtype == 'captcha'){
@@ -393,7 +393,9 @@ function hugeit_contact_contact_form_validation_callback(){
                     $sendmessage = preg_replace( '/{formContent}/', $adminSub, $sendmessage );
 					$sendmessage = html_entity_decode( $sendmessage );
 					$sendmessage = wp_kses_post( $sendmessage );
-
+                    if($huge_it_gen_opt_assoc['form_save_reply_to_user']=="on" && !empty($emailArray)){
+                        $huge_it_gen_opt_assoc['form_adminstrator_user_mail']= $emailArray[0];
+                    }
 					$headers = array('From: '.$huge_it_gen_opt_assoc['form_adminstrator_user_name'].' <'.$huge_it_gen_opt_assoc['form_adminstrator_user_mail'].'>');
 
 					//------------------if subject empty sends the name of the form

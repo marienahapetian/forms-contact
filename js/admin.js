@@ -1501,7 +1501,23 @@ jQuery(document).ready(function () {
 			case 'default' :
 				jQuery('#hugeit-contact-wrapper').find('h3').css('display', defaultTitleVisibility);
 		}
-	})
+	});
+
+    //Reply To User
+    jQuery("#reply_to_user").on("change",function () {
+        if(jQuery(this).is(":checked")){
+            jQuery("#form_adminstrator_user_mail").attr('readonly','readonly');
+        }
+        else {
+            jQuery("#form_adminstrator_user_mail").removeAttr("readonly");
+        }
+    });
+//Reply To User
+
+    jQuery(".custom_css_save").on("click",function () {
+        window.onbeforeunload=null;
+    });
+
 });
 
 function HugeitContactSetCookie(name, value, options) {
@@ -1673,4 +1689,55 @@ jQuery(function() {
 		}
 		return false;
 	});
+});
+// INLINE MENU TOGGLE FUNCTION
+jQuery(document).ready(function(){
+    // MOBILE ICON SHOW IN 414 WIDTH OR SMALL
+jQuery( ".hg_view_plugins_block .toggle_element" ).toggle(function() {
+    jQuery('.submenu').css('opacity','1');
+    jQuery('.submenu').css('display','flex');
+    jQuery('.submenu').css('visibility','visible');
+    // jQuery('.submenu li a').css('display','inline-block');
+    // jQuery('.submenu li').css('display','inline-block');
+
+
+}, function() {
+    jQuery('.submenu').css('visibility','hidden');
+
+
+});
+    var screen=jQuery(window).width();
+    if (screen < 415) {
+        jQuery('.huge_it_logo').addClass('hide');
+        jQuery('.mobile_icon_show').removeClass('hide');
+        jQuery('.mobile_icon_show').addClass('show');
+
+    }
+
+    jQuery(window).on("resize",function () {
+        var screen=jQuery(window).width();
+        if (screen < 415) {
+            jQuery('.huge_it_logo').addClass('hide');
+            jQuery('.mobile_icon_show').removeClass('hide');
+            jQuery('.mobile_icon_show').addClass('show');
+
+        }
+    });
+
+    // if(jQuery(window).width()<768){
+    //     jQuery('.submenu').css('display','inline-block');
+    // }
+
+});
+
+
+jQuery(document).ready(function(){
+    jQuery("body").on('click', '.close_banner', function(){
+        jQuery(".free_version_banner").addClass('hide');
+    });
+});
+jQuery(document).ready(function(){
+    jQuery("body").on('click', '.closer_icon_only', function(){
+        jQuery(".free_version_banner").addClass('hide');
+    });
 });
