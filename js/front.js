@@ -2,10 +2,11 @@ jQuery(document).ready(function () {
     var x = (jQuery(document).find(".paj").length>1)? true : false;
     if(x){
         var parentPag = jQuery(document).find(".paj").parent();
-        var defValue=1,numPages= parentPag.children(".paj").length,pages=parentPag.children(".paj"), current = 1;
+        var defValue=1,numPages= parentPag.children(".paj").length,pages=parentPag.children(".paj"),title=parentPag.children('h3'), current = 1;
         function init(){
             parentPag.html(jQuery(pages.hide()));
             jQuery(pages).eq(0).show();
+            jQuery(pages).eq(0).before(title);
             jQuery("#prev").css("visibility","hidden");
             jQuery(".paginationUl").show();
         }

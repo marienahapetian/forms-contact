@@ -2190,7 +2190,7 @@ Custom Settings
 
 }
 
-@media (min-width: 770px){
+@media (min-width: 769px){
 
 	.free_version_banner .hg_view_plugins_block li:hover ul{
 		visibility: visible;
@@ -2326,7 +2326,6 @@ Custom Settings
 
 }
 /*STYLES FOR IPONE 6 PLUS MAX-WIDTH 414PX*/
-
 @media (max-width: 414px)
 {
 	.free_version_banner
@@ -3003,6 +3002,7 @@ Custom Settings
 		font-size: 0.9rem;
 	}
 }
+
 @media (max-width: 580px)
 {
 	.hg_view_plugins_block ul li .submenu

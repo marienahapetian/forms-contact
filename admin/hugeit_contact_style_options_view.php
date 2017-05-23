@@ -740,10 +740,6 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
                                     <input name="params[form_pagination_background_color]" type="text" class="color" id="form_pagination_background_color" value="#F4514C" size="10" />
                                 </div>
                                 <div>
-                                    <label for="form_pagination_background_hover_color"><?php _e('Pagination Background Hover Color','hugeit_contact');?></label>
-                                    <input name="params[form_pagination_background_hover_color]" type="text" class="color" id="form_pagination_background_hover_color" value="#F4514C" size="10" />
-                                </div>
-                                <div>
                                     <label for="form_pagination_background_size"><?php _e('Pagination Background Size','hugeit_contact');?></label>
                                     <input type="number" name="params[form_pagination_background_size]" id="form_pagination_background_size" value="34" class="text" min="0" />
                                     <span>px</span>
