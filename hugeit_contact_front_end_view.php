@@ -981,8 +981,8 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
         <!-- Check if page_break exists -->
         <?php if(count($total)>1){?>
             <ul class="paginationUl">
-                <li id="prev">&laquo;</li>
-                <li id="next">&raquo;</li>
+                <li id="prev">&lt;</li>
+                <li id="next">&gt;</li>
             </ul><?php }
         ?>
         <!-- Check if page_break exists -->
