@@ -22,7 +22,7 @@ function hugeit_contact_save_custom_scripts(){
     foreach ($scriptsArray as $key=>$script){
         $newvalue=trim($_REQUEST[$script],' ');
 
-        if(isset($newvalue) && strlen($newvalue)>0 ){
+        if(isset($newvalue)){
             if(hugeit_exists_in_gen_op_table($script)){
                 $wpdb->update($wpdb->prefix.'huge_it_contact_general_options',array('value'=>sanitize_text_field($newvalue)),array('name'=>sanitize_text_field($script)));
             }
