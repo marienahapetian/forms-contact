@@ -3,8 +3,8 @@ Contributors: Huge-IT
 Donate link: https://huge-it.com/forms/
 Tags: forms, contact form, form, form builder, form maker,
 Requires at least: 3.0.1
-Tested up to: 4.7.4
-Stable tag: 1.4.8
+Tested up to: 4.7.5
+Stable tag: 1.4.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -415,6 +415,14 @@ If you think, that you found a bug in our [WordPress Forms](https://huge-it.com/
 35.  [WordPress Form](https://wordpress.org/plugins/forms-contact/) - Form General Options
 
 == Changelog ==
+
+= 1.4.9 =
+
+* 1) NEW: WE have added email to user option with more advanced functionality.
+* 2) NEW: We have added pagination option, allowing to add pages or break them in forms
+* 2.1) Page break/pagination includes the following new options background color, size, font color, background hover colr 
+* 3) FIX: We have fixed the issue in Forms plugin witu custom CSS that did not save HTML in custom text field
+* 4) FIX: We have fixed the custom CSS box in forms that did not save some data 
 
 = 1.4.8 =
 
