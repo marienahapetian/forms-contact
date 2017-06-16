@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Forms
 Plugin URI: https://huge-it.com/forms
 Description: Form Builder. this is one of the most important elements of WordPress website because without it you cannot to always keep in touch with your visitors
-Version: 1.4.8
+Version: 1.4.9
 Author: Huge-IT
 Author URI: https://huge-it.com/
 License: GNU/GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
