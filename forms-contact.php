@@ -10,6 +10,13 @@ Author URI: https://huge-it.com/
 License: GNU/GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
 */
 
+define('HG_CONTACT_VERSION','1.4.9');
+define('HG_CONTACT_URL',plugins_url('',__FILE__));
+define('HG_CONTACT_PATH',plugin_dir_path(__FILE__));
+
+require_once "includes/class-hugeit-contact-tracking.php";
+require_once "includes/class-hugeit-contact-deactivation-feedback.php";
+require_once "includes/Hugeit_Contact_Template_Loader.php";
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -253,7 +260,7 @@ function hugeit_contact_options_panel() {
 	$page_emailmanager    = add_submenu_page( 'hugeit_forms_main_page', 'Newsletter Manager', 'Newsletter Manager', 'manage_options', 'hugeit_forms_email_manager', 'hugeit_contact_email_manager' );
 	$page_featuredplugins = add_submenu_page( 'hugeit_forms_main_page', 'Featured Plugins', 'Featured Plugins', 'manage_options', 'hugeit_forms_featured_plugins', 'hugeit_forms_featured_plugins' );
 	$custom_scripts       = add_submenu_page( 'hugeit_forms_main_page', 'Custom CSS', 'Custom CSS', 'manage_options', 'hugeit_forms_custom_scripts', 'hugeit_forms_custom_scripts' );
-    $page_import_export = add_submenu_page("hugeit_forms_main_page", "Import/Export", "Import/Export", "manage_options", "import_export","hugeit_forms_import_export");
+    $page_import_export   = add_submenu_page("hugeit_forms_main_page", "Import/Export", "Import/Export", "manage_options", "import_export","hugeit_forms_import_export");
 	$licensing            = add_submenu_page( 'hugeit_forms_main_page', 'Licensing', 'Licensing', 'manage_options', 'huge_it_forms_licensing', 'hugeit_forms_licensing' );
 
     add_submenu_page("hugeit_forms_main_page", "Upgrade to PRO", "<strong id=\"wfMenuCallout\" style=\"color: #2587e2;\">Upgrade to PRO</strong>", "manage_options", "upgradeLink","upgradeLink");
@@ -267,6 +274,8 @@ function hugeit_contact_options_panel() {
 
 	add_action( 'admin_print_styles-' . $page_import_export, 'hugeit_contact_less_options' );
 	add_action( 'admin_print_styles-' . $custom_scripts, 'hugeit_contact_less_options' );
+
+	$GLOBALS['hugeit_contact_admin_pages'] = array($page_main, $page_generaloptions,$page_styleoptions,$page_allsubmissions,$page_emailmanager,$page_featuredplugins,$custom_scripts,$page_import_export,$licensing);
 }
 
 //Captcha
@@ -339,9 +348,25 @@ function hugeit_contact_with_options() {
 	wp_enqueue_script( 'huge_it_param_block2', plugins_url( "elements/jscolor/jscolor.js", __FILE__ ) );
 	wp_enqueue_style( "hugeicons", plugins_url( "style/iconfonts/css/hugeicons.css", __FILE__ ), false );
 	wp_enqueue_style( "huge_it_admin_css", plugins_url( "style/admin.style.css", __FILE__ ), false );
+	wp_enqueue_style( "huge_it_admin_tracking_css", plugins_url( "style/admin.tracking.css", __FILE__ ), false );
 	wp_enqueue_script( "huge_it_admin_js", plugins_url( "js/admin.js", __FILE__ ), false );
     wp_enqueue_style( "font-awesome", 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', true );
 }
+
+function hugeit_contact_enqueue_tracking()
+{
+    wp_enqueue_style( "huge_it_contact_admin_tracking_css", plugins_url( "/style/admin.tracking.css", __FILE__ ), false );
+
+    if (!$GLOBALS['hugeit_contact_tracking']->is_opted_in()) {
+        return false;
+    }
+
+    wp_enqueue_script('hugeit_modal_contact_form', plugins_url('/js/hugeit-modal.js') , array('jquery'));
+    wp_enqueue_script('hugeit_contact_form_deactivation_feedback', plugins_url('/js/deactivation-feedback.js') , array('jquery', 'hugeit_modal_contact_form'));
+    wp_enqueue_style( "huge_it_admin_modal_css", plugins_url( "style/hugeit-modal.css", __FILE__ ), false );
+}
+
+add_action('admin_enqueue_scripts','hugeit_contact_enqueue_tracking');
 
 function hugeit_contact_option_admin_script() {
 	wp_enqueue_script( 'param_block2', plugins_url( "elements/jscolor/jscolor.js", __FILE__ ) );
@@ -1675,6 +1700,8 @@ n_theme_Query;
 		}
 
 	}
+
+
 }
 
 register_activation_hook( __FILE__, 'hugeit_contact_activate' );
@@ -1692,3 +1719,28 @@ function hugeit_contact_new_form_callback() {
 		ob_start();
 	}
 }
+
+function hugeit_contact_schedule_tracking()
+{
+
+    $tracking = new Hugeit_Contact_Tracking();
+    $GLOBALS['hugeit_contact_tracking'] = $tracking;
+    new Hugeit_Contact_Deactivation_Feedback($tracking);
+
+    if ( ! wp_next_scheduled( 'hugeit_contact_opt_in_cron' ) ) {
+        $tracking->track_data();
+        wp_schedule_event( current_time( 'timestamp' ), 'hugeit-contact-weekly', 'hugeit_contact_opt_in_cron' );
+    }
+}
+
+function hugeit_contact_custom_cron_job_recurrence($schedules)
+{
+    $schedules['hugeit-contact-weekly'] = array(
+        'display' => __( 'Once per week', 'hugeit-contact' ),
+        'interval' => 604800
+    );
+    return $schedules;
+}
+
+add_action('init','hugeit_contact_schedule_tracking',0);
+add_filter('cron_schedules','hugeit_contact_custom_cron_job_recurrence');

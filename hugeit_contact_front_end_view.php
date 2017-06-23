@@ -967,7 +967,6 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
                                 } /*endif */
                             }
                             }
-
                             ?>
                         </div>
                         <?php } ?> <!-- end foreach -->
