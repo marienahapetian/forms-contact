@@ -12,6 +12,10 @@ function hugeit_contact_show_published_contact_1($id){
 
     $query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts where id = %d order by id ASC",$id);
     $hugeit_contact=$wpdb->get_results($query);
+    if(empty($hugeit_contact)){
+        printf("Form with ID %d doesn't exist.", $id);
+        return;
+    }
     $hugeit_contacteffect=$hugeit_contact[0]->hc_yourstyle;
 
     $strquery = "SELECT * from " . $wpdb->prefix . "huge_it_contact_general_options";
