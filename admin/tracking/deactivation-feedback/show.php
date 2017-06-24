@@ -3,7 +3,7 @@
  * @var $slug string The plugin slug
  */
 ?>
-<div id="<?php echo $slug ?>-deactivation-feedback" class="-hugeit-modal">
+<div id="forms-contact-deactivation-feedback" class="-hugeit-modal">
     <div class="-hugeit-modal-content">
         <div class="-hugeit-modal-content-header">
             <div class="-hugeit-modal-header-icon">
@@ -21,31 +21,31 @@
             <div class="-hugeit-modal-cb">
                 <label>
                     <input type="radio" value="useless_and_limited_plugin"
-                           name="<?php echo $slug ?>-deactivation-reason"/><span><?php _e('Useless and limited plugin', 'hugeit-forms-contact'); ?></span>
+                           name="forms-contact-deactivation-reason"/><span><?php _e('Useless and limited plugin', 'hugeit-forms-contact'); ?></span>
                 </label>
             </div>
             <div class="-hugeit-modal-cb">
                 <label>
                     <input type="radio" value="found_another_plugin"
-                           name="<?php echo $slug ?>-deactivation-reason"/><span><?php _e('Found another plugin', 'hugeit-forms-contact'); ?></span>
+                           name="forms-contact-deactivation-reason"/><span><?php _e('Found another plugin', 'hugeit-forms-contact'); ?></span>
                 </label>
             </div>
             <div class="-hugeit-modal-cb">
                 <label>
                     <input type="radio" value="activating_pro_version"
-                           name="<?php echo $slug ?>-deactivation-reason"/><span><?php _e('Activating Pro version', 'hugeit-forms-contact'); ?></span>
+                           name="forms-contact-deactivation-reason"/><span><?php _e('Activating Pro version', 'hugeit-forms-contact'); ?></span>
                 </label>
             </div>
             <div class="-hugeit-modal-cb">
                 <label>
                     <input type="radio" value="support_was_bad"
-                           name="<?php echo $slug ?>-deactivation-reason"/><span><?php _e('Support was bad', 'hugeit-forms-contact'); ?></span>
+                           name="forms-contact-deactivation-reason"/><span><?php _e('Support was bad', 'hugeit-forms-contact'); ?></span>
                 </label>
             </div>
             <div class="-hugeit-modal-cb">
                 <label>
                     <input type="radio" value="plugin_does_not_meet_your_expectations"
-                           name="<?php echo $slug ?>-deactivation-reason"/><span><?php _e('Plugin doesn\'t meet your expectations', 'hugeit-forms-contact'); ?></span>
+                           name="forms-contact-deactivation-reason"/><span><?php _e('Plugin doesn\'t meet your expectations', 'hugeit-forms-contact'); ?></span>
                 </label>
             </div>
             <div class="-hugeit-modal-textarea">

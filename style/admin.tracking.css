@@ -136,12 +136,12 @@
 }
 
 /** Deactivation Feedback */
-#gallery-and-caption-deactivation-feedback .-hugeit-modal-content-header {
-    background-color: #fd7a46;
+#forms-contact-deactivation-feedback .-hugeit-modal-content-header {
+    background-color: #0a315c;
     border-bottom: 3px solid #d7d7d7;
     color: #fff;
 }
 
-#gallery-and-caption-deactivation-feedback .-hugeit-modal-header-title {
+#forms-contact-deactivation-feedback .-hugeit-modal-header-title {
     margin-bottom: 6px;
 }
