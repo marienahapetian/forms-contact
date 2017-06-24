@@ -9,7 +9,7 @@ class Hugeit_Contact_Deactivation_Feedback
 
     public function __construct(Hugeit_Contact_Tracking $tracking)
     {
-        if($tracking->is_opted_in()){
+        if($tracking->is_opted_in()) {
             add_action('current_screen', array($this, 'init'));
             add_action('wp_ajax_hugeit_contact_deactivation_feedback', array($this, 'send'));
         }
@@ -19,7 +19,7 @@ class Hugeit_Contact_Deactivation_Feedback
     {
         $screen = get_current_screen();
 
-        if('plugins' === $screen->id){
+        if('plugins' === $screen->id) {
             add_action('admin_footer',array($this,'render_footer'));
         }
     }
@@ -27,7 +27,7 @@ class Hugeit_Contact_Deactivation_Feedback
     public function render_footer()
     {
         $slug = 'forms-contact';
-        echo Hugeit_Contact_Template_Loader::render(HG_CONTACT_PATH.'/tracking/deactivation-feedback/show.php', compact('slug'));
+        echo Hugeit_Contact_Template_Loader::render(HG_CONTACT_PATH.'admin'.DIRECTORY_SEPARATOR.'tracking'.DIRECTORY_SEPARATOR.'deactivation-feedback'.DIRECTORY_SEPARATOR.'show.php', compact('slug'));
     }
 
     public function send()
@@ -37,7 +37,6 @@ class Hugeit_Contact_Deactivation_Feedback
         }
 
         $GLOBALS['hugeit_contact_tracking']->track_data();
-
         if (!$GLOBALS['hugeit_contact_tracking']->is_opted_in()) {
             die(0);
         }

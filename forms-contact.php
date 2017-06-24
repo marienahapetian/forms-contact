@@ -1725,6 +1725,7 @@ function hugeit_contact_schedule_tracking()
 
     $tracking = new Hugeit_Contact_Tracking();
     $GLOBALS['hugeit_contact_tracking'] = $tracking;
+
     new Hugeit_Contact_Deactivation_Feedback($tracking);
 
     if ( ! wp_next_scheduled( 'hugeit_contact_opt_in_cron' ) ) {
