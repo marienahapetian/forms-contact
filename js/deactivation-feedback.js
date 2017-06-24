@@ -10,7 +10,6 @@ jQuery(document).ready(function () {
 
     jQuery('body').on('click', '#the-list tr[data-slug=' + hugeitPhotogalleryL10n.slug + '] .deactivate a', function (e) {
         e.preventDefault();
-
         hugeitModalPhotoGallery.show(hugeitPhotogalleryL10n.slug + '-deactivation-feedback');
         deactivationURL = jQuery(this).attr('href');
 
@@ -40,7 +39,7 @@ jQuery(document).ready(function () {
     cancelDeactivationLink.on('click', function (e) {
         e.preventDefault();
 
-        hugeitModalPhotoGallery.hide('forms-contact-deactivation-feedback');
+        hugeitModalPhotoGallery.hide('-deactivation-feedback');
 
         return false;
     });
@@ -50,7 +49,7 @@ jQuery(document).ready(function () {
             url: ajaxurl,
             method: 'post',
             data: {
-                action: 'hugeit_contact_deactivation_feedback',
+                action: 'hugeit_photo_gallery_deactivation_feedback',
                 value: v,
                 comment: c,
                 nonce: n
