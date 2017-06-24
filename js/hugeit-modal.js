@@ -1,7 +1,7 @@
 /**
  * Created by User on 6/17/2017.
  */
-var hugeitModalPhotoGallery = {
+var hugeitModalContactForms = {
     show: function (elementId, args) {
         var el = jQuery('#' + elementId);
         console.log(el);
@@ -18,6 +18,6 @@ var hugeitModalPhotoGallery = {
 
 jQuery(document).ready(function () {
     jQuery('body').on('click', '.-hugeit-modal-close', function () {
-        hugeitModalPhotoGallery.hide(jQuery(this).closest('.-hugeit-modal').attr('id'));
+        hugeitModalContactForms.hide(jQuery(this).closest('.-hugeit-modal').attr('id'));
     });
 });

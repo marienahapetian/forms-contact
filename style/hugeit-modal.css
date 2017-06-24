@@ -98,7 +98,7 @@
     height: 65px;
 }
 
-.hugeit-deactivate-plugin-photo-gallery {
+.hugeit-deactivate-plugin-forms-contact {
     display: inline-block;
     height: 34px;
     padding: 0 29px;
@@ -112,12 +112,12 @@
     text-decoration: none;
 }
 
-.hugeit-deactivate-plugin-photo-gallery:hover {
+.hugeit-deactivate-plugin-forms-contact:hover {
     color: #fff;
     background-color: #dd1629;
 }
 
-.hugeit-cancel-deactivation-photo-gallery {
+.hugeit-cancel-deactivation-forms-contact {
     display: inline-block;
     height: 34px;
     padding: 0 29px;
@@ -131,7 +131,7 @@
     text-decoration: none;
 }
 
-.hugeit-cancel-deactivation-photo-gallery:hover {
+.hugeit-cancel-deactivation-forms-contact:hover {
     color: #dd1629;
     background-color: #fff;
 }
