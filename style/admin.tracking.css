@@ -142,6 +142,10 @@
     color: #fff;
 }
 
+.hugeit-tracking-optin-forms-contact  .hugeit-tracking-optin-forms-contact-icon {
+    background-color: #1279B9;
+}
+
 #forms-contact-deactivation-feedback .-hugeit-modal-header-title {
     margin-bottom: 6px;
 }
