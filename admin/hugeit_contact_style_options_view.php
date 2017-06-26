@@ -58,12 +58,8 @@ function hugeit_contact_html_styles($rows){
                     <?php _e('Add New Theme', 'hugeit_contact'); ?> <i>(pro)</i>
                 </a>
 			</h2>
-			
-			<?php
-			if ( isset( $_POST['serch_or_not'] ) ) {
-				$serch_value = $_POST['serch_or_not'] == "search" ? esc_html( stripslashes( $_POST['search_events_by_title'] ) ) : "";
-			}
-			$serch_fields='<div class="alignleft actions"">				
+			<?php if ( isset( $_POST['serch_or_not'] ) ) { $serch_value = $_POST['serch_or_not'] == "search" ? esc_html( stripslashes( $_POST['search_events_by_title'] ) ) : "";}
+            $serch_fields='<div class="alignleft actions"">				
 			<div class="alignleft actions">
 				<input type="button" value="Search" onclick="document.getElementById(\'page_number\').value=\'1\'; document.getElementById(\'serch_or_not\').value=\'search\';
 				 document.getElementById(\'admin_form\').submit();" class="button-secondary action">

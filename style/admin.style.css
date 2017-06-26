@@ -2,7 +2,7 @@
 	font-family: Nunito;
 	src: url(../elements/fonts/Nunito-Regular.ttf);
 }
-body{
+#adminForm body{
 	background: #fff;
 	font-family: 'Nunito', sans-serif;
 }
