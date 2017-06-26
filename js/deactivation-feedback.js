@@ -23,7 +23,7 @@ jQuery(document).ready(function () {
 
         var checkedOption = jQuery('input[name=forms-contact-deactivation-reason]:checked'),
             comment = jQuery('textarea[name=forms-contact-deactivation-comment]').val(),
-            nonce = jQuery('#hugeit-photo-gallery-deactivation-nonce').val();
+            nonce = jQuery('#hugeit-contact-deactivation-nonce').val();
         if (checkedOption.length || comment.length) {
             hugeitModalContactForms.hide('forms-contact-deactivation-feedback');
             sendDeactivationFeedback(checkedOption.val(), comment, nonce);
@@ -50,7 +50,7 @@ jQuery(document).ready(function () {
             url: ajaxurl,
             method: 'post',
             data: {
-                action: 'hugeit_photo_gallery_deactivation_feedback',
+                action: 'hugeit_contact_deactivation_feedback',
                 value: v,
                 comment: c,
                 nonce: n
