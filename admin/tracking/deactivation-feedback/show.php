@@ -7,7 +7,7 @@
     <div class="-hugeit-modal-content">
         <div class="-hugeit-modal-content-header">
             <div class="-hugeit-modal-header-icon">
-                <img src="<?php echo HG_CONTACT_PATH . '/images/tracking/plugin-icon.png'; ?>"
+                <img src="<?php echo HG_CONTACT_URL . '/images/tracking/plugin-icon.png'; ?>"
                      alt="<?php echo $slug; ?>"/>
             </div>
             <div class="-hugeit-modal-header-info">
