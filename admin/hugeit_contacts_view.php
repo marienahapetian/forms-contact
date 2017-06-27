@@ -312,6 +312,7 @@ function submitbutton(pressbutton){
                     }
                 }
 				?>
+
 				<ul id="add-fields-block">
 					<li class="spinnerLi" data-idForm="<?php echo $id;?>">
 						<img class="defSpin" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
