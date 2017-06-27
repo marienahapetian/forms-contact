@@ -371,7 +371,7 @@ jQuery(document).ready(function(e) {
 
 
     ///SAVE FORM STARTS///
-    jQuery('#save-button-block').on('click', 'input#save-buttom', function(event) {
+    jQuery('#hg_n_btn_block').on('click', 'input#save-buttom', function(event) {
         event.preventDefault();
         var formId = jQuery("#add-fields-block").find('li.spinnerLi').attr('data-idForm');
         var form = jQuery('#adminForm');

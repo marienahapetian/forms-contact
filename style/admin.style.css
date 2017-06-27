@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:500');
 @font-face {
 	font-family: Nunito;
 	src: url(../elements/fonts/Nunito-Regular.ttf);
 }
+
 #adminForm body{
 	background: #fff;
 	font-family: 'Nunito', sans-serif;
@@ -29,12 +31,29 @@ button[disabled], input[disabled], select[disabled], textarea[disabled] {
 	float:left;
 	margin:0 0 0 0;
 }
+#save-buttom {
+	width: 108px;
+	height: 44px;
+	font-weight: 600;
+	border: none;
+	background-color: #7198ff;
+	border-radius: 3px;
+	color: #fefefe;
+	font-size: 19px;
+	font-family: 'Nunito';
+	cursor: pointer;
+	margin-top: 10px;
+	margin-bottom: 18px;
+}
 #poststuff h2{
 	font-size: 19px;
 	padding: 0 0 15px 0;
 }
+#poststuff {
+background-color:#fff ;
+}
 .saveSpinnerWrapper{
-	float: left !important;
+	display: inline-block;
 	width: 20px !important;
 	height: 20px !important;
 	margin-right: 3px !important;
@@ -51,8 +70,9 @@ img.themeSpinner{
 	display: none;
 }
 #save-button-block  .select-theme {
-	width:150px;
-	margin:1px 0 0 0;
+	width:251px;
+	height: 30px;
+
 }
 #save-button-block  .select-theme:focus {
 	border: 1px solid #ddd;
@@ -127,12 +147,52 @@ img.themeSpinner{
 	border-left: 1px solid #7D7D7D;
 	padding-left: 5px;
 }
-#save-button-block>button{
+#hg_n_btn_block > button{
 	height: 30px;
 }
-#save-button-block #shortcode_toggle:focus{
+#hg_n_btn_block {
+	margin-top: 20px;
+}
+
+ #shortcode_toggle:focus{
 	-webkit-box-shadow:none;
 	box-shadow: none;
+}
+ #hg_options_block {
+	 display: flex;
+ }
+ #hg_options_block div {
+	 display: grid;
+ }
+ #select_form_show_title {
+	 width: 251px;
+	 height: 30px;
+ }
+ #hg_sel_to_left {
+	 margin-left: 50px;
+ }
+ #hg_options_block div select {
+	 margin-top:15px;
+	 border-radius: 5px;
+	 border: 1px solid #ebebeb;
+	 color: #a5a5a5;
+ }
+ #hg_options_block div label {
+	 color: #303030;
+	 font-family: "Roboto";
+	 font-size: 16px;
+	 font-weight: 500;
+ }
+#shortcode_toggle{
+	width: 150px;
+	border: none;
+	height: 44px;
+	background-color: #7198ff;
+	color: #fefefe;
+	margin-left: 575px;
+	font-family: "Roboto";
+	font-size: 15px;
+	font-weight: 500;
 }
 /*TABS*/
 .hugeit_tabs_block {
@@ -142,10 +202,10 @@ img.themeSpinner{
 .hugeit_tabs_block .hugeit_contact_top_tabs  {
 	width:100%;
 	margin:0;
-	border-bottom:1px solid #ccc;
 	padding-left: 10px;
 	height: 31px;
 	box-sizing: border-box;
+	margin-top: 20px;
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li {
 	position:relative;
@@ -154,7 +214,7 @@ img.themeSpinner{
 	height:29px;
 	margin:0 5px 0 0;
 	padding:0 0 0 0;
-	border:1px solid #ccc;
+
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li.active {
 	border-bottom:1px solid #fff;
@@ -166,10 +226,11 @@ img.themeSpinner{
 	display:block;
 	text-decoration:none;
 	padding:5px 10px 5px 10px;
-	background: #ebebeb;
-	color: #777;
-	background:#fff;
 	outline:none;
+	font-family: Roboto;
+	font-size: 16px;
+	font-weight: 400;
+	color: #505050;
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li a:hover,.hugeit_tabs_block .hugeit_contact_top_tabs li a:focus,.hugeit_tabs_block .hugeit_contact_top_tabs li a:active {
 	color: rgb(18, 121, 185);
@@ -178,15 +239,19 @@ img.themeSpinner{
 	cursor:pointer;
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li.active input {
-	/*margin:2px 0 0 0;*/
 	outline:none;
 	width:auto;
 	box-shadow:none;
-	border:0;
-	height: 100%;
+	color: #6590ff;
+	font-family: "Roboto";
+	font-size: 16px;
 	font-weight: 500;
-	/*width: 90px;*/
+	height: auto;
+	border: 1px solid #d0d6dc;
+	background-color: #f3f4f8;
+
 }
+
 /*############### OPTIONS BLOCKS ###################*/
 .options-block {
 	display:table;
@@ -345,8 +410,8 @@ img.themeSpinner{
 	padding:10px 0 10px 0;
 	height:40px;
 	background:#f3f4f8;
-	border-bottom: 1px solid #CCCCCC;
 	position: relative;
+	margin-top:20px;
 }
 #post-body-heading h3 {
 	float:left;
@@ -359,17 +424,32 @@ img.themeSpinner{
 	margin: 0 10px 0 0;
 	display:table;
 }
+#add-fields-block  > li strong {
+	line-height: 42px;
+	margin-left: 16px;
+	font-family: Roboto;
+	font-size: 13px;
+	font-weight: 500;
+	color: #fefefe;
+}
 #add-fields-block  > li {
 	position:relative;
 	float:left;
 	display:block;
-	padding:10px;
-	padding-right:30px;
+	width: 150px;
+	height: 44px;
 	margin:0 5px 0 5px;
-	color:#fff;
 	cursor:pointer;
-	background: url(../images/plus.white.png) right center no-repeat #222;
+	background: url(../images/shape-26.png) right center no-repeat #37383b;
 	border-radius: 4px;
+	background-position-x: 128px;
+	background-position-y: 15px;
+
+}
+#add-fields-block  > li:last-child {
+	width: 200px;
+	background-color: #ed1c24;
+	background-position-x: 178px;
 }
 #add-fields-block  > li.spinnerLi{
 	background: none !important;
@@ -434,7 +514,7 @@ img.themeSpinner{
 	position:relative;
 	float:left;
 	width:33%;
-	padding-top: 5px;
+
 }
 .fields-list {
 	display:block;
@@ -442,24 +522,29 @@ img.themeSpinner{
 	height:auto;
 	margin:0 1% 0 0;
 	min-height:50px;
+	border-radius: 3px;
+	border: 1px solid #d0d6dc;
+	background-color: #ffffff;
 }
 #fields-list-right{
 	background:none !important;
 	border: none !important;
 }
 .fields-list > li {
-	position:relative;
-	width:calc(100% - 20px);
-	max-width:calc(100% - 20px) !important;
-	clear:both;
-	display:block;
-	background:#fff;
-	height:5px;
-	margin:0 0 10px 0 !important;
-	padding:25px 10px 10px 10px;
-	overflow:hidden;
-	z-index:0;
+	position: relative;
+	width: calc(90% - 20px);
+	max-width: calc(90% - 20px) !important;
+	clear: both;
+	display: block;
+	height: 5px;
+	margin: 34px 0px 22px 25px !important;
+	padding: 25px 10px 10px 10px;
+	overflow: hidden;
+	z-index: 0;
 	top: 0;
+	border-radius: 5px;
+	border: 1px solid #d0d6dc;
+	background-color: #ffffff;
 }
 .fields-list > li.open {
 	/*height:auto !important;
@@ -728,6 +813,9 @@ img.themeSpinner{
 	padding:5px 0 50px 0;
 	min-width:310px;
 	overflow: hidden;
+	border-radius: 3px;
+	border: 1px solid #d0d6dc;
+	background-color: #ffffff;
 }
 #hugeit-contact-wrapper  {
 	padding-top:5px;
@@ -1195,9 +1283,13 @@ a {
 	float: left;
 	width: 99%;
 }
+#post-body-content {
+	background-color:#f3f4f8;
+}
 #hugeit_theme_options_page #post-body-content{
 	margin-bottom: 0;
 }
+
 #hugeit_custom_scripts input[type=submit]{
 	margin-left: 10px;
 }

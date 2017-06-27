@@ -266,24 +266,25 @@ function submitbutton(pressbutton){
 		<?php add_thickbox(); ?>
 			<div id="post-body-heading">
 				<div id="save-button-block">
-					<div class="saveSpinnerWrapper">
-						<img src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">		
-					</div>			
-					<input type="button" value="Save Form" id="save-buttom" class="button button-primary button-large">
-					<button class="button" id="shortcode_toggle"><?php _e('Get Shortcode','hugeit_contact');?></button>
-					<label for="select_form_theme"><?php _e('Select Theme','hugeit_contact');?></label>
-					<select width="200" id="select_form_theme" name="select_form_theme" class="select-theme">
-					<?php foreach($form_styles as $form_style){ ?>
-						<option <?php if($form_style->id == $current_form->hc_yourstyle){ echo 'selected'; } ?> value="<?php echo $form_style->id; ?>"><?php echo $form_style->name; ?></option>
-					<?php } ?>
-					</select>
-					<label for="select_form_show_title">Show Form Title</label>
-					<select id="select_form_show_title" name="hugeit_contact_show_title_for_form_<?php echo $id; ?>">
-						<option value="default">Use Default Settings</option>
-						<option value="yes" <?php if (get_option('hugeit_contact_show_title_for_form_' . $id) === 'yes') echo ' selected' ?>>Yes</option>
-						<option value="no" <?php if (get_option('hugeit_contact_show_title_for_form_' . $id) === 'no') echo ' selected' ?>>No</option>
-					</select>
-					<img class="themeSpinner" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">						
+                    <div id="hg_options_block">
+                        <div>
+                            <label for="select_form_theme"><?php _e('Select Theme','hugeit_contact');?></label>
+                            <select  id="select_form_theme" name="select_form_theme" class="select-theme">
+                                <?php foreach($form_styles as $form_style){ ?>
+                                    <option <?php if($form_style->id == $current_form->hc_yourstyle){ echo 'selected'; } ?> value="<?php echo $form_style->id; ?>"><?php echo $form_style->name; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div id="hg_sel_to_left">
+                            <label for="select_form_show_title">Show Form Title</label>
+                            <select id="select_form_show_title" name="hugeit_contact_show_title_for_form_<?php echo $id; ?>">
+                                <option value="default">Use Default Settings</option>
+                                <option value="yes" <?php if (get_option('hugeit_contact_show_title_for_form_' . $id) === 'yes') echo ' selected' ?>>Yes</option>
+                                <option value="no" <?php if (get_option('hugeit_contact_show_title_for_form_' . $id) === 'no') echo ' selected' ?>>No</option>
+                            </select>
+                        </div>
+                        <img class="themeSpinner" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
+                    </div>
 				</div>
 				<div id="shortcode_fields">
 					<div class="short_incl"><label for="short_text"><?php _e('Shortcode','hugeit_contact');?></label>
@@ -312,7 +313,7 @@ function submitbutton(pressbutton){
                     }
                 }
 				?>
-
+                <button class="button" id="shortcode_toggle"><?php _e('Get Shortcode','hugeit_contact');?></button>
 				<ul id="add-fields-block">
 					<li class="spinnerLi" data-idForm="<?php echo $id;?>">
 						<img class="defSpin" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
@@ -412,6 +413,12 @@ function submitbutton(pressbutton){
 				}
 				add_filter('tiny_mce_before_init', 'hugeit_contact_huge_wptiny' );
 				 ?>
+            <div id="hg_n_btn_block">
+                <input type="button" value="Save" id="save-buttom" >
+                <div class="saveSpinnerWrapper">
+                    <img src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
+                </div>
+            </div>
 			<div id="fields-list-block">
 				<ul id="fields-list-left" class="fields-list">
 				<?php
@@ -556,7 +563,7 @@ function submitbutton(pressbutton){
 			<div class="clear"></div>
 			
 			</div>
-			
+
 			
 			<!-- ################################################ LIVE PREVIEW GOESE TO FRONT END #################################################### -->
 			

@@ -590,7 +590,7 @@ jQuery(document).ready(function () {
 	jQuery(function() {
 		form_clean = jQuery("form").serialize();
 	});
-	jQuery('#save-button-block').on('click','input#save-buttom',function(){
+	jQuery('#hg_n_btn_block').on('click','input#save-buttom',function(){
 		form_clean = jQuery("form").serialize();
 		form_clean=form_clean.replace(/g-recaptcha-response=([^]*?)&/g, '');
 	})
