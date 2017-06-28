@@ -150,6 +150,10 @@ img.themeSpinner{
 #hg_n_btn_block > button{
 	height: 30px;
 }
+#hg_n_btn_block > input:active{
+	transform: translateY(1px);
+}
+
 #hg_n_btn_block {
 	margin-top: 20px;
 }
