@@ -117,7 +117,7 @@ img.themeSpinner{
 }
 #post-body-heading #shortcode_fields{
 	position: absolute;
-	top: 50px;
+	top: 65px;
 	left: 0;
 	width: 550px;
 	height: 125px;
@@ -250,6 +250,17 @@ img.themeSpinner{
 	padding-right:16px;
 	background-position:right center;
 	background-repeat:no-repeat;
+	margin-top: -7px;
+}
+.hg_cut_border {
+	right: 17px;
+	top: 1px;
+	width: 0;
+	position: absolute;
+	height: 0;
+	border-style: solid;
+	border-width: 0 41px 50px 0;
+	border-color: transparent #ffffff transparent transparent;
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li a,.hugeit_tabs_block .hugeit_contact_top_tabs li a:link,.hugeit_tabs_block .hugeit_contact_top_tabs li a:visited {
 	display:block;
@@ -269,9 +280,9 @@ img.themeSpinner{
 	cursor:pointer;
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li.active input {
-	outline:none;
-	width:auto;
-	box-shadow:none;
+	outline: none;
+	width: auto;
+	box-shadow: none;
 	color: #6590ff;
 	font-family: "Roboto";
 	font-size: 16px;
@@ -279,6 +290,8 @@ img.themeSpinner{
 	height: auto;
 	border: 1px solid #d0d6dc;
 	background-color: #f3f4f8;
+	line-height: 43px;
+	border-bottom: none;
 
 }
 
