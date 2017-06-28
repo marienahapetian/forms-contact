@@ -50,8 +50,11 @@ button[disabled], input[disabled], select[disabled], textarea[disabled] {
 	padding: 0 0 15px 0;
 }
 #poststuff {
-background-color:#fff ;
+
+	border: 1px solid #d0d6dc;
+	background-color:#fff ;
 }
+
 .saveSpinnerWrapper{
 	display: inline-block;
 	width: 20px !important;
@@ -197,6 +200,7 @@ img.themeSpinner{
 	font-family: "Roboto";
 	font-size: 15px;
 	font-weight: 500;
+
 }
 /*TABS*/
 .hugeit_tabs_block {
@@ -207,9 +211,11 @@ img.themeSpinner{
 	width:100%;
 	margin:0;
 	padding-left: 10px;
-	height: 31px;
+	height: 44px;
 	box-sizing: border-box;
 	margin-top: 20px;
+	border-bottom: 1px solid #d0d6dc;
+
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li {
 	position:relative;
@@ -220,6 +226,25 @@ img.themeSpinner{
 	padding:0 0 0 0;
 
 }
+.hugeit_tabs_block .hugeit_contact_top_tabs li:last-child {
+	position: static;
+	float: right;
+	width: 70px;
+	height: 74px;
+	margin-top: -31px;
+	margin-right: 0;
+	background: url(../images/add-n-f.png) no-repeat #7198ff;
+	background-position-x: 25px;
+	background-position-y: 23px;
+
+
+}
+.hugeit_tabs_block .hugeit_contact_top_tabs li:last-child:active {
+	background: rgba(113, 152, 255, 0.95);
+
+
+}
+
 .hugeit_tabs_block .hugeit_contact_top_tabs li.active {
 	border-bottom:1px solid #fff;
 	padding-right:16px;
@@ -235,6 +260,7 @@ img.themeSpinner{
 	font-size: 16px;
 	font-weight: 400;
 	color: #505050;
+	height: 64px;
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li a:hover,.hugeit_tabs_block .hugeit_contact_top_tabs li a:focus,.hugeit_tabs_block .hugeit_contact_top_tabs li a:active {
 	color: rgb(18, 121, 185);
@@ -707,13 +733,10 @@ img.themeSpinner{
 	height:21px;
 	margin:0 5px 0 0;
 	outline:none;
-	opacity:0.5;
-	border-radius:3px;
-	border:1px solid rgba(0,0,0,0.1);
+	opacity:0.85;
 }
 .fields-list .field-top-options-block  a:hover, .fields-list .field-top-options-block  a:focus, .fields-list .field-top-options-block  a:active {
 	opacity:1;
-	border:1px solid #c6c6c6;
 	background-color:#f8f8f8;
 }
 .fields-list .field-top-options-block  a span {
