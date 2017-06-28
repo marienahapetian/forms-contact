@@ -133,9 +133,13 @@ class Hugeit_Contact_Tracking
         if (!$this->is_opted_in()) {
             return false;
         }
+        if ( ! function_exists( 'get_plugins' ) ) {
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        }
 
         $all_plugins = array();
         $plugins = get_plugins();
+
         foreach ($plugins as $plugin_slug => $plugin_info) {
             $plugin = array(
                 "Name" => $plugin_info["Name"],

@@ -17,7 +17,7 @@
             <div class="-hugeit-modal-close"></div>
         </div>
         <div class="-hugeit-modal-content-body">
-            <?php wp_nonce_field('hugeit-hugeit-contact-deactivation-feedback', 'hugeit-contact-deactivation-nonce'); ?>
+            <?php wp_nonce_field('hugeit-contact-deactivation-feedback', 'hugeit-contact-deactivation-nonce'); ?>
             <div class="-hugeit-modal-cb">
                 <label>
                     <input type="radio" value="useless_and_limited_plugin"
