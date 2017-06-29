@@ -443,7 +443,7 @@ jQuery(document).ready(function(e) {
         var themeId = jQuery(this).val();
         var formId = jQuery("#add-fields-block").find('li.spinnerLi').attr('data-idForm');
         var form = jQuery('#adminForm');
-        var spinner = jQuery(this).parent().find('img.themeSpinner');
+        var spinner = jQuery(this).parent().parent().find('img.themeSpinner');
 
 
         jQuery.ajax({
