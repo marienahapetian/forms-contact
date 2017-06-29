@@ -796,7 +796,7 @@ img.themeSpinner{
 	display: inline-block;
 	width: 20px;
 	height: 20px;
-	opacity: 0.5;
+	opacity: 0.85;
 }
 
 .wp-list-table tbody tr td{
@@ -2302,9 +2302,8 @@ Custom Settings
 	height: 21px;
 	margin: 0 5px 0 0;
 	outline: none;
-	opacity: 0.5;
+	opacity: 0.85;
 	border-radius: 3px;
-	border: 1px solid rgba(0,0,0,0.1);
 }
 
 .hugeit-contact-delete:hover {

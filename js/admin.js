@@ -1728,6 +1728,11 @@ jQuery( ".hg_view_plugins_block .toggle_element" ).toggle(function() {
     //     jQuery('.submenu').css('display','inline-block');
     // }
 
+
+	/*Width of form name input*/
+	var _fn_width = jQuery("#huge_it_contact_formname").val().length;
+    jQuery("#huge_it_contact_formname").width((_fn_width+6)*8+"px");
+
 });
 
 
@@ -1741,3 +1746,4 @@ jQuery(document).ready(function(){
         jQuery(".free_version_banner").addClass('hide');
     });
 });
+

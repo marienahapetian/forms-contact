@@ -197,7 +197,7 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 				}
 				?>
 				<li class="add-new">
-					<a onclick="alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');	">+</a>
+					<a onclick="alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');	"></a>
 				</li>
 			</ul>
 		</div>
