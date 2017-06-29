@@ -301,12 +301,11 @@ img.themeSpinner{
 	font-weight: 500;
 	height: auto;
 	border: 1px solid #d0d6dc;
-	background-color: #f3f4f8;
 	line-height: 44px;
 	border-bottom: none;
 	min-width: 130px;
-	padding-left: 13px;
-
+	padding-left: 20px;
+	background-position: 3px 3px!important;
 
 }
 
@@ -3377,4 +3376,12 @@ Custom Settings
 {
 	opacity: 1;
 	display: flex;
+}
+
+/* Disable focus effect */
+
+#poststuff a:focus {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
 }

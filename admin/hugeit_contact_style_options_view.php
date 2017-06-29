@@ -189,11 +189,11 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 					<?php
 					}
 					else{ ?>
-						<li class="active" onkeydown="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 7) * 8) + 'px';" style="background-image:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>);cursor:pointer;">
+						<li class="active" onkeydown="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 9) * 8) + 'px';" >
                             <div class="hg_cut_border">
                                 <div class="hg_cut_inl_border"></div>
                             </div>
-							<input onfocus="this.style.width = ((this.value.length + 2) * 10) + 'px'" onkeyup="hugeit_contact_updateInput(this.value)" class="text_area" type="text" name="name" id="name" maxlength="250" value="<?php echo esc_html(stripslashes($style_theme->name));?>" />
+							<input onfocus="this.style.width = ((this.value.length + 2) * 10) + 'px'" onkeyup="hugeit_contact_updateInput(this.value)" class="text_area" type="text" name="name" id="name" maxlength="250" value="<?php echo esc_html(stripslashes($style_theme->name));?>" style="background:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>) no-repeat #f3f4f8;" />
 						</li>
 					<?php	
 					}
