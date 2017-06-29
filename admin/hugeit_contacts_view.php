@@ -248,11 +248,11 @@ function submitbutton(pressbutton){
 					</li>
 				<?php
 				else : ?>
-					<li class="active" onkeydown="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 6) * 8) + 'px';" style="background-image:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>);cursor:pointer;">
+					<li class="active" onkeydown="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 7) * 8) + 'px';" style="background-image:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>);cursor:pointer;">
                         <div class="hg_cut_border">
                             <div class="hg_cut_inl_border"></div>
                         </div>
-						<input class="text_area" onfocus="this.style.width = ((this.value.length + 6) * 8) + 'px'" type="text" name="name" id="huge_it_contact_formname" maxlength="250" value="<?php echo esc_html(stripslashes($current_form->name));?>" />
+						<input class="text_area" onfocus="this.style.width = ((this.value.length + 7) * 8) + 'px'" type="text" name="name" id="huge_it_contact_formname" maxlength="250" value="<?php echo esc_html(stripslashes($current_form->name));?>" />
 					</li>
 				<?php	
 				endif;

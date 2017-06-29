@@ -185,7 +185,7 @@ img.themeSpinner{
 	 margin-top:15px;
 	 border-radius: 5px;
 	 border: 1px solid #ebebeb;
-	 color: #a5a5a5;
+	 color: #626262;
  }
  #hg_options_block div label {
 	 color: #303030;
@@ -304,6 +304,9 @@ img.themeSpinner{
 	background-color: #f3f4f8;
 	line-height: 44px;
 	border-bottom: none;
+	min-width: 130px;
+	padding-left: 13px;
+
 
 }
 
@@ -606,10 +609,10 @@ img.themeSpinner{
 	width:96% !important;
 	max-width:96% !important;*/
 	z-index:1 !important;
-	position: absolute;
+	position: relative;
 	background: #fff !important;
 	height: auto;
-	top: 5px;
+	top: 0px;
 }
 .fields-list > li.open:hover{
 	background: #fff !important;
