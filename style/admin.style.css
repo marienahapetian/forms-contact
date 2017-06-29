@@ -252,7 +252,7 @@ img.themeSpinner{
 	background-repeat:no-repeat;
 	margin-top: -7px;
 }
-.hg_cut_border {
+.hugeit_tabs_block .hg_cut_border {
 	right: 17px;
 	top: 1px;
 	width: 0;
@@ -262,6 +262,15 @@ img.themeSpinner{
 	border-width: 0 41px 50px 0;
 	border-color: transparent #ffffff transparent transparent;
 }
+.hugeit_tabs_block .hg_cut_inl_border {
+	width: 1px;
+	height: 64px;
+	background: #d0d6dc;
+	transform: rotateZ(141deg);
+	margin-left: 20px;
+	margin-top: -7px;
+}
+
 .hugeit_tabs_block .hugeit_contact_top_tabs li a,.hugeit_tabs_block .hugeit_contact_top_tabs li a:link,.hugeit_tabs_block .hugeit_contact_top_tabs li a:visited {
 	display:block;
 	text-decoration:none;
