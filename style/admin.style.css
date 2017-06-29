@@ -117,7 +117,7 @@ img.themeSpinner{
 }
 #post-body-heading #shortcode_fields{
 	position: absolute;
-	top: 65px;
+	top: 70px;
 	left: 0;
 	width: 550px;
 	height: 125px;
@@ -191,16 +191,16 @@ img.themeSpinner{
 	 font-weight: 500;
  }
 #shortcode_toggle{
+	float:right;
 	width: 150px;
 	border: none;
 	height: 44px;
 	background-color: #7198ff;
 	color: #fefefe;
-	margin-left: 575px;
 	font-family: "Roboto";
 	font-size: 15px;
 	font-weight: 500;
-
+	margin-right: 5px;
 }
 /*TABS*/
 .hugeit_tabs_block {
@@ -299,7 +299,7 @@ img.themeSpinner{
 	height: auto;
 	border: 1px solid #d0d6dc;
 	background-color: #f3f4f8;
-	line-height: 43px;
+	line-height: 44px;
 	border-bottom: none;
 
 }

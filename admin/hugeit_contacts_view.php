@@ -248,11 +248,11 @@ function submitbutton(pressbutton){
 					</li>
 				<?php
 				else : ?>
-					<li class="active" onclick="this.firstElementChild.style.width = ((this.firstElementChild.value.length + 1) * 8) + 'px';" style="background-image:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>);cursor:pointer;">
+					<li class="active" onkeydown="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 6) * 8) + 'px';" style="background-image:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>);cursor:pointer;">
                         <div class="hg_cut_border">
                             <div class="hg_cut_inl_border"></div>
                         </div>
-						<input class="text_area" onfocus="this.style.width = ((this.value.length + 1) * 8) + 'px'" type="text" name="name" id="huge_it_contact_formname" maxlength="250" value="<?php echo esc_html(stripslashes($current_form->name));?>" />
+						<input class="text_area" onfocus="this.style.width = ((this.value.length + 6) * 8) + 'px'" type="text" name="name" id="huge_it_contact_formname" maxlength="250" value="<?php echo esc_html(stripslashes($current_form->name));?>" />
 					</li>
 				<?php	
 				endif;
@@ -316,7 +316,7 @@ function submitbutton(pressbutton){
                     }
                 }
 				?>
-                <button class="button" id="shortcode_toggle"><?php _e('Get Shortcode','hugeit_contact');?></button>
+
 				<ul id="add-fields-block">
 					<li class="spinnerLi" data-idForm="<?php echo $id;?>">
 						<img class="defSpin" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
@@ -388,6 +388,7 @@ function submitbutton(pressbutton){
 						</ul>
 					</li>
 				</ul>
+                <button class="button" id="shortcode_toggle"><?php _e('Get Shortcode','hugeit_contact');?></button>
 			</div>
 			<?php
 			function hugeit_contact_huge_wptiny($initArray){
