@@ -17,7 +17,7 @@ function hugeit_contact_html_show_settings($param_values) {
 		<?php hugeit_contact_drawFreeBanner();?>
 		<div id="poststuff">
 			<div id="post-body-content">
-				<div id="post-body-heading">
+				<div id="post-body-heading" style="background: #f1f1f1" >
 					<h3><?php _e('General Options', 'hugeit_contact');?></h3>
 					<a onclick="document.getElementById('adminForm').submit()" class="save-hugeit_contact-options button-primary">Save</a>
 				</div>

@@ -63,7 +63,7 @@ $save_form_link = wp_nonce_url( $save_form_link, 'hugeit_forms_save_custom_scrip
 
                 <div class="scripts-block">
                     <form action="<?php echo $save_form_link;?>" method="post" id="adminForm" name="adminForm">
-                        <div id="post-body-heading">
+                        <div id="post-body-heading" style="background: #f1f1f1">
                             <input type="submit" value="Save" class="button-primary custom_css_save" name="submit">
                         </div>
                         <div class="hugeit-contact-custom-scripts-column hugeit-contact-custom-scripts-left">
