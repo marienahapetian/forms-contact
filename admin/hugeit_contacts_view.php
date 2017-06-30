@@ -258,6 +258,7 @@ function submitbutton(pressbutton){
 				endif;
 			endforeach;
 			?>
+
 			<li class="add-new">
 				<a onclick="window.location.href='<?php echo wp_nonce_url(admin_url('admin.php?page=hugeit_forms_main_page&task=add_cat'), 'add_form', 'hugeit_contact_add_form_nonce');?>'"></a>
 			</li>

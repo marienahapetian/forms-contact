@@ -230,7 +230,7 @@ img.themeSpinner{
 
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li:last-child {
-	position: static;
+	position: relative;
 	float: right;
 	width: 70px;
 	height: 74px;
@@ -241,6 +241,14 @@ img.themeSpinner{
 	background-position-y: 23px;
 
 
+}
+.hugeit_tabs_block .hugeit_contact_top_tabs li.add-new:before {
+	content: "Add New Form";
+	position: absolute;
+	top: 26px;
+	left: -125px;
+	font-size: 17px;
+	font-family: "Roboto";
 }
 .hugeit_tabs_block .hugeit_contact_top_tabs li:last-child:active {
 	background: rgba(113, 152, 255, 0.95);
