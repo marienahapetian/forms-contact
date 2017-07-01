@@ -189,7 +189,7 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 					<?php
 					}
 					else{ ?>
-						<li class="active" onkeydown="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 9) * 8) + 'px';" >
+						<li class="active" onclick="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 9) * 8) + 'px';" >
                             <div class="hg_cut_border">
                                 <div class="hg_cut_inl_border"></div>
                             </div>

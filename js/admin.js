@@ -1732,7 +1732,7 @@ jQuery( ".hg_view_plugins_block .toggle_element" ).toggle(function() {
 	/*Width of form name input*/
 	if(jQuery(document).find("#huge_it_contact_formname").length){
         var _fn_width = jQuery("#huge_it_contact_formname").val().length;
-        jQuery("#huge_it_contact_formname").width((_fn_width+7)*8+"px");
+        jQuery("#huge_it_contact_formname").width((_fn_width+2)*8+"px");
 	}
 
 

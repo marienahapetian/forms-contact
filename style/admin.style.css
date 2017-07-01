@@ -44,6 +44,7 @@ button[disabled], input[disabled], select[disabled], textarea[disabled] {
 	cursor: pointer;
 	margin-top: 10px;
 	margin-bottom: 18px;
+	padding-bottom: 5px;
 }
 #poststuff h2{
 	font-size: 19px;
@@ -238,11 +239,10 @@ img.themeSpinner{
 
 }
 
-.hugeit_tabs_block .hugeit_contact_top_tabs li:last-child:active {
+.hugeit_tabs_block .hugeit_contact_top_tabs li:last-child a:active {
 	background: rgba(113, 152, 255, 0.95);
-
-
 }
+
 
 .hugeit_tabs_block .hugeit_contact_top_tabs li.active {
 	border-bottom:1px solid #fff;
@@ -302,6 +302,7 @@ img.themeSpinner{
 	min-width: 130px;
 	padding-left: 20px;
 	background-position: 3px 3px!important;
+	padding-right: 27px;
 
 }
 
@@ -529,7 +530,7 @@ img.themeSpinner{
 	display:none;
 	z-index:100;
 	position:absolute;
-	top:37px;
+	top:44px;
 	right:0;
 	width:100%;
 	background:url(../images/menu.arrow.down.png) center top no-repeat #222;

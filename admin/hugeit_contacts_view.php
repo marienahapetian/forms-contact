@@ -248,7 +248,7 @@ function submitbutton(pressbutton){
 					</li>
 				<?php
 				else : ?>
-					<li class="active" onkeydown="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 9) * 8) + 'px';" >
+					<li class="active" onclick="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 9) * 8) + 'px';" >
                         <div class="hg_cut_border">
                             <div class="hg_cut_inl_border"></div>
                         </div>
