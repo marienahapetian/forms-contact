@@ -23,6 +23,9 @@ button[disabled], input[disabled], select[disabled], textarea[disabled] {
 	cursor: pointer !important;
 	opacity: .5 !important;
 }
+input[disabled] +i +i {
+	opacity: 0.5;
+}
 .selectbox-block>input[disabled]{
 	opacity: 1 !important;
 }
