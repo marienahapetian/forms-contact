@@ -274,7 +274,7 @@ function filebox_field_html($rowimages, $style_values)
         });
     </script>
     <div class="hugeit-field-block" rel="huge-contact-field-<?php echo absint($rowimages->id); ?>">
-        <label class="<?php if ($rowimages->hc_input_show_default != '1') echo esc_html($rowimages->hc_input_show_default); ?>"
+        <label class="<?php if ($rowimages->hc_input_show_default != '1') echo esc_html($rowimages->hc_input_show_default); ?> hg_fl_box"
                for="hugeit_preview_textbox_<?php echo htmlspecialchars($rowimages->id); ?>"><?php echo esc_html($rowimages->hc_field_label);
             if ($rowimages->hc_required == 'on') {
                 echo '<em class="required-star">*</em>';
@@ -671,6 +671,10 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 					background:#<?php echo esc_html($style_values['form_file_button_background_color']); ?>;
 					vertical-align: baseline;
 				}
+
+                #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hg_fl_box:hover {
+                    color:#<?php echo esc_html($style_values['form_file_button_background_hover_color']); ?>;
+                }
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .file-block .uploadbutton i {
 					color:#<?php echo esc_html($style_values['form_file_icon_color']); ?>;
