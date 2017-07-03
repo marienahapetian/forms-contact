@@ -626,11 +626,11 @@ jQuery(document).ready(function () {
 	});
 	jQuery("#shortcode_toggle").toggle(function(){
 		jQuery('#post-body-heading').stop().animate({height:145},500,function(){
-			jQuery('#post-body-heading #shortcode_fields').fadeIn()
+			jQuery('#post-body-heading #shortcode_fields').fadeIn();
 		});
 	},function(){
-		jQuery('#post-body-heading #shortcode_fields').fadeOut()
-		jQuery('#post-body-heading').stop().animate({height:40},500,function(){
+		jQuery('#post-body-heading #shortcode_fields').fadeOut();
+		jQuery('#post-body-heading').stop().animate({height:60},500,function(){
 
 		});
 	});
