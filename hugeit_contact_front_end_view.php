@@ -597,7 +597,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 					color:#<?php echo esc_html($style_values['form_radio_hover_color']); ?>;
 				}
 				
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.checkbox-block i:hover {
+				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .checkbox-block i:hover {
 					color:#<?php echo esc_html($style_values['form_checkbox_hover_color']); ?>;
 				}
 
