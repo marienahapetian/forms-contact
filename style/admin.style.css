@@ -969,7 +969,7 @@ img.themeSpinner{
 	position:relative;
 	display:table ;
 	padding:0 !important;
-	margin:0 !important;
+	margin:0 0 0 -5px !important;
 }
 #hugeit-contact-wrapper .hugeit-contact-column-block > div > label  ul li {
 	clear:both;
