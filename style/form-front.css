@@ -41,7 +41,7 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
     position: relative;
     float: left;
     width: 94%;
-    min-width: 305px;
+    min-width: 250px;
     margin: 0 1% 0 1%;
     height: auto;
     min-height: 30px;
@@ -509,3 +509,8 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
 }
 
 /* Pagination */
+
+button[disabled], input[disabled], select[disabled], textarea[disabled] {
+    cursor: pointer !important;
+    opacity: .5 !important;
+}
