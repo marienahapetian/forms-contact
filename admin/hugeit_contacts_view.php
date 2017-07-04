@@ -248,7 +248,7 @@ function submitbutton(pressbutton){
 					</li>
 				<?php
 				else : ?>
-					<li class="active" onkeydown="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 9) * 8) + 'px';" >
+					<li class="active" onclick="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 9) * 8) + 'px';" >
                         <div class="hg_cut_border">
                             <div class="hg_cut_inl_border"></div>
                         </div>
@@ -573,8 +573,7 @@ function submitbutton(pressbutton){
 			<!-- ################################################ LIVE PREVIEW GOESE TO FRONT END #################################################### -->
 			
 			<style id="formStyles">
-			
-			#hugeit-contact-wrapper {
+                #hugeit-contact-wrapper {
 				width:<?php echo $style_values['form_wrapper_width']; ?>%;
 			
 							
@@ -1060,6 +1059,24 @@ function submitbutton(pressbutton){
 			
 			
 			</style>
+            <style>
+                #poststuff {
+
+                    border: 1px solid #d0d6dc;
+                    background-color:#fff ;
+                }
+                #post-body-content {
+                    background-color:#f3f4f8;
+                }
+                .hugeit_tabs_block .hugeit_contact_top_tabs li.add-new:before {
+                    content: "Add New Form";
+                    position: absolute;
+                    top: 26px;
+                    left: -125px;
+                    font-size: 17px;
+                    font-family: 'Open Sans', sans-serif;
+                }
+            </style>
 			<script>
 				jQuery(document).ready(function () {					
 						

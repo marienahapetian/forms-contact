@@ -626,11 +626,11 @@ jQuery(document).ready(function () {
 	});
 	jQuery("#shortcode_toggle").toggle(function(){
 		jQuery('#post-body-heading').stop().animate({height:145},500,function(){
-			jQuery('#post-body-heading #shortcode_fields').fadeIn()
+			jQuery('#post-body-heading #shortcode_fields').fadeIn();
 		});
 	},function(){
-		jQuery('#post-body-heading #shortcode_fields').fadeOut()
-		jQuery('#post-body-heading').stop().animate({height:40},500,function(){
+		jQuery('#post-body-heading #shortcode_fields').fadeOut();
+		jQuery('#post-body-heading').stop().animate({height:60},500,function(){
 
 		});
 	});
@@ -1732,7 +1732,7 @@ jQuery( ".hg_view_plugins_block .toggle_element" ).toggle(function() {
 	/*Width of form name input*/
 	if(jQuery(document).find("#huge_it_contact_formname").length){
         var _fn_width = jQuery("#huge_it_contact_formname").val().length;
-        jQuery("#huge_it_contact_formname").width((_fn_width+7)*8+"px");
+        jQuery("#huge_it_contact_formname").width((_fn_width+2)*8+"px");
 	}
 
 

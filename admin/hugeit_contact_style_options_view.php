@@ -189,7 +189,7 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 					<?php
 					}
 					else{ ?>
-						<li class="active" onkeydown="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 9) * 8) + 'px';" >
+						<li class="active" onclick="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 9) * 8) + 'px';" >
                             <div class="hg_cut_border">
                                 <div class="hg_cut_inl_border"></div>
                             </div>
@@ -980,6 +980,24 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 								</div>
 							</div>
 						</div>
+                        <style>
+                            #poststuff {
+
+                                border: 1px solid #d0d6dc;
+                                background-color:#fff ;
+                            }
+                            #post-body-content {
+                                background-color:#f3f4f8;
+                            }
+                            .hugeit_tabs_block .hugeit_contact_top_tabs li.add-new:before {
+                                content: "Add New Theme";
+                                position: absolute;
+                                top: 26px;
+                                left: -142px;
+                                font-size: 17px;
+                                font-family: 'Open Sans', sans-serif;
+                            }
+                        </style>
 					</form>
 
 				</div>

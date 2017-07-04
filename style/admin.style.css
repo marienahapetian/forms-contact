@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:500');
+@import url('https://fonts.googleapis.com/css?family=Roboto:500|Open+Sans');
 @font-face {
 	font-family: Nunito;
 	src: url(../elements/fonts/Nunito-Regular.ttf);
@@ -47,15 +47,11 @@ input[disabled] +i +i {
 	cursor: pointer;
 	margin-top: 10px;
 	margin-bottom: 18px;
+	padding-bottom: 5px;
 }
 #poststuff h2{
 	font-size: 19px;
 	padding: 0 0 15px 0;
-}
-#poststuff {
-
-	border: 1px solid #d0d6dc;
-	background-color:#fff ;
 }
 
 .saveSpinnerWrapper{
@@ -123,7 +119,7 @@ img.themeSpinner{
 }
 #post-body-heading #shortcode_fields{
 	position: absolute;
-	top: 70px;
+	top: 80px;
 	left: 0;
 	width: 550px;
 	height: 125px;
@@ -245,19 +241,11 @@ img.themeSpinner{
 
 
 }
-.hugeit_tabs_block .hugeit_contact_top_tabs li.add-new:before {
-	content: "Add New Form";
-	position: absolute;
-	top: 26px;
-	left: -125px;
-	font-size: 17px;
-	font-family: "Roboto";
-}
-.hugeit_tabs_block .hugeit_contact_top_tabs li:last-child:active {
+
+.hugeit_tabs_block .hugeit_contact_top_tabs li:last-child a:active {
 	background: rgba(113, 152, 255, 0.95);
-
-
 }
+
 
 .hugeit_tabs_block .hugeit_contact_top_tabs li.active {
 	border-bottom:1px solid #fff;
@@ -317,6 +305,7 @@ img.themeSpinner{
 	min-width: 130px;
 	padding-left: 20px;
 	background-position: 3px 3px!important;
+	padding-right: 27px;
 
 }
 
@@ -476,7 +465,7 @@ img.themeSpinner{
 #post-body-heading {
 	width:100%;
 	padding:10px 0 10px 0;
-	height:40px;
+	height:60px;
 	background:#f3f4f8;
 	position: relative;
 	margin-top:20px;
@@ -544,7 +533,7 @@ img.themeSpinner{
 	display:none;
 	z-index:100;
 	position:absolute;
-	top:37px;
+	top:44px;
 	right:0;
 	width:100%;
 	background:url(../images/menu.arrow.down.png) center top no-repeat #222;
@@ -1348,9 +1337,7 @@ a {
 	float: left;
 	width: 99%;
 }
-#post-body-content {
-	background-color:#f3f4f8;
-}
+
 #hugeit_theme_options_page #post-body-content{
 	margin-bottom: 0;
 }
