@@ -136,7 +136,9 @@ function checkbox_field_html($rowimages, $frontendformid, $style_values)
                                     <i class="hugeicons-square-o passive"></i>
                                 <?php } ?>
                             </div>
-                            <span class="sublable"><?php echo esc_html($option); ?></span>
+                            <label>
+                                <span class="sublable"><?php echo esc_html($option); ?></span>
+                            </label>
                         </label>
                     </li>
                     <?php $i++;
@@ -248,7 +250,9 @@ function radiobox_field_html($rowimages, $frontendformid, $style_values)
                                     <i class="hugeicons-square-o passive"></i>
                                 <?php } ?>
                             </div>
-                            <span class="sublable"><?php echo esc_html($option); ?></span>
+                            <label>
+                                <span class="sublable"><?php echo esc_html($option); ?></span>
+                            </label>
                         </label>
                     </li>
                     <?php $i++;
