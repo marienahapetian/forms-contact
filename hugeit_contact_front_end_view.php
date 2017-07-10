@@ -119,7 +119,7 @@ function checkbox_field_html($rowimages, $frontendformid, $style_values)
                     <li style="width:<?php if ($rowimages->field_type != 0) {
                         echo 100 / intval($rowimages->field_type);
                     } ?>%;">
-                        <label class="secondary-label" style="display: inline-block;git ad">
+                        <label class="secondary-label" style="display: inline-block;">
                             <div class="checkbox-block big">
                                 <input <?php if (isset($actives[$j]) && $actives[$j] == '' . $keys . '') {
                                     echo 'checked="checked"';
