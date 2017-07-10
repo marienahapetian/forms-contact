@@ -809,7 +809,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
                             break;
                         }
                     }
-                    if($pagIndex===0 || $pagIndex>0) {
+                    if($pagIndex===0 || $pagIndex > 0) {
                         $tempArr= array();
                         $total  = array();
 
@@ -845,7 +845,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 
 
                     <?php
-                    //Check pagination
+                    /*Check pagination*/
                     if(count($total)>0){
                     for($x=0;$x<count($total);$x++){
                     ?>                        <div class="paj hugeit-contact-column-block hugeit-contact-block-<?php echo $leftright; ?>"
@@ -924,7 +924,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
                         }
 
                         }
-                        //Check pagination
+                        /*Check pagination*/
                         else {
                         ?><div class="hugeit-contact-column-block hugeit-contact-block-<?php echo $leftright; ?>" id="hugeit-contact-block-<?php echo $leftright; ?> "><?php
                             foreach ($rowim as $key => $rowimages) {
