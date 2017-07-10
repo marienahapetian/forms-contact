@@ -116,8 +116,10 @@ function checkbox_field_html($rowimages, $frontendformid, $style_values)
                 $j = 0;
                 foreach ($options as $keys => $option) {
                     ?>
-                    <li>
-                        <label class="secondary-label">
+                    <li style="width:<?php if ($rowimages->field_type != 0) {
+                        echo 100 / intval($rowimages->field_type);
+                    } ?>%;">
+                        <label class="secondary-label" style="display: inline-block;git ad">
                             <div class="checkbox-block big">
                                 <input <?php if (isset($actives[$j]) && $actives[$j] == '' . $keys . '') {
                                     echo 'checked="checked"';
@@ -229,8 +231,10 @@ function radiobox_field_html($rowimages, $frontendformid, $style_values)
                 $i = 0;
                 foreach ($options as $keys => $option) {
                     ?>
-                    <li>
-                        <label class="secondary-label">
+                    <li style="width:<?php if ($rowimages->description != 0) {
+                        echo 100 / $rowimages->description;
+                    } ?>%;">
+                        <label class="secondary-label" style="display: inline-block;">
                             <div class="radio-block big">
                                 <input <?php if (trim($rowimages->hc_other_field) == $i) {
                                     echo 'checked="checked"';
