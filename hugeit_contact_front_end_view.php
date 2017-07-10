@@ -116,9 +116,7 @@ function checkbox_field_html($rowimages, $frontendformid, $style_values)
                 $j = 0;
                 foreach ($options as $keys => $option) {
                     ?>
-                    <li style="width:<?php if ($rowimages->field_type != 0) {
-                        echo 100 / intval($rowimages->field_type);
-                    } ?>%;">
+                    <li>
                         <label class="secondary-label">
                             <div class="checkbox-block big">
                                 <input <?php if (isset($actives[$j]) && $actives[$j] == '' . $keys . '') {
@@ -136,9 +134,7 @@ function checkbox_field_html($rowimages, $frontendformid, $style_values)
                                     <i class="hugeicons-square-o passive"></i>
                                 <?php } ?>
                             </div>
-                            <label>
                                 <span class="sublable"><?php echo esc_html($option); ?></span>
-                            </label>
                         </label>
                     </li>
                     <?php $i++;
@@ -233,9 +229,7 @@ function radiobox_field_html($rowimages, $frontendformid, $style_values)
                 $i = 0;
                 foreach ($options as $keys => $option) {
                     ?>
-                    <li style="width:<?php if ($rowimages->description != 0) {
-                        echo 100 / $rowimages->description;
-                    } ?>%;">
+                    <li>
                         <label class="secondary-label">
                             <div class="radio-block big">
                                 <input <?php if (trim($rowimages->hc_other_field) == $i) {
@@ -250,9 +244,7 @@ function radiobox_field_html($rowimages, $frontendformid, $style_values)
                                     <i class="hugeicons-square-o passive"></i>
                                 <?php } ?>
                             </div>
-                            <label>
-                                <span class="sublable"><?php echo esc_html($option); ?></span>
-                            </label>
+                            <span class="sublable"><?php echo esc_html($option); ?></span>
                         </label>
                     </li>
                     <?php $i++;
