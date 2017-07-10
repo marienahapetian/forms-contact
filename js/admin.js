@@ -590,7 +590,7 @@ jQuery(document).ready(function () {
 	jQuery(function() {
 		form_clean = jQuery("form").serialize();
 	});
-	jQuery('#save-button-block').on('click','input#save-buttom',function(){
+	jQuery('#hg_n_btn_block').on('click','input#save-buttom',function(){
 		form_clean = jQuery("form").serialize();
 		form_clean=form_clean.replace(/g-recaptcha-response=([^]*?)&/g, '');
 	})
@@ -626,11 +626,11 @@ jQuery(document).ready(function () {
 	});
 	jQuery("#shortcode_toggle").toggle(function(){
 		jQuery('#post-body-heading').stop().animate({height:145},500,function(){
-			jQuery('#post-body-heading #shortcode_fields').fadeIn()
+			jQuery('#post-body-heading #shortcode_fields').fadeIn();
 		});
 	},function(){
-		jQuery('#post-body-heading #shortcode_fields').fadeOut()
-		jQuery('#post-body-heading').stop().animate({height:40},500,function(){
+		jQuery('#post-body-heading #shortcode_fields').fadeOut();
+		jQuery('#post-body-heading').stop().animate({height:60},500,function(){
 
 		});
 	});
@@ -1728,6 +1728,14 @@ jQuery( ".hg_view_plugins_block .toggle_element" ).toggle(function() {
     //     jQuery('.submenu').css('display','inline-block');
     // }
 
+
+	/*Width of form name input*/
+	if(jQuery(document).find("#huge_it_contact_formname").length){
+        var _fn_width = jQuery("#huge_it_contact_formname").val().length;
+        jQuery("#huge_it_contact_formname").width((_fn_width+2)*8+"px");
+	}
+
+
 });
 
 
@@ -1741,3 +1749,4 @@ jQuery(document).ready(function(){
         jQuery(".free_version_banner").addClass('hide');
     });
 });
+

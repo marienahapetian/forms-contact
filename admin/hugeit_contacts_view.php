@@ -248,15 +248,19 @@ function submitbutton(pressbutton){
 					</li>
 				<?php
 				else : ?>
-					<li class="active" onclick="this.firstElementChild.style.width = ((this.firstElementChild.value.length + 1) * 8) + 'px';" style="background-image:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>);cursor:pointer;">
-						<input class="text_area" onfocus="this.style.width = ((this.value.length + 1) * 8) + 'px'" type="text" name="name" id="huge_it_contact_formname" maxlength="250" value="<?php echo esc_html(stripslashes($current_form->name));?>" />
+					<li class="active" onclick="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 9) * 8) + 'px';" >
+                        <div class="hg_cut_border">
+                            <div class="hg_cut_inl_border"></div>
+                        </div>
+						<input class="text_area" onfocus="this.style.width = ((this.value.length + 7) * 8) + 'px'" type="text" name="name" id="huge_it_contact_formname" maxlength="250" value="<?php echo esc_html(stripslashes($current_form->name));?> " style="background:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>) no-repeat #f3f4f8;" />
 					</li>
 				<?php	
 				endif;
 			endforeach;
 			?>
+
 			<li class="add-new">
-				<a onclick="window.location.href='<?php echo wp_nonce_url(admin_url('admin.php?page=hugeit_forms_main_page&task=add_cat'), 'add_form', 'hugeit_contact_add_form_nonce');?>'">+</a>
+				<a onclick="window.location.href='<?php echo wp_nonce_url(admin_url('admin.php?page=hugeit_forms_main_page&task=add_cat'), 'add_form', 'hugeit_contact_add_form_nonce');?>'"></a>
 			</li>
 		</ul>
 	</div>
@@ -266,24 +270,25 @@ function submitbutton(pressbutton){
 		<?php add_thickbox(); ?>
 			<div id="post-body-heading">
 				<div id="save-button-block">
-					<div class="saveSpinnerWrapper">
-						<img src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">		
-					</div>			
-					<input type="button" value="Save Form" id="save-buttom" class="button button-primary button-large">
-					<button class="button" id="shortcode_toggle"><?php _e('Get Shortcode','hugeit_contact');?></button>
-					<label for="select_form_theme"><?php _e('Select Theme','hugeit_contact');?></label>
-					<select width="200" id="select_form_theme" name="select_form_theme" class="select-theme">
-					<?php foreach($form_styles as $form_style){ ?>
-						<option <?php if($form_style->id == $current_form->hc_yourstyle){ echo 'selected'; } ?> value="<?php echo $form_style->id; ?>"><?php echo $form_style->name; ?></option>
-					<?php } ?>
-					</select>
-					<label for="select_form_show_title">Show Form Title</label>
-					<select id="select_form_show_title" name="hugeit_contact_show_title_for_form_<?php echo $id; ?>">
-						<option value="default">Use Default Settings</option>
-						<option value="yes" <?php if (get_option('hugeit_contact_show_title_for_form_' . $id) === 'yes') echo ' selected' ?>>Yes</option>
-						<option value="no" <?php if (get_option('hugeit_contact_show_title_for_form_' . $id) === 'no') echo ' selected' ?>>No</option>
-					</select>
-					<img class="themeSpinner" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">						
+                    <div id="hg_options_block">
+                        <div>
+                            <label for="select_form_theme"><?php _e('Select Theme','hugeit_contact');?></label>
+                            <select  id="select_form_theme" name="select_form_theme" class="select-theme">
+                                <?php foreach($form_styles as $form_style){ ?>
+                                    <option <?php if($form_style->id == $current_form->hc_yourstyle){ echo 'selected'; } ?> value="<?php echo $form_style->id; ?>"><?php echo $form_style->name; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div id="hg_sel_to_left">
+                            <label for="select_form_show_title">Show Form Title</label>
+                            <select id="select_form_show_title" name="hugeit_contact_show_title_for_form_<?php echo $id; ?>">
+                                <option value="default">Use Default Settings</option>
+                                <option value="yes" <?php if (get_option('hugeit_contact_show_title_for_form_' . $id) === 'yes') echo ' selected' ?>>Yes</option>
+                                <option value="no" <?php if (get_option('hugeit_contact_show_title_for_form_' . $id) === 'no') echo ' selected' ?>>No</option>
+                            </select>
+                        </div>
+                        <img class="themeSpinner" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
+                    </div>
 				</div>
 				<div id="shortcode_fields">
 					<div class="short_incl"><label for="short_text"><?php _e('Shortcode','hugeit_contact');?></label>
@@ -312,6 +317,7 @@ function submitbutton(pressbutton){
                     }
                 }
 				?>
+
 				<ul id="add-fields-block">
 					<li class="spinnerLi" data-idForm="<?php echo $id;?>">
 						<img class="defSpin" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
@@ -383,6 +389,7 @@ function submitbutton(pressbutton){
 						</ul>
 					</li>
 				</ul>
+                <button class="button" id="shortcode_toggle"><?php _e('Get Shortcode','hugeit_contact');?></button>
 			</div>
 			<?php
 			function hugeit_contact_huge_wptiny($initArray){
@@ -411,6 +418,12 @@ function submitbutton(pressbutton){
 				}
 				add_filter('tiny_mce_before_init', 'hugeit_contact_huge_wptiny' );
 				 ?>
+            <div id="hg_n_btn_block">
+                <input type="button" value="Save" id="save-buttom" >
+                <div class="saveSpinnerWrapper">
+                    <img src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
+                </div>
+            </div>
 			<div id="fields-list-block">
 				<ul id="fields-list-left" class="fields-list">
 				<?php
@@ -555,13 +568,12 @@ function submitbutton(pressbutton){
 			<div class="clear"></div>
 			
 			</div>
-			
+
 			
 			<!-- ################################################ LIVE PREVIEW GOESE TO FRONT END #################################################### -->
 			
 			<style id="formStyles">
-			
-			#hugeit-contact-wrapper {
+                #hugeit-contact-wrapper {
 				width:<?php echo $style_values['form_wrapper_width']; ?>%;
 			
 							
@@ -1047,6 +1059,24 @@ function submitbutton(pressbutton){
 			
 			
 			</style>
+            <style>
+                #poststuff {
+
+                    border: 1px solid #d0d6dc;
+                    background-color:#fff ;
+                }
+                #post-body-content {
+                    background-color:#f3f4f8;
+                }
+                .hugeit_tabs_block .hugeit_contact_top_tabs li.add-new:before {
+                    content: "Add New Form";
+                    position: absolute;
+                    top: 26px;
+                    left: -125px;
+                    font-size: 17px;
+                    font-family: 'Open Sans', sans-serif;
+                }
+            </style>
 			<script>
 				jQuery(document).ready(function () {					
 						

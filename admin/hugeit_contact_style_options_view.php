@@ -189,15 +189,18 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 					<?php
 					}
 					else{ ?>
-						<li class="active" onclick="this.firstElementChild.style.width = ((this.firstElementChild.value.length + 1) * 8) + 'px';" style="background-image:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>);cursor:pointer;">
-							<input onfocus="this.style.width = ((this.value.length + 2) * 10) + 'px'" onkeyup="hugeit_contact_updateInput(this.value)" class="text_area" type="text" name="name" id="name" maxlength="250" value="<?php echo esc_html(stripslashes($style_theme->name));?>" />
+						<li class="active" onclick="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 9) * 8) + 'px';" >
+                            <div class="hg_cut_border">
+                                <div class="hg_cut_inl_border"></div>
+                            </div>
+							<input onfocus="this.style.width = ((this.value.length + 2) * 10) + 'px'" onkeyup="hugeit_contact_updateInput(this.value)" class="text_area" type="text" name="name" id="name" maxlength="250" value="<?php echo esc_html(stripslashes($style_theme->name));?>" style="background:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>) no-repeat #f3f4f8;" />
 						</li>
 					<?php	
 					}
 				}
 				?>
 				<li class="add-new">
-					<a onclick="alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');	">+</a>
+					<a onclick="alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');	"></a>
 				</li>
 			</ul>
 		</div>
@@ -977,6 +980,24 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 								</div>
 							</div>
 						</div>
+                        <style>
+                            #poststuff {
+
+                                border: 1px solid #d0d6dc;
+                                background-color:#fff ;
+                            }
+                            #post-body-content {
+                                background-color:#f3f4f8;
+                            }
+                            .hugeit_tabs_block .hugeit_contact_top_tabs li.add-new:before {
+                                content: "Add New Theme";
+                                position: absolute;
+                                top: 26px;
+                                left: -142px;
+                                font-size: 17px;
+                                font-family: 'Open Sans', sans-serif;
+                            }
+                        </style>
 					</form>
 
 				</div>
