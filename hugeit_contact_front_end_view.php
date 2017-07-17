@@ -119,7 +119,7 @@ function checkbox_field_html($rowimages, $frontendformid, $style_values)
                     <li style="width:<?php if ($rowimages->field_type != 0) {
                         echo 100 / intval($rowimages->field_type);
                     } ?>%;">
-                        <label class="secondary-label">
+                        <label class="secondary-label" style="display: inline-block;">
                             <div class="checkbox-block big">
                                 <input <?php if (isset($actives[$j]) && $actives[$j] == '' . $keys . '') {
                                     echo 'checked="checked"';
@@ -136,7 +136,7 @@ function checkbox_field_html($rowimages, $frontendformid, $style_values)
                                     <i class="hugeicons-square-o passive"></i>
                                 <?php } ?>
                             </div>
-                            <span class="sublable"><?php echo esc_html($option); ?></span>
+                                <span class="sublable"><?php echo esc_html($option); ?></span>
                         </label>
                     </li>
                     <?php $i++;
@@ -234,7 +234,7 @@ function radiobox_field_html($rowimages, $frontendformid, $style_values)
                     <li style="width:<?php if ($rowimages->description != 0) {
                         echo 100 / $rowimages->description;
                     } ?>%;">
-                        <label class="secondary-label">
+                        <label class="secondary-label" style="display: inline-block;">
                             <div class="radio-block big">
                                 <input <?php if (trim($rowimages->hc_other_field) == $i) {
                                     echo 'checked="checked"';
@@ -274,7 +274,7 @@ function filebox_field_html($rowimages, $style_values)
         });
     </script>
     <div class="hugeit-field-block" rel="huge-contact-field-<?php echo absint($rowimages->id); ?>">
-        <label class="<?php if ($rowimages->hc_input_show_default != '1') echo esc_html($rowimages->hc_input_show_default); ?>"
+        <label class="<?php if ($rowimages->hc_input_show_default != '1') echo esc_html($rowimages->hc_input_show_default); ?> hg_fl_box"
                for="hugeit_preview_textbox_<?php echo htmlspecialchars($rowimages->id); ?>"><?php echo esc_html($rowimages->hc_field_label);
             if ($rowimages->hc_required == 'on') {
                 echo '<em class="required-star">*</em>';
@@ -597,7 +597,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 					color:#<?php echo esc_html($style_values['form_radio_hover_color']); ?>;
 				}
 				
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?>.checkbox-block i:hover {
+				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .checkbox-block i:hover {
 					color:#<?php echo esc_html($style_values['form_checkbox_hover_color']); ?>;
 				}
 
@@ -671,6 +671,10 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 					background:#<?php echo esc_html($style_values['form_file_button_background_color']); ?>;
 					vertical-align: baseline;
 				}
+
+                #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hg_fl_box:hover {
+                    color:#<?php echo esc_html($style_values['form_file_button_background_hover_color']); ?>;
+                }
 				
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .file-block .uploadbutton i {
 					color:#<?php echo esc_html($style_values['form_file_icon_color']); ?>;
@@ -801,7 +805,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
                             break;
                         }
                     }
-                    if($pagIndex===0 || $pagIndex>0) {
+                    if($pagIndex===0 || $pagIndex > 0) {
                         $tempArr= array();
                         $total  = array();
 
@@ -837,7 +841,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 
 
                     <?php
-                    //Check pagination
+                    /*Check pagination*/
                     if(count($total)>0){
                     for($x=0;$x<count($total);$x++){
                     ?>                        <div class="paj hugeit-contact-column-block hugeit-contact-block-<?php echo $leftright; ?>"
@@ -916,7 +920,7 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
                         }
 
                         }
-                        //Check pagination
+                        /*Check pagination*/
                         else {
                         ?><div class="hugeit-contact-column-block hugeit-contact-block-<?php echo $leftright; ?>" id="hugeit-contact-block-<?php echo $leftright; ?> "><?php
                             foreach ($rowim as $key => $rowimages) {

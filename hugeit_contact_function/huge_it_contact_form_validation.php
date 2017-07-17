@@ -217,9 +217,13 @@ function hugeit_contact_contact_form_validation_callback(){
 								}
 							}
 							if ( isset( $_FILES[ 'userfile_' . $rowimages->id ] ) && ! empty( $_FILES[ 'userfile_' . $rowimages->id ]['tmp_name'] ) ) {
-								//Checking Type							
-								if ( ! in_array( $_FILES[ 'userfile_' . $rowimages->id ]['type'], $result_array ) ) {
-									$submition_errors .= 'huge-contact-field-' . $rowimages->id . ':' . $huge_it_gen_opt_assoc['msg_file_format'] . '*()*';
+								/*Checking Type*/
+                                if ( ! in_array( $_FILES[ 'userfile_' . $rowimages->id ]['type'], $result_array ) ) {
+                                    $hg_file_name = $_FILES[ 'userfile_' . $rowimages->id ]['name'];
+                                    if(!in_array (strtolower(substr($hg_file_name,strrpos($hg_file_name,".") + 1)), $user_mime_types_array ) ){
+                                        $submition_errors .= 'huge-contact-field-' . $rowimages->id . ':' . $huge_it_gen_opt_assoc['msg_file_format'] . '*()*';
+                                    }
+
 								}
 								//Checking FileSize
 								$fileSize = $rowimages->name;
