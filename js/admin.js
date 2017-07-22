@@ -1735,6 +1735,32 @@ jQuery( ".hg_view_plugins_block .toggle_element" ).toggle(function() {
         jQuery("#huge_it_contact_formname").width((_fn_width+2)*8+"px");
 	}
 
+/*Mask On*/
+	(function(){
+		 var def_value;
+        jQuery('#fields-list-block').on("change",".hg-mask-on-check",function() {
+				  var mask_on_block = jQuery(this).parent().find('.hg-mask-on');
+				  def_value   = mask_on_block.closest('div.fields-options').find('.hg-def-value');
+				  if(!def_value.data('val')) {
+					  def_value.data('val',def_value.val());
+				  }
+			  else if(def_value.val()!=="" && def_value.data('val')!==def_value.val()){
+					  def_value.data('val',def_value.val())
+				  }
+				  if(jQuery(this).is(":checked")) {
+					  mask_on_block.removeClass('readonlyHgMask');
+					  def_value.val('');
+					  def_value.attr('readonly','readonly');
+				  }
+			  else {
+					  jQuery(this).parent().find('.mask_on').val("");
+					  mask_on_block.addClass('readonlyHgMask');
+					  def_value.removeAttr('readonly');
+					  def_value.val(def_value.data('val'));
+				  }
+			  });
+		})();
+/*Mask On*/
 
 });
 

@@ -68,6 +68,17 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
                         <input class="fieldisactive" class="isactive" type="checkbox" <?php if($rowimages->description == 'on'){ echo 'checked="checked"';} ?> name="im_description<?php echo absint($rowimages->id); ?>" value="on" />
                     </label>
                 </div>
+            <!--Mask On-->
+            <label class="input-block"><?php _e('Mask On','hugeit_contact'); ?>
+                  <input type="checkbox" class="hg-mask-on-check" <?php if(!empty(trim($rowimages->mask_on))) echo "checked='checked'";  ?>>
+                  <label class="hg-mask-on <?php if(empty(trim($rowimages->mask_on))) echo "readonlyHgMask" ?>" >
+                          <input  type="text" name="mask_on<?php echo absint($rowimages->id); ?>"  value="<?php echo $rowimages->mask_on; ?>" class="mask_on" placeholder="Mask Pattern (ex. (99)-999-99-9) " /><br>
+                            <b>a</b><em>- (A-Z,a-z)</em> <br>
+                            <b>9</b><em>- (0-9)</em><br>
+                            <b>*</b><em>- (A-Z,a-z,0-9)</em>
+                        </label>
+                </label>
+            <!--Mask On-->
             </div>
             <div class="left">
                 <div>
@@ -81,6 +92,14 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
                         <label><input  type="radio" <?php if($rowimages->field_type == 'text'){ echo 'checked="checked"';} ?> name="field_type<?php echo absint($rowimages->id); ?>"  value="text" >Simple Text</label>
                         <label><input  type="radio" <?php if($rowimages->field_type == 'number'){ echo 'checked="checked"';} ?> name="field_type<?php echo absint($rowimages->id); ?>"  value="number" >Number</label>
                     </div>
+                <div>
+               <!-- Default Value -->
+              <label class="input-block"><?php _e('Default Value','hugeit_contact'); ?>
+                  <input class="hg-def-value"  type="text" name="def_value<?php echo absint($rowimages->id); ?>"  value="<?php echo $rowimages->def_value; ?>" <?php if(!empty(trim($rowimages->mask_on))) echo "readonly='readonly'"; ?>  />
+              </label>
+                <!-- Default Value -->
+                </div>
+
                 </div>
             </div>
             <div class="field-top-options-block">
@@ -146,6 +165,15 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
 							<input class="fieldisactive" type="checkbox" <?php if($rowimages->description == 'on'){ echo 'checked="checked"';} ?> name="im_description<?php echo absint($rowimages->id); ?>" value="on" />
 						</label>
 					</div>
+
+                    <div>
+                        <!-- Default Value -->
+                        <label class="input-block"><?php _e('Default Value','hugeit_contact'); ?>
+                            <input  type="text" name="def_value<?php echo absint($rowimages->id); ?>"  value="<?php echo $rowimages->def_value; ?>" class="def_value"  />
+                        </label>
+                        <!-- Default Value -->
+                    </div>
+
 				</div>
 				<div class="left">
 					<div>
@@ -1047,6 +1075,13 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 							<input class="placeholder" class="placeholder" class="text_area" type="text" name="titleimage<?php echo absint($rowimages->id); ?>" id="titleimage<?php echo absint($rowimages->id); ?>"  oldvalue="<?php echo esc_html($rowimages->name); ?>"  value="<?php echo esc_html($rowimages->name); ?>">
 						</label>
 					</div>
+                    <div>
+                        <!-- Default Value -->
+                        <label class="input-block"><?php _e('Default Value','hugeit_contact'); ?>
+                            <input  type="text" name="def_value<?php echo absint($rowimages->id); ?>"  value="<?php echo $rowimages->def_value; ?>" class="def_value"  />
+                        </label>
+                        <!-- Default Value -->
+                    </div>
 				</div>
 				<div class="field-top-options-block">
 					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
@@ -2255,6 +2290,12 @@ esc_html($rowimages->hc_input_show_default);?>">
 				   if ( isset( $_POSTED[ "hc_left_right" . $rowimages->id . "" ] ) ) {
 					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_left_right = %s  WHERE id = %d", sanitize_text_field($_POSTED[ "hc_left_right" . $rowimages->id . "" ]), $id ) );
 				   }
+				   if ( isset( $_POSTED[ "def_value" . $rowimages->id . "" ] ) ) {
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  def_value = %s  WHERE id = %d", sanitize_text_field($_POSTED[ "def_value" . $rowimages->id . "" ]), $id ) );
+				   }
+				   if ( isset( $_POSTED[ "mask_on" . $rowimages->id . "" ] ) ) {
+					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  mask_on = %s  WHERE id = %d", sanitize_text_field($_POSTED[ "mask_on" . $rowimages->id . "" ]), $id ) );
+				   }
 				   if ( isset( $_POSTED[ "hc_ordering" . $rowimages->id . "" ] ) ) {
 					   $wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  ordering = %s  WHERE id = %d", intval($_POSTED[ "hc_ordering" . $rowimages->id . "" ]), $id ) );
 				   }
@@ -2319,6 +2360,12 @@ esc_html($rowimages->hc_input_show_default);?>">
 					if ( isset( $_POSTED[ "hc_ordering" . $rowimages->id . "" ] ) ) {
 						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  ordering = %s  WHERE id = %d", intval($_POSTED[ "hc_ordering" . $rowimages->id . "" ]), $id ) );
 					}
+					if ( isset( $_POSTED[ "def_value" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  def_value = %s  WHERE id = %d", intval($_POSTED[ "def_value" . $rowimages->id . "" ]), $id ) );
+					}
+					if ( isset( $_POSTED[ "mask_on" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  mask_on = %s  WHERE id = %d", intval($_POSTED[ "mask_on" . $rowimages->id . "" ]), $id ) );
+					}
 					if ( isset( $_POSTED[ "hc_input_show_default" . $rowimages->id . "" ] ) ) {
 						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_input_show_default = %s  WHERE id = %d", sanitize_text_field($_POSTED[ "hc_input_show_default" . $rowimages->id . "" ]), $id ) );
 					}
@@ -2356,9 +2403,11 @@ esc_html($rowimages->hc_input_show_default);?>">
 				'ordering' => $rowdubleorder,
 				'published' => $rowduble->published,
 				'hc_input_show_default' => $rowduble->hc_input_show_default,
+				'def_value' => $rowduble->def_value,
+				'mask_on' => $rowduble->mask_on,
 				'hc_left_right' => $rowduble->hc_left_right,
 			),
-			array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s')
+			array('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s','%s', '%s')
 		);
 
 		$queryMax=$wpdb->prepare("SELECT MAX(id) AS resId FROM ".$wpdb->prefix."huge_it_contact_contacts_fields WHERE hugeit_contact_id=%d",$formId);
@@ -2564,6 +2613,8 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
                         'name' => isset($_POSTED['titleimage' . $id]) ? wp_kses($_POSTED['titleimage' . $id],$allowedposttags) : '',
                         'description' => isset($_POSTED['im_description' . $id]) ? sanitize_text_field($_POSTED['im_description' . $id]) : '',
                         'hc_field_label' => isset($_POSTED['imagess' . $id])? sanitize_text_field(wp_unslash($_POSTED['imagess' . $id])):'',
+                        'def_value' => isset($_POSTED['def_value' . $id])? sanitize_text_field(wp_unslash($_POSTED['def_value' . $id])):'',
+                        'mask_on' => isset($_POSTED['mask_on' . $id])? sanitize_text_field(wp_unslash($_POSTED['mask_on' . $id])):'',
                         'field_type' => isset($_POSTED['field_type' . $id]) ? sanitize_text_field($_POSTED['field_type' . $id]) : '',
                     ),
                     array('id' => $rowimages->id)
@@ -2654,6 +2705,20 @@ if ( isset( $_POST['task'] ) && $_POST['task'] == 'saveEntireForm' ) {
 							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
 							SET  ordering = %s  
 							WHERE id = %d", intval($_POSTED[ "hc_ordering" . $rowimages->id . "" ]),
+							$id ) );
+					}
+					if ( isset( $_POSTED[ "def_value" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare(
+							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
+							SET  def_value = %s  
+							WHERE id = %d", sanitize_text_field($_POSTED[ "def_value" . $rowimages->id . "" ]),
+							$id ) );
+					}
+					if ( isset( $_POSTED[ "mask_on" . $rowimages->id . "" ] ) ) {
+						$wpdb->query( $wpdb->prepare(
+							"UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields 
+							SET  mask_on = %s  
+							WHERE id = %d", sanitize_text_field($_POSTED[ "mask_on" . $rowimages->id . "" ]),
 							$id ) );
 					}
 					if ( isset( $_POSTED[ "hc_input_show_default" . $rowimages->id . "" ] ) ) {

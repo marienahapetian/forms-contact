@@ -64,6 +64,7 @@ function hugeit_contact_frontend_scripts_and_styles($id)
     wp_enqueue_style("font_awesome_frontend", plugins_url("style/iconfonts/css/hugeicons.css", __FILE__), false);
     wp_enqueue_style("hugeit_contact_front_css", plugins_url("style/form-front.css", __FILE__), false);
     wp_enqueue_script("hugeit_forms_front_main_js", plugins_url("js/front.js", __FILE__), FALSE);
+    wp_enqueue_script( 'HGjQueryMask',plugins_url('js/maskedInputs.js',__FILE__));
     global $wpdb;
     $query = $wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "huge_it_contact_contacts_fields where hugeit_contact_id = %d order by ordering DESC", $id);
     $rowim = $wpdb->get_results($query);
@@ -638,6 +639,8 @@ function hugeit_contact_import_form()
                 'description' => $form['description'],
                 'param' => $form['param'],
                 'ordering' => $form['ordering'],
+                'def_value' => $form['def_value'],
+                'mask_on' => $form['mask_on'],
                 'published' => $form['published']
             ),
             array(
@@ -924,6 +927,8 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_contacts_fields
   `published` tinyint(4) unsigned DEFAULT NULL,
   `hc_input_show_default` text NOT NULL,
   `hc_left_right` text NOT NULL,
+  `def_value` text NOT NULL,
+  `mask_on` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) " . $collate . "  AUTO_INCREMENT=1";
@@ -1749,6 +1754,22 @@ n_theme_Query;
 
 
 }
+
+    /* Add column for Default Value if not exists  */
+    $conditionalLogicColumn = $wpdb->query("SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = '".$wpdb->dbname."' AND TABLE_NAME = '".$wpdb->prefix."huge_it_contact_contacts_fields' AND COLUMN_NAME = 'def_value'");
+
+    if($conditionalLogicColumn==0) {
+            $wpdb->query("ALTER TABLE " . $wpdb->prefix . "huge_it_contact_contacts_fields ADD def_value text NOT NULL");
+        }
+     /* Add column for Default Value if not exists  */
+
+   /* Add column for Mask On if not exists  */
+   $conditionalLogicColumn = $wpdb->query("SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = '".$wpdb->dbname."' AND TABLE_NAME = '".$wpdb->prefix."huge_it_contact_contacts_fields' AND COLUMN_NAME = 'mask_on'");
+
+   if($conditionalLogicColumn==0) {
+           $wpdb->query("ALTER TABLE " . $wpdb->prefix . "huge_it_contact_contacts_fields ADD mask_on text NOT NULL");
+       }
+   /* Add column for Mask On if not exists  */
 
 register_activation_hook(__FILE__, 'hugeit_contact_activate');
 register_deactivation_hook(__FILE__, 'hugeit_contact_subscriber_deactivate');

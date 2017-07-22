@@ -18,7 +18,15 @@ function text_field_html($rowimages, $frontendformid)
                        echo 'required';
                    } ?>" <?php if ($rowimages->description != 'on') {
                 echo 'disabled="disabled"';
-            } ?>/>
+            } ?>
+
+        <?php if(trim($rowimages->def_value)!==""): ?>
+         value="<?php echo $rowimages->def_value; ?>"
+         <?php endif; ?>
+        <?php if(trim($rowimages->mask_on)!==""): ?>
+        data-hg-pattern="<?php echo $rowimages->mask_on; ?>"
+        <?php endif; ?>
+            />
             <span class="hugeit-error-message"></span>
         </div>
     </div>
@@ -40,7 +48,7 @@ function textarea_field_html($rowimages, $frontendformid)
                       id="hugeit_preview_textbox_<?php echo absint($rowimages->id); ?>"
                 <?php if ($rowimages->description != 'on') { echo 'disabled="disabled"';} ?>
                       class="<?php echo($rowimages->hc_required == 'on')?'required':''; ?>"
-                      placeholder="<?php echo esc_html($rowimages->name); ?>"></textarea>
+                      placeholder="<?php echo esc_html($rowimages->name); ?>"><?php if(trim($rowimages->def_value)!=="") echo wp_unslash($rowimages->def_value);?></textarea>
             <span class="hugeit-error-message"></span>
         </div>
     </div>
@@ -406,7 +414,11 @@ function email_field_html($rowimages, $frontendformid)
                 echo 'required';
             } ?>" <?php if ($rowimages->description != 'on') {
                 echo 'disabled="disabled"';
-            } ?> />
+            } ?>
+            <?php if(trim($rowimages->def_value)!==""): ?>
+            value="<?php echo $rowimages->def_value; ?>"
+            <?php endif; ?>
+            />
             <span class="hugeit-error-message"></span>
         </div>
     </div>
