@@ -13,7 +13,7 @@ function text_field_html($rowimages, $frontendformid)
         <div class="field-block input-text-block <?php if ($rowimages->hc_input_show_default == 'formsAboveAlign' || $rowimages->hc_input_show_default == 'formsInsideAlign') echo $rowimages->hc_input_show_default; ?>">
             <input id="hugeit_preview_textbox_<?php echo absint($rowimages->id); ?>"
                    name="huge_it_<?php echo esc_html($frontendformid) . '_' . absint($rowimages->id); ?>"
-                   type="<?php echo esc_html($rowimages->field_type); ?>" placeholder="<?php echo esc_html($rowimages->name); ?>"
+                   type="<?php echo esc_html($rowimages->field_type); ?>" placeholder="<?php if(!empty(trim($rowimages->mask_on))) echo $rowimages->mask_on; else echo $rowimages->name; ?>"
                    class="<?php if ($rowimages->hc_required == 'on') {
                        echo 'required';
                    } ?>" <?php if ($rowimages->description != 'on') {
