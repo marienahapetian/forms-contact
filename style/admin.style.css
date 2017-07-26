@@ -3383,3 +3383,12 @@ Custom Settings
 	-moz-box-shadow: none;
 	box-shadow: none;
 }
+#fields-list-block .hg-mask-on input[type="text"] {
+	margin-top:5px;
+	width:95%;
+}
+
+.readonlyHgMask {
+	opacity: 0.5;
+	pointer-events: none;
+}
