@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c42a1785-5f47-48c3-a67c-df00c049bf2a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/elements/fonts/Nunito-Regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/add-n-f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/close_btn.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/icon-google-maps.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/icon-paypal.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/logo_mobile_screen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/shape-26.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/toggle_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/tracking/close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/tracking/logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/tracking/plugin-icon - mini.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/tracking/plugin-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/tracking/sprite.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/style/iconfonts/src/Nunito-Light.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/tracking/banner/show.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/tracking/deactivation-feedback/show.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/includes/Hugeit_Contact_Template_Loader.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/includes/class-hugeit-contact-deactivation-feedback.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/includes/class-hugeit-contact-tracking.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/deactivation-feedback.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/front.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/hugeit-modal.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/maskedInputs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/style/admin.tracking.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/style/hugeit-modal.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/edit.png" afterPath="$PROJECT_DIR$/images/edit.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/fields.opt.png" afterPath="$PROJECT_DIR$/images/fields.opt.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/sprite.png" afterPath="$PROJECT_DIR$/images/sprite.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/hugeit_contact_custom_scripts.php" afterPath="$PROJECT_DIR$/admin/hugeit_contact_custom_scripts.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/hugeit_contact_emails_view.php" afterPath="$PROJECT_DIR$/admin/hugeit_contact_emails_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/hugeit_contact_featured_plugins.php" afterPath="$PROJECT_DIR$/admin/hugeit_contact_featured_plugins.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/hugeit_contact_formBuilder_ajax.php" afterPath="$PROJECT_DIR$/admin/hugeit_contact_formBuilder_ajax.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/hugeit_contact_general_options_func.php" afterPath="$PROJECT_DIR$/admin/hugeit_contact_general_options_func.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/hugeit_contact_general_options_view.php" afterPath="$PROJECT_DIR$/admin/hugeit_contact_general_options_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/hugeit_contact_licensing.php" afterPath="$PROJECT_DIR$/admin/hugeit_contact_licensing.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/hugeit_contact_style_options_view.php" afterPath="$PROJECT_DIR$/admin/hugeit_contact_style_options_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/hugeit_contacts_view.php" afterPath="$PROJECT_DIR$/admin/hugeit_contacts_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/hugeit_free_version.php" afterPath="$PROJECT_DIR$/admin/hugeit_free_version.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/forms-contact.php" afterPath="$PROJECT_DIR$/forms-contact.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hugeit_contact_front_end_func.php" afterPath="$PROJECT_DIR$/hugeit_contact_front_end_func.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hugeit_contact_front_end_view.php" afterPath="$PROJECT_DIR$/hugeit_contact_front_end_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hugeit_contact_function/huge_it_contact_form_validation.php" afterPath="$PROJECT_DIR$/hugeit_contact_function/huge_it_contact_form_validation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/admin.js" afterPath="$PROJECT_DIR$/js/admin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/formBuilder.js" afterPath="$PROJECT_DIR$/js/formBuilder.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.txt" afterPath="$PROJECT_DIR$/readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/admin.style.css" afterPath="$PROJECT_DIR$/style/admin.style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/form-front.css" afterPath="$PROJECT_DIR$/style/form-front.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/licensing.css" afterPath="$PROJECT_DIR$/style/licensing.css" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="huge_it_contact_form_validation.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hugeit_contact_function/huge_it_contact_form_validation.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="809">
+              <caret line="451" column="0" lean-forward="true" selection-start-line="451" selection-start-column="0" selection-end-line="451" selection-end-column="0" />
+              <folding>
+                <marker date="1501685463286" expanded="true" signature="1325:1406" ph="SELECT 'subm... ${$tablenameSub}" />
+                <marker date="1501685463286" expanded="true" signature="1579:1627" ph="SELECT * FRO... ${$tablename}" />
+                <marker date="1501685463286" expanded="true" signature="2180:2314" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+                <marker date="1501685463286" expanded="true" signature="15949:16023" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+                <marker date="1501685463286" expanded="true" signature="18988:19151" ph="SELECT count... ${$wpdb-&gt;prefix}" />
+                <marker date="1501685463286" expanded="true" signature="19345:19475" ph="INSERT INTO `${$table_name}`... " />
+                <marker date="1501685463286" expanded="true" signature="20647:20767" ph="..." />
+                <marker date="1501685463286" expanded="true" signature="21426:21500" ph="SELECT name ${$wpdb-&gt;prefix}" />
+                <marker date="1501685463286" expanded="true" signature="23879:23954" ph="SELECT name ${$wpdb-&gt;prefix}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="formBuilder.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/formBuilder.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="835">
+              <caret line="523" column="3" lean-forward="false" selection-start-line="523" selection-start-column="3" selection-end-line="523" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/style/admin.style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="809">
+              <caret line="3393" column="1" lean-forward="false" selection-start-line="3393" selection-start-column="1" selection-end-line="3393" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/forms-contact.php" />
+        <option value="$PROJECT_DIR$/hugeit_contact_front_end_func.php" />
+        <option value="$PROJECT_DIR$/hugeit_contact_front_end_view.php" />
+        <option value="$PROJECT_DIR$/readme.txt" />
+        <option value="$PROJECT_DIR$/admin/hugeit_contact_custom_scripts.php" />
+        <option value="$PROJECT_DIR$/admin/hugeit_contact_emails_view.php" />
+        <option value="$PROJECT_DIR$/admin/hugeit_contact_formBuilder_ajax.php" />
+        <option value="$PROJECT_DIR$/admin/hugeit_contact_general_options_func.php" />
+        <option value="$PROJECT_DIR$/admin/hugeit_contact_general_options_view.php" />
+        <option value="$PROJECT_DIR$/admin/hugeit_contact_licensing.php" />
+        <option value="$PROJECT_DIR$/admin/hugeit_contacts_view.php" />
+        <option value="$PROJECT_DIR$/admin/hugeit_free_version.php" />
+        <option value="$PROJECT_DIR$/hugeit_contact_function/huge_it_contact_form_validation.php" />
+        <option value="$PROJECT_DIR$/js/formBuilder.js" />
+        <option value="$PROJECT_DIR$/style/admin.style.css" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="width" value="1924" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forms-contact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forms-contact" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forms-contact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forms-contact" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="style" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forms-contact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forms-contact" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="C:/xampp/htdocs/wordpress-plugin.dev/wp-content/plugins/forms-contact-master" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c42a1785-5f47-48c3-a67c-df00c049bf2a" name="Default" comment="" />
+      <created>1501683937828</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1501683937828</updated>
+      <workItem from="1501683939194" duration="388000" />
+      <workItem from="1501684897214" duration="595000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="983000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="0" width="1924" height="1056" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21566524" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/forms-contact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1501684317603" expanded="true" signature="2941:3059" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="5048:5119" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="5374:5467" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="7005:7037" ph="SELECT * FRO... " />
+            <marker date="1501684317603" expanded="true" signature="11601:11616" ph="..." />
+            <marker date="1501684317603" expanded="true" signature="14742:14820" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="18649:18716" ph="SELECT MAX( ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="19199:19266" ph="SELECT MAX( ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="24920:24989" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="25045:25136" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="32367:32426" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="34573:34994" ph="CREATE TABLE... IF" />
+            <marker date="1501684317603" expanded="true" signature="35082:35466" ph="CREATE TABLE... IF" />
+            <marker date="1501684317603" expanded="true" signature="35545:35882" ph="CREATE TABLE... IF" />
+            <marker date="1501684317603" expanded="true" signature="35925:36420" ph="CREATE TABLE... IF" />
+            <marker date="1501684317603" expanded="true" signature="36468:37160" ph="CREATE TABLE... IF" />
+            <marker date="1501684317603" expanded="true" signature="37201:37639" ph="CREATE TABLE... IF" />
+            <marker date="1501684317603" expanded="true" signature="37684:38035" ph="CREATE TABLE... IF" />
+            <marker date="1501684317603" expanded="true" signature="38246:42351" ph="INSERT INTO `${$table_name}`... " />
+            <marker date="1501684317603" expanded="true" signature="98640:102305" ph="INSERT INTO ${$table_name}" />
+            <marker date="1501684317603" expanded="true" signature="102384:102869" ph="INSERT INTO `${$table_name}`... " />
+            <marker date="1501684317603" expanded="true" signature="102952:103296" ph="INSERT INTO `${$table_name}`... " />
+            <marker date="1501684317603" expanded="true" signature="103690:103760" ph="select count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="103827:103891" ph="select count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="103958:104031" ph="select count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="104098:104171" ph="select count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="104238:104304" ph="select count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="104372:104451" ph="select count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="104541:104667" ph="INSERT INTO `${$table_name}`... " />
+            <marker date="1501684317603" expanded="true" signature="104733:104831" ph="select count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="104948:114356" ph="INSERT INTO `${$table_name}`... " />
+            <marker date="1501684317603" expanded="true" signature="114503:114659" ph="SELECT DATA_... COLUMNS" />
+            <marker date="1501684317603" expanded="true" signature="114734:114812" ph="SELECT id,su... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="114934:115025" ph="ALTER TABLE ${$wpdb-&gt;prefix}huge_it_contact_submission... " />
+            <marker date="1501684317603" expanded="true" signature="115651:115830" ph="SELECT * FRO... COLUMNS" />
+            <marker date="1501684317603" expanded="true" signature="115898:115990" ph="ALTER TABLE ${$wpdb-&gt;prefix}huge_it_contact_contacts_fields... " />
+            <marker date="1501684317603" expanded="true" signature="116150:116327" ph="SELECT * FRO... COLUMNS" />
+            <marker date="1501684317603" expanded="true" signature="116393:116483" ph="ALTER TABLE ${$wpdb-&gt;prefix}huge_it_contact_contacts_fields... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/hugeit_contact_formBuilder_ajax.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="2736" column="0" lean-forward="true" selection-start-line="2736" selection-start-column="0" selection-end-line="2736" selection-end-column="0" />
+          <folding>
+            <marker date="1501685367745" expanded="true" signature="165:265" ph="SELECT * fro... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="36512:36612" ph="SELECT * fro... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="45475:45563" ph="SELECT * fro... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="49606:49706" ph="SELECT * fro... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="52150:52250" ph="SELECT * fro... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="59808:59908" ph="SELECT * fro... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="77804:77903" ph="SELECT * fro... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="131571:131671" ph="SELECT * fro... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="137647:137763" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="137941:138015" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="139160:139276" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="139428:139502" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="140561:140677" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="140846:140920" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="142006:142122" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="142291:142365" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="143542:143658" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="143827:143901" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="145079:145195" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="145364:145438" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="146609:146725" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="146877:146951" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="148124:148240" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="148392:148466" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="149618:149734" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="149886:149960" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="150084:150200" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="150641:150708" ph="SELECT * fro... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="152032:152150" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="152318:152392" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="152491:152558" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="153612:153748" ph="SELECT id FR... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="154887:155003" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="155194:155268" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="155775:155895" ph="SELECT MAX(o... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="156107:156208" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="157333:157449" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="157618:157692" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="158882:158998" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="159184:159270" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="160442:160558" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="160727:160801" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="161950:162066" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="162235:162309" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="163504:163620" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="163789:163863" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="164617:164724" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="169736:169843" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="174309:174383" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="174461:174568" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="176100:176204" ph="SELECT MAX(i... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="176320:176394" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="180929:181040" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685367745" expanded="true" signature="187440:187547" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/hugeit_contact_emails_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3383">
+          <caret line="199" column="0" lean-forward="false" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/hugeit_contact_custom_scripts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="76" column="30" lean-forward="true" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
+          <folding>
+            <marker date="1501685292458" expanded="true" signature="249:333" ph="SELECT COUNT... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685292458" expanded="true" signature="1551:1628" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685292458" expanded="true" signature="1747:3269" ph="..." />
+            <marker date="1501685292458" expanded="true" signature="1990:3258" ph="..." />
+            <marker date="1501685292458" expanded="true" signature="2068:3247" ph="..." />
+            <marker date="1501685292458" expanded="true" signature="2109:3232" ph="..." />
+            <marker date="1501685292458" expanded="true" signature="2154:3213" ph="..." />
+            <marker date="1501685292458" expanded="true" signature="2266:3190" ph="..." />
+            <marker date="1501685292458" expanded="false" signature="2327:2346" ph="..." />
+            <marker date="1501685292458" expanded="true" signature="2347:2494" ph="..." />
+            <marker date="1501685292458" expanded="true" signature="2604:3162" ph="..." />
+            <marker date="1501685292458" expanded="true" signature="2682:3131" ph="..." />
+            <marker date="1501685292458" expanded="true" signature="2720:3096" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hugeit_contact_front_end_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="1571" column="67" lean-forward="true" selection-start-line="1571" selection-start-column="67" selection-end-line="1571" selection-end-column="67" />
+          <folding>
+            <element signature="e#9055#9077#0#HTML" expanded="true" />
+            <element signature="e#18123#18160#0#HTML" expanded="true" />
+            <element signature="e#18244#18269#0#HTML" expanded="true" />
+            <element signature="e#19808#19830#0#HTML" expanded="true" />
+            <element signature="e#55238#55242#1#HTML" expanded="true" />
+            <element signature="e#55278#55282#1#HTML" expanded="true" />
+            <marker date="1501685252425" expanded="true" signature="1889:3392" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="1889:3398" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="2117:2380" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="2597:3387" ph="..." />
+            <marker date="1501685252425" expanded="false" signature="2628:2761" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="3480:5591" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="3480:5597" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="3708:3971" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="4189:5586" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="4592:5580" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="4678:5465" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="5664:8066" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="5781:5846" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="5943:8066" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="6190:6453" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="6627:8066" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="6629:8066" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="6740:8066" ph="..." />
+            <marker date="1501685252425" expanded="false" signature="7053:7193" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="7194:8066" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="7195:8066" ph="..." />
+            <marker date="1501685252425" expanded="false" signature="7258:7280" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="7281:8066" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="7342:8066" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="11181:11195" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="11215:11920" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="11344:11573" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="11608:11909" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="11697:11894" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="12016:13721" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="12263:12526" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="12697:13721" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="12698:13721" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="12809:13721" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="13028:13162" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="13163:13721" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="13164:13721" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="13227:13249" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="13250:13721" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="13308:13721" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="23705:23883" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="23726:23883" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="23851:23883" ph="{...}" />
+            <marker date="1501685252425" expanded="true" signature="78220:78237" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="81211:81295" ph="..." />
+            <marker date="1501685252425" expanded="true" signature="83249:83333" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hugeit_contact_front_end_func.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="50" column="46" lean-forward="true" selection-start-line="50" selection-start-column="46" selection-end-line="50" selection-end-column="46" />
+          <folding>
+            <marker date="1501685085207" expanded="true" signature="152:266" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685085207" expanded="true" signature="399:431" ph="SELECT * FRO... " />
+            <marker date="1501685085207" expanded="true" signature="556:641" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685085207" expanded="true" signature="884:950" ph="SELECT * fro... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685085207" expanded="true" signature="1218:1306" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685085207" expanded="true" signature="1552:1647" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forms-contact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1112">
+          <caret line="703" column="66" lean-forward="false" selection-start-line="703" selection-start-column="66" selection-end-line="703" selection-end-column="66" />
+          <folding>
+            <marker date="1501684317603" expanded="true" signature="2941:3059" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="5048:5119" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="5374:5467" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="7005:7037" ph="SELECT * FRO... " />
+            <marker date="1501684317603" expanded="true" signature="11601:11616" ph="..." />
+            <marker date="1501684317603" expanded="true" signature="14742:14820" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="18649:18716" ph="SELECT MAX( ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="19199:19266" ph="SELECT MAX( ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="24920:24989" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="25045:25136" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="32367:32426" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="34573:34994" ph="CREATE TABLE... IF" />
+            <marker date="1501684317603" expanded="true" signature="35082:35466" ph="CREATE TABLE... IF" />
+            <marker date="1501684317603" expanded="true" signature="35545:35882" ph="CREATE TABLE... IF" />
+            <marker date="1501684317603" expanded="true" signature="35925:36420" ph="CREATE TABLE... IF" />
+            <marker date="1501684317603" expanded="true" signature="36468:37160" ph="CREATE TABLE... IF" />
+            <marker date="1501684317603" expanded="true" signature="37201:37639" ph="CREATE TABLE... IF" />
+            <marker date="1501684317603" expanded="true" signature="37684:38035" ph="CREATE TABLE... IF" />
+            <marker date="1501684317603" expanded="true" signature="38246:42351" ph="INSERT INTO `${$table_name}`... " />
+            <marker date="1501684317603" expanded="true" signature="98640:102305" ph="INSERT INTO ${$table_name}" />
+            <marker date="1501684317603" expanded="true" signature="102384:102869" ph="INSERT INTO `${$table_name}`... " />
+            <marker date="1501684317603" expanded="true" signature="102952:103296" ph="INSERT INTO `${$table_name}`... " />
+            <marker date="1501684317603" expanded="true" signature="103690:103760" ph="select count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="103827:103891" ph="select count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="103958:104031" ph="select count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="104098:104171" ph="select count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="104238:104304" ph="select count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="104372:104451" ph="select count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="104541:104667" ph="INSERT INTO `${$table_name}`... " />
+            <marker date="1501684317603" expanded="true" signature="104733:104831" ph="select count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="104948:114356" ph="INSERT INTO `${$table_name}`... " />
+            <marker date="1501684317603" expanded="true" signature="114503:114659" ph="SELECT DATA_... COLUMNS" />
+            <marker date="1501684317603" expanded="true" signature="114734:114812" ph="SELECT id,su... ${$wpdb-&gt;prefix}" />
+            <marker date="1501684317603" expanded="true" signature="114934:115025" ph="ALTER TABLE ${$wpdb-&gt;prefix}huge_it_contact_submission... " />
+            <marker date="1501684317603" expanded="true" signature="115651:115830" ph="SELECT * FRO... COLUMNS" />
+            <marker date="1501684317603" expanded="true" signature="115898:115990" ph="ALTER TABLE ${$wpdb-&gt;prefix}huge_it_contact_contacts_fields... " />
+            <marker date="1501684317603" expanded="true" signature="116150:116327" ph="SELECT * FRO... COLUMNS" />
+            <marker date="1501684317603" expanded="true" signature="116393:116483" ph="ALTER TABLE ${$wpdb-&gt;prefix}huge_it_contact_contacts_fields... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/hugeit_contact_general_options_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="809">
+          <caret line="246" column="0" lean-forward="true" selection-start-line="246" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/hugeit_free_version.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="809">
+          <caret line="82" column="1" lean-forward="false" selection-start-line="82" selection-start-column="1" selection-end-line="82" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/hugeit_contacts_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="1438" column="25" lean-forward="true" selection-start-line="1438" selection-start-column="25" selection-end-line="1438" selection-end-column="25" />
+          <folding>
+            <marker date="1501685418221" expanded="true" signature="1715:1729" ph="..." />
+            <marker date="1501685418221" expanded="true" signature="1962:2386" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/hugeit_contact_licensing.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="809">
+          <caret line="84" column="0" lean-forward="true" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/hugeit_contact_general_options_func.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="809">
+          <caret line="74" column="1" lean-forward="false" selection-start-line="74" selection-start-column="1" selection-end-line="74" selection-end-column="1" />
+          <folding>
+            <marker date="1501685387336" expanded="true" signature="350:417" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685387336" expanded="true" signature="1120:1199" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hugeit_contact_function/huge_it_contact_form_validation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="809">
+          <caret line="451" column="0" lean-forward="true" selection-start-line="451" selection-start-column="0" selection-end-line="451" selection-end-column="0" />
+          <folding>
+            <marker date="1501685463286" expanded="true" signature="1325:1406" ph="SELECT 'subm... ${$tablenameSub}" />
+            <marker date="1501685463286" expanded="true" signature="1579:1627" ph="SELECT * FRO... ${$tablename}" />
+            <marker date="1501685463286" expanded="true" signature="2180:2314" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685463286" expanded="true" signature="15949:16023" ph="SELECT * FRO... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685463286" expanded="true" signature="18988:19151" ph="SELECT count... ${$wpdb-&gt;prefix}" />
+            <marker date="1501685463286" expanded="true" signature="19345:19475" ph="INSERT INTO `${$table_name}`... " />
+            <marker date="1501685463286" expanded="true" signature="20647:20767" ph="..." />
+            <marker date="1501685463286" expanded="true" signature="21426:21500" ph="SELECT name ${$wpdb-&gt;prefix}" />
+            <marker date="1501685463286" expanded="true" signature="23879:23954" ph="SELECT name ${$wpdb-&gt;prefix}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/formBuilder.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="835">
+          <caret line="523" column="3" lean-forward="false" selection-start-line="523" selection-start-column="3" selection-end-line="523" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style/admin.style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="809">
+          <caret line="3393" column="1" lean-forward="false" selection-start-line="3393" selection-start-column="1" selection-end-line="3393" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

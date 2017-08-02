@@ -41,7 +41,7 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
     position: relative;
     float: left;
     width: 94%;
-    min-width: 305px;
+    min-width: 250px;
     margin: 0 1% 0 1%;
     height: auto;
     min-height: 30px;
@@ -150,7 +150,7 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
     position: relative;
     display: table !important;
     padding: 0 !important;
-    margin: 0 !important;
+    margin: 0 0 0 -5px !important;
 }
 
 .hugeit-contact-wrapper .hugeit-contact-column-block > div > label ul li {
@@ -487,4 +487,33 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
     vertical-align: baseline !important;
     -webkit-transition: all 0.5s ease !important;
     transition: all 0.5s ease !important;
+}
+/* Pagination */
+.paginationUl {
+    display: none;
+    margin-top:30px!important;
+    width:100%;
+    margin:0 auto;
+    text-align: center;
+
+}
+
+
+.paginationUl  li{
+    line-height: 40px;
+    width:34px;
+    height:40px;
+    display: inline-block;
+    cursor: pointer;
+    list-style: none;
+}
+
+/* Pagination */
+
+button[disabled], input[disabled], select[disabled], textarea[disabled] {
+    cursor: pointer !important;
+    opacity: .5 !important;
+}
+input[disabled] +i +i {
+    opacity: 0.5;
 }

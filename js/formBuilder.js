@@ -371,7 +371,7 @@ jQuery(document).ready(function(e) {
 
 
     ///SAVE FORM STARTS///
-    jQuery('#save-button-block').on('click', 'input#save-buttom', function(event) {
+    jQuery('#hg_n_btn_block').on('click', 'input#save-buttom', function(event) {
         event.preventDefault();
         var formId = jQuery("#add-fields-block").find('li.spinnerLi').attr('data-idForm');
         var form = jQuery('#adminForm');
@@ -443,7 +443,7 @@ jQuery(document).ready(function(e) {
         var themeId = jQuery(this).val();
         var formId = jQuery("#add-fields-block").find('li.spinnerLi').attr('data-idForm');
         var form = jQuery('#adminForm');
-        var spinner = jQuery(this).parent().find('img.themeSpinner');
+        var spinner = jQuery(this).parent().parent().find('img.themeSpinner');
 
 
         jQuery.ajax({
@@ -462,6 +462,11 @@ jQuery(document).ready(function(e) {
             },
             success: function(response) {
                 if (response) {
+                    /*Find the icon name*/
+                    var _hg_icons = response.slice(response.indexOf("hugeicons"),response.indexOf("{"));
+                    _hg_icons = _hg_icons.split("_");
+                    var _hg_res_icon= response.slice(response.indexOf("hugeicons", response.indexOf("#", 1)),response.indexOf("{",response.indexOf("#",1))).split("_");
+                    /*Find the icon name*/
                     var style = document.getElementById('formStyles'),
                         script = document.getElementsByTagName('script')[0],
                         styles = response;
@@ -471,6 +476,41 @@ jQuery(document).ready(function(e) {
                     jQuery('#select_form_show_title').trigger('change');
                     try {
                         style.innerHTML = styles;
+                        /*Change icon dynamically*/
+                        if(jQuery("#hugeit-contact-wrapper").find("button[id^='hugeit_preview_button__submit_']").length){
+
+                            var _hg_this_btn = jQuery("button[id^='hugeit_preview_button__submit_']");
+
+                            if(_hg_this_btn.find("i").length){
+                                var _hg_this_btn_i = _hg_this_btn.find("i");
+                                _hg_this_btn_i = (_hg_icons[1]=="on")?_hg_this_btn_i.removeClass().addClass(_hg_icons[0]):_hg_this_btn.find("i").removeClass();
+
+                            }
+                            else {
+                                if(_hg_icons[1]=="on") {
+                                    _hg_this_btn.append("<i class='"+_hg_icons[0]+"'></i>");
+                                }
+                            }
+
+                        }
+                        if(jQuery("#hugeit-contact-wrapper").find("button[id^='hugeit_preview_button_reset_']").length){
+
+                            var _hg_res_this_btn = jQuery("button[id^='hugeit_preview_button_reset_']");
+
+                            if(_hg_res_this_btn.find("i").length){
+                                var _hg_res_this_btn_i = _hg_res_this_btn.find("i");
+                                _hg_res_this_btn_i = (_hg_res_icon[1]=="on")?_hg_res_this_btn_i.removeClass().addClass(_hg_res_icon[0]):_hg_res_this_btn.find("i").removeClass();
+
+                            }
+                            else {
+                                if(_hg_res_icon[1]=="on") {
+                                    _hg_res_this_btn.append("<i class='"+_hg_res_icon[0]+"'></i>");
+                                }
+                            }
+
+                        }
+                        /*Change icon dynamically*/
+
                     }
                     catch (error) {
                         style.styleSheet.cssText = styles;

@@ -2,7 +2,8 @@
 if(! defined( 'ABSPATH' )) exit;
 function hugeit_contact_show_published_contact_1($id){
 	global $wpdb;
-	$id=esc_sql($id);
+
+	$id=absint($id);
 	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = %d order by ordering DESC",$id);
 	$rowim=$wpdb->get_results($query);
 	$tablename = $wpdb->prefix . "huge_it_contact_general_options";
@@ -12,6 +13,10 @@ function hugeit_contact_show_published_contact_1($id){
 
     $query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts where id = %d order by id ASC",$id);
     $hugeit_contact=$wpdb->get_results($query);
+    if(empty($hugeit_contact)){
+        printf("Form with ID %d doesn't exist.", $id);
+        return;
+    }
     $hugeit_contacteffect=$hugeit_contact[0]->hc_yourstyle;
 
     $strquery = "SELECT * from " . $wpdb->prefix . "huge_it_contact_general_options";
@@ -26,7 +31,7 @@ function hugeit_contact_show_published_contact_1($id){
     }
 	$frontendformid = $id;
 
-	$query = "SELECT *  FROM " . $wpdb->prefix . "huge_it_contact_style_fields WHERE options_name = '".esc_sql($hugeit_contacteffect)."' ";
+	$query = $wpdb->prepare("SELECT *  FROM " . $wpdb->prefix . "huge_it_contact_style_fields WHERE options_name = %s",$hugeit_contacteffect);
     $rows = $wpdb->get_results($query);
     $style_values = array();
     foreach ($rows as $row) {

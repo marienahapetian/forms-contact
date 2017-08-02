@@ -58,12 +58,8 @@ function hugeit_contact_html_styles($rows){
                     <?php _e('Add New Theme', 'hugeit_contact'); ?> <i>(pro)</i>
                 </a>
 			</h2>
-			
-			<?php
-			if ( isset( $_POST['serch_or_not'] ) ) {
-				$serch_value = $_POST['serch_or_not'] == "search" ? esc_html( stripslashes( $_POST['search_events_by_title'] ) ) : "";
-			}
-			$serch_fields='<div class="alignleft actions"">				
+			<?php if ( isset( $_POST['serch_or_not'] ) ) { $serch_value = $_POST['serch_or_not'] == "search" ? esc_html( stripslashes( $_POST['search_events_by_title'] ) ) : "";}
+            $serch_fields='<div class="alignleft actions"">				
 			<div class="alignleft actions">
 				<input type="button" value="Search" onclick="document.getElementById(\'page_number\').value=\'1\'; document.getElementById(\'serch_or_not\').value=\'search\';
 				 document.getElementById(\'admin_form\').submit();" class="button-secondary action">
@@ -193,15 +189,18 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 					<?php
 					}
 					else{ ?>
-						<li class="active" onclick="this.firstElementChild.style.width = ((this.firstElementChild.value.length + 1) * 8) + 'px';" style="background-image:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>);cursor:pointer;">
-							<input onfocus="this.style.width = ((this.value.length + 2) * 10) + 'px'" onkeyup="hugeit_contact_updateInput(this.value)" class="text_area" type="text" name="name" id="name" maxlength="250" value="<?php echo esc_html(stripslashes($style_theme->name));?>" />
+						<li class="active" onclick="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 9) * 8) + 'px';" >
+                            <div class="hg_cut_border">
+                                <div class="hg_cut_inl_border"></div>
+                            </div>
+							<input onfocus="this.style.width = ((this.value.length + 2) * 10) + 'px'" onkeyup="hugeit_contact_updateInput(this.value)" class="text_area" type="text" name="name" id="name" maxlength="250" value="<?php echo esc_html(stripslashes($style_theme->name));?>" style="background:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>) no-repeat #f3f4f8;" />
 						</li>
 					<?php	
 					}
 				}
 				?>
 				<li class="add-new">
-					<a onclick="alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');	">+</a>
+					<a onclick="alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');	"></a>
 				</li>
 			</ul>
 		</div>
@@ -725,6 +724,31 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 									<input name="params[form_selectbox_arrow_color]" type="text" class="color" id="form_selectbox_arrow_color" value="#<?php echo esc_html($param_values['form_selectbox_arrow_color']); ?>" size="10" />
 								</div>
 							</div>
+                            <!-- Pagination -->
+                            <div class="hugeit-contact-general-options-block">
+                                <h3><?php _e('Pagination Styles','hugeit_contact');?></h3>
+
+                                <div>
+                                    <label for="form_pagination_has_background"><?php _e('Pagination Background','hugeit_contact');?></label>
+                                    <input type="hidden" value="off" name="params[form_pagination_has_background]" />
+                                    <input type="checkbox" id="form_pagination_has_background"   name="params[form_pagination_has_background]" value="on" checked="checked" />
+                                </div>
+
+                                <div>
+                                    <label for="form_pagination_background_color"><?php _e('Pagination Background Color','hugeit_contact');?></label>
+                                    <input name="params[form_pagination_background_color]" type="text" class="color" id="form_pagination_background_color" value="#F4514C" size="10" />
+                                </div>
+                                <div>
+                                    <label for="form_pagination_background_size"><?php _e('Pagination Background Size','hugeit_contact');?></label>
+                                    <input type="number" name="params[form_pagination_background_size]" id="form_pagination_background_size" value="34" class="text" min="0" />
+                                    <span>px</span>
+                                </div>
+                                <div>
+                                    <label for="form_pagination_font_color"><?php _e('Pagination Font Color','hugeit_contact');?></label>
+                                    <input name="params[form_pagination_font_color]" type="text" class="color" id="form_pagination_font_color" value="#FFFFFF" size="10" />
+                                </div>
+                            </div>
+                            <!-- Pagination -->
 							<div class="hugeit-contact-general-options-block">
 								<h3><?php _e('Button Styles', 'hugeit_contact'); ?></h3>
 								<div>
@@ -956,6 +980,24 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 								</div>
 							</div>
 						</div>
+                        <style>
+                            #poststuff {
+
+                                border: 1px solid #d0d6dc;
+                                background-color:#fff ;
+                            }
+                            #post-body-content {
+                                background-color:#f3f4f8;
+                            }
+                            .hugeit_tabs_block .hugeit_contact_top_tabs li.add-new:before {
+                                content: "Add New Theme";
+                                position: absolute;
+                                top: 26px;
+                                left: -142px;
+                                font-size: 17px;
+                                font-family: 'Open Sans', sans-serif;
+                            }
+                        </style>
 					</form>
 
 				</div>

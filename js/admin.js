@@ -590,7 +590,7 @@ jQuery(document).ready(function () {
 	jQuery(function() {
 		form_clean = jQuery("form").serialize();
 	});
-	jQuery('#save-button-block').on('click','input#save-buttom',function(){
+	jQuery('#hg_n_btn_block').on('click','input#save-buttom',function(){
 		form_clean = jQuery("form").serialize();
 		form_clean=form_clean.replace(/g-recaptcha-response=([^]*?)&/g, '');
 	})
@@ -626,11 +626,11 @@ jQuery(document).ready(function () {
 	});
 	jQuery("#shortcode_toggle").toggle(function(){
 		jQuery('#post-body-heading').stop().animate({height:145},500,function(){
-			jQuery('#post-body-heading #shortcode_fields').fadeIn()
+			jQuery('#post-body-heading #shortcode_fields').fadeIn();
 		});
 	},function(){
-		jQuery('#post-body-heading #shortcode_fields').fadeOut()
-		jQuery('#post-body-heading').stop().animate({height:40},500,function(){
+		jQuery('#post-body-heading #shortcode_fields').fadeOut();
+		jQuery('#post-body-heading').stop().animate({height:60},500,function(){
 
 		});
 	});
@@ -1501,7 +1501,23 @@ jQuery(document).ready(function () {
 			case 'default' :
 				jQuery('#hugeit-contact-wrapper').find('h3').css('display', defaultTitleVisibility);
 		}
-	})
+	});
+
+    //Reply To User
+    jQuery("#reply_to_user").on("change",function () {
+        if(jQuery(this).is(":checked")){
+            jQuery("#form_adminstrator_user_mail").attr('readonly','readonly');
+        }
+        else {
+            jQuery("#form_adminstrator_user_mail").removeAttr("readonly");
+        }
+    });
+//Reply To User
+
+    jQuery(".custom_css_save").on("click",function () {
+        window.onbeforeunload=null;
+    });
+
 });
 
 function HugeitContactSetCookie(name, value, options) {
@@ -1674,3 +1690,89 @@ jQuery(function() {
 		return false;
 	});
 });
+// INLINE MENU TOGGLE FUNCTION
+jQuery(document).ready(function(){
+    // MOBILE ICON SHOW IN 414 WIDTH OR SMALL
+jQuery( ".hg_view_plugins_block .toggle_element" ).toggle(function() {
+    jQuery('.submenu').css('opacity','1');
+    jQuery('.submenu').css('display','flex');
+    jQuery('.submenu').css('visibility','visible');
+    // jQuery('.submenu li a').css('display','inline-block');
+    // jQuery('.submenu li').css('display','inline-block');
+
+
+}, function() {
+    jQuery('.submenu').css('visibility','hidden');
+
+
+});
+    var screen=jQuery(window).width();
+    if (screen < 415) {
+        jQuery('.huge_it_logo').addClass('hide');
+        jQuery('.mobile_icon_show').removeClass('hide');
+        jQuery('.mobile_icon_show').addClass('show');
+
+    }
+
+    jQuery(window).on("resize",function () {
+        var screen=jQuery(window).width();
+        if (screen < 415) {
+            jQuery('.huge_it_logo').addClass('hide');
+            jQuery('.mobile_icon_show').removeClass('hide');
+            jQuery('.mobile_icon_show').addClass('show');
+
+        }
+    });
+
+    // if(jQuery(window).width()<768){
+    //     jQuery('.submenu').css('display','inline-block');
+    // }
+
+
+	/*Width of form name input*/
+	if(jQuery(document).find("#huge_it_contact_formname").length){
+        var _fn_width = jQuery("#huge_it_contact_formname").val().length;
+        jQuery("#huge_it_contact_formname").width((_fn_width+2)*8+"px");
+	}
+
+/*Mask On*/
+	(function(){
+		 var def_value;
+        jQuery('#fields-list-block').on("change",".hg-mask-on-check",function() {
+				  var mask_on_block = jQuery(this).parent().find('.hg-mask-on');
+				  def_value   = mask_on_block.closest('div.fields-options').find('.hg-def-value');
+				  if(!def_value.data('val')) {
+					  def_value.data('val',def_value.val());
+				  }
+			  else if(def_value.val()!=="" && def_value.data('val')!==def_value.val()){
+					  def_value.data('val',def_value.val())
+				  }
+				  if(jQuery(this).is(":checked")) {
+					  mask_on_block.removeClass('readonlyHgMask');
+					  def_value.val('');
+					  def_value.attr('readonly','readonly');
+				  }
+			  else {
+					  jQuery(this).parent().find('.mask_on').val("");
+					  mask_on_block.addClass('readonlyHgMask');
+					  def_value.removeAttr('readonly');
+					  def_value.val(def_value.data('val'));
+				  }
+			  });
+		})();
+/*Mask On*/
+
+});
+
+
+jQuery(document).ready(function(){
+    jQuery("body").on('click', '.close_banner', function(){
+        jQuery(".free_version_banner").addClass('hide');
+    });
+});
+jQuery(document).ready(function(){
+    jQuery("body").on('click', '.closer_icon_only', function(){
+        jQuery(".free_version_banner").addClass('hide');
+    });
+});
+
