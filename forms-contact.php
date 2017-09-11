@@ -1677,7 +1677,18 @@ n_theme_Query;
     }
 
 
-    /* change submission_date column type if required */
+   changeSubmissionDateColumnType();
+
+   refactorSelectboxPlaceholders();
+
+    addConditionalLogicMaskColumns();
+
+
+}
+
+/* change submission_date column type if required */
+function changeSubmissionDateColumnType(){
+    global $wpdb;
     $type = $wpdb->get_var("SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS 
   WHERE table_name = '" . $wpdb->prefix . "huge_it_contact_submission' AND COLUMN_NAME = 'submission_date'");
 
@@ -1699,25 +1710,63 @@ n_theme_Query;
         }
 
     }
+}
 
+
+/* move selectbox placeholder value from options to separate field */
+function refactorSelectboxPlaceholders(){
+    global $wpdb;
+
+    $fields = $wpdb->get_results('SELECT id,name,hc_other_field FROM '.$wpdb->prefix.'huge_it_contact_contacts_fields  WHERE conttype="selectbox" AND hc_input_show_default="formsInsideAlign" AND def_value = "" AND description = ""' );
+
+    if(count($fields)) {
+
+        foreach ( $fields as $field ){
+            $fieldID = $field->id;
+
+            $options = explode(';;', $field->name);
+
+            $defValue = $options[0];
+
+            unset($options[0]);
+
+            $newOptions = implode(';;',$options);
+
+            $wpdb->update($wpdb->prefix.'huge_it_contact_contacts_fields',
+                array(
+                    'def_value'=>$defValue,
+                    'name' =>$newOptions,
+                    'description'=>'refactored'
+                ),
+                array(
+                    'id'=>$fieldID
+                )
+            );
+        }
+    }
 
 }
 
+function addConditionalLogicMaskColumns(){
+    global $wpdb;
     /* Add column for Default Value if not exists  */
     $conditionalLogicColumn = $wpdb->query("SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = '".$wpdb->dbname."' AND TABLE_NAME = '".$wpdb->prefix."huge_it_contact_contacts_fields' AND COLUMN_NAME = 'def_value'");
 
     if($conditionalLogicColumn==0) {
-            $wpdb->query("ALTER TABLE " . $wpdb->prefix . "huge_it_contact_contacts_fields ADD def_value text NOT NULL");
-        }
-     /* Add column for Default Value if not exists  */
+        $wpdb->query("ALTER TABLE " . $wpdb->prefix . "huge_it_contact_contacts_fields ADD def_value text NOT NULL");
+    }
+    /* Add column for Default Value if not exists  */
 
-   /* Add column for Mask On if not exists  */
-   $conditionalLogicColumn = $wpdb->query("SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = '".$wpdb->dbname."' AND TABLE_NAME = '".$wpdb->prefix."huge_it_contact_contacts_fields' AND COLUMN_NAME = 'mask_on'");
+    /* Add column for Mask On if not exists  */
+    $conditionalLogicColumn = $wpdb->query("SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = '".$wpdb->dbname."' AND TABLE_NAME = '".$wpdb->prefix."huge_it_contact_contacts_fields' AND COLUMN_NAME = 'mask_on'");
 
-   if($conditionalLogicColumn==0) {
-           $wpdb->query("ALTER TABLE " . $wpdb->prefix . "huge_it_contact_contacts_fields ADD mask_on text NOT NULL");
-       }
-   /* Add column for Mask On if not exists  */
+    if($conditionalLogicColumn==0) {
+        $wpdb->query("ALTER TABLE " . $wpdb->prefix . "huge_it_contact_contacts_fields ADD mask_on text NOT NULL");
+    }
+    /* Add column for Mask On if not exists  */
+}
+
+
 
 register_activation_hook(__FILE__, 'hugeit_contact_activate');
 register_deactivation_hook(__FILE__, 'hugeit_contact_subscriber_deactivate');
