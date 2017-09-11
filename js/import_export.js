@@ -29,7 +29,7 @@ jQuery(document).ready(function () {
 
         var general_data = {
             action: "hugeit_contact_export_form",
-            nonce: exportForm.nonce,
+            nonce: hugeit_forms_exportForm.nonce,
             form: form_id
         };
         jQuery(this).find('.fa-check').removeClass('fa-check').addClass('fa-spinner');

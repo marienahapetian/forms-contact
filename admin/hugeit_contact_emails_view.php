@@ -18,21 +18,21 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 	<div id="poststuff">
 		<?php $path_site = plugins_url("Front_images", __FILE__); ?>
 		<div id="post-body-content" class="hugeit_contact_email">
-			<h3>Newsletter Manager</h3>
+            <h3>Newsletter Manager <span class="pro">PRO</span></h3>
 			<div id="hugeit_contact_email_manager">	
-				<div class="sub_setting">			
+				<div class="sub_setting pro-page">
 					<form method="post" action="admin.php?page=hugeit_forms_email_manager&task=save" id="email_manager_form" name="email_manager_form">	
 							<label for="huge_it_form_choose">Choose The Forms</label><br>
-							<select name="" id="huge_it_form_choose">
+							<select disabled id="huge_it_form_choose">
 								<option value="all">All Forms</option>
 								<?php foreach ($formsToShow as $key => $value) : ?>
 									<option value="<?php echo esc_html($key); ?>"><?php echo esc_html($value); ?></option>
 								<?php endforeach; ?>
 							</select><br>
 							<label for="huge_it_setting_subscriber_limit_id">Emails in One Flow</label><br>
-							<input type="number" name="mailerParams[sub_count_by_parts]" id="huge_it_setting_subscriber_limit_id" value="<?php echo esc_html($mailerParams['sub_count_by_parts']); ?>" class="regular-text"><br>
+							<input type="number" disabled id="huge_it_setting_subscriber_limit_id" value="<?php echo esc_html($mailerParams['sub_count_by_parts']); ?>" class="regular-text"><br>
 							<label for="huge_it_setting_schedule_id">Interval Between Mailings</label><br>
-							<select name="mailerParams[sub_interval]" id="huge_it_setting_schedule_id">
+							<select id="huge_it_setting_schedule_id" disabled>
 								<option value="60" <?php selected( '60', $mailerParams['sub_interval'], true ); ?>>1 Minute</option>
 								<option value="120" <?php selected( '120', $mailerParams['sub_interval'], true ); ?>>2 Minutes</option>
 								<option value="1800" <?php selected( '1800',$mailerParams['sub_interval'], true ); ?>>30 Minutes</option>
@@ -40,7 +40,7 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 							</select><br>
 
 							<label for="huge_it_email_subject">Email Subject</label><br>
-							<input type="text" name="mailerParams[email_subject]" id="huge_it_email_subject" value="<?php echo esc_html($mailerParams['email_subject']); ?>" class="regular-text"><br>
+							<input type="text" disabled id="huge_it_email_subject" value="<?php echo esc_html($mailerParams['email_subject']); ?>" class="regular-text"><br>
 						<input type="hidden" name="task" value=""/>
 					</form>
 
@@ -56,7 +56,7 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 					}
 
 					add_filter( 'tiny_mce_before_init', 'hugeit_contact_wptiny2' );
-					$settings = array( 'media_buttons' => false );
+					$settings = array( 'media_buttons' => false);
 					wp_editor( '', "hugeit_contact_subscriber_message", $settings );
 					?>
 					<div id="showCont">
@@ -186,7 +186,6 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 						<tbody>	
 							
 						<?php foreach($subscribers as $subscriber): ?>
-
 							<tr id="sub_row_<?php echo absint($subscriber['subscriber_id']); ?>">
 								<td colspan="5"><?php echo esc_html($subscriber['subscriber_email']); ?></td>
 								<?php if($subscriber['send']==1||$subscriber['send']==2):?>

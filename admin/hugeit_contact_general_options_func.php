@@ -30,7 +30,7 @@ function hugeit_contact_save_styles_options(){
         return false;
     }
     if (isset($_POST['params'])){
-        $params = $_POST['params'];
+    $params = $_POST['params'];
         foreach ($params as $key => $value) {
             $option_exists=count($wpdb->get_results($wpdb->prepare('SELECT * FROM '.$wpdb->prefix . 'huge_it_contact_general_options WHERE name= %s',$key)));
             if($option_exists) {
@@ -56,13 +56,13 @@ function hugeit_contact_save_styles_options(){
         $i=0;
         $patterns=array();
         foreach ($images[0] as $image) {
-            $image =preg_replace('/"/', "", $image);
+            $image =preg_replace('/"/', "", $image); 
             $image =preg_replace('/\</', "", $image);
-            $image =preg_replace('/\>/', "", $image);
-
+            $image =preg_replace('/\>/', "", $image);   
+             
 
             $patterns[$i]=$image;
-            $i++;
+            $i++;           
         }
         $userMessage=preg_replace($images[0], $patterns, $userMessage);
         $wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."huge_it_contact_general_options SET  value='%s'  WHERE name = 'form_adminstrator_message' ", $adminMessage));
@@ -71,5 +71,5 @@ function hugeit_contact_save_styles_options(){
         ?>
         <div class="updated"><p><strong><?php _e('Item Saved'); ?></strong></p></div>
         <?php
-    }
+	}
 }

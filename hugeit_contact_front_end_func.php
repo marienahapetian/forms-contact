@@ -2,7 +2,6 @@
 if(! defined( 'ABSPATH' )) exit;
 function hugeit_contact_show_published_contact_1($id){
 	global $wpdb;
-
 	$id=absint($id);
 	$query=$wpdb->prepare("SELECT * FROM ".$wpdb->prefix."huge_it_contact_contacts_fields where hugeit_contact_id = %d order by ordering DESC",$id);
 	$rowim=$wpdb->get_results($query);

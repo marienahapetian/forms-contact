@@ -139,7 +139,7 @@ function hugeit_contact_html_showhugeit_contacts( $rows,  $pageNav,$sort,$cat_ro
 			</div>';
 
 			?>
-			<table class="wp-list-table widefat fixed pages" style="width:95%">
+			<table class="wp-list-table widefat fixed pages" >
 				<thead>
 				 <tr>
 					<th scope="col" id="id" style="width:30px" ><span><?php _e('ID','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
@@ -319,7 +319,9 @@ $keyForBackground = 1;
                 <?php
                 $submition_id=esc_html($submition->id);
                 $submition_contact_id=esc_html($submition->contact_id);
-                $submition_contact_country =esc_html ($submition->contact_country);
+                $submition_contact_country = '(Only In Pro)';
+                $ipOfSub = array_filter(explode("*()*", $submition->submission_ip),'strlen');
+
                 ?>
 				    <tr id="comment-<?php echo $submition_id; ?>" class="comment even thread-even <?php if($submition->customer_read_or_not == 1){ echo "read"; } else { echo "unread"; } if($submition->customer_spam == 1){ echo " spam"; } else { echo ""; }?> depth-<?php echo $keyForBackground; if($keyForBackground%2 == 0) echo " alt"; ?> ">
 				        <th scope="row" class="check-column">
@@ -362,7 +364,7 @@ $keyForBackground = 1;
 				        </td>
 				        <td class="author column-author user-name">
 				            <?php if ($submition->customer_read_or_not == 1):?>
-							<a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id=<?php echo $submition_id; ?>&submissionsId=<?php echo $submition_contact_id; ?>"><?php echo $submition_customer_country; ?></a>
+							<a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id=<?php echo $submition_id; ?>&submissionsId=<?php echo $submition_contact_id; ?>"><?php echo $submition_contact_country; ?></a>
 				            <p class='spamer' <?php  if($submition->customer_spam != 1) echo "style= 'display: none'"; ?>>Spam!</p>
 				            <?php else:?>
 				            <a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id=<?php echo $submition_id; ?>&read=unread&submissionsId=<?php echo $submition->contact_id; ?>"><?php echo $submition->customer_country; ?></a>
@@ -372,7 +374,6 @@ $keyForBackground = 1;
 				        <td class="author column-author user_email">
 				            <input value="<?php echo $submition->submission_date; ?>" id_for_edit="<?php echo $submition_id; ?>" readonly="readonly" />
 				        </td>
-				        <?php $ipOfSub = array_filter(explode("*()*", $submition->submission_ip),'strlen');?>
 				        <td class="author column-author user_phone">
 				            <input value="<?php echo $ipOfSub[0]; ?>" id_for_edit="<?php echo $submition_id; ?>" readonly="readonly" />
 				        </td>
@@ -469,7 +470,7 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 					<table class="detailsTable">
 						<tr><td>Submission Date:</td><td ><?php echo esc_html($messageInArray[0]->submission_date); ?></td></tr>
 						<tr><td>User Browser:</td><td><?php if(isset($ipOfSub2[1])){echo esc_html($ipOfSub2[1]).'  <img style="vertical-align: sub;"src="'.plugins_url( '../images/'.$ipOfSub2[1].'.png', __FILE__ ).'">';}else{echo '';} ?></td></tr>
-						<tr><td>User Country:</td><td><?php echo esc_html($messageInArray[0]->customer_country); ?></td></tr>
+						<tr><td>User Country:</td><td><?php echo '(Only In Pro)'; ?></td></tr>
 						<tr><td>User IP:</td><td><?php echo esc_html($ipOfSub2[0]); ?></td></tr>
 
 					</table>

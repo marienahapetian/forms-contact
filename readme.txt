@@ -1,14 +1,14 @@
 === Forms - Form builder and Contact form ===
 Contributors: Huge-IT
 Donate link: https://huge-it.com/forms/
-Tags: forms, contact form, contact forms, forms plugin, contact form builder, wordpress contact form, contact us, form, form builder, form creation, form maker, forms builder,
+Tags: forms, contact form, form, form builder, form maker,
 Requires at least: 3.0.1
 Tested up to: 4.7.5
 Stable tag: 1.4.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Form builder are one of the most important elements of your website. If you need a simple configured and best functioning forms.
+Form builder are one of the most important elements of your website. If you need a simple configured and best functioning forms - contact form.
 
 == Description ==
 
@@ -416,8 +416,6 @@ If you think, that you found a bug in our [WordPress Forms](https://huge-it.com/
 
 == Changelog ==
 
-<<<<<<< HEAD
-=======
 = 1.4.9 =
 
 * 1) NEW: WE have added email to user option with more advanced functionality.
@@ -445,7 +443,6 @@ If you think, that you found a bug in our [WordPress Forms](https://huge-it.com/
 
 * We have fixed the issue with custom date when user addes additional symols for the first time.
 
->>>>>>> 5d7db3a0530da200d95b1366220b756579bda4c6
 = 1.4.4 =
 
 * 1) We have added front-end submissions in 2 new views horizontal and vertical 
