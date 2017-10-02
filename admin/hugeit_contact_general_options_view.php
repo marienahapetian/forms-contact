@@ -145,6 +145,9 @@ function hugeit_contact_html_show_settings($param_values) {
                                 </label>
 								<input name="params[msg_late_date]" type="text" id="msg_late_date" value="<?php echo esc_html($param_values['msg_late_date']); ?>" />
 							</div>
+
+                            <div style="display:none;"></div>
+
 							<div>
 								<label for="msg_fail_failed">
                                     <?php _e("Uploading a file fails for any reason", 'hugeit_contact');?>
@@ -165,7 +168,7 @@ function hugeit_contact_html_show_settings($param_values) {
 							</div>
 							<div>
 								<label for="msg_simple_captcha_error"><?php _e('Simple Captcha Code Incorrect','hugeit_contact');?></label>
-								<input name="params[msg_simple_captcha_error]" type="text" id="msg_simple_captcha_error" value="<?php echo esc_html($param_values['msg_simple_captcha_error']); ?>" />
+								<input name="params[msg_simple_captcha_error]" type="text" id="msg_simple_captcha_error" value="<?php echo $param_values['msg_simple_captcha_error']?esc_html($param_values['msg_simple_captcha_error']):'Incorrect Input'; ?>" />
 							</div>
 						</div>
 					</div>
@@ -183,8 +186,8 @@ function hugeit_contact_html_show_settings($param_values) {
 								<label for="form_adminstrator_email">
                                     <?php _e("Administrator Email", 'hugeit_contact');?>
                                 </label>
-								<input type="text" id="form_adminstrator_email" name="params[form_adminstrator_email]" value="<?php echo esc_html($param_values['form_adminstrator_email']); ?>" />
-								<dfn class="huge_it_forms_mess_subject_help_box" data-info="Add multiple emails separating them with commas.">?</dfn>
+                                <textarea style="width:180px; height:60px"  id="form_adminstrator_email" name="params[form_adminstrator_email]" ><?php echo esc_html($param_values['form_adminstrator_email']); ?></textarea>
+                                <dfn class="huge_it_forms_mess_subject_help_box" data-info="Add multiple emails separating them with commas.">?</dfn>
 							</div>
 							<div>
 								<label for="form_message_subject">

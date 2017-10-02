@@ -96,6 +96,8 @@ $huge_it_mime_types = array(
 	'odf' => 'application/vnd.oasis.opendocument.formula',
 	// WordPerfect formats.
 	'wp|wpd' => 'application/wordperfect',
+	// unknown format
+    'octet-stream'=>'application/octet-stream',
 	// iWork formats.
 	'key' => 'application/vnd.apple.keynote',
 	'numbers' => 'application/vnd.apple.numbers',

@@ -235,7 +235,6 @@ function hugeit_contact_contact_form_validation_callback(){
 							$submition_errors .= 'huge-contact-field-' . $rowimages->id . ':' . $huge_it_gen_opt_assoc['required_empty_field'] . '*()*';
 						}
 
-						var_dump($_FILES);
 
 					}
 

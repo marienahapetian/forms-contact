@@ -607,15 +607,15 @@ function submitbutton(pressbutton){
 			
 			#hugeit-contact-wrapper > div > h3 {
 				<?php if($style_values['form_show_title']=='on'):?>
-				position:relative;
-				display:block;
-				clear:both !important;
-				padding:5px 0 10px 2% !important;
-				font-size:<?php echo $style_values['form_title_size']; ?>px !important;
-				line-height:<?php echo $style_values['form_title_size']; ?>px !important;
-				color:#<?php echo $style_values['form_title_color']; ?> !important;
-				margin: 10px 0 15px 0 !important;
+                    position:relative;
+                    display:block;
+                    clear:both !important;
 				<?php endif;?>
+                padding:5px 0 10px 2% !important;
+                font-size:<?php echo $style_values['form_title_size']; ?>px !important;
+                line-height:<?php echo $style_values['form_title_size']; ?>px !important;
+                color:#<?php echo $style_values['form_title_color']; ?> !important;
+                margin: 10px 0 15px 0 !important;
 			}
 			.text_area_title{
 				border: 1px solid transparent !important;
@@ -629,6 +629,7 @@ function submitbutton(pressbutton){
 				outline: 0 !important;
 				-webkit-transition: none !important;
 				transition: none !important;
+                width: 100%;
 			}
 
 			/*LABELS*/
@@ -678,7 +679,8 @@ function submitbutton(pressbutton){
 			/*FIELDS CUSTOM STYLES*/
 				/*############INPUT TEXT############*/
 
-				.input-text-block input,.input-text-block input:focus {
+				.input-text-block input,.input-text-block input:focus,
+                .simple-captcha-block input[type=text],.simple-captcha-block input[type=text]:focus{
 					height:<?php echo $style_values['form_input_text_font_size']*2; ?>px;
 					<?php if($style_values['form_input_text_has_background']=="on"){?>
 					background:#<?php echo $style_values['form_input_text_background_color']; ?>;
@@ -1129,9 +1131,11 @@ function submitbutton(pressbutton){
                                 default :
                                     $show_form_title = $style_values['form_show_title'] === 'on' ? true : false;
                             }
-						    if($show_form_title) {
-						          echo '<h3><input class="text_area_title" type="text" maxlength="250" value="'.$current_form->name.'" /><span class="hugeItTitleOverlay"></span></h3>';
-						    }
+						    if($show_form_title)  $display = 'block';
+                            else $display = 'none';
+
+                        echo '<h3 style="display: '.$display.';"><input class="text_area_title"  type="text" value="'.$current_form->name.'" /><span class="hugeItTitleOverlay"></span></h3>';
+
 						?>
 						<div class="hugeit-contact-column-block hugeit-contact-block-left" id="hugeit-contact-block-left">
 							<?php
@@ -1227,7 +1231,7 @@ function submitbutton(pressbutton){
 													<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
 													<label  class="formsAboveAlign">
                                                         <img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'admin');?>">
-                                                        <span class="hugeit_captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $hc_other_field->digits;?>" data-form-id="<?php echo $current_form->id; ?>">
+                                                        <span class="hugeit_captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo (isset($hc_other_field->digits))?$hc_other_field->digits:5;?>" data-form-id="<?php echo $current_form->id; ?>">
                                                             <img src="<?php echo plugin_dir_url(__FILE__);?>../images/refresh-icon.png" width="32px">
                                                         </span>
                                                     </label>

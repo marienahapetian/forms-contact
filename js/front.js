@@ -95,4 +95,25 @@ jQuery(document).ready(function () {
 /* Mask On */
 
 
+    function hugeitFormsResize(){
+        var forms = jQuery('.hugeit-contact-wrapper .multicolumn');
+
+        forms.each(function () {
+            if( jQuery(this).width() < 521 ){
+                jQuery(this).find('.hugeit-contact-column-block').addClass('fullWidth')
+            } else {
+                jQuery(this).find('.hugeit-contact-column-block').removeClass('fullWidth')
+            }
+        })
+    }
+
+    hugeitFormsResize();
+
+    /* window resize */
+    jQuery(window).on('resize',function () {
+        hugeitFormsResize();
+    })
+    /* end window resize */
+
+
 });

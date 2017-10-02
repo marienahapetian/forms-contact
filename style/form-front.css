@@ -517,3 +517,13 @@ button[disabled], input[disabled], select[disabled], textarea[disabled] {
 input[disabled] +i +i {
     opacity: 0.5;
 }
+
+.fullWidth{
+    width: 100%!important;
+}
+
+@media all and (max-width: 768px){
+    .hugeit-contact-wrapper div.multicolumn .hugeit-contact-column-block {
+        width: 100%;
+    }
+}

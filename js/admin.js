@@ -1764,3 +1764,10 @@ jQuery(document).ready(function(){
     });
 });
 
+
+jQuery(document).ready(function(){
+    jQuery('.fixed-tabs').each(function () {
+        var width = jQuery(this).find('span').width();
+		jQuery(this).find('input').width(width + 35 +'px');
+    })
+});

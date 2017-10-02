@@ -47,13 +47,13 @@ function hugeit_contact_create_new_captcha($captcha_id='',$from='',$time=''){
         $time=time();
     }
 
-    $field=hugeit_contact_get_field_row($captcha_id);
+    $field = hugeit_contact_get_field_row($captcha_id);
 
-    $captchaRow=json_decode($field['hc_other_field']);
+    $captchaRow = json_decode($field['hc_other_field']);
 
-    $digitsLength=$captchaRow->digits;
+    $digitsLength = (isset($captchaRow->digits))?$captchaRow->digits:5;
 
-    $colorOption=$field['description'];
+    $colorOption = $field['description'];
 
     $captcha='';
 

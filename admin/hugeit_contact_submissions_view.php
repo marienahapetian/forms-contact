@@ -117,11 +117,8 @@ function hugeit_contact_html_showhugeit_contacts( $rows,  $pageNav,$sort,$cat_ro
 	<div id="poststuff">
 		<div id="hugeit_contacts-list-page">
 			<form method="post"  onkeypress="doNothing()" action="admin.php?page=hugeit_forms_main_page" id="admin_form" name="admin_form">
-			<h2>
-                Huge IT Submissions
-			</h2>
-			
-			<?php
+                <h2><?php _e('All Submissions','hugeit_contact');?></h2>
+                <?php
 			echo do_action('huge_it_forms_export',$rows);
 			$serch_value='';
 			if ( isset( $_POST['serch_or_not'] ) ) {

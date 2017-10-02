@@ -511,8 +511,8 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 			
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .input-text-block input,
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .input-text-block input:focus,
-                #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .simple-captcha-block input,
-                #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .simple-captcha-block input:focus{
+                #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .simple-captcha-block input[type=text],
+                #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .simple-captcha-block input[type=text]:focus{
 					height:<?php echo esc_html($style_values['form_input_text_font_size'])*2; ?>px;
 					<?php if($style_values['form_input_text_has_background']=="on"){?>
 					    background:#<?php echo esc_html($style_values['form_input_text_background_color']); ?>;
@@ -531,6 +531,8 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 
             #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .input-text-block input,
             #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .input-text-block input:focus,
+            #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .simple-captcha-block input[type=text],
+            #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .simple-captcha-block input[type=text]:focus,
             #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .textarea-block textarea,
             #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .selectbox-block .textholder{
                 border:1px solid #<?php echo esc_html($style_values['form_input_text_border_color']); ?> !important;

@@ -51,7 +51,7 @@ function hugeit_contact_html_styles($rows){
 	<div id="poststuff">
 		<div id="hugeit_contacts-list-page">
 			<form method="post"  onkeypress="doNothing()" action="admin.php?page=hugeit_forms_main_page" id="admin_form" name="admin_form">
-				<?php if(!isset($_GET["form_id"]))$_GET["form_id"]='';?>
+				<?php if(!isset($_GET["theme_id"]))$_GET["theme_id"]='';?>
 			<h2>
                 <?php _e('Huge IT Forms Themes', 'hugeit_contact'); ?>
 				<a onclick="alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');" class="add-new-h2" >
@@ -147,7 +147,7 @@ function hugeit_contact_html_styles($rows){
 					 ?>
 					<tr <?php if($trcount%2==0) { echo 'class="has-background"';}?>>
 						<td><?php echo $rows[$i]->id; ?></td>
-						<td><a  href="admin.php?page=hugeit_forms_theme_options&form_id=<?php echo esc_html($rows[$i]->id)?>"><?php echo esc_html(stripslashes($rows[$i]->name)); ?></a></td>
+						<td><a  href="admin.php?page=hugeit_forms_theme_options&theme_id=<?php echo esc_html($rows[$i]->id)?>"><?php echo esc_html(stripslashes($rows[$i]->name)); ?></a></td>
 						<td><?php if(!($pr_count)){echo '0';} else{ echo $rows[$i]->last_update;} ?></td>
 						<td><?php if($rows[$i]->id!=1):?><a  href="#" onclick="alert('This option is disabled for free version. Please upgrade to pro license to be able to use it.');	" >Delete <i>(pro)</i></a><?php endif; ?></td>
 					</tr> 
@@ -181,19 +181,20 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 			<ul id="" class="hugeit_contact_top_tabs">
 				<?php
 				foreach($style_themes as $style_theme){
-					if($style_theme->id != $_GET['form_id']){
+					if($style_theme->id != $_GET['theme_id']){
 					?>
 						<li>
-							<a href="#" onclick="window.location.href='admin.php?page=hugeit_forms_theme_options&form_id=<?php echo esc_html($style_theme->id); ?>'" ><?php echo esc_html($style_theme->name); ?></a>
+							<a href="#" onclick="window.location.href='admin.php?page=hugeit_forms_theme_options&theme_id=<?php echo esc_html($style_theme->id); ?>'" ><?php echo esc_html($style_theme->name); ?></a>
 						</li>
 					<?php
 					}
 					else{ ?>
-						<li class="active" onclick="this.lastElementChild.style.width = ((this.lastElementChild.value.length + 9) * 8) + 'px';" >
+						<li class="active fixed-tabs">
                             <div class="hg_cut_border">
                                 <div class="hg_cut_inl_border"></div>
                             </div>
-							<input onfocus="this.style.width = ((this.value.length + 2) * 10) + 'px'" onkeyup="hugeit_contact_updateInput(this.value)" class="text_area" type="text" name="name" id="name" maxlength="250" value="<?php echo esc_html(stripslashes($style_theme->name));?>" style="background:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>) no-repeat #f3f4f8;" />
+                            <span style="display: none"><?php echo esc_html(stripslashes($style_theme->name));?></span>
+							<input onkeyup="hugeit_contact_updateInput(this.value)" class="text_area" type="text" name="name" id="name" maxlength="250" value="<?php echo esc_html(stripslashes($style_theme->name));?>" style="background:url(<?php echo plugins_url('../images/edit.png', __FILE__) ;?>) no-repeat #f3f4f8;" />
 						</li>
 					<?php	
 					}
@@ -216,7 +217,7 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
 			</div>
 			<div class="hugeit_contact_black_overlay">
 				<div class="options-block">
-					<form action="admin.php?page=hugeit_forms_theme_options&form_id=<?php echo esc_url($_GET["form_id"]); ?>&task=save" method="post" id="adminForm" name="adminForm">
+					<form action="admin.php?page=hugeit_forms_theme_options&theme_id=<?php echo esc_url($_GET["theme_id"]); ?>&task=save" method="post" id="adminForm" name="adminForm">
 						<input type="hidden" id="themeName" name="themeName" value="">
 						<div class="hugeit-contact-general-options-column hugeit-contact-general-options-left">
 							<div class="hugeit-contact-general-options-block">
