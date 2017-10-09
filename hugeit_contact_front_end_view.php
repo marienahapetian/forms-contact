@@ -3,6 +3,8 @@ if(! defined( 'ABSPATH' )) exit;
 
 function text_field_html($rowimages, $frontendformid)
 {
+    $placeholder = $rowimages->name;
+    if( $rowimages->hc_required == 'on' && $rowimages->hc_input_show_default == 'formsInsideAlign') $placeholder .= ' *';
     ?>
     <div class="hugeit-field-block" rel="huge-contact-field-<?php echo absint($rowimages->id); ?>">
         <label class="<?php if ($rowimages->hc_input_show_default != '1') echo esc_html($rowimages->hc_input_show_default); ?>"
@@ -13,7 +15,8 @@ function text_field_html($rowimages, $frontendformid)
         <div class="field-block input-text-block <?php if ($rowimages->hc_input_show_default == 'formsAboveAlign' || $rowimages->hc_input_show_default == 'formsInsideAlign') echo $rowimages->hc_input_show_default; ?>">
             <input id="hugeit_preview_textbox_<?php echo absint($rowimages->id); ?>"
                    name="huge_it_<?php echo esc_html($frontendformid) . '_' . absint($rowimages->id); ?>"
-                   type="<?php echo esc_html($rowimages->field_type); ?>" placeholder="<?php if(!empty(trim($rowimages->mask_on))) echo $rowimages->mask_on; else echo $rowimages->name; ?>"
+                   type="<?php echo esc_html($rowimages->field_type); ?>"
+                   placeholder="<?php if(!empty(trim($rowimages->mask_on))) echo $rowimages->mask_on; else echo $placeholder; ?>"
                    class="<?php if ($rowimages->hc_required == 'on') {
                        echo 'required';
                    } ?>" <?php if ($rowimages->description != 'on') {
@@ -35,6 +38,8 @@ function text_field_html($rowimages, $frontendformid)
 
 function textarea_field_html($rowimages, $frontendformid)
 {
+    $placeholder = $rowimages->name;
+    if( $rowimages->hc_required == 'on' && $rowimages->hc_input_show_default == 'formsInsideAlign') $placeholder .= ' *';
     ?>
     <div class="hugeit-field-block" rel="huge-contact-field-<?php echo absint($rowimages->id); ?>">
         <label class="<?php if ($rowimages->hc_input_show_default != '1') echo esc_html($rowimages->hc_input_show_default); ?>"
@@ -48,7 +53,7 @@ function textarea_field_html($rowimages, $frontendformid)
                       id="hugeit_preview_textbox_<?php echo absint($rowimages->id); ?>"
                 <?php if ($rowimages->description != 'on') { echo 'disabled="disabled"';} ?>
                       class="<?php echo($rowimages->hc_required == 'on')?'required':''; ?>"
-                      placeholder="<?php echo esc_html($rowimages->name); ?>"><?php if(trim($rowimages->def_value)!=="") echo wp_unslash($rowimages->def_value);?></textarea>
+                      placeholder="<?php echo esc_html($placeholder); ?>"><?php if(trim($rowimages->def_value)!=="") echo wp_unslash($rowimages->def_value);?></textarea>
             <span class="hugeit-error-message"></span>
         </div>
     </div>
@@ -67,27 +72,29 @@ function selectbox_field_html($rowimages, $frontendformid)
         <div class="field-block selectbox-block <?php if ($rowimages->hc_input_show_default == 'formsAboveAlign' || $rowimages->hc_input_show_default == 'formsInsideAlign') echo $rowimages->hc_input_show_default; ?>">
             <?php
             $options = explode(';;', $rowimages->name);
-            $j = 0;
-            foreach ($options as $option) {
-                if ($rowimages->hc_other_field == $j) {
-                    ?>
-                    <input type="text" disabled="disabled" class="textholder" value="<?php echo esc_html($option); ?>"/>
-                <?php }
-                $j++;
+
+            if($rowimages->def_value){
+                $optionValue = $rowimages->def_value;
+                if( $rowimages->hc_required && $rowimages->hc_input_show_default=='formsInsideAlign' ) $optionValue .= ' *';
+            } else {
+                $selectedOptionIndex = $rowimages->hc_other_field;
+                if( is_numeric($selectedOptionIndex) )  $optionValue = $options[$selectedOptionIndex];
+                else $optionValue = $selectedOptionIndex;
+
             } ?>
-            <select id="hugeit_preview_textbox_<?php echo absint($rowimages->id); ?>"
-                    class="<?php if ($rowimages->hc_required == 'on') {
-                        echo 'required';
-                    } ?>" name="huge_it_<?php echo esc_html($frontendformid) . '_' . absint($rowimages->id); ?>">
-                <?php
-                $options = explode(';;', $rowimages->name);
-                $i = 0;
+
+
+            <input type="text" disabled="disabled" class="textholder" value="<?php echo esc_html($optionValue); ?>"/>
+
+            <select id="hugeit_preview_textbox_<?php echo absint($rowimages->id); ?>" class="<?php echo ($rowimages->hc_required == 'on')?'required':''; ?>" name="huge_it_<?php echo esc_html($frontendformid) . '_' . absint($rowimages->id); ?>">
+                <?php if( $rowimages->def_value ){ ?>
+                    <option selected="selected" disabled><?php echo $rowimages->def_value;?></option>
+                <?php }
                 foreach ($options as $opt_key => $option) {
                     ?>
-                    <option <?php if ($rowimages->hc_input_show_default == 'formsInsideAlign' && $opt_key == 0) echo 'disabled '; ?><?php if ($rowimages->hc_other_field == $i) {
-                        echo 'selected="selected"';
-                    } ?>><?php echo esc_html($option); ?></option>
-                    <?php $i++;
+                    <option <?php echo ($optionValue === $opt_key || $optionValue === $option) ?'selected="selected"':''; ?> >
+                        <?php echo esc_html($option); ?></option>
+                    <?php
                 } ?>
             </select>
             <i class="hugeicons-chevron-down"></i>
@@ -399,6 +406,8 @@ function buttons_field_html($rowimages, $style_values)
 
 function email_field_html($rowimages, $frontendformid)
 {
+    $placeholder = $rowimages->name;
+    if( $rowimages->hc_required == 'on' && $rowimages->hc_input_show_default == 'formsInsideAlign') $placeholder .= ' *';
     ?>
     <div class="hugeit-field-block" rel="huge-contact-field-<?php echo esc_attr($rowimages->id); ?>">
         <label class="<?php if ($rowimages->hc_input_show_default != '1') echo esc_attr($rowimages->hc_input_show_default); ?>"
@@ -410,7 +419,7 @@ function email_field_html($rowimages, $frontendformid)
         <div class="field-block input-text-block email-block <?php if ($rowimages->hc_input_show_default == 'formsAboveAlign' || $rowimages->hc_input_show_default == 'formsInsideAlign') echo $rowimages->hc_input_show_default; ?>">
             <input id="hugeit_preview_textbox_<?php echo esc_attr($rowimages->id); ?>"
                    name="huge_it_<?php echo esc_attr($frontendformid) . '_' . esc_attr($rowimages->id); ?>" type="email"
-                   placeholder="<?php echo esc_attr($rowimages->name); ?>" class="<?php if ($rowimages->hc_required == 'on') {
+                   placeholder="<?php echo esc_attr($placeholder); ?>" class="<?php if ($rowimages->hc_required == 'on') {
                 echo 'required';
             } ?>" <?php if ($rowimages->description != 'on') {
                 echo 'disabled="disabled"';
@@ -501,7 +510,9 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 				/*############INPUT TEXT############*/
 			
 				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .input-text-block input,
-				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .input-text-block input:focus {
+				#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .input-text-block input:focus,
+                #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .simple-captcha-block input[type=text],
+                #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .simple-captcha-block input[type=text]:focus{
 					height:<?php echo esc_html($style_values['form_input_text_font_size'])*2; ?>px;
 					<?php if($style_values['form_input_text_has_background']=="on"){?>
 					    background:#<?php echo esc_html($style_values['form_input_text_background_color']); ?>;
@@ -520,6 +531,8 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 
             #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .input-text-block input,
             #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .input-text-block input:focus,
+            #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .simple-captcha-block input[type=text],
+            #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .simple-captcha-block input[type=text]:focus,
             #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .textarea-block textarea,
             #hugeit-contact-wrapper_<?php echo $frontendformid; ?> .selectbox-block .textholder{
                 border:1px solid #<?php echo esc_html($style_values['form_input_text_border_color']); ?> !important;
@@ -1447,13 +1460,13 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 		        fd.append('action', 'hugeit_validation_action');
 		        fd.append('formId', '<?php echo $frontendformid; ?>');
 		        fd.append('browser',browserName);
-		        fd.append('nonce', huge_it_obj.nonce);
+		        fd.append('nonce', hugeit_forms_obj.nonce);
 		        fd.append('postData', postData);
 		        fd.append('time', time);
 	            jQuery.ajax({
 		            type: 'POST',
 		            url: '<?php echo admin_url("admin-ajax.php"); ?>',
-		            nonce:huge_it_obj.nonce,
+		            nonce:hugeit_forms_obj.nonce,
 		            data: fd,
 		            contentType: false,
 		            processData: false,

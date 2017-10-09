@@ -17,7 +17,7 @@ jQuery(document).ready(function(){
 						"data": formsToShow,
 						"action": 'hugeit_email_action',
 		                "task": 'showForms',
-		                "nonce" : huge_it_obj.nonce
+		                "nonce" : hugeit_forms_obj.nonce
 					},
 					beforeSend: function(){
 						jQuery('#hugeit_contact_email_manager #table_overlay').css('display','block');					
@@ -53,7 +53,7 @@ jQuery(document).ready(function(){
 							data:formId,
 							action: 'hugeit_email_action',
 			                task: 'refreshTable',
-			                nonce : huge_it_obj.nonce
+			                nonce : hugeit_forms_obj.nonce
 						},
 						beforeSend: function(){
 						},
@@ -75,7 +75,7 @@ jQuery(document).ready(function(){
 							"data":formID,
 							"action": 'hugeit_email_action',
 			                "task": 'refreshTable',
-		                	nonce : huge_it_obj.nonce
+		                	nonce : hugeit_forms_obj.nonce
 						},
 						beforeSend: function(){
 						},
@@ -90,7 +90,7 @@ jQuery(document).ready(function(){
 					});
 		}
 
-		if(huge_it_obj.mail_status=='start'){
+		if(hugeit_forms_obj.mail_status=='start'){
 			setInterval(function(){
 				jQuery.ajax({
 						type: "POST",
@@ -98,7 +98,7 @@ jQuery(document).ready(function(){
 						data: {
 							"action": 'hugeit_email_action',
 			                "task": 'refreshProgress',
-			                "nonce" : huge_it_obj.nonce
+			                "nonce" : hugeit_forms_obj.nonce
 						},
 						beforeSend: function(){
 						},

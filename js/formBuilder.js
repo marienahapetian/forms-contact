@@ -1,7 +1,6 @@
 jQuery(document).ready(function(e) {
     ////ADD FIELDS START///
 
-
     jQuery('#add-fields-block #add-default-fields').on('click', 'li>a', function(event) {
 
         event.preventDefault();
@@ -11,7 +10,7 @@ jQuery(document).ready(function(e) {
             return;
         } else {
             readyDef = jQuery('#add-fields-block li.spinnerLi>img.defSpin');
-            jQuery("#add-fields-block").css("pointer-events","none");
+            //jQuery("#add-fields-block").css("pointer-events","none");
         }
         var formId = jQuery(this).attr('data-formId');
         var inputType = jQuery(this).attr('id');
@@ -36,7 +35,7 @@ jQuery(document).ready(function(e) {
                         action: 'hugeit_contact_formBuilder_action',
                         task: 'addFieldsTask',
                         formId: formId,
-                        nonce: huge_it_obj.nonce,
+                        nonce: hugeit_forms_obj.nonce,
                         inputType: inputType,
                         themeId: themeId
                     }
@@ -169,8 +168,19 @@ jQuery(document).ready(function(e) {
 
                             readyDef.css('display', 'none');
                         } else {
-                            jQuery('#hugeit-contact-wrapper .hugeit-contact-block-left').prepend(response.outputField);
-                            jQuery('#fields-list-block #fields-list-left').prepend(response.outputFieldSettings);
+                            if( inputType == 'simple_captcha_box'){
+                                if( jQuery('li[data-fieldtype=buttons]').length ){
+                                    jQuery('li[data-fieldtype=buttons]').before(response.outputFieldSettings);
+                                    jQuery('.hugeit-field-block.buttons-block').before(response.outputField);
+                                } else {
+                                    jQuery('#hugeit-contact-wrapper .hugeit-contact-block-left').append(response.outputField);
+                                    jQuery('#fields-list-block #fields-list-left').append(response.outputFieldSettings);
+                                }
+                            } else {
+                                jQuery('#hugeit-contact-wrapper .hugeit-contact-block-left').prepend(response.outputField);
+                                jQuery('#fields-list-block #fields-list-left').prepend(response.outputFieldSettings);
+                            }
+
 
                             refreshOrdering();
 
@@ -241,7 +251,7 @@ jQuery(document).ready(function(e) {
                 action: 'hugeit_contact_formBuilder_action',
                 task: 'removeFieldTask',
                 formId: formId,
-                nonce: huge_it_obj.nonce,
+                nonce: hugeit_forms_obj.nonce,
                 fieldId: fieldId,
                 formData: form.serialize()
             },
@@ -316,7 +326,7 @@ jQuery(document).ready(function(e) {
                     action: 'hugeit_contact_formBuilder_action',
                     task: 'dublicateFieldTask',
                     formId: formId,
-                    nonce: huge_it_obj.nonce,
+                    nonce: hugeit_forms_obj.nonce,
                     fieldId: fieldId,
                     themeId: themeId,
                     formData: form.serialize()
@@ -368,6 +378,10 @@ jQuery(document).ready(function(e) {
         }
     });
     ////DUBLICATE FIELDS END///
+
+    jQuery(document).on('click','.tb-close-icon',function () {
+        jQuery("#add-fields-block").css("pointer-events","all");
+    });
 
 
     ///SAVE FORM STARTS///
@@ -422,7 +436,7 @@ jQuery(document).ready(function(e) {
                 action: 'hugeit_contact_formBuilder_action',
                 task: 'saveEntireForm',
                 formId: formId,
-                nonce: huge_it_obj.nonce,
+                nonce: hugeit_forms_obj.nonce,
                 formData: formData
             },
             beforeSend: function() {
@@ -455,7 +469,7 @@ jQuery(document).ready(function(e) {
                 formId: formId,
                 themeId: themeId,
                 formData: form.serialize(),
-                nonce: huge_it_obj.nonce
+                nonce: hugeit_forms_obj.nonce
             },
             beforeSend: function() {
                 spinner.css('display', 'inline');

@@ -36,9 +36,9 @@ function hugeit_contact_editstyles($op_type = "0"){
 		$wpdb->query("DELETE FROM ".$wpdb->prefix."huge_it_contact_styles  WHERE id = '".$deleteID."' ");
 		$wpdb->query("UPDATE ".$wpdb->prefix."huge_it_contact_contacts SET `hc_yourstyle` = '1' WHERE `hc_yourstyle` = '".$deleteID."'");
 	}
-	if(isset($_GET["form_id"])){
-		$formID=absint($_GET["form_id"]);
-	    $query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$formID."'";
+	if(isset($_GET["theme_id"])){
+		$themeID=absint($_GET["theme_id"]);
+	    $query = "SELECT *  from " . $wpdb->prefix . "huge_it_contact_style_fields where options_name = '".$themeID."'";
 	    $rows = $wpdb->get_results($query);
 	    $param_values = array();
 	    foreach ($rows as $row) {
@@ -170,7 +170,7 @@ INSERT INTO `$table_name` (`name`, `title`,`description`, `options_name`, `value
 			   
 	foreach($rowsldcc as $key=>$rowsldccs){
 		if($last_key == $key){
-			header('Location: admin.php?page=hugeit_forms_theme_options&form_id='.$rowsldccs->id.'');
+			header('Location: admin.php?page=hugeit_forms_theme_options&theme_id='.$rowsldccs->id.'');
 		}
 	}
 	}
@@ -188,16 +188,16 @@ function hugeit_contact_save_styles_options() {
 	if ( isset( $_POST['params'] ) ) {
 		if ( isset( $_POST["themeName"] ) ) {
 			$_POST["themeName"] = sanitize_text_field($_POST["themeName"]);
-			$_GET['form_id'] = absint($_GET['form_id']);
+			$_GET['theme_id'] = absint($_GET['theme_id']);
 			if ( trim($_POST["themeName"]) != '' ) {
-				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_styles SET  name = %s  WHERE id = %d ", $_POST["themeName"], $_GET['form_id'] ) );
+				$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_styles SET  name = %s  WHERE id = %d ", $_POST["themeName"], $_GET['theme_id'] ) );
 			}
 		}
 		$params = $_POST['params'];
 		foreach ( $params as $key => $value ) {
 			$value = sanitize_text_field($value);
 			$key = sanitize_text_field($key);
-			$wpdb->query( "UPDATE " . $wpdb->prefix . "huge_it_contact_style_fields SET  value = '" . $value . "'  WHERE name = '" . $key . "' and options_name = '" . $_GET['form_id'] . "' " );
+			$wpdb->query( "UPDATE " . $wpdb->prefix . "huge_it_contact_style_fields SET  value = '" . $value . "'  WHERE name = '" . $key . "' and options_name = '" . $_GET['theme_id'] . "' " );
 		}
 		?>
 		<div class="updated"><p><strong><?php echo 'Item Saved'; ?></strong></p></div>

@@ -34,6 +34,13 @@ input[disabled] +i +i {
 	float:left;
 	margin:0 0 0 0;
 }
+#hugeit_contact_email_manager{
+	pointer-events: none;
+	opacity: .6;
+}
+span.pro{
+	color: #1279B9;
+}
 #save-buttom {
 	width: 108px;
 	height: 44px;
@@ -354,7 +361,7 @@ img.themeSpinner{
 	position:relative;
 	clear:both;
 	width:100%;
-	height:35px;
+	min-height:35px;
 	padding:5px 0 0 0;
 	margin:0 !important;
 }
@@ -582,10 +589,7 @@ img.themeSpinner{
 	border-radius: 3px;
 	border: 1px solid #d0d6dc;
 	background-color: #ffffff;
-}
-#fields-list-right{
-	background:none !important;
-	border: none !important;
+	margin-bottom: 15px;
 }
 .fields-list > li {
 	position: relative;
@@ -848,6 +852,28 @@ img.themeSpinner{
 	cursor: pointer;
 	display: none;
 }
+
+#hugeit-contact-wrapper .hugeit-contact-column-block .hugeit-field-block{
+	display: inline-block;
+}
+#hugeit-contact-wrapper .hugeit-contact-column-block .hugeit-field-block:after{
+	content: '';
+	clear: both;
+}
+
+#hugeit-contact-wrapper .hugeit-contact-column-block .hugeit-field-block>div.formsLeftAlign,
+#hugeit-contact-wrapper .hugeit-contact-column-block .hugeit-field-block>div.formsRightAlign{
+	width: 60%;
+	float: right;
+}
+
+#hugeit-contact-wrapper .hugeit-contact-column-block .hugeit-field-block>div.formsLeftAlign input:not([type=checkbox]),
+#hugeit-contact-wrapper .hugeit-contact-column-block .hugeit-field-block>div.formsLeftAlign input:not([type=radio]),
+#hugeit-contact-wrapper .hugeit-contact-column-block .hugeit-field-block>div.formsRightAlign input[type=checkbox],
+#hugeit-contact-wrapper .hugeit-contact-column-block .hugeit-field-block>div.formsRightAlign input[type=radio]{
+	width: 100%;
+}
+
 #hugeit-contact-wrapper .hugeit-contact-column-block .hugeOverlay:hover{
 	opacity: 0.8;
 }

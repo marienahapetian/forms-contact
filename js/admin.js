@@ -76,7 +76,7 @@ jQuery(document).ready(function () {
 					action: 'hugeit_contact_action',
 					task: 'moveTospamSubmitions',
 					spam_submitions: marked_submitions,
-					nonce:huge_it_obj.nonce
+					nonce:hugeit_forms_obj.nonce
 				};
 				var forEach = Function.prototype.call.bind( Array.prototype.forEach );
 				forEach( marked_submitions, function( submition_id ) {
@@ -137,7 +137,7 @@ jQuery(document).ready(function () {
 									action: 'hugeit_contact_action',
 									task: 'deleteSubmitions',
 									submitions_for_delete: marked_submitions,
-									nonce:huge_it_obj.nonce
+									nonce:hugeit_forms_obj.nonce
 								};
 								jQuery.post(ajaxurl, data, function(response) {    //      alert(response);
 									if(response) {
@@ -174,7 +174,7 @@ jQuery(document).ready(function () {
 					subID: subID,
 					countTorefresh:countTorefresh,
 					marked_submitions:marked_submitions_refresh,
-					nonce:huge_it_obj.nonce
+					nonce:hugeit_forms_obj.nonce
 				},
 				beforeSend:function(){
 					self.parent().find('li img.control_list_spinner').fadeIn();
@@ -207,7 +207,7 @@ jQuery(document).ready(function () {
 				action: 'hugeit_contact_action',
 				task: 'moveFromSpamSingleSubmition',
 				submissionId: submissionId,
-				nonce:huge_it_obj.nonce
+				nonce:hugeit_forms_obj.nonce
 			},
 			beforeSend:function(){
 				jQuery('#comment-'+submissionId+'').hover(function(){
@@ -246,7 +246,7 @@ jQuery(document).ready(function () {
 				action: 'hugeit_contact_action',
 				task: 'moveToSpamSingleSubmition',
 				submissionId: submissionId,
-				nonce:huge_it_obj.nonce
+				nonce:hugeit_forms_obj.nonce
 			},
 			beforeSend:function(){
 				jQuery('#comment-'+submissionId+'').hover(function(){
@@ -286,7 +286,7 @@ jQuery(document).ready(function () {
 					action: 'hugeit_contact_action',
 					task: 'moveFromSpamSingleSubmition',
 					submissionId: submissionId,
-					nonce:huge_it_obj.nonce
+					nonce:hugeit_forms_obj.nonce
 				},
 				beforeSend:function(){
 					self.parent().parent().find('li .control_list_spinner').fadeIn();
@@ -306,7 +306,7 @@ jQuery(document).ready(function () {
 					action: 'hugeit_contact_action',
 					task: 'moveToSpamSingleSubmition',
 					submissionId: submissionId,
-					nonce:huge_it_obj.nonce
+					nonce:hugeit_forms_obj.nonce
 				},
 				beforeSend:function(){
 					self.parent().parent().find('li .control_list_spinner').fadeIn();
@@ -342,7 +342,7 @@ jQuery(document).ready(function () {
 							action: 'hugeit_contact_action',
 							task: 'deleteSingleSubmition',
 							submissionId: submissionId,
-							nonce:huge_it_obj.nonce
+							nonce:hugeit_forms_obj.nonce
 						},
 						beforeSend:function(){
 							self.parent().parent().css('display','table-row');
@@ -382,7 +382,7 @@ jQuery(document).ready(function () {
 					task: 'searchSubmission',
 					searchData: searchData,
 					subID:subID,
-					nonce:huge_it_obj.nonce
+					nonce:hugeit_forms_obj.nonce
 				},
 				beforeSend:function(){
 					self.parent().parent().parent().find('.controls-list li .control_list_spinner').fadeIn();
@@ -422,7 +422,7 @@ jQuery(document).ready(function () {
 					action: 'hugeit_contact_action',
 					task: 'markAsRead',
 					read_submitions: marked_submitions,
-					nonce:huge_it_obj.nonce
+					nonce:hugeit_forms_obj.nonce
 				};
 				jQuery('#hugeit_top_controls .controls-list li img.control_list_spinner').fadeIn();
 				var forEach = Function.prototype.call.bind( Array.prototype.forEach );
@@ -462,7 +462,7 @@ jQuery(document).ready(function () {
 					action: 'hugeit_contact_action',
 					task: 'markAsUnread',
 					unread_submitions: marked_submitions,
-					nonce:huge_it_obj.nonce
+					nonce:hugeit_forms_obj.nonce
 				};
 				jQuery('#hugeit_top_controls .controls-list li img.control_list_spinner').fadeIn();
 				var forEach = Function.prototype.call.bind( Array.prototype.forEach );
@@ -503,7 +503,7 @@ jQuery(document).ready(function () {
 					action: 'hugeit_contact_action',
 					task: 'moveTospamSubmitions',
 					spam_submitions: marked_submitions,
-					nonce:huge_it_obj.nonce
+					nonce:hugeit_forms_obj.nonce
 				};
 				jQuery('#hugeit_top_controls .controls-list li img.control_list_spinner').fadeIn();
 				var forEach = Function.prototype.call.bind( Array.prototype.forEach );
@@ -544,7 +544,7 @@ jQuery(document).ready(function () {
 					action: 'hugeit_contact_action',
 					task: 'moveFromspamSubmitions',
 					spam_submitions: marked_submitions,
-					nonce:huge_it_obj.nonce
+					nonce:hugeit_forms_obj.nonce
 				};
 				jQuery('#hugeit_top_controls .controls-list li img.control_list_spinner').fadeIn();
 				var forEach = Function.prototype.call.bind( Array.prototype.forEach );
@@ -656,7 +656,9 @@ jQuery(document).ready(function () {
 		}
 	});
 
-	jQuery('#add-fields-block ').on('click','li > ul  li.disabled',function(){return false;})
+	jQuery('#add-fields-block ').on('click','li > ul  li.disabled',function(){
+		return false;
+	})
 
 
 
@@ -730,8 +732,10 @@ jQuery(document).ready(function () {
 	/*################MULTIPLE OPTIONS##################*/
 	/*####Set Active Option###*/
 	jQuery("#fields-list-block").on('click','.fields-list .field-multiple-option-list li .set-active input',function(){
-		var index=jQuery(this).parent().parent().index();
+		var index = jQuery(this).parent().parent().index();
 		var fieldID=jQuery(this).parents(".field-multiple-option-list").attr('rel');
+
+		/* checkbox */
 		if(jQuery(this).parents('.field-multiple-option-list').hasClass('checkbox')){
 			if(jQuery(this).parent().hasClass('checked')){
 				jQuery(this).parent().removeClass('checked');
@@ -749,27 +753,21 @@ jQuery(document).ready(function () {
 			allchecks=allchecks.slice(0,-2);
 			jQuery(this).parents(".field-multiple-option-list").find('.field-multiple-option-active-field').val(allchecks);
 		}
+		/*selectbox*/
 		else if(jQuery(this).parents('.field-multiple-option-list').hasClass('selectbox')){
-			var allowChange=1;
-			var selectVal=jQuery(this).parents('.fields-options').find('select').val();
-			if(selectVal=='formsInsideAlign'){
-				allowChange=0;
-			}
-			// jQuery(this).parents('.field-multiple-option-list').find('li').each(function(){
-			// 	if(jQuery(this).attr('id')=='defaultSelect'){allowChange=0}
-			// });
-			if(allowChange!=0){
 				jQuery(this).parents(".field-multiple-option-list").find(".set-active.checked").removeClass('checked');
 				jQuery(this).parent().addClass("checked");
 
-				jQuery(this).parents(".field-multiple-option-list").find('.field-multiple-option-active-field').val(index);
+				jQuery(this).parents(".field-multiple-option-list").siblings('.field-multiple-option-active-field').val(index);
 
 				jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] select').find('option').removeAttr('selected');
 				var previewselect=jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] select').find('option').eq(index);
 				previewselect.attr('selected','selected');
 				jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] .textholder').val(previewselect.val());
-			}
+
+				jQuery('#def_value'+fieldID).val('');
 		}
+		/* radio */
 		else {
 			jQuery(this).parents(".field-multiple-option-list").find(".set-active.checked").removeClass('checked');
 			jQuery(this).parent().addClass("checked");
@@ -877,9 +875,13 @@ jQuery(document).ready(function () {
 				if (selectVal == 'formsInsideAlign') {
 					allowChange = 0;
 				}
-				// jQuery(this).parents('.field-multiple-option-list').find('li').each(function(){
-				// 	if(jQuery(this).attr('id')=='defaultSelect'){allowChange=0}
-				// });
+
+				jQuery(this).parents('.field-multiple-option-list').find('li').each(function(){
+					if(jQuery(this).attr('id')=='defaultSelect'){
+						allowChange=0
+					}
+				});
+
 				if (allowChange != 0) {
 					if (index == jQuery(this).parents(".field-multiple-option-list").find('.field-multiple-option-active-field').val()) {
 						jQuery(this).parents(".field-multiple-option-list").find('.field-multiple-option-active-field').val('0');
@@ -926,8 +928,31 @@ jQuery(document).ready(function () {
 		}
 	});
 
+    jQuery("#fields-list-block").on('change keyup','.fields-list li[data-fieldtype=simple_captcha_box] input[type=number],.fields-list li[data-fieldtype=simple_captcha_box] input.color',function(){
+        var digits = jQuery('.fields-list li[data-fieldtype=simple_captcha_box] input[type=number]').val();
+        var bgcolor = jQuery('.fields-list li[data-fieldtype=simple_captcha_box] input.color').val();
+        if(digits){
+            var text = '';
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-	jQuery("#fields-list-block").on('change keyup', '.fields-list .fields-options .field-columns-count', function() {
+            for( var k = 0; k< digits; k++){
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            }
+
+            if(jQuery('.hugeit-field-block.simple-captcha-block label>img').length){
+                jQuery('.hugeit-field-block.simple-captcha-block label>img').remove();
+                jQuery('.hugeit-field-block.simple-captcha-block label').prepend('<div class="simple-captcha-rect" style="display:inline-block; text-align:center; line-height: 60px; font-size:30px;height:60px; width: 170px; color: #fff; background-color: #' + bgcolor + ' ">'+text+'</div>')
+            } else {
+                jQuery('.hugeit-field-block.simple-captcha-block label .simple-captcha-rect').text(text).css('background-color','#'+bgcolor);
+
+            }
+
+        }
+    });
+
+
+
+    jQuery("#fields-list-block").on('change keyup', '.fields-list .fields-options .field-columns-count', function() {
 		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
 		var liwidth = 100 / parseInt(jQuery(this).val());
 		jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] ul li').css({'width': liwidth + '%'});
@@ -975,9 +1000,13 @@ jQuery(document).ready(function () {
 	//Label Change Code
 	jQuery('#fields-list-block').on('keyup change', 'input.label', function() {
 		if (jQuery(this).parents('.fields-options').find('select#form_label_position').val() == 'formsInsideAlign') {
+
 			var toChange = jQuery(this).parents('.fields-options').find('input.label').val();
+
 			jQuery(this).parents('.fields-options').find('input.placeholder').attr('value', toChange);
+
 			jQuery(this).parents('.fields-options').find('li#defaultSelect>input').attr('value', toChange);
+
 			var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
 			var previewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block input');
 			var previewfieldtextarea = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block textarea');
@@ -1016,171 +1045,96 @@ jQuery(document).ready(function () {
 	//Required Fields Onchange Code
 	jQuery('#fields-list-block').on('keypress keyup change', '.required', function() {
 		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
-		var previewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] label').not('.secondary-label');
+        var previewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid +'"] ');
+		var previewfield_label = previewfield.find('label').not('.secondary-label');
+		var label_pos = jQuery('li#'+fieldid+' #form_label_position').val();
+        var input = previewfield.find('input[type=text],input[type=number],input[type=email],textarea').not('.textholder');
+        var select = previewfield.find('select');
+        var inputplaceholder = input.attr('placeholder');
+        var selectPlaceholder = previewfield.find('.textholder').val();
+        var selectPlaceholderOption = jQuery('#'+fieldid+' .placeholder-option').val();
+
 		if (jQuery(this).is(':checked')) {
-			previewfield.append('<em class="required-star">*</em>');
+			if(label_pos == 'formsInsideAlign'){
+				if(input.length){
+                    input.attr('placeholder',inputplaceholder+' *');
+                } else if(select.length && selectPlaceholderOption){
+                    previewfield.find('.textholder').val(selectPlaceholder+' *');
+				}
+			}
+
+			previewfield_label.append('<em class="required-star">*</em>');
+
 		} else {
-			previewfield.find('.required-star').remove();
+            if(label_pos=='formsInsideAlign') {
+                if(input.length){
+                    input.attr('placeholder',inputplaceholder.replace(' *',''));
+                } else if(select.length && selectPlaceholderOption){
+                    previewfield.find('.textholder').val(selectPlaceholder.replace(' *',''));
+                }
+
+            }
+
+			previewfield_label.find('.required-star').remove();
+			if(previewfield.find('.textholder').length) previewfield.find('.textholder').val(selectPlaceholder.replace(' *',''));
 		}
 	});
 
+	/* label position change */
 	jQuery('#fields-list-block').on('keypress keyup change', 'select#form_label_position', function() {
 		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
-		var currentClass = jQuery(this).val();
-		var previewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] label');
-		var previewfield2 = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] div.field-block');
-		//debugger;
-		if (currentClass == 'formsAboveAlign' || currentClass == 'formsInsideAlign') {
-			if (currentClass == 'formsInsideAlign') {
-				var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
-				var checkSelect = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] > div');
-				var label = jQuery(this).parents('.fields-options').find('input.label').val();
-				if (checkSelect.hasClass('selectbox-block')) {
-					jQuery(this).parents(".fields-options").find('.field-multiple-option-list li').each(function() {
-						if (jQuery(this).find('div.set-active').hasClass('checked')) {
-							jQuery(this).find('div.set-active').removeClass('checked');
-						}
-					});
-					var previewselect2 = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"]').find('select');
-					previewselect2.prepend('<option class="selectDefault" disabled>' + label + '</options>');
-					jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] select').find('option').each(function() {
-						if (jQuery(this).attr('selected') == 'selected') {
-							jQuery(this).removeAttr('selected');
-						}
+		var fieldPosition = jQuery(this).val();
+		var fieldPlaceholder = jQuery('#'+fieldid+' .placeholder').val();
+		var fieldRequired = jQuery('#'+fieldid+' .required:checked').length;
 
-					})
+		var previewField = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"]');
+		var previewFieldLabel = previewField.find('label');
+		var previewFieldDiv = previewField.find('div.field-block');
+		var previewFieldDivInput = previewFieldDiv.find('input[type=text],input[type=email],input[type=number],textarea').not('.textholder');
 
-					jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] select').find('option').each(function() {
-						if (jQuery(this).hasClass('selectDefault')) {
-							var secondval = jQuery(this).parents('.fields-options').find('.field-multiple-option-list li').eq(0).find('.field-multiple-option').val();
-							jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .textholder').val(label);
-							jQuery(this).attr('selected', 'selected');
-						}
-					})
-					jQuery(this).parents('.fields-options').find('ul.selectbox').prepend('<li id="defaultSelect"><input class="field-multiple-option" type="text" name="fieldoption' + fieldid + '" value="' + label + '" /><div class="set-active checked"><input type="radio" name="options_active_' + fieldid + '" value="' + label + '" /></div><a href="#remove" class="remove-field-option">remove</a></li>');
-					jQuery(this).parents('.fields-options').find('ul.selectbox').find('input.field-multiple-option-active-field').attr('value', '0');
-					var allvalues = '';
-					jQuery(this).parents(".fields-options").find('.field-multiple-option-list .field-multiple-option').each(function() {
-						allvalues += jQuery(this).val() + ";;";
-					});
-					allvalues = allvalues.slice(0, -2);
-					jQuery(this).parents(".fields-options").find('.field-multiple-option-list .field-multiple-option-all-values').val(allvalues);
-					previewfield.addClass(currentClass);
-					previewfield2.addClass(currentClass);
-					return false;
-				} else {
-					jQuery(this).parents('.fields-options').find('input.placeholder').attr('value', label);
-					var toChangepreviewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block input');
-					var toChangepreviewfieldtextarea = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block textarea');
-					toChangepreviewfield.attr("placeholder", label);
-					toChangepreviewfieldtextarea.attr("placeholder", label);
-				}
+		var previewFieldDivInputPlaceholder = previewFieldDivInput.attr('placeholder');
+		var previewFieldDivInputHasPlaceholder = typeof previewFieldDivInputPlaceholder !== typeof undefined && previewFieldDivInputPlaceholder !== false;
+
+		var previewFieldSelect = previewField.find('select');
+		var previewFieldSelectPlaceholder = previewField.find('.textholder');
+		var previewFieldSelectPlaceholderVal = jQuery('#'+fieldid+' .placeholder-option').val();
+
+		if(previewField.hasClass('simple-captcha-block')){
+			if(previewField.hasClass('text-right')){
+                previewField.removeClass('text-right').addClass('text-left');
 			} else {
-				var checkSelect = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] > div');
-				var previewselect2 = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"]').find('select option');
-				previewselect2.each(function() {
-					if (jQuery(this).hasClass('selectDefault')) {
-						var previewselect2 = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"]').find('select');
-						previewselect2.find('option.selectDefault').remove();
-
-					}
-				});
-				jQuery(this).parents('.fields-options').find('ul.selectbox li#defaultSelect').remove();
-				var secondval = jQuery(this).parents('.fields-options').find('.field-multiple-option-list li').eq(0).find('.field-multiple-option').val();
-				jQuery(this).parents('.fields-options').find('.field-multiple-option-list li').eq(0).find('.set-active').addClass('checked');
-				jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .textholder').val(secondval);
-				var oldvalue = jQuery(this).parents('.fields-options').find('input.placeholder').attr('oldvalue');
-				jQuery(this).parents('.fields-options').find('input.placeholder').attr('value', oldvalue);
-				var toChangepreviewfieldFile = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] input.textholder');
-				toChangepreviewfieldFile.attr('placeholder', '')
-				var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
-				var toChangepreviewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block input');
-				var toChangepreviewfieldArea = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block textarea');
-				toChangepreviewfield.attr('placeholder', oldvalue);
-				toChangepreviewfieldArea.attr('placeholder', oldvalue);
-				var allvalues = '';
-				jQuery(this).parents(".fields-options").find('.field-multiple-option-list .field-multiple-option').each(function() {
-					allvalues += jQuery(this).val() + ";;";
-				});
-				allvalues = allvalues.slice(0, -2);
-				jQuery(this).parents(".fields-options").find('.field-multiple-option-list .field-multiple-option-all-values').val(allvalues);
+                previewField.removeClass('text-left').addClass('text-right');
 			}
-			if (previewfield2.hasClass('formsAboveAlign')) {
-				previewfield2.removeClass('formsAboveAlign')
-			}
-			if (previewfield2.hasClass('formsInsideAlign')) {
-				previewfield2.removeClass('formsInsideAlign')
-			}
-
-			previewfield.addClass(currentClass);
-			previewfield2.addClass(currentClass);
 		} else {
-			var previewselect2 = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"]').find('select');
-			previewselect2.find('option.selectDefault').remove();
-			jQuery(this).parents('.fields-options').find('ul.selectbox li#defaultSelect').remove();
-			var secondval = jQuery(this).parents('.fields-options').find('.field-multiple-option-list li').eq(0).find('.field-multiple-option').val();
-			jQuery(this).parents('.fields-options').find('.field-multiple-option-list li').eq(0).find('.set-active').addClass('checked');
-			jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .textholder').val(secondval);
-			var oldvalue = jQuery(this).parents('.fields-options').find('input.placeholder').attr('oldvalue');
-			jQuery(this).parents('.fields-options').find('input.placeholder').attr('value', oldvalue);
-			var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
-			var toChangepreviewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block input');
-			var toChangepreviewfieldFile = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] input.textholder');
-			toChangepreviewfieldFile.attr('placeholder', '')
-			toChangepreviewfield.attr('placeholder', oldvalue);
+            previewFieldDiv.removeClass('formsLeftAlign formsRightAlign formsInsideAlign formsAboveAlign');
 
-			if(previewfield2.closest('.hugeit-field-block').hasClass('simple-captcha-block')){
-				var is_simple_captcha=true;
-			}
-			else{
-				if (previewfield2.hasClass('formsAboveAlign')) {
-					previewfield2.removeClass('formsAboveAlign')
-				}
-				if (previewfield2.hasClass('formsInsideAlign')) {
-					previewfield2.removeClass('formsInsideAlign')
-				}
-				var is_simple_captcha=false;
-			}
-
-
-
-
-
-
-
-			var allvalues = '';
-			jQuery(this).parents(".fields-options").find('.field-multiple-option-list .field-multiple-option').each(function() {
-				allvalues += jQuery(this).val() + ";;";
-			});
-			allvalues = allvalues.slice(0, -2);
-			jQuery(this).parents(".fields-options").find('.field-multiple-option-list .field-multiple-option-all-values').val(allvalues);
-		}
-		if(!is_simple_captcha){
-			previewfield.removeClass();
-			previewfield.addClass(currentClass);
-		}
-		else{
-			previewfield.closest('.hugeit-field-block').removeClass('text-right').removeClass('text-left');
-			if(currentClass=='formsLeftAlign'){
-				previewfield.closest('.hugeit-field-block').addClass('text-left');
-			}
-			else{
-				previewfield.closest('.hugeit-field-block').addClass('text-right');
-			}
-
+            previewFieldLabel.attr('class',fieldPosition);
+            previewFieldDiv.addClass(fieldPosition);
 		}
 
+		if( jQuery.inArray(fieldPosition, ['formsLeftAlign','formsRightAlign','formsAboveAlign']) !== -1 ){
+            if(previewFieldDivInput.length)  previewFieldDivInput.attr('placeholder',fieldPlaceholder.replace(' *',''));
+
+            if(previewFieldSelect.length && previewFieldSelectPlaceholderVal) previewFieldSelectPlaceholder.val(previewFieldSelectPlaceholderVal );
+		} else if( fieldPosition == 'formsInsideAlign' && fieldRequired ){
+            if(previewFieldDivInput.length) previewFieldDivInput.attr('placeholder',fieldPlaceholder + ' *');
+
+            if(previewFieldSelect.length && previewFieldSelectPlaceholderVal) previewFieldSelectPlaceholder.val(previewFieldSelectPlaceholderVal + ' *');
+		}
 	});
+	/* end label position change */
+
+	/* change simple captcha color */
     jQuery('#fields-list-block').on('keypress keyup change', 'input[type=color]', function(){
         jQuery(this).siblings('input.color').val(jQuery(this).val());
     });
 
     jQuery('#fields-list-block').on('keypress keyup change', 'input.default-custom[type=radio]', function() {
         if(jQuery(this).val()=='default'){
-            jQuery(this).siblings('input.custom-option').prop('disabled',true);
+            jQuery(this).closest('.input-block').find('input.custom-option').prop('disabled',true);
         }
         else{
-            jQuery(this).siblings('input.custom-option').prop('disabled',false);
+            jQuery(this).closest('.input-block').find('input.custom-option').prop('disabled',false);
         }
     });
 
@@ -1201,22 +1155,52 @@ jQuery(document).ready(function () {
             }
 	});
 
-	jQuery('#fields-list-block').on('keypress keyup change', '.placeholder', function() {
-		if (jQuery(this).parents('.fields-options').find('select#form_label_position').val() == 'formsInsideAlign') {
-			var toChange = jQuery(this).parents('.fields-options').find('input.placeholder').val();
-			jQuery(this).parents('.fields-options').find('input.label').attr('value', toChange);
-			var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
-			var previewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] label').not('.secondary-label');
-			jQuery(this).parents('.fields-options').parent().find('h4').html(toChange);
-			previewfield.html(toChange);
-		}
-		var value = jQuery(this).val();
-		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
+	/* change placeholder value */
+	jQuery('#fields-list-block').on('keypress keyup change', 'input.placeholder', function() {
+        var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
+		var placeholder = jQuery(this).val();
+		var fieldposition = jQuery('#' + fieldid +' #form_label_position').val();
+
+		if( jQuery('#'+fieldid+' .required:checked').length && fieldposition == 'formsInsideAlign' ) placeholder = placeholder +' *';
 		var previewfield = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block input');
 		var previewfieldtextarea = jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block textarea');
-		previewfield.attr("placeholder", value);
-		previewfieldtextarea.attr("placeholder", value);
+		previewfield.attr("placeholder", placeholder);
+		previewfieldtextarea.attr("placeholder", placeholder);
 	});
+
+	/* change placeholder option */
+    jQuery('#fields-list-block').on('keypress keyup change', 'input.placeholder-option', function() {
+        var fieldid = jQuery(this).parents('.fields-options').parent().attr('data-fieldnum');
+        var placeholder = jQuery(this).val();
+        var _this = jQuery(this).val();
+        var fieldposition = jQuery('select[name=hc_input_show_default'+fieldid+']').val();
+
+        if(jQuery('input[name=hc_required'+fieldid+']:checked').length && fieldposition == 'formsInsideAlign') placeholder += ' *';
+
+        if( _this ){
+            if(jQuery('#hugeit_preview_textbox_'+fieldid+' option.placeholder-option').length){
+                jQuery('#hugeit_preview_textbox_'+fieldid+' option.placeholder-option').text(placeholder);
+            } else {
+                jQuery('#hugeit_preview_textbox_'+fieldid).prepend('<option class="placeholder-option" selected="selected">'+placeholder+'</option>');
+            }
+
+            jQuery('.hugeit-field-block[rel=huge-contact-field-'+fieldid+'] .textholder').val(placeholder);
+            jQuery('ul[rel='+fieldid+'] .set-active').removeClass('checked');
+            jQuery('ul[rel='+fieldid+']').siblings('.field-multiple-option-active-field').val(-1);
+
+		} else {
+            jQuery('#hugeit_preview_textbox_'+fieldid+' option.placeholder-option').remove();
+            var firstOption = jQuery('#hugeit_preview_textbox_'+fieldid +' option:first-child').text();
+            jQuery('.hugeit-field-block[rel=huge-contact-field-'+fieldid+'] .textholder').val(firstOption);
+            jQuery('ul[rel='+fieldid+'] .set-active').eq(0).addClass('checked');
+
+            jQuery('ul[rel='+fieldid+'] .set-active').find('input[type=radio]').removeAttr('checked');
+            jQuery('ul[rel='+fieldid+'] .set-active').eq(0).find('input[type=radio]').attr('checked','checked');
+            jQuery('ul[rel='+fieldid+']').siblings('.field-multiple-option-active-field').val(0);
+
+        }
+
+    });
 
 
 	jQuery('#fields-list-block').on('change keyup', '.textbox_file_type input', function() {
@@ -1311,6 +1295,8 @@ jQuery(document).ready(function () {
 			jQuery('div[id="go_to_url_field"]').show();
 		}
 	});
+
+
 	//Ready to Go Onchange//
 	jQuery('#fields-list-block').on('keypress keyup change', 'select#ready_form_label_position', function() {
 
@@ -1337,6 +1323,8 @@ jQuery(document).ready(function () {
 			previewfield2.addClass(currentClass);
 		}
 	});
+	/* end label position change */
+
 	jQuery('#fields-list-block').on('keypress keyup change', '.placeholderName', function() {
 
 		var value = jQuery(this).val();
@@ -1776,3 +1764,10 @@ jQuery(document).ready(function(){
     });
 });
 
+
+jQuery(document).ready(function(){
+    jQuery('.fixed-tabs').each(function () {
+        var width = jQuery(this).find('span').width();
+		jQuery(this).find('input').width(width + 35 +'px');
+    })
+});

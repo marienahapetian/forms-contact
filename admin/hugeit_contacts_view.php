@@ -11,6 +11,8 @@ if ( ! function_exists( 'current_user_can' ) ) {
 	die( 'Access Denied' );
 }
 require_once( "hugeit_free_version.php" );
+
+/* forms list */
 function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles){
 	global $wpdb;
 	?>
@@ -53,6 +55,7 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 					<th scope="col" id="id" style="width:30px" ><span><?php _e('ID','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
 					<th scope="col" id="name" style="width:85px" ><span><?php _e('Name','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
 					<th scope="col" id="prod_count"  style="width:75px;" ><span><?php _e('Fields','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
+					<th scope="col" id="shortcode"  style="width:75px;" ><span><?php _e('Shortcode','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
 					<th style="width:40px"><span><?php _e('Duplicate','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
 					<th style="width:40px"><span><?php _e('Delete','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
 				 </tr>
@@ -143,6 +146,7 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 						<td><?php echo $rows[$i]->id; ?></td>
 						<td><a  href="<?php echo $edit_form_safe_link; ?>"><?php echo esc_html(stripslashes($rows[$i]->name)); ?></a></td>
 						<td>(<?php if(!($pr_count)){echo '0';} else{ echo $rows[$i]->prod_count;} ?>)</td>
+						<td><?php echo '[huge_it_forms id="'.$rows[$i]->id.'"]';?></td>
 						<td>
 							<a
 								href="#"
@@ -164,8 +168,11 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 	</div>
 </div>
     <?php
-
 }
+/* end forms list */
+
+
+
 function hugeit_contact_html_edithugeit_contact($current_form, $ord_elem, $count_ord,$images, $cat_row, $rowim, $rowsld, $paramssld, $rowsposts, $rowsposts8, $postsbycat, $form_styles,$style_values,$themeId){
  	global $wpdb;
  	$id=$current_form->id;
@@ -340,16 +347,18 @@ function submitbutton(pressbutton){
 							<?php if ( $fordisablecaptcha == 0 ) :
 								if ( $paramssld['form_captcha_public_key'] != '' and $paramssld['form_captcha_private_key'] != '' ) :
 									?>
-									<li class="bbdisabled"><a onclick="" class="captcha" id="captcha"
-									                          data-formId="<?php echo $id; ?>"
-									                          data-themeId="<?php echo $current_form->hc_yourstyle; ?>"><?php _e('Captcha','hugeit_contact');?></a>
+									<li class="bbdisabled">
+                                        <a onclick="" class="captcha" id="captcha" data-formId="<?php echo $id; ?>" data-themeId="<?php echo $current_form->hc_yourstyle; ?>">
+                                            <?php _e('Captcha','hugeit_contact');?>
+                                        </a>
 									</li>
 								<?php else : ?>
-									<li class="bbdisabled"><a
-											href="admin.php?page=hugeit_forms_main_page&task=captcha_keys&id=<?php echo esc_html( $_GET['id'] ); ?>&TB_iframe=1"
-											id="Nocaptcha" data-formId="<?php echo $id; ?>"
-											data-themeId="<?php echo $current_form->hc_yourstyle; ?>"
-											class="thickbox"><?php _e('Captcha','hugeit_contact');?></a></li>
+									<li class="bbdisabled">
+                                        <a href="admin.php?page=hugeit_forms_main_page&task=captcha_keys&id=<?php echo esc_html( $_GET['id'] ); ?>&TB_iframe=1"
+											id="Nocaptcha" data-formId="<?php echo $id; ?>" data-themeId="<?php echo $current_form->hc_yourstyle; ?>" class="thickbox">
+                                            <?php _e('Captcha','hugeit_contact');?>
+                                        </a>
+                                    </li>
 									<?php
 								endif;
 							else : ?>
@@ -598,15 +607,15 @@ function submitbutton(pressbutton){
 			
 			#hugeit-contact-wrapper > div > h3 {
 				<?php if($style_values['form_show_title']=='on'):?>
-				position:relative;
-				display:block;
-				clear:both !important;
-				padding:5px 0 10px 2% !important;
-				font-size:<?php echo $style_values['form_title_size']; ?>px !important;
-				line-height:<?php echo $style_values['form_title_size']; ?>px !important;
-				color:#<?php echo $style_values['form_title_color']; ?> !important;
-				margin: 10px 0 15px 0 !important;
+                    position:relative;
+                    display:block;
+                    clear:both !important;
 				<?php endif;?>
+                padding:5px 0 10px 2% !important;
+                font-size:<?php echo $style_values['form_title_size']; ?>px !important;
+                line-height:<?php echo $style_values['form_title_size']; ?>px !important;
+                color:#<?php echo $style_values['form_title_color']; ?> !important;
+                margin: 10px 0 15px 0 !important;
 			}
 			.text_area_title{
 				border: 1px solid transparent !important;
@@ -620,6 +629,7 @@ function submitbutton(pressbutton){
 				outline: 0 !important;
 				-webkit-transition: none !important;
 				transition: none !important;
+                width: 100%;
 			}
 
 			/*LABELS*/
@@ -669,7 +679,8 @@ function submitbutton(pressbutton){
 			/*FIELDS CUSTOM STYLES*/
 				/*############INPUT TEXT############*/
 
-				.input-text-block input,.input-text-block input:focus {
+				.input-text-block input,.input-text-block input:focus,
+                .simple-captcha-block input[type=text],.simple-captcha-block input[type=text]:focus{
 					height:<?php echo $style_values['form_input_text_font_size']*2; ?>px;
 					<?php if($style_values['form_input_text_has_background']=="on"){?>
 					background:#<?php echo $style_values['form_input_text_background_color']; ?>;
@@ -1120,9 +1131,11 @@ function submitbutton(pressbutton){
                                 default :
                                     $show_form_title = $style_values['form_show_title'] === 'on' ? true : false;
                             }
-						    if($show_form_title) {
-						          echo '<h3><input class="text_area_title" type="text" maxlength="250" value="'.$current_form->name.'" /><span class="hugeItTitleOverlay"></span></h3>';
-						    }
+						    if($show_form_title)  $display = 'block';
+                            else $display = 'none';
+
+                        echo '<h3 style="display: '.$display.';"><input class="text_area_title"  type="text" value="'.$current_form->name.'" /><span class="hugeItTitleOverlay"></span></h3>';
+
 						?>
 						<div class="hugeit-contact-column-block hugeit-contact-block-left" id="hugeit-contact-block-left">
 							<?php
@@ -1213,11 +1226,12 @@ function submitbutton(pressbutton){
 												?>
 												<?php if($rowimages->hc_input_show_default=='formsLeftAlign'){$hg_left_right_class='text-left';}
 											    else{$hg_left_right_class='text-right';}?>
+                                                <?php $hc_other_field = json_decode($rowimages->hc_other_field);?>
 												<div class="hugeit-field-block simple-captcha-block <?php echo $hg_left_right_class;?>" rel="huge-contact-field-<?php echo $rowimages->id; ?>">
 													<?php $capPos='right';if($rowimages->hc_input_show_default=='2')$capPos="left";?>
 													<label  class="formsAboveAlign">
                                                         <img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'admin');?>">
-                                                        <span class="hugeit_captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo $hc_other_field->digits;?>" data-form-id="<?php echo $frontendformid; ?>">
+                                                        <span class="hugeit_captcha_refresh_button" data-captcha-id="<?php echo $rowimages->id;?>" data-digits="<?php echo (isset($hc_other_field->digits))?$hc_other_field->digits:5;?>" data-form-id="<?php echo $current_form->id; ?>">
                                                             <img src="<?php echo plugin_dir_url(__FILE__);?>../images/refresh-icon.png" width="32px">
                                                         </span>
                                                     </label>
