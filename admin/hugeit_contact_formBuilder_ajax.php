@@ -233,8 +233,7 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
 					?>
 						<option <?php if($rowimages->def_value =='' && ($optionValue==$opt_key || $optionValue == $option)){
 						    echo 'selected="selected"';
-						} ?>>
-                            <?php echo esc_html($option); ?></option>
+						} ?>><?php echo esc_html($option); ?></option>
 					<?php } ?>
 				</select>
 				<i class="hugeicons-chevron-down"></i>

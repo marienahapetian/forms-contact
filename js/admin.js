@@ -755,17 +755,21 @@ jQuery(document).ready(function () {
 		}
 		/*selectbox*/
 		else if(jQuery(this).parents('.field-multiple-option-list').hasClass('selectbox')){
-				jQuery(this).parents(".field-multiple-option-list").find(".set-active.checked").removeClass('checked');
-				jQuery(this).parent().addClass("checked");
+            jQuery(this).parents(".field-multiple-option-list").find(".set-active.checked").removeClass('checked');
+            jQuery(this).parent().addClass("checked");
 
-				jQuery(this).parents(".field-multiple-option-list").siblings('.field-multiple-option-active-field').val(index);
+            jQuery(this).parents(".field-multiple-option-list").siblings('.field-multiple-option-active-field').val(index);
 
-				jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] select').find('option').removeAttr('selected');
-				var previewselect=jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] select').find('option').eq(index);
-				previewselect.attr('selected','selected');
-				jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] .textholder').val(previewselect.val());
+            jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] select').find('option').removeAttr('selected');
+            var previewselect = jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] select');
+            previewselect.find('option.placeholder-option').remove();
 
-				jQuery('#def_value'+fieldID).val('');
+            var previewSelectOption=previewselect.find('option').eq(index);
+            previewSelectOption.attr('selected','selected');
+
+            jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] .textholder').val( previewselect.val() );
+
+            jQuery('#def_value'+fieldID).val('');
 		}
 		/* radio */
 		else {
