@@ -1211,6 +1211,12 @@ jQuery(document).ready(function () {
 		var value = jQuery(this).val();
 		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
 		jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block > input').prop('type', value);
+
+		if(value=='number'){
+            jQuery('#' + fieldid + ' .hg-mask-on-check').attr('disabled',true).attr('checked', false);
+		} else {
+            jQuery('#' + fieldid + ' .hg-mask-on-check').attr('disabled', false);
+		}
 	});
 
 
