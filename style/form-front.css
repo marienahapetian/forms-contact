@@ -328,7 +328,7 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
 .hugeit-contact-wrapper .checkbox-block {
     position: relative;
     float: left;
-    margin: 0 5px 0 5px !important;
+    margin: 0 5px 0 0px !important;
     display: block;
 }
 
@@ -406,7 +406,7 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
 .hugeit-contact-wrapper .selectbox-block select {
     position: relative;
     opacity: 0;
-    z-index: 2;
+    z-index: 0;
 }
 
 .hugeit-contact-wrapper .selectbox-block .textholder {

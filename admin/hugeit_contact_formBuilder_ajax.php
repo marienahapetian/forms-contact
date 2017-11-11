@@ -72,14 +72,14 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
                 </div>
             <!--Mask On-->
             <label class="input-block"><?php _e('Mask On','hugeit_contact'); ?>
-                  <input type="checkbox" class="hg-mask-on-check" <?php if(!empty(trim($rowimages->mask_on))) echo "checked='checked'";  ?>>
-                  <label class="hg-mask-on <?php if(empty(trim($rowimages->mask_on))) echo "readonlyHgMask" ?>" >
+                  <input type="checkbox" <?php if($rowimages->field_type == 'number') echo "disabled";?> class="hg-mask-on-check" <?php if(!empty(trim($rowimages->mask_on)) && $rowimages->field_type == 'text') echo "checked='checked'";  ?>>
+                  <label class="hg-mask-on <?php if(empty(trim($rowimages->mask_on)) || $rowimages->field_type == 'number') echo "readonlyHgMask" ?>" >
                           <input  type="text" name="mask_on<?php echo absint($rowimages->id); ?>"  value="<?php echo $rowimages->mask_on; ?>" class="mask_on" placeholder="Mask Pattern (ex. (99)-999-99-9) " /><br>
                             <b>a</b><em>- (A-Z,a-z)</em> <br>
                             <b>9</b><em>- (0-9)</em><br>
                             <b>*</b><em>- (A-Z,a-z,0-9)</em>
                         </label>
-                </label>
+            </label>
             <!--Mask On-->
             </div>
             <div class="left">
@@ -233,8 +233,7 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
 					?>
 						<option <?php if($rowimages->def_value =='' && ($optionValue==$opt_key || $optionValue == $option)){
 						    echo 'selected="selected"';
-						} ?>>
-                            <?php echo esc_html($option); ?></option>
+						} ?>><?php echo esc_html($option); ?></option>
 					<?php } ?>
 				</select>
 				<i class="hugeicons-chevron-down"></i>

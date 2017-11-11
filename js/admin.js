@@ -755,17 +755,21 @@ jQuery(document).ready(function () {
 		}
 		/*selectbox*/
 		else if(jQuery(this).parents('.field-multiple-option-list').hasClass('selectbox')){
-				jQuery(this).parents(".field-multiple-option-list").find(".set-active.checked").removeClass('checked');
-				jQuery(this).parent().addClass("checked");
+            jQuery(this).parents(".field-multiple-option-list").find(".set-active.checked").removeClass('checked');
+            jQuery(this).parent().addClass("checked");
 
-				jQuery(this).parents(".field-multiple-option-list").siblings('.field-multiple-option-active-field').val(index);
+            jQuery(this).parents(".field-multiple-option-list").siblings('.field-multiple-option-active-field').val(index);
 
-				jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] select').find('option').removeAttr('selected');
-				var previewselect=jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] select').find('option').eq(index);
-				previewselect.attr('selected','selected');
-				jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] .textholder').val(previewselect.val());
+            jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] select').find('option').removeAttr('selected');
+            var previewselect = jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] select');
+            previewselect.find('option.placeholder-option').remove();
 
-				jQuery('#def_value'+fieldID).val('');
+            var previewSelectOption=previewselect.find('option').eq(index);
+            previewSelectOption.attr('selected','selected');
+
+            jQuery('.hugeit-contact-column-block > div[rel="huge-contact-field-'+fieldID+'"] .textholder').val( previewselect.val() );
+
+            jQuery('#def_value'+fieldID).val('');
 		}
 		/* radio */
 		else {
@@ -1207,6 +1211,12 @@ jQuery(document).ready(function () {
 		var value = jQuery(this).val();
 		var fieldid = jQuery(this).parents('.fields-options').parent().attr('id');
 		jQuery('.hugeit-contact-column-block > div[rel="' + fieldid + '"] .field-block > input').prop('type', value);
+
+		if(value=='number'){
+            jQuery('#' + fieldid + ' .hg-mask-on-check').attr('disabled',true).attr('checked', false);
+		} else {
+            jQuery('#' + fieldid + ' .hg-mask-on-check').attr('disabled', false);
+		}
 	});
 
 

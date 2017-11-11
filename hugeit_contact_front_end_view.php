@@ -92,8 +92,7 @@ function selectbox_field_html($rowimages, $frontendformid)
                 <?php }
                 foreach ($options as $opt_key => $option) {
                     ?>
-                    <option <?php echo ($optionValue === $opt_key || $optionValue === $option) ?'selected="selected"':''; ?> >
-                        <?php echo esc_html($option); ?></option>
+                    <option <?php echo ($optionValue === $opt_key || $optionValue === $option) ?'selected="selected"':''; ?> ><?php echo esc_html($option); ?></option>
                     <?php
                 } ?>
             </select>
@@ -1537,7 +1536,8 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 	 		jQuery('#hugeit-contact-wrapper_<?php echo $frontendformid; ?> .hugeit-error-message').empty();
 			jQuery('#hugeit-contact-wrapper_<?php echo $frontendformid; ?>').find('.hugeit-field-block').find('label').removeClass('error');
 			jQuery('#hugeit-contact-wrapper_<?php echo $frontendformid; ?>').find('.hugeit-field-block').find('label>em.required-star').removeClass('error');
-	 	});
+            jQuery('#hugeit-contact-wrapper_<?php echo $frontendformid; ?>').find('.hugeit-field-block').find('.stateWrap select option').remove();
+        });
 
 
 

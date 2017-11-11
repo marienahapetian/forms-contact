@@ -78,21 +78,13 @@ jQuery(document).ready(function () {
     }
     //Pagination
 
-/* Mask On */
+    /* Mask On */
     jQuery(".hugeit-contact-form-container").find("[data-hg-pattern]").each(function () {
-       var hg_pattern = jQuery(this).data('hg-pattern');
-       jQuery(this).mask(hg_pattern);
-           jQuery(this).on("blur", function() {
-              var last = jQuery(this).val().substr( jQuery(this).val().indexOf("-") + 1 );
-                  if( last.length == 3 ) {
-                      var move = jQuery(this).val().substr( jQuery(this).val().indexOf("-") - 1, 1 );
-                      var lastfour = move + last;
-                          var first = jQuery(this).val().substr( 0, 9 );
-                          jQuery(this).val( first + '-' + lastfour );
-                       }
-               });
-        });
-/* Mask On */
+        var hg_pattern = jQuery(this).data('hg-pattern');
+        hg_pattern = hg_pattern.toString();
+        jQuery(this).mask(hg_pattern);
+    });
+    /* Mask On */
 
 
     function hugeitFormsResize(){
