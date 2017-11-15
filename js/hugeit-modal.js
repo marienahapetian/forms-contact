@@ -21,3 +21,7 @@ jQuery(document).ready(function () {
         hugeitModalContactForms.hide(jQuery(this).closest('.-hugeit-modal').attr('id'));
     });
 });
+
+
+
+

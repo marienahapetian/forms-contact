@@ -26,12 +26,29 @@ require_once("admin/hugeit_contact_ajax.php");
 
 add_filter('tiny_mce_before_init', 'hugeit_contact_tinymce_readonly');
 
+
+
 function hugeit_contact_tinymce_readonly($args)
 {
     if ($args['selector'] == '#hugeit_contact_admin_message' || $args['selector'] == '#hugeit_contact_user_message') {
         $args['readonly'] = 1;
     }
     return $args;
+}
+
+add_filter('mce_buttons', 'hg_form_mce_button');
+
+function hg_form_mce_button($buttons) {
+    array_push($buttons, 'hg_forms_shortcode');
+    return $buttons;
+}
+
+add_filter('mce_external_plugins', 'hugeit_contact_tinymce_shortcode_placeholder');
+
+function hugeit_contact_tinymce_shortcode_placeholder($plugins)
+{
+    $plugins['hg_forms_shortcode'] = plugins_url("js/shortcode-placeholder.js", __FILE__);
+    return $plugins;
 }
 
 /*INCLUDING HUGE IT FORM BUILDER AJAX FILE*/
@@ -98,7 +115,7 @@ function hugeit_contact_add_contact_button($context)
 {
     $img = plugins_url('/images/huge_it_contactLogoHover-for_menu.png', __FILE__);
     $container_id = 'huge_it_contact';
-    $context .= '<a class="button thickbox" title="Select Huge IT Contact Form to Insert Into Post"    href="#TB_inline?width=400&inlineId=' . $container_id . '">
+    $context .= '<a class="button thickbox hugeit-forms-add" title="Select Huge IT Contact Form to Insert Into Post"    href="#TB_inline?width=400&inlineId=' . $container_id . '">
         <span class="wp-media-buttons-icon" style="background: url(' . $img . '); background-repeat: no-repeat; background-position: left bottom;"></span>
     Add Form
     </a>';
@@ -159,6 +176,7 @@ function wp_ajax_hugeit_contact_duplicate_form_callback()
 add_action('admin_footer', 'hugeit_contact_add_inline_contact_popup_content');
 function hugeit_contact_add_inline_contact_popup_content()
 {
+
     ?>
     <script type="text/javascript">
         jQuery(document).ready(function () {
@@ -190,6 +208,7 @@ function hugeit_contact_add_inline_contact_popup_content()
         }
         ?>
     </div>
+
     <?php
 }
 
@@ -200,6 +219,36 @@ function hugeit_contact_ajax_func()
     <script>
         var huge_it_ajax = '<?php echo admin_url("admin-ajax.php"); ?>';
     </script>
+    <?php
+}
+
+add_action('admin_print_scripts','hugeit_forms_shortcode_placeholder_template');
+
+function hugeit_forms_shortcode_placeholder_template(){
+    ?>
+    <script type="text/underscore-template" id="hugeit-shortcode-placeholder">
+        <div class="mceItem mceNonEditable hgformsPlaceholder" id="<%- ref %>" data-shortcode="<%- shortcode %>" data-mce-resize="false" data-mce-placeholder="1" contenteditable="false">
+            <span class="plugin-name">Huge IT Forms</span>
+            <span title="<%- edit %>" class="hgformsPlaceholderButton hgformsPlaceholderEdit">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;
+        </span>
+            <span title="<%- remove %>" class="hgformsPlaceholderButton hgformsPlaceholderRemove">
+            <i class="fa fa-times-circle" aria-hidden="true"></i>&nbsp;
+        </span>
+        </div>
+    </script>
+
+    <style>
+        .hgformsPlaceholder{
+            width: 120px;
+            background: #2d8ac7;
+            color: #fff;
+            padding: 5px 10px;
+        }
+        .hgformsPlaceholder span.plugin-name{
+            font-size: 14px;
+        }
+    </style>
     <?php
 }
 
@@ -257,6 +306,12 @@ function hugeit_contact_ShowTinyMCE()
     wp_enqueue_script('utils');
     do_action("admin_print_styles-post-php");
     do_action('admin_print_styles');
+
+    wp_localize_script(
+        'media-editor',
+        'hgform_attach_to_post_url',
+        admin_url('/?hgform_attach_to_post=1')
+    );
 }
 
 add_action('admin_menu', 'hugeit_contact_options_panel');
@@ -328,6 +383,17 @@ function hugeit_contact_less_options()
     );
     wp_enqueue_script('param_block3', plugins_url("elements/jscolor/jscolor.js", __FILE__));
     wp_localize_script('hugeit_contact_admin_js', 'hugeit_forms_obj', $translation_array);
+
+    wp_enqueue_script(
+        'hugeit-forms-igw', plugins_url("js/editorPopup.js", __FILE__), array('jquery'), '1.0.0'
+    );
+    wp_localize_script('hugeit-forms-igw', 'hgform_igw_i18n', array(
+        'hgform'	=>	'Huge IT Forms',
+        'edit'				=>	__('Click to edit', 'forms_contact'),
+        'remove'			=>	__('Click to remove', 'forms_contact'),
+    ));
+
+
 }
 
 function hugeit_contact_email_options()
@@ -551,6 +617,7 @@ function hugeit_contact_general_options()
 {
     require_once("admin/hugeit_contact_general_options_func.php");
     require_once("admin/hugeit_contact_general_options_view.php");
+
     if (isset($_GET['task'])) {
         $task = sanitize_text_field($_GET['task']);
         if ($task == 'save') {
@@ -1784,6 +1851,10 @@ function hugeit_contact_new_form_callback()
     if ($condition1 || $condition2 || $condition3) {
         ob_start();
     }
+
+    require_once 'vendor/wpdev-settings/class-wpdev-settings-api.php';
+    require_once 'includes/Hugeit_Contact_WP_Settings.php';
+    new Hugeit_Contact_WP_Settings();
 }
 
 function hugeit_contact_schedule_tracking()

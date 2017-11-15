@@ -168,7 +168,7 @@ function hugeit_contact_html_show_settings($param_values) {
 							</div>
 							<div>
 								<label for="msg_simple_captcha_error"><?php _e('Simple Captcha Code Incorrect','hugeit_contact');?></label>
-								<input name="params[msg_simple_captcha_error]" type="text" id="msg_simple_captcha_error" value="<?php echo $param_values['msg_simple_captcha_error']?esc_html($param_values['msg_simple_captcha_error']):'Incorrect Input'; ?>" />
+								<input name="params[msg_simple_captcha_error]" type="text" id="msg_simple_captcha_error" value="<?php echo isset($param_values['msg_simple_captcha_error'])?esc_html($param_values['msg_simple_captcha_error']):'Incorrect Input'; ?>" />
 							</div>
 						</div>
 					</div>
