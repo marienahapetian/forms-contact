@@ -612,12 +612,12 @@ if( !class_exists( 'WPDEV_Settings_API' ) ):
             $type = ( isset( $control['type'] ) ? $control['type'] : "text" );
 
             $default = ( isset( $control['default'] ) ? $control['default'] : "" );
-            $checked = checked( "yes", $default, false );
+            $checked = checked( "on", $default, false );
             $val = "yes";
             $off_val = "no";
             if( is_string( $default ) ){
                 if( in_array( $default, array("yes","no") ) ){
-                    $checked = checked( "yes", $default, false );
+                    $checked = checked( "on", $default, false );
                     $val = "yes";
                     $off_val = "no";
                 }elseif( in_array( $default, array( "true", "false" ) ) ){

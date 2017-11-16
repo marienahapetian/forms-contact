@@ -11,7 +11,7 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
         $config = array(
             'menu_slug' => 'hugeit_forms_general_options',
             'parent_slug' => 'hugeit_forms_main_page',
-            'page_title' => __('', 'hugeit_contact'),
+            'page_title' => __('General Options', 'hugeit_contact'),
             'title' => __('Forms Contact General Options', 'hugeit_contact'),
             'menu_title' => __('General Options', 'hugeit_contact'),
         );
@@ -43,7 +43,7 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
     {
         $this->panels = array(
             'form_settings' => array(
-                'title' => __('General Options', 'hugeit_contact'),
+                'title' => __('Edit Form Settings', 'hugeit_contact'),
             ),
         );
     }
@@ -53,12 +53,12 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
         $this->sections = array(
             'form_general_settings' => array(
                 'panel' => 'form_settings',
-                'title' => __('Form Settings', 'hugeit_contact'),
+                'title' => __('Form General Settings', 'hugeit_contact'),
             ),
 
             'form_messages' => array(
                 'panel' => 'form_settings',
-                'title' => __('Form Messages', 'hugeit_contact'),
+                'title' => __('Error Messages', 'hugeit_contact'),
             ),
             'email_admin' => array(
                 'panel' => 'form_settings',
@@ -241,6 +241,7 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
             'form_adminstrator_email' => array(
                 'section' => 'email_admin',
                 'type' => 'textarea',
+                'html_class' => array('short-textarea') ,
                 'default' => $this->form_adminstrator_email,
                 'label' => __('Administrator Email', 'hugeit_contact'),
                 'help' => __('Add multiple emails,separate them with commas', 'hugeit_contact')
@@ -256,6 +257,7 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
                 'section' => 'email_admin',
                 'type' => 'editor',
                 'editorId' => 'hugeit_contact_adminmessage',
+                'editorName' => 'form_adminstrator_message',
                 'default' => $this->form_adminstrator_message,
                 'label' => __('Message Content', 'hugeit_contact'),
                 'help' => __('', 'hugeit_contact')
@@ -278,6 +280,7 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
                 'section' => 'email_user',
                 'type' => 'editor',
                 'editorId' => 'hugeit_contact_usermessage',
+                'editorName' => 'form_user_message',
                 'default' => $this->form_user_message,
                 'label' => __('Message Content', 'hugeit_contact'),
                 'help' => __('', 'hugeit_contact')
@@ -315,11 +318,12 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
         }
 
         $editorId   = ( isset( $control['editorId'] )) ? $control['editorId'] : '';
+        $editorName   = ( isset( $control['editorId'] )) ? $control['editorName'] : '';
 
         echo $label_str;
         ?>
 
-        <?php wp_editor( html_entity_decode(stripslashes($default)), $editorId ); ?>
+        <?php wp_editor( html_entity_decode(stripslashes($default)), $editorId , array('textarea_name'=>'wpdev_options['.$editorName.']')); ?>
         <?php
         echo $description_str;
     }
@@ -348,7 +352,7 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
      */
     public function update_option_in_table( $key, $value ) {
         global $wpdb;
-        $wpdb->update( $this->tablename, array(
+        $wpdb->update( $wpdb->prefix.$this->tablename, array(
             'value'=>$value
         ), array(
             'name'=>$key
@@ -359,7 +363,6 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
         $ajax = false;
         if (defined('DOING_AJAX') && DOING_AJAX){
             $ajax = true;
-
         }
 
         if( ! isset( $_REQUEST['wpdev_settings_current_plugin'] ) || $_REQUEST['wpdev_settings_current_plugin'] !== $this->plugin_id ){
@@ -387,7 +390,6 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
                 }else{
                     $this->update_option_in_table( $name, $value );
                 }
-
             }
 
             if( $ajax ){

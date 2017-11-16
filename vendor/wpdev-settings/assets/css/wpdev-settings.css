@@ -159,6 +159,11 @@
     font-family: 'Roboto',sans-serif;
     resize: none;
 }
+.wpdev-settings-section textarea.short-textarea{
+    height: 70px;
+    width: 40%;
+    margin: 0;
+}
 .wpdev-settings-section input[type="color"],
 .wpdev-settings-section input[type="date"],
 .wpdev-settings-section input[type="datetime"],

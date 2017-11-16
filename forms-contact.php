@@ -624,7 +624,6 @@ function hugeit_contact_general_options()
             hugeit_contact_save_styles_options();
         }
     }
-    hugeit_contact_show_settings();
 }
 
 /* Featured Plugins Page */
