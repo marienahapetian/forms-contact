@@ -41,6 +41,9 @@ input[disabled] +i +i {
 span.pro{
 	color: #1279B9;
 }
+.pro-block{
+	opacity: .7;
+}
 #save-buttom {
 	width: 108px;
 	height: 44px;
@@ -464,7 +467,20 @@ img.themeSpinner{
 	opacity:0;
 	z-index:2;
 }
-.fields-list .wp-media-buttons ,.options-block  .wp-media-buttons {display:none !important;}
+
+.huge-it-forms_page_hugeit_forms_general_options .wp-media-buttons>a ,.huge-it-forms_page_hugeit_forms_general_options .wp-media-buttons>a ,
+.huge-it-forms_page_hugeit_forms_email_manager .wp-media-buttons>a ,.huge-it-forms_page_hugeit_forms_email_manager .wp-media-buttons>a {
+	display:none !important;
+}
+#wp-hugeit_contact_adminmessage-wrap,#wp-hugeit_contact_usermessage-wrap{
+	float: left;
+	width: 96%;
+	margin-top: 15px;
+	left: 2%;
+}
+#wp-hugeit_contact_subscriber_message-wrap{
+	margin-top: 15px;
+}
 .hugeit-contact-general-options-block > div:nth-child(even){
 	background: #fff;
 }

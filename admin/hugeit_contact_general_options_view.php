@@ -171,6 +171,73 @@ function hugeit_contact_html_show_settings($param_values) {
 								<input name="params[msg_simple_captcha_error]" type="text" id="msg_simple_captcha_error" value="<?php echo isset($param_values['msg_simple_captcha_error'])?esc_html($param_values['msg_simple_captcha_error']):'Incorrect Input'; ?>" />
 							</div>
 						</div>
+
+                        <div class="hugeit-contact-general-options-block brlable pro-block">
+                            <h3><?php _e('PayPal Settings','hugeit_contact');?><span class="pro"><?php _e(' (Pro)','hugeit_contact');?></span></h3>
+                            <div>
+                                <label for="hugeit_paypal_mode" style="width:30%"><?php _e('PayPal Mode','hugeit_contact');?></label>
+                                <input type="radio" disabled class="hugeit_paypal_mode" value="sandbox" /><?php _e('Sandbox','hugeit_contact');?>
+                                <input type="radio" disabled class="hugeit_paypal_mode" value="live" /><?php _e('Live','hugeit_contact');?>
+                            </div>
+                            <div>
+                                <label for="hugeit_paypal_client_email" style="width:30%"><?php _e('PayPal Account Email','hugeit_contact');?></label>
+                                <input type="email" style="width:60%" id="hugeit_paypal_client_email"  value="" disabled/>
+                            </div>
+                            <div>
+                                <label for="hugeit_sandbox_client_email" style="width:30%"><?php _e('Sandbox Account Email','hugeit_contact');?></label>
+                                <input type="email" style="width:60%" id="hugeit_sandbox_client_email"  value=""  disabled/>
+                            </div>
+                            <div>
+                                <label for="hugeit_paypal_currency" style="width:30%"><?php _e('Currency','hugeit_contact');?></label>
+                                <?php $hugePPcurrencies=array(
+                                    'USD'=>'USD (U.S. Dollar)',
+                                    'EUR'=>'EUR (Euro)',
+                                    'GBP'=>'GBP (Pound Sterling)',
+                                    'RUB'=>'RUB (Russian Ruble)',
+                                    'CAD'=>'CAD (Canadian Dollar)',
+                                    'AUD'=>'AUD (Australian Dollar)',
+                                    'BRL'=>'BRL (Brazilian Real)',
+                                    'CZK'=>'CZK (Czech Koruna)',
+                                    'CHF'=>'CHF (Swiss Franc)',
+                                    'DKK'=>'DKK (Danish Krone)',
+                                    'HKD'=>'HKD (Hong Kong Dollar)',
+                                    'HUF'=>'HUF (Hungarian Forint)',
+                                    'ILS'=>'ILS (Israeli New Sheqel)',
+                                    'JPY'=>'JPY (Japanese Yen)',
+                                    'MYR'=>'MYR (Malaysian Ringgit)',
+                                    'MXN'=>'MXN (Mexican Peso)',
+                                    'NOK'=>'NOK (Norwegian Krone)',
+                                    'NZD'=>'NZD (New Zealand Dollar)',
+                                    'PHP'=>'PHP (Philippine Peso)',
+                                    'PLN'=>'PLN (Polish Zloty)',
+                                    'SGD'=>'SGD (Singapore Dollar)',
+                                    'SEK'=>'SEK (Swedish Krona)',
+                                    'TWD'=>'TWD (Taiwan New Dollar)',
+                                    'THB'=>'THB (Thai Baht)',
+                                );?>
+                                <select id="hugeit_paypal_currency" disabled>
+                                    <?php foreach($hugePPcurrencies as $currCode=>$currName){
+                                        echo '<option value="'.$currCode.'">'.$currName.'</option>';
+                                    }?>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="hugeit_paypal_shopping_url" style="width:30%"><?php _e('Continue Shopping URL','hugeit_contact');?></label>
+                                <input type="url" style="width:60%" id="hugeit_paypal_shopping_url"  value=""  disabled/>
+                            </div>
+                            <div>
+                                <label for="hugeit_paypal_return_url" style="width:30%"><?php _e('Return URL','hugeit_contact');?></label>
+                                <input type="url" style="width:60%" id="hugeit_paypal_return_url"  value="" disabled />
+                            </div>
+
+                            <div class="hugeit-contact-general-options-block brlable">
+                                <h3><?php _e('Google Map Settings','hugeit_contact');?><span class="pro"><?php _e(' (Pro)','hugeit_contact');?></span></h3>
+                                <div>
+                                    <label for="hugeit_map_api" style="width:30%"><?php _e('Google Map Api Key','hugeit_contact');?></label>
+                                    <input type="text"  class="hugeit_map_api" style="width:60%;"   value="" disabled/>
+                                </div>
+                            </div>
+                        </div>
 					</div>
 					<div class="hugeit-contact-general-options-column hugeit-contact-general-options-right">
 						<div class="hugeit-contact-general-options-block">
