@@ -123,7 +123,7 @@ if( !class_exists( 'WPDEV_Settings_API' ) ):
                 'menu_title' => __( 'Settings' ),
                 'subtitle' => false,
                 'page_title' => __( 'Settings' ),
-                'capability' => 'manage_options'
+                'capability' => 'manage_options',
             ));
 
             foreach( $config as $key=>$val ){

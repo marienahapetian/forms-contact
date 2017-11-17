@@ -51,6 +51,11 @@ function WPDEV_Settings(){
     };
 
     _this.submitForm = function(){
+        var i, t = tinyMCE.editors;
+        for (i in t) {
+            jQuery('button.switch-html').click();
+        }
+
         var formData = _this.form.serialize();
         jQuery.ajax({
             url: wpDevL10n.ajax_admin,
@@ -68,6 +73,11 @@ function WPDEV_Settings(){
                 _this.showPopup( '-success', response.successMsg );
             }else if(typeof response.errorMsg !== 'undefined' ) {
                 _this.showPopup( '-error', response.errorMsg );
+            }
+
+            var i, t = tinyMCE.editors;
+            for (i in t) {
+                jQuery('button.switch-tmce').click();
             }
         }).fail(function(error){
             _this.showPopup( '-error', wpDevL10n.probemz );
