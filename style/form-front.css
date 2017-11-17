@@ -522,6 +522,24 @@ input[disabled] +i +i {
     width: 100%!important;
 }
 
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #7b7b7b;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #7b7b7b;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #7b7b7b;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    #7b7b7b;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+    color:    #7b7b7b;
+}
+
 @media all and (max-width: 768px){
     .hugeit-contact-wrapper div.multicolumn .hugeit-contact-column-block {
         width: 100%;
