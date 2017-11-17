@@ -2381,11 +2381,11 @@ esc_html($rowimages->hc_input_show_default);?>">
 					if ( isset( $_POSTED[ "hc_ordering" . $rowimages->id . "" ] ) ) {
 						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  ordering = %s  WHERE id = %d", intval($_POSTED[ "hc_ordering" . $rowimages->id . "" ]), $id ) );
 					}
-					if ( isset( $_POSTED[ "def_value" . $rowimages->id . "" ] ) ) {
-						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  def_value = %s  WHERE id = %d", intval($_POSTED[ "def_value" . $rowimages->id . "" ]), $id ) );
+					if ( isset( $_POSTED[ "def_value" . $rowimages->id . "" ] ) &&  $_POSTED[ "def_value" . $rowimages->id . "" ] ) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  def_value = %s  WHERE id = %d", sanitize_text_field($_POSTED[ "def_value" . $rowimages->id . "" ]), $id ) );
 					}
-					if ( isset( $_POSTED[ "mask_on" . $rowimages->id . "" ] ) ) {
-						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  mask_on = %s  WHERE id = %d", intval($_POSTED[ "mask_on" . $rowimages->id . "" ]), $id ) );
+					if ( isset( $_POSTED[ "mask_on" . $rowimages->id . "" ] ) && $_POSTED[ "mask_on" . $rowimages->id . "" ]) {
+						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  mask_on = %s  WHERE id = %d", sanitize_text_field($_POSTED[ "mask_on" . $rowimages->id . "" ]), $id ) );
 					}
 					if ( isset( $_POSTED[ "hc_input_show_default" . $rowimages->id . "" ] ) ) {
 						$wpdb->query( $wpdb->prepare( "UPDATE " . $wpdb->prefix . "huge_it_contact_contacts_fields SET  hc_input_show_default = %s  WHERE id = %d", sanitize_text_field($_POSTED[ "hc_input_show_default" . $rowimages->id . "" ]), $id ) );
