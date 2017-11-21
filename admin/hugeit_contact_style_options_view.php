@@ -767,7 +767,8 @@ function hugeit_contact_html_editstyles($param_values, $op_type, $style_themes){
                                     <input type="text" disabled class="color" id="form_pagination_font_color" value="#FFFFFF" size="10" />
                                 </div>
                             </div>
-                            <!-- Pagination -->
+                            <!-- End Pagination -->
+
 							<div class="hugeit-contact-general-options-block">
 								<h3><?php _e('Button Styles', 'hugeit_contact'); ?></h3>
 								<div>

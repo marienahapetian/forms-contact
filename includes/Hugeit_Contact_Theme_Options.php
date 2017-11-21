@@ -4,7 +4,9 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
 {
     public $plugin_id = 'forms_contact';
 
-    public $tablename = 'huge_it_contact_general_options';
+    public $tablename = 'huge_it_contact_style_fields';
+
+    public $to_save = 'theme_options';
 
     public function __construct()
     {
@@ -15,15 +17,17 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
             'title' => __('Forms Contact Theme Options', 'hugeit_contact'),
             'menu_title' => __('Theme Options', 'hugeit_contact'),
         );
-        $this->init();
+
         $this->init_panels();
+        $this->init();
         $this->init_sections();
         $this->init_controls();
 
 
         parent::__construct($config);
 
-        $this->add_css('wpdev-custom-styles', plugins_url('../vendor/wpdev-settings/assets/css/wpdev-settings.css',__FILE__) );
+        $this->add_css('wpdev-custom-styles', plugins_url('../style/iconfonts/css/hugeicons.css',__FILE__) );
+        $this->add_css('huge-icons-styles', plugins_url('../vendor/wpdev-settings/assets/css/wpdev-settings.css',__FILE__) );
         $this->add_js('wpdev-custom-js',  plugins_url('../vendor/wpdev-settings/assets/js/wpdev-settings.js',__FILE__));
 
     }
@@ -45,11 +49,12 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
 
         global $wpdb;
 
-        $themes = $wpdb->get_results('SELECT name FROM '.$wpdb->prefix.'huge_it_contact_styles');
+        $themes = $wpdb->get_results('SELECT name,id FROM '.$wpdb->prefix.'huge_it_contact_styles');
 
         foreach ($themes as $theme){
-            $panelsArray[str_replace(' ','_',strtolower($theme->name))] = array(
-                'title'=>__($theme->name,'hugeit_contact')
+            $panelsArray[str_replace('&','_',str_replace(' ','_',strtolower($theme->name)))] = array(
+                'title'=>__($theme->name,'hugeit_contact'),
+                'id'=>$theme->id
             );
         }
 
@@ -60,28 +65,57 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
     public function init_sections()
     {
         $sectionsArray = array();
-        foreach ($this->panels as $panel){
+        $panel['id'] = 0;
+        foreach ($this->panels as $key=>$panel){
+            $sectionsArray['form_block_styles'.$panel['id']] = array(
+                'panel' => $key,
+                'title' => __('Form Block Styles', 'hugeit_contact'),
+            );
+            $sectionsArray['label_styles'.$panel['id']] = array(
+                'panel' => $key,
+                'title' => __('Label Styles', 'hugeit_contact'),
+            );
+            $sectionsArray['textarea_styles'.$panel['id']] = array(
+                'panel' => $key,
+                'title' => __('Textarea Styles', 'hugeit_contact'),
+            );
+            $sectionsArray['text_input_styles'.$panel['id']] = array(
+                'panel' => $key,
+                'title' => __('Text Input Styles', 'hugeit_contact'),
+            );
+            $sectionsArray['checkbox_styles'.$panel['id']] = array(
+                'panel' => $key,
+                'title' => __('Checkbox Styles', 'hugeit_contact'),
+            );
+            $sectionsArray['selectbox_styles'.$panel['id']] = array(
+                'panel' => $key,
+                'title' => __('Selectbox Styles', 'hugeit_contact'),
+            );
+            $sectionsArray['radio_styles'.$panel['id']] = array(
+                'panel' => $key,
+                'title' => __('Radio Styles', 'hugeit_contact'),
+            );
+            $sectionsArray['pagination_styles'.$panel['id']] = array(
+                'panel' => $key,
+                'title' => __('Pagination Styles', 'hugeit_contact'),
+            );
+            $sectionsArray['file_upload_styles'.$panel['id']] = array(
+                'panel' => $key,
+                'title' => __('File Uploader Styles', 'hugeit_contact'),
+            );
+            $sectionsArray['button_styles'.$panel['id']] = array(
+                'panel' => $key,
+                'title' => __('Button Styles', 'hugeit_contact'),
+            );
+            $sectionsArray['custom_styles'.$panel['id']] = array(
+                'panel' => $key,
+                'title' => __('Custom Styles', 'hugeit_contact'),
+            );
+
+            $panel['id']++;
         }
-        $this->sections = array(
-            'form_general_settings' => array(
-                'panel' => 'form_settings',
-                'title' => __('Form General Settings', 'hugeit_contact'),
-            ),
 
-            'form_messages' => array(
-                'panel' => 'form_settings',
-                'title' => __('Error Messages', 'hugeit_contact'),
-            ),
-            'email_admin' => array(
-                'panel' => 'form_settings',
-                'title' => __('Email To Administrator', 'hugeit_contact'),
-            ),
-            'email_user' => array(
-                'panel' => 'form_settings',
-                'title' => __('Email To User', 'hugeit_contact'),
-            ),
-
-        );
+        $this->sections = $sectionsArray;
     }
 
     /**
@@ -101,204 +135,938 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
 
     private function init_theme_options()
     {
-        $this->form_adminstrator_user_name = $this->get_option_from_table("form_adminstrator_user_name", '');
-        $this->form_adminstrator_user_mail = $this->get_option_from_table("form_adminstrator_user_mail", '');
-        $this->form_save_reply_to_user = $this->get_option_from_table("form_save_form_save_reply_to_user", 'off');
-        $this->form_captcha_public_key = $this->get_option_from_table("form_captcha_public_key", '');
-        $this->form_captcha_private_key = $this->get_option_from_table("form_captcha_private_key", '');
-        $this->form_save_to_database = $this->get_option_from_table("form_save_to_database", '');
+        foreach ($this->panels as $key=>$panel){
+            $this->{'form_wrapper_width'.$panel['id']} = $this->get_option_from_table("form_wrapper_width", '100', true, array('options_name'=>$panel['id']));
+            $this->{'form_wrapper_background_type'.$panel['id']} = $this->get_option_from_table("form_wrapper_background_type", 'color', true, array('options_name'=>$panel['id']));
+            $this->{'form_wrapper_background_color'.$panel['id']} = $this->get_option_from_table("form_wrapper_background_type", '#fff', true, array('options_name'=>$panel['id']));
+            $this->{'form_border_size'.$panel['id']} = $this->get_option_from_table("form_border_size", '1', true, array('options_name'=>$panel['id']));
+            $this->{'form_border_color'.$panel['id']} = $this->get_option_from_table("form_border_color", '#ccc', true, array('options_name'=>$panel['id']));
+            $this->{'form_show_title'.$panel['id']} = $this->get_option_from_table("form_show_title", 'on', true, array('options_name'=>$panel['id']));
+            $this->{'form_title_size'.$panel['id']} = $this->get_option_from_table("form_title_size", '18', true, array('options_name'=>$panel['id']));
+            $this->{'form_title_color'.$panel['id']} = $this->get_option_from_table("form_title_color", '#666', true, array('options_name'=>$panel['id']));
 
-        $this->msg_send_success = $this->get_option_from_table("msg_send_success", 'Message is sent successfully');
-        $this->msg_send_false = $this->get_option_from_table("msg_send_false", 'Message failed to be sent');
-        $this->msg_refered_spam = $this->get_option_from_table("msg_refered_spam", 'Submission was referred to as Spam');
-        $this->msg_captcha_error = $this->get_option_from_table("msg_captcha_error", 'Please tick on Captcha box');
-        $this->required_empty_field = $this->get_option_from_table("required_empty_field", 'Please Fill This Field');
-        $this->msg_invalid_email = $this->get_option_from_table("msg_invalid_email", 'Incorrect Email');
-        $this->msg_fail_failed = $this->get_option_from_table("msg_fail_failed", 'Error on file upload');
-        $this->msg_file_format = $this->get_option_from_table("msg_file_format", 'Unacceptable file type');
-        $this->msg_large_file = $this->get_option_from_table("msg_large_file", 'Exceeds limits on uploaded file');
-        $this->msg_simple_captcha_error = $this->get_option_from_table("msg_simple_captcha_error", 'Incorrect Input');
+            $this->{'form_label_size'.$panel['id']} = $this->get_option_from_table("form_label_size", '14', true, array('options_name'=>$panel['id']));
+            $this->{'form_label_font_family'.$panel['id']} = $this->get_option_from_table("form_label_font_family", '', true, array('options_name'=>$panel['id']));
+            $this->{'form_label_color'.$panel['id']} = $this->get_option_from_table("form_label_color", '3B3B3B', true, array('options_name'=>$panel['id']));
+            $this->{'form_label_error_color'.$panel['id']} = $this->get_option_from_table("form_label_error_color", '2C15C2', true, array('options_name'=>$panel['id']));
+            $this->{'form_label_required_color'.$panel['id']} = $this->get_option_from_table("form_label_required_color", 'FE5858', true, array('options_name'=>$panel['id']));
+            $this->{'form_label_success_message'.$panel['id']} = $this->get_option_from_table("form_label_success_message", '3DAD48', true, array('options_name'=>$panel['id']));
 
-        $this->form_send_email_for_each_submition = $this->get_option_from_table("form_send_email_for_each_submition", 'on');
-        $this->form_adminstrator_email = $this->get_option_from_table("form_adminstrator_email", '');
-        $this->form_message_subject = $this->get_option_from_table("form_message_subject", 'Form Submitted');
-        $this->form_adminstrator_message = $this->get_option_from_table("form_adminstrator_message", '');
-        $this->form_send_to_email_user = $this->get_option_from_table("form_send_to_email_user", 'on');
-        $this->form_user_message_subject = $this->get_option_from_table("form_user_message_subject", 'Form Submitted');
-        $this->form_user_message = $this->get_option_from_table("form_user_message", '');
+            $this->{'form_input_text_has_background'.$panel['id']} = $this->get_option_from_table("form_input_text_has_background", 'on', true, array('options_name'=>$panel['id']));
+            $this->{'form_input_text_background_color'.$panel['id']} = $this->get_option_from_table("form_input_text_background_color", 'FFF', true, array('options_name'=>$panel['id']));
+            $this->{'form_input_text_border_size'.$panel['id']} = $this->get_option_from_table("form_input_text_border_size", '1', true, array('options_name'=>$panel['id']));
+            $this->{'form_input_text_border_radius'.$panel['id']} = $this->get_option_from_table("form_input_text_border_radius", '0', true, array('options_name'=>$panel['id']));
+            $this->{'form_input_text_border_color'.$panel['id']} = $this->get_option_from_table("form_input_text_border_color", 'cecece', true, array('options_name'=>$panel['id']));
+            $this->{'form_input_text_font_size'.$panel['id']} = $this->get_option_from_table("form_input_text_font_size", '13', true, array('options_name'=>$panel['id']));
+            $this->{'form_input_text_font_color'.$panel['id']} = $this->get_option_from_table("form_input_text_font_color", '999', true, array('options_name'=>$panel['id']));
+
+            $this->{'form_textarea_has_background'.$panel['id']} = $this->get_option_from_table("form_textarea_has_background", 'on', true, array('options_name'=>$panel['id']));
+            $this->{'form_textarea_background_color'.$panel['id']} = $this->get_option_from_table("form_textarea_background_color", 'FFF', true, array('options_name'=>$panel['id']));
+            $this->{'form_textarea_border_size'.$panel['id']} = $this->get_option_from_table("form_textarea_border_size", '1', true, array('options_name'=>$panel['id']));
+            $this->{'form_textarea_border_radius'.$panel['id']} = $this->get_option_from_table("form_textarea_border_radius", '0', true, array('options_name'=>$panel['id']));
+            $this->{'form_textarea_border_color'.$panel['id']} = $this->get_option_from_table("form_textarea_border_color", '7d7d7d', true, array('options_name'=>$panel['id']));
+            $this->{'form_textarea_font_size'.$panel['id']} = $this->get_option_from_table("form_textarea_font_size", '12', true, array('options_name'=>$panel['id']));
+            $this->{'form_textarea_font_color'.$panel['id']} = $this->get_option_from_table("form_textarea_font_color", '999', true, array('options_name'=>$panel['id']));
+
+            $this->{'form_checkbox_size'.$panel['id']} = $this->get_option_from_table("form_checkbox_size", 'medium', true, array('options_name'=>$panel['id']));
+            $this->{'form_checkbox_type'.$panel['id']} = $this->get_option_from_table("form_checkbox_type", 'square', true, array('options_name'=>$panel['id']));
+            $this->{'form_checkbox_color'.$panel['id']} = $this->get_option_from_table("form_checkbox_color", '999', true, array('options_name'=>$panel['id']));
+            $this->{'form_checkbox_hover_color'.$panel['id']} = $this->get_option_from_table("form_checkbox_hover_color", '999', true, array('options_name'=>$panel['id']));
+            $this->{'form_checkbox_active_color'.$panel['id']} = $this->get_option_from_table("form_checkbox_active_color", '666', true, array('options_name'=>$panel['id']));
+
+            $this->{'form_selectbox_has_background'.$panel['id']} = $this->get_option_from_table("form_selectbox_has_background", 'on', true, array('options_name'=>$panel['id']));
+            $this->{'form_selectbox_background_color'.$panel['id']} = $this->get_option_from_table("form_selectbox_background_color", 'FFF', true, array('options_name'=>$panel['id']));
+            $this->{'form_selectbox_border_size'.$panel['id']} = $this->get_option_from_table("form_selectbox_border_size", '1', true, array('options_name'=>$panel['id']));
+            $this->{'form_selectbox_border_radius'.$panel['id']} = $this->get_option_from_table("form_selectbox_border_radius", '0', true, array('options_name'=>$panel['id']));
+            $this->{'form_selectbox_border_color'.$panel['id']} = $this->get_option_from_table("form_selectbox_border_color", '666', true, array('options_name'=>$panel['id']));
+            $this->{'form_selectbox_font_size'.$panel['id']} = $this->get_option_from_table("form_selectbox_font_size", '12', true, array('options_name'=>$panel['id']));
+            $this->{'form_selectbox_font_color'.$panel['id']} = $this->get_option_from_table("form_selectbox_font_color", '666', true, array('options_name'=>$panel['id']));
+
+            $this->{'form_radio_size'.$panel['id']} = $this->get_option_from_table("form_radio_size", 'medium', true, array('options_name'=>$panel['id']));
+            $this->{'form_radio_type'.$panel['id']} = $this->get_option_from_table("form_radio_type", 'square', true, array('options_name'=>$panel['id']));
+            $this->{'form_radio_color'.$panel['id']} = $this->get_option_from_table("form_radio_color", '999', true, array('options_name'=>$panel['id']));
+            $this->{'form_radio_hover_color'.$panel['id']} = $this->get_option_from_table("form_radio_hover_color", '999', true, array('options_name'=>$panel['id']));
+            $this->{'form_radio_active_color'.$panel['id']} = $this->get_option_from_table("form_radio_active_color", '666', true, array('options_name'=>$panel['id']));
+
+            $this->{'form_pagination_has_background'.$panel['id']} = $this->get_option_from_table("form_pagination_has_background", 'on', true, array('options_name'=>$panel['id']));
+            $this->{'form_pagination_background_color'.$panel['id']} = $this->get_option_from_table("form_pagination_background_color", 'FFF', true, array('options_name'=>$panel['id']));
+            $this->{'form_pagination_background_size'.$panel['id']} = $this->get_option_from_table("form_pagination_background_size", '30', true, array('options_name'=>$panel['id']));
+            $this->{'form_pagination_font_color'.$panel['id']} = $this->get_option_from_table("form_pagination_font_color", '30', true, array('options_name'=>$panel['id']));
+
+            $this->{'form_file_has_background'.$panel['id']} = $this->get_option_from_table("form_file_has_background", 'on', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_background'.$panel['id']} = $this->get_option_from_table("form_file_background", 'FFF', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_border_size'.$panel['id']} = $this->get_option_from_table("form_file_border_size", '1', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_border_radius'.$panel['id']} = $this->get_option_from_table("form_file_border_radius", '1', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_border_color'.$panel['id']} = $this->get_option_from_table("form_file_border_color", 'CCC', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_font_size'.$panel['id']} = $this->get_option_from_table("form_file_font_size", '16', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_font_color'.$panel['id']} = $this->get_option_from_table("form_file_font_color", '393939', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_button_text'.$panel['id']} = $this->get_option_from_table("form_file_button_text", 'Upload', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_button_background_color'.$panel['id']} = $this->get_option_from_table("form_file_button_background_color", 'F4F4F4', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_button_background_hover_color'.$panel['id']} = $this->get_option_from_table("form_file_button_background_hover_color", 'FFF', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_button_text_color'.$panel['id']} = $this->get_option_from_table("form_file_button_text_color", 'F4F4F4', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_button_text_hover_color'.$panel['id']} = $this->get_option_from_table("form_file_button_text_hover_color", 'FFF', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_has_icon'.$panel['id']} = $this->get_option_from_table("form_file_has_icon", 'on', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_icon_style'.$panel['id']} = $this->get_option_from_table("form_file_icon_style", 'hugeicons-paperclip', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_icon_position'.$panel['id']} = $this->get_option_from_table("form_file_icon_position", 'right', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_icon_color'.$panel['id']} = $this->get_option_from_table("form_file_icon_color", 'FFF', true, array('options_name'=>$panel['id']));
+            $this->{'form_file_icon_hover_color'.$panel['id']} = $this->get_option_from_table("form_file_icon_hover_color", 'FFF', true, array('options_name'=>$panel['id']));
+
+            $this->{'form_button_position'.$panel['id']} = $this->get_option_from_table("form_button_position", 'left', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_fullwidth'.$panel['id']} = $this->get_option_from_table("form_button_fullwidth", 'off', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_padding'.$panel['id']} = $this->get_option_from_table("form_button_padding", '8', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_font_size'.$panel['id']} = $this->get_option_from_table("form_button_font_size", '14', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_icons_position'.$panel['id']} = $this->get_option_from_table("form_button_icons_position", 'right', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_submit_has_icon'.$panel['id']} = $this->get_option_from_table("form_button_submit_has_icon", 'on', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_submit_icon_style'.$panel['id']} = $this->get_option_from_table("form_button_submit_icon_style", 'hugeicons-mail-forward', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_submit_icon_color'.$panel['id']} = $this->get_option_from_table("form_button_submit_icon_color", '999', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_submit_icon_hover_color'.$panel['id']} = $this->get_option_from_table("form_button_submit_icon_hover_color", '999', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_submit_font_color'.$panel['id']} = $this->get_option_from_table("form_button_submit_font_color", '999', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_submit_font_hover_color'.$panel['id']} = $this->get_option_from_table("form_button_submit_font_hover_color", '666', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_submit_background'.$panel['id']} = $this->get_option_from_table("form_button_submit_background", '5d5d5d', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_submit_hover_background'.$panel['id']} = $this->get_option_from_table("form_button_submit_hover_background", '5f5f5f', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_submit_border_size'.$panel['id']} = $this->get_option_from_table("form_button_submit_border_size", '1', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_submit_border_color'.$panel['id']} = $this->get_option_from_table("form_button_submit_border_color", 'ccc', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_submit_border_radius'.$panel['id']} = $this->get_option_from_table("form_button_submit_border_radius", '5', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_reset_has_icon'.$panel['id']} = $this->get_option_from_table("form_button_reset_has_icon", 'on', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_reset_icon_style'.$panel['id']} = $this->get_option_from_table("form_button_reset_icon_style", 'hugeicons-refresh', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_reset_icon_color'.$panel['id']} = $this->get_option_from_table("form_button_reset_icon_color", '999', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_reset_icon_color'.$panel['id']} = $this->get_option_from_table("form_button_reset_icon_color", '666', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_reset_font_color'.$panel['id']} = $this->get_option_from_table("form_button_reset_font_color", '999', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_reset_font_hover_color'.$panel['id']} = $this->get_option_from_table("form_button_reset_font_hover_color", '666', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_reset_background'.$panel['id']} = $this->get_option_from_table("form_button_reset_background", '5d5d5d', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_reset_hover_background'.$panel['id']} = $this->get_option_from_table("form_button_reset_hover_background", '5f5f5f', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_reset_border_size'.$panel['id']} = $this->get_option_from_table("form_button_reset_border_size", '1', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_reset_border_color'.$panel['id']} = $this->get_option_from_table("form_button_reset_border_color", 'ccc', true, array('options_name'=>$panel['id']));
+            $this->{'form_button_reset_border_radius'.$panel['id']} = $this->get_option_from_table("form_button_reset_border_radius", '5', true, array('options_name'=>$panel['id']));
+
+            $this->{'form_custom_css'.$panel['id']} = $this->get_option_from_table("form_custom_css", '/* Write Your Custom CSS Code Here */', true, array('options_name'=>$panel['id']));
+
+        }
     }
 
     private function controls_general_options()
     {
-        return array(
-            'form_adminstrator_user_name' => array(
-                'section' => 'form_general_settings',
-                'type' => 'text',
-                'default' => $this->form_adminstrator_user_name,
-                'label' => __('Send Emails From Name', 'hugeit_contact'),
+        $controlsArray = array();
+        foreach($this->panels as $key=>$panel){
+            /* form general controls */
+            $controlsArray['form_wrapper_width'.$panel['id']] = array(
+                'section' => 'form_block_styles'.$panel['id'],
+                'type' => 'simple_slider',
+                'choices' => range(0, 100),
+                'default' => $this->{'form_wrapper_width'.$panel['id']},
+                'label' => __('Form Width', 'hugeit_contact'),
+                'help' => __('Select the width of the form by dragging the circle.', 'hugeit_contact')
+            );
+            $controlsArray['form_wrapper_background_type'.$panel['id']] = array(
+                'section' => 'form_block_styles'.$panel['id'],
+                'type' => 'select',
+                'choices' => array(
+                    'color' => 'Color',
+                    'transparent' => 'Transparent',
+                    'gradient' => 'Gradient',
+                ),
+                'default' => $this->{'form_wrapper_background_type'.$panel['id']},
+                'label' => __('Form Background Type', 'hugeit_contact'),
                 'help' => __('', 'hugeit_contact')
-            ),
-            'form_adminstrator_user_mail' => array(
-                'section' => 'form_general_settings',
-                'type' => 'email',
-                'default' => $this->form_adminstrator_user_mail,
-                'label' => __('Send Emails From Email', 'hugeit_contact'),
+            );
+            //todo color can be array
+            $controlsArray['form_wrapper_background_color'.$panel['id']] = array(
+                'section' => 'form_block_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_wrapper_background_color'.$panel['id']},
+                'label' => __('Form Background Color', 'hugeit_contact'),
                 'help' => __('', 'hugeit_contact')
-            ),
-            'form_save_reply_to_user' => array(
-                'section' => 'form_general_settings',
+            );
+            $controlsArray['form_border_size'.$panel['id']] = array(
+                'section' => 'form_block_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_border_size'.$panel['id']},
+                'label' => __('Form Border Size (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_border_color'.$panel['id']] = array(
+                'section' => 'form_block_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_border_color'.$panel['id']},
+                'label' => __('Form Border Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_show_title'.$panel['id']] = array(
+                'section' => 'form_block_styles'.$panel['id'],
                 'type' => 'checkbox',
-                'default' => $this->form_save_reply_to_user,
-                'label' => __('Reply To User', 'hugeit_contact'),
-                'help' => __('Choose whether to get the emails from the user email address', 'hugeit_contact')
-            ),
-            'form_captcha_public_key' => array(
-                'section' => 'form_general_settings',
-                'type' => 'text',
-                'default' => $this->form_captcha_public_key,
-                'label' => __('Captcha Public Key', 'hugeit_contact'),
+                'checked_val'=>'on',
+                'unchecked_val'=>'off',
+                'default' =>  $this->{'form_show_title'.$panel['id']},
+                'label' => __('Form Show Title', 'hugeit_contact'),
                 'help' => __('', 'hugeit_contact')
-            ),
-            'form_captcha_private_key' => array(
-                'section' => 'form_general_settings',
-                'type' => 'text',
-                'default' => $this->form_captcha_private_key,
-                'label' => __('Captcha Private Key', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
-            ),
-            'form_save_to_database' => array(
-                'section' => 'form_general_settings',
-                'type' => 'checkbox',
-                'default' => $this->form_save_to_database,
-                'label' => __('Save Submissions To Database', 'hugeit_contact'),
-                'help' => __('Uncheck this if you don\'t want submissions to be saved in database', 'hugeit_contact')
-            ),
-            'msg_send_success' => array(
-                'section' => 'form_messages',
-                'type' => 'text',
-                'default' => $this->msg_send_success,
-                'label' => __('Sender\'s message was sent successfully', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
-            ),
-            'msg_send_false' => array(
-                'section' => 'form_messages',
-                'type' => 'text',
-                'default' => $this->msg_send_false,
-                'label' => __('Sender\'s message was failed to send', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
-            ),
-            'msg_refered_spam' => array(
-                'section' => 'form_messages',
-                'type' => 'text',
-                'default' => $this->msg_refered_spam,
-                'label' => __('Submission was referred to as spam', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
-            ),
-            'msg_captcha_error' => array(
-                'section' => 'form_messages',
-                'type' => 'text',
-                'default' => $this->msg_captcha_error,
-                'label' => __('Captcha is Not Validated', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
-            ),
-            'required_empty_field' => array(
-                'section' => 'form_messages',
-                'type' => 'text',
-                'default' => $this->required_empty_field,
-                'label' => __('Required Field Is Empty', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
-            ),
-            'msg_invalid_email' => array(
-                'section' => 'form_messages',
-                'type' => 'text',
-                'default' => $this->msg_invalid_email,
-                'label' => __('Email address that the sender entered is invalid', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
-            ),
-            'msg_fail_failed' => array(
-                'section' => 'form_messages',
-                'type' => 'text',
-                'default' => $this->msg_fail_failed,
-                'label' => __('Uploading a file fails for any reason', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
-            ),
-            'msg_file_format' => array(
-                'section' => 'form_messages',
-                'type' => 'text',
-                'default' => $this->msg_file_format,
-                'label' => __('Uploaded file is not allowed file type', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
-            ),
-            'msg_large_file' => array(
-                'section' => 'form_messages',
-                'type' => 'text',
-                'default' => $this->msg_large_file,
-                'label' => __('Uploaded file is too large', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
-            ),
-            'msg_simple_captcha_error' => array(
-                'section' => 'form_messages',
-                'type' => 'text',
-                'default' => $this->msg_simple_captcha_error,
-                'label' => __('Simple Captcha Code Incorrect', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
-            ),
-            'form_send_email_for_each_submition' => array(
-                'section' => 'email_admin',
-                'type' => 'checkbox',
-                'default' => $this->form_send_email_for_each_submition,
-                'label' => __('Send Email For Each Submission', 'hugeit_contact'),
-                'help' => __('Whether to Send an Email to Admin for each Submission', 'hugeit_contact')
-            ),
-            'form_adminstrator_email' => array(
-                'section' => 'email_admin',
-                'type' => 'textarea',
-                'html_class' => array('short-textarea') ,
-                'default' => $this->form_adminstrator_email,
-                'label' => __('Administrator Email', 'hugeit_contact'),
-                'help' => __('Add multiple emails,separate them with commas', 'hugeit_contact')
-            ),
-            'form_message_subject' => array(
-                'section' => 'email_admin',
-                'type' => 'text',
-                'default' => $this->form_message_subject,
-                'label' => __('Message Subject', 'hugeit_contact'),
-                'help' => __('If you leave this field empty, the name of the submitted form will be used as the subject of the email', 'hugeit_contact')
-            ),
-            'form_adminstrator_message' => array(
-                'section' => 'email_admin',
-                'type' => 'editor',
-                'editorId' => 'hugeit_contact_adminmessage',
-                'editorName' => 'form_adminstrator_message',
-                'default' => $this->form_adminstrator_message,
-                'label' => __('Message Content', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
-            ),
-            'form_send_to_email_user' => array(
-                'section' => 'email_user',
-                'type' => 'checkbox',
-                'default' => $this->form_send_to_email_user,
-                'label' => __('Send Email For Each Submission', 'hugeit_contact'),
-                'help' => __('Whether to Send an Email to Admin for each Submission', 'hugeit_contact')
-            ),
-            'form_user_message_subject' => array(
-                'section' => 'email_user',
-                'type' => 'text',
-                'default' => $this->form_user_message_subject,
-                'label' => __('Message Subject', 'hugeit_contact'),
-                'help' => __('If you leave this field empty, the name of the submitted form will be used as the subject of the email', 'hugeit_contact')
-            ),
-            'form_user_message' => array(
-                'section' => 'email_user',
-                'type' => 'editor',
-                'editorId' => 'hugeit_contact_usermessage',
-                'editorName' => 'form_user_message',
-                'default' => $this->form_user_message,
-                'label' => __('Message Content', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
-            ),
+            );
+            $controlsArray['form_title_size'.$panel['id']] = array(
+                'section' => 'form_block_styles'.$panel['id'],
+                'type' => 'number',
+                'default' =>  $this->{'form_title_size'.$panel['id']},
+                'label' => __('Form Title Size (px)', 'hugeit_contact'),
+                'help' => __('Select the font size of the form title.', 'hugeit_contact')
+            );
+            $controlsArray['form_title_color'.$panel['id']] = array(
+                'section' => 'form_block_styles'.$panel['id'],
+                'type' => 'color',
+                'default' =>  $this->{'form_title_color'.$panel['id']},
+                'label' => __('Form Title Color', 'hugeit_contact'),
+                'help' => __('Select the text color of the form title.', 'hugeit_contact')
+            );
 
-        );
+            /* label controls */
+            $controlsArray['form_label_size'.$panel['id']] = array(
+                'section' => 'label_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_label_size'.$panel['id']},
+                'label' => __('Label Size', 'hugeit_contact'),
+                'help' => __('The label font size can be editted here.', 'hugeit_contact')
+            );
+            $controlsArray['form_label_font_family'.$panel['id']] = array(
+                'section' => 'label_styles'.$panel['id'],
+                'type' => 'select',
+                'choices'=> array(
+                    '' => 'Default',
+                    'Arial,Helvetica Neue,Helvetica,sans-serif' => 'Arial *',
+                    'Arial Black,Arial Bold,Arial,sans-serif' => 'Arial Black *',
+                    'Arial Nicon,Arial,Helvetica Neue,Helvetica,sans-serif' => 'Arial Nicon *',
+                    'Courier,Verdana,sans-serif' => 'Courier *',
+                    'Georgia,Times New Roman,Times,serif' => 'Georgia *',
+                    'Times New Roman,Times,Georgia,serif' => 'Times New Roman *',
+                    'Verdana,sans-serif' => 'Verdana *',
+                    'American Typewriter,Georgia,serif' => 'American Typewriter',
+                    'Bookman Old Style,Georgia,Times New Roman,Times,serif' => 'Bookman Old Style',
+                    'Calibri,Helvetica Neue,Helvetica,Arial,Verdana,sans-serif' => 'Calibri',
+                    'Cambria,Georgia,Times New Roman,Times,serif' => 'Cambria',
+                    'Candara,Verdana,sans-serif' => 'Candara',
+                    'Century Gothic,Apple Gothic,Verdana,sans-serif' => 'Century Gothic',
+                    'Century Schoolbook,Georgia,Times New Roman,Times,serif' => 'Century Schoolbook',
+                    'Consolas,Andale Mono,Monaco,Courier,Courier New,Verdana,sans-serif' => 'Consolas',
+                    'Constantia,Georgia,Times New Roman,Times,serif' => 'Constantia',
+                    'Corbel,Lucida Grande,Lucida Sans Unicode,Arial,sans-serif' => 'Corbel',
+                    'Tahoma,Geneva,Verdana,sans-serif' => 'Tahoma',
+                    'Rockwell, Arial Black, Arial Bold, Arial, sans-serif' => 'Rockwell',
+                ),
+                'default' => $this->{'form_label_font_family'.$panel['id']},
+                'label' => __('Label Font Family', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_label_color'.$panel['id']] = array(
+                'section' => 'label_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_label_color'.$panel['id']},
+                'label' => __('Label Color', 'hugeit_contact'),
+                'help' => __('The label text color.', 'hugeit_contact')
+            );
+            $controlsArray['form_label_error_color'.$panel['id']] = array(
+                'section' => 'label_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_label_error_color'.$panel['id']},
+                'label' => __('Error Text Color', 'hugeit_contact'),
+                'help' => __('The error text color.', 'hugeit_contact')
+            );
+            $controlsArray['form_label_required_color'.$panel['id']] = array(
+                'section' => 'label_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_label_required_color'.$panel['id']},
+                'label' => __('Asterix(*) Color', 'hugeit_contact'),
+                'help' => __('The error text * color.', 'hugeit_contact')
+            );
+            $controlsArray['form_label_success_message'.$panel['id']] = array(
+                'section' => 'label_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_label_success_message'.$panel['id']},
+                'label' => __('Success Message Color', 'hugeit_contact'),
+                'help' => __('Success Message is displayed below the form after successful submission.', 'hugeit_contact')
+            );
+
+            /* textarea controls */
+            $controlsArray['form_textarea_has_background'.$panel['id']] = array(
+                'section' => 'textarea_styles'.$panel['id'],
+                'type' => 'checkbox',
+                'checked_val'=>'on',
+                'unchecked_val'=>'off',
+                'default' => $this->{'form_textarea_has_background'.$panel['id']},
+                'label' => __('Textarea has background', 'hugeit_contact'),
+                'help' => __('Whether textarea should have color background or transparent.', 'hugeit_contact')
+            );
+            $controlsArray['form_textarea_background_color'.$panel['id']] = array(
+                'section' => 'textarea_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_textarea_background_color'.$panel['id']},
+                'label' => __('Textarea Background Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_textarea_border_size'.$panel['id']] = array(
+                'section' => 'textarea_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_textarea_border_size'.$panel['id']},
+                'label' => __('Textarea Border Width (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_textarea_border_radius'.$panel['id']] = array(
+                'section' => 'textarea_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_textarea_border_radius'.$panel['id']},
+                'label' => __('Textarea Border Radius (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_textarea_border_color'.$panel['id']] = array(
+                'section' => 'textarea_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_textarea_border_color'.$panel['id']},
+                'label' => __('Textarea Border Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_textarea_font_size'.$panel['id']] = array(
+                'section' => 'textarea_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_textarea_font_size'.$panel['id']},
+                'label' => __('Textarea Font Size (px)', 'hugeit_contact'),
+                'help' => __('Text size of textarea font.', 'hugeit_contact')
+            );
+            $controlsArray['form_textarea_font_color'.$panel['id']] = array(
+                'section' => 'textarea_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_textarea_font_color'.$panel['id']},
+                'label' => __('Textarea Font Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+
+            /* input text controls */
+            $controlsArray['form_input_text_has_background'.$panel['id']] = array(
+                'section' => 'text_input_styles'.$panel['id'],
+                'type' => 'checkbox',
+                'checked_val'=>'on',
+                'unchecked_val'=>'off',
+                'default' => $this->{'form_input_text_has_background'.$panel['id']},
+                'label' => __('Text Input Has background', 'hugeit_contact'),
+                'help' => __('Whether text input should have color background or transparent.', 'hugeit_contact')
+            );
+            $controlsArray['form_input_text_background_color'.$panel['id']] = array(
+                'section' => 'text_input_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_input_text_background_color'.$panel['id']},
+                'label' => __('Text Input Background Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_input_text_border_size'.$panel['id']] = array(
+                'section' => 'text_input_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_input_text_border_size'.$panel['id']},
+                'label' => __('Text Input Border Width (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_input_text_border_radius'.$panel['id']] = array(
+                'section' => 'text_input_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_input_text_border_radius'.$panel['id']},
+                'label' => __('Text Input Border Radius (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_input_text_border_color'.$panel['id']] = array(
+                'section' => 'text_input_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_input_text_border_color'.$panel['id']},
+                'label' => __('Text Input Border Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_input_text_font_size'.$panel['id']] = array(
+                'section' => 'text_input_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_input_text_font_size'.$panel['id']},
+                'label' => __('Text Input Font Size (px)', 'hugeit_contact'),
+                'help' => __('Text size of text input field.', 'hugeit_contact')
+            );
+            $controlsArray['form_input_text_font_color'.$panel['id']] = array(
+                'section' => 'text_input_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_input_text_font_color'.$panel['id']},
+                'label' => __('Text Input Font Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+
+            /* checkbox controls */
+            $controlsArray['form_checkbox_size'.$panel['id']] = array(
+                'section' => 'checkbox_styles'.$panel['id'],
+                'type' => 'select',
+                'choices'=> array(
+                        'big'=>'Big',
+                     'medium'=>'Medium',
+                      'small'=>'Small',
+                ),
+                'default' => $this->{'form_checkbox_size'.$panel['id']},
+                'label' => __('Checkbox Size', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_checkbox_type'.$panel['id']] = array(
+                'section' => 'checkbox_styles'.$panel['id'],
+                'type' => 'select',
+                'choices'=> array(
+                    'circle'=>'Circle',
+                    'square'=>'Square',
+                ),
+                'default' => $this->{'form_checkbox_type'.$panel['id']},
+                'label' => __('Checkbox Type', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_checkbox_color'.$panel['id']] = array(
+                'section' => 'checkbox_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_checkbox_color'.$panel['id']},
+                'label' => __('Checkbox Border Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_checkbox_hover_color'.$panel['id']] = array(
+                'section' => 'checkbox_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_checkbox_hover_color'.$panel['id']},
+                'label' => __('Checkbox Hover Border Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_checkbox_active_color'.$panel['id']] = array(
+                'section' => 'checkbox_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_checkbox_active_color'.$panel['id']},
+                'label' => __('Checkbox Checked Border Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+
+            /* selectbox controls */
+            $controlsArray['form_selectbox_has_background'.$panel['id']] = array(
+                'section' => 'selectbox_styles'.$panel['id'],
+                'type' => 'checkbox',
+                'checked_val'=>'on',
+                'unchecked_val'=>'off',
+                'default' => $this->{'form_selectbox_has_background'.$panel['id']},
+                'label' => __('Selectbox Has background', 'hugeit_contact'),
+                'help' => __('Whether selectbox should have color background or transparent.', 'hugeit_contact')
+            );
+            $controlsArray['form_selectbox_background_color'.$panel['id']] = array(
+                'section' => 'selectbox_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_selectbox_background_color'.$panel['id']},
+                'label' => __('Selectbox Background Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_selectbox_border_size'.$panel['id']] = array(
+                'section' => 'selectbox_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_selectbox_border_size'.$panel['id']},
+                'label' => __('Selectbox Border Width (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_selectbox_border_radius'.$panel['id']] = array(
+                'section' => 'selectbox_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_selectbox_border_radius'.$panel['id']},
+                'label' => __('Selectbox Border Radius (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_selectbox_border_color'.$panel['id']] = array(
+                'section' => 'selectbox_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_selectbox_border_color'.$panel['id']},
+                'label' => __('Selectbox Border Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_selectbox_font_size'.$panel['id']] = array(
+                'section' => 'selectbox_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_selectbox_font_size'.$panel['id']},
+                'label' => __('Selectbox Font Size (px)', 'hugeit_contact'),
+                'help' => __('Text size of selectbox.', 'hugeit_contact')
+            );
+            $controlsArray['form_selectbox_arrow_color'.$panel['id']] = array(
+                'section' => 'selectbox_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_selectbox_arrow_color'.$panel['id']},
+                'label' => __('Selectbox Font Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+
+            /* radio controls */
+            $controlsArray['form_radio_size'.$panel['id']] = array(
+                'section' => 'radio_styles'.$panel['id'],
+                'type' => 'select',
+                'choices'=> array(
+                    'big'=>'Big',
+                    'medium'=>'Medium',
+                    'small'=>'Small',
+                ),
+                'default' => $this->{'form_radio_size'.$panel['id']},
+                'label' => __('Radio Size', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_radio_type'.$panel['id']] = array(
+                'section' => 'radio_styles'.$panel['id'],
+                'type' => 'select',
+                'choices'=> array(
+                    'circle'=>'Circle',
+                    'square'=>'Square',
+                ),
+                'default' => $this->{'form_radio_type'.$panel['id']},
+                'label' => __('Radio Type', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_radio_color'.$panel['id']] = array(
+                'section' => 'radio_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_radio_color'.$panel['id']},
+                'label' => __('Radio Border Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_radio_hover_color'.$panel['id']] = array(
+                'section' => 'radio_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_radio_hover_color'.$panel['id']},
+                'label' => __('Radio Hover Border Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_radio_active_color'.$panel['id']] = array(
+                'section' => 'radio_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_radio_active_color'.$panel['id']},
+                'label' => __('Radio Checked Border Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+
+            /* pagination controls */
+            $controlsArray['form_pagination_has_background'.$panel['id']] = array(
+                'section' => 'pagination_styles'.$panel['id'],
+                'type' => 'checkbox',
+                'checked_val'=>'on',
+                'unchecked_val'=>'off',
+                'default' => $this->{'form_pagination_has_background'.$panel['id']},
+                'label' => __('Pagination Has background', 'hugeit_contact'),
+                'help' => __('Whether pagination should have color background or transparent.', 'hugeit_contact')
+            );
+            $controlsArray['form_pagination_background_color'.$panel['id']] = array(
+                'section' => 'pagination_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_pagination_background_color'.$panel['id']},
+                'label' => __('Pagination Background Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_pagination_background_size'.$panel['id']] = array(
+                'section' => 'pagination_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_pagination_background_size'.$panel['id']},
+                'label' => __('Pagination Background Size (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_pagination_font_color'.$panel['id']] = array(
+                'section' => 'pagination_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_pagination_font_color'.$panel['id']},
+                'label' => __('Pagination Font Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+
+            /* file uploader controls */
+            $controlsArray['form_file_has_background'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'checkbox',
+                'checked_val'=>'on',
+                'unchecked_val'=>'off',
+                'default' => $this->{'form_file_has_background'.$panel['id']},
+                'label' => __('FileBox Has background', 'hugeit_contact'),
+                'help' => __('Whether FileBox should have color background or transparent.', 'hugeit_contact')
+            );
+            $controlsArray['form_file_background'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_file_background'.$panel['id']},
+                'label' => __('FileBox Background Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_border_size'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_file_border_size'.$panel['id']},
+                'label' => __('FileBox Border Size (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_border_radius'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_file_border_radius'.$panel['id']},
+                'label' => __('FileBox Border Radius (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_border_color'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_file_border_color'.$panel['id']},
+                'label' => __('FileBox Border Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_font_size'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_file_font_size'.$panel['id']},
+                'label' => __('FileBox Font Size (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_font_color'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_file_font_color'.$panel['id']},
+                'label' => __('FileBox Font Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_button_text'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'text',
+                'default' => $this->{'form_file_button_text'.$panel['id']},
+                'label' => __('Upload Button Text', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_button_background_color'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_file_button_background_color'.$panel['id']},
+                'label' => __('Button Background Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_button_background_hover_color'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_file_button_background_hover_color'.$panel['id']},
+                'label' => __('Button Hover Background Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_button_text_color'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_file_button_text_color'.$panel['id']},
+                'label' => __('Upload Button Text Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_button_text_hover_color'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_file_button_text_hover_color'.$panel['id']},
+                'label' => __('Upload Button Hover Text Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_has_icon'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'checkbox',
+                'checked_val'=>'on',
+                'unchecked_val'=>'off',
+                'default' => $this->{'form_file_has_icon'.$panel['id']},
+                'label' => __('Upload Button Has Icon', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_icon_style'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'icon_radio',
+                'width' => 30,
+                'height' => 30,
+                'choices' => array(
+                    "hugeicons-paperclip",
+                    "hugeicons-camera",
+                    "hugeicons-picture-o",
+                    "hugeicons-file",
+                    "hugeicons-dropbox",
+                    "hugeicons-cloud",
+                    "hugeicons-cloud-upload",
+                    "hugeicons-download",
+                    "hugeicons-cloud-download",
+                    "hugeicons-file-pdf-o",
+                    "hugeicons-file-text",
+                    "hugeicons-file-excel-o",
+                    "hugeicons-file-powerpoint-o",
+                    "hugeicons-file-zip-o",
+                    "hugeicons-file-audio-o",
+                    "hugeicons-floppy-o",
+                    "hugeicons-music",
+                    "hugeicons-film",
+                    "hugeicons-camera-retro",
+                    "hugeicons-gift"
+                ),
+                'default' => $this->{'form_file_icon_style'.$panel['id']},
+                'label' => __('Upload Button Icon', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_icon_position'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'select',
+                'choices'=>array(
+                        'left'=>'Before Text',
+                       'right'=>'After Text',
+                ),
+                'default' => $this->{'form_file_icon_position'.$panel['id']},
+                'label' => __('Button\'s Icon Position', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_icon_color'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_file_icon_color'.$panel['id']},
+                'label' => __('FileBox Icon Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_file_icon_hover_color'.$panel['id']] = array(
+                'section' => 'file_upload_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_file_icon_hover_color'.$panel['id']},
+                'label' => __('FileBox Icon Hover Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+
+
+            /* bottons controls */
+            $controlsArray['form_button_position'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'select',
+                'choices'=>array(
+                        'left'=>'Left',
+                        'right'=>'Right',
+                        'center'=>'Center',
+                ),
+                'default' => $this->{'form_button_position'.$panel['id']},
+                'label' => __('Submit/Reset Buttons Alignment', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_fullwidth'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'checkbox',
+                'checked_val'=>'on',
+                'unchecked_val'=>'off',
+                'default' => $this->{'form_button_fullwidth'.$panel['id']},
+                'label' => __('Make Buttons Fullwidth', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_padding'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_button_padding'.$panel['id']},
+                'label' => __('Padding (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_font_size'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_button_font_size'.$panel['id']},
+                'label' => __('Font Size (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_icons_position'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'select',
+                'choices'=>array(
+                    'left'=>'Before Text',
+                    'right'=>'After Text',
+                ),
+                'default' => $this->{'form_button_icons_position'.$panel['id']},
+                'label' => __('Icons Position', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_submit_has_icon'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'checkbox',
+                'checked_val'=>'on',
+                'unchecked_val'=>'off',
+                'default' => $this->{'form_button_submit_has_icon'.$panel['id']},
+                'label' => __('Submit Button Has Icon', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_submit_icon_style'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'icon_radio',
+                'choices'=>array(
+                    "hugeicons-mail-forward",
+                    "hugeicons-mail-reply",
+                    "hugeicons-clock",
+                    "hugeicons-bell",
+                    "hugeicons-paper-plane",
+                    "hugeicons-sign-in",
+                    "hugeicons-bars",
+                    "hugeicons-child",
+                    "hugeicons-gift",
+                    "hugeicons-rocket",
+                    "hugeicons-fire",
+                    "hugeicons-anchor",
+                    "hugeicons-plus",
+                    "hugeicons-envelope-o",
+                    "hugeicons-envelope",
+                    "hugeicons-cart-plus"
+                ),
+                'default' => $this->{'form_button_submit_icon_style'.$panel['id']},
+                'label' => __('Submit Button Icon Image', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_submit_icon_color'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_button_submit_icon_color'.$panel['id']},
+                'label' => __('Submit Button Icon Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_submit_icon_hover_color'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_button_submit_icon_hover_color'.$panel['id']},
+                'label' => __('Submit Button Hover Icon Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_submit_font_color'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_button_submit_font_color'.$panel['id']},
+                'label' => __('Submit Button Font Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_submit_font_hover_color'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_button_submit_font_hover_color'.$panel['id']},
+                'label' => __('Submit Button Hover Font Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_submit_background'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_button_submit_background'.$panel['id']},
+                'label' => __('Submit Button Background Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_submit_hover_background'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_button_submit_hover_background'.$panel['id']},
+                'label' => __('Submit Button Hover Background Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_submit_border_size'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_button_submit_border_size'.$panel['id']},
+                'label' => __('Submit Button Border Size (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_submit_border_color'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_button_submit_border_color'.$panel['id']},
+                'label' => __('Submit Button Border Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_submit_border_radius'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_button_submit_border_radius'.$panel['id']},
+                'label' => __('Submit Button Border Radius (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_reset_has_icon'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'checkbox',
+                'checked_val'=>'on',
+                'unchecked_val'=>'off',
+                'default' => $this->{'form_button_reset_has_icon'.$panel['id']},
+                'label' => __('Reset Button Has Icon', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_reset_icon_style'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'icon_radio',
+                'choices'=>array(
+                    "hugeicons-refresh",
+                    "hugeicons-power-off",
+                    "hugeicons-minus-circle",
+                    "hugeicons-times",
+                    "hugeicons-bell-slash",
+                    "hugeicons-trash-o",
+                    "hugeicons-user-times",
+                    "hugeicons-street-view",
+                    "hugeicons-times-circle-o",
+                    "hugeicons-reply",
+                    "hugeicons-fire",
+                    "hugeicons-retweet"
+                ),
+                'default' => $this->{'form_button_reset_icon_style'.$panel['id']},
+                'label' => __('Reset Button Icon Image', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_reset_icon_color'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_button_reset_icon_color'.$panel['id']},
+                'label' => __('Reset Button Icon Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_reset_icon_hover_color'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'color',
+                'default' =>  $this->{'form_button_reset_icon_hover_color'.$panel['id']},
+                'label' => __('Reset Button Hover Icon Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_reset_font_color'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_button_reset_font_color'.$panel['id']},
+                'label' => __('Reset Button Font Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_reset_font_hover_color'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_button_reset_font_hover_color'.$panel['id']},
+                'label' => __('Reset Button Hover Font Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_reset_background'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_button_reset_background'.$panel['id']},
+                'label' => __('Reset Button Background Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_reset_hover_background'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_button_reset_hover_background'.$panel['id']},
+                'label' => __('Reset Button Hover Background Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_reset_border_size'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_button_reset_border_size'.$panel['id']},
+                'label' => __('Reset Button Border Size (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_reset_border_color'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'color',
+                'default' => $this->{'form_button_reset_border_color'.$panel['id']},
+                'label' => __('Reset Button Border Color', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+            $controlsArray['form_button_reset_border_radius'.$panel['id']] = array(
+                'section' => 'button_styles'.$panel['id'],
+                'type' => 'number',
+                'default' => $this->{'form_button_reset_border_radius'.$panel['id']},
+                'label' => __('Reset Button Border Radius (px)', 'hugeit_contact'),
+                'help' => __('', 'hugeit_contact')
+            );
+
+            /* custom controls */
+            $controlsArray['form_custom_css'.$panel['id']] = array(
+                'section' => 'custom_styles'.$panel['id'],
+                'type' => 'textarea',
+                'default' => $this->{'form_custom_css'.$panel['id']},
+                'label' => __('', 'form_custom_css'),
+            );
+
+
+        }
+        return $controlsArray;
     }
 
 
@@ -348,9 +1116,16 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
      *
      * @return mixed|void
      */
-    public function get_option_from_table( $key, $default = false, $concat = true  ) {
+    public function get_option_from_table( $key, $default = false, $concat = true , $where = array() ) {
         global $wpdb;
-        $value = $wpdb->get_var('SELECT `value` FROM '.$wpdb->prefix.$this->tablename.' WHERE `name`="'.$key.'"');
+        $query = 'SELECT `value` FROM '.$wpdb->prefix.$this->tablename.' WHERE `name`="'.$key.'"';
+
+        if(!empty($where)) {
+            foreach ($where as $key=>$value){
+                $query .= ' AND `'.$key.'`='.$value;
+            }
+        }
+        $value = $wpdb->get_var( $query );
 
         if(!$value) $value = $default;
 
@@ -364,58 +1139,17 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
      */
     public function update_option_in_table( $key, $value ) {
         global $wpdb;
-        $wpdb->update( $wpdb->prefix.$this->tablename, array(
-            'value'=>$value
-        ), array(
-            'name'=>$key
-        ));
-    }
-
-    public function save_options(){
-        $ajax = false;
-        if (defined('DOING_AJAX') && DOING_AJAX){
-            $ajax = true;
-        }
-
-        if( ! isset( $_REQUEST['wpdev_settings_current_plugin'] ) || $_REQUEST['wpdev_settings_current_plugin'] !== $this->plugin_id ){
-            return false;
-        }
-
-        if( !isset( $_REQUEST['action'] ) || $_REQUEST['action'] !== 'wpdev_save_settings' ){
-
-            return false;
-        }
-
-        if( !check_admin_referer( 'wpdev_settings_save_options', 'wpdev_settings_save_nonce' ) ){
-
-            if( $ajax ){
-                echo json_encode( array( 'errorMsg' => __( "Wrong nonce parameter" ) ) );die;
-            }
-
-            return false;
-        }
-
-        if( isset( $_REQUEST['wpdev_options'] ) && is_array( $_REQUEST['wpdev_options'] ) && !empty( $_REQUEST['wpdev_options'] ) ){
-            foreach( $_REQUEST['wpdev_options'] as $name => $value ){
-                if( method_exists( $this, 'set_'.$name ) ){
-                    call_user_func( array( $this, 'set_'.$name ), $value );
-                }else{
-                    $this->update_option_in_table( $name, $value );
-                }
-            }
-
-            if( $ajax ){
-                echo json_encode( array( 'successMsg' => __( "Saved Successfully" ) ) );die;
-            }
-            return true;
-        }
-
-        if( $ajax ){
-            echo json_encode( array( 'errorMsg' => __( "Something went wrong" ) ) );die;
-        }
-
-        return true;
-
+        $theme_id = intval(preg_replace('/[^0-9]+/', '', $key), 10);
+        $key = preg_replace('/[0-9]+/', '', $key);
+        $wpdb->update( $wpdb->prefix.$this->tablename,
+            array(
+                'value'=>$value
+            ),
+            array(
+                  'name'=>$key,
+                'options_name'=>$theme_id
+            )
+        );
     }
 
     /**
@@ -482,6 +1216,39 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
         </div>
         <?php return ob_get_clean();
     }
+
+    protected function control_icon_radio( $id, $control ){
+        $default = ( isset( $control['default'] ) ? $control['default'] : "" );
+
+        $label_str       = ( isset( $control['label'] ) ? '<span class="control-title" > ' . $control['label'] : '' );
+        $label_str      .= isset( $control['help'] ) ? '<div class="wpdev_settings_help">&#63;<div class="wpdev_settings_help_block"><span class="pnt"></span><p>'. $control['help'] .'</p></div></div></span>' : '</span>';
+
+        echo $label_str;
+        ?>
+        <div class="icon-radio-block">
+            <?php
+            if( isset( $control['choices'] ) && !empty( $control['choices'] ) ){
+                ?>
+                <ul>
+                    <?php
+                    foreach( $control['choices'] as $key=>$choice ){
+                        ?>
+                        <li>
+                            <input type="radio" value="<?php echo $choice ?>" <?php checked($default, $choice); ?> id="<?php echo $id.'-'.$key; ?>" name="wpdev_options[<?php echo $id; ?>]"  />
+                            <label for="<?php echo $id.'-'.$key; ?>"><i class="<?php echo $choice;?>"></i> </label>
+                        </li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+                <?php
+            }
+            ?>
+        </div>
+        <?php
+    }
+
+
 
 
 

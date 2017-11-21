@@ -48,13 +48,17 @@ function WPDEV_Settings(){
 
         var rel = jQuery(this).attr("rel");
         _this.changeActiveNav( rel );
+
     };
 
     _this.submitForm = function(){
-        var i, t = tinyMCE.editors;
-        for (i in t) {
-            jQuery('button.switch-html').click();
+        if(typeof tinyMCE != 'undefined'){
+            var i, t = tinyMCE.editors;
+            for (i in t) {
+                jQuery('button.switch-html').click();
+            }
         }
+
 
         var formData = _this.form.serialize();
         jQuery.ajax({
@@ -75,9 +79,11 @@ function WPDEV_Settings(){
                 _this.showPopup( '-error', response.errorMsg );
             }
 
-            var i, t = tinyMCE.editors;
-            for (i in t) {
-                jQuery('button.switch-tmce').click();
+            if( typeof tinyMCE != 'undefined'){
+                var i, t = tinyMCE.editors;
+                for (i in t) {
+                    jQuery('button.switch-tmce').click();
+                }
             }
         }).fail(function(error){
             _this.showPopup( '-error', wpDevL10n.probemz );

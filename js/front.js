@@ -76,7 +76,7 @@ jQuery(document).ready(function () {
 
         });
     }
-    //Pagination
+    /* Pagination */
 
     /* Mask On */
     jQuery(".hugeit-contact-form-container").find("[data-hg-pattern]").each(function () {
@@ -99,11 +99,55 @@ jQuery(document).ready(function () {
         })
     }
 
+
+    function reOrganizeFields(){
+
+        var forms = jQuery('.hugeit-contact-wrapper');
+
+
+
+        if( jQuery(window).width()<768 ){
+            forms.each(function () {
+                var form = jQuery(this);
+                if(!form.children('.hugeit-form-mobile').length){
+                    form.append('<div class="hugeit-form-mobile"></div>');
+
+                    var movingBlocks = form.find('.hugeit-field-block.captcha-block,.hugeit-field-block.simple-captcha-block,.hugeit-field-block.buttons-block');
+
+                    movingBlocks.each(function () {
+                        var rel = jQuery(this).attr('rel');
+                        jQuery('<span data-placeholder="'+rel+'"></span>').insertBefore(this);
+                        jQuery(this).appendTo(form.find('.hugeit-form-mobile'));
+                    })
+                }
+            })
+
+        } else {
+            forms.each(function () {
+                var form = jQuery(this);
+                if(form.children('.hugeit-form-mobile').length){
+                    var movedBlocks = form.find('.hugeit-form-mobile').find('.hugeit-field-block.captcha-block,.hugeit-field-block.simple-captcha-block,.hugeit-field-block.buttons-block');
+
+                    movedBlocks.each(function () {
+                        var rel = jQuery(this).attr('rel');
+                        jQuery(this).insertBefore(jQuery('span[data-placeholder="'+rel+'"]'));
+                        jQuery('span[data-placeholder="'+rel+'"]').remove();
+                    })
+
+                    form.find('.hugeit-form-mobile').remove();
+                }
+            })
+        }
+    }
+
     hugeitFormsResize();
+    reOrganizeFields();
 
     /* window resize */
     jQuery(window).on('resize',function () {
         hugeitFormsResize();
+
+        reOrganizeFields();
     })
     /* end window resize */
 

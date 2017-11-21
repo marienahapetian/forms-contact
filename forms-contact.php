@@ -13,6 +13,7 @@ License: GNU/GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
 define('HG_CONTACT_VERSION', '1.4.9');
 define('HG_CONTACT_URL', plugins_url('', __FILE__));
 define('HG_CONTACT_PATH', plugin_dir_path(__FILE__));
+define('HG_IMAGES_BASE_URL', plugin_dir_path('images/',__FILE__));
 
 require_once "includes/class-hugeit-contact-tracking.php";
 require_once "includes/class-hugeit-contact-deactivation-feedback.php";
@@ -1037,6 +1038,7 @@ INSERT INTO `$table_name` (`name`, `title`, `description`, `options_name`, `valu
 ('form_button_reset_hover_background', 'Form Button Reset Hover Background', 'Form Button Reset Hover Background', '1', 'FFFFFF'),
 ('form_button_reset_font_color', 'Form Button Reset Font Color', 'Form Button Reset Font Color', '1', 'FE5858'),
 ('form_button_reset_font_hover_color', 'Form Button Reset Font Hover Color', 'Form Button Reset Font Hover Color', '1', 'FE473A'),
+('form_custom_css', 'Form Custom CSS', 'Form Custom CSS', '1', '/*Write Your Custom CSS Code Here*/'),
 ('form_button_submit_icon_color', 'Form Button Submit Icon Color', 'Form Button Submit Icon Color', '1', 'FFFFFF'),
 ('form_button_submit_icon_hover_color', 'Form Button Submit Icon Hover Color', 'Form Button Submit Icon Hover Color', '1', 'FFFFFF'),
 ('form_button_submit_icon_style', 'Form Button Submit Icon Style', 'Form Button Submit Icon Style', '1', 'hugeicons-rocket'),
@@ -1203,6 +1205,7 @@ INSERT INTO `$table_name` (`name`, `title`, `description`, `options_name`, `valu
 ('form_selectbox_font_color', 'Form Selectbox Font Color', 'Form Selectbox Font Color', '2', '323432'),
 ('form_label_required_color', 'Form Label REquired Color', 'Form Label REquired Color', '2', '0DC4C6'),
 ('form_label_success_message', 'Form Label Success Color', 'Form Label Success Color', '2', '30B038'),
+('form_custom_css', 'Form Custom CSS', 'Form Custom CSS', '2', '/*Write Your Custom CSS Code Here*/'),
 ('form_selectbox_font_color', 'Form Selectbox Font Color', 'Form Selectbox Font Color', '3', '333333'),
 ('form_button_submit_font_hover_color', 'Form Button Submit Font Hover Color', 'Form Button Submit Font Hover Color', '3', 'FFFFFF'),
 ('form_button_submit_font_color', 'Form Button Submit Font Color', 'Form Button Submit Font Color', '3', 'FFFFFF'),
@@ -1293,6 +1296,7 @@ INSERT INTO `$table_name` (`name`, `title`, `description`, `options_name`, `valu
 ('form_button_submit_hover_background', 'Form Button Submit Hover Background', 'Form Button Submit Hover Background', '3', '000000'),
 ('form_button_submit_border_size', 'Form Button Submit Border Size', 'Form Button Submit Border Size', '3', '1'),
 ('form_button_submit_border_color', 'Form Button Submit Border Color', 'Form Button Submit Border Color', '3', '000000'),
+('form_custom_css', 'Form Custom CSS', 'Form Custom CSS', '3', '/*Write Your Custom CSS Code Here*/'),
 ('form_file_font_size', 'Form File Font Size', 'Form File Font Size', '4', '14'),
 ('form_file_border_color', 'Form File Border Color', 'Form File Border Color', '4', '24A33F'),
 ('form_file_border_radius', 'Form File Border Radius', 'Form File Border Radius', '4', '2'),
@@ -1383,6 +1387,7 @@ INSERT INTO `$table_name` (`name`, `title`, `description`, `options_name`, `valu
 ('form_file_button_background_color', 'Form File Button Background Color', 'Form File Button Background Color', '4', '29BA48'),
 ('form_file_button_text', 'Form File Button Text', 'Form File Button Text', '4', 'Upload'),
 ('form_file_font_color', 'Form File Font Color', 'Form File Font Color', '4', '444444'),
+('form_custom_css', 'Form Custom CSS', 'Form Custom CSS', '4', '/*Write Your Custom CSS Code Here*/'),
 ('form_textarea_border_color', 'Form Textarea Border Color', 'Form Textarea Border Color', '5', 'ABABAB'),
 ('form_textarea_font_size', 'Form Textarea Font Size', 'Form Textarea Font Size', '5', '12'),
 ('form_textarea_font_color', 'Form Textarea Font Color', 'Form Textarea Font Color', '5', '444444'),
@@ -1473,6 +1478,7 @@ INSERT INTO `$table_name` (`name`, `title`, `description`, `options_name`, `valu
 ('form_label_required_color', 'Form Label Required Color', 'Form Label Required Color', '5', '328FE6'),
 ('form_label_success_message', 'Form Label Success Color', 'Form Label Success Color', '5', '00C60E'),
 ('form_selectbox_font_color', 'Form Selectbox Font Color', 'Form Selectbox Font Color', '5', '4F4F4F'),
+('form_custom_css', 'Form Custom CSS', 'Form Custom CSS', '5', '/*Write Your Custom CSS Code Here*/'),
 ('form_textarea_border_color', 'Form Textarea Border Color', 'Form Textarea Border Color', '6', '2FCCA6'),
 ('form_textarea_font_size', 'Form Textarea Font Size', 'Form Textarea Font Size', '6', '12'),
 ('form_textarea_font_color', 'Form Textarea Font Color', 'Form Textarea Font Color', '6', '3B3B3B'),
@@ -1560,6 +1566,7 @@ INSERT INTO `$table_name` (`name`, `title`, `description`, `options_name`, `valu
 ('form_button_reset_icon_style', 'Form Button Reset Icon Style', 'Form Button Reset Icon Style', '6', 'hugeicons-reply'),
 ('form_button_reset_icon_color', 'Form Button Reset Icon Color', 'Form Button Reset Icon Color', '6', '2AB795'),
 ('form_button_reset_icon_hover_color', 'Form Button Reset Icon Hover Color', 'Form Button Reset Icon Hover Color', '6', '249E81'),
+('form_custom_css', 'Form Custom CSS', 'Form Custom CSS', '6', '/*Write Your Custom CSS Code Here*/'),
 ('form_label_required_color', 'Form Label Required Color', 'Form Label Required Color', '6', '2AB795'),
 ('form_label_success_message', 'Form Label Success Color', 'Form Label Success Color', '6', '3DAD48'),
 ('form_selectbox_font_color', 'Form Selectbox Font Color', 'Form Selectbox Font Color', '6', '4F4F4F');
@@ -1744,9 +1751,9 @@ n_theme_Query;
     }
 
 
-   changeSubmissionDateColumnType();
+    changeSubmissionDateColumnType();
 
-   refactorSelectboxPlaceholders();
+    refactorSelectboxPlaceholders();
 
     addConditionalLogicMaskColumns();
 

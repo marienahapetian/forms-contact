@@ -133,6 +133,11 @@
     font-size: 15px;
     font-weight: 500;
 }
+.wpdev-settings-section .control-container label+div,
+.wpdev-settings-section .control-container .control-title+div{
+    width: 45%;
+    display: inline-block;
+}
 .wpdev-settings-section  .control-container-editor label{
     width: calc(100% - 20px);
     margin-bottom: 20px;
@@ -274,17 +279,22 @@
     float: initial !important;
     clear: both;
 }
-.image-radio-block ul {
+.image-radio-block ul,
+.icon-radio-block ul{
     display: block;
-    margin: 0 10px;
+    margin: 0;
 }
-.image-radio-block li {
+.image-radio-block li,
+.icon-radio-block li{
     display:inline-block;
+    margin: 3px 4px;
 }
-.image-radio-block input[type="radio"] {
+.image-radio-block input[type="radio"],
+.icon-radio-block input[type="radio"]{
     display: none;
 }
-.image-radio-block input[type="radio"] ~ label {
+.image-radio-block input[type="radio"] ~ label,
+.icon-radio-block input[type="radio"] ~ label{
     width:auto;
     padding:0;
     float: initial;
@@ -292,6 +302,10 @@
 }
 .image-radio-block input[type="radio"]:checked ~ label {
    border: 2px solid #3aa3e3
+}
+.icon-radio-block input[type="radio"]:checked ~ label {
+    border: 2px solid #e397b4;
+    padding: 0 5px;
 }
 .image-radio-block input[type="radio"] ~ label img {
     vertical-align: middle;

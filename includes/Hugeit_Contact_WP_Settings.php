@@ -6,6 +6,8 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
 
     public $tablename = 'huge_it_contact_general_options';
 
+    public $ta_save = 'settings';
+
     public function __construct()
     {
         $config = array(
@@ -136,6 +138,8 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
             'form_save_reply_to_user' => array(
                 'section' => 'form_general_settings',
                 'type' => 'checkbox',
+                'checked_val'=>'on',
+                'unchecked_val'=>'off',
                 'default' => $this->form_save_reply_to_user,
                 'label' => __('Reply To User', 'hugeit_contact'),
                 'help' => __('Choose whether to get the emails from the user email address', 'hugeit_contact')
@@ -157,6 +161,8 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
             'form_save_to_database' => array(
                 'section' => 'form_general_settings',
                 'type' => 'checkbox',
+                'checked_val'=>'on',
+                'unchecked_val'=>'off',
                 'default' => $this->form_save_to_database,
                 'label' => __('Save Submissions To Database', 'hugeit_contact'),
                 'help' => __('Uncheck this if you don\'t want submissions to be saved in database', 'hugeit_contact')
@@ -234,6 +240,8 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
             'form_send_email_for_each_submition' => array(
                 'section' => 'email_admin',
                 'type' => 'checkbox',
+                'checked_val'=>'on',
+                'unchecked_val'=>'off',
                 'default' => $this->form_send_email_for_each_submition,
                 'label' => __('Send Email For Each Submission', 'hugeit_contact'),
                 'help' => __('Whether to Send an Email to Admin for each Submission', 'hugeit_contact')
@@ -265,6 +273,8 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
             'form_send_to_email_user' => array(
                 'section' => 'email_user',
                 'type' => 'checkbox',
+                'checked_val'=>'on',
+                'unchecked_val'=>'off',
                 'default' => $this->form_send_to_email_user,
                 'label' => __('Send Email For Each Submission', 'hugeit_contact'),
                 'help' => __('Whether to Send an Email to Admin for each Submission', 'hugeit_contact')
@@ -343,67 +353,6 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
         if(!$value) $value = $default;
 
         return $value;
-    }
-
-    /**
-     * @param $key
-     * @param $value
-     *
-     */
-    public function update_option_in_table( $key, $value ) {
-        global $wpdb;
-        $wpdb->update( $wpdb->prefix.$this->tablename, array(
-            'value'=>$value
-        ), array(
-            'name'=>$key
-        ));
-    }
-
-    public function save_options(){
-        $ajax = false;
-        if (defined('DOING_AJAX') && DOING_AJAX){
-            $ajax = true;
-        }
-
-        if( ! isset( $_REQUEST['wpdev_settings_current_plugin'] ) || $_REQUEST['wpdev_settings_current_plugin'] !== $this->plugin_id ){
-            return false;
-        }
-
-        if( !isset( $_REQUEST['action'] ) || $_REQUEST['action'] !== 'wpdev_save_settings' ){
-
-            return false;
-        }
-
-        if( !check_admin_referer( 'wpdev_settings_save_options', 'wpdev_settings_save_nonce' ) ){
-
-            if( $ajax ){
-                echo json_encode( array( 'errorMsg' => __( "Wrong nonce parameter" ) ) );die;
-            }
-
-            return false;
-        }
-
-        if( isset( $_REQUEST['wpdev_options'] ) && is_array( $_REQUEST['wpdev_options'] ) && !empty( $_REQUEST['wpdev_options'] ) ){
-            foreach( $_REQUEST['wpdev_options'] as $name => $value ){
-                if( method_exists( $this, 'set_'.$name ) ){
-                    call_user_func( array( $this, 'set_'.$name ), $value );
-                }else{
-                    $this->update_option_in_table( $name, $value );
-                }
-            }
-
-            if( $ajax ){
-                echo json_encode( array( 'successMsg' => __( "Saved Successfully" ) ) );die;
-            }
-            return true;
-        }
-
-        if( $ajax ){
-            echo json_encode( array( 'errorMsg' => __( "Something went wrong" ) ) );die;
-        }
-
-        return true;
-
     }
 
 

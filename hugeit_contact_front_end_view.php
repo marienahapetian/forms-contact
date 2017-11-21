@@ -374,14 +374,15 @@ function buttons_field_html($rowimages, $style_values)
     <div class="hugeit-field-block buttons-block" rel="huge-contact-field-<?php echo esc_attr($rowimages->id); ?>">
         <button type="submit" class="submit" id="hugeit_preview_button__submit_<?php echo esc_attr($rowimages->id); ?>"
                 value="Submit">
-            <?php if ($style_values['form_button_icons_position'] == "left" and $style_values['form_button_submit_has_icon'] == "on") { ?>
+            <?php if ($style_values['form_button_submit_has_icon'] == "on" && $style_values['form_button_icons_position'] == "left" ) { ?>
                 <i class="<?php echo esc_attr($style_values['form_button_submit_icon_style']); ?>"></i>
             <?php } ?>
 
             <?php echo esc_html($rowimages->description); ?>
 
-            <?php if ($style_values['form_button_icons_position'] == "right" and $style_values['form_button_submit_has_icon'] == "on") { ?>
-            <i class="<?php echo esc_attr($style_values['form_button_submit_icon_style']); ?>"></i><?php } ?>
+            <?php if ($style_values['form_button_submit_has_icon'] == "on" && $style_values['form_button_icons_position'] == "right") { ?>
+                <i class="<?php echo esc_attr($style_values['form_button_submit_icon_style']); ?>"></i>
+            <?php } ?>
         </button>
         <?php if ($rowimages->hc_required == 'checked'): ?>
             <button type="reset" class="reset" id="hugeit_preview_button_reset_<?php echo esc_attr($rowimages->id); ?>"

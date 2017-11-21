@@ -18,6 +18,11 @@ if( !class_exists( 'WPDEV_Settings_API' ) ):
          */
         protected static $_instance;
 
+        public $tablename = null;
+
+        public $to_save = 'settings';
+
+
         /** @var string The Page Title */
         public $page_title = '';
 
@@ -134,7 +139,7 @@ if( !class_exists( 'WPDEV_Settings_API' ) ):
 
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
             add_action( 'init', array( $this, 'save_options'  ) );
-            add_action( 'wp_ajax_wpdev_save_settings', array( $this, 'save_options' ) );
+            add_action( 'wp_ajax_wpdev_save_'.$this->to_save, array( $this, 'save_options' ) );
 
         }
 
@@ -615,12 +620,14 @@ if( !class_exists( 'WPDEV_Settings_API' ) ):
             $checked = checked( "on", $default, false );
             $val = "yes";
             $off_val = "no";
+
+            if(isset($control['checked_val'])) $val = $control['checked_val'];
+            if(isset($control['unchecked_val'])) $off_val = $control['unchecked_val'];
+
             if( is_string( $default ) ){
-                if( in_array( $default, array("yes","no") ) ){
-                    $checked = checked( "on", $default, false );
-                    $val = "yes";
-                    $off_val = "no";
-                }elseif( in_array( $default, array( "true", "false" ) ) ){
+                if( in_array( $default, array($val,$off_val) ) ){
+                    $checked = checked( $val, $default, false );
+                } elseif( in_array( $default, array( "true", "false" ) ) ){
                     $checked = checked( "true", $default, false );
                     $val = "true";
                     $off_val = "false";
@@ -846,7 +853,7 @@ if( !class_exists( 'WPDEV_Settings_API' ) ):
                         ?>
                         <div class="wpdev-settins-submit-block">
                             <?php wp_nonce_field('wpdev_settings_save_options', 'wpdev_settings_save_nonce'); ?>
-                            <input type="hidden" name="action" value="wpdev_save_settings" />
+                            <input type="hidden" name="action" value="wpdev_save_<?php echo $this->to_save;?>" />
                             <input type="hidden" name="wpdev_settings_current_plugin" value="<?php echo $this->plugin_id; ?>" />
                             <span class="spinner"></span>
                             <button value="save" type="submit" class="wpdev_settings_save_button wpdev-primary-button" name="wpdev_settings_save_options" ><?php _e( 'Save Settings' ); ?></button>
@@ -870,7 +877,7 @@ if( !class_exists( 'WPDEV_Settings_API' ) ):
                 return false;
             }
 
-            if( !isset( $_REQUEST['action'] ) || $_REQUEST['action'] !== 'wpdev_save_settings' ){
+            if( !isset( $_REQUEST['action'] ) || $_REQUEST['action'] !== 'wpdev_save_'.$this->to_save ){
 
                 return false;
             }
@@ -889,7 +896,11 @@ if( !class_exists( 'WPDEV_Settings_API' ) ):
                     if( method_exists( $this, 'set_'.$name ) ){
                         call_user_func( array( $this, 'set_'.$name ), $value );
                     }else{
-                        update_option( $this->plugin_id . "_" . $name, $value );
+                        if($this->tablename){
+                            $this->update_option_in_table( $name, $value );
+                        } else {
+                            update_option( $this->plugin_id . "_" . $name, $value );
+                        }
                     }
 
                 }
@@ -906,6 +917,24 @@ if( !class_exists( 'WPDEV_Settings_API' ) ):
 
             return true;
 
+        }
+
+        /**
+         * @param $key
+         * @param $value
+         *
+         */
+        public function update_option_in_table( $key, $value ) {
+            global $wpdb;
+
+            $wpdb->update( $wpdb->prefix.$this->tablename,
+                array(
+                    'value'=>$value
+                ),
+                array(
+                    'name'=>$key
+                )
+            );
         }
     }
 
