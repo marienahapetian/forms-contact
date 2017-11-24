@@ -27,6 +27,12 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
 
         $this->add_css('wpdev-custom-styles', plugins_url('../vendor/wpdev-settings/assets/css/wpdev-settings.css',__FILE__) );
         $this->add_js('wpdev-custom-js',  plugins_url('../vendor/wpdev-settings/assets/js/wpdev-settings.js',__FILE__));
+        $this->add_css('fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?ver=4.9' );
+        $this->add_css('huge-icons-styles', plugins_url('../style/iconfonts/css/hugeicons.css',__FILE__) );
+        $this->add_css('hugeit-contact-freebanner', plugins_url('../style/admin.style.css',__FILE__) );
+        $this->add_js ('theme-options',  plugins_url('../js/theme_options.js',__FILE__));
+
+//        add_action( 'wpdev_settings_'.$this->plugin_id.'_header', array( $this, 'drawFreeBanner' ) );
 
     }
 
@@ -69,6 +75,18 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
             'email_user' => array(
                 'panel' => 'form_settings',
                 'title' => __('Email To User', 'hugeit_contact'),
+            ),
+            'paypal' => array(
+                'panel' => 'form_settings',
+                'title' => __('PayPal Settings', 'hugeit_contact'),
+                'disabled' => true,
+                'disabled_link'=>'https://goo.gl/ycVtso'
+            ),
+            'gmap' => array(
+                'panel' => 'form_settings',
+                'title' => __('Google Map Settings', 'hugeit_contact'),
+                'disabled' => true,
+                'disabled_link'=>'https://goo.gl/ycVtso'
             ),
 
         );
@@ -116,6 +134,16 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
         $this->form_send_to_email_user = $this->get_option_from_table("form_send_to_email_user", 'on');
         $this->form_user_message_subject = $this->get_option_from_table("form_user_message_subject", 'Form Submitted');
         $this->form_user_message = $this->get_option_from_table("form_user_message", '');
+
+
+        $this->hugeit_paypal_mode = $this->get_option_from_table("hugeit_paypal_mode", 'sandbox');
+        $this->hugeit_paypal_client_email = $this->get_option_from_table("hugeit_paypal_client_email", '');
+        $this->hugeit_sandbox_client_email = $this->get_option_from_table("hugeit_sandbox_client_email", '');
+        $this->hugeit_paypal_currency = $this->get_option_from_table("hugeit_paypal_currency", 'USD');
+        $this->hugeit_paypal_shopping_url = $this->get_option_from_table("hugeit_paypal_shopping_url", '');
+        $this->hugeit_paypal_return_url = $this->get_option_from_table("hugeit_paypal_return_url", '');
+
+        $this->hugeit_map_api = $this->get_option_from_table("hugeit_map_api", '');
     }
 
     private function controls_general_options()
@@ -126,14 +154,12 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
                 'type' => 'text',
                 'default' => $this->form_adminstrator_user_name,
                 'label' => __('Send Emails From Name', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
             'form_adminstrator_user_mail' => array(
                 'section' => 'form_general_settings',
                 'type' => 'email',
                 'default' => $this->form_adminstrator_user_mail,
                 'label' => __('Send Emails From Email', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
             'form_save_reply_to_user' => array(
                 'section' => 'form_general_settings',
@@ -149,14 +175,12 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
                 'type' => 'text',
                 'default' => $this->form_captcha_public_key,
                 'label' => __('Captcha Public Key', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
             'form_captcha_private_key' => array(
                 'section' => 'form_general_settings',
                 'type' => 'text',
                 'default' => $this->form_captcha_private_key,
                 'label' => __('Captcha Private Key', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
             'form_save_to_database' => array(
                 'section' => 'form_general_settings',
@@ -172,70 +196,133 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
                 'type' => 'text',
                 'default' => $this->msg_send_success,
                 'label' => __('Sender\'s message was sent successfully', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
             'msg_send_false' => array(
                 'section' => 'form_messages',
                 'type' => 'text',
                 'default' => $this->msg_send_false,
                 'label' => __('Sender\'s message was failed to send', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
             'msg_refered_spam' => array(
                 'section' => 'form_messages',
                 'type' => 'text',
                 'default' => $this->msg_refered_spam,
                 'label' => __('Submission was referred to as spam', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
             'msg_captcha_error' => array(
                 'section' => 'form_messages',
                 'type' => 'text',
                 'default' => $this->msg_captcha_error,
                 'label' => __('Captcha is Not Validated', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
             'required_empty_field' => array(
                 'section' => 'form_messages',
                 'type' => 'text',
                 'default' => $this->required_empty_field,
                 'label' => __('Required Field Is Empty', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
             'msg_invalid_email' => array(
                 'section' => 'form_messages',
                 'type' => 'text',
                 'default' => $this->msg_invalid_email,
                 'label' => __('Email address that the sender entered is invalid', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
             'msg_fail_failed' => array(
                 'section' => 'form_messages',
                 'type' => 'text',
                 'default' => $this->msg_fail_failed,
                 'label' => __('Uploading a file fails for any reason', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
             'msg_file_format' => array(
                 'section' => 'form_messages',
                 'type' => 'text',
                 'default' => $this->msg_file_format,
                 'label' => __('Uploaded file is not allowed file type', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
             'msg_large_file' => array(
                 'section' => 'form_messages',
                 'type' => 'text',
                 'default' => $this->msg_large_file,
                 'label' => __('Uploaded file is too large', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
             'msg_simple_captcha_error' => array(
                 'section' => 'form_messages',
                 'type' => 'text',
                 'default' => $this->msg_simple_captcha_error,
                 'label' => __('Simple Captcha Code Incorrect', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
+            ),
+            'hugeit_paypal_mode' => array(
+                'section' => 'paypal',
+                'type' => 'radio',
+                'choices'=>array(
+                    'sandbox'=>'Sandbox',
+                    'live'=>'Live'
+                ),
+                'default' => $this->hugeit_paypal_mode,
+                'label' => __('PayPal Mode', 'hugeit_contact'),
+                'help' => __('Select Sandbox for Testing Purposes and Live for Live Payments', 'hugeit_contact')
+            ),
+            'hugeit_paypal_client_email' => array(
+                'section' => 'paypal',
+                'type' => 'email',
+                'default' => $this->hugeit_paypal_client_email,
+                'label' => __('PayPal Acount Email Address', 'hugeit_contact'),
+            ),
+            'hugeit_sandbox_client_email' => array(
+                'section' => 'paypal',
+                'type' => 'email',
+                'default' => $this->hugeit_sandbox_client_email,
+                'label' => __('Sandbox Acount Email Address', 'hugeit_contact'),
+            ),
+            'hugeit_paypal_currency' => array(
+                'section' => 'paypal',
+                'type' => 'select',
+                'choices'=>array(
+                    'USD'=>'USD (U.S. Dollar)',
+                    'EUR'=>'EUR (Euro)',
+                    'GBP'=>'GBP (Pound Sterling)',
+                    'RUB'=>'RUB (Russian Ruble)',
+                    'CAD'=>'CAD (Canadian Dollar)',
+                    'AUD'=>'AUD (Australian Dollar)',
+                    'BRL'=>'BRL (Brazilian Real)',
+                    'CZK'=>'CZK (Czech Koruna)',
+                    'CHF'=>'CHF (Swiss Franc)',
+                    'DKK'=>'DKK (Danish Krone)',
+                    'HKD'=>'HKD (Hong Kong Dollar)',
+                    'HUF'=>'HUF (Hungarian Forint)',
+                    'ILS'=>'ILS (Israeli New Sheqel)',
+                    'JPY'=>'JPY (Japanese Yen)',
+                    'MYR'=>'MYR (Malaysian Ringgit)',
+                    'MXN'=>'MXN (Mexican Peso)',
+                    'NOK'=>'NOK (Norwegian Krone)',
+                    'NZD'=>'NZD (New Zealand Dollar)',
+                    'PHP'=>'PHP (Philippine Peso)',
+                    'PLN'=>'PLN (Polish Zloty)',
+                    'SGD'=>'SGD (Singapore Dollar)',
+                    'SEK'=>'SEK (Swedish Krona)',
+                    'TWD'=>'TWD (Taiwan New Dollar)',
+                    'THB'=>'THB (Thai Baht)',
+                ),
+                'default' => $this->hugeit_paypal_currency,
+                'label' => __('Payments Currency', 'hugeit_contact'),
+            ),
+            'hugeit_paypal_shopping_url' => array(
+                'section' => 'paypal',
+                'type' => 'url',
+                'default' => $this->hugeit_paypal_shopping_url,
+                'label' => __('Continue Shopping URL', 'hugeit_contact'),
+            ),
+            'hugeit_paypal_return_url' => array(
+                'section' => 'paypal',
+                'type' => 'url',
+                'default' => $this->hugeit_paypal_return_url,
+                'label' => __('Return URL', 'hugeit_contact'),
+            ),
+            'hugeit_map_api' => array(
+                'section' => 'gmap',
+                'type' => 'text',
+                'default' => $this->hugeit_map_api,
+                'label' => __('Google Map Api Key', 'hugeit_contact'),
             ),
             'form_send_email_for_each_submition' => array(
                 'section' => 'email_admin',
@@ -268,7 +355,6 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
                 'editorName' => 'form_adminstrator_message',
                 'default' => $this->form_adminstrator_message,
                 'label' => __('Message Content', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
             'form_send_to_email_user' => array(
                 'section' => 'email_user',
@@ -293,9 +379,7 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
                 'editorName' => 'form_user_message',
                 'default' => $this->form_user_message,
                 'label' => __('Message Content', 'hugeit_contact'),
-                'help' => __('', 'hugeit_contact')
             ),
-
         );
     }
 
@@ -356,5 +440,8 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
     }
 
 
+    public function drawFreeBanner(){
+        Hugeit_Contact_Template_Loader::render();
+    }
 }
 

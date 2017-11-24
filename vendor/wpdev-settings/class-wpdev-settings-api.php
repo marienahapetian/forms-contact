@@ -936,6 +936,7 @@ if( !class_exists( 'WPDEV_Settings_API' ) ):
                 )
             );
         }
+
     }
 
 endif;

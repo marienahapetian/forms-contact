@@ -119,12 +119,15 @@ function WPDEV_Settings(){
             _this.navigation = jQuery(".wpdev_settings_navigation");
             _this.submitBtn = jQuery(".wpdev_settings_save_button");
 
-            _this.masonry = _this.container.find( 'section' ).masonry({
-                columnWidth : '.wpdev-settings-section',
-                itemSelector : '.wpdev-settings-section',
-                percentPosition: true,
-                transitionDuration: 0
-            });
+            setTimeout(function () {
+                _this.masonry = _this.container.find( 'section' ).masonry({
+                    columnWidth : '.wpdev-settings-section',
+                    itemSelector : '.wpdev-settings-section',
+                    percentPosition: true,
+                    transitionDuration: 0
+                });
+            },500);
+
             var hash = window.location.hash.replace('#','');
             if( hash != '' ){
                 _this.changeActiveNav(hash);

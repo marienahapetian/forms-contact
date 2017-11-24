@@ -112,9 +112,16 @@ jQuery(document).ready(function () {
                 if(!form.children('.hugeit-form-mobile').length){
                     form.append('<div class="hugeit-form-mobile"></div>');
 
-                    var movingBlocks = form.find('.hugeit-field-block.captcha-block,.hugeit-field-block.simple-captcha-block,.hugeit-field-block.buttons-block');
+                    var movingCaptchaBlocks = form.find('.hugeit-field-block.captcha-block,.hugeit-field-block.simple-captcha-block');
+                    var movingButtonsBlocks = form.find('.hugeit-field-block.buttons-block');
 
-                    movingBlocks.each(function () {
+                    movingCaptchaBlocks.each(function () {
+                        var rel = jQuery(this).attr('rel');
+                        jQuery('<span data-placeholder="'+rel+'"></span>').insertBefore(this);
+                        jQuery(this).appendTo(form.find('.hugeit-form-mobile'));
+                    })
+
+                    movingButtonsBlocks.each(function () {
                         var rel = jQuery(this).attr('rel');
                         jQuery('<span data-placeholder="'+rel+'"></span>').insertBefore(this);
                         jQuery(this).appendTo(form.find('.hugeit-form-mobile'));

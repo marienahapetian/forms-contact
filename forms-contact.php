@@ -13,11 +13,12 @@ License: GNU/GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
 define('HG_CONTACT_VERSION', '1.4.9');
 define('HG_CONTACT_URL', plugins_url('', __FILE__));
 define('HG_CONTACT_PATH', plugin_dir_path(__FILE__));
-define('HG_IMAGES_BASE_URL', plugin_dir_path('images/',__FILE__));
+define('HG_IMAGES_BASE_URL', plugins_url('images/',__FILE__));
+define('VENDOR_BASE_URL', plugins_url('vendor/',__FILE__));
 
 require_once "includes/class-hugeit-contact-tracking.php";
 require_once "includes/class-hugeit-contact-deactivation-feedback.php";
-require_once "includes/Hugeit_Contact_Template_Loader.php";
+require_once "includes/class-hugeit-contact-template-loader.php";
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -26,8 +27,6 @@ if (!defined('ABSPATH')) {
 require_once("admin/hugeit_contact_ajax.php");
 
 add_filter('tiny_mce_before_init', 'hugeit_contact_tinymce_readonly');
-
-
 
 function hugeit_contact_tinymce_readonly($args)
 {
@@ -320,8 +319,6 @@ function hugeit_contact_options_panel()
 {
     $page_main            = add_menu_page('Huge IT Forms', 'Huge IT Forms', 'manage_options', 'hugeit_forms_main_page', 'hugeit_contacts_huge_it_contact', plugins_url('images/huge_it_contactLogoHover-for_menu.png', __FILE__));
     $page_manageforms     = add_submenu_page('hugeit_forms_main_page', 'Manage Forms', 'Manage Forms', 'manage_options', 'hugeit_forms_main_page', 'hugeit_contacts_huge_it_contact');
-//    $page_generaloptions  = add_submenu_page('hugeit_forms_main_page', 'General Options', 'General Options', 'manage_options', 'hugeit_forms_general_options', 'hugeit_contact_general_options');
-//    $page_styleoptions    = add_submenu_page('hugeit_forms_main_page', 'Theme Options', 'Theme Options', 'manage_options', 'hugeit_forms_theme_options', 'hugeit_contact_contact_style_options');
     $page_allsubmissions  = add_submenu_page('hugeit_forms_main_page', 'All Submissions', 'All Submissions', 'manage_options', 'hugeit_forms_submissions', 'hugeit_contact_submissions');
     $page_emailmanager    = add_submenu_page('hugeit_forms_main_page', 'Newsletter Manager', 'Newsletter Manager', 'manage_options', 'hugeit_forms_email_manager', 'hugeit_contact_email_manager');
     $page_import_export   = add_submenu_page("hugeit_forms_main_page", "Import/Export", "Import/Export", "manage_options", "import_export", "hugeit_forms_import_export");
@@ -331,8 +328,6 @@ function hugeit_contact_options_panel()
     add_submenu_page("hugeit_forms_main_page", "Upgrade to PRO", "<strong id=\"wfMenuCallout\" style=\"color: #2587e2;\">Upgrade to PRO</strong>", "manage_options", "upgradeLink", "upgradeLink");
     add_action('admin_print_styles-' . $page_main, 'hugeit_contact_less_options');
     add_action('admin_print_styles-' . $page_main, 'hugeit_contact_formBuilder_options');
-//    add_action('admin_print_styles-' . $page_generaloptions, 'hugeit_contact_less_options');
-//    add_action('admin_print_styles-' . $page_styleoptions, 'hugeit_contact_with_options');
     add_action('admin_print_styles-' . $page_allsubmissions, 'hugeit_contact_less_options');
     add_action('admin_print_styles-' . $page_emailmanager, 'hugeit_contact_less_options');
     add_action('admin_print_styles-' . $page_emailmanager, 'hugeit_contact_email_options');

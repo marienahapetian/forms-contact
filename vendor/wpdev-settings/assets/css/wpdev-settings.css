@@ -133,6 +133,7 @@
     font-size: 15px;
     font-weight: 500;
 }
+
 .wpdev-settings-section .control-container label+div,
 .wpdev-settings-section .control-container .control-title+div{
     width: 45%;
@@ -310,13 +311,15 @@
 .image-radio-block input[type="radio"] ~ label img {
     vertical-align: middle;
 }
-.wpdev_settings_navigation {
+.wpdev_settings_navigation,
+.wpdev_settings_section_navigation{
     position: relative;
     max-height: 3rem;
     margin: 0;
     border-bottom: 1px solid #e8e8e8;
 }
-.wpdev_settings_navigation > span {
+.wpdev_settings_navigation > span,
+.wpdev_settings_section_navigation > span{
     display: inline-block;
     padding: 12px 32px 11px;
     font-weight: 700;
@@ -338,7 +341,8 @@
     color: #3aa3e3;
     text-decoration: underline;
 }
-.wpdev_settings_navigation > span.active {
+.wpdev_settings_navigation > span.active,
+.wpdev_settings_section_navigation > span.active{
     border: 1px solid #e8e8e8;
     background: #fff;
     border-bottom-color: #fff;
@@ -558,7 +562,7 @@
 }
 
 .wpdev-disabled-section > .wpdev-settings-disabled-container {
-    background-color:rgba(255,255,255,.9);
+    background-color:rgba(255,255,255,.7);
     justify-content: center;
 }
 
