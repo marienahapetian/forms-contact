@@ -55,7 +55,7 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
 
         global $wpdb;
 
-        if(isset($_GET['id']) && absint($_GET['id'])) {
+        if(isset($_GET['page']) && $_GET['page']=='hugeit_forms_theme_options' && isset($_GET['id']) && absint($_GET['id'])) {
             $themes = $wpdb->get_results('SELECT name,id FROM '.$wpdb->prefix.'huge_it_contact_styles WHERE id='.$_GET['id']);
         } else {
             $themes = $wpdb->get_results('SELECT name,id FROM '.$wpdb->prefix.'huge_it_contact_styles ORDER BY id asc');

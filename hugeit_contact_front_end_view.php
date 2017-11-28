@@ -17,13 +17,8 @@ function text_field_html($rowimages, $frontendformid)
                    name="huge_it_<?php echo esc_html($frontendformid) . '_' . absint($rowimages->id); ?>"
                    type="<?php echo esc_html($rowimages->field_type); ?>"
                    placeholder="<?php if(!empty(trim($rowimages->mask_on))) echo $rowimages->mask_on; else echo $placeholder; ?>"
-                   class="<?php if ($rowimages->hc_required == 'on') {
-                       echo 'required';
-                   } ?>" <?php if ($rowimages->description != 'on') {
-                echo 'disabled="disabled"';
-            } ?>
-
-        <?php if(trim($rowimages->def_value)!==""): ?>
+                   class="<?php echo ($rowimages->field_type=='number')?'forceNumeric':'';?><?php echo ($rowimages->hc_required == 'on')?'required':'';?>" <?php if ($rowimages->description != 'on') echo 'disabled="disabled"'; ?>
+                    <?php if(trim($rowimages->def_value)!==""): ?>
          value="<?php echo $rowimages->def_value; ?>"
          <?php endif; ?>
         <?php if(trim($rowimages->mask_on)!==""): ?>
@@ -33,6 +28,11 @@ function text_field_html($rowimages, $frontendformid)
             <span class="hugeit-error-message"></span>
         </div>
     </div>
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('.forceNumeric').ForceNumericOnly();
+        });
+    </script>
     <?php
 }
 
@@ -1027,7 +1027,8 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 		                key == 13 ||
 		                key == 46 ||
 		                key == 110 ||
-		                key == 190 ||
+                        key == 107 ||
+                        key == 190 ||
 		                (key >= 35 && key <= 40) ||
 		                (key >= 48 && key <= 57) ||
 		                (key >= 96 && key <= 105));
