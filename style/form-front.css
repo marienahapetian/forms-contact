@@ -92,13 +92,13 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
     overflow: hidden;
     outline: none;
 }
-.hugeit-contact-wrapper .hugeit-contact-column-block > div {
+.hugeit-contact-wrapper .hugeit-contact-column-block div.hugeit-field-block {
     width: 100%;
     padding: 5px 0px 5px 0px;
     clear: both;
 }
 /***fvpps***/
-.hugeit-contact-wrapper .hugeit-contact-column-block > div > label {
+.hugeit-contact-wrapper .hugeit-contact-column-block  div.hugeit-field-block > label {
     display: block;
     width: 38%;
     float: left;
@@ -150,7 +150,7 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
     position: relative;
     display: table !important;
     padding: 0 !important;
-    margin: 0 0 0 -5px !important;
+    margin: 0px !important;
 }
 
 .hugeit-contact-wrapper .hugeit-contact-column-block > div > label ul li {
@@ -240,11 +240,13 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
 .hugeit-contact-wrapper .hugeit-field-block span.huge_it_button_overlay {
     background: rgba(241, 241, 241, 0.85);
     position: absolute;
-    top: 0;
+    top: 2px;
     left: 0;
     text-align: center;
 }
-
+.hugeit-contact-wrapper .hugeit-field-block.buttons-block button.submit:focus{
+    outline: none;
+}
 .hugeit-contact-wrapper .hugeit-field-block span.huge_it_button_overlay > img#buttLoad {
     width: 20px;
     height: 20px;
@@ -507,7 +509,9 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
     cursor: pointer;
     list-style: none;
 }
-
+.hugeit-form-mobile{
+    margin-bottom: 30px;
+}
 /* Pagination */
 
 button[disabled], input[disabled], select[disabled], textarea[disabled] {

@@ -878,7 +878,7 @@ function hugeit_contact_simple_captcha_html($rowimages,$formid) { ob_start(); ?>
 	<div class="hugeit-field-block simple-captcha-block <?php echo esc_html($capPos);?>" rel="huge-contact-field-<?php echo absint($rowimages->id); ?>">
 		<label class="formsAboveAlign">
 			<img src="<?php echo hugeit_contact_create_new_captcha($rowimages->id,'admin');?>">
-			<span class="hugeit_captcha_refresh_button" data-captcha-id="<?php echo absint($rowimages->id);?>" data-digits="<?php echo esc_html($hc_other_field->digits);?>" data-form-id="<?php echo esc_html($formid); ?>">
+			<span class="hugeit_captcha_refresh_button" data-captcha-id="<?php echo absint($rowimages->id);?>" data-digits="<?php echo isset($hc_other_field->digits)?esc_html($hc_other_field->digits):5;?>" data-form-id="<?php echo esc_html($formid); ?>">
 				<img src="<?php echo plugin_dir_url(__FILE__);?>../images/refresh-icon.png" width="32px">
 			</span>
 		</label>

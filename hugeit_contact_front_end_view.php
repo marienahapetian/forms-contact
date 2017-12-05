@@ -17,13 +17,8 @@ function text_field_html($rowimages, $frontendformid)
                    name="huge_it_<?php echo esc_html($frontendformid) . '_' . absint($rowimages->id); ?>"
                    type="<?php echo esc_html($rowimages->field_type); ?>"
                    placeholder="<?php if(!empty(trim($rowimages->mask_on))) echo $rowimages->mask_on; else echo $placeholder; ?>"
-                   class="<?php if ($rowimages->hc_required == 'on') {
-                       echo 'required';
-                   } ?>" <?php if ($rowimages->description != 'on') {
-                echo 'disabled="disabled"';
-            } ?>
-
-        <?php if(trim($rowimages->def_value)!==""): ?>
+                   class="<?php echo ($rowimages->field_type=='number')?'forceNumeric':'';?><?php echo ($rowimages->hc_required == 'on')?'required':'';?>" <?php if ($rowimages->description != 'on') echo 'disabled="disabled"'; ?>
+                    <?php if(trim($rowimages->def_value)!==""): ?>
          value="<?php echo $rowimages->def_value; ?>"
          <?php endif; ?>
         <?php if(trim($rowimages->mask_on)!==""): ?>
@@ -33,6 +28,11 @@ function text_field_html($rowimages, $frontendformid)
             <span class="hugeit-error-message"></span>
         </div>
     </div>
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('.forceNumeric').ForceNumericOnly();
+        });
+    </script>
     <?php
 }
 
@@ -374,14 +374,15 @@ function buttons_field_html($rowimages, $style_values)
     <div class="hugeit-field-block buttons-block" rel="huge-contact-field-<?php echo esc_attr($rowimages->id); ?>">
         <button type="submit" class="submit" id="hugeit_preview_button__submit_<?php echo esc_attr($rowimages->id); ?>"
                 value="Submit">
-            <?php if ($style_values['form_button_icons_position'] == "left" and $style_values['form_button_submit_has_icon'] == "on") { ?>
+            <?php if ($style_values['form_button_submit_has_icon'] == "on" && $style_values['form_button_icons_position'] == "left" ) { ?>
                 <i class="<?php echo esc_attr($style_values['form_button_submit_icon_style']); ?>"></i>
             <?php } ?>
 
             <?php echo esc_html($rowimages->description); ?>
 
-            <?php if ($style_values['form_button_icons_position'] == "right" and $style_values['form_button_submit_has_icon'] == "on") { ?>
-            <i class="<?php echo esc_attr($style_values['form_button_submit_icon_style']); ?>"></i><?php } ?>
+            <?php if ($style_values['form_button_submit_has_icon'] == "on" && $style_values['form_button_icons_position'] == "right") { ?>
+                <i class="<?php echo esc_attr($style_values['form_button_submit_icon_style']); ?>"></i>
+            <?php } ?>
         </button>
         <?php if ($rowimages->hc_required == 'checked'): ?>
             <button type="reset" class="reset" id="hugeit_preview_button_reset_<?php echo esc_attr($rowimages->id); ?>"
@@ -1026,7 +1027,8 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 		                key == 13 ||
 		                key == 46 ||
 		                key == 110 ||
-		                key == 190 ||
+                        key == 107 ||
+                        key == 190 ||
 		                (key >= 35 && key <= 40) ||
 		                (key >= 48 && key <= 57) ||
 		                (key >= 96 && key <= 105));

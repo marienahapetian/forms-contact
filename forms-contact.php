@@ -13,10 +13,12 @@ License: GNU/GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
 define('HG_CONTACT_VERSION', '1.4.9');
 define('HG_CONTACT_URL', plugins_url('', __FILE__));
 define('HG_CONTACT_PATH', plugin_dir_path(__FILE__));
+define('HG_IMAGES_BASE_URL', plugins_url('images/',__FILE__));
+define('VENDOR_BASE_URL', plugins_url('vendor/',__FILE__));
 
 require_once "includes/class-hugeit-contact-tracking.php";
 require_once "includes/class-hugeit-contact-deactivation-feedback.php";
-require_once "includes/Hugeit_Contact_Template_Loader.php";
+require_once "includes/class-hugeit-contact-template-loader.php";
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -32,6 +34,21 @@ function hugeit_contact_tinymce_readonly($args)
         $args['readonly'] = 1;
     }
     return $args;
+}
+
+add_filter('mce_buttons', 'hg_form_mce_button');
+
+function hg_form_mce_button($buttons) {
+    array_push($buttons, 'hg_forms_shortcode');
+    return $buttons;
+}
+
+add_filter('mce_external_plugins', 'hugeit_contact_tinymce_shortcode_placeholder');
+
+function hugeit_contact_tinymce_shortcode_placeholder($plugins)
+{
+    $plugins['hg_forms_shortcode'] = plugins_url("js/shortcode-placeholder.js", __FILE__);
+    return $plugins;
 }
 
 /*INCLUDING HUGE IT FORM BUILDER AJAX FILE*/
@@ -98,7 +115,7 @@ function hugeit_contact_add_contact_button($context)
 {
     $img = plugins_url('/images/huge_it_contactLogoHover-for_menu.png', __FILE__);
     $container_id = 'huge_it_contact';
-    $context .= '<a class="button thickbox" title="Select Huge IT Contact Form to Insert Into Post"    href="#TB_inline?width=400&inlineId=' . $container_id . '">
+    $context .= '<a class="button thickbox hugeit-forms-add" title="Select Huge IT Contact Form to Insert Into Post"    href="#TB_inline?width=400&inlineId=' . $container_id . '">
         <span class="wp-media-buttons-icon" style="background: url(' . $img . '); background-repeat: no-repeat; background-position: left bottom;"></span>
     Add Form
     </a>';
@@ -159,6 +176,7 @@ function wp_ajax_hugeit_contact_duplicate_form_callback()
 add_action('admin_footer', 'hugeit_contact_add_inline_contact_popup_content');
 function hugeit_contact_add_inline_contact_popup_content()
 {
+
     ?>
     <script type="text/javascript">
         jQuery(document).ready(function () {
@@ -190,6 +208,7 @@ function hugeit_contact_add_inline_contact_popup_content()
         }
         ?>
     </div>
+
     <?php
 }
 
@@ -200,6 +219,36 @@ function hugeit_contact_ajax_func()
     <script>
         var huge_it_ajax = '<?php echo admin_url("admin-ajax.php"); ?>';
     </script>
+    <?php
+}
+
+add_action('admin_print_scripts','hugeit_forms_shortcode_placeholder_template');
+
+function hugeit_forms_shortcode_placeholder_template(){
+    ?>
+    <script type="text/underscore-template" id="hugeit-shortcode-placeholder">
+        <div class="mceItem mceNonEditable hgformsPlaceholder" id="<%- ref %>" data-shortcode="<%- shortcode %>" data-mce-resize="false" data-mce-placeholder="1" contenteditable="false">
+            <span class="plugin-name">Huge IT Forms</span>
+            <span title="<%- edit %>" class="hgformsPlaceholderButton hgformsPlaceholderEdit">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;
+        </span>
+            <span title="<%- remove %>" class="hgformsPlaceholderButton hgformsPlaceholderRemove">
+            <i class="fa fa-times-circle" aria-hidden="true"></i>&nbsp;
+        </span>
+        </div>
+    </script>
+
+    <style>
+        .hgformsPlaceholder{
+            width: 120px;
+            background: #2d8ac7;
+            color: #fff;
+            padding: 5px 10px;
+        }
+        .hgformsPlaceholder span.plugin-name{
+            font-size: 14px;
+        }
+    </style>
     <?php
 }
 
@@ -257,6 +306,12 @@ function hugeit_contact_ShowTinyMCE()
     wp_enqueue_script('utils');
     do_action("admin_print_styles-post-php");
     do_action('admin_print_styles');
+
+    wp_localize_script(
+        'media-editor',
+        'hgform_attach_to_post_url',
+        admin_url('/?hgform_attach_to_post=1')
+    );
 }
 
 add_action('admin_menu', 'hugeit_contact_options_panel');
@@ -264,8 +319,6 @@ function hugeit_contact_options_panel()
 {
     $page_main            = add_menu_page('Huge IT Forms', 'Huge IT Forms', 'manage_options', 'hugeit_forms_main_page', 'hugeit_contacts_huge_it_contact', plugins_url('images/huge_it_contactLogoHover-for_menu.png', __FILE__));
     $page_manageforms     = add_submenu_page('hugeit_forms_main_page', 'Manage Forms', 'Manage Forms', 'manage_options', 'hugeit_forms_main_page', 'hugeit_contacts_huge_it_contact');
-    $page_generaloptions  = add_submenu_page('hugeit_forms_main_page', 'General Options', 'General Options', 'manage_options', 'hugeit_forms_general_options', 'hugeit_contact_general_options');
-    $page_styleoptions    = add_submenu_page('hugeit_forms_main_page', 'Theme Options', 'Theme Options', 'manage_options', 'hugeit_forms_theme_options', 'hugeit_contact_contact_style_options');
     $page_allsubmissions  = add_submenu_page('hugeit_forms_main_page', 'All Submissions', 'All Submissions', 'manage_options', 'hugeit_forms_submissions', 'hugeit_contact_submissions');
     $page_emailmanager    = add_submenu_page('hugeit_forms_main_page', 'Newsletter Manager', 'Newsletter Manager', 'manage_options', 'hugeit_forms_email_manager', 'hugeit_contact_email_manager');
     $page_import_export   = add_submenu_page("hugeit_forms_main_page", "Import/Export", "Import/Export", "manage_options", "import_export", "hugeit_forms_import_export");
@@ -275,15 +328,13 @@ function hugeit_contact_options_panel()
     add_submenu_page("hugeit_forms_main_page", "Upgrade to PRO", "<strong id=\"wfMenuCallout\" style=\"color: #2587e2;\">Upgrade to PRO</strong>", "manage_options", "upgradeLink", "upgradeLink");
     add_action('admin_print_styles-' . $page_main, 'hugeit_contact_less_options');
     add_action('admin_print_styles-' . $page_main, 'hugeit_contact_formBuilder_options');
-    add_action('admin_print_styles-' . $page_generaloptions, 'hugeit_contact_less_options');
-    add_action('admin_print_styles-' . $page_styleoptions, 'hugeit_contact_with_options');
     add_action('admin_print_styles-' . $page_allsubmissions, 'hugeit_contact_less_options');
     add_action('admin_print_styles-' . $page_emailmanager, 'hugeit_contact_less_options');
     add_action('admin_print_styles-' . $page_emailmanager, 'hugeit_contact_email_options');
 
     add_action('admin_print_styles-' . $page_import_export, 'hugeit_contact_less_options');
 
-    $GLOBALS['hugeit_contact_admin_pages'] = array($page_main, $page_generaloptions, $page_styleoptions, $page_allsubmissions, $page_emailmanager, $page_featuredplugins, $page_import_export, $licensing);
+    $GLOBALS['hugeit_contact_admin_pages'] = array($page_main, $page_allsubmissions, $page_emailmanager, $page_featuredplugins, $page_import_export, $licensing);
 }
 
 //Captcha
@@ -328,6 +379,17 @@ function hugeit_contact_less_options()
     );
     wp_enqueue_script('param_block3', plugins_url("elements/jscolor/jscolor.js", __FILE__));
     wp_localize_script('hugeit_contact_admin_js', 'hugeit_forms_obj', $translation_array);
+
+    wp_enqueue_script(
+        'hugeit-forms-igw', plugins_url("js/editorPopup.js", __FILE__), array('jquery'), '1.0.0'
+    );
+    wp_localize_script('hugeit-forms-igw', 'hgform_igw_i18n', array(
+        'hgform'	=>	'Huge IT Forms',
+        'edit'				=>	__('Click to edit', 'forms_contact'),
+        'remove'			=>	__('Click to remove', 'forms_contact'),
+    ));
+
+
 }
 
 function hugeit_contact_email_options()
@@ -551,13 +613,13 @@ function hugeit_contact_general_options()
 {
     require_once("admin/hugeit_contact_general_options_func.php");
     require_once("admin/hugeit_contact_general_options_view.php");
+
     if (isset($_GET['task'])) {
         $task = sanitize_text_field($_GET['task']);
         if ($task == 'save') {
             hugeit_contact_save_styles_options();
         }
     }
-    hugeit_contact_show_settings();
 }
 
 /* Featured Plugins Page */
@@ -971,6 +1033,7 @@ INSERT INTO `$table_name` (`name`, `title`, `description`, `options_name`, `valu
 ('form_button_reset_hover_background', 'Form Button Reset Hover Background', 'Form Button Reset Hover Background', '1', 'FFFFFF'),
 ('form_button_reset_font_color', 'Form Button Reset Font Color', 'Form Button Reset Font Color', '1', 'FE5858'),
 ('form_button_reset_font_hover_color', 'Form Button Reset Font Hover Color', 'Form Button Reset Font Hover Color', '1', 'FE473A'),
+('form_custom_css', 'Form Custom CSS', 'Form Custom CSS', '1', '/*Write Your Custom CSS Code Here*/'),
 ('form_button_submit_icon_color', 'Form Button Submit Icon Color', 'Form Button Submit Icon Color', '1', 'FFFFFF'),
 ('form_button_submit_icon_hover_color', 'Form Button Submit Icon Hover Color', 'Form Button Submit Icon Hover Color', '1', 'FFFFFF'),
 ('form_button_submit_icon_style', 'Form Button Submit Icon Style', 'Form Button Submit Icon Style', '1', 'hugeicons-rocket'),
@@ -1137,6 +1200,7 @@ INSERT INTO `$table_name` (`name`, `title`, `description`, `options_name`, `valu
 ('form_selectbox_font_color', 'Form Selectbox Font Color', 'Form Selectbox Font Color', '2', '323432'),
 ('form_label_required_color', 'Form Label REquired Color', 'Form Label REquired Color', '2', '0DC4C6'),
 ('form_label_success_message', 'Form Label Success Color', 'Form Label Success Color', '2', '30B038'),
+('form_custom_css', 'Form Custom CSS', 'Form Custom CSS', '2', '/*Write Your Custom CSS Code Here*/'),
 ('form_selectbox_font_color', 'Form Selectbox Font Color', 'Form Selectbox Font Color', '3', '333333'),
 ('form_button_submit_font_hover_color', 'Form Button Submit Font Hover Color', 'Form Button Submit Font Hover Color', '3', 'FFFFFF'),
 ('form_button_submit_font_color', 'Form Button Submit Font Color', 'Form Button Submit Font Color', '3', 'FFFFFF'),
@@ -1227,6 +1291,7 @@ INSERT INTO `$table_name` (`name`, `title`, `description`, `options_name`, `valu
 ('form_button_submit_hover_background', 'Form Button Submit Hover Background', 'Form Button Submit Hover Background', '3', '000000'),
 ('form_button_submit_border_size', 'Form Button Submit Border Size', 'Form Button Submit Border Size', '3', '1'),
 ('form_button_submit_border_color', 'Form Button Submit Border Color', 'Form Button Submit Border Color', '3', '000000'),
+('form_custom_css', 'Form Custom CSS', 'Form Custom CSS', '3', '/*Write Your Custom CSS Code Here*/'),
 ('form_file_font_size', 'Form File Font Size', 'Form File Font Size', '4', '14'),
 ('form_file_border_color', 'Form File Border Color', 'Form File Border Color', '4', '24A33F'),
 ('form_file_border_radius', 'Form File Border Radius', 'Form File Border Radius', '4', '2'),
@@ -1317,6 +1382,7 @@ INSERT INTO `$table_name` (`name`, `title`, `description`, `options_name`, `valu
 ('form_file_button_background_color', 'Form File Button Background Color', 'Form File Button Background Color', '4', '29BA48'),
 ('form_file_button_text', 'Form File Button Text', 'Form File Button Text', '4', 'Upload'),
 ('form_file_font_color', 'Form File Font Color', 'Form File Font Color', '4', '444444'),
+('form_custom_css', 'Form Custom CSS', 'Form Custom CSS', '4', '/*Write Your Custom CSS Code Here*/'),
 ('form_textarea_border_color', 'Form Textarea Border Color', 'Form Textarea Border Color', '5', 'ABABAB'),
 ('form_textarea_font_size', 'Form Textarea Font Size', 'Form Textarea Font Size', '5', '12'),
 ('form_textarea_font_color', 'Form Textarea Font Color', 'Form Textarea Font Color', '5', '444444'),
@@ -1407,6 +1473,7 @@ INSERT INTO `$table_name` (`name`, `title`, `description`, `options_name`, `valu
 ('form_label_required_color', 'Form Label Required Color', 'Form Label Required Color', '5', '328FE6'),
 ('form_label_success_message', 'Form Label Success Color', 'Form Label Success Color', '5', '00C60E'),
 ('form_selectbox_font_color', 'Form Selectbox Font Color', 'Form Selectbox Font Color', '5', '4F4F4F'),
+('form_custom_css', 'Form Custom CSS', 'Form Custom CSS', '5', '/*Write Your Custom CSS Code Here*/'),
 ('form_textarea_border_color', 'Form Textarea Border Color', 'Form Textarea Border Color', '6', '2FCCA6'),
 ('form_textarea_font_size', 'Form Textarea Font Size', 'Form Textarea Font Size', '6', '12'),
 ('form_textarea_font_color', 'Form Textarea Font Color', 'Form Textarea Font Color', '6', '3B3B3B'),
@@ -1494,6 +1561,7 @@ INSERT INTO `$table_name` (`name`, `title`, `description`, `options_name`, `valu
 ('form_button_reset_icon_style', 'Form Button Reset Icon Style', 'Form Button Reset Icon Style', '6', 'hugeicons-reply'),
 ('form_button_reset_icon_color', 'Form Button Reset Icon Color', 'Form Button Reset Icon Color', '6', '2AB795'),
 ('form_button_reset_icon_hover_color', 'Form Button Reset Icon Hover Color', 'Form Button Reset Icon Hover Color', '6', '249E81'),
+('form_custom_css', 'Form Custom CSS', 'Form Custom CSS', '6', '/*Write Your Custom CSS Code Here*/'),
 ('form_label_required_color', 'Form Label Required Color', 'Form Label Required Color', '6', '2AB795'),
 ('form_label_success_message', 'Form Label Success Color', 'Form Label Success Color', '6', '3DAD48'),
 ('form_selectbox_font_color', 'Form Selectbox Font Color', 'Form Selectbox Font Color', '6', '4F4F4F');
@@ -1678,9 +1746,9 @@ n_theme_Query;
     }
 
 
-   changeSubmissionDateColumnType();
+    changeSubmissionDateColumnType();
 
-   refactorSelectboxPlaceholders();
+    refactorSelectboxPlaceholders();
 
     addConditionalLogicMaskColumns();
 
@@ -1784,6 +1852,12 @@ function hugeit_contact_new_form_callback()
     if ($condition1 || $condition2 || $condition3) {
         ob_start();
     }
+
+    require_once 'vendor/wpdev-settings/class-wpdev-settings-api.php';
+    require_once 'includes/Hugeit_Contact_WP_Settings.php';
+    require_once 'includes/Hugeit_Contact_Theme_Options.php';
+    new Hugeit_Contact_WP_Settings();
+    new Hugeit_Contact_Theme_Options();
 }
 
 function hugeit_contact_schedule_tracking()
