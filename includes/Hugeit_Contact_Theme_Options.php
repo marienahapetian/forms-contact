@@ -1,6 +1,6 @@
 <?php
 
-class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
+class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API_Form
 {
     public $plugin_id = 'forms_contact';
 

@@ -8,13 +8,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * this is a experemental version.
  */
 
-if( !class_exists( 'WPDEV_Settings_API' ) ):
-    class WPDEV_Settings_API {
+if( !class_exists( 'WPDEV_Settings_API_Form' ) ):
+    class WPDEV_Settings_API_Form {
 
         public $plugin_id = 'wpdev_settings';
 
         /**
-         * @var WPDEV_Settings_API
+         * @var WPDEV_Settings_API_Form
          */
         protected static $_instance;
 
@@ -72,7 +72,7 @@ if( !class_exists( 'WPDEV_Settings_API' ) ):
         private $subtitle;
 
         /**
-         * WPDEV_Settings_API constructor.
+         * WPDEV_Settings_API_Form constructor.
          */
         protected function __construct( $config = array() ){
             $js = array(
