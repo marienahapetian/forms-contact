@@ -111,7 +111,7 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
     {
         $this->form_adminstrator_user_name = $this->get_option_from_table("form_adminstrator_user_name", '');
         $this->form_adminstrator_user_mail = $this->get_option_from_table("form_adminstrator_user_mail", '');
-        $this->form_save_reply_to_user = $this->get_option_from_table("form_save_form_save_reply_to_user", 'off');
+        $this->form_save_reply_to_user = $this->get_option_from_table("form_save_reply_to_user", 'off');
         $this->form_captcha_public_key = $this->get_option_from_table("form_captcha_public_key", '');
         $this->form_captcha_private_key = $this->get_option_from_table("form_captcha_private_key", '');
         $this->form_save_to_database = $this->get_option_from_table("form_save_to_database", '');
