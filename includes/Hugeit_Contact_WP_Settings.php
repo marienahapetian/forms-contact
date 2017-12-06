@@ -439,5 +439,17 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API_Form
     public function drawFreeBanner(){
         Hugeit_Contact_Template_Loader::render();
     }
+
+    /**
+     * @param $key
+     * @param $value
+     *
+     */
+    public function update_option_in_table( $key, $value ) {
+        global $wpdb;
+        $query = "INSERT INTO ".$wpdb->prefix.$this->tablename." (name,value) VALUES ('".$key."','".$value."')  ON DUPLICATE KEY UPDATE value = '".$value."'";
+
+        $wpdb->query($query);
+    }
 }
 
