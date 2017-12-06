@@ -30,10 +30,6 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API_Form
         $this->add_css('fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?ver=4.9' );
         $this->add_css('huge-icons-styles', plugins_url('../style/iconfonts/css/hugeicons.css',__FILE__) );
         $this->add_css('hugeit-contact-freebanner', plugins_url('../style/admin.style.css',__FILE__) );
-        $this->add_js ('theme-options',  plugins_url('../js/theme_options.js',__FILE__));
-
-//        add_action( 'wpdev_settings_'.$this->plugin_id.'_header', array( $this, 'drawFreeBanner' ) );
-
     }
 
     /**
