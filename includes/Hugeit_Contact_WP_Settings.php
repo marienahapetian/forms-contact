@@ -30,7 +30,6 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
         $this->add_css('fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?ver=4.9' );
         $this->add_css('huge-icons-styles', plugins_url('../style/iconfonts/css/hugeicons.css',__FILE__) );
         $this->add_css('hugeit-contact-freebanner', plugins_url('../style/admin.style.css',__FILE__) );
-        $this->add_js ('theme-options',  plugins_url('../js/theme_options.js',__FILE__));
 
 //        add_action( 'wpdev_settings_'.$this->plugin_id.'_header', array( $this, 'drawFreeBanner' ) );
 
@@ -115,6 +114,7 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
         $this->form_captcha_public_key = $this->get_option_from_table("form_captcha_public_key", '');
         $this->form_captcha_private_key = $this->get_option_from_table("form_captcha_private_key", '');
         $this->form_save_to_database = $this->get_option_from_table("form_save_to_database", '');
+        $this->form_new_fields_order = $this->get_option_from_table("form_new_fields_order", 'prepend');
 
         $this->msg_send_success = $this->get_option_from_table("msg_send_success", 'Message is sent successfully');
         $this->msg_send_false = $this->get_option_from_table("msg_send_false", 'Message failed to be sent');
@@ -190,6 +190,16 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
                 'default' => $this->form_save_to_database,
                 'label' => __('Save Submissions To Database', 'hugeit_contact'),
                 'help' => __('Uncheck this if you don\'t want submissions to be saved in database', 'hugeit_contact')
+            ),
+            'form_new_fields_order' => array(
+                'section' => 'form_general_settings',
+                'type' => 'select',
+                'choices'=>array(
+                    'prepend'=>'Beginning',
+                    'append'=>'End',
+                ),
+                'default' => $this->form_new_fields_order,
+                'label' => __('Add new fields to the form ', 'hugeit_contact'),
             ),
             'msg_send_success' => array(
                 'section' => 'form_messages',
@@ -442,6 +452,18 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API
 
     public function drawFreeBanner(){
         Hugeit_Contact_Template_Loader::render();
+    }
+
+    /**
+     * @param $key
+     * @param $value
+     *
+     */
+    public function update_option_in_table( $key, $value ) {
+        global $wpdb;
+        $query = "INSERT INTO ".$wpdb->prefix.$this->tablename." (name,value) VALUES ('".$key."','".$value."')  ON DUPLICATE KEY UPDATE value = '".$value."'";
+
+        $wpdb->query($query);
     }
 }
 

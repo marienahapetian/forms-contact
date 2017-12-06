@@ -892,7 +892,7 @@ CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_style_fields`(
     $sql_huge_it_contact_general_options = "
 CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "huge_it_contact_general_options`(
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8 NOT NULL UNIQUE,
   `title` varchar(200) CHARACTER SET utf8 NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL,
   `value` text CHARACTER SET utf8 NOT NULL,
@@ -1752,6 +1752,8 @@ n_theme_Query;
 
     addConditionalLogicMaskColumns();
 
+    refactorGeneralOptionsTable();
+
 
 }
 
@@ -1881,6 +1883,20 @@ function hugeit_contact_custom_cron_job_recurrence($schedules)
         'interval' => 604800
     );
     return $schedules;
+}
+
+function refactorGeneralOptionsTable(){
+    global $wpdb;
+
+
+    $uniqueColumns = $wpdb->get_results(
+        "SHOW INDEXES FROM ".$wpdb->prefix."huge_it_contact_general_options WHERE column_name='name'"
+    );
+
+    if(empty($uniqueColumns) ){
+        $wpdb->query('ALTER TABLE '.$wpdb->prefix.'huge_it_contact_general_options ADD UNIQUE (name)');
+    }
+
 }
 
 add_action('init', 'hugeit_contact_schedule_tracking', 0);

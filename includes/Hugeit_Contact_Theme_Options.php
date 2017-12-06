@@ -282,30 +282,25 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     ),
                     'default' => $this->{'form_wrapper_background_type'.$panel['id']},
                     'label' => __('Form Background Type', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
-                //todo color can be array
                 $controlsArray['form_wrapper_background_color'.$panel['id']] = array(
                     'section' => 'form_block_styles'.$panel['id'],
                     'type' => 'color_complex',
                     'isGradient'=>($this->{'form_wrapper_background_type'.$panel['id']}=='gradient'),
                     'default' => $this->{'form_wrapper_background_color'.$panel['id']},
                     'label' => __('Form Background Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_border_size'.$panel['id']] = array(
                     'section' => 'form_block_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_border_size'.$panel['id']},
                     'label' => __('Form Border Size (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_border_color'.$panel['id']] = array(
                     'section' => 'form_block_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_border_color'.$panel['id']},
                     'label' => __('Form Border Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_show_title'.$panel['id']] = array(
                     'section' => 'form_block_styles'.$panel['id'],
@@ -314,7 +309,6 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     'unchecked_val'=>'off',
                     'default' =>  $this->{'form_show_title'.$panel['id']},
                     'label' => __('Form Show Title', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_title_size'.$panel['id']] = array(
                     'section' => 'form_block_styles'.$panel['id'],
@@ -366,7 +360,6 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     ),
                     'default' => $this->{'form_label_font_family'.$panel['id']},
                     'label' => __('Label Font Family', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_label_color'.$panel['id']] = array(
                     'section' => 'label_styles'.$panel['id'],
@@ -412,28 +405,24 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     'type' => 'color',
                     'default' => $this->{'form_textarea_background_color'.$panel['id']},
                     'label' => __('Textarea Background Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_textarea_border_size'.$panel['id']] = array(
                     'section' => 'textarea_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_textarea_border_size'.$panel['id']},
                     'label' => __('Textarea Border Width (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_textarea_border_radius'.$panel['id']] = array(
                     'section' => 'textarea_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_textarea_border_radius'.$panel['id']},
                     'label' => __('Textarea Border Radius (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_textarea_border_color'.$panel['id']] = array(
                     'section' => 'textarea_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_textarea_border_color'.$panel['id']},
                     'label' => __('Textarea Border Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_textarea_font_size'.$panel['id']] = array(
                     'section' => 'textarea_styles'.$panel['id'],
@@ -447,7 +436,6 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     'type' => 'color',
                     'default' => $this->{'form_textarea_font_color'.$panel['id']},
                     'label' => __('Textarea Font Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
 
                 /* input text controls */
@@ -465,28 +453,24 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     'type' => 'color',
                     'default' => $this->{'form_input_text_background_color'.$panel['id']},
                     'label' => __('Text Input Background Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_input_text_border_size'.$panel['id']] = array(
                     'section' => 'text_input_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_input_text_border_size'.$panel['id']},
                     'label' => __('Text Input Border Width (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_input_text_border_radius'.$panel['id']] = array(
                     'section' => 'text_input_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_input_text_border_radius'.$panel['id']},
                     'label' => __('Text Input Border Radius (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_input_text_border_color'.$panel['id']] = array(
                     'section' => 'text_input_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_input_text_border_color'.$panel['id']},
                     'label' => __('Text Input Border Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_input_text_font_size'.$panel['id']] = array(
                     'section' => 'text_input_styles'.$panel['id'],
@@ -500,7 +484,6 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     'type' => 'color',
                     'default' => $this->{'form_input_text_font_color'.$panel['id']},
                     'label' => __('Text Input Font Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
 
                 /* checkbox controls */
@@ -514,7 +497,6 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     ),
                     'default' => $this->{'form_checkbox_size'.$panel['id']},
                     'label' => __('Checkbox Size', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_checkbox_type'.$panel['id']] = array(
                     'section' => 'checkbox_styles'.$panel['id'],
@@ -525,28 +507,24 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     ),
                     'default' => $this->{'form_checkbox_type'.$panel['id']},
                     'label' => __('Checkbox Type', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_checkbox_color'.$panel['id']] = array(
                     'section' => 'checkbox_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_checkbox_color'.$panel['id']},
                     'label' => __('Checkbox Border Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_checkbox_hover_color'.$panel['id']] = array(
                     'section' => 'checkbox_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_checkbox_hover_color'.$panel['id']},
                     'label' => __('Checkbox Hover Border Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_checkbox_active_color'.$panel['id']] = array(
                     'section' => 'checkbox_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_checkbox_active_color'.$panel['id']},
                     'label' => __('Checkbox Checked Border Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
 
                 /* selectbox controls */
@@ -564,28 +542,24 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     'type' => 'color',
                     'default' => $this->{'form_selectbox_background_color'.$panel['id']},
                     'label' => __('Selectbox Background Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_selectbox_border_size'.$panel['id']] = array(
                     'section' => 'selectbox_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_selectbox_border_size'.$panel['id']},
                     'label' => __('Selectbox Border Width (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_selectbox_border_radius'.$panel['id']] = array(
                     'section' => 'selectbox_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_selectbox_border_radius'.$panel['id']},
                     'label' => __('Selectbox Border Radius (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_selectbox_border_color'.$panel['id']] = array(
                     'section' => 'selectbox_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_selectbox_border_color'.$panel['id']},
                     'label' => __('Selectbox Border Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_selectbox_font_size'.$panel['id']] = array(
                     'section' => 'selectbox_styles'.$panel['id'],
@@ -599,7 +573,6 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     'type' => 'color',
                     'default' => $this->{'form_selectbox_arrow_color'.$panel['id']},
                     'label' => __('Selectbox Font Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
 
                 /* radio controls */
@@ -613,7 +586,6 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     ),
                     'default' => $this->{'form_radio_size'.$panel['id']},
                     'label' => __('Radio Size', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_radio_type'.$panel['id']] = array(
                     'section' => 'radio_styles'.$panel['id'],
@@ -624,28 +596,24 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     ),
                     'default' => $this->{'form_radio_type'.$panel['id']},
                     'label' => __('Radio Type', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_radio_color'.$panel['id']] = array(
                     'section' => 'radio_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_radio_color'.$panel['id']},
                     'label' => __('Radio Border Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_radio_hover_color'.$panel['id']] = array(
                     'section' => 'radio_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_radio_hover_color'.$panel['id']},
                     'label' => __('Radio Hover Border Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_radio_active_color'.$panel['id']] = array(
                     'section' => 'radio_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_radio_active_color'.$panel['id']},
                     'label' => __('Radio Checked Border Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
 
                 /* pagination controls */
@@ -663,21 +631,18 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     'type' => 'color',
                     'default' => $this->{'form_pagination_background_color'.$panel['id']},
                     'label' => __('Pagination Background Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_pagination_background_size'.$panel['id']] = array(
                     'section' => 'pagination_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_pagination_background_size'.$panel['id']},
                     'label' => __('Pagination Background Size (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_pagination_font_color'.$panel['id']] = array(
                     'section' => 'pagination_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_pagination_font_color'.$panel['id']},
                     'label' => __('Pagination Font Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
 
                 /* file uploader controls */
@@ -695,77 +660,66 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     'type' => 'color',
                     'default' => $this->{'form_file_background'.$panel['id']},
                     'label' => __('FileBox Background Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_border_size'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_file_border_size'.$panel['id']},
                     'label' => __('FileBox Border Size (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_border_radius'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_file_border_radius'.$panel['id']},
                     'label' => __('FileBox Border Radius (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_border_color'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_file_border_color'.$panel['id']},
                     'label' => __('FileBox Border Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_font_size'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_file_font_size'.$panel['id']},
                     'label' => __('FileBox Font Size (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_font_color'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_file_font_color'.$panel['id']},
                     'label' => __('FileBox Font Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_button_text'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
                     'type' => 'text',
                     'default' => $this->{'form_file_button_text'.$panel['id']},
                     'label' => __('Upload Button Text', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_button_background_color'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_file_button_background_color'.$panel['id']},
                     'label' => __('Button Background Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_button_background_hover_color'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_file_button_background_hover_color'.$panel['id']},
                     'label' => __('Button Hover Background Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_button_text_color'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_file_button_text_color'.$panel['id']},
                     'label' => __('Upload Button Text Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_button_text_hover_color'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_file_button_text_hover_color'.$panel['id']},
                     'label' => __('Upload Button Hover Text Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_has_icon'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
@@ -774,7 +728,6 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     'unchecked_val'=>'off',
                     'default' => $this->{'form_file_has_icon'.$panel['id']},
                     'label' => __('Upload Button Has Icon', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_icon_style'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
@@ -805,7 +758,6 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     ),
                     'default' => $this->{'form_file_icon_style'.$panel['id']},
                     'label' => __('Upload Button Icon', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_icon_position'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
@@ -816,21 +768,18 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     ),
                     'default' => $this->{'form_file_icon_position'.$panel['id']},
                     'label' => __('Button\'s Icon Position', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_icon_color'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_file_icon_color'.$panel['id']},
                     'label' => __('FileBox Icon Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_file_icon_hover_color'.$panel['id']] = array(
                     'section' => 'file_upload_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_file_icon_hover_color'.$panel['id']},
                     'label' => __('FileBox Icon Hover Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
 
 
@@ -845,7 +794,6 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     ),
                     'default' => $this->{'form_button_position'.$panel['id']},
                     'label' => __('Submit/Reset Buttons Alignment', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_fullwidth'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
@@ -854,21 +802,18 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     'unchecked_val'=>'off',
                     'default' => $this->{'form_button_fullwidth'.$panel['id']},
                     'label' => __('Make Buttons Fullwidth', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_padding'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_button_padding'.$panel['id']},
                     'label' => __('Padding (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_font_size'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_button_font_size'.$panel['id']},
                     'label' => __('Font Size (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_icons_position'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
@@ -879,7 +824,6 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     ),
                     'default' => $this->{'form_button_icons_position'.$panel['id']},
                     'label' => __('Icons Position', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_submit_has_icon'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
@@ -888,7 +832,6 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     'unchecked_val'=>'off',
                     'default' => $this->{'form_button_submit_has_icon'.$panel['id']},
                     'label' => __('Submit Button Has Icon', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_submit_icon_style'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
@@ -913,70 +856,60 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     ),
                     'default' => $this->{'form_button_submit_icon_style'.$panel['id']},
                     'label' => __('Submit Button Icon Image', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_submit_icon_color'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_button_submit_icon_color'.$panel['id']},
                     'label' => __('Submit Button Icon Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_submit_icon_hover_color'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_button_submit_icon_hover_color'.$panel['id']},
                     'label' => __('Submit Button Hover Icon Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_submit_font_color'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_button_submit_font_color'.$panel['id']},
                     'label' => __('Submit Button Font Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_submit_font_hover_color'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_button_submit_font_hover_color'.$panel['id']},
                     'label' => __('Submit Button Hover Font Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_submit_background'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_button_submit_background'.$panel['id']},
                     'label' => __('Submit Button Background Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_submit_hover_background'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_button_submit_hover_background'.$panel['id']},
                     'label' => __('Submit Button Hover Background Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_submit_border_size'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_button_submit_border_size'.$panel['id']},
                     'label' => __('Submit Button Border Size (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_submit_border_color'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_button_submit_border_color'.$panel['id']},
                     'label' => __('Submit Button Border Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_submit_border_radius'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_button_submit_border_radius'.$panel['id']},
                     'label' => __('Submit Button Border Radius (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_reset_has_icon'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
@@ -985,7 +918,6 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     'unchecked_val'=>'off',
                     'default' => $this->{'form_button_reset_has_icon'.$panel['id']},
                     'label' => __('Reset Button Has Icon', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_reset_icon_style'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
@@ -1006,70 +938,60 @@ class Hugeit_Contact_Theme_Options extends WPDEV_Settings_API
                     ),
                     'default' => $this->{'form_button_reset_icon_style'.$panel['id']},
                     'label' => __('Reset Button Icon Image', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_reset_icon_color'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_button_reset_icon_color'.$panel['id']},
                     'label' => __('Reset Button Icon Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_reset_icon_hover_color'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'color',
                     'default' =>  $this->{'form_button_reset_icon_hover_color'.$panel['id']},
                     'label' => __('Reset Button Hover Icon Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_reset_font_color'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_button_reset_font_color'.$panel['id']},
                     'label' => __('Reset Button Font Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_reset_font_hover_color'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_button_reset_font_hover_color'.$panel['id']},
                     'label' => __('Reset Button Hover Font Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_reset_background'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_button_reset_background'.$panel['id']},
                     'label' => __('Reset Button Background Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_reset_hover_background'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_button_reset_hover_background'.$panel['id']},
                     'label' => __('Reset Button Hover Background Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_reset_border_size'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_button_reset_border_size'.$panel['id']},
                     'label' => __('Reset Button Border Size (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_reset_border_color'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'color',
                     'default' => $this->{'form_button_reset_border_color'.$panel['id']},
                     'label' => __('Reset Button Border Color', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
                 $controlsArray['form_button_reset_border_radius'.$panel['id']] = array(
                     'section' => 'button_styles'.$panel['id'],
                     'type' => 'number',
                     'default' => $this->{'form_button_reset_border_radius'.$panel['id']},
                     'label' => __('Reset Button Border Radius (px)', 'hugeit_contact'),
-                    'help' => __('', 'hugeit_contact')
                 );
 
                 /* custom controls */
