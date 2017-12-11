@@ -1693,7 +1693,7 @@ esc_html($rowimages->hc_input_show_default);?>">
 						'description' => '',
 						'conttype' => $inputtype,
 						'hc_field_label' => 'Selectbox',
-						'hc_other_field' => 'Option 2',
+						'hc_other_field' => 'Option 1',
 						'ordering' => 0,
 						'published' => 2,
 						'hc_input_show_default' => '1',
@@ -1865,7 +1865,6 @@ esc_html($rowimages->hc_input_show_default);?>">
 		     	break;
 
 	     	case 'file_box':
-
 	     		$wpdb->insert(
 			        $inserttexttype,
 			        array(
@@ -1901,7 +1900,6 @@ esc_html($rowimages->hc_input_show_default);?>">
 		     	break;
 
 	     	case 'custom_text':
-
 		        $wpdb->insert(
 			        $inserttexttype,
 			        array(
