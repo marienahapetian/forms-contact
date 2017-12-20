@@ -220,7 +220,7 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
                     if($rowimages->hc_required && $rowimages->hc_input_show_default=='formsInsideAlign') $optionValue .= ' *';
                 } else {
                     $selectedOptionIndex = $rowimages->hc_other_field;
-                    if( is_numeric($selectedOptionIndex) )  $optionValue = $options[$selectedOptionIndex];
+                    if( is_numeric($selectedOptionIndex) && isset($options[$selectedOptionIndex]) )  $optionValue = $options[$selectedOptionIndex];
                     else if(in_array($selectedOptionIndex,$options)) $optionValue = $selectedOptionIndex;
                     else $optionValue = $options[0];
 
