@@ -215,20 +215,20 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
 			<div class="field-block selectbox-block <?php if($rowimages->hc_input_show_default=='formsAboveAlign' || $rowimages->hc_input_show_default=='formsInsideAlign')echo esc_html($rowimages->hc_input_show_default);?>" >
                 <?php $options=explode(';;',$rowimages->name);?>
 
-                <?php if($rowimages->def_value){
+                <?php if($rowimages->def_value && $rowimages->def_value!=''){
                     $optionValue = $rowimages->def_value;
                     if($rowimages->hc_required && $rowimages->hc_input_show_default=='formsInsideAlign') $optionValue .= ' *';
                 } else {
                     $selectedOptionIndex = $rowimages->hc_other_field;
                     if( is_numeric($selectedOptionIndex) )  $optionValue = $options[$selectedOptionIndex];
-                    else $optionValue = $selectedOptionIndex;
+                    else if(in_array($selectedOptionIndex,$options)) $optionValue = $selectedOptionIndex;
+                    else $optionValue = $options[0];
 
                 } ?>
 
                 <input type="text" disabled="disabled" class="textholder" value="<?php echo esc_html($optionValue); ?>" />
 				<select id="hugeit_preview_textbox_<?php echo absint($rowimages->id);?>" >
 					<?php
-					 $options=explode(';;',$rowimages->name);
 					 foreach($options as $opt_key => $option){
 					?>
 						<option <?php if($rowimages->def_value =='' && ($optionValue==$opt_key || $optionValue == $option)){

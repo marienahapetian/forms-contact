@@ -79,7 +79,8 @@ function selectbox_field_html($rowimages, $frontendformid)
             } else {
                 $selectedOptionIndex = $rowimages->hc_other_field;
                 if( is_numeric($selectedOptionIndex) )  $optionValue = $options[$selectedOptionIndex];
-                else $optionValue = $selectedOptionIndex;
+                else if(in_array($selectedOptionIndex,$options)) $optionValue = $selectedOptionIndex;
+                else $optionValue = $options[0];
 
             } ?>
 
@@ -87,7 +88,7 @@ function selectbox_field_html($rowimages, $frontendformid)
             <input type="text" disabled="disabled" class="textholder" value="<?php echo esc_html($optionValue); ?>"/>
 
             <select id="hugeit_preview_textbox_<?php echo absint($rowimages->id); ?>" class="<?php echo ($rowimages->hc_required == 'on')?'required':''; ?>" name="huge_it_<?php echo esc_html($frontendformid) . '_' . absint($rowimages->id); ?>">
-                <?php if( $rowimages->def_value ){ ?>
+                <?php if( $rowimages->def_value &&  $rowimages->def_value!=''){ ?>
                     <option selected="selected" disabled><?php echo $rowimages->def_value;?></option>
                 <?php }
                 foreach ($options as $opt_key => $option) {
@@ -437,6 +438,11 @@ function email_field_html($rowimages, $frontendformid)
 function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_contact, $frontendformid, $style_values, $huge_it_gen_opt, $rowspar){
 	ob_start();
 	$frontendformid=esc_html($frontendformid);
+
+	$gen_opt_assoc = array();
+	foreach($huge_it_gen_opt as $key=>$option){
+        $gen_opt_assoc[$option->name] = $option->value;
+    }
 	?>
     <div class="hugeit-contact-form-container">
     <?php ?>
@@ -1036,11 +1042,11 @@ function hugeit_contact_front_end_hugeit_contact($rowim, $paramssld, $hugeit_con
 		    });
 		};
 	jQuery(document).ready(function(){
-		var requiredError='<?php echo esc_html($huge_it_gen_opt[36]->value);?>';
-        var captchaError='<?php echo esc_html($huge_it_gen_opt[37]->value);?>';
-        var emailError='<?php echo esc_html($huge_it_gen_opt[20]->value);?>';
-        var uploadTypeError='<?php echo esc_html($huge_it_gen_opt[27]->value);?>';
-        var uploadSizeError='<?php echo esc_html($huge_it_gen_opt[28]->value);?>';
+		var requiredError='<?php echo esc_html($gen_opt_assoc['required_empty_field']);?>';
+        var captchaError='<?php echo esc_html($gen_opt_assoc['msg_captcha_error']);?>';
+        var emailError='<?php echo esc_html($gen_opt_assoc['msg_invalid_email']);?>';
+        var uploadTypeError='<?php echo esc_html($gen_opt_assoc['msg_file_format']);?>';
+        var uploadSizeError='<?php echo esc_html($gen_opt_assoc['msg_large_file']);?>';
         function isValidEmailAddress(emailAddress) {
 			    var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
 			    return pattern.test(emailAddress);
