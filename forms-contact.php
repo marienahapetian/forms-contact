@@ -8,6 +8,8 @@ Version: 1.4.9
 Author: Huge-IT
 Author URI: https://huge-it.com/
 License: GNU/GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
+Domain Path: /languages
+Text Domain: hugeit_contact
 */
 
 define('HG_CONTACT_VERSION', '1.4.9');

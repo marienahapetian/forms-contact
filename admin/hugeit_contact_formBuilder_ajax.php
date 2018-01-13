@@ -46,26 +46,26 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
         <div class="fields-options">
             <div class="left">
                 <div>
-                    <label class="input-block">Label:
+                    <label class="input-block"><?php _e('Field Label','hugeit_contact');?>:
                         <input class="label" type="text" name="imagess<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_field_label); ?>" />
                     </label>
                 </div>
                 <div>
-                    <label class="input-block" for="form_label_position">Label Position:
+                    <label class="input-block" for="form_label_position"><?php _e('Label Position','hugeit_contact');?>:
                         <select id="form_label_position" name="hc_input_show_default<?php echo absint($rowimages->id); ?>">
-                            <option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign">Left Align</option>
-                            <option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign">Right Align</option>
-                            <option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign">Above Field</option>
-                            <option <?php if($rowimages->hc_input_show_default == 'formsInsideAlign'){ echo 'selected="selected"'; } ?> value="formsInsideAlign">Inside Placeholder</option>
+                            <option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign"><?php _e('Left Align','hugeit_contact');?></option>
+                            <option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign"><?php _e('Right Align','hugeit_contact');?></option>
+                            <option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign"><?php _e('Above Field','hugeit_contact');?></option>
+                            <option <?php if($rowimages->hc_input_show_default == 'formsInsideAlign'){ echo 'selected="selected"'; } ?> value="formsInsideAlign"><?php _e('Inside Placeholder','hugeit_contact');?></option>
                         </select>
                     </label>
                 </div>
                 <div>
-                    <label class="input-block">Field Is Required:
+                    <label class="input-block"><?php _e('Field Is Required','hugeit_contact');?>:
                         <input type="hidden" name="hc_required<?php echo absint($rowimages->id); ?>" value=""/>
                         <input class="required" type="checkbox" <?php if($rowimages->hc_required == 'on'){ echo 'checked="checked"';} ?> name="hc_required<?php echo absint($rowimages->id); ?>" value="on" />
                     </label>
-                    <label class="input-block">Field Is Active:
+                    <label class="input-block"><?php _e('Field Is Active','hugeit_contact');?>:
                         <input type="hidden" name="im_description<?php echo absint($rowimages->id); ?>" value=""/>
                         <input class="fieldisactive" class="isactive" type="checkbox" <?php if($rowimages->description == 'on'){ echo 'checked="checked"';} ?> name="im_description<?php echo absint($rowimages->id); ?>" value="on" />
                     </label>
@@ -84,15 +84,15 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
             </div>
             <div class="left">
                 <div>
-                    <label class="input-block">Value If Empty:
+                    <label class="input-block"><?php _e('Value If Empty','hugeit_contact');?>:
                         <input class="placeholder text_area" type="text" name="titleimage<?php echo absint($rowimages->id); ?>" id="titleimage<?php echo absint($rowimages->id); ?>"  oldvalue="<?php echo esc_html($rowimages->name); ?>" value="<?php echo esc_html($rowimages->name); ?>">
                     </label>
                 </div>
                 <div>
                     <div class="input-block textbox_file_type">
-                        <div>Field type:</div>
-                        <label><input  type="radio" <?php if($rowimages->field_type == 'text'){ echo 'checked="checked"';} ?> name="field_type<?php echo absint($rowimages->id); ?>"  value="text" >Simple Text</label>
-                        <label><input  type="radio" <?php if($rowimages->field_type == 'number'){ echo 'checked="checked"';} ?> name="field_type<?php echo absint($rowimages->id); ?>"  value="number" >Number</label>
+                        <div><?php _e('Field type','hugeit_contact');?>:</div>
+                        <label><input  type="radio" <?php if($rowimages->field_type == 'text'){ echo 'checked="checked"';} ?> name="field_type<?php echo absint($rowimages->id); ?>"  value="text" ><?php _e('Simple Text','hugeit_contact');?></label>
+                        <label><input  type="radio" <?php if($rowimages->field_type == 'number'){ echo 'checked="checked"';} ?> name="field_type<?php echo absint($rowimages->id); ?>"  value="number" ><?php _e('Number','hugeit_contact');?></label>
                     </div>
                 <div>
                <!-- Default Value -->
@@ -105,9 +105,9 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
                 </div>
             </div>
             <div class="field-top-options-block">
-                <a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-                <a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
-                <a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+                <a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+                <a class="copy-field" href="#"><span><p><?php _e('Duplicate Field','hugeit_contact');?></p></span></a>
+                <a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
             </div>
         </div>
 
@@ -143,28 +143,28 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
 			<div class="fields-options">
 				<div class="left">
 					<div>
-						<label class="input-block">Field Label:
+						<label class="input-block"><?php _e('Field Label','hugeit_contact');?>:
 							<input class="label" type="text" name="imagess<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_field_label); ?>" />
 						</label>
 					</div>
 					<div>
-						<label class="input-block" for="form_label_position">Label Position:
+						<label class="input-block" for="form_label_position"><?php _e('Label Position','hugeit_contact');?>:
 							<select id="form_label_position" name="hc_input_show_default<?php echo absint($rowimages->id); ?>">
-								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign">Left Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign">Right Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign">Above Field</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsInsideAlign'){ echo 'selected="selected"'; } ?> value="formsInsideAlign">Inside Placeholder</option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign"><?php _e('Left Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign"><?php _e('Right Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign"><?php _e('Above Field','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsInsideAlign'){ echo 'selected="selected"'; } ?> value="formsInsideAlign"><?php _e('Inside Placeholder','hugeit_contact');?></option>
 							</select>
 						</label>
 					</div>
 					<div>
-						<label class="input-block">Field Is Required:
+						<label class="input-block"><?php _e('Field Is Required','hugeit_contact');?>:
 							<input type="hidden" name="hc_required<?php echo absint($rowimages->id); ?>" value=""/>
 							<input class="required" type="checkbox" <?php if($rowimages->hc_required == 'on'){ echo 'checked="checked"';} ?> name="hc_required<?php echo absint($rowimages->id); ?>" value="on" />
 						</label>
 					</div>
 					<div>
-						<label class="input-block">Field Is Active:
+						<label class="input-block"><?php _e('Field Is Active','hugeit_contact');?>:
 							<input type="hidden" name="im_description<?php echo absint($rowimages->id); ?>" value=""/>
 							<input class="fieldisactive" type="checkbox" <?php if($rowimages->description == 'on'){ echo 'checked="checked"';} ?> name="im_description<?php echo absint($rowimages->id); ?>" value="on" />
 						</label>
@@ -181,26 +181,26 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
 				</div>
 				<div class="left">
 					<div>
-						<label class="input-block">Value If Empty:
+						<label class="input-block"><?php _e('Value If Empty','hugeit_contact');?>:
 							<input class="placeholder" type="text" id="titleimage<?php echo absint($rowimages->id); ?>" name="titleimage<?php echo absint($rowimages->id); ?>" oldvalue="<?php echo esc_html($rowimages->name); ?>" value="<?php echo esc_html($rowimages->name); ?>" />
 						</label>
 					</div>
 					<div>
-						<label class="input-block">Field Height Size:
+						<label class="input-block"><?php _e('Field Height Size','hugeit_contact');?>:
 							<input class="textarea-size" type="number" class="small" name="hc_other_field<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_other_field); ?>" />px
 						</label>
 					</div>
 					<div>
-						<label class="input-block">Field Resize Is Available:
+						<label class="input-block"><?php _e('Field Resize Is Available','hugeit_contact');?>:
 							<input type="hidden" name="field_type<?php echo absint($rowimages->id); ?>" value=""/>
 							<input class="textarea-resize" type="checkbox" <?php if($rowimages->field_type == 'on'){ echo 'checked="checked"';} ?> name="field_type<?php echo absint($rowimages->id); ?>" value="on" />
 						</label>
 					</div>
 				</div>
 				<div class="field-top-options-block">
-					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-					<a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
-					<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+					<a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+					<a class="copy-field" href="#"><span><p><?php _e('Duplicate Field','hugeit_contact');?></p></span></a>
+					<a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
 				</div>
 			</div>
 			<div class="clear"></div>
@@ -255,27 +255,27 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
 			<div class="fields-options">
 				<div class="left">
 					<div>
-						<label class="input-block">Field Label:
+						<label class="input-block"><?php _e('Field Label','hugeit_contact');?>:
 							<input class="label" type="text" name="imagess<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_field_label); ?>" />
 						</label>
 					</div>
 					<div>
-						<label class="input-block" for="form_label_position">Label Position:
+						<label class="input-block" for="form_label_position"><?php _e('Label Position','hugeit_contact');?>:
 							<select id="form_label_position" name="hc_input_show_default<?php echo absint($rowimages->id); ?>">
-								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign">Left Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign">Right Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign">Above Field</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsInsideAlign'){ echo 'selected="selected"'; } ?> value="formsInsideAlign">Inside Placeholder</option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign"><?php _e('Left Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign"><?php _e('Right Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign"><?php _e('Above Field','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsInsideAlign'){ echo 'selected="selected"'; } ?> value="formsInsideAlign"><?php _e('Inside Placeholder','hugeit_contact');?></option>
 							</select>
 						</label>
 					</div>
                     <div>
-                        <label class="input-block" for="form_label_position">Placeholder Option:
+                        <label class="input-block" for="form_label_position"><?php _e('Placeholder Option','hugeit_contact');?>:
                             <input class="placeholder-option selectbox" type="text" name="def_value<?php echo absint($rowimages->id); ?>" id="def_value<?php echo absint($rowimages->id); ?>"   value="<?php echo esc_html($rowimages->def_value); ?>">
                         </label>
                     </div>
 					<div>
-						<label class="input-block">Field Is Required:
+						<label class="input-block"><?php _e('Field Is Required','hugeit_contact');?>:
 							<input type="hidden" name="hc_required<?php echo absint($rowimages->id); ?>" value=""/>
 							<input class="required" type="checkbox" <?php if($rowimages->hc_required == 'on'){ echo 'checked';} ?> name="hc_required<?php echo absint($rowimages->id); ?>" value="on"/>
 						</label>
@@ -293,7 +293,7 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
                                 <div class="set-active <?php if($rowimages->def_value == '' && ( trim($rowimages->hc_other_field) == $opt_key || trim($rowimages->hc_other_field)==$option) ){echo 'checked';} ?>" >
                                     <input type="radio" <?php if($rowimages->def_value=='' && ($rowimages->hc_other_field == $opt_key || trim($rowimages->hc_other_field)==$option)){echo 'checked="checked"';} ?> />
                                 </div>
-                                <a href="#remove" class="remove-field-option">remove</a>
+                                <a href="#remove" class="remove-field-option"><?php _e('remove','hugeit_contact');?></a>
                             </li>
                         <?php } ?>
 
@@ -307,9 +307,9 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
 					</label>
 				</div>
 				<div class="field-top-options-block">
-					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-					<a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
-					<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+					<a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+					<a class="copy-field" href="#"><span><p><?php _e('Duplicate Field','hugeit_contact');?></p></span></a>
+					<a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
 
 				</div>
 			</div>
@@ -375,27 +375,27 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
 			<div class="fields-options">
 				<div class="left">
 					<div>
-						<label class="input-block">Field Label:
+						<label class="input-block"><?php _e('Field Label','hugeit_contact');?>:
 							<input class="label" type="text" name="imagess<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_field_label); ?>" />
 						</label>
 					</div>
 					<div>
-						<label class="input-block" for="form_label_position">Label Position:
+						<label class="input-block" for="form_label_position"><?php _e('Label Position','hugeit_contact');?>:
 							<select id="form_label_position" name="hc_input_show_default<?php echo absint($rowimages->id); ?>">
-								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign">Left Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign">Right Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign">Above Field</option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign"><?php _e('Left Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign"><?php _e('Right Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign"><?php _e('Above Field','hugeit_contact');?></option>
 							</select>
 						</label>
 					</div>
 					<div>
-						<label class="input-block">Field Is Required:
+						<label class="input-block"><?php _e('Field Is Required','hugeit_contact');?>:
 							<input type="hidden" name="hc_required<?php echo absint($rowimages->id); ?>" value=""/>
 							<input class="required" type="checkbox" <?php if($rowimages->hc_required == 'on'){ echo 'checked="checked"';} ?> name="hc_required<?php echo absint($rowimages->id); ?>" value="on" />
 						</label>
 					</div>
 					<div>	
-						<label class="input-block">Field(s) Is/Are Active:
+						<label class="input-block"><?php _e('Field(s) Is/Are Active','hugeit_contact');?>:
 							<input type="hidden" name="im_description<?php echo absint($rowimages->id); ?>" value=""/>
 							<input class="fieldisactive" type="checkbox" <?php if($rowimages->description == 'on'){ echo 'checked="checked"';} ?> name="im_description<?php echo absint($rowimages->id); ?>" value="on" />
 						</label>
@@ -408,7 +408,7 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
 				</div>
 				<div class="left secondBlock">
 					<div>
-						<label class="input-block">Field Options:
+						<label class="input-block"><?php _e('Field Options','hugeit_contact');?>:
 						<ul rel="<?php echo absint($rowimages->id); ?>" class="field-multiple-option-list checkbox">
 						<?php
 						 $options=explode(';;',$rowimages->name);
@@ -423,7 +423,7 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
 									<input type="hidden" class="field-multiple-option-active-field" name="hc_other_field<?php echo absint($rowimages->id); ?>"  value="<?php echo esc_html($rowimages->hc_other_field); ?>" />
 									<input type="radio"  <?php if(trim($rowimages->hc_other_field)==$i){echo 'checked="checked"';} ?> name="options_active_<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($i); ?>" />
 								</div>
-								<a href="#remove" class="remove-field-option">remove</a>
+								<a href="#remove" class="remove-field-option"><?php _e('remove','hugeit_contact');?></a>
 							</li>
 						<?php $i++; } ?>
 							<li>
@@ -436,9 +436,9 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
 					</div>
 				</div>
 				<div class="field-top-options-block">
-					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-					<a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
-					<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+					<a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+					<a class="copy-field" href="#"><span><p><?php _e('Duplicate Field','hugeit_contact');?></p></span></a>
+					<a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
 				</div>
 			</div>
 		<div class="clear"></div>
@@ -487,21 +487,21 @@ function hugeit_contact_hiddenFieldSettingsHtml($rowimages) { ob_start(); ?>
                     <?php _e('Default Value: ','hugeit_contact');?><br>
                     <div class="input-block">
                         <input  type="hidden" name="imagess<?php echo absint($rowimages->id); ?>" value="Hidden Field">
-                        <label for="user_id"><input  type="radio"  name="hc_other_field<?php echo absint($rowimages->id); ?>" id="user_id"  value="user_id" <?php if($rowimages->hc_other_field=="user_id"){echo 'checked="checked"';} ?> >User ID</label>
+                        <label for="user_id"><input  type="radio"  name="hc_other_field<?php echo absint($rowimages->id); ?>" id="user_id"  value="user_id" <?php if($rowimages->hc_other_field=="user_id"){echo 'checked="checked"';} ?> ><?php _e('User ID','hugeit_contact');?></label>
                         <br>
-                        <label for="user_login"><input  type="radio"  name="hc_other_field<?php echo absint($rowimages->id); ?>" id="user_login"  value="user_login" <?php if($rowimages->hc_other_field=="user_login"){echo 'checked="checked"';} ?> >Username</label>
+                        <label for="user_login"><input  type="radio"  name="hc_other_field<?php echo absint($rowimages->id); ?>" id="user_login"  value="user_login" <?php if($rowimages->hc_other_field=="user_login"){echo 'checked="checked"';} ?> ><?php _e('Username','hugeit_contact');?></label>
                         <br>
-                        <label for="user_email"><input  type="radio"  name="hc_other_field<?php echo absint($rowimages->id); ?>"  id="user_email"  value="user_email" <?php if($rowimages->hc_other_field=="user_email"){echo 'checked="checked"';} ?>>User Email</label>
+                        <label for="user_email"><input  type="radio"  name="hc_other_field<?php echo absint($rowimages->id); ?>"  id="user_email"  value="user_email" <?php if($rowimages->hc_other_field=="user_email"){echo 'checked="checked"';} ?>><?php _e('User Email','hugeit_contact');?></label>
                         <br>
-                        <label for="user_ip"><input  type="radio"  name="hc_other_field<?php echo absint($rowimages->id); ?>" id="user_ip"  value="ip_address" <?php if($rowimages->hc_other_field=="ip_address"){echo 'checked="checked"';} ?>>IP Address</label>
+                        <label for="user_ip"><input  type="radio"  name="hc_other_field<?php echo absint($rowimages->id); ?>" id="user_ip"  value="ip_address" <?php if($rowimages->hc_other_field=="ip_address"){echo 'checked="checked"';} ?>><?php _e('IP Address','hugeit_contact');?></label>
                     </div>
                 </div>
             </div>
 
             <div class="field-top-options-block">
-                <a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-                <a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
-                <a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+                <a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+                <a class="copy-field" href="#"><span><p><?php _e('Duplicate Field','hugeit_contact');?></p></span></a>
+                <a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
             </div>
         </div>
         <div class="clear"></div>
@@ -547,7 +547,7 @@ function hugeit_contact_pageBreakSettingsHtml($rowimages) { ob_start(); ?>
             </div>
 
             <div class="field-top-options-block">
-                <a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
+                <a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
             </div>
         </div>
         <div class="clear"></div>
@@ -612,16 +612,16 @@ function hugeit_contact_pageBreakSettingsHtml($rowimages) { ob_start(); ?>
 			<div class="fields-options">
 				<div class="left">
 					<div>
-						<label class="input-block">Field Label:
+						<label class="input-block"><?php _e('Field Label','hugeit_contact');?>:
 							<input class="label" type="text" name="imagess<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_field_label); ?>" />
 						</label>
 					</div>
 					<div>
-						<label class="input-block" for="form_label_position">Label Position:
+						<label class="input-block" for="form_label_position"><?php _e('Label Position','hugeit_contact');?>:
 							<select id="form_label_position" name="hc_input_show_default<?php echo absint($rowimages->id); ?>">
-								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign">Left Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign">Right Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign">Above Field</option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign"><?php _e('Left Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign"><?php _e('Right Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign"><?php _e('Above Field','hugeit_contact');?></option>
 							</select>
 						</label>
 					</div>
@@ -633,7 +633,7 @@ function hugeit_contact_pageBreakSettingsHtml($rowimages) { ob_start(); ?>
 				</div>
 				<div class="left secondBlock">
 					<div>
-						<label class="input-block">Field Options:
+						<label class="input-block"><?php _e('Field Options','hugeit_contact');?>:
 						<ul rel="<?php echo absint($rowimages->id); ?>" class="field-multiple-option-list radio">
 						<?php
 						 $options=explode(';;',$rowimages->name);
@@ -646,7 +646,7 @@ function hugeit_contact_pageBreakSettingsHtml($rowimages) { ob_start(); ?>
 									<input type="hidden" class="field-multiple-option-active-field" name="hc_other_field<?php echo absint($rowimages->id); ?>"  value="<?php echo esc_html($rowimages->hc_other_field); ?>" />
 									<input type="radio" <?php if(trim($rowimages->hc_other_field)==$i){echo 'checked="checked"';} ?> />
 								</div>
-								<a href="#remove" class="remove-field-option">remove</a>
+								<a href="#remove" class="remove-field-option"><?php _e('remove','hugeit_contact');?></a>
 							</li>
 						<?php $i++; } ?>
 							<li>
@@ -659,9 +659,9 @@ function hugeit_contact_pageBreakSettingsHtml($rowimages) { ob_start(); ?>
 					</div>
 				</div>
 				<div class="field-top-options-block">
-					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-					<a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
-					<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+					<a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+					<a class="copy-field" href="#"><span><p><?php _e('Duplicate Field','hugeit_contact');?></p></span></a>
+					<a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
 				</div>
 			</div>
 		<div class="clear"></div>
@@ -723,48 +723,48 @@ function hugeit_contact_pageBreakSettingsHtml($rowimages) { ob_start(); ?>
 			<div class="fields-options">					
 				<div class="left">
 					<div>
-						<label class="input-block">Field Label:
+						<label class="input-block"><?php _e('Field Label','hugeit_contact');?>:
 							<input class="label"  type="text" name="imagess<?php echo htmlspecialchars($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_field_label); ?>" />
 						</label>
 					</div>
 					<div>
-						<label class="input-block" for="form_label_position">Label Position:
+						<label class="input-block" for="form_label_position"><?php _e('Label Position','hugeit_contact');?>:
 							<select id="form_label_position" name="hc_input_show_default<?php echo absint($rowimages->id); ?>">
-								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign">Left Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign">Right Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign">Above Field</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsInsideAlign'){ echo 'selected="selected"'; } ?> value="formsInsideAlign">Inside Placeholder</option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign"><?php _e('Left Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign"><?php _e('Right Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign"><?php _e('Above Field','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsInsideAlign'){ echo 'selected="selected"'; } ?> value="formsInsideAlign"><?php _e('Inside Placeholder','hugeit_contact');?></option>
 							</select>
 						</label>
 					</div>
 					<div>
-						<label class="input-block">Allowed files:
+						<label class="input-block"><?php _e('Allowed files','hugeit_contact');?>:
 							<textarea class="text_area" type="hidden" name="hc_other_field<?php echo absint($rowimages->id); ?>" rows="3" cols="45" name="text"><?php echo esc_html($rowimages->hc_other_field); ?></textarea>
 						</label>
 					</div>
 				</div>
 				<div class="left">
 					<div>
-						<label class="input-block">Field Maximum Size(MB):
+						<label class="input-block"><?php _e('Field Maximum Size(MB)','hugeit_contact');?>:
 							<input class="text_area" type="number" name="titleimage<?php echo absint($rowimages->id); ?>" id="titleimage<?php echo absint($rowimages->id); ?>"  value="<?php echo esc_html($rowimages->name); ?>">
 						</label>
 					</div>
 					<div>
-						<label class="input-block">Upload File Directory:
+						<label class="input-block"><?php _e('Upload File Directory','hugeit_contact');?>:
 							<input class="text_area" type="text" name="field_type<?php echo absint($rowimages->id); ?>"  value="<?php echo esc_html($rowimages->field_type); ?>" >
 						</label>
 					</div>
 					<div>
-						<label>Field Is Required:
+						<label><?php _e('Field Is Required','hugeit_contact');?>:
 							<input type="hidden" name="hc_required<?php echo absint($rowimages->id); ?>" value=""/>
 							<input class="required" type="checkbox" <?php if($rowimages->hc_required == 'on'){ echo 'checked="checked"';} ?> name="hc_required<?php echo absint($rowimages->id); ?>" value="on"/>
 						</label>
 					</div>
 				</div>
 				<div class="field-top-options-block">
-					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-					<a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
-					<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+					<a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+					<a class="copy-field" href="#"><span><p><?php _e('Duplicate Field','hugeit_contact');?></p></span></a>
+					<a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
 				</div>
 			</div>
 		<div class="clear"></div>
@@ -788,15 +788,15 @@ function hugeit_contact_pageBreakSettingsHtml($rowimages) { ob_start(); ?>
     	<li id="huge-contact-field-<?php echo absint($rowimages->id); ?>"   data-fieldNum="<?php echo absint($rowimages->id); ?>" data-fieldType="custom_text">
 			<input type="hidden" class="left-right-position"   name="hc_left_right<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_left_right); ?>" />
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->ordering); ?>" />
-			<h4>Custom Text</h4>
+			<h4><?php _e('Custom Text','hugeit_contact');?></h4>
 			<div class="fields-options">	
 				<div class="left tinymce_custom_text">
 					<?php	wp_editor($rowimages->name, "titleimage".$rowimages->id); ?>
 				</div>
 				<div class="field-top-options-block">
-					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-					<a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
-					<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+					<a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+					<a class="copy-field" href="#"><span><p><?php _e('Duplicate Field','hugeit_contact');?></p></span></a>
+					<a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
 				</div>
 			</div>
 			<div class="clear"></div>
@@ -838,13 +838,13 @@ function hugeit_contact_pageBreakSettingsHtml($rowimages) { ob_start(); ?>
 			<h4>ReCaptcha</h4>
 			<div class="fields-options">
 				<div class="left">
-					<label class="input-block">ReCaptcha Type
+					<label class="input-block"><?php _e('ReCaptcha Type','hugeit_contact');?>
 						<select name="titleimage<?php echo absint($rowimages->id); ?>">
-							<option <?php if($rowimages->name == 'image'){ echo 'selected="selected"'; } ?> value="image">Image</option>
-							<option <?php if($rowimages->name == 'audio'){ echo 'selected="selected"'; } ?> value="audio">Audio</option>
+							<option <?php if($rowimages->name == 'image'){ echo 'selected="selected"'; } ?> value="image"><?php _e('Image','hugeit_contact');?></option>
+							<option <?php if($rowimages->name == 'audio'){ echo 'selected="selected"'; } ?> value="audio"><?php _e('Audio','hugeit_contact');?></option>
 						</select>
 					</label>
-					<label class="input-block">ReCaptcha Position
+					<label class="input-block"><?php _e('ReCaptcha Position','hugeit_contact');?>
 						<select class="captcha_position" name="hc_input_show_default<?php echo absint($rowimages->id); ?>">
 							<option <?php if($rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="1">Right</option>
 							<option <?php if($rowimages->hc_input_show_default == '2'){ echo 'selected="selected"'; } ?> value="2">Left</option>
@@ -852,7 +852,7 @@ function hugeit_contact_pageBreakSettingsHtml($rowimages) { ob_start(); ?>
 					</label>
 				</div>	
 				<div class="left">
-					<label class="input-block">ReCaptcha Theme
+					<label class="input-block"><?php _e('ReCaptcha Theme','hugeit_contact');?>
 						<select class="hugeit_contact_captcha_theme" name="hc_required<?php echo absint($rowimages->id); ?>">
 							<option <?php if($rowimages->hc_required == 'dark'){ echo 'selected="selected"'; } ?> value="dark">Dark</option>
 							<option <?php if($rowimages->hc_required == 'light'){ echo 'selected="selected"'; } ?> value="light">Light</option>
@@ -860,8 +860,8 @@ function hugeit_contact_pageBreakSettingsHtml($rowimages) { ob_start(); ?>
 					</label>
 				</div>	
 				<div class="field-top-options-block">
-					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-					<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+					<a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+					<a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
 				</div>
 			</div>
 			<div class="clear"></div>
@@ -901,25 +901,25 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 		<h4>Simple Captcha</h4>
 		<div class="fields-options">
 			<div class="left">
-				<label class="input-block">Simple Captcha Digits(3-7)
+				<label class="input-block"><?php _e('Simple Captcha Digits','hugeit_contact');?>(3-7)
 					<?php $hc_other_field=json_decode($rowimages->hc_other_field);?>
 					<input type="number" min="3" max="7" name="hc_other_field<?php echo absint($rowimages->id); ?>[digits]" value="<?php echo (isset($hc_other_field->digits))?$hc_other_field->digits:5;?>">
 				</label>
-				<label class="input-block">Simple Captcha Position
+				<label class="input-block"><?php _e('Simple Captcha Position','hugeit_contact');?>
 					<select id="form_label_position" class="simple_captcha_position" name="hc_input_show_default<?php echo absint($rowimages->id); ?>">
-						<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' ){ echo 'selected="selected"'; } ?> value="formsLeftAlign">Left Align</option>
-						<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign">Right Align</option>
+						<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' ){ echo 'selected="selected"'; } ?> value="formsLeftAlign"><?php _e('Left Align','hugeit_contact');?></option>
+						<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign"><?php _e('Right Align','hugeit_contact');?></option>
 					</select>
 				</label>
 			</div>
 			<div class="left">
-				<label class="input-block">Input Placeholder
+				<label class="input-block"><?php _e('Input Placeholder','hugeit_contact');?>
 					<input class='placeholder' type="text" name="titleimage<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->name);?>">
 				</label>
-				<label class="input-block">Color Settings
+				<label class="input-block"><?php _e('Color Settings','hugeit_contact');?>
 					<br>
-					<label><input type="radio" <?php if($rowimages->description == 'default') echo 'checked';?> name="im_description<?php echo absint($rowimages->id); ?>" value="default" class="default-custom">Default</label>
-					<label><input type="radio" <?php if($rowimages->description == 'custom') echo 'checked';?> name="im_description<?php echo absint($rowimages->id); ?>" value="custom" class="default-custom">Custom</label>
+					<label><input type="radio" <?php if($rowimages->description == 'default') echo 'checked';?> name="im_description<?php echo absint($rowimages->id); ?>" value="default" class="default-custom"><?php _e('Default','hugeit_contact');?></label>
+					<label><input type="radio" <?php if($rowimages->description == 'custom') echo 'checked';?> name="im_description<?php echo absint($rowimages->id); ?>" value="custom" class="default-custom"><?php _e('Custom','hugeit_contact');?></label>
 
 					<input <?php if($rowimages->description == 'default') echo 'disabled';?> class='custom-option color' type="text" style="margin-top:10px; width:90%;" value="<?php echo (isset($hc_other_field->color))?$hc_other_field->color:'FF601C';?>" name="hc_other_field<?php echo absint($rowimages->id); ?>[color]">
 
@@ -932,8 +932,8 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_left_right); ?>" />
 
 			<div class="field-top-options-block">
-				<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-				<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+				<a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+				<a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -989,45 +989,49 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
     	<li id="huge-contact-field-<?php echo absint($rowimages->id); ?>"   data-fieldNum="<?php echo absint($rowimages->id); ?>" data-fieldType="buttons">
 			<input type="hidden" class="left-right-position" name="hc_left_right<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_left_right); ?>" />
 			<input type="hidden" class="ordering" name="hc_ordering<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->ordering); ?>" />
-			<h4>Buttons</h4>
+			<h4><?php _e('Buttons','hugeit_contact');?></h4>
 			<div class="fields-options">
 				<div class="left">
 					<div>
-						<label class="input-block">Submit Button Text:
+						<label class="input-block"><?php _e('Submit Button Text','hugeit_contact');?>:
 							<input class="submitbutton" type="text" name="im_description<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->description); ?>" />
 						</label>
 					</div>
 					<div>
-						<label class="input-block">Actions After Submission:
+						<label class="input-block">
+                            <?php _e('Actions After Submission','hugeit_contact');?>:
 							<select id="form_checkbox_size" name="hc_other_field<?php echo absint($rowimages->id); ?>">
-								<option <?php if($rowimages->hc_other_field == 'go_to_url'){ echo 'selected="selected"'; } ?> value="go_to_url">Go To Url</option>
-								<option <?php if($rowimages->hc_other_field == 'print_success_message'){ echo 'selected="selected"'; } ?> value="print_success_message">Print Success Message</option>
-								<option <?php if($rowimages->hc_other_field == 'refresh_page'){ echo 'selected="selected"'; } ?> value="refresh_page">Refresh Page</option>
+								<option <?php if($rowimages->hc_other_field == 'go_to_url'){ echo 'selected="selected"'; } ?> value="go_to_url"><?php _e('Go To Url','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_other_field == 'print_success_message'){ echo 'selected="selected"'; } ?> value="print_success_message"><?php _e('Print Success Message','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_other_field == 'refresh_page'){ echo 'selected="selected"'; } ?> value="refresh_page"><?php _e('Refresh Page','hugeit_contact');?></option>
 							</select>
 						</label>							
 					</div>
 					<div id="go_to_url_field" <?php if($rowimages->hc_other_field != 'go_to_url'){ echo "style='display:none;'";}?>>
-						<label class="input-block">Go To This Url:
+						<label class="input-block">
+                            <?php _e('Go To This Url','hugeit_contact');?>:
 							<input class="" type="text" name="field_type<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->field_type); ?>" />
 						</label>
 					</div>
 				</div>
 				<div class="left">
 					<div>
-						<label class="input-block">Reset Button Text:
+						<label class="input-block">
+                            <?php _e('Reset Button Text','hugeit_contact');?>:
 							<input class="resetbutton" type="text" name="imagess<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_field_label); ?>" />
 						</label>
 					</div>
 					<div>
-						<label>Show Reset Button
+						<label>
+                            <?php _e('Show Reset Button','hugeit_contact');?>
 							<input type="hidden" name="hc_required<?php echo absint($rowimages->id); ?>" value=""/>
 							<input class="showresetbutton" class="required" type="checkbox" <?php if($rowimages->hc_required == 'checked'){ echo 'checked';} ?> name="hc_required<?php echo absint($rowimages->id); ?>" value="checked"/>
 						</label>
 					</div>
 				</div>
 				<div class="field-top-options-block">
-					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-					<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+					<a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+					<a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
 				</div>
 			</div>
 			<div class="clear"></div>
@@ -1063,26 +1067,26 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 			<div class="fields-options">
 				<div class="left">
 					<div>
-						<label class="input-block">Label:
+						<label class="input-block"><?php _e('Field Label','hugeit_contact');?>:
 							<input class="label" type="text" name="imagess<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_field_label); ?>" />
 						</label>
 					</div>
 					<div>
-						<label class="input-block" for="form_label_position">Label Position:
+						<label class="input-block" for="form_label_position"><?php _e('Label Position','hugeit_contact');?>:
 							<select id="form_label_position" name="hc_input_show_default<?php echo absint($rowimages->id); ?>">
-								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign">Left Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign">Right Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign">Above Field</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsInsideAlign'){ echo 'selected="selected"'; } ?> value="formsInsideAlign">Inside Placeholder</option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign"><?php _e('Left Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign"><?php _e('Right Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign"><?php _e('Above Field','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsInsideAlign'){ echo 'selected="selected"'; } ?> value="formsInsideAlign"><?php _e('Inside Placeholder','hugeit_contact');?></option>
 							</select>
 						</label>
 					</div>
 					<div>
-						<label class="input-block">Field Is Required:
+						<label class="input-block"><?php _e('Field Is Required','hugeit_contact');?>:
 							<input type="hidden" name="hc_required<?php echo absint($rowimages->id); ?>" value=""/>
 							<input class="required" type="checkbox" <?php if($rowimages->hc_required == 'on'){ echo 'checked="checked"';} ?> name="hc_required<?php echo absint($rowimages->id); ?>" value="on" />
 						</label>
-						<label class="input-block">Field Is Active:
+						<label class="input-block"><?php _e('Field Is Active','hugeit_contact');?>:
 							<input type="hidden" name="im_description<?php echo absint($rowimages->id); ?>" value=""/>
 							<input class="fieldisactive" class="isactive" type="checkbox" <?php if($rowimages->description == 'on'){ echo 'checked="checked"';} ?> name="im_description<?php echo absint($rowimages->id); ?>" value="on" />
 						</label>
@@ -1090,7 +1094,7 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 				</div>
 				<div class="left">
 					<div>
-						<label class="input-block">Value If Empty:
+						<label class="input-block"><?php _e('Value If Empty','hugeit_contact');?>:
 							<input class="placeholder" class="placeholder" class="text_area" type="text" name="titleimage<?php echo absint($rowimages->id); ?>" id="titleimage<?php echo absint($rowimages->id); ?>"  oldvalue="<?php echo esc_html($rowimages->name); ?>"  value="<?php echo esc_html($rowimages->name); ?>">
 						</label>
 					</div>
@@ -1103,9 +1107,9 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
                     </div>
 				</div>
 				<div class="field-top-options-block">
-					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-					<a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
-					<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+					<a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+					<a class="copy-field" href="#"><span><p><?php _e('Duplicate Field','hugeit_contact');?></p></span></a>
+					<a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
 				</div>
 			</div>			
 			<div class="clear"></div>
@@ -1141,21 +1145,21 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 			<div class="fields-options">
 				<div class="left">
 					<div>
-						<label class="input-block">Label:
+						<label class="input-block"><?php _e('Field Label','hugeit_contact');?>:
 							<input class="label" type="text" name="imagess<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_field_label); ?>" />
 						</label>
 					</div>
 					<div>
-						<label class="input-block">Name Placeholder:
+						<label class="input-block"><?php _e('Name Placeholder','hugeit_contact');?>:
 							<input class="placeholderName" class="text_area" type="text" name="titleimage<?php echo absint($rowimages->id); ?>" id="titleimage<?php echo absint($rowimages->id); ?>"  oldvalue="<?php echo esc_html($rowimages->name); ?>" value="<?php echo esc_html($rowimages->name); ?>">
 						</label>
 					</div>						
 					<div>
-						<label class="input-block">Fields Are Required:
+						<label class="input-block"><?php _e('Fields Are Required','hugeit_contact');?>:
 							<input type="hidden" name="hc_required<?php echo absint($rowimages->id); ?>" value=""/>
 							<input class="required" type="checkbox" <?php if($rowimages->hc_required == 'on'){ echo 'checked="checked"';} ?> name="hc_required<?php echo absint($rowimages->id); ?>" value="on" />
 						</label>
-						<label class="input-block">Field Is Active:
+						<label class="input-block"><?php _e('Field Is Active','hugeit_contact');?>:
 							<input type="hidden" name="im_description<?php echo absint($rowimages->id); ?>" value=""/>
 							<input class="fieldisactive" class="isactive" type="checkbox" <?php if($rowimages->description == 'on'){ echo 'checked="checked"';} ?> name="im_description<?php echo absint($rowimages->id); ?>" value="on" />
 						</label>
@@ -1163,25 +1167,25 @@ function hugeit_contact_simple_captcha_settings_html($rowimages) { ob_start(); ?
 				</div>
 				<div class="left">
 					<div>
-						<label class="input-block" for="form_label_position">Label Position:
+						<label class="input-block" for="form_label_position"><?php _e('Label Position','hugeit_contact');?>:
 							<select id="ready_form_label_position" name="hc_input_show_default<?php echo absint($rowimages->id); ?>">
-								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign">Left Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign">Right Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign">Above Field</option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign"><?php _e('Left Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign"><?php _e('Right Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign"><?php _e('Above Field','hugeit_contact');?></option>
 								<option <?php if($rowimages->hc_input_show_default == 'formsLabelHide'){ echo 'selected="selected"'; } ?> value="formsLabelHide">Hide Label</option>
 							</select>
 						</label>
 					</div>
 					<div>
-						<label class="input-block">Surname Placeholder:
+						<label class="input-block"><?php _e('Surname Placeholder','hugeit_contact');?>:
 							<input class="placeholderSur" class="text_area" type="text" name="hc_other_field<?php echo absint($rowimages->id); ?>" id="hc_other_field<?php echo absint($rowimages->id); ?>"  oldvalue="<?php echo esc_html($rowimages->hc_other_field); ?>" value="<?php echo esc_html($rowimages->hc_other_field); ?>">
 						</label>
 					</div>
 				</div>
 				<div class="field-top-options-block">
-					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-					<a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
-					<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+					<a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+					<a class="copy-field" href="#"><span><p><?php _e('Duplicate Field','hugeit_contact');?></p></span></a>
+					<a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
 				</div>
 			</div>			
 			<div class="clear"></div>
@@ -1223,21 +1227,21 @@ esc_html($rowimages->hc_input_show_default);?>">
 			<div class="fields-options">
 				<div class="left">
 					<div>
-						<label class="input-block">Label:
+						<label class="input-block"><?php _e('Field Label','hugeit_contact');?>:
 							<input class="label" type="text" name="imagess<?php echo absint($rowimages->id); ?>" value="<?php echo esc_html($rowimages->hc_field_label); ?>" />
 						</label>
 					</div>
 					<div>
-						<label class="input-block" for="form_label_position">Label Position:
+						<label class="input-block" for="form_label_position"><?php _e('Label Position','hugeit_contact');?>:
 							<select id="ready_form_label_position" name="hc_input_show_default<?php echo absint($rowimages->id); ?>">
-								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign">Left Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign">Right Align</option>
-								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign">Above Field</option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsLeftAlign' || $rowimages->hc_input_show_default == '1'){ echo 'selected="selected"'; } ?> value="formsLeftAlign"><?php _e('Left Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsRightAlign'){ echo 'selected="selected"'; } ?> value="formsRightAlign"><?php _e('Right Align','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_input_show_default == 'formsAboveAlign'){ echo 'selected="selected"'; } ?> value="formsAboveAlign"><?php _e('Above Field','hugeit_contact');?></option>
 							</select>
 						</label>
 					</div>						
 					<div>
-						<label class="input-block">Field Is Required:
+						<label class="input-block"><?php _e('Field Is Required','hugeit_contact');?>:
 							<input type="hidden" name="hc_required<?php echo absint($rowimages->id); ?>" value=""/>
 							<input class="required" type="checkbox" <?php if($rowimages->hc_required == 'on'){ echo 'checked="checked"';} ?> name="hc_required<?php echo absint($rowimages->id); ?>" value="on" />
 						</label>
@@ -1245,12 +1249,12 @@ esc_html($rowimages->hc_input_show_default);?>">
 				</div>
 				<div class="left">
 					<div>
-						<label class="input-block">Placeholder:
+						<label class="input-block"><?php _e('Placeholder','hugeit_contact');?>:
 							<input class="placeholder" class="placeholder" class="text_area" type="text" name="hc_other_field<?php echo absint($rowimages->id); ?>" id="hc_other_field<?php echo absint($rowimages->id); ?>"  oldvalue="<?php echo esc_html($rowimages->hc_other_field); ?>"  value="<?php echo esc_html($rowimages->hc_other_field); ?>">
 						</label>
 					</div>
 					<div>
-						<label class="input-block" for="form_phone">Default Country:
+						<label class="input-block" for="form_phone"><?php _e('Default Country','hugeit_contact');?>:
 							<select id="form_phone" class="country-list" name="titleimage<?php echo absint($rowimages->id); ?>">
 								<option <?php selected( "af", $rowimages->name , true ); ?> value="af">Afghanistan (‫افغانستان‬‎)</option>
 								<option <?php selected( "al", $rowimages->name , true ); ?> value="al">Albania (Shqipëri)</option>
@@ -1499,9 +1503,9 @@ esc_html($rowimages->hc_input_show_default);?>">
 					</div>
 				</div>
 				<div class="field-top-options-block">
-					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-					<a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
-					<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+					<a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+					<a class="copy-field" href="#"><span><p><?php _e('Duplicate Field','hugeit_contact');?></p></span></a>
+					<a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
 				</div>
 			</div>			
 			<div class="clear"></div>
@@ -1561,35 +1565,35 @@ esc_html($rowimages->hc_input_show_default);?>">
 			<div class="fields-options">
 				<div class="left">
 					<div>
-						<label class="input-block">Link Name:
+						<label class="input-block"><?php _e('Link Name','hugeit_contact');?>:
 							<input class="linkName" type="text" name="imagess<?php echo absint($rowimages->id); ?>" value="<?php echo $rowimages->hc_field_label; ?>" />
 						</label>
 					</div>
 					<div>
-						<label class="input-block">Link URL:
+						<label class="input-block"><?php _e('Link URL','hugeit_contact');?>:
 							<input class="linkUrl" type="text" name="im_description<?php echo absint($rowimages->id); ?>" value="<?php echo $rowimages->description; ?>" />
 						</label>
 					</div>	
 					<div>
-						<label class="input-block" for="form_label_position">Field Align:
+						<label class="input-block" for="form_label_position"><?php _e('Field Align','hugeit_contact');?>:
 							<select id="ready_form_label_position" class="fieldPos" name="hc_required<?php echo absint($rowimages->id); ?>">
-								<option <?php if($rowimages->hc_required == 'left'){ echo 'selected="selected"'; } ?> value="left">Left</option>
-								<option <?php if($rowimages->hc_required == 'right'){ echo 'selected="selected"'; } ?> value="right">Right</option>
+								<option <?php if($rowimages->hc_required == 'left'){ echo 'selected="selected"'; } ?> value="left"><?php _e('Left','hugeit_contact');?></option>
+								<option <?php if($rowimages->hc_required == 'right'){ echo 'selected="selected"'; } ?> value="right"><?php _e('Right','hugeit_contact');?></option>
 							</select>
 						</label>
 					</div>												
 				</div>
 				<div class="left">
 					<div>
-						<label class="input-block">Field Content:
+						<label class="input-block"><?php _e('Field Content','hugeit_contact');?>:
 							<textarea class="fieldContent" type="text" name="hc_other_field<?php echo absint($rowimages->id); ?>" value=""><?php echo $rowimages->hc_other_field; ?></textarea>
 						</label>
 					</div>
 				</div>
 				<div class="field-top-options-block">
-					<a class="remove-field" href="#"><span><p>Remove Field</p></span></a>
-					<a class="copy-field" href="#"><span><p>Duplicate Field</p></span></a>
-					<a class="open-close" href="#"><span><p>Edit Field</p></span></a>
+					<a class="remove-field" href="#"><span><p><?php _e('Remove Field','hugeit_contact');?></p></span></a>
+					<a class="copy-field" href="#"><span><p><?php _e('Duplicate Field','hugeit_contact');?></p></span></a>
+					<a class="open-close" href="#"><span><p><?php _e('Edit Field','hugeit_contact');?></p></span></a>
 				</div>
 			</div>			
 			<div class="clear"></div>

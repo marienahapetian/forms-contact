@@ -287,11 +287,11 @@ function submitbutton(pressbutton){
                             </select>
                         </div>
                         <div id="hg_sel_to_left">
-                            <label for="select_form_show_title">Show Form Title</label>
+                            <label for="select_form_show_title"><?php _e('Show Form Title','hugeit_contact');?></label>
                             <select id="select_form_show_title" name="hugeit_contact_show_title_for_form_<?php echo $id; ?>">
-                                <option value="default">Use Default Settings</option>
-                                <option value="yes" <?php if (get_option('hugeit_contact_show_title_for_form_' . $id) === 'yes') echo ' selected' ?>>Yes</option>
-                                <option value="no" <?php if (get_option('hugeit_contact_show_title_for_form_' . $id) === 'no') echo ' selected' ?>>No</option>
+                                <option value="default"><?php _e('Use Default Settings','hugeit_contact');?></option>
+                                <option value="yes" <?php if (get_option('hugeit_contact_show_title_for_form_' . $id) === 'yes') echo ' selected' ?>><?php _e('Yes','hugeit_contact');?></option>
+                                <option value="no" <?php if (get_option('hugeit_contact_show_title_for_form_' . $id) === 'no') echo ' selected' ?>><?php _e('No','hugeit_contact');?></option>
                             </select>
                         </div>
                         <img class="themeSpinner" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
@@ -386,7 +386,7 @@ function submitbutton(pressbutton){
 						<img class="readySpin" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
 					</li>
 					<li>
-						<strong>Ready-To-Go Fields  <i>(Pro)</i></strong>
+						<strong><?php _e('Ready-To-Go Fields','hugeit_contact');?>  <i>(Pro)</i></strong>
 						<ul id="add-default-fields" class="readyFields">
 							<li><a onclick="" class="" id="nameSurname" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>"><?php _e('Full Name','hugeit_contact');?></a></li>
 							<li><a onclick="" class="" id="phone" data-formId="<?php echo $id;?>" data-themeId="<?php echo $current_form->hc_yourstyle;?>"><?php _e('Phone','hugeit_contact');?></a></li>
@@ -1366,8 +1366,8 @@ function submitbutton(pressbutton){
 			</div>
 			<div class="hugeit_contact_custom_settings_main">
 				<div class="hugeit_contact_custom_settings_dropdown_heading_wrapper">
-					<div class="hugeit_contact_custom_settings_dropdown_heading"><h4>Advanced email options</h4><i class="hugeicons-chevron-down"></i></div>
-					<div class="hugeit_contact_custom_settings_dropdown_description">In your LITE version of the plugin you can send ONE custom email message and set the same admin recipients for ALL forms, whereas Advanced email options in PRO version allow you to customize your email messages and admin recipients for EACH form.</div>
+					<div class="hugeit_contact_custom_settings_dropdown_heading"><h4><?php _e('Advanced email options','hugeit_contact');?></h4><i class="hugeicons-chevron-down"></i></div>
+					<div class="hugeit_contact_custom_settings_dropdown_description"><?php _e('In your LITE version of the plugin you can send ONE custom email message and set the same admin recipients for ALL forms, whereas Advanced email options in PRO version allow you to customize your email messages and admin recipients for EACH form.','hugeit_contact');?></div>
 				</div>
 				<div class="hugeit_contact_custom_settings_dropdown_content -hidden">
 					<div class="hugeit_contact_custom_settings_outer_wrapper">
@@ -1446,22 +1446,22 @@ function html_captcha_keys($param_values){
 
 	<div id="huge_it_contacts_captcha_keys">
 		<div id="huge_it_contacts_captcha_keys_wrap">
-			<h2>Captcha Keys</h2>
+			<h2><?php _e('Captcha Keys','hugeit_contact');?></h2>
 			<div class="control-panel">
-				<p>Please register your blog through the <a href="https://www.google.com/recaptcha/admin" target="_blank">Google reCAPTCHA admin page</a> and enter the public and private key in the fields below.</p>			
+				<p><?php _e('Please register your blog through the','hugeit_contact');?> <a href="https://www.google.com/recaptcha/admin" target="_blank"><?php _e('Google reCAPTCHA admin page','hugeit_contact');?></a> <?php _e('and enter the public and private key in the fields below.','hugeit_contact');?></p>
 				<form method="post" action="admin.php?page=hugeit_forms_main_page" id="adminFormPopup" name="admin_form">
 					<div>
-						<label for="form_captcha_public_key">Captcha Public Key</label>
+						<label for="form_captcha_public_key"><?php _e('Captcha Public Key','hugeit_contact');?></label>
 						<input type="text" id="form_captcha_public_key" name="params[form_captcha_public_key]" value="<?php echo $param_values['form_captcha_public_key']; ?>" />
 					</div>
 					<div>
-						<label for="form_captcha_private_key">Captcha Private Key</label>
+						<label for="form_captcha_private_key"><?php _e('Captcha Private Key','hugeit_contact');?></label>
 						<input type="text" id="form_captcha_private_key" name="params[form_captcha_private_key]" value="<?php echo $param_values['form_captcha_private_key']; ?>" />
 					</div>
 					<button onclick="submitbutton(<?php echo esc_html($_GET['id']); ?>)" class='button-primary'>Save</button>
 				</form>
-				<p><a href="https://developers.google.com/recaptcha/intro">What is this all about?</a></p>
-				<p>Please be known you may always change it from <a target="blank" href="admin.php?page=hugeit_forms_general_options&closepop=1">General Options</a></p>
+				<p><a href="https://developers.google.com/recaptcha/intro"><?php _e('What is this all about?','hugeit_contact');?></a></p>
+				<p><?php _e('Please be known you may always change it from','hugeit_contact');?> <a target="blank" href="admin.php?page=hugeit_forms_general_options&closepop=1"><?php _e('General Options','hugeit_contact');?></a></p>
 			</div>
 		</div>	
 	</div>

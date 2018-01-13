@@ -18,33 +18,33 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 	<div id="poststuff">
 		<?php $path_site = plugins_url("Front_images", __FILE__); ?>
 		<div id="post-body-content" class="hugeit_contact_email">
-            <h3>Newsletter Manager <span class="pro">PRO</span></h3>
+            <h3><?php _e('Newsletter Manager','hugeit_contact');?> <span class="pro"><?php _e('PRO','hugeit_contact');?></span></h3>
 			<div id="hugeit_contact_email_manager">	
 				<div class="sub_setting pro-page">
 					<form method="post" action="admin.php?page=hugeit_forms_email_manager&task=save" id="email_manager_form" name="email_manager_form">	
-							<label for="huge_it_form_choose">Choose The Forms</label><br>
+							<label for="huge_it_form_choose"><?php _e('Choose The Forms','hugeit_contact');?></label><br>
 							<select disabled id="huge_it_form_choose">
-								<option value="all">All Forms</option>
+								<option value="all"><?php _e('All Forms','hugeit_contact');?></option>
 								<?php foreach ($formsToShow as $key => $value) : ?>
 									<option value="<?php echo esc_html($key); ?>"><?php echo esc_html($value); ?></option>
 								<?php endforeach; ?>
 							</select><br>
-							<label for="huge_it_setting_subscriber_limit_id">Emails in One Flow</label><br>
+							<label for="huge_it_setting_subscriber_limit_id"><?php _e('Emails in One Flow','hugeit_contact');?></label><br>
 							<input type="number" disabled id="huge_it_setting_subscriber_limit_id" value="<?php echo esc_html($mailerParams['sub_count_by_parts']); ?>" class="regular-text"><br>
-							<label for="huge_it_setting_schedule_id">Interval Between Mailings</label><br>
+							<label for="huge_it_setting_schedule_id"><?php _e('Interval Between Mailings','hugeit_contact');?></label><br>
 							<select id="huge_it_setting_schedule_id" disabled>
-								<option value="60" <?php selected( '60', $mailerParams['sub_interval'], true ); ?>>1 Minute</option>
-								<option value="120" <?php selected( '120', $mailerParams['sub_interval'], true ); ?>>2 Minutes</option>
-								<option value="1800" <?php selected( '1800',$mailerParams['sub_interval'], true ); ?>>30 Minutes</option>
-								<option value="3600" <?php selected( '3600', $mailerParams['sub_interval'], true ); ?>>1 Hour</option>
+								<option value="60" <?php selected( '60', $mailerParams['sub_interval'], true ); ?>>1 <?php _e('Minute','hugeit_contact');?></option>
+								<option value="120" <?php selected( '120', $mailerParams['sub_interval'], true ); ?>>2 <?php _e('Minutes','hugeit_contact');?></option>
+								<option value="1800" <?php selected( '1800',$mailerParams['sub_interval'], true ); ?>>30 <?php _e('Minutes','hugeit_contact');?></option>
+								<option value="3600" <?php selected( '3600', $mailerParams['sub_interval'], true ); ?>>1 <?php _e('Hour','hugeit_contact');?></option>
 							</select><br>
 
-							<label for="huge_it_email_subject">Email Subject</label><br>
+							<label for="huge_it_email_subject"><?php _e('Email Subject','hugeit_contact');?></label><br>
 							<input type="text" disabled id="huge_it_email_subject" value="<?php echo esc_html($mailerParams['email_subject']); ?>" class="regular-text"><br>
 						<input type="hidden" name="task" value=""/>
 					</form>
 
-						<label for="wp-subscriber_message-wrap">Type your text here</label>
+						<label for="wp-subscriber_message-wrap"><?php _e('Type your text here','hugeit_contact');?></label>
 					<?php function hugeit_contact_wptiny2( $initArray ) {
 						$initArray['height']               = '250px';
 						$initArray['forced_root_block']    = false;
@@ -62,13 +62,13 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 					<div id="showCont">
 						<?php if($mailerParams['mailing_progress']=='finish'):?>
 						<div id="not_send">
-							<button class="btn button-primary" id="btn" <?php if(!$subscribers) echo 'disabled'; ?>>Send <i>(pro)</i><i class="hugeicons-paper-plane"></i></button>
+							<button class="btn button-primary" id="btn" <?php if(!$subscribers) echo 'disabled'; ?>><?php _e('Send','hugeit_contact');?> <i>(pro)</i><i class="hugeicons-paper-plane"></i></button>
 							<span id="loader" style="display: none;"><img src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>" alt=""></span>
-							<span id="done" style="padding-left: 9px;display:none;">Successfully Sent <i class="hugeicons-check" style="color: #00A0D2;font-size: 21px;vertical-align: baseline;"></i></span>
+							<span id="done" style="padding-left: 9px;display:none;"><?php _e('Successfully Sent','hugeit_contact');?> <i class="hugeicons-check" style="color: #00A0D2;font-size: 21px;vertical-align: baseline;"></i></span>
 						</div>
 						<?php elseif($mailerParams['mailing_progress']=='start'):?>
 						<div id="sending_progress">
-							<div>Estimated Approximate Time <span id="progress_time"><?php echo esc_html($mailing['need_time']); ?></span></div>
+							<div><?php _e('Estimated Approximate Time','hugeit_contact');?> <span id="progress_time"><?php echo esc_html($mailing['need_time']); ?></span></div>
 							<div class="meter">
 								<span id="progress_meter"><span></span></span>
 							</div>
@@ -167,7 +167,7 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 							</style>
 						</div>
 					
-					<button id="huge_it_cancel" class="button-primary">Cancel<i class="hugeicons-ban"></i></button>
+					<button id="huge_it_cancel" class="button-primary"><?php _e('Cancel','hugeit_contact');?><i class="hugeicons-ban"></i></button>
 					<?php endif;?>
 					</div>
 				</div>
@@ -175,7 +175,7 @@ function  hugeit_contact_html_show_emails($subscribers,$mailerParams,$count,$for
 					<table class="wp-list-table widefat fixed posts" id="huge_it-table">
 						<thead>
 							<tr>
-								<th colspan="7" style="text-align:center;">Emails</th>
+								<th colspan="7" style="text-align:center;"><?php _e('Emails','hugeit_contact');?></th>
 								<th colspan="1" style="text-align:center;"><?php echo $count; ?></th>
 							</tr>
 							<tr>

@@ -254,34 +254,34 @@ $keyForBackground = 1;
                 </form>
             </div>
             <div style="clear:both;"></div> 
-            <div class="current_form"><p><?php if(isset($subName[0]->name)) echo esc_html($subName[0]->name); ?> Submissions</p></div>
+            <div class="current_form"><p><?php if(isset($subName[0]->name)) echo esc_html($subName[0]->name); ?> <?php _e('Submissions','hugeit_contact');?></p></div>
             <div style="clear:both;"></div> 
             <div id="hugeit_top_controls">
                 <ul class="controls-list">
                     <li class="select">
                             <input type="checkbox" name="all" />
                             <select class="">
-                                    <option value="none">None</option>
-                                    <option value="read">Read</option>
-                                    <option value="unread">Unread</option>
-                                    <option value="spam">Spam</option>
+                                    <option value="none"><?php _e('None','hugeit_contact');?></option>
+                                    <option value="read"><?php _e('Read','hugeit_contact');?></option>
+                                    <option value="unread"><?php _e('Unread','hugeit_contact');?></option>
+                                    <option value="spam"><?php _e('Spam','hugeit_contact');?></option>
                             </select>
                     </li>
-                    <li class="back"><a href="admin.php?page=hugeit_forms_submissions" title="Back">Back</a></li>
-                    <li class="spam"><a href="#" title="Mark as Spam">Spam</a></li>
-                    <li class="trash"><a href="#">Trash</a></li>
-                    <li class="refrash"><a href="#">Refresh</a></li>
+                    <li class="back"><a href="admin.php?page=hugeit_forms_submissions" title="Back"><?php _e('Back','hugeit_contact');?></a></li>
+                    <li class="spam"><a href="#" title="Mark as Spam"><?php _e('Spam','hugeit_contact');?></a></li>
+                    <li class="trash"><a href="#"><?php _e('Trash','hugeit_contact');?></a></li>
+                    <li class="refrash"><a href="#"><?php _e('Refresh','hugeit_contact');?></a></li>
                     <li class="select_actions">
                             <select>
-                                    <option value="none">Bulk Actions</option>
-                                    <option value="read">Mark as Read</option>
-                                    <option value="unread">Mark as Unread</option>
-                                    <option value="spam">Mark as Spam</option>
-                                    <option value="unspam">Unmark as Spam</option>
+                                    <option value="none"><?php _e('Bulk Actions','hugeit_contact');?></option>
+                                    <option value="read"><?php _e('Mark as Read','hugeit_contact');?></option>
+                                    <option value="unread"><?php _e('Mark as Unread','hugeit_contact');?></option>
+                                    <option value="spam"><?php _e('Mark as Spam','hugeit_contact');?></option>
+                                    <option value="unspam"><?php _e('Unmark as Spam','hugeit_contact');?></option>
                             </select>
                     </li>
                     <li>
-                    <a class="apply" href="#">Apply</a>
+                    <a class="apply" href="#"><?php _e('Apply','hugeit_contact');?></a>
                     </li>
                     <li>
                         <img class="control_list_spinner" src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
@@ -294,8 +294,8 @@ $keyForBackground = 1;
                         <span class="count"><?php if(isset($limitPage['countOfPages'])&&$limitPage['countOfPages'] > $limitPage['perpage'] && $limitPage['countOfPages']!=0 ){ echo $limitPage['start']."-".$limitPage['fromTo']." From ".$limitPage['countOfPages']; }?></span>
                         <div class="buttons">
                             <form action="admin.php?page=hugeit_forms_submissions" method="POST">
-                                <a <?php if($limitPage['page'] <= 1) echo 'style="display:none;"'; ?> href="<?php echo esc_url($limitPage['prevLink']); ?>" class="prev">Prev</a>
-                                <a <?php if($limitPage['page'] >= $limitPage['count_pages']) echo 'style="display:none;"'; ?> href="<?php echo esc_url($limitPage['nextLink']); ?>" class="next">Next</a>
+                                <a <?php if($limitPage['page'] <= 1) echo 'style="display:none;"'; ?> href="<?php echo esc_url($limitPage['prevLink']); ?>" class="prev"><?php _e('Prev','hugeit_contact');?></a>
+                                <a <?php if($limitPage['page'] >= $limitPage['count_pages']) echo 'style="display:none;"'; ?> href="<?php echo esc_url($limitPage['nextLink']); ?>" class="next"><?php _e('Next','hugeit_contact');?></a>
                             </form>
                         </div>
                 </div>
@@ -305,10 +305,10 @@ $keyForBackground = 1;
                 <thead>
                      <tr>
                         <th scope="col" id="id" style="width:5%" ><span></span><span class="sorting-indicator"></span></th>
-                        <th scope="col" id="name" style="width:24%" ><span>User Message</span><span class="sorting-indicator"></span></th>
-                        <th scope="col" id="name" style="width:24%" ><span>User Country</span><span class="sorting-indicator"></span></th>                        
-                        <th scope="col" id="prod_count"  style="width:24%;" ><span>User Submission Date</span><span class="sorting-indicator"></span></th>
-                        <th scope="col" id="prod_count"  style="width:24%;" ><span>User IP</span><span class="sorting-indicator"></span></th>
+                        <th scope="col" id="name" style="width:24%" ><span><?php _e('User Message','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
+                        <th scope="col" id="name" style="width:24%" ><span><?php _e('User Country','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
+                        <th scope="col" id="prod_count"  style="width:24%;" ><span><?php _e('User Submission Date','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
+                        <th scope="col" id="prod_count"  style="width:24%;" ><span><?php _e('User IP','hugeit_contact');?></span><span class="sorting-indicator"></span></th>
                      </tr>
                 </thead>		
 				<tbody id="the-comment-list" data-wp-lists="list:comment">
@@ -322,13 +322,13 @@ $keyForBackground = 1;
                 ?>
 				    <tr id="comment-<?php echo $submition_id; ?>" class="comment even thread-even <?php if($submition->customer_read_or_not == 1){ echo "read"; } else { echo "unread"; } if($submition->customer_spam == 1){ echo " spam"; } else { echo ""; }?> depth-<?php echo $keyForBackground; if($keyForBackground%2 == 0) echo " alt"; ?> ">
 				        <th scope="row" class="check-column">
-				            <label class="screen-reader-text" for="cb-select-<?php echo $submition_id; ?>">Select Submission</label>
+				            <label class="screen-reader-text" for="cb-select-<?php echo $submition_id; ?>"><?php _e('Select Submission','hugeit_contact');?></label>
 				            <input id="cb-select-<?php echo esc_attr($keyForBackground); ?>" type="checkbox" name="check_comments" value="<?php echo $submition_id; ?>">
 				        </th>
 				        <td class="comment column-comment">
 				            <div class="comment-author">
 				            </div>
-				            <div class="submitted-on">Submitted on <a><?php echo "  ".esc_html($submition->submission_date); ?></a></div>
+				            <div class="submitted-on"><?php _e('Submitted on','hugeit_contact');?> <a><?php echo "  ".esc_html($submition->submission_date); ?></a></div>
 				                <div class="submition_message" id_for_edit="<?php echo $submition_id; ?>" readonly>
 				                </div>
 				            <div id="inline-1" class="hidden">
@@ -349,10 +349,10 @@ $keyForBackground = 1;
 				                    <a class="vim-s vim-destructive" title="Mark this comment as spam">Spam</a>
 				                </span>
 				                <span class="not_spam" value="<?php echo $submition_id; ?>" style='<?php  if($submition->customer_spam != 1) { echo "display: none"; } ?>'>  |
-				                    <a class="vim-s vim-destructive" title="Unmark as Spam">Not Spam</a>
+				                    <a class="vim-s vim-destructive" title="Unmark as Spam"><?php _e('Not Spam','hugeit_contact');?></a>
 				                </span>
 				                <span class="trash" value="<?php echo $submition_id; ?>"> |
-				                    <a class="delete vim-d vim-destructive" title="Move this comment to the trash">Trash</a>
+				                    <a class="delete vim-d vim-destructive" title="Move this comment to the trash"><?php _e('Trash','hugeit_contact');?></a>
 				                </span>
 				                <span id="huge_it_spinner_<?php echo $submition_id; ?>" class="huge_it_spinner">
 				                    <img src="<?php echo plugins_url( '../images/spinner.gif', __FILE__ ); ?>">
@@ -362,10 +362,10 @@ $keyForBackground = 1;
 				        <td class="author column-author user-name">
 				            <?php if ($submition->customer_read_or_not == 1):?>
 							<a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id=<?php echo $submition_id; ?>&submissionsId=<?php echo $submition_contact_id; ?>"><?php echo $submition_contact_country; ?></a>
-				            <p class='spamer' <?php  if($submition->customer_spam != 1) echo "style= 'display: none'"; ?>>Spam!</p>
+				            <p class='spamer' <?php  if($submition->customer_spam != 1) echo "style= 'display: none'"; ?>><?php _e('Spam','hugeit_contact');?>!</p>
 				            <?php else:?>
 				            <a href="admin.php?page=hugeit_forms_submissions&task=show_submissions&id=<?php echo $submition_id; ?>&read=unread&submissionsId=<?php echo $submition->contact_id; ?>"><?php echo $submition->customer_country; ?></a>
-				            <p class='spamer' <?php  if($submition->customer_spam != 1) echo "style= 'display: none'"; ?>>Spam!</p>
+				            <p class='spamer' <?php  if($submition->customer_spam != 1) echo "style= 'display: none'"; ?>><?php _e('Spam','hugeit_contact');?>!</p>
 				            <?php endif;?>
 				        </td>
 				        <td class="author column-author user_email">
@@ -384,7 +384,7 @@ $keyForBackground = 1;
 			<input type="hidden" name="saveorder" id="saveorder" value="" />
 			<input type="hidden" name="countTorefresh" id="countTorefresh" value="<?php echo esc_attr($submitionsCount[0]->all_count); ?>" />
 			<input type="hidden" name="subID" id="subID" value="<?php if(isset($submition->contact_id)) { echo $submition_contact_id;}else {echo 'empty';} ?>" />
-			<div id="huge-it-contact-dialog-confirm" title="Delete Submission(s)">Are you sure?</div>
+			<div id="huge-it-contact-dialog-confirm" title="Delete Submission(s)"><?php _e('Are you sure','hugeit_contact');?>?</div>
     </div>
 </div>
 	<script>
@@ -451,10 +451,10 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
                         <div class="buttons">
                                 <?php
                                     if($myNum > 1){
-                                        echo "<a href='".$previous_page_url."' class='prev' >Prev</a>";
+                                        echo "<a href='".$previous_page_url."' class='prev' ><?php _e('Prev','hugeit_contact');?></a>";
                                     }                                  
                                     if($myNum < $max_count){
-                                        echo "<a href='".$next_page_url."' class='next' >Next</a>";
+                                        echo "<a href='".$next_page_url."' class='next' ><?php _e('Next','hugeit_contact');?></a>";
                                     }
                                 ?>
                         </div>
@@ -465,10 +465,10 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
             	<div id="submission_details">
             		<?php $ipOfSub2 = array_filter(explode("*()*", $messageInArray[0]->submission_ip),'strlen');?>			
 					<table class="detailsTable">
-						<tr><td>Submission Date:</td><td ><?php echo esc_html($messageInArray[0]->submission_date); ?></td></tr>
-						<tr><td>User Browser:</td><td><?php if(isset($ipOfSub2[1])){echo esc_html($ipOfSub2[1]).'  <img style="vertical-align: sub;"src="'.plugins_url( '../images/'.$ipOfSub2[1].'.png', __FILE__ ).'">';}else{echo '';} ?></td></tr>
-						<tr><td>User Country:</td><td><?php echo '(Only In Pro)'; ?></td></tr>
-						<tr><td>User IP:</td><td><?php echo esc_html($ipOfSub2[0]); ?></td></tr>
+						<tr><td><?php _e('Submission Date','hugeit_contact');?>:</td><td ><?php echo esc_html($messageInArray[0]->submission_date); ?></td></tr>
+						<tr><td><?php _e('User Browser','hugeit_contact');?>:</td><td><?php if(isset($ipOfSub2[1])){echo esc_html($ipOfSub2[1]).'  <img style="vertical-align: sub;"src="'.plugins_url( '../images/'.$ipOfSub2[1].'.png', __FILE__ ).'">';}else{echo '';} ?></td></tr>
+						<tr><td><?php _e('User Country','hugeit_contact');?>:</td><td><?php echo '(Only In Pro)'; ?></td></tr>
+						<tr><td><?php _e('User IP','hugeit_contact');?>:</td><td><?php echo esc_html($ipOfSub2[0]); ?></td></tr>
 
 					</table>
 				</div>
@@ -493,7 +493,7 @@ require_once dirname(__FILE__) ."/../hugeit_contact_function/download.php";
 					if ( ! empty( $filesUrlExploded ) && ! empty( $filesTypeExploded ) ): ?>
 						<div id="submission_attachements">
 							<hr>
-							<h3>File Attachements</h3>
+							<h3><?php _e('File Attachements','hugeit_contact');?></h3>
 							<div class="attachement_wrapper">
 								<form id="my_form" action="hugeit_contact_ajax.php" method="post">
 								<?php foreach ($filesTypeExploded as $key => $filesTypeExplodeds) {
