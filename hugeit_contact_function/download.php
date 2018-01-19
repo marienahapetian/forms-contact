@@ -11,6 +11,7 @@ if ( isset( $_GET['file'] ) ) {
 
 	hugeit_contact_download_file( $file );
 }
+
 function hugeit_contact_download_file( $fullPath ) {
 	$upload_dir = wp_upload_dir();
 	$basedir    = $upload_dir['basedir'];

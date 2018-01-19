@@ -72,8 +72,8 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
                 </div>
             <!--Mask On-->
             <label class="input-block"><?php _e('Mask On','hugeit_contact'); ?>
-                  <input type="checkbox" <?php if($rowimages->field_type == 'number') echo "disabled";?> class="hg-mask-on-check" <?php if(!empty(trim($rowimages->mask_on)) && $rowimages->field_type == 'text') echo "checked='checked'";  ?>>
-                  <label class="hg-mask-on <?php if(empty(trim($rowimages->mask_on)) || $rowimages->field_type == 'number') echo "readonlyHgMask" ?>" >
+                  <input type="checkbox" <?php if($rowimages->field_type == 'number') echo "disabled";?> class="hg-mask-on-check" <?php if(trim($rowimages->mask_on)!='' && $rowimages->field_type == 'text') echo "checked='checked'";  ?>>
+                  <label class="hg-mask-on <?php if(trim($rowimages->mask_on)=='' || $rowimages->field_type == 'number') echo "readonlyHgMask" ?>" >
                           <input  type="text" name="mask_on<?php echo absint($rowimages->id); ?>"  value="<?php echo $rowimages->mask_on; ?>" class="mask_on" placeholder="Mask Pattern (ex. (99)-999-99-9) " /><br>
                             <b>a</b><em>- (A-Z,a-z)</em> <br>
                             <b>9</b><em>- (0-9)</em><br>
@@ -97,7 +97,7 @@ function hugeit_contact_textBoxSettingsHtml($rowimages){ ob_start(); ?>
                 <div>
                <!-- Default Value -->
               <label class="input-block"><?php _e('Default Value','hugeit_contact'); ?>
-                  <input class="hg-def-value"  type="text" name="def_value<?php echo absint($rowimages->id); ?>"  value="<?php echo $rowimages->def_value; ?>" <?php if(!empty(trim($rowimages->mask_on))) echo "readonly='readonly'"; ?>  />
+                  <input class="hg-def-value"  type="text" name="def_value<?php echo absint($rowimages->id); ?>"  value="<?php echo $rowimages->def_value; ?>" <?php if(trim($rowimages->mask_on)!='') echo "readonly='readonly'"; ?>  />
               </label>
                 <!-- Default Value -->
                 </div>

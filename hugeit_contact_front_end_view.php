@@ -16,7 +16,7 @@ function text_field_html($rowimages, $frontendformid)
             <input id="hugeit_preview_textbox_<?php echo absint($rowimages->id); ?>"
                    name="huge_it_<?php echo esc_html($frontendformid) . '_' . absint($rowimages->id); ?>"
                    type="<?php echo esc_html($rowimages->field_type); ?>"
-                   placeholder="<?php if(!empty(trim($rowimages->mask_on))) echo $rowimages->mask_on; else echo $placeholder; ?>"
+                   placeholder="<?php if(trim($rowimages->mask_on)!='') echo $rowimages->mask_on; else echo $placeholder; ?>"
                    class="<?php echo ($rowimages->field_type=='number')?'forceNumeric':'';?><?php echo ($rowimages->hc_required == 'on')?'required':'';?>" <?php if ($rowimages->description != 'on') echo 'disabled="disabled"'; ?>
                     <?php if(trim($rowimages->def_value)!==""): ?>
          value="<?php echo $rowimages->def_value; ?>"

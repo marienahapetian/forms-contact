@@ -359,7 +359,7 @@ class Hugeit_Contact_WP_Settings extends WPDEV_Settings_API_Form
                 'unchecked_val'=>'off',
                 'default' => $this->form_send_to_email_user,
                 'label' => __('Send Email For Each Submission', 'hugeit_contact'),
-                'help' => __('Whether to Send an Email to Admin for each Submission', 'hugeit_contact')
+                'help' => __('Whether to Send an Email to Users for each Submission', 'hugeit_contact')
             ),
             'form_user_message_subject' => array(
                 'section' => 'email_user',
