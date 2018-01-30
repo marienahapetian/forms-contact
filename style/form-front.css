@@ -512,6 +512,10 @@ body .hugeit-contact-wrapper input, body .hugeit-contact-wrapper textarea {paddi
 .hugeit-form-mobile{
     margin-bottom: 30px;
 }
+.hugeit-form-mobile .buttons-block{
+    display: inline-block;
+    width: 100%;
+}
 /* Pagination */
 
 button[disabled], input[disabled], select[disabled], textarea[disabled] {
