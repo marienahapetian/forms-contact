@@ -1899,5 +1899,6 @@ function hugeit_contact_custom_cron_job_recurrence($schedules)
     return $schedules;
 }
 
+
 add_action('init', 'hugeit_contact_schedule_tracking', 0);
 add_filter('cron_schedules', 'hugeit_contact_custom_cron_job_recurrence');

@@ -41,6 +41,8 @@ jQuery(document).ready(function(e) {
                     }
                 }).done(function(response) {
                     var response = jQuery.parseJSON(response);
+                    var prepend = true;
+                    if(jQuery('#new-field-order').val()=='append') prepend = false;
                     if (response) {
                         if (response.captchaNum) {
                             var ifExists = false;
@@ -177,8 +179,13 @@ jQuery(document).ready(function(e) {
                                     jQuery('#fields-list-block #fields-list-left').append(response.outputFieldSettings);
                                 }
                             } else {
-                                jQuery('#hugeit-contact-wrapper .hugeit-contact-block-left').prepend(response.outputField);
-                                jQuery('#fields-list-block #fields-list-left').prepend(response.outputFieldSettings);
+                                if(prepend){
+                                    jQuery('#hugeit-contact-wrapper .hugeit-contact-block-left').prepend(response.outputField);
+                                    jQuery('#fields-list-block #fields-list-left').prepend(response.outputFieldSettings);
+                                } else {
+                                    jQuery('#hugeit-contact-wrapper .hugeit-contact-block-left').append(response.outputField);
+                                    jQuery('#fields-list-block #fields-list-left').append(response.outputFieldSettings);
+                                }
                             }
 
 

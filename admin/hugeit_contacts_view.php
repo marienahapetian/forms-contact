@@ -176,8 +176,9 @@ function html_showhugeit_contacts( $rows,$pageNav,$sort,$cat_row,$a,$form_styles
 function hugeit_contact_html_edithugeit_contact($current_form, $ord_elem, $count_ord,$images, $cat_row, $rowim, $rowsld, $paramssld, $rowsposts, $rowsposts8, $postsbycat, $form_styles,$style_values,$themeId){
  	global $wpdb;
  	$id=$current_form->id;
+    $newFieldOrder = $paramssld['form_new_fields_order'];
 
-	if(isset($_GET["addslide"]) && $_GET["addslide"] == 1){
+    if(isset($_GET["addslide"]) && $_GET["addslide"] == 1){
 		$apply_safe_link = wp_nonce_url(
 			'admin.php?page=hugeit_forms_main_page&id=' . $id . '&task=apply',
 			'apply_form_' . $id,
@@ -1112,7 +1113,8 @@ function submitbutton(pressbutton){
 			<div id="hugeit-contact-preview-container">
 					<form onkeypress="doNothing()" id="hugeit-contact-preview-form">
 					<div id="hugeit-contact-wrapper" class="<?php echo $style_values['form_radio_size']; ?>-radio <?php echo $style_values['form_checkbox_size']; ?>-checkbox">
-					<div <?php foreach ($rowim as $key=>$rowimages){
+                        <input type="hidden" id="new-field-order" value="<?php echo $newFieldOrder;?>">
+                        <div <?php foreach ($rowim as $key=>$rowimages){
 					    if($rowimages->hc_left_right == 'right'){
 					        echo 'class="multicolumn"';
 					    }
