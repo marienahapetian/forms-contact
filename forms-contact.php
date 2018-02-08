@@ -4,7 +4,7 @@
 Plugin Name: Huge IT Forms
 Plugin URI: https://huge-it.com/forms
 Description: Form Builder. this is one of the most important elements of WordPress website because without it you cannot to always keep in touch with your visitors
-Version: 1.4.9
+Version: 1.5.0
 Author: Huge-IT
 Author URI: https://huge-it.com/
 License: GNU/GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
@@ -12,7 +12,7 @@ Domain Path: /languages
 Text Domain: hugeit_contact
 */
 
-define('HG_CONTACT_VERSION', '1.4.9');
+define('HG_CONTACT_VERSION', '1.5.0');
 define('HG_CONTACT_URL', plugins_url('', __FILE__));
 define('HG_CONTACT_PATH', plugin_dir_path(__FILE__));
 define('HG_IMAGES_BASE_URL', plugins_url('images/',__FILE__));
@@ -1848,7 +1848,21 @@ function refactorGeneralOptionsTable(){
     );
 
     if(empty($uniqueColumns) ){
-        $wpdb->query('ALTER TABLE '.$wpdb->prefix.'huge_it_contact_general_options ADD UNIQUE (name)');
+        $rowsToKeepQuery = "SELECT MAX(id) as RowId FROM ".$wpdb->prefix."huge_it_contact_general_options GROUP BY name";
+
+        $rowsToKeep = $wpdb->get_results($rowsToKeepQuery);
+
+        $ids = '';
+
+        foreach ($rowsToKeep as $key=>$rowToKeep){
+            if($key == 0) $ids .= $rowToKeep->RowId;
+            else $ids .= ','.$rowToKeep->RowId;
+        }
+
+        $clearTable = $wpdb->query('DELETE FROM '.$wpdb->prefix.'huge_it_contact_general_options WHERE id NOT IN ('.$ids.')');
+
+        $uniqueKeyAdded = $wpdb->query('ALTER TABLE '.$wpdb->prefix.'huge_it_contact_general_options ADD UNIQUE (name)');
+
     }
 
 }

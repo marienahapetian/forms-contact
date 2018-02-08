@@ -552,4 +552,13 @@ input[disabled] +i +i {
     .hugeit-contact-wrapper div.multicolumn .hugeit-contact-column-block {
         width: 100%;
     }
+
+    .hugeit-contact-wrapper {
+        min-width: inherit;
+    }
+
+    .hugeit-contact-wrapper .hugeit-contact-column-block{
+        min-width: inherit;
+    }
 }
+

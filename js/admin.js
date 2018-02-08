@@ -839,7 +839,7 @@ jQuery(document).ready(function () {
 		}
 
 
-		jQuery(this).parent().before('<li><input class="field-multiple-option" type="text" name="fieldoption' + fieldID + '" value="' + value + '" /><div class="set-active"><input type="radio" name="options_active_' + fieldID + '" value="' + value + '" /></div><a href="#remove" class="remove-field-option"><?php _e('remove','hugeit_contact');?></a></li>');
+		jQuery(this).parent().before('<li><input class="field-multiple-option" type="text" name="fieldoption' + fieldID + '" value="' + value + '" /><div class="set-active"><input type="radio" name="options_active_' + fieldID + '" value="' + value + '" /></div><a href="#remove" class="remove-field-option">remove</a></li>');
 		var allvalues = '';
 		jQuery(this).parents(".field-multiple-option-list").find('.field-multiple-option').each(function() {
 			allvalues += jQuery(this).val() + ";;";
